@@ -1,0 +1,102 @@
+{
+  "module": "pinyin",
+  "title": "拼音王国",
+  "target_age": "3-6",
+  "lesson_duration_min": 5,
+  "sections": [
+    {
+      "id": "initials",
+      "name": "声母",
+      "items": [
+        { "pinyin": "b", "example_word": "爸", "example_pinyin": "bà" },
+        { "pinyin": "p", "example_word": "爬", "example_pinyin": "pá" },
+        { "pinyin": "m", "example_word": "妈", "example_pinyin": "mā" },
+        { "pinyin": "f", "example_word": "飞", "example_pinyin": "fēi" },
+        { "pinyin": "d", "example_word": "大", "example_pinyin": "dà" },
+        { "pinyin": "t", "example_word": "兔", "example_pinyin": "tù" },
+        { "pinyin": "n", "example_word": "牛", "example_pinyin": "niú" },
+        { "pinyin": "l", "example_word": "梨", "example_pinyin": "lí" },
+        { "pinyin": "g", "example_word": "狗", "example_pinyin": "gǒu" },
+        { "pinyin": "k", "example_word": "哭", "example_pinyin": "kū" },
+        { "pinyin": "h", "example_word": "虎", "example_pinyin": "hǔ" },
+        { "pinyin": "j", "example_word": "鸡", "example_pinyin": "jī" },
+        { "pinyin": "q", "example_word": "七", "example_pinyin": "qī" },
+        { "pinyin": "x", "example_word": "熊", "example_pinyin": "xióng" },
+        { "pinyin": "zh", "example_word": "猪", "example_pinyin": "zhū" },
+        { "pinyin": "ch", "example_word": "虫", "example_pinyin": "chóng" },
+        { "pinyin": "sh", "example_word": "狮", "example_pinyin": "shī" },
+        { "pinyin": "r", "example_word": "人", "example_pinyin": "rén" }
+      ]
+    },
+    {
+      "id": "finals",
+      "name": "韵母",
+      "items": [
+        { "pinyin": "a", "example_word": "妈", "example_pinyin": "mā" },
+        { "pinyin": "o", "example_word": "波", "example_pinyin": "bō" },
+        { "pinyin": "e", "example_word": "鹅", "example_pinyin": "é" },
+        { "pinyin": "i", "example_word": "衣", "example_pinyin": "yī" },
+        { "pinyin": "u", "example_word": "猪", "example_pinyin": "zhū" },
+        { "pinyin": "ü", "example_word": "鱼", "example_pinyin": "yú" },
+        { "pinyin": "ai", "example_word": "爱", "example_pinyin": "ài" },
+        { "pinyin": "ei", "example_word": "杯", "example_pinyin": "bēi" },
+        { "pinyin": "ao", "example_word": "猫", "example_pinyin": "māo" },
+        { "pinyin": "ou", "example_word": "狗", "example_pinyin": "gǒu" },
+        { "pinyin": "iu", "example_word": "牛", "example_pinyin": "niú" },
+        { "pinyin": "ie", "example_word": "叶", "example_pinyin": "yè" },
+        { "pinyin": "üe", "example_word": "月", "example_pinyin": "yuè" },
+        { "pinyin": "an", "example_word": "三", "example_pinyin": "sān" },
+        { "pinyin": "en", "example_word": "人", "example_pinyin": "rén" },
+        { "pinyin": "ang", "example_word": "羊", "example_pinyin": "yáng" },
+        { "pinyin": "eng", "example_word": "灯", "example_pinyin": "dēng" },
+        { "pinyin": "ing", "example_word": "星", "example_pinyin": "xīng" }
+      ]
+    },
+    {
+      "id": "tones",
+      "name": "声调",
+      "items": [
+        {
+          "tone": 1,
+          "name": "一声",
+          "description": "又高又平",
+          "examples": [
+            { "pinyin": "mā", "word": "妈" },
+            { "pinyin": "bā", "word": "八" },
+            { "pinyin": "fēi", "word": "飞" }
+          ]
+        },
+        {
+          "tone": 2,
+          "name": "二声",
+          "description": "由低到高",
+          "examples": [
+            { "pinyin": "má", "word": "麻" },
+            { "pinyin": "pá", "word": "爬" },
+            { "pinyin": "yáng", "word": "羊" }
+          ]
+        },
+        {
+          "tone": 3,
+          "name": "三声",
+          "description": "先降再升",
+          "examples": [
+            { "pinyin": "mǎ", "word": "马" },
+            { "pinyin": "gǒu", "word": "狗" },
+            { "pinyin": "hǔ", "word": "虎" }
+          ]
+        },
+        {
+          "tone": 4,
+          "name": "四声",
+          "description": "从高到低",
+          "examples": [
+            { "pinyin": "mà", "word": "骂" },
+            { "pinyin": "dà", "word": "大" },
+            { "pinyin": "xià", "word": "下" }
+          ]
+        }
+      ]
+    }
+  ]
+}

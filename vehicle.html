@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 交通工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #E3F2FD 0%, #FFF0F5 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 10px 10px;
+        }
+        
+        .header h1 {
+            color: #5C6BC0;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        .mascot {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .mascot-bubble {
+            display: inline-block;
+            background: white;
+            border-radius: 25px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #555;
+            font-size: 16px;
+            max-width: 80%;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .mascot-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+        }
+        
+        .mascot-avatar {
+            width: 60px;
+            height: 60px;
+            background: #FFD93D;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .main-stage {
+            background: white;
+            border-radius: 30px 30px 0 0;
+            min-height: 60vh;
+            padding: 25px 15px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .vehicle-card {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .vehicle-card.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .vehicle-image {
+            width: 240px;
+            height: 240px;
+            object-fit: contain;
+            margin: 10px auto;
+            cursor: pointer;
+            transition: transform 0.2s;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+        
+        .vehicle-image:active {
+            transform: scale(0.95);
+        }
+        
+        .vehicle-word {
+            font-size: 48px;
+            color: #333;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        
+        .vehicle-pinyin {
+            font-size: 22px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+        
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:active {
+            transform: scale(0.95);
+        }
+        
+        .btn-word { background: #5C6BC0; }
+        .btn-sentence { background: #4ECDC4; }
+        .btn-sound { background: #FFD93D; color: #333; }
+        .btn-next { background: #95E1D3; color: #333; padding: 15px 50px; font-size: 18px; margin-top: 20px; }
+        
+        .progress {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: background 0.3s;
+        }
+        
+        .progress-dot.active { background: #5C6BC0; }
+        
+        .hint {
+            color: #999;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+        
+        .start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #E3F2FD 0%, #FFF0F5 100%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .start-content {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 320px;
+            width: 90%;
+        }
+        
+        .start-panda { font-size: 80px; margin-bottom: 10px; }
+        
+        .start-content h2 {
+            color: #5C6BC0;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .start-content p {
+            color: #888;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+        
+        .start-btn {
+            background: #5C6BC0;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(92,107,192,0.3);
+            transition: transform 0.2s;
+        }
+        
+        .start-btn:active { transform: scale(0.95); }
+        
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 400px) {
+            .vehicle-image { width: 200px; height: 200px; }
+            .vehicle-word { font-size: 40px; }
+        }
+
+        .back-bar {
+            display: block;
+            padding: 12px 15px;
+            color: #666;
+            text-decoration: none;
+            font-size: 15px;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="back-bar">← 回首页</a>
+
+    <div class="start-overlay" id="startOverlay">
+        <div class="start-content">
+            <div class="start-panda">🐼</div>
+            <h2>小豆交通工具</h2>
+            <p>一起认识出行的小伙伴</p>
+            <button class="start-btn" onclick="startApp()">开始学习</button>
+        </div>
+    </div>
+
+    <div class="header">
+        <h1>🐼 小豆中文</h1>
+        <p>今天我们来认识交通工具</p>
+    </div>
+    
+    <div class="mascot">
+        <div class="mascot-bubble" id="mascotText">你好！点击交通工具，听听它叫什么名字～</div>
+        <div class="mascot-avatar">🐼</div>
+    </div>
+    
+    <div class="main-stage">
+        <div id="vehicleCards"></div>
+        <div class="progress" id="progressDots"></div>
+        <div class="hint">提示：如果听不到声音，请检查浏览器是否允许播放音频</div>
+        
+        <a href="home.html" class="back-home">⬅️ 返回首页</a>
+    </div>
+
+    <script>
+        const vehicles = [
+            { word: "汽车", pinyin: "qì chē", file: "car", sound: "滴滴", sentence: "这是一辆汽车。" },
+            { word: "公交车", pinyin: "gōng jiāo chē", file: "bus", sound: "无", sentence: "这是一辆公交车。" },
+            { word: "地铁", pinyin: "dì tiě", file: "subway", sound: "轰轰", sentence: "这是一列地铁。" },
+            { word: "高铁", pinyin: "gāo tiě", file: "high_speed_train", sound: "嗖嗖", sentence: "这是一列高铁。" },
+            { word: "火车", pinyin: "huǒ chē", file: "train", sound: "呜呜", sentence: "这是一列火车。" },
+            { word: "飞机", pinyin: "fēi jī", file: "airplane", sound: "轰隆隆", sentence: "这是一架飞机。" },
+            { word: "直升机", pinyin: "zhí shēng jī", file: "helicopter", sound: "嗒嗒嗒", sentence: "这是一架直升机。" },
+            { word: "热气球", pinyin: "rè qì qiú", file: "hot_air_balloon", sound: "无", sentence: "这是一个热气球。" },
+            { word: "火箭", pinyin: "huǒ jiàn", file: "rocket", sound: "轰", sentence: "这是一枚火箭。" },
+            { word: "船", pinyin: "chuán", file: "ship", sound: "呜呜", sentence: "这是一艘船。" },
+            { word: "轮船", pinyin: "lún chuán", file: "steamship", sound: "呜呜", sentence: "这是一艘轮船。" },
+            { word: "帆船", pinyin: "fān chuán", file: "sailboat", sound: "无", sentence: "这是一艘帆船。" },
+            { word: "潜艇", pinyin: "qián tǐng", file: "submarine", sound: "无", sentence: "这是一艘潜艇。" },
+            { word: "自行车", pinyin: "zì xíng chē", file: "bicycle", sound: "叮铃铃", sentence: "这是一辆自行车。" },
+            { word: "滑板车", pinyin: "huá bǎn chē", file: "scooter", sound: "无", sentence: "这是一辆滑板车。" },
+            { word: "摩托车", pinyin: "mó tuō chē", file: "motorcycle", sound: "突突", sentence: "这是一辆摩托车。" },
+            { word: "出租车", pinyin: "chū zū chē", file: "taxi", sound: "无", sentence: "这是一辆出租车。" },
+            { word: "卡车", pinyin: "kǎ chē", file: "truck", sound: "嘟嘟", sentence: "这是一辆卡车。" },
+            { word: "校车", pinyin: "xiào chē", file: "school_bus", sound: "无", sentence: "这是一辆校车。" },
+            { word: "救护车", pinyin: "jiù hù chē", file: "ambulance", sound: "呜哇呜哇", sentence: "这是一辆救护车。" },
+            { word: "警车", pinyin: "jǐng chē", file: "police_car", sound: "嘀嘟嘀嘟", sentence: "这是一辆警车。" },
+            { word: "消防车", pinyin: "xiāo fáng chē", file: "fire_truck", sound: "嘀呜嘀呜", sentence: "这是一辆消防车。" },
+            { word: "洒水车", pinyin: "sǎ shuǐ chē", file: "water_truck", sound: "无", sentence: "这是一辆洒水车。" },
+            { word: "垃圾车", pinyin: "lā jī chē", file: "garbage_truck", sound: "无", sentence: "这是一辆垃圾车。" },
+            { word: "拖拉机", pinyin: "tuō lā jī", file: "tractor", sound: "哒哒", sentence: "这是一辆拖拉机。" },
+            { word: "挖掘机", pinyin: "wā jué jī", file: "excavator", sound: "轰轰", sentence: "这是一辆挖掘机。" }
+        ];
+        
+        let currentIndex = 0;
+        let appStarted = false;
+        
+        const synth = window.speechSynthesis;
+        let chineseVoice = null;
+        
+        function findChineseVoice() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) {
+                if (v.lang.startsWith('zh')) { chineseVoice = v; break; }
+            }
+        }
+        
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = findChineseVoice;
+        }
+        findChineseVoice();
+        
+        function playAudio(path) {
+            return new Promise((resolve, reject) => {
+                const audio = new Audio(path);
+                audio.onended = resolve;
+                audio.onerror = reject;
+                audio.play().catch(reject);
+            });
+        }
+        
+        function speakWithFallback(text, mp3Path, rate = 0.8) {
+            if (mp3Path) {
+                playAudio(mp3Path).catch(() => speak(text, rate));
+            } else {
+                speak(text, rate);
+            }
+        }
+        
+        function speak(text, rate = 0.8) {
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'zh-CN';
+            utter.rate = rate;
+            utter.pitch = 1.1;
+            if (chineseVoice) utter.voice = chineseVoice;
+            synth.speak(utter);
+        }
+        
+        function showMascot(text) { document.getElementById('mascotText').textContent = text; }
+        
+        function renderCards() {
+            const container = document.getElementById('vehicleCards');
+            const progress = document.getElementById('progressDots');
+            
+            vehicles.forEach((vehicle, index) => {
+                const card = document.createElement('div');
+                card.className = 'vehicle-card' + (index === 0 ? ' active' : '');
+                card.innerHTML = `
+                    <img class="vehicle-image" 
+                         src="assets/images/vehicles/${vehicle.file}.png" 
+                         alt="${vehicle.word}"
+                         onclick="playWord(${index})">
+                    <div class="vehicle-word">${vehicle.word}</div>
+                    <div class="vehicle-pinyin">${vehicle.pinyin}</div>
+                    <div class="btn-group">
+                        <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
+                        <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
+                        ${vehicle.sound !== '无' ? `<button class="btn btn-sound" onclick="playSound(${index})">🎵 声音</button>` : ''}
+                    </div>
+                    <button class="btn btn-next" onclick="nextVehicle()">下一个 ➡️</button>
+                `;
+                container.appendChild(card);
+                
+                const dot = document.createElement('div');
+                dot.className = 'progress-dot' + (index === 0 ? ' active' : '');
+                progress.appendChild(dot);
+            });
+        }
+        
+        function playWord(index) {
+            const vehicle = vehicles[index];
+            const mp3Path = `assets/audio/vehicles/${vehicle.file}_word.mp3`;
+            speakWithFallback(`${vehicle.word}，${vehicle.pinyin}`, mp3Path);
+            showMascot(`这是${vehicle.word}，${vehicle.pinyin}。`);
+        }
+        
+        function playSentence(index) {
+            const vehicle = vehicles[index];
+            const mp3Path = `assets/audio/vehicles/sentences/${vehicle.file}_sentence.mp3`;
+            speakWithFallback(vehicle.sentence, mp3Path);
+            showMascot(vehicle.sentence);
+        }
+        
+        function playSound(index) {
+            const vehicle = vehicles[index];
+            if (vehicle.sound !== '无') {
+                const mp3Path = `assets/audio/vehicles/${vehicle.file}_sound.mp3`;
+                speakWithFallback(vehicle.sound, mp3Path, 1.0);
+                showMascot(`${vehicle.word}的声音：${vehicle.sound}！`);
+            }
+        }
+        
+        function nextVehicle() {
+            const cards = document.querySelectorAll('.vehicle-card');
+            const dots = document.querySelectorAll('.progress-dot');
+            
+            cards[currentIndex].classList.remove('active');
+            dots[currentIndex].classList.remove('active');
+            
+            currentIndex = (currentIndex + 1) % vehicles.length;
+            
+            cards[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+            
+            const vehicle = vehicles[currentIndex];
+            showMascot(`我们来学${vehicle.word}！`);
+            
+            setTimeout(() => playWord(currentIndex), 500);
+        }
+        
+        function startApp() {
+            if (appStarted) return;
+            appStarted = true;
+            
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (AudioContext) {
+                const ctx = new AudioContext();
+                if (ctx.state === 'suspended') ctx.resume();
+            }
+            
+            const silentAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
+            silentAudio.play().catch(() => {});
+            
+            document.getElementById('startOverlay').style.display = 'none';
+            showMascot('你好！我是小豆。今天我们来认识交通工具。');
+            
+            setTimeout(() => speak('你好！我是小豆。今天我们来认识交通工具。'), 300);
+        }
+        
+        renderCards();
+    </script>
+</body>
+</html>

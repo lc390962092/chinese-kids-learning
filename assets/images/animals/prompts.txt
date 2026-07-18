@@ -1,0 +1,79 @@
+# 猫 (cat)
+文件名: cat.png
+提示词: A cute cartoon cat, flat illustration, big round eyes, sitting, pastel orange and white, friendly smile, rounded shapes, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 狗 (dog)
+文件名: dog.png
+提示词: A cute cartoon dog, flat illustration, big floppy ears, brown and white, sitting happy, big round eyes, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 鸟 (bird)
+文件名: bird.png
+提示词: A cute cartoon bird, flat illustration, small round body, yellow and blue feathers, big eyes, standing on a branch, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 鱼 (fish)
+文件名: fish.png
+提示词: A cute cartoon fish, flat illustration, orange and white stripes, big round eyes, small fins, swimming, bubbles, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 兔 (rabbit)
+文件名: rabbit.png
+提示词: A cute cartoon rabbit, flat illustration, long ears, white and pink, big round eyes, sitting, carrot nearby, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 熊 (bear)
+文件名: bear.png
+提示词: A cute cartoon bear, flat illustration, brown furry, round ears, big friendly eyes, standing, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 马 (horse)
+文件名: horse.png
+提示词: A cute cartoon horse, flat illustration, brown mane, big round eyes, standing side view, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 大象 (elephant)
+文件名: elephant.png
+提示词: A cute cartoon elephant, flat illustration, big ears, long trunk, gray, small friendly eyes, standing, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 鼠 (mouse)
+文件名: mouse.png
+提示词: A cute cartoon mouse, flat illustration, small round body, big ears, pink, big round eyes, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 鸭 (duck)
+文件名: duck.png
+提示词: A cute cartoon duck, flat illustration, yellow body, orange beak, big round eyes, standing, water drop nearby, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 猪 (pig)
+文件名: pig.png
+提示词: A cute cartoon pig, flat illustration, pink round body, small curly tail, big round eyes, muddy spot, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 牛 (cow)
+文件名: cow.png
+提示词: A cute cartoon cow, flat illustration, black and white spots, big round eyes, small horns, standing in grass, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 羊 (sheep)
+文件名: sheep.png
+提示词: A cute cartoon sheep, flat illustration, fluffy white wool, big round eyes, small horns, standing, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 鸡 (chicken)
+文件名: chicken.png
+提示词: A cute cartoon chicken, flat illustration, yellow and orange feathers, red comb, big round eyes, standing, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 狮 (lion)
+文件名: lion.png
+提示词: A cute cartoon lion, flat illustration, golden mane, friendly smile, big round eyes, standing, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 虎 (tiger)
+文件名: tiger.png
+提示词: A cute cartoon tiger, flat illustration, orange and black stripes, big round eyes, friendly smile, standing, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 猴 (monkey)
+文件名: monkey.png
+提示词: A cute cartoon monkey, flat illustration, brown fur, big round eyes, friendly smile, holding banana, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 熊猫 (panda)
+文件名: panda.png
+提示词: A cute cartoon panda, flat illustration, black and white, big round eyes, sitting and eating bamboo, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 长颈鹿 (giraffe)
+文件名: giraffe.png
+提示词: A cute cartoon giraffe, flat illustration, long neck, yellow and brown spots, big round eyes, standing, small tree nearby, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background
+
+# 青蛙 (frog)
+文件名: frog.png
+提示词: A cute cartoon frog, flat illustration, green body, big round eyes, sitting on lily pad, white background, children's book style, vector art, cute cartoon, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark, no gradient background

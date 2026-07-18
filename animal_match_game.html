@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 听听是谁在叫</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #FFF8E7 0%, #E8F5E9 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 10px 10px;
+        }
+        
+        .header h1 {
+            color: #FF6B6B;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        .mascot {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .mascot-bubble {
+            display: inline-block;
+            background: white;
+            border-radius: 25px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #555;
+            font-size: 16px;
+            max-width: 80%;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .mascot-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+        }
+        
+        .mascot-avatar {
+            width: 60px;
+            height: 60px;
+            background: #FFD93D;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .main-stage {
+            background: white;
+            border-radius: 30px 30px 0 0;
+            min-height: 55vh;
+            padding: 25px 15px 30px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .score-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+        
+        .score-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .score-item .number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FF6B6B;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            max-width: 160px;
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6B6B, #FFD93D);
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+        
+        .listen-btn {
+            display: block;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+            border: none;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.3);
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+        
+        .listen-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .listen-btn .icon {
+            font-size: 70px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .listen-btn .text {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .listen-btn.playing::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,107,107,0.4);
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.15); opacity: 0; }
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .option-card {
+            background: white;
+            border: 3px solid #f0f0f0;
+            border-radius: 20px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .option-card:active {
+            transform: scale(0.95);
+        }
+        
+        .option-card.correct {
+            border-color: #4CAF50;
+            background: #E8F5E9;
+            animation: correctBounce 0.5s ease;
+        }
+        
+        .option-card.wrong {
+            border-color: #FF6B6B;
+            animation: shake 0.4s ease;
+        }
+        
+        .option-card.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        @keyframes correctBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        
+        .option-card img {
+            width: 100%;
+            height: 110px;
+            object-fit: contain;
+            margin-bottom: 8px;
+            pointer-events: none;
+        }
+        
+        .option-card .word {
+            font-size: 22px;
+            color: #333;
+            font-weight: bold;
+            pointer-events: none;
+        }
+        
+        .option-card .pinyin {
+            font-size: 14px;
+            color: #888;
+            pointer-events: none;
+        }
+        
+        .feedback {
+            text-align: center;
+            min-height: 50px;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .feedback .correct {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .feedback .wrong {
+            color: #FF6B6B;
+        }
+        
+        .next-btn {
+            display: block;
+            margin: 15px auto 0;
+            background: #95E1D3;
+            color: #333;
+            border: none;
+            border-radius: 25px;
+            padding: 14px 45px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .next-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .next-btn.hidden {
+            display: none;
+        }
+        
+        .result-screen {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .result-screen.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .trophy {
+            font-size: 100px;
+            margin-bottom: 15px;
+        }
+        
+        .result-screen h2 {
+            color: #FF6B6B;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .result-screen p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+        
+        .result-screen .stars-line {
+            font-size: 40px;
+            margin-bottom: 25px;
+        }
+        
+        .home-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .game-screen.hidden {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+        
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: fall 3s ease-out forwards;
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .back-bar {
+            display: block;
+            padding: 12px 15px;
+            color: #666;
+            text-decoration: none;
+            font-size: 15px;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="back-bar">← 回首页</a>
+
+    <div class="header">
+        <h1>🎧 听听是谁在叫</h1>
+        <p>点击小喇叭，听声音，找动物</p>
+    </div>
+    
+    <div class="mascot">
+        <div class="mascot-bubble" id="mascotText">准备好了吗？先听听声音，再点图片哦！</div>
+        <div class="mascot-avatar">🐼</div>
+    </div>
+    
+    <div class="main-stage">
+        <div class="game-screen" id="gameScreen">
+            <div class="score-bar">
+                <div class="score-item">⭐ <span class="number" id="score">0</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <div class="score-item"><span id="round">1</span>/5</div>
+            </div>
+            
+            <button class="listen-btn" id="listenBtn" onclick="playTargetSound()">
+                <span class="icon">🔊</span>
+                <span class="text">点我听</span>
+            </button>
+            
+            <div class="options-grid" id="optionsGrid"></div>
+            
+            <div class="feedback" id="feedback"></div>
+            <button class="next-btn hidden" id="nextBtn" onclick="nextRound()">下一题 ➡️</button>
+        </div>
+        
+        <div class="result-screen" id="resultScreen">
+            <div class="trophy">🏆</div>
+            <h2>你真棒！</h2>
+            <p id="resultText">答对了 5/5 题</p>
+            <div class="stars-line" id="resultStars">⭐⭐⭐⭐⭐</div>
+            <button class="next-btn" onclick="restartGame()" style="background: #FF6B6B; color: white;">再玩一次</button>
+            <br><br>
+            <a href="home.html" class="home-link">← 回首页</a>
+        </div>
+    </div>
+    
+    <div class="confetti" id="confetti"></div>
+
+    <script>
+        const animals = [
+            { word: "猫", pinyin: "māo", file: "cat", sound: "喵喵" },
+            { word: "狗", pinyin: "gǒu", file: "dog", sound: "汪汪" },
+            { word: "鸟", pinyin: "niǎo", file: "bird", sound: "唧唧" },
+            { word: "鱼", pinyin: "yú", file: "fish", sound: "咕噜" },
+            { word: "兔", pinyin: "tù", file: "rabbit", sound: "咕咕" },
+            { word: "熊", pinyin: "xióng", file: "bear", sound: "吼" },
+            { word: "马", pinyin: "mǎ", file: "horse", sound: "嘶" },
+            { word: "大象", pinyin: "dà xiàng", file: "elephant", sound: "喇叭" },
+            { word: "鼠", pinyin: "shǔ", file: "mouse", sound: "吱吱" },
+            { word: "鸭", pinyin: "yā", file: "duck", sound: "嘎嘎" },
+            { word: "猪", pinyin: "zhū", file: "pig", sound: "哼哼" },
+            { word: "牛", pinyin: "niú", file: "cow", sound: "哞哞" },
+            { word: "羊", pinyin: "yáng", file: "sheep", sound: "咩咩" },
+            { word: "鸡", pinyin: "jī", file: "chicken", sound: "喔喔" },
+            { word: "狮", pinyin: "shī", file: "lion", sound: "吼吼" },
+            { word: "虎", pinyin: "hǔ", file: "tiger", sound: "嗷嗷" },
+            { word: "猴", pinyin: "hóu", file: "monkey", sound: "唧唧" },
+            { word: "熊猫", pinyin: "xióng māo", file: "panda", sound: "嗯嗯" },
+            { word: "长颈鹿", pinyin: "cháng jǐng lù", file: "giraffe", sound: "呼呼" },
+            { word: "青蛙", pinyin: "qīng wā", file: "frog", sound: "呱呱" },
+            { word: "海龟", pinyin: "hǎi guī", file: "sea_turtle", sound: "" },
+            { word: "企鹅", pinyin: "qǐ é", file: "penguin", sound: "" },
+            { word: "蝴蝶", pinyin: "hú dié", file: "butterfly", sound: "" },
+            { word: "蜜蜂", pinyin: "mì fēng", file: "bee", sound: "嗡嗡" },
+            { word: "蚂蚁", pinyin: "mǎ yǐ", file: "ant", sound: "" },
+            { word: "蜗牛", pinyin: "wō niú", file: "snail", sound: "" },
+            { word: "瓢虫", pinyin: "piáo chóng", file: "ladybug", sound: "" },
+            { word: "蜻蜓", pinyin: "qīng tíng", file: "dragonfly", sound: "" },
+            { word: "海豚", pinyin: "hǎi tún", file: "dolphin", sound: "吱吱" },
+            { word: "鲸鱼", pinyin: "jīng yú", file: "whale", sound: "呜呜" },
+            { word: "螃蟹", pinyin: "páng xiè", file: "crab", sound: "" },
+            { word: "章鱼", pinyin: "zhāng yú", file: "octopus", sound: "" },
+            { word: "鲨鱼", pinyin: "shā yú", file: "shark", sound: "" },
+            { word: "海星", pinyin: "hǎi xīng", file: "starfish", sound: "" },
+            { word: "霸王龙", pinyin: "bà wáng lóng", file: "t_rex", sound: "吼吼" },
+            { word: "三角龙", pinyin: "sān jiǎo lóng", file: "triceratops", sound: "" },
+            { word: "翼龙", pinyin: "yì lóng", file: "pterosaur", sound: "" },
+            { word: "剑龙", pinyin: "jiàn lóng", file: "stegosaurus", sound: "" },
+            { word: "腕龙", pinyin: "wàn lóng", file: "brachiosaurus", sound: "" },
+            { word: "甲龙", pinyin: "jiǎ lóng", file: "ankylosaurus", sound: "" }
+        ];
+
+        const synth = window.speechSynthesis;
+        let chineseVoice = null;
+        let round = 1;
+        let score = 0;
+        let targetAnimal = null;
+        let options = [];
+        let answered = false;
+        const totalRounds = 5;
+        const optionsCount = 4;
+
+        function findChineseVoice() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) {
+                if (v.lang.startsWith('zh')) {
+                    chineseVoice = v;
+                    break;
+                }
+            }
+        }
+
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = findChineseVoice;
+        }
+        findChineseVoice();
+
+        function playAudio(path) {
+            return new Promise((resolve, reject) => {
+                const audio = new Audio(path);
+                audio.onended = resolve;
+                audio.onerror = reject;
+                audio.play().catch(reject);
+            });
+        }
+
+        function speak(text, rate = 0.85) {
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'zh-CN';
+            utter.rate = rate;
+            utter.pitch = 1.1;
+            if (chineseVoice) utter.voice = chineseVoice;
+            synth.speak(utter);
+        }
+
+        function playSound(animal) {
+            // 优先播放叫声 mp3，没有则 fallback 到语音读叫声
+            const soundMp3 = `assets/audio/animals/${animal.file}_sound.mp3`;
+            const wordMp3 = `assets/audio/animals/${animal.file}_word.mp3`;
+            
+            return playAudio(soundMp3)
+                .catch(() => {
+                    // 叫声 mp3 不存在，尝试语音
+                    if (animal.sound) {
+                        speak(animal.sound, 1.0);
+                        return Promise.resolve();
+                    } else {
+                        // 连叫声都没有，播放动物名
+                        return playAudio(wordMp3).catch(() => {
+                            speak(animal.word, 0.85);
+                        });
+                    }
+                });
+        }
+
+        function showMascot(text) {
+            document.getElementById('mascotText').textContent = text;
+        }
+
+        function shuffle(arr) {
+            return [...arr].sort(() => Math.random() - 0.5);
+        }
+
+        function getRandomAnimals(count, exclude) {
+            const pool = animals.filter(a => a !== exclude);
+            return shuffle(pool).slice(0, count - 1);
+        }
+
+        function startGame() {
+            round = 1;
+            score = 0;
+            document.getElementById('resultScreen').classList.remove('show');
+            document.getElementById('gameScreen').classList.remove('hidden');
+            updateScoreBoard();
+            startRound();
+        }
+
+        function startRound() {
+            answered = false;
+            document.getElementById('nextBtn').classList.add('hidden');
+            document.getElementById('feedback').innerHTML = '';
+            
+            // 目标动物：优先选有声音的动物，避免4个全是沉默动物时游戏无聊
+            const animalsWithSound = animals.filter(a => a.sound);
+            targetAnimal = animalsWithSound[Math.floor(Math.random() * animalsWithSound.length)];
+            
+            // 生成选项：目标 + 3个干扰项
+            const distractors = getRandomAnimals(optionsCount, targetAnimal);
+            options = shuffle([targetAnimal, ...distractors]);
+            
+            renderOptions();
+            updateScoreBoard();
+            showMascot(`第 ${round} 题：听听看，是谁在叫？`);
+            
+            // 自动播放声音
+            setTimeout(() => playTargetSound(), 500);
+        }
+
+        function renderOptions() {
+            const grid = document.getElementById('optionsGrid');
+            grid.innerHTML = '';
+            options.forEach((animal, index) => {
+                const card = document.createElement('div');
+                card.className = 'option-card';
+                card.innerHTML = `
+                    <img src="assets/images/animals/${animal.file}.png" alt="${animal.word}">
+                    <div class="word">${animal.word}</div>
+                    <div class="pinyin">${animal.pinyin}</div>
+                `;
+                card.onclick = () => selectOption(index, card);
+                grid.appendChild(card);
+            });
+        }
+
+        function playTargetSound() {
+            const btn = document.getElementById('listenBtn');
+            btn.classList.add('playing');
+            playSound(targetAnimal).then(() => {
+                setTimeout(() => btn.classList.remove('playing'), 300);
+            }).catch(() => {
+                btn.classList.remove('playing');
+            });
+        }
+
+        function selectOption(index, card) {
+            if (answered) return;
+            answered = true;
+            
+            const selected = options[index];
+            const allCards = document.querySelectorAll('.option-card');
+            allCards.forEach(c => c.classList.add('disabled'));
+            
+            if (selected === targetAnimal) {
+                card.classList.add('correct');
+                score++;
+                showMascot(`答对啦！是${selected.word}，${selected.pinyin}。`);
+                document.getElementById('feedback').innerHTML = '<span class="correct">🎉 答对了！</span>';
+                speak(`答对啦，是${selected.word}`);
+            } else {
+                card.classList.add('wrong');
+                // 高亮正确答案
+                allCards.forEach((c, i) => {
+                    if (options[i] === targetAnimal) c.classList.add('correct');
+                });
+                showMascot(`不对哦，这是${selected.word}。正确答案是${targetAnimal.word}。`);
+                document.getElementById('feedback').innerHTML = '<span class="wrong">😅 再听一次，是 ' + targetAnimal.word + ' 哦</span>';
+                speak(`这是${selected.word}，正确答案${targetAnimal.word}`);
+            }
+            
+            updateScoreBoard();
+            document.getElementById('nextBtn').classList.remove('hidden');
+        }
+
+        function nextRound() {
+            if (round < totalRounds) {
+                round++;
+                startRound();
+            } else {
+                showResult();
+            }
+        }
+
+        function updateScoreBoard() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('round').textContent = round;
+            document.getElementById('progressFill').style.width = ((round - 1) / totalRounds * 100) + '%';
+        }
+
+        function showResult() {
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('show');
+            document.getElementById('resultText').textContent = `你答对了 ${score}/${totalRounds} 题！`;
+            
+            let stars = '';
+            if (score >= 5) stars = '⭐⭐⭐⭐⭐';
+            else if (score >= 4) stars = '⭐⭐⭐⭐';
+            else if (score >= 3) stars = '⭐⭐⭐';
+            else if (score >= 2) stars = '⭐⭐';
+            else stars = '⭐';
+            document.getElementById('resultStars').textContent = stars;
+            
+            showMascot('游戏结束！你太厉害了～');
+            speak('游戏结束，你真棒');
+            createConfetti();
+        }
+
+        function restartGame() {
+            document.getElementById('confetti').innerHTML = '';
+            startGame();
+        }
+
+        function createConfetti() {
+            const container = document.getElementById('confetti');
+            container.innerHTML = '';
+            const colors = ['#FF6B6B', '#FFD93D', '#4ECDC4', '#95E1D3', '#FF8E8E', '#6C5CE7'];
+            for (let i = 0; i < 40; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDelay = Math.random() * 2 + 's';
+                piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+                container.appendChild(piece);
+            }
+        }
+
+        // 启动
+        startGame();
+    </script>
+</body>
+</html>
