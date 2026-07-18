@@ -100,6 +100,53 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        @keyframes slideLeftIn {
+            from { opacity: 0; transform: translateX(60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideRightIn {
+            from { opacity: 0; transform: translateX(-60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideLeftOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(-60px); }
+        }
+        
+        @keyframes slideRightOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(60px); }
+        }
+        
+        .slide-left-in { animation: slideLeftIn 0.3s ease forwards; }
+        .slide-right-in { animation: slideRightIn 0.3s ease forwards; }
+        .slide-left-out { animation: slideLeftOut 0.3s ease forwards; }
+        .slide-right-out { animation: slideRightOut 0.3s ease forwards; }
+        
+        .nav-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .nav-btn {
+            background: #95E1D3;
+            color: #333;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .nav-btn:active { transform: scale(0.95); }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        
         .vehicle-image {
             width: 240px;
             height: 240px;
@@ -382,7 +429,10 @@
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
                         ${vehicle.sound !== '无' ? `<button class="btn btn-sound" onclick="playSound(${index})">🎵 声音</button>` : ''}
                     </div>
-                    <button class="btn btn-next" onclick="nextVehicle()">下一个 ➡️</button>
+                    <div class="nav-btns">
+                        <button class="nav-btn" id="prevBtn" onclick="prevVehicle()">⬅️ 上一个</button>
+                        <button class="nav-btn" id="nextBtn" onclick="nextVehicle()">下一个 ➡️</button>
+                    </div>
                 `;
                 container.appendChild(card);
                 
@@ -415,22 +465,87 @@
             }
         }
         
-        function nextVehicle() {
+        function switchVehicle(direction) {
             const cards = document.querySelectorAll('.vehicle-card');
             const dots = document.querySelectorAll('.progress-dot');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            let newIndex;
+            if (direction === 'next') {
+                newIndex = (currentIndex + 1) % vehicles.length;
+            } else {
+                newIndex = (currentIndex - 1 + vehicles.length) % vehicles.length;
+            }
             
             cards[currentIndex].classList.remove('active');
+            cards[currentIndex].classList.remove('slide-left-in', 'slide-right-in');
+            cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-out' : 'slide-right-out');
             dots[currentIndex].classList.remove('active');
             
-            currentIndex = (currentIndex + 1) % vehicles.length;
+            currentIndex = newIndex;
             
+            cards[currentIndex].classList.remove('slide-left-out', 'slide-right-out');
             cards[currentIndex].classList.add('active');
+            cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-in' : 'slide-right-in');
             dots[currentIndex].classList.add('active');
+            
+            if (prevBtn) prevBtn.disabled = currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = currentIndex === vehicles.length - 1;
             
             const vehicle = vehicles[currentIndex];
             showMascot(`我们来学${vehicle.word}！`);
             
             setTimeout(() => playWord(currentIndex), 500);
+        }
+        
+        function nextVehicle() { switchVehicle('next'); }
+        function prevVehicle() { switchVehicle('prev'); }
+        
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        function setupSwipe() {
+            const mainStage = document.querySelector('.main-stage');
+            if (!mainStage) return;
+            
+            mainStage.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            mainStage.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+            
+            let mouseDown = false;
+            mainStage.addEventListener('mousedown', function(e) {
+                mouseDown = true;
+                touchStartX = e.screenX;
+            });
+            
+            mainStage.addEventListener('mouseup', function(e) {
+                if (!mouseDown) return;
+                mouseDown = false;
+                touchEndX = e.screenX;
+                handleSwipe();
+            });
+            
+            mainStage.addEventListener('mouseleave', function() {
+                mouseDown = false;
+            });
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextVehicle();
+                } else {
+                    prevVehicle();
+                }
+            }
         }
         
         function startApp() {
@@ -453,6 +568,12 @@
         }
         
         renderCards();
+        setupSwipe();
+        
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex === vehicles.length - 1;
     </script>
 </body>
 </html>
