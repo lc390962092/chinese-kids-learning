@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 认识动物</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #FFF8E7 0%, #FFF0F5 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 10px 10px;
+        }
+        
+        .header h1 {
+            color: #FF6B6B;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        .mascot {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .mascot-bubble {
+            display: inline-block;
+            background: white;
+            border-radius: 25px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #555;
+            font-size: 16px;
+            max-width: 80%;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .mascot-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+        }
+        
+        .mascot-avatar {
+            width: 60px;
+            height: 60px;
+            background: #FFD93D;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .main-stage {
+            background: white;
+            border-radius: 30px 30px 0 0;
+            min-height: 60vh;
+            padding: 25px 15px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .animal-card {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .animal-card.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animal-image {
+            width: 240px;
+            height: 240px;
+            object-fit: contain;
+            margin: 10px auto;
+            cursor: pointer;
+            transition: transform 0.2s;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+        
+        .animal-image:active {
+            transform: scale(0.95);
+        }
+        
+        .animal-word {
+            font-size: 48px;
+            color: #333;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        
+        .animal-pinyin {
+            font-size: 22px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+        
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:active {
+            transform: scale(0.95);
+        }
+        
+        .btn-word {
+            background: #FF6B6B;
+        }
+        
+        .btn-sentence {
+            background: #4ECDC4;
+        }
+        
+        .btn-sound {
+            background: #FFD93D;
+            color: #333;
+        }
+        
+        .btn-next {
+            background: #95E1D3;
+            color: #333;
+            padding: 15px 50px;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        
+        .progress {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: background 0.3s;
+        }
+        
+        .progress-dot.active {
+            background: #FF6B6B;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            display: none;
+            animation: starPop 1s ease;
+            pointer-events: none;
+        }
+        
+        @keyframes starPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+        }
+        
+        .hint {
+            color: #999;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+        
+        .start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFF8E7 0%, #FFF0F5 100%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .start-content {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 320px;
+            width: 90%;
+        }
+        
+        .start-panda {
+            font-size: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .start-content h2 {
+            color: #FF6B6B;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .start-content p {
+            color: #888;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+        
+        .start-btn {
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+            transition: transform 0.2s;
+        }
+        
+        .start-btn:active {
+            transform: scale(0.95);
+        }
+        
+        @media (max-width: 400px) {
+            .animal-image {
+                width: 200px;
+                height: 200px;
+            }
+            .animal-word {
+                font-size: 40px;
+            }
+        }
+
+        .back-bar {
+            display: block;
+            padding: 12px 15px;
+            color: #666;
+            text-decoration: none;
+            font-size: 15px;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="back-bar">← 回首页</a>
+
+    <div class="start-overlay" id="startOverlay">
+        <div class="start-content">
+            <div class="start-panda">🐼</div>
+            <h2>小豆中文</h2>
+            <p>今天来认识动物</p>
+            <button class="start-btn" onclick="startApp()">开始学习</button>
+        </div>
+    </div>
+
+    <div class="header">
+        <h1>🐼 小豆中文</h1>
+        <p>今天我们来认识动物</p>
+    </div>
+    
+    <div class="mascot">
+        <div class="mascot-bubble" id="mascotText">你好！点击小动物，听听它叫什么名字～</div>
+        <div class="mascot-avatar">🐼</div>
+    </div>
+    
+    <div class="main-stage">
+        <div id="animalCards"></div>
+        
+        <div class="progress" id="progressDots"></div>
+        
+        <div style="text-align:center;margin-top:25px;">
+            <a href="home.html" style="color:#888;text-decoration:none;font-size:14px;">← 回首页</a>
+        </div>
+    </div>
+    
+    <div class="stars" id="starEffect">⭐</div>
+
+    <script>
+        // 动物数据（20个）
+        const animals = [
+            { word: "猫", pinyin: "māo", file: "cat", sound: "喵喵", sentence: "这是一只猫。" },
+            { word: "狗", pinyin: "gǒu", file: "dog", sound: "汪汪", sentence: "这是一只狗。" },
+            { word: "鸟", pinyin: "niǎo", file: "bird", sound: "唧唧", sentence: "这是一只鸟。" },
+            { word: "鱼", pinyin: "yú", file: "fish", sound: "咕噜", sentence: "这是一条鱼。" },
+            { word: "兔", pinyin: "tù", file: "rabbit", sound: "咕咕", sentence: "这是一只兔子。" },
+            { word: "熊", pinyin: "xióng", file: "bear", sound: "吼", sentence: "这是一只熊。" },
+            { word: "马", pinyin: "mǎ", file: "horse", sound: "嘶", sentence: "这是一匹马。" },
+            { word: "大象", pinyin: "dà xiàng", file: "elephant", sound: "喇叭", sentence: "这是一头大象。" },
+            { word: "鼠", pinyin: "shǔ", file: "mouse", sound: "吱吱", sentence: "这是一只老鼠。" },
+            { word: "鸭", pinyin: "yā", file: "duck", sound: "嘎嘎", sentence: "这是一只鸭子。" },
+            { word: "猪", pinyin: "zhū", file: "pig", sound: "哼哼", sentence: "这是一头猪。" },
+            { word: "牛", pinyin: "niú", file: "cow", sound: "哞哞", sentence: "这是一头牛。" },
+            { word: "羊", pinyin: "yáng", file: "sheep", sound: "咩咩", sentence: "这是一只羊。" },
+            { word: "鸡", pinyin: "jī", file: "chicken", sound: "喔喔", sentence: "这是一只鸡。" },
+            { word: "狮", pinyin: "shī", file: "lion", sound: "吼吼", sentence: "这是一头狮子。" },
+            { word: "虎", pinyin: "hǔ", file: "tiger", sound: "嗷嗷", sentence: "这是一只老虎。" },
+            { word: "猴", pinyin: "hóu", file: "monkey", sound: "唧唧", sentence: "这是一只猴子。" },
+            { word: "熊猫", pinyin: "xióng māo", file: "panda", sound: "嗯嗯", sentence: "这是一只熊猫。" },
+            { word: "长颈鹿", pinyin: "cháng jǐng lù", file: "giraffe", sound: "呼呼", sentence: "这是一只长颈鹿。" },
+            { word: "青蛙", pinyin: "qīng wā", file: "frog", sound: "呱呱", sentence: "这是一只青蛙。" },
+            { word: "海龟", pinyin: "hǎi guī", file: "sea_turtle", sound: "无", sentence: "这是一只海龟。" },
+            { word: "企鹅", pinyin: "qǐ é", file: "penguin", sound: "无", sentence: "这是一只企鹅。" },
+            { word: "蝴蝶", pinyin: "hú dié", file: "butterfly", sound: "无", sentence: "这是一只蝴蝶。" },
+            { word: "蜜蜂", pinyin: "mì fēng", file: "bee", sound: "嗡嗡", sentence: "这是一只蜜蜂。" },
+            { word: "蚂蚁", pinyin: "mǎ yǐ", file: "ant", sound: "无", sentence: "这是一只蚂蚁。" },
+            { word: "蜗牛", pinyin: "wō niú", file: "snail", sound: "无", sentence: "这是一只蜗牛。" },
+            { word: "瓢虫", pinyin: "piáo chóng", file: "ladybug", sound: "无", sentence: "这是一只瓢虫。" },
+            { word: "蜻蜓", pinyin: "qīng tíng", file: "dragonfly", sound: "无", sentence: "这是一只蜻蜓。" },
+            { word: "海豚", pinyin: "hǎi tún", file: "dolphin", sound: "吱吱", sentence: "这是一只海豚。" },
+            { word: "鲸鱼", pinyin: "jīng yú", file: "whale", sound: "呜呜", sentence: "这是一条鲸鱼。" },
+            { word: "螃蟹", pinyin: "páng xiè", file: "crab", sound: "无", sentence: "这是一只螃蟹。" },
+            { word: "章鱼", pinyin: "zhāng yú", file: "octopus", sound: "无", sentence: "这是一只章鱼。" },
+            { word: "鲨鱼", pinyin: "shā yú", file: "shark", sound: "无", sentence: "这是一条鲨鱼。" },
+            { word: "海星", pinyin: "hǎi xīng", file: "starfish", sound: "无", sentence: "这是一只海星。" },
+            { word: "霸王龙", pinyin: "bà wáng lóng", file: "t_rex", sound: "吼吼", sentence: "这是一只霸王龙。" },
+            { word: "三角龙", pinyin: "sān jiǎo lóng", file: "triceratops", sound: "无", sentence: "这是一只三角龙。" },
+            { word: "翼龙", pinyin: "yì lóng", file: "pterosaur", sound: "无", sentence: "这是一只翼龙。" },
+            { word: "剑龙", pinyin: "jiàn lóng", file: "stegosaurus", sound: "无", sentence: "这是一只剑龙。" },
+            { word: "腕龙", pinyin: "wàn lóng", file: "brachiosaurus", sound: "无", sentence: "这是一只腕龙。" },
+            { word: "甲龙", pinyin: "jiǎ lóng", file: "ankylosaurus", sound: "无", sentence: "这是一只甲龙。" }
+        ];
+        
+        let currentIndex = 0;
+        let speechEnabled = true;
+        
+        // 初始化语音
+        const synth = window.speechSynthesis;
+        let chineseVoice = null;
+        
+        function findChineseVoice() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) {
+                if (v.lang.startsWith('zh')) {
+                    chineseVoice = v;
+                    break;
+                }
+            }
+            // 如果没有中文语音，使用默认语音
+        }
+        
+        // 某些浏览器需要等待 voices loaded
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = findChineseVoice;
+        }
+        findChineseVoice();
+        
+        function playAudio(path) {
+            return new Promise((resolve, reject) => {
+                const audio = new Audio(path);
+                audio.onended = resolve;
+                audio.onerror = (e) => {
+                    console.log('MP3 加载失败:', path, e);
+                    reject(e);
+                };
+                audio.play().catch(reject);
+            });
+        }
+        
+        function speakWithFallback(text, mp3Path, rate = 0.8) {
+            if (mp3Path) {
+                playAudio(mp3Path).catch((err) => {
+                    console.log('MP3 播放失败，fallback 到 Web Speech API:', err);
+                    speak(text, rate);
+                });
+            } else {
+                speak(text, rate);
+            }
+        }
+        
+        function speak(text, rate = 0.8) {
+            if (!synth || !speechEnabled) {
+                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
+                return;
+            }
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'zh-CN';
+            utter.rate = rate;
+            utter.pitch = 1.1;
+            if (chineseVoice) utter.voice = chineseVoice;
+            synth.speak(utter);
+        }
+        
+        function showMascot(text) {
+            document.getElementById('mascotText').textContent = text;
+        }
+        
+        function showStars() {
+            const star = document.getElementById('starEffect');
+            star.style.display = 'block';
+            setTimeout(() => { star.style.display = 'none'; }, 1000);
+        }
+        
+        function renderCards() {
+            const container = document.getElementById('animalCards');
+            const progress = document.getElementById('progressDots');
+            
+            animals.forEach((animal, index) => {
+                // 卡片
+                const card = document.createElement('div');
+                card.className = 'animal-card' + (index === 0 ? ' active' : '');
+                card.innerHTML = `
+                    <img class="animal-image" 
+                         src="assets/images/animals/${animal.file}.png" 
+                         alt="${animal.word}"
+                         onclick="playWord(${index})">
+                    <div class="animal-word">${animal.word}</div>
+                    <div class="animal-pinyin">${animal.pinyin}</div>
+                    <div class="btn-group">
+                        <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
+                        <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
+                        ${animal.sound ? `<button class="btn btn-sound" onclick="playSound(${index})">🎵 叫声</button>` : ''}
+                    </div>
+                    <button class="btn btn-next" onclick="nextAnimal()">下一个 ➡️</button>
+                    <a href="animal_match_game.html" style="display:inline-block;margin-top:12px;color:#FF6B6B;text-decoration:none;font-size:15px;">🎮 玩听音找图游戏</a>
+                `;
+                container.appendChild(card);
+                
+                // 进度点
+                const dot = document.createElement('div');
+                dot.className = 'progress-dot' + (index === 0 ? ' active' : '');
+                progress.appendChild(dot);
+            });
+        }
+        
+        function playWord(index) {
+            const animal = animals[index];
+            const mp3Path = `assets/audio/animals/${animal.file}_word.mp3`;
+            speakWithFallback(`${animal.word}，${animal.pinyin}`, mp3Path);
+            showMascot(`这是${animal.word}，${animal.pinyin}。`);
+            showStars();
+        }
+        
+        function playSentence(index) {
+            const animal = animals[index];
+            const mp3Path = `assets/audio/animals/sentences/${animal.file}_sentence.mp3`;
+            speakWithFallback(animal.sentence, mp3Path);
+            showMascot(animal.sentence);
+        }
+        
+        function playSound(index) {
+            const animal = animals[index];
+            if (animal.sound) {
+                const mp3Path = `assets/audio/animals/${animal.file}_sound.mp3`;
+                speakWithFallback(animal.sound, mp3Path, 1.0);
+                showMascot(`${animal.word}的叫声：${animal.sound}！`);
+            }
+        }
+        
+        function nextAnimal() {
+            const cards = document.querySelectorAll('.animal-card');
+            const dots = document.querySelectorAll('.progress-dot');
+            
+            cards[currentIndex].classList.remove('active');
+            dots[currentIndex].classList.remove('active');
+            
+            currentIndex = (currentIndex + 1) % animals.length;
+            
+            cards[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+            
+            const animal = animals[currentIndex];
+            showMascot(`我们来学${animal.word}！`);
+            
+            // 自动播放读音
+            setTimeout(() => playWord(currentIndex), 500);
+        }
+        
+        let appStarted = false;
+        
+        function startApp() {
+            if (appStarted) return;
+            appStarted = true;
+            
+            // 初始化音频上下文（解决浏览器自动播放限制）
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (AudioContext) {
+                const ctx = new AudioContext();
+                if (ctx.state === 'suspended') {
+                    ctx.resume();
+                }
+            }
+            
+            // 播放一个无声的音频，解锁自动播放
+            const silentAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
+            silentAudio.play().catch(() => {});
+            
+            // 隐藏开始覆盖层
+            document.getElementById('startOverlay').style.display = 'none';
+            
+            // 显示欢迎
+            showMascot("你好！我是小豆。今天我们来认识动物。点击小动物，听听它叫什么名字。");
+            
+            // 尝试播放欢迎语音
+            setTimeout(() => {
+                speak("你好！我是小豆。今天我们来认识动物。点击小动物，听听它叫什么名字。");
+            }, 300);
+        }
+        
+        // 启动
+        renderCards();
+    </script>
+</body>
+</html>
