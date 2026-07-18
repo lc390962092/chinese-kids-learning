@@ -147,19 +147,58 @@
         .nav-btn:active { transform: scale(0.95); }
         .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         
+        .card-image-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 240px;
+            height: 240px;
+            margin: 10px auto;
+        }
+        
         .vehicle-image {
             width: 240px;
             height: 240px;
             object-fit: contain;
-            margin: 10px auto;
             cursor: pointer;
             transition: transform 0.2s;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
         }
         
-        .vehicle-image:active {
-            transform: scale(0.95);
+        .vehicle-image:active { transform: scale(0.95); }
+        
+        .side-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: transform 0.2s, background 0.2s;
         }
+        
+        .side-arrow:active {
+            transform: translateY(-50%) scale(0.9);
+            background: #95E1D3;
+        }
+        
+        .side-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .side-arrow.left { left: -15px; }
+        .side-arrow.right { right: -15px; }
+        
+
         
         .vehicle-word {
             font-size: 48px;
@@ -200,8 +239,7 @@
         .btn-word { background: #5C6BC0; }
         .btn-sentence { background: #4ECDC4; }
         .btn-sound { background: #FFD93D; color: #333; }
-        .btn-next { background: #95E1D3; color: #333; padding: 15px 50px; font-size: 18px; margin-top: 20px; }
-        
+
         .progress {
             display: flex;
             justify-content: center;
@@ -468,8 +506,8 @@
         function switchVehicle(direction) {
             const cards = document.querySelectorAll('.vehicle-card');
             const dots = document.querySelectorAll('.progress-dot');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.querySelector('.side-arrow.left');
+            const nextBtn = document.querySelector('.side-arrow.right');
             
             let newIndex;
             if (direction === 'next') {
@@ -570,8 +608,8 @@
         renderCards();
         setupSwipe();
         
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.querySelector('.side-arrow.left');
+        const nextBtn = document.querySelector('.side-arrow.right');
         if (prevBtn) prevBtn.disabled = currentIndex === 0;
         if (nextBtn) nextBtn.disabled = currentIndex === vehicles.length - 1;
     </script>

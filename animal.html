@@ -125,47 +125,66 @@
         .slide-left-out { animation: slideLeftOut 0.3s ease forwards; }
         .slide-right-out { animation: slideRightOut 0.3s ease forwards; }
         
-        .nav-btns {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .nav-btn {
-            background: #95E1D3;
-            color: #333;
-            border: none;
-            border-radius: 25px;
-            padding: 12px 30px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-        
-        .nav-btn:active {
-            transform: scale(0.95);
-        }
-        
-        .nav-btn:disabled {
+.nav-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+        }
+        
+        .card-image-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 240px;
+            height: 240px;
+            margin: 10px auto;
         }
         
         .animal-image {
             width: 240px;
             height: 240px;
             object-fit: contain;
-            margin: 10px auto;
             cursor: pointer;
             transition: transform 0.2s;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
         }
         
-        .animal-image:active {
-            transform: scale(0.95);
+        .side-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: transform 0.2s, background 0.2s;
         }
+        
+        .side-arrow:active {
+            transform: translateY(-50%) scale(0.9);
+            background: #95E1D3;
+        }
+        
+        .side-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .side-arrow.left {
+            left: -15px;
+        }
+        
+        .side-arrow.right {
+            right: -15px;
+        }
+        
+
         
         .animal-word {
             font-size: 48px;
@@ -503,20 +522,20 @@
                 const card = document.createElement('div');
                 card.className = 'animal-card' + (index === 0 ? ' active' : '');
                 card.innerHTML = `
-                    <img class="animal-image" 
-                         src="assets/images/animals/${animal.file}.png" 
-                         alt="${animal.word}"
-                         onclick="playWord(${index})">
+                    <div class="card-image-wrapper">
+                        <button class="side-arrow left" id="prevBtn" onclick="prevAnimal()" aria-label="上一个">◀</button>
+                        <img class="animal-image" 
+                             src="assets/images/animals/${animal.file}.png" 
+                             alt="${animal.word}"
+                             onclick="playWord(${index})">
+                        <button class="side-arrow right" id="nextBtn" onclick="nextAnimal()" aria-label="下一个">▶</button>
+                    </div>
                     <div class="animal-word">${animal.word}</div>
                     <div class="animal-pinyin">${animal.pinyin}</div>
                     <div class="btn-group">
                         <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
                         ${animal.sound ? `<button class="btn btn-sound" onclick="playSound(${index})">🎵 叫声</button>` : ''}
-                    </div>
-                    <div class="nav-btns">
-                        <button class="nav-btn" id="prevBtn" onclick="prevAnimal()">⬅️ 上一个</button>
-                        <button class="nav-btn" id="nextBtn" onclick="nextAnimal()">下一个 ➡️</button>
                     </div>
                     <a href="animal_match_game.html" style="display:inline-block;margin-top:12px;color:#FF6B6B;text-decoration:none;font-size:15px;">🎮 玩听音找图游戏</a>
                 `;
@@ -556,8 +575,8 @@
         function switchAnimal(direction) {
             const cards = document.querySelectorAll('.animal-card');
             const dots = document.querySelectorAll('.progress-dot');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.querySelector('.side-arrow.left');
+            const nextBtn = document.querySelector('.side-arrow.right');
             
             let newIndex;
             if (direction === 'next') {
@@ -677,8 +696,8 @@
         setupSwipe();
         
         // 初始化按钮状态
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.querySelector('.side-arrow.left');
+        const nextBtn = document.querySelector('.side-arrow.right');
         if (prevBtn) prevBtn.disabled = currentIndex === 0;
         if (nextBtn) nextBtn.disabled = currentIndex === animals.length - 1;
     </script>
