@@ -1,0 +1,138 @@
+{
+  "module": "healthy_habits",
+  "title": "健康生活习惯",
+  "target_age": "3-6",
+  "lesson_duration_min": 5,
+  "items": [
+    {
+      "word": "刷牙",
+      "pinyin": "shuā yá",
+      "summary": "早晚刷牙，牙齿白白，不会长虫子牙。",
+      "words": [
+        "刷牙",
+        "牙齿",
+        "牙刷",
+        "牙膏",
+        "干净"
+      ],
+      "image_prompt": "Realistic photo of a child brushing teeth in front of a bathroom mirror, toothbrush and toothpaste, bright natural lighting, no text, no watermark"
+    },
+    {
+      "word": "洗手",
+      "pinyin": "xǐ shǒu",
+      "summary": "吃饭前、上厕所后要洗手，洗掉细菌不生病。",
+      "words": [
+        "洗手",
+        "水",
+        "肥皂",
+        "细菌",
+        "干净"
+      ],
+      "image_prompt": "Realistic photo of a child washing hands with soap under running water, bubbles and clean sink, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "喝水",
+      "pinyin": "hē shuǐ",
+      "summary": "多喝白开水，身体不缺水，皮肤也更好。",
+      "words": [
+        "喝水",
+        "水杯",
+        "白开水",
+        "健康",
+        "解渴"
+      ],
+      "image_prompt": "Realistic photo of a child drinking water from a glass, bright kitchen background, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "吃饭",
+      "pinyin": "chī fàn",
+      "summary": "不挑食，细嚼慢咽，不浪费粮食。",
+      "words": [
+        "吃饭",
+        "米饭",
+        "蔬菜",
+        "不挑食",
+        "粮食"
+      ],
+      "image_prompt": "Realistic photo of a child eating a balanced meal with rice and vegetables at a table, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "睡觉",
+      "pinyin": "shuì jiào",
+      "summary": "晚上早点睡，白天才有精神玩和学习。",
+      "words": [
+        "睡觉",
+        "床",
+        "被子",
+        "晚安",
+        "休息"
+      ],
+      "image_prompt": "Realistic photo of a child sleeping peacefully in a cozy bed with soft blanket and pillow, warm night light, no text, no watermark"
+    },
+    {
+      "word": "运动",
+      "pinyin": "yùn dòng",
+      "summary": "每天跑跑步、跳跳绳，身体棒棒的。",
+      "words": [
+        "运动",
+        "跑步",
+        "跳绳",
+        "身体",
+        "健康"
+      ],
+      "image_prompt": "Realistic photo of children playing and running outdoors on a grassy playground, sunny day, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "打喷嚏",
+      "pinyin": "xǐ shǒu",
+      "summary": "打喷嚏捂住嘴，病菌不会传给别人。",
+      "words": [
+        "打喷嚏",
+        "纸巾",
+        "病菌",
+        "礼貌",
+        "卫生"
+      ],
+      "image_prompt": "Realistic photo of a child covering mouth with a tissue while sneezing, clean room background, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "吃水果",
+      "pinyin": "chī shuǐ guǒ",
+      "summary": "多吃水果，补充维生素，身体更有力。",
+      "words": [
+        "水果",
+        "苹果",
+        "维生素",
+        "健康",
+        "甜甜"
+      ],
+      "image_prompt": "Realistic photo of fresh colorful fruits on a plate, child reaching for an apple, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "收拾玩具",
+      "pinyin": "shōu shi wán jù",
+      "summary": "玩完玩具放回原位，房间整整齐齐。",
+      "words": [
+        "玩具",
+        "收拾",
+        "整齐",
+        "箱子",
+        "房间"
+      ],
+      "image_prompt": "Realistic photo of a child putting toys into a storage box in a tidy room, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "穿外套",
+      "pinyin": "chuān wài tào",
+      "summary": "天冷穿外套，热了脱衣服，保护自己不感冒。",
+      "words": [
+        "外套",
+        "衣服",
+        "天气",
+        "保暖",
+        "健康"
+      ],
+      "image_prompt": "Realistic photo of a child putting on a warm jacket by the door, autumn weather outside, natural lighting, no text, no watermark"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "module": "dream_jobs",
+  "title": "职业梦想",
+  "target_age": "3-6",
+  "lesson_duration_min": 5,
+  "items": [
+    {
+      "word": "医生",
+      "pinyin": "yī shēng",
+      "summary": "医生穿白大褂，给病人看病，帮助大家恢复健康。",
+      "words": [
+        "医生",
+        "病人",
+        "医院",
+        "听诊器",
+        "健康"
+      ],
+      "image_prompt": "Realistic photo of a friendly doctor with a stethoscope, hospital background, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "消防员",
+      "pinyin": "xiāo fáng yuán",
+      "summary": "消防员开着消防车，扑灭大火，救出被困的人。",
+      "words": [
+        "消防员",
+        "消防车",
+        "灭火",
+        "勇敢",
+        "救援"
+      ],
+      "image_prompt": "Realistic photo of a firefighter in uniform standing by a red fire truck, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "老师",
+      "pinyin": "lǎo shī",
+      "summary": "老师站在黑板前，教我们读书写字，回答我们的问题。",
+      "words": [
+        "老师",
+        "黑板",
+        "学生",
+        "读书",
+        "学习"
+      ],
+      "image_prompt": "Realistic photo of a teacher writing on a blackboard with children in a classroom, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "警察",
+      "pinyin": "jǐng chá",
+      "summary": "警察保护我们的安全，帮助迷路的人找到家。",
+      "words": [
+        "警察",
+        "警车",
+        "安全",
+        "帮助",
+        "抓坏人"
+      ],
+      "image_prompt": "Realistic photo of a police officer smiling and helping a child, police car in background, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "宇航员",
+      "pinyin": "yǔ háng yuán",
+      "summary": "宇航员坐火箭飞到太空，探索星星和月亮。",
+      "words": [
+        "宇航员",
+        "火箭",
+        "太空",
+        "星星",
+        "月亮"
+      ],
+      "image_prompt": "Realistic photo of an astronaut floating in space with Earth in the background, stars shining, no text, no watermark"
+    },
+    {
+      "word": "厨师",
+      "pinyin": "chú shī",
+      "summary": "厨师在厨房里做饭，做出香喷喷的菜和甜点。",
+      "words": [
+        "厨师",
+        "厨房",
+        "做饭",
+        "菜",
+        "甜点"
+      ],
+      "image_prompt": "Realistic photo of a chef cooking in a kitchen with fresh vegetables, steam rising, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "农民",
+      "pinyin": "nóng mín",
+      "summary": "农民在田里种地，种出大米、蔬菜和水果。",
+      "words": [
+        "农民",
+        "田地",
+        "种地",
+        "大米",
+        "蔬菜"
+      ],
+      "image_prompt": "Realistic photo of a farmer working in a green field with vegetables and rice, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "司机",
+      "pinyin": "sī jī",
+      "summary": "司机开着公交车，把大家安全送到目的地。",
+      "words": [
+        "司机",
+        "公交车",
+        "开车",
+        "乘客",
+        "安全"
+      ],
+      "image_prompt": "Realistic photo of a bus driver smiling at the wheel, passengers in the bus, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "邮递员",
+      "pinyin": "yóu dì yuán",
+      "summary": "邮递员骑着车送信和包裹，把思念送到远方。",
+      "words": [
+        "邮递员",
+        "送信",
+        "包裹",
+        "自行车",
+        "远方"
+      ],
+      "image_prompt": "Realistic photo of a mail carrier delivering letters on a bicycle, sunny street, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "画家",
+      "pinyin": "huà jiā",
+      "summary": "画家用画笔和颜料，把美好的世界画下来。",
+      "words": [
+        "画家",
+        "画笔",
+        "颜料",
+        "画画",
+        "颜色"
+      ],
+      "image_prompt": "Realistic photo of an artist painting on canvas with colorful paints, studio with natural light, no text, no watermark"
+    }
+  ]
+}

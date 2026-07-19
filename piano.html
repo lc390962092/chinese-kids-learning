@@ -133,89 +133,93 @@
         .status-text { font-size: 13px; color: #66BB6A; min-height: 20px; }
         .status-text.waiting { color: #FF8C42; }
 
-        /* 纵向钢琴 */
+        /* 横向钢琴 */
         .piano-wrapper {
             background: #333;
             border-radius: 15px 15px 15px 15px;
-            padding: 10px 0;
+            padding: 15px 10px 0;
             margin: 0 15px 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
             position: relative;
-            height: 420px;
+            height: 220px;
             overflow: hidden;
         }
 
         .white-keys {
             display: flex;
-            flex-direction: column;
             height: 100%;
-            padding: 0 12px;
             gap: 3px;
         }
         .white-key {
             flex: 1;
             background: white;
-            border-radius: 8px;
+            border-radius: 0 0 8px 8px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 16px;
+            justify-content: flex-end;
+            padding-bottom: 12px;
             cursor: pointer;
             box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-            transition: background 0.1s, transform 0.1s;
+            transition: background 0.05s, transform 0.05s;
             position: relative;
             z-index: 1;
-            min-height: 44px;
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            user-select: none;
         }
         .white-key:active, .white-key.active {
             background: #FFE0B2;
-            transform: translateX(3px);
+            transform: translateY(2px);
         }
-        .white-key .solfege { font-size: 15px; color: #FF8C42; font-weight: bold; }
-        .white-key .number { font-size: 14px; color: #999; }
+        .white-key .solfege { font-size: 14px; color: #FF8C42; font-weight: bold; margin-bottom: 4px; }
+        .white-key .number { font-size: 12px; color: #999; }
 
         .black-keys {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 15px;
+            left: 10px;
+            right: 10px;
+            height: 130px;
+            display: flex;
             pointer-events: none;
         }
         .black-key {
             position: absolute;
-            right: 12px;
-            width: 55%;
-            height: 44px;
+            width: 10%;
+            height: 100%;
             background: #222;
-            border-radius: 8px;
+            border-radius: 0 0 6px 6px;
             cursor: pointer;
             pointer-events: auto;
             display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 16px;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 8px;
             box-shadow: 0 3px 5px rgba(0,0,0,0.3);
-            transition: background 0.1s, transform 0.1s;
+            transition: background 0.05s, transform 0.05s;
             z-index: 2;
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            user-select: none;
         }
         .black-key:active, .black-key.active {
             background: #444;
-            transform: translateX(3px);
+            transform: translateY(2px);
         }
-        .black-key .solfege { font-size: 13px; color: #FF8C42; }
+        .black-key .solfege { font-size: 11px; color: #FF8C42; }
         
         /* 辅助练习提示 */
         .white-key.hint {
             background: #C8E6C9 !important;
             box-shadow: 0 0 12px #66BB6A;
-            transform: translateX(3px);
+            transform: translateY(2px);
             animation: pulseHint 1s infinite;
         }
         .black-key.hint {
             background: #2E7D32 !important;
             box-shadow: 0 0 12px #66BB6A;
-            transform: translateX(3px);
+            transform: translateY(2px);
             animation: pulseHint 1s infinite;
         }
         .black-key.hint .solfege { color: #FFF; }
@@ -223,22 +227,11 @@
             0%, 100% { box-shadow: 0 0 8px #66BB6A; }
             50% { box-shadow: 0 0 18px #66BB6A; }
         }
-        .note.hint {
-            background: #C8E6C9;
-            box-shadow: 0 0 10px #66BB6A;
-            animation: pulseHintNote 1s infinite;
-        }
-        @keyframes pulseHintNote {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        .footer { text-align: center; padding: 15px; color: #aaa; font-size: 13px; }
 
         @media (max-width: 400px) {
             .song-btn { padding: 7px 12px; font-size: 13px; }
             .note { width: 32px; height: 32px; font-size: 16px; }
-            .piano-wrapper { height: 380px; }
+            .piano-wrapper { height: 200px; }
         }
     </style>
 </head>
@@ -293,8 +286,8 @@
     const scaleNames = ['do','re','mi','fa','sol','la','si','do'];
     const whiteNotes = ['C4','D4','E4','F4','G4','A4','B4','C5'];
     const blackNotes = ['C#4','D#4','F#4','G#4','A#4'];
-    // 纵向排列：每个黑键卡在两个白键之间的位置（百分比 top）
-    const blackPositions = [3.5, 14, 36, 47, 57]; // 百分比 top
+    // 横向排列：黑键位于两个白键之间（百分比 left）
+    const blackPositions = [8, 20, 45, 58, 70]; // 百分比 left
 
     function noteToFreq(noteName) {
         const noteMap = {
@@ -367,7 +360,7 @@
             key.dataset.note = note;
             key.innerHTML = `<span class="solfege">${scaleNames[i]}</span><span class="number">${i < 7 ? i+1 : '1'}</span>`;
             key.addEventListener('mousedown', () => playKey(key, note));
-            key.addEventListener('touchstart', (e) => { e.preventDefault(); playKey(key, note); });
+            key.addEventListener('touchstart', (e) => { e.preventDefault(); playKey(key, note); }, { passive: false });
             whiteContainer.appendChild(key);
         });
 
@@ -375,10 +368,10 @@
             const key = document.createElement('div');
             key.className = 'black-key';
             key.dataset.note = note;
-            key.style.top = blackPositions[i] + '%';
+            key.style.left = blackPositions[i] + '%';
             key.innerHTML = `<div class="solfege">${['do#','re#','fa#','sol#','la#'][i]}</div>`;
             key.addEventListener('mousedown', () => playKey(key, note));
-            key.addEventListener('touchstart', (e) => { e.preventDefault(); playKey(key, note); });
+            key.addEventListener('touchstart', (e) => { e.preventDefault(); playKey(key, note); }, { passive: false });
             blackContainer.appendChild(key);
         });
     }
