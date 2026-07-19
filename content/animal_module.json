@@ -347,7 +347,7 @@
       "measure_word": "只",
       "sentence": "这是一只海龟。",
       "sentence_pinyin": "Zhè shì yì 只 海龟.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "sea_turtle",
       "tags": [
         "water",
@@ -397,7 +397,7 @@
       "measure_word": "只",
       "sentence": "这是一只企鹅。",
       "sentence_pinyin": "Zhè shì yì 只 企鹅.",
-      "sound": "无",
+      "sound": "嘎嘎",
       "english": "penguin",
       "tags": [
         "zoo",
@@ -441,7 +441,7 @@
       "measure_word": "只",
       "sentence": "这是一只蝴蝶。",
       "sentence_pinyin": "Zhè shì yì 只 蝴蝶.",
-      "sound": "无",
+      "sound": "嗡嗡",
       "english": "butterfly",
       "tags": [
         "nature",
@@ -541,7 +541,7 @@
       "measure_word": "只",
       "sentence": "这是一只蚂蚁。",
       "sentence_pinyin": "Zhè shì yì 只 蚂蚁.",
-      "sound": "无",
+      "sound": "沙沙",
       "english": "ant",
       "tags": [
         "nature",
@@ -591,7 +591,7 @@
       "measure_word": "头",
       "sentence": "这是一只蜗牛。",
       "sentence_pinyin": "Zhè shì yì 头 蜗牛.",
-      "sound": "无",
+      "sound": "沙沙",
       "english": "snail",
       "tags": [
         "farm",
@@ -641,7 +641,7 @@
       "measure_word": "只",
       "sentence": "这是一只瓢虫。",
       "sentence_pinyin": "Zhè shì yì 只 瓢虫.",
-      "sound": "无",
+      "sound": "嗡嗡",
       "english": "ladybug",
       "tags": [
         "nature",
@@ -691,7 +691,7 @@
       "measure_word": "只",
       "sentence": "这是一只蜻蜓。",
       "sentence_pinyin": "Zhè shì yì 只 蜻蜓.",
-      "sound": "无",
+      "sound": "嗡嗡",
       "english": "dragonfly",
       "tags": [
         "nature",
@@ -837,7 +837,7 @@
       "measure_word": "只",
       "sentence": "这是一只螃蟹。",
       "sentence_pinyin": "Zhè shì yì 只 螃蟹.",
-      "sound": "无",
+      "sound": "咔嚓",
       "english": "crab",
       "tags": [
         "water",
@@ -887,7 +887,7 @@
       "measure_word": "只",
       "sentence": "这是一只章鱼。",
       "sentence_pinyin": "Zhè shì yì 只 章鱼.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "octopus",
       "tags": [
         "nature",
@@ -933,7 +933,7 @@
       "measure_word": "条",
       "sentence": "这是一条鲨鱼。",
       "sentence_pinyin": "Zhè shì yì 条 鲨鱼.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "shark",
       "tags": [
         "nature",
@@ -979,7 +979,7 @@
       "measure_word": "只",
       "sentence": "这是一只海星。",
       "sentence_pinyin": "Zhè shì yì 只 海星.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "starfish",
       "tags": [
         "water",
@@ -1093,7 +1093,7 @@
       "measure_word": "只",
       "sentence": "这是一只三角龙。",
       "sentence_pinyin": "Zhè shì yì 只 三角龙.",
-      "sound": "无",
+      "sound": "吼",
       "english": "triceratops",
       "tags": [
         "dinosaur"
@@ -1157,7 +1157,7 @@
       "measure_word": "只",
       "sentence": "这是一只翼龙。",
       "sentence_pinyin": "Zhè shì yì 只 翼龙.",
-      "sound": "无",
+      "sound": "嗷",
       "english": "pterosaur",
       "tags": [
         "dinosaur"
@@ -1202,7 +1202,7 @@
       "measure_word": "只",
       "sentence": "这是一只剑龙。",
       "sentence_pinyin": "Zhè shì yì 只 剑龙.",
-      "sound": "无",
+      "sound": "吼",
       "english": "stegosaurus",
       "tags": [
         "dinosaur"
@@ -1251,7 +1251,7 @@
       "measure_word": "只",
       "sentence": "这是一只腕龙。",
       "sentence_pinyin": "Zhè shì yì 只 腕龙.",
-      "sound": "无",
+      "sound": "呜",
       "english": "brachiosaurus",
       "tags": [
         "dinosaur"
@@ -1300,7 +1300,7 @@
       "measure_word": "只",
       "sentence": "这是一只甲龙。",
       "sentence_pinyin": "Zhè shì yì 只 甲龙.",
-      "sound": "无",
+      "sound": "吼",
       "english": "ankylosaurus",
       "tags": [
         "dinosaur"
@@ -1349,7 +1349,7 @@
       "measure_word": "只",
       "sentence": "这是一只袋鼠。",
       "sentence_pinyin": "Zhè shì yì 只 袋鼠.",
-      "sound": "无",
+      "sound": "咯咯",
       "english": "kangaroo",
       "tags": [
         "home",
@@ -1366,7 +1366,7 @@
       "measure_word": "只",
       "sentence": "这是一只考拉。",
       "sentence_pinyin": "Zhè shì yì 只 考拉.",
-      "sound": "无",
+      "sound": "嗯嗯",
       "english": "koala",
       "tags": [
         "nature",
@@ -1383,7 +1383,7 @@
       "measure_word": "匹",
       "sentence": "这是一匹斑马。",
       "sentence_pinyin": "Zhè shì yì 匹 斑马.",
-      "sound": "无",
+      "sound": "嘶",
       "english": "zebra",
       "tags": [
         "farm",
@@ -1400,7 +1400,7 @@
       "measure_word": "匹",
       "sentence": "这是一头河马。",
       "sentence_pinyin": "Zhè shì yì 匹 河马.",
-      "sound": "无",
+      "sound": "哼",
       "english": "hippo",
       "tags": [
         "farm",
@@ -1417,7 +1417,7 @@
       "measure_word": "头",
       "sentence": "这是一头犀牛。",
       "sentence_pinyin": "Zhè shì yì 头 犀牛.",
-      "sound": "无",
+      "sound": "哼",
       "english": "rhino",
       "tags": [
         "farm",
@@ -1434,7 +1434,7 @@
       "measure_word": "条",
       "sentence": "这是一条鳄鱼。",
       "sentence_pinyin": "Zhè shì yì 条 鳄鱼.",
-      "sound": "无",
+      "sound": "嗷嗷",
       "english": "crocodile",
       "tags": [
         "nature",
@@ -1451,7 +1451,7 @@
       "measure_word": "只",
       "sentence": "这是一只鸵鸟。",
       "sentence_pinyin": "Zhè shì yì 只 鸵鸟.",
-      "sound": "无",
+      "sound": "咕咕",
       "english": "ostrich",
       "tags": [
         "nature",
@@ -1468,7 +1468,7 @@
       "measure_word": "只",
       "sentence": "这是一只孔雀。",
       "sentence_pinyin": "Zhè shì yì 只 孔雀.",
-      "sound": "无",
+      "sound": "嗷",
       "english": "peacock",
       "tags": [
         "zoo"
@@ -1484,7 +1484,7 @@
       "measure_word": "只",
       "sentence": "这是一只天鹅。",
       "sentence_pinyin": "Zhè shì yì 只 天鹅.",
-      "sound": "无",
+      "sound": "咕",
       "english": "swan",
       "tags": [
         "zoo"
@@ -1500,7 +1500,7 @@
       "measure_word": "只",
       "sentence": "这是一只火烈鸟。",
       "sentence_pinyin": "Zhè shì yì 只 火烈鸟.",
-      "sound": "无",
+      "sound": "咕咕",
       "english": "flamingo",
       "tags": [
         "nature",
@@ -1517,7 +1517,7 @@
       "measure_word": "只",
       "sentence": "这是一只刺猬。",
       "sentence_pinyin": "Zhè shì yì 只 刺猬.",
-      "sound": "无",
+      "sound": "呼呼",
       "english": "hedgehog",
       "tags": [
         "zoo"
@@ -1533,7 +1533,7 @@
       "measure_word": "只",
       "sentence": "这是一只松鼠。",
       "sentence_pinyin": "Zhè shì yì 只 松鼠.",
-      "sound": "无",
+      "sound": "吱吱",
       "english": "squirrel",
       "tags": [
         "home",
@@ -1550,7 +1550,7 @@
       "measure_word": "只",
       "sentence": "这是一只狐狸。",
       "sentence_pinyin": "Zhè shì yì 只 狐狸.",
-      "sound": "无",
+      "sound": "嗷嗷",
       "english": "fox",
       "tags": [
         "nature",
@@ -1567,7 +1567,7 @@
       "measure_word": "只",
       "sentence": "这是一只大灰狼。",
       "sentence_pinyin": "Zhè shì yì 只 大灰狼.",
-      "sound": "无",
+      "sound": "嗷呜",
       "english": "wolf",
       "tags": [
         "forest"
@@ -1583,7 +1583,7 @@
       "measure_word": "只",
       "sentence": "这是一只豹子。",
       "sentence_pinyin": "Zhè shì yì 只 豹子.",
-      "sound": "无",
+      "sound": "嗷",
       "english": "leopard",
       "tags": [
         "zoo",
@@ -1600,7 +1600,7 @@
       "measure_word": "头",
       "sentence": "这是一头骆驼。",
       "sentence_pinyin": "Zhè shì yì 头 骆驼.",
-      "sound": "无",
+      "sound": "嗯嗯",
       "english": "camel",
       "tags": [
         "zoo"
@@ -1616,7 +1616,7 @@
       "measure_word": "只",
       "sentence": "这是一只蜘蛛。",
       "sentence_pinyin": "Zhè shì yì 只 蜘蛛.",
-      "sound": "无",
+      "sound": "沙沙",
       "english": "spider",
       "tags": [
         "zoo",
@@ -1633,7 +1633,7 @@
       "measure_word": "条",
       "sentence": "这是一条蚯蚓。",
       "sentence_pinyin": "Zhè shì yì 条 蚯蚓.",
-      "sound": "无",
+      "sound": "沙沙",
       "english": "earthworm",
       "tags": [
         "insect"
@@ -1649,7 +1649,7 @@
       "measure_word": "只",
       "sentence": "这是一只萤火虫。",
       "sentence_pinyin": "Zhè shì yì 只 萤火虫.",
-      "sound": "无",
+      "sound": "嗡嗡",
       "english": "firefly",
       "tags": [
         "insect"
@@ -1665,7 +1665,7 @@
       "measure_word": "只",
       "sentence": "这是一只飞蛾。",
       "sentence_pinyin": "Zhè shì yì 只 飞蛾.",
-      "sound": "无",
+      "sound": "扑哧",
       "english": "moth",
       "tags": [
         "insect"
@@ -1681,7 +1681,7 @@
       "measure_word": "只",
       "sentence": "这是一只螳螂。",
       "sentence_pinyin": "Zhè shì yì 只 螳螂.",
-      "sound": "无",
+      "sound": "沙沙",
       "english": "mantis",
       "tags": [
         "insect"
@@ -1697,7 +1697,7 @@
       "measure_word": "只",
       "sentence": "这是一只知了。",
       "sentence_pinyin": "Zhè shì yì 只 知了.",
-      "sound": "无",
+      "sound": "知了知了",
       "english": "cicada",
       "tags": [
         "insect"
@@ -1713,7 +1713,7 @@
       "measure_word": "只",
       "sentence": "这是一只蚱蜢。",
       "sentence_pinyin": "Zhè shì yì 只 蚱蜢.",
-      "sound": "无",
+      "sound": "唧唧",
       "english": "grasshopper",
       "tags": [
         "insect"
@@ -1729,7 +1729,7 @@
       "measure_word": "只",
       "sentence": "这是一只蝎子。",
       "sentence_pinyin": "Zhè shì yì 只 蝎子.",
-      "sound": "无",
+      "sound": "沙沙",
       "english": "scorpion",
       "tags": [
         "insect"
@@ -1745,7 +1745,7 @@
       "measure_word": "条",
       "sentence": "这是一条蜈蚣。",
       "sentence_pinyin": "Zhè shì yì 条 蜈蚣.",
-      "sound": "无",
+      "sound": "沙沙",
       "english": "centipede",
       "tags": [
         "insect"
@@ -1761,7 +1761,7 @@
       "measure_word": "匹",
       "sentence": "这是一只海马。",
       "sentence_pinyin": "Zhè shì yì 匹 海马.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "seahorse",
       "tags": [
         "farm",
@@ -1778,7 +1778,7 @@
       "measure_word": "只",
       "sentence": "这是一只水母。",
       "sentence_pinyin": "Zhè shì yì 只 水母.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "jellyfish",
       "tags": [
         "water",
@@ -1795,7 +1795,7 @@
       "measure_word": "个",
       "sentence": "这是一个贝壳。",
       "sentence_pinyin": "Zhè shì yì 个 贝壳.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "seashell",
       "tags": [
         "water",
@@ -1812,7 +1812,7 @@
       "measure_word": "只",
       "sentence": "这是一只龙虾。",
       "sentence_pinyin": "Zhè shì yì 只 龙虾.",
-      "sound": "无",
+      "sound": "咔嚓",
       "english": "lobster",
       "tags": [
         "water",
@@ -1829,7 +1829,7 @@
       "measure_word": "个",
       "sentence": "这是一个海胆。",
       "sentence_pinyin": "Zhè shì yì 个 海胆.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "sea_urchin",
       "tags": [
         "water",
@@ -1846,7 +1846,7 @@
       "measure_word": "只",
       "sentence": "这是一只海参。",
       "sentence_pinyin": "Zhè shì yì 只 海参.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "sea_cucumber",
       "tags": [
         "water",
@@ -1863,7 +1863,7 @@
       "measure_word": "只",
       "sentence": "这是一只海葵。",
       "sentence_pinyin": "Zhè shì yì 只 海葵.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "anemone",
       "tags": [
         "water",
@@ -1880,7 +1880,7 @@
       "measure_word": "条",
       "sentence": "这是一条鳗鱼。",
       "sentence_pinyin": "Zhè shì yì 条 鳗鱼.",
-      "sound": "无",
+      "sound": "咕噜",
       "english": "eel",
       "tags": [
         "nature",
@@ -1897,7 +1897,7 @@
       "measure_word": "只",
       "sentence": "这是一只蝙蝠。",
       "sentence_pinyin": "Zhè shì yì 只 蝙蝠.",
-      "sound": "无",
+      "sound": "吱吱",
       "english": "bat",
       "tags": [
         "sky"
@@ -1913,7 +1913,7 @@
       "measure_word": "只",
       "sentence": "这是一只乌鸦。",
       "sentence_pinyin": "Zhè shì yì 只 乌鸦.",
-      "sound": "无",
+      "sound": "啊啊",
       "english": "crow",
       "tags": [
         "sky"
@@ -1929,7 +1929,7 @@
       "measure_word": "只",
       "sentence": "这是一只鹦鹉。",
       "sentence_pinyin": "Zhè shì yì 只 鹦鹉.",
-      "sound": "无",
+      "sound": "你好",
       "english": "parrot",
       "tags": [
         "sky"
@@ -1945,7 +1945,7 @@
       "measure_word": "只",
       "sentence": "这是一只老鹰。",
       "sentence_pinyin": "Zhè shì yì 只 老鹰.",
-      "sound": "无",
+      "sound": "啾",
       "english": "eagle",
       "tags": [
         "sky"
@@ -1961,7 +1961,7 @@
       "measure_word": "只",
       "sentence": "这是一只鸽子。",
       "sentence_pinyin": "Zhè shì yì 只 鸽子.",
-      "sound": "无",
+      "sound": "咕咕",
       "english": "pigeon",
       "tags": [
         "sky"
@@ -1977,7 +1977,7 @@
       "measure_word": "只",
       "sentence": "这是一只啄木鸟。",
       "sentence_pinyin": "Zhè shì yì 只 啄木鸟.",
-      "sound": "无",
+      "sound": "笃笃",
       "english": "woodpecker",
       "tags": [
         "nature",
@@ -1994,7 +1994,7 @@
       "measure_word": "只",
       "sentence": "这是一只变色龙。",
       "sentence_pinyin": "Zhè shì yì 只 变色龙.",
-      "sound": "无",
+      "sound": "沙沙",
       "english": "chameleon",
       "tags": [
         "nature"
