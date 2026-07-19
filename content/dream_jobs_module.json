@@ -133,6 +133,71 @@
         "颜色"
       ],
       "image_prompt": "Realistic photo of an artist painting on canvas with colorful paints, studio with natural light, no text, no watermark"
+    },
+    {
+      "word": "科学家",
+      "pinyin": "kē xué jiā",
+      "summary": "科学家做实验，研究世界上有趣的事情，发现新知识。",
+      "words": [
+        "科学家",
+        "实验",
+        "显微镜",
+        "发现",
+        "知识"
+      ],
+      "image_prompt": "Realistic photo of a scientist looking through a microscope in a bright laboratory, no text, no watermark"
+    },
+    {
+      "word": "护士",
+      "pinyin": "hù shi",
+      "summary": "护士照顾生病的人，帮助他们打针、吃药、恢复健康。",
+      "words": [
+        "护士",
+        "医院",
+        "照顾",
+        "打针",
+        "健康"
+      ],
+      "image_prompt": "Realistic photo of a kind nurse holding a child's hand in a hospital, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "工程师",
+      "pinyin": "gōng chéng shī",
+      "summary": "工程师设计和修理机器，让我们的生活更方便。",
+      "words": [
+        "工程师",
+        "机器",
+        "设计",
+        "工具",
+        "修理"
+      ],
+      "image_prompt": "Realistic photo of an engineer with blueprints and tools in a modern workshop, no text, no watermark"
+    },
+    {
+      "word": "建筑师",
+      "pinyin": "jiàn zhù shī",
+      "summary": "建筑师画出房子的设计图，让大家住上安全又漂亮的家。",
+      "words": [
+        "建筑师",
+        "房子",
+        "设计图",
+        "建筑",
+        "家"
+      ],
+      "image_prompt": "Realistic photo of an architect holding building plans and looking at a construction model, no text, no watermark"
+    },
+    {
+      "word": "运动员",
+      "pinyin": "yùn dòng yuán",
+      "summary": "运动员努力训练，参加各种比赛，为国争光。",
+      "words": [
+        "运动员",
+        "比赛",
+        "训练",
+        "奖杯",
+        "跑步"
+      ],
+      "image_prompt": "Realistic photo of a young athlete running on a track with a stadium in background, no text, no watermark"
     }
   ]
 }

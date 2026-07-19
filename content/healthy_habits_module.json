@@ -133,6 +133,71 @@
         "健康"
       ],
       "image_prompt": "Realistic photo of a child putting on a warm jacket by the door, autumn weather outside, natural lighting, no text, no watermark"
+    },
+    {
+      "word": "按时起床",
+      "pinyin": "àn shí qǐ chuáng",
+      "summary": "早上听到闹钟就起床，不要赖床，开始新的一天。",
+      "words": [
+        "起床",
+        "闹钟",
+        "早上",
+        "按时",
+        "精神"
+      ],
+      "image_prompt": "Realistic photo of a child waking up and stretching in a sunny bedroom with an alarm clock, no text, no watermark"
+    },
+    {
+      "word": "洗脸",
+      "pinyin": "xǐ liǎn",
+      "summary": "早晚洗脸，把脏东西洗掉，小脸蛋干干净净。",
+      "words": [
+        "洗脸",
+        "毛巾",
+        "水",
+        "干净",
+        "脸"
+      ],
+      "image_prompt": "Realistic photo of a child washing face with a small towel at a bathroom sink, no text, no watermark"
+    },
+    {
+      "word": "上厕所",
+      "pinyin": "shàng cè suǒ",
+      "summary": "想上厕所就快去，不要憋着，上完要冲水。",
+      "words": [
+        "厕所",
+        "马桶",
+        "冲水",
+        "卫生",
+        "洗手"
+      ],
+      "image_prompt": "Realistic photo of a clean bathroom with a child-size toilet, bright and tidy, no text, no watermark"
+    },
+    {
+      "word": "保护眼睛",
+      "pinyin": "bǎo hù yǎn jing",
+      "summary": "少看手机，看书坐端正，眼睛才能看得清楚。",
+      "words": [
+        "眼睛",
+        "看书",
+        "保护",
+        "电视",
+        "明亮"
+      ],
+      "image_prompt": "Realistic photo of a child reading a book at a desk with good natural light, no text, no watermark"
+    },
+    {
+      "word": "整理书包",
+      "pinyin": "zhěng lǐ shū bāo",
+      "summary": "上学前把书本和文具放进书包，不丢三落四。",
+      "words": [
+        "书包",
+        "书本",
+        "文具",
+        "整理",
+        "上学"
+      ],
+      "image_prompt": "Realistic photo of a child's school bag with books and pencils neatly organized, no text, no watermark"
     }
   ]
 }
