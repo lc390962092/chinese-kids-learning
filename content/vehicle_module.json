@@ -12,7 +12,10 @@
       "sentence_pinyin": "Zhè shì yì liàng qì chē.",
       "sound": "滴滴",
       "english": "car",
-      "tags": ["road", "vehicle"],
+      "tags": [
+        "road",
+        "vehicle"
+      ],
       "difficulty": 1,
       "image_prompt": "A cute cartoon car, flat illustration, red body, big round headlights, friendly smile, white background, children's book style, vector art"
     },
@@ -24,7 +27,10 @@
       "sentence_pinyin": "Zhè shì yì liàng gōng jiāo chē.",
       "sound": "无",
       "english": "bus",
-      "tags": ["road", "vehicle"],
+      "tags": [
+        "road",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon bus, flat illustration, yellow body, big windows, friendly smile, white background, children's book style, vector art"
     },
@@ -36,7 +42,10 @@
       "sentence_pinyin": "Zhè shì yì liè dì tiě.",
       "sound": "轰轰",
       "english": "subway",
-      "tags": ["rail", "vehicle"],
+      "tags": [
+        "rail",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon subway train, flat illustration, silver body with blue stripes, big windows, underground tunnel, friendly smile, white background, children's book style, vector art"
     },
@@ -48,7 +57,10 @@
       "sentence_pinyin": "Zhè shì yì liè gāo tiě.",
       "sound": "嗖嗖",
       "english": "high_speed_train",
-      "tags": ["rail", "vehicle"],
+      "tags": [
+        "rail",
+        "vehicle"
+      ],
       "difficulty": 3,
       "image_prompt": "A cute cartoon high-speed train, flat illustration, white body with red stripe, streamlined nose, friendly smile, white background, children's book style, vector art"
     },
@@ -60,7 +72,10 @@
       "sentence_pinyin": "Zhè shì yì liè huǒ chē.",
       "sound": "呜呜",
       "english": "train",
-      "tags": ["rail", "vehicle"],
+      "tags": [
+        "rail",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon train, flat illustration, blue locomotive with smoke, big round windows, friendly smile, white background, children's book style, vector art"
     },
@@ -72,7 +87,10 @@
       "sentence_pinyin": "Zhè shì yì jià fēi jī.",
       "sound": "轰隆隆",
       "english": "airplane",
-      "tags": ["sky", "vehicle"],
+      "tags": [
+        "sky",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon airplane, flat illustration, white body with blue wings, big round windows, friendly smile, flying in clouds, white background, children's book style, vector art"
     },
@@ -84,7 +102,10 @@
       "sentence_pinyin": "Zhè shì yì jià zhí shēng jī.",
       "sound": "嗒嗒嗒",
       "english": "helicopter",
-      "tags": ["sky", "vehicle"],
+      "tags": [
+        "sky",
+        "vehicle"
+      ],
       "difficulty": 3,
       "image_prompt": "A cute cartoon helicopter, flat illustration, yellow body with spinning rotor, big windows, friendly smile, white background, children's book style, vector art"
     },
@@ -96,7 +117,10 @@
       "sentence_pinyin": "Zhè shì yí gè rè qì qiú.",
       "sound": "无",
       "english": "hot_air_balloon",
-      "tags": ["sky", "vehicle"],
+      "tags": [
+        "sky",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon hot air balloon, flat illustration, rainbow colored stripes, big round basket, fluffy clouds, friendly smile, white background, children's book style, vector art"
     },
@@ -108,7 +132,10 @@
       "sentence_pinyin": "Zhè shì yì méi huǒ jiàn.",
       "sound": "轰",
       "english": "rocket",
-      "tags": ["sky", "space"],
+      "tags": [
+        "sky",
+        "space"
+      ],
       "difficulty": 3,
       "image_prompt": "A cute cartoon rocket, flat illustration, white body with red nose cone, orange flames, stars around, friendly smile, white background, children's book style, vector art"
     },
@@ -120,7 +147,10 @@
       "sentence_pinyin": "Zhè shì yì sōu chuán.",
       "sound": "呜呜",
       "english": "ship",
-      "tags": ["water", "vehicle"],
+      "tags": [
+        "water",
+        "vehicle"
+      ],
       "difficulty": 1,
       "image_prompt": "A cute cartoon ship, flat illustration, white hull with red stripe, big round windows, friendly smile, sailing on blue waves, white background, children's book style, vector art"
     },
@@ -132,7 +162,10 @@
       "sentence_pinyin": "Zhè shì yì sōu lún chuán.",
       "sound": "呜呜",
       "english": "steamship",
-      "tags": ["water", "vehicle"],
+      "tags": [
+        "water",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon steamship, flat illustration, big white hull with red bottom, multiple decks, smoke stack, friendly smile, white background, children's book style, vector art"
     },
@@ -144,7 +177,10 @@
       "sentence_pinyin": "Zhè shì yì sōu fān chuán.",
       "sound": "无",
       "english": "sailboat",
-      "tags": ["water", "vehicle"],
+      "tags": [
+        "water",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon sailboat, flat illustration, white sail with blue hull, small waves, friendly smile, white background, children's book style, vector art"
     },
@@ -156,7 +192,10 @@
       "sentence_pinyin": "Zhè shì yì sōu qián tǐng.",
       "sound": "无",
       "english": "submarine",
-      "tags": ["water", "vehicle"],
+      "tags": [
+        "water",
+        "vehicle"
+      ],
       "difficulty": 3,
       "image_prompt": "A cute cartoon submarine, flat illustration, yellow body with periscope, small portholes, underwater bubbles, friendly smile, white background, children's book style, vector art"
     },
@@ -168,7 +207,10 @@
       "sentence_pinyin": "Zhè shì yì liàng zì xíng chē.",
       "sound": "叮铃铃",
       "english": "bicycle",
-      "tags": ["road", "vehicle"],
+      "tags": [
+        "road",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon bicycle, flat illustration, red frame, big round wheels, friendly bell, white background, children's book style, vector art"
     },
@@ -180,7 +222,10 @@
       "sentence_pinyin": "Zhè shì yì liàng huá bǎn chē.",
       "sound": "无",
       "english": "scooter",
-      "tags": ["road", "vehicle"],
+      "tags": [
+        "road",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon scooter, flat illustration, blue deck with small wheels, handlebar, friendly smile, white background, children's book style, vector art"
     },
@@ -192,7 +237,10 @@
       "sentence_pinyin": "Zhè shì yì liàng mó tuō chē.",
       "sound": "突突",
       "english": "motorcycle",
-      "tags": ["road", "vehicle"],
+      "tags": [
+        "road",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon motorcycle, flat illustration, red body, big round headlight, friendly smile, white background, children's book style, vector art"
     },
@@ -204,7 +252,10 @@
       "sentence_pinyin": "Zhè shì yì liàng chū zū chē.",
       "sound": "无",
       "english": "taxi",
-      "tags": ["road", "vehicle"],
+      "tags": [
+        "road",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon taxi, flat illustration, yellow body with checker pattern, friendly smile, white background, children's book style, vector art"
     },
@@ -216,7 +267,10 @@
       "sentence_pinyin": "Zhè shì yì liàng kǎ chē.",
       "sound": "嘟嘟",
       "english": "truck",
-      "tags": ["road", "work"],
+      "tags": [
+        "road",
+        "work"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon truck, flat illustration, blue cargo container with big wheels, friendly smile, white background, children's book style, vector art"
     },
@@ -228,7 +282,10 @@
       "sentence_pinyin": "Zhè shì yì liàng xiào chē.",
       "sound": "无",
       "english": "school_bus",
-      "tags": ["road", "vehicle"],
+      "tags": [
+        "road",
+        "vehicle"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon school bus, flat illustration, yellow body with black stripes, big windows, friendly smile, white background, children's book style, vector art"
     },
@@ -240,7 +297,10 @@
       "sentence_pinyin": "Zhè shì yì liàng jiù hù chē.",
       "sound": "呜哇呜哇",
       "english": "ambulance",
-      "tags": ["road", "emergency"],
+      "tags": [
+        "road",
+        "emergency"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon ambulance, flat illustration, white body with red cross, flashing lights, friendly smile, white background, children's book style, vector art"
     },
@@ -252,7 +312,10 @@
       "sentence_pinyin": "Zhè shì yì liàng jǐng chē.",
       "sound": "嘀嘟嘀嘟",
       "english": "police_car",
-      "tags": ["road", "emergency"],
+      "tags": [
+        "road",
+        "emergency"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon police car, flat illustration, blue and white body, siren light on top, friendly smile, white background, children's book style, vector art"
     },
@@ -264,7 +327,10 @@
       "sentence_pinyin": "Zhè shì yì liàng xiāo fáng chē.",
       "sound": "嘀呜嘀呜",
       "english": "fire_truck",
-      "tags": ["road", "emergency"],
+      "tags": [
+        "road",
+        "emergency"
+      ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon fire truck, flat illustration, red body with ladder, friendly smile, white background, children's book style, vector art"
     },
@@ -276,7 +342,10 @@
       "sentence_pinyin": "Zhè shì yì liàng sǎ shuǐ chē.",
       "sound": "无",
       "english": "water_truck",
-      "tags": ["road", "work"],
+      "tags": [
+        "road",
+        "work"
+      ],
       "difficulty": 3,
       "image_prompt": "A cute cartoon water truck, flat illustration, green tank with sprinkler, water drops, friendly smile, white background, children's book style, vector art"
     },
@@ -288,7 +357,10 @@
       "sentence_pinyin": "Zhè shì yì liàng lā jī chē.",
       "sound": "无",
       "english": "garbage_truck",
-      "tags": ["road", "work"],
+      "tags": [
+        "road",
+        "work"
+      ],
       "difficulty": 3,
       "image_prompt": "A cute cartoon garbage truck, flat illustration, gray body with lifting arm, trash bin, friendly smile, white background, children's book style, vector art"
     },
@@ -300,7 +372,10 @@
       "sentence_pinyin": "Zhè shì yì liàng tuō lā jī.",
       "sound": "哒哒",
       "english": "tractor",
-      "tags": ["work", "farm"],
+      "tags": [
+        "work",
+        "farm"
+      ],
       "difficulty": 3,
       "image_prompt": "A cute cartoon tractor, flat illustration, green body with big rear wheels, farmer cabin, friendly smile, white background, children's book style, vector art"
     },
@@ -312,9 +387,402 @@
       "sentence_pinyin": "Zhè shì yì liàng wā jué jī.",
       "sound": "轰轰",
       "english": "excavator",
-      "tags": ["work", "vehicle"],
+      "tags": [
+        "work",
+        "vehicle"
+      ],
       "difficulty": 3,
       "image_prompt": "A cute cartoon excavator, flat illustration, yellow body with big arm and bucket, caterpillar tracks, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "磁悬浮",
+      "pinyin": "cí xuán fú",
+      "measure_word": "列",
+      "sentence": "这是一列磁悬浮。",
+      "sentence_pinyin": "Zhè shì yì 列 磁悬浮.",
+      "sound": "嗖嗖",
+      "english": "maglev",
+      "tags": [
+        "rail",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon maglev train, flat illustration, white streamlined body with blue stripe, floating above track, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "有轨电车",
+      "pinyin": "yǒu guǐ diàn chē",
+      "measure_word": "辆",
+      "sentence": "这是一辆有轨电车。",
+      "sentence_pinyin": "Zhè shì yì 辆 有轨电车.",
+      "sound": "叮铃",
+      "english": "tram",
+      "tags": [
+        "rail",
+        "vehicle"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon tram, flat illustration, green and yellow body, big windows, overhead wire, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "无轨电车",
+      "pinyin": "wú guǐ diàn chē",
+      "measure_word": "辆",
+      "sentence": "这是一辆无轨电车。",
+      "sentence_pinyin": "Zhè shì yì 辆 无轨电车.",
+      "sound": "无",
+      "english": "trolleybus",
+      "tags": [
+        "rail",
+        "vehicle"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon trolleybus, flat illustration, blue body with poles on roof, big windows, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "双层巴士",
+      "pinyin": "shuāng céng bā shì",
+      "measure_word": "辆",
+      "sentence": "这是一辆双层巴士。",
+      "sentence_pinyin": "Zhè shì yì 辆 双层巴士.",
+      "sound": "无",
+      "english": "double_decker_bus",
+      "tags": [
+        "rail",
+        "vehicle"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon double-decker bus, flat illustration, red body with two levels of windows, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "滑翔机",
+      "pinyin": "huá xiáng jī",
+      "measure_word": "架",
+      "sentence": "这是一架滑翔机。",
+      "sentence_pinyin": "Zhè shì yì 架 滑翔机.",
+      "sound": "呼呼",
+      "english": "glider",
+      "tags": [
+        "sky",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon glider, flat illustration, long white wings, yellow nose, flying in blue sky with clouds, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "飞艇",
+      "pinyin": "fēi tǐng",
+      "measure_word": "艘",
+      "sentence": "这是一艘飞艇。",
+      "sentence_pinyin": "Zhè shì yì 艘 飞艇.",
+      "sound": "无",
+      "english": "airship",
+      "tags": [
+        "sky",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon airship blimp, flat illustration, long gray body with small fins, propellers, friendly smile, white clouds, white background, children's book style, vector art"
+    },
+    {
+      "word": "无人机",
+      "pinyin": "wú rén jī",
+      "measure_word": "架",
+      "sentence": "这是一架无人机。",
+      "sentence_pinyin": "Zhè shì yì 架 无人机.",
+      "sound": "嗡嗡",
+      "english": "drone",
+      "tags": [
+        "sky",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon quadcopter drone, flat illustration, gray body with four propellers, small camera, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "喷气式飞机",
+      "pinyin": "pēn qì shì fēi jī",
+      "measure_word": "架",
+      "sentence": "这是一架喷气式飞机。",
+      "sentence_pinyin": "Zhè shì yì 架 喷气式飞机.",
+      "sound": "轰隆隆",
+      "english": "jet",
+      "tags": [
+        "sky",
+        "vehicle"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon jet airplane, flat illustration, white body with swept wings, blue windows, flying fast, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "皮划艇",
+      "pinyin": "pí huá tǐng",
+      "measure_word": "艘",
+      "sentence": "这是一艘皮划艇。",
+      "sentence_pinyin": "Zhè shì yì 艘 皮划艇.",
+      "sound": "哗哗",
+      "english": "kayak",
+      "tags": [
+        "water",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon kayak, flat illustration, small yellow kayak with paddle, blue water splashes, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "独木舟",
+      "pinyin": "dú mù zhōu",
+      "measure_word": "艘",
+      "sentence": "这是一艘独木舟。",
+      "sentence_pinyin": "Zhè shì yì 艘 独木舟.",
+      "sound": "哗哗",
+      "english": "canoe",
+      "tags": [
+        "water",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon canoe, flat illustration, wooden brown canoe with paddle, small waves, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "快艇",
+      "pinyin": "kuài tǐng",
+      "measure_word": "艘",
+      "sentence": "这是一艘快艇。",
+      "sentence_pinyin": "Zhè shì yì 艘 快艇.",
+      "sound": "轰轰",
+      "english": "speedboat",
+      "tags": [
+        "water",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon speedboat, flat illustration, red and white boat speeding on water, big waves, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "游艇",
+      "pinyin": "yóu tǐng",
+      "measure_word": "艘",
+      "sentence": "这是一艘游艇。",
+      "sentence_pinyin": "Zhè shì yì 艘 游艇.",
+      "sound": "无",
+      "english": "yacht",
+      "tags": [
+        "water",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon yacht, flat illustration, white luxury boat with blue windows, sailing on calm water, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "气垫船",
+      "pinyin": "qì diàn chuán",
+      "measure_word": "艘",
+      "sentence": "这是一艘气垫船。",
+      "sentence_pinyin": "Zhè shì yì 艘 气垫船.",
+      "sound": "呼呼",
+      "english": "hovercraft",
+      "tags": [
+        "water",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon hovercraft, flat illustration, gray craft with big fan on back, floating over water, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "水上飞机",
+      "pinyin": "shuǐ shàng fēi jī",
+      "measure_word": "架",
+      "sentence": "这是一架水上飞机。",
+      "sentence_pinyin": "Zhè shì yì 架 水上飞机.",
+      "sound": "轰隆隆",
+      "english": "seaplane",
+      "tags": [
+        "sky",
+        "vehicle"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon seaplane, flat illustration, white body with pontoons, blue wings, landing on water, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "推土机",
+      "pinyin": "tuī tǔ jī",
+      "measure_word": "架",
+      "sentence": "这是一辆推土机。",
+      "sentence_pinyin": "Zhè shì yì 架 推土机.",
+      "sound": "轰轰",
+      "english": "bulldozer",
+      "tags": [
+        "work",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon bulldozer, flat illustration, yellow body with big blade in front, caterpillar tracks, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "起重机",
+      "pinyin": "qǐ zhòng jī",
+      "measure_word": "架",
+      "sentence": "这是一辆起重机。",
+      "sentence_pinyin": "Zhè shì yì 架 起重机.",
+      "sound": "轰轰",
+      "english": "crane",
+      "tags": [
+        "work",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon tower crane, flat illustration, yellow tall crane with long arm and hook, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "叉车",
+      "pinyin": "chā chē",
+      "measure_word": "辆",
+      "sentence": "这是一辆叉车。",
+      "sentence_pinyin": "Zhè shì yì 辆 叉车.",
+      "sound": "嘟嘟",
+      "english": "forklift",
+      "tags": [
+        "work",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon forklift, flat illustration, orange body with lifting forks, black wheels, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "装载机",
+      "pinyin": "zhuāng zài jī",
+      "measure_word": "架",
+      "sentence": "这是一辆装载机。",
+      "sentence_pinyin": "Zhè shì yì 架 装载机.",
+      "sound": "轰轰",
+      "english": "loader",
+      "tags": [
+        "work",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon front loader, flat illustration, yellow body with big bucket, black wheels, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "压路机",
+      "pinyin": "yā lù jī",
+      "measure_word": "架",
+      "sentence": "这是一辆压路机。",
+      "sentence_pinyin": "Zhè shì yì 架 压路机.",
+      "sound": "轰轰",
+      "english": "road_roller",
+      "tags": [
+        "work",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon road roller, flat illustration, yellow body with big smooth roller, black wheels, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "搅拌车",
+      "pinyin": "jiǎo bàn chē",
+      "measure_word": "辆",
+      "sentence": "这是一辆搅拌车。",
+      "sentence_pinyin": "Zhè shì yì 辆 搅拌车.",
+      "sound": "轰轰",
+      "english": "cement_mixer",
+      "tags": [
+        "work",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon cement mixer truck, flat illustration, gray body with rotating drum, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "吊车",
+      "pinyin": "diào chē",
+      "measure_word": "辆",
+      "sentence": "这是一辆吊车。",
+      "sentence_pinyin": "Zhè shì yì 辆 吊车.",
+      "sound": "嘟嘟",
+      "english": "tow_truck",
+      "tags": [
+        "work",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon tow truck, flat illustration, blue body with crane arm, hook on back, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "混凝土泵车",
+      "pinyin": "hùn níng tǔ bèng chē",
+      "measure_word": "辆",
+      "sentence": "这是一辆混凝土泵车。",
+      "sentence_pinyin": "Zhè shì yì 辆 混凝土泵车.",
+      "sound": "轰轰",
+      "english": "concrete_pump",
+      "tags": [
+        "work",
+        "vehicle"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon concrete pump truck, flat illustration, white body with long folding arm, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "救援直升机",
+      "pinyin": "jiù yuán zhí shēng jī",
+      "measure_word": "架",
+      "sentence": "这是一架救援直升机。",
+      "sentence_pinyin": "Zhè shì yì 架 救援直升机.",
+      "sound": "嗒嗒嗒",
+      "english": "rescue_helicopter",
+      "tags": [
+        "sky",
+        "vehicle"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon rescue helicopter, flat illustration, red and white body with yellow cross, spinning rotor, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "坦克",
+      "pinyin": "tǎn kè",
+      "measure_word": "个",
+      "sentence": "这是一辆坦克。",
+      "sentence_pinyin": "Zhè shì yì 个 坦克.",
+      "sound": "轰隆隆",
+      "english": "tank",
+      "tags": [
+        "emergency",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon tank, flat illustration, green armored body with big treads and small turret, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "缆车",
+      "pinyin": "lǎn chē",
+      "measure_word": "辆",
+      "sentence": "这是一辆缆车。",
+      "sentence_pinyin": "Zhè shì yì 辆 缆车.",
+      "sound": "嗖嗖",
+      "english": "cable_car",
+      "tags": [
+        "rail",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon cable car, flat illustration, red small cabin hanging from cable, mountain background, friendly smile, white background, children's book style, vector art"
+    },
+    {
+      "word": "碰碰车",
+      "pinyin": "pèng pèng chē",
+      "measure_word": "辆",
+      "sentence": "这是一辆碰碰车。",
+      "sentence_pinyin": "Zhè shì yì 辆 碰碰车.",
+      "sound": "叮铃",
+      "english": "bumper_car",
+      "tags": [
+        "road",
+        "vehicle"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon bumper car, flat illustration, colorful round car with rubber bumper, sparkles, friendly smile, white background, children's book style, vector art"
     }
   ]
 }
