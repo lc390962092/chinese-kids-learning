@@ -5,11 +5,11 @@
   "lesson_duration_min": 5,
   "words": [
     {
-      "word": "猫",
-      "pinyin": "māo",
+      "word": "小猫",
+      "pinyin": "xiǎo māo",
       "measure_word": "只",
-      "sentence": "这是一只猫。",
-      "sentence_pinyin": "Zhè shì yì zhī māo.",
+      "sentence": "这是一只小猫。",
+      "sentence_pinyin": "Zhè shì yì 只 小猫.",
       "sound": "喵喵",
       "english": "cat",
       "tags": [
@@ -17,16 +17,16 @@
         "home"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon cat, flat illustration, big round eyes, sitting, pastel orange and white, friendly smile, rounded shapes, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute cat, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "狗",
-      "pinyin": "gǒu",
+      "word": "小狗",
+      "pinyin": "xiǎo gǒu",
       "measure_word": "只",
-      "sentence": "这是一只狗。",
-      "sentence_pinyin": "Zhè shì yì zhī gǒu.",
+      "sentence": "这是一只小狗。",
+      "sentence_pinyin": "Zhè shì yì 只 小狗.",
       "sound": "汪汪",
       "english": "dog",
       "tags": [
@@ -34,16 +34,16 @@
         "home"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon dog, flat illustration, big floppy ears, brown and white, sitting happy, big round eyes, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute dog, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "鸟",
-      "pinyin": "niǎo",
+      "word": "小鸟",
+      "pinyin": "xiǎo niǎo",
       "measure_word": "只",
-      "sentence": "这是一只鸟。",
-      "sentence_pinyin": "Zhè shì yì zhī niǎo.",
+      "sentence": "这是一只小鸟。",
+      "sentence_pinyin": "Zhè shì yì 只 小鸟.",
       "sound": "唧唧",
       "english": "bird",
       "tags": [
@@ -51,75 +51,74 @@
         "sky"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon bird, flat illustration, small round body, yellow and blue feathers, big eyes, standing on a branch, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute bird, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "鱼",
-      "pinyin": "yú",
+      "word": "小鱼",
+      "pinyin": "xiǎo yú",
       "measure_word": "条",
-      "sentence": "这是一条鱼。",
-      "sentence_pinyin": "Zhè shì yì tiáo yú.",
+      "sentence": "这是一条小鱼。",
+      "sentence_pinyin": "Zhè shì yì 条 小鱼.",
       "sound": "咕噜",
       "english": "fish",
       "tags": [
-        "water",
-        "nature"
+        "nature",
+        "water"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon fish, flat illustration, orange and white stripes, big round eyes, small fins, swimming, bubbles, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute fish, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "兔",
-      "pinyin": "tù",
+      "word": "兔子",
+      "pinyin": "tù zi",
       "measure_word": "只",
       "sentence": "这是一只兔子。",
-      "sentence_pinyin": "Zhè shì yì zhī tù zi.",
+      "sentence_pinyin": "Zhè shì yì 只 兔子.",
       "sound": "咕咕",
       "english": "rabbit",
       "tags": [
-        "pet",
-        "nature"
+        "pet"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon rabbit, flat illustration, long ears, white and pink, big round eyes, sitting, carrot nearby, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute rabbit, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "熊",
-      "pinyin": "xióng",
+      "word": "小熊",
+      "pinyin": "xiǎo xióng",
       "measure_word": "只",
-      "sentence": "这是一只熊。",
-      "sentence_pinyin": "Zhè shì yì zhī xióng.",
+      "sentence": "这是一只小熊。",
+      "sentence_pinyin": "Zhè shì yì 只 小熊.",
       "sound": "吼",
       "english": "bear",
       "tags": [
-        "forest",
-        "nature"
+        "nature",
+        "big"
       ],
-      "difficulty": 2,
-      "image_prompt": "A cute cartoon bear, flat illustration, brown furry, round ears, big friendly eyes, standing, white background, children's book style, vector art",
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute bear, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "马",
-      "pinyin": "mǎ",
+      "word": "小马",
+      "pinyin": "xiǎo mǎ",
       "measure_word": "匹",
-      "sentence": "这是一匹马。",
-      "sentence_pinyin": "Zhè shì yì pǐ mǎ.",
+      "sentence": "这是一匹小马。",
+      "sentence_pinyin": "Zhè shì yì 匹 小马.",
       "sound": "嘶",
       "english": "horse",
       "tags": [
         "farm",
         "nature"
       ],
-      "difficulty": 2,
-      "image_prompt": "A cute cartoon horse, flat illustration, brown mane, big round eyes, standing side view, white background, children's book style, vector art",
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute horse, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
@@ -128,7 +127,7 @@
       "pinyin": "dà xiàng",
       "measure_word": "头",
       "sentence": "这是一头大象。",
-      "sentence_pinyin": "Zhè shì yì tóu dà xiàng.",
+      "sentence_pinyin": "Zhè shì yì 头 大象.",
       "sound": "喇叭",
       "english": "elephant",
       "tags": [
@@ -141,28 +140,27 @@
       "spelling_sequence": []
     },
     {
-      "word": "鼠",
-      "pinyin": "shǔ",
+      "word": "老鼠",
+      "pinyin": "lǎo shǔ",
       "measure_word": "只",
       "sentence": "这是一只老鼠。",
-      "sentence_pinyin": "Zhè shì yì zhī lǎo shǔ.",
+      "sentence_pinyin": "Zhè shì yì 只 老鼠.",
       "sound": "吱吱",
       "english": "mouse",
       "tags": [
-        "pet",
         "home"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon mouse, flat illustration, small round body, big ears, pink, big round eyes, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute mouse, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "鸭",
-      "pinyin": "yā",
+      "word": "鸭子",
+      "pinyin": "yā zi",
       "measure_word": "只",
       "sentence": "这是一只鸭子。",
-      "sentence_pinyin": "Zhè shì yì zhī yā zi.",
+      "sentence_pinyin": "Zhè shì yì 只 鸭子.",
       "sound": "嘎嘎",
       "english": "duck",
       "tags": [
@@ -170,33 +168,32 @@
         "water"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon duck, flat illustration, yellow body, orange beak, big round eyes, standing, water drop nearby, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute duck, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "猪",
-      "pinyin": "zhū",
+      "word": "小猪",
+      "pinyin": "xiǎo zhū",
       "measure_word": "头",
-      "sentence": "这是一头猪。",
-      "sentence_pinyin": "Zhè shì yì tóu zhū.",
+      "sentence": "这是一头小猪。",
+      "sentence_pinyin": "Zhè shì yì 头 小猪.",
       "sound": "哼哼",
       "english": "pig",
       "tags": [
-        "farm",
-        "home"
+        "farm"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon pig, flat illustration, pink round body, small curly tail, big round eyes, muddy spot, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute pig, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "牛",
-      "pinyin": "niú",
+      "word": "小牛",
+      "pinyin": "xiǎo niú",
       "measure_word": "头",
-      "sentence": "这是一头牛。",
-      "sentence_pinyin": "Zhè shì yì tóu niú.",
+      "sentence": "这是一头小牛。",
+      "sentence_pinyin": "Zhè shì yì 头 小牛.",
       "sound": "哞哞",
       "english": "cow",
       "tags": [
@@ -204,16 +201,16 @@
         "nature"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon cow, flat illustration, black and white spots, big round eyes, small horns, standing in grass, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute cow, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "羊",
-      "pinyin": "yáng",
+      "word": "小羊",
+      "pinyin": "xiǎo yáng",
       "measure_word": "只",
-      "sentence": "这是一只羊。",
-      "sentence_pinyin": "Zhè shì yì zhī yáng.",
+      "sentence": "这是一只小羊。",
+      "sentence_pinyin": "Zhè shì yì 只 小羊.",
       "sound": "咩咩",
       "english": "sheep",
       "tags": [
@@ -221,33 +218,33 @@
         "nature"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon sheep, flat illustration, fluffy white wool, big round eyes, small horns, standing, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute sheep, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "鸡",
-      "pinyin": "jī",
+      "word": "小鸡",
+      "pinyin": "xiǎo jī",
       "measure_word": "只",
-      "sentence": "这是一只鸡。",
-      "sentence_pinyin": "Zhè shì yì zhī jī.",
+      "sentence": "这是一只小鸡。",
+      "sentence_pinyin": "Zhè shì yì 只 小鸡.",
       "sound": "喔喔",
       "english": "chicken",
       "tags": [
-        "farm",
-        "home"
+        "home",
+        "farm"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon chicken, flat illustration, yellow and orange feathers, red comb, big round eyes, standing, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute chicken, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
     {
-      "word": "狮",
-      "pinyin": "shī",
+      "word": "狮子",
+      "pinyin": "shī zi",
       "measure_word": "头",
       "sentence": "这是一头狮子。",
-      "sentence_pinyin": "Zhè shì yì tóu shī zi.",
+      "sentence_pinyin": "Zhè shì yì 头 狮子.",
       "sound": "吼吼",
       "english": "lion",
       "tags": [
@@ -255,7 +252,7 @@
         "big"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon lion, flat illustration, golden mane, friendly smile, big round eyes, standing, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute lion, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
@@ -264,7 +261,7 @@
       "pinyin": "lǎo hǔ",
       "measure_word": "只",
       "sentence": "这是一只老虎。",
-      "sentence_pinyin": "Zhè shì yì zhī lǎo hǔ.",
+      "sentence_pinyin": "Zhè shì yì 只 老虎.",
       "sound": "嗷嗷",
       "english": "tiger",
       "tags": [
@@ -277,11 +274,11 @@
       "spelling_sequence": []
     },
     {
-      "word": "猴",
-      "pinyin": "hóu",
+      "word": "猴子",
+      "pinyin": "hóu zi",
       "measure_word": "只",
       "sentence": "这是一只猴子。",
-      "sentence_pinyin": "Zhè shì yì zhī hóu zi.",
+      "sentence_pinyin": "Zhè shì yì 只 猴子.",
       "sound": "唧唧",
       "english": "monkey",
       "tags": [
@@ -289,7 +286,7 @@
         "tree"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon monkey, flat illustration, brown fur, big round eyes, friendly smile, holding banana, white background, children's book style, vector art",
+      "image_prompt": "A cute cartoon a cute monkey, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
       "pinyin_parts": [],
       "spelling_sequence": []
     },
@@ -298,14 +295,14 @@
       "pinyin": "xióng māo",
       "measure_word": "只",
       "sentence": "这是一只熊猫。",
-      "sentence_pinyin": "Zhè shì yì zhī xióng māo.",
+      "sentence_pinyin": "Zhè shì yì 只 熊猫.",
       "sound": "嗯嗯",
       "english": "panda",
       "tags": [
-        "zoo",
-        "china"
+        "pet",
+        "home"
       ],
-      "difficulty": 2,
+      "difficulty": 1,
       "image_prompt": "A cute cartoon panda, flat illustration, black and white, big round eyes, sitting and eating bamboo, white background, children's book style, vector art",
       "pinyin_parts": [],
       "spelling_sequence": []
@@ -315,7 +312,7 @@
       "pinyin": "cháng jǐng lù",
       "measure_word": "只",
       "sentence": "这是一只长颈鹿。",
-      "sentence_pinyin": "Zhè shì yì zhī cháng jǐng lù.",
+      "sentence_pinyin": "Zhè shì yì 只 长颈鹿.",
       "sound": "呼呼",
       "english": "giraffe",
       "tags": [
@@ -332,14 +329,14 @@
       "pinyin": "qīng wā",
       "measure_word": "只",
       "sentence": "这是一只青蛙。",
-      "sentence_pinyin": "Zhè shì yì zhī qīng wā.",
+      "sentence_pinyin": "Zhè shì yì 只 青蛙.",
       "sound": "呱呱",
       "english": "frog",
       "tags": [
-        "water",
-        "nature"
+        "nature",
+        "water"
       ],
-      "difficulty": 2,
+      "difficulty": 1,
       "image_prompt": "A cute cartoon frog, flat illustration, green body, big round eyes, sitting on lily pad, white background, children's book style, vector art",
       "pinyin_parts": [],
       "spelling_sequence": []
@@ -349,14 +346,14 @@
       "pinyin": "hǎi guī",
       "measure_word": "只",
       "sentence": "这是一只海龟。",
-      "sentence_pinyin": "Zhè shì yì zhī hǎi guī.",
+      "sentence_pinyin": "Zhè shì yì 只 海龟.",
       "sound": "无",
       "english": "sea_turtle",
       "tags": [
         "water",
-        "nature"
+        "ocean"
       ],
-      "difficulty": 2,
+      "difficulty": 1,
       "image_prompt": "A cute cartoon sea turtle, flat illustration, green shell, big round eyes, swimming, small bubbles, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -399,7 +396,7 @@
       "pinyin": "qǐ é",
       "measure_word": "只",
       "sentence": "这是一只企鹅。",
-      "sentence_pinyin": "Zhè shì yì zhī qǐ é.",
+      "sentence_pinyin": "Zhè shì yì 只 企鹅.",
       "sound": "无",
       "english": "penguin",
       "tags": [
@@ -443,12 +440,12 @@
       "pinyin": "hú dié",
       "measure_word": "只",
       "sentence": "这是一只蝴蝶。",
-      "sentence_pinyin": "Zhè shì yì zhī hú dié.",
+      "sentence_pinyin": "Zhè shì yì 只 蝴蝶.",
       "sound": "无",
       "english": "butterfly",
       "tags": [
-        "insect",
-        "nature"
+        "nature",
+        "insect"
       ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon butterfly, flat illustration, colorful wings, big round eyes, flying, small flowers nearby, white background, children book style, vector art",
@@ -493,12 +490,12 @@
       "pinyin": "mì fēng",
       "measure_word": "只",
       "sentence": "这是一只蜜蜂。",
-      "sentence_pinyin": "Zhè shì yì zhī mì fēng.",
+      "sentence_pinyin": "Zhè shì yì 只 蜜蜂.",
       "sound": "嗡嗡",
       "english": "bee",
       "tags": [
-        "insect",
-        "nature"
+        "nature",
+        "insect"
       ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon bee, flat illustration, yellow and black stripes, tiny wings, big round eyes, flying, small flower nearby, white background, children book style, vector art",
@@ -543,12 +540,12 @@
       "pinyin": "mǎ yǐ",
       "measure_word": "只",
       "sentence": "这是一只蚂蚁。",
-      "sentence_pinyin": "Zhè shì yì zhī mǎ yǐ.",
+      "sentence_pinyin": "Zhè shì yì 只 蚂蚁.",
       "sound": "无",
       "english": "ant",
       "tags": [
-        "insect",
-        "nature"
+        "nature",
+        "insect"
       ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon ant, flat illustration, small black body, big round eyes, tiny legs, carrying a crumb, white background, children book style, vector art",
@@ -591,16 +588,16 @@
     {
       "word": "蜗牛",
       "pinyin": "wō niú",
-      "measure_word": "只",
+      "measure_word": "头",
       "sentence": "这是一只蜗牛。",
-      "sentence_pinyin": "Zhè shì yì zhī wō niú.",
+      "sentence_pinyin": "Zhè shì yì 头 蜗牛.",
       "sound": "无",
       "english": "snail",
       "tags": [
-        "insect",
+        "farm",
         "nature"
       ],
-      "difficulty": 2,
+      "difficulty": 1,
       "image_prompt": "A cute cartoon snail, flat illustration, spiral shell, big round eyes, small antenna, crawling on leaf, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -643,12 +640,12 @@
       "pinyin": "piáo chóng",
       "measure_word": "只",
       "sentence": "这是一只瓢虫。",
-      "sentence_pinyin": "Zhè shì yì zhī piáo chóng.",
+      "sentence_pinyin": "Zhè shì yì 只 瓢虫.",
       "sound": "无",
       "english": "ladybug",
       "tags": [
-        "insect",
-        "nature"
+        "nature",
+        "insect"
       ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon ladybug, flat illustration, red shell with black dots, big round eyes, small black head, standing on leaf, white background, children book style, vector art",
@@ -693,12 +690,12 @@
       "pinyin": "qīng tíng",
       "measure_word": "只",
       "sentence": "这是一只蜻蜓。",
-      "sentence_pinyin": "Zhè shì yì zhī qīng tíng.",
+      "sentence_pinyin": "Zhè shì yì 只 蜻蜓.",
       "sound": "无",
       "english": "dragonfly",
       "tags": [
-        "insect",
-        "nature"
+        "nature",
+        "insect"
       ],
       "difficulty": 2,
       "image_prompt": "A cute cartoon dragonfly, flat illustration, big transparent wings, long thin body, big round eyes, flying above water, white background, children book style, vector art",
@@ -743,14 +740,14 @@
       "pinyin": "hǎi tún",
       "measure_word": "只",
       "sentence": "这是一只海豚。",
-      "sentence_pinyin": "Zhè shì yì zhī hǎi tún.",
+      "sentence_pinyin": "Zhè shì yì 只 海豚.",
       "sound": "吱吱",
       "english": "dolphin",
       "tags": [
         "water",
         "ocean"
       ],
-      "difficulty": 2,
+      "difficulty": 1,
       "image_prompt": "A cute cartoon dolphin, flat illustration, blue body, big smile, big round eyes, jumping out of water, small splash, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -793,14 +790,14 @@
       "pinyin": "jīng yú",
       "measure_word": "条",
       "sentence": "这是一条鲸鱼。",
-      "sentence_pinyin": "Zhè shì yì tiáo jīng yú.",
+      "sentence_pinyin": "Zhè shì yì 条 鲸鱼.",
       "sound": "呜呜",
       "english": "whale",
       "tags": [
-        "water",
-        "ocean"
+        "nature",
+        "water"
       ],
-      "difficulty": 2,
+      "difficulty": 1,
       "image_prompt": "A cute cartoon whale, flat illustration, big blue body, small eye, spouting water, small fish nearby, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -839,14 +836,14 @@
       "pinyin": "páng xiè",
       "measure_word": "只",
       "sentence": "这是一只螃蟹。",
-      "sentence_pinyin": "Zhè shì yì zhī páng xiè.",
+      "sentence_pinyin": "Zhè shì yì 只 螃蟹.",
       "sound": "无",
       "english": "crab",
       "tags": [
         "water",
         "ocean"
       ],
-      "difficulty": 2,
+      "difficulty": 1,
       "image_prompt": "A cute cartoon crab, flat illustration, red shell, big claws, big round eyes, small legs, standing on sand, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -889,14 +886,14 @@
       "pinyin": "zhāng yú",
       "measure_word": "只",
       "sentence": "这是一只章鱼。",
-      "sentence_pinyin": "Zhè shì yì zhī zhāng yú.",
+      "sentence_pinyin": "Zhè shì yì 只 章鱼.",
       "sound": "无",
       "english": "octopus",
       "tags": [
-        "water",
-        "ocean"
+        "nature",
+        "water"
       ],
-      "difficulty": 2,
+      "difficulty": 1,
       "image_prompt": "A cute cartoon octopus, flat illustration, purple round head, big round eyes, curly tentacles, small bubbles, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -935,14 +932,14 @@
       "pinyin": "shā yú",
       "measure_word": "条",
       "sentence": "这是一条鲨鱼。",
-      "sentence_pinyin": "Zhè shì yì tiáo shā yú.",
+      "sentence_pinyin": "Zhè shì yì 条 鲨鱼.",
       "sound": "无",
       "english": "shark",
       "tags": [
-        "water",
-        "ocean"
+        "nature",
+        "water"
       ],
-      "difficulty": 2,
+      "difficulty": 1,
       "image_prompt": "A cute cartoon shark, flat illustration, gray body, big smile showing tiny teeth, big round eyes, swimming, small fish nearby, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -981,14 +978,14 @@
       "pinyin": "hǎi xīng",
       "measure_word": "只",
       "sentence": "这是一只海星。",
-      "sentence_pinyin": "Zhè shì yì zhī hǎi xīng.",
+      "sentence_pinyin": "Zhè shì yì 只 海星.",
       "sound": "无",
       "english": "starfish",
       "tags": [
         "water",
         "ocean"
       ],
-      "difficulty": 2,
+      "difficulty": 1,
       "image_prompt": "A cute cartoon starfish, flat illustration, orange star shape, big round eyes, small smile, lying on sand, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -1031,12 +1028,11 @@
       "pinyin": "bà wáng lóng",
       "measure_word": "只",
       "sentence": "这是一只霸王龙。",
-      "sentence_pinyin": "Zhè shì yì zhī bà wáng lóng.",
+      "sentence_pinyin": "Zhè shì yì 只 霸王龙.",
       "sound": "吼吼",
       "english": "t_rex",
       "tags": [
-        "dinosaur",
-        "big"
+        "dinosaur"
       ],
       "difficulty": 3,
       "image_prompt": "A cute cartoon T-Rex dinosaur, flat illustration, big head, tiny arms, sharp teeth smile, big round eyes, standing, white background, children book style, vector art",
@@ -1096,12 +1092,11 @@
       "pinyin": "sān jiǎo lóng",
       "measure_word": "只",
       "sentence": "这是一只三角龙。",
-      "sentence_pinyin": "Zhè shì yì zhī sān jiǎo lóng.",
+      "sentence_pinyin": "Zhè shì yì 只 三角龙.",
       "sound": "无",
       "english": "triceratops",
       "tags": [
-        "dinosaur",
-        "big"
+        "dinosaur"
       ],
       "difficulty": 3,
       "image_prompt": "A cute cartoon triceratops dinosaur, flat illustration, three horns on head, frill around neck, big round eyes, standing, white background, children book style, vector art",
@@ -1161,14 +1156,13 @@
       "pinyin": "yì lóng",
       "measure_word": "只",
       "sentence": "这是一只翼龙。",
-      "sentence_pinyin": "Zhè shì yì zhī yì lóng.",
+      "sentence_pinyin": "Zhè shì yì 只 翼龙.",
       "sound": "无",
       "english": "pterosaur",
       "tags": [
-        "dinosaur",
-        "sky"
+        "dinosaur"
       ],
-      "difficulty": 3,
+      "difficulty": 2,
       "image_prompt": "A cute cartoon pterosaur flying, flat illustration, big wings, long beak, big round eyes, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -1207,14 +1201,13 @@
       "pinyin": "jiàn lóng",
       "measure_word": "只",
       "sentence": "这是一只剑龙。",
-      "sentence_pinyin": "Zhè shì yì zhī jiàn lóng.",
+      "sentence_pinyin": "Zhè shì yì 只 剑龙.",
       "sound": "无",
       "english": "stegosaurus",
       "tags": [
-        "dinosaur",
-        "big"
+        "dinosaur"
       ],
-      "difficulty": 3,
+      "difficulty": 2,
       "image_prompt": "A cute cartoon stegosaurus dinosaur, flat illustration, plates along back, spiked tail, big round eyes, standing, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -1257,14 +1250,13 @@
       "pinyin": "wàn lóng",
       "measure_word": "只",
       "sentence": "这是一只腕龙。",
-      "sentence_pinyin": "Zhè shì yì zhī wàn lóng.",
+      "sentence_pinyin": "Zhè shì yì 只 腕龙.",
       "sound": "无",
       "english": "brachiosaurus",
       "tags": [
-        "dinosaur",
-        "big"
+        "dinosaur"
       ],
-      "difficulty": 3,
+      "difficulty": 2,
       "image_prompt": "A cute cartoon brachiosaurus dinosaur, flat illustration, very long neck, small head, big round eyes, standing tall, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -1307,14 +1299,13 @@
       "pinyin": "jiǎ lóng",
       "measure_word": "只",
       "sentence": "这是一只甲龙。",
-      "sentence_pinyin": "Zhè shì yì zhī jiǎ lóng.",
+      "sentence_pinyin": "Zhè shì yì 只 甲龙.",
       "sound": "无",
       "english": "ankylosaurus",
       "tags": [
-        "dinosaur",
-        "big"
+        "dinosaur"
       ],
-      "difficulty": 3,
+      "difficulty": 2,
       "image_prompt": "A cute cartoon ankylosaurus dinosaur, flat illustration, armored body, club tail, big round eyes, standing, white background, children book style, vector art",
       "pinyin_parts": [
         {
@@ -1351,6 +1342,667 @@
         "lóng",
         "jiǎ lóng"
       ]
+    },
+    {
+      "word": "袋鼠",
+      "pinyin": "dài shǔ",
+      "measure_word": "只",
+      "sentence": "这是一只袋鼠。",
+      "sentence_pinyin": "Zhè shì yì 只 袋鼠.",
+      "sound": "无",
+      "english": "kangaroo",
+      "tags": [
+        "home",
+        "nature"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute kangaroo with a baby joey in its pouch, brown fur, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "考拉",
+      "pinyin": "kǎo lā",
+      "measure_word": "只",
+      "sentence": "这是一只考拉。",
+      "sentence_pinyin": "Zhè shì yì 只 考拉.",
+      "sound": "无",
+      "english": "koala",
+      "tags": [
+        "nature",
+        "zoo"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute koala holding eucalyptus leaves, gray fluffy fur, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "斑马",
+      "pinyin": "bān mǎ",
+      "measure_word": "匹",
+      "sentence": "这是一匹斑马。",
+      "sentence_pinyin": "Zhè shì yì 匹 斑马.",
+      "sound": "无",
+      "english": "zebra",
+      "tags": [
+        "farm",
+        "nature"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute zebra with black and white stripes, big round eyes, standing side view, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "河马",
+      "pinyin": "hé mǎ",
+      "measure_word": "匹",
+      "sentence": "这是一头河马。",
+      "sentence_pinyin": "Zhè shì yì 匹 河马.",
+      "sound": "无",
+      "english": "hippo",
+      "tags": [
+        "farm",
+        "nature"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute hippopotamus with big round body, gray skin, big round eyes, small ears, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "犀牛",
+      "pinyin": "xī niú",
+      "measure_word": "头",
+      "sentence": "这是一头犀牛。",
+      "sentence_pinyin": "Zhè shì yì 头 犀牛.",
+      "sound": "无",
+      "english": "rhino",
+      "tags": [
+        "farm",
+        "nature"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute rhinoceros with gray skin and a small horn, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "鳄鱼",
+      "pinyin": "è yú",
+      "measure_word": "条",
+      "sentence": "这是一条鳄鱼。",
+      "sentence_pinyin": "Zhè shì yì 条 鳄鱼.",
+      "sound": "无",
+      "english": "crocodile",
+      "tags": [
+        "nature",
+        "water"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute green crocodile with a big smile, round eyes, small teeth showing, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "鸵鸟",
+      "pinyin": "tuó niǎo",
+      "measure_word": "只",
+      "sentence": "这是一只鸵鸟。",
+      "sentence_pinyin": "Zhè shì yì 只 鸵鸟.",
+      "sound": "无",
+      "english": "ostrich",
+      "tags": [
+        "nature",
+        "zoo"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute ostrich with long neck and big round eyes, black and white feathers, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "孔雀",
+      "pinyin": "kǒng què",
+      "measure_word": "只",
+      "sentence": "这是一只孔雀。",
+      "sentence_pinyin": "Zhè shì yì 只 孔雀.",
+      "sound": "无",
+      "english": "peacock",
+      "tags": [
+        "zoo"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute peacock with a small colorful tail crown, blue body, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "天鹅",
+      "pinyin": "tiān é",
+      "measure_word": "只",
+      "sentence": "这是一只天鹅。",
+      "sentence_pinyin": "Zhè shì yì 只 天鹅.",
+      "sound": "无",
+      "english": "swan",
+      "tags": [
+        "zoo"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute white swan with long neck, orange beak, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "火烈鸟",
+      "pinyin": "huǒ liè niǎo",
+      "measure_word": "只",
+      "sentence": "这是一只火烈鸟。",
+      "sentence_pinyin": "Zhè shì yì 只 火烈鸟.",
+      "sound": "无",
+      "english": "flamingo",
+      "tags": [
+        "nature",
+        "zoo"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon a cute pink flamingo standing on one leg, long neck, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "刺猬",
+      "pinyin": "cì wei",
+      "measure_word": "只",
+      "sentence": "这是一只刺猬。",
+      "sentence_pinyin": "Zhè shì yì 只 刺猬.",
+      "sound": "无",
+      "english": "hedgehog",
+      "tags": [
+        "zoo"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute hedgehog with brown spines, small round body, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "松鼠",
+      "pinyin": "sōng shǔ",
+      "measure_word": "只",
+      "sentence": "这是一只松鼠。",
+      "sentence_pinyin": "Zhè shì yì 只 松鼠.",
+      "sound": "无",
+      "english": "squirrel",
+      "tags": [
+        "home",
+        "nature"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute squirrel with a fluffy tail, brown fur, holding an acorn, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "狐狸",
+      "pinyin": "hú li",
+      "measure_word": "只",
+      "sentence": "这是一只狐狸。",
+      "sentence_pinyin": "Zhè shì yì 只 狐狸.",
+      "sound": "无",
+      "english": "fox",
+      "tags": [
+        "nature",
+        "forest"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute orange fox with fluffy tail, big round eyes, pointy ears, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "大灰狼",
+      "pinyin": "dà huī láng",
+      "measure_word": "只",
+      "sentence": "这是一只大灰狼。",
+      "sentence_pinyin": "Zhè shì yì 只 大灰狼.",
+      "sound": "无",
+      "english": "wolf",
+      "tags": [
+        "forest"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon a cute gray wolf with big round eyes, friendly expression, fluffy fur, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "豹子",
+      "pinyin": "bào zi",
+      "measure_word": "只",
+      "sentence": "这是一只豹子。",
+      "sentence_pinyin": "Zhè shì yì 只 豹子.",
+      "sound": "无",
+      "english": "leopard",
+      "tags": [
+        "zoo",
+        "forest"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute leopard with yellow fur and black spots, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "骆驼",
+      "pinyin": "luò tuo",
+      "measure_word": "头",
+      "sentence": "这是一头骆驼。",
+      "sentence_pinyin": "Zhè shì yì 头 骆驼.",
+      "sound": "无",
+      "english": "camel",
+      "tags": [
+        "zoo"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute camel with two humps, brown fur, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "蜘蛛",
+      "pinyin": "zhī zhū",
+      "measure_word": "只",
+      "sentence": "这是一只蜘蛛。",
+      "sentence_pinyin": "Zhè shì yì 只 蜘蛛.",
+      "sound": "无",
+      "english": "spider",
+      "tags": [
+        "zoo",
+        "insect"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute cartoon spider with a round black body and eight little legs, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "蚯蚓",
+      "pinyin": "qiū yǐn",
+      "measure_word": "条",
+      "sentence": "这是一条蚯蚓。",
+      "sentence_pinyin": "Zhè shì yì 条 蚯蚓.",
+      "sound": "无",
+      "english": "earthworm",
+      "tags": [
+        "insect"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute pink earthworm with simple segments, big round eyes, small smile, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "萤火虫",
+      "pinyin": "yíng huǒ chóng",
+      "measure_word": "只",
+      "sentence": "这是一只萤火虫。",
+      "sentence_pinyin": "Zhè shì yì 只 萤火虫.",
+      "sound": "无",
+      "english": "firefly",
+      "tags": [
+        "insect"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon a cute glowing firefly with transparent wings and a yellow glowing abdomen, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "飞蛾",
+      "pinyin": "fēi é",
+      "measure_word": "只",
+      "sentence": "这是一只飞蛾。",
+      "sentence_pinyin": "Zhè shì yì 只 飞蛾.",
+      "sound": "无",
+      "english": "moth",
+      "tags": [
+        "insect"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute moth with beige fuzzy wings, big round eyes, antennae, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "螳螂",
+      "pinyin": "táng láng",
+      "measure_word": "只",
+      "sentence": "这是一只螳螂。",
+      "sentence_pinyin": "Zhè shì yì 只 螳螂.",
+      "sound": "无",
+      "english": "mantis",
+      "tags": [
+        "insect"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute green praying mantis with folded front legs, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "知了",
+      "pinyin": "zhī liǎo",
+      "measure_word": "只",
+      "sentence": "这是一只知了。",
+      "sentence_pinyin": "Zhè shì yì 只 知了.",
+      "sound": "无",
+      "english": "cicada",
+      "tags": [
+        "insect"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute cicada with transparent wings, big round eyes, small antennae, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "蚱蜢",
+      "pinyin": "zhà měng",
+      "measure_word": "只",
+      "sentence": "这是一只蚱蜢。",
+      "sentence_pinyin": "Zhè shì yì 只 蚱蜢.",
+      "sound": "无",
+      "english": "grasshopper",
+      "tags": [
+        "insect"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute green grasshopper with long back legs, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "蝎子",
+      "pinyin": "xiē zi",
+      "measure_word": "只",
+      "sentence": "这是一只蝎子。",
+      "sentence_pinyin": "Zhè shì yì 只 蝎子.",
+      "sound": "无",
+      "english": "scorpion",
+      "tags": [
+        "insect"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute cartoon scorpion with a curled tail and little pincers, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "蜈蚣",
+      "pinyin": "wú gōng",
+      "measure_word": "条",
+      "sentence": "这是一条蜈蚣。",
+      "sentence_pinyin": "Zhè shì yì 条 蜈蚣.",
+      "sound": "无",
+      "english": "centipede",
+      "tags": [
+        "insect"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon a cute brown centipede with many small legs, round body segments, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "海马",
+      "pinyin": "hǎi mǎ",
+      "measure_word": "匹",
+      "sentence": "这是一只海马。",
+      "sentence_pinyin": "Zhè shì yì 匹 海马.",
+      "sound": "无",
+      "english": "seahorse",
+      "tags": [
+        "farm",
+        "nature"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute yellow seahorse with curly tail, big round eyes, small fins, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "水母",
+      "pinyin": "shuǐ mǔ",
+      "measure_word": "只",
+      "sentence": "这是一只水母。",
+      "sentence_pinyin": "Zhè shì yì 只 水母.",
+      "sound": "无",
+      "english": "jellyfish",
+      "tags": [
+        "water",
+        "ocean"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute translucent pink jellyfish with flowing tentacles, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "贝壳",
+      "pinyin": "bèi ké",
+      "measure_word": "个",
+      "sentence": "这是一个贝壳。",
+      "sentence_pinyin": "Zhè shì yì 个 贝壳.",
+      "sound": "无",
+      "english": "seashell",
+      "tags": [
+        "water",
+        "ocean"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute colorful spiral seashell with big round eyes, small smile, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "龙虾",
+      "pinyin": "lóng xiā",
+      "measure_word": "只",
+      "sentence": "这是一只龙虾。",
+      "sentence_pinyin": "Zhè shì yì 只 龙虾.",
+      "sound": "无",
+      "english": "lobster",
+      "tags": [
+        "water",
+        "ocean"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute red lobster with big claws and long antennae, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "海胆",
+      "pinyin": "hǎi dǎn",
+      "measure_word": "个",
+      "sentence": "这是一个海胆。",
+      "sentence_pinyin": "Zhè shì yì 个 海胆.",
+      "sound": "无",
+      "english": "sea_urchin",
+      "tags": [
+        "water",
+        "ocean"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute purple sea urchin with soft spines, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "海参",
+      "pinyin": "hǎi shēn",
+      "measure_word": "只",
+      "sentence": "这是一只海参。",
+      "sentence_pinyin": "Zhè shì yì 只 海参.",
+      "sound": "无",
+      "english": "sea_cucumber",
+      "tags": [
+        "water",
+        "ocean"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute brown sea cucumber with little bumps, big round eyes, small smile, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "海葵",
+      "pinyin": "hǎi kuí",
+      "measure_word": "只",
+      "sentence": "这是一只海葵。",
+      "sentence_pinyin": "Zhè shì yì 只 海葵.",
+      "sound": "无",
+      "english": "anemone",
+      "tags": [
+        "water",
+        "ocean"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute pink sea anemone with waving tentacles, big round eyes, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "鳗鱼",
+      "pinyin": "mán yú",
+      "measure_word": "条",
+      "sentence": "这是一条鳗鱼。",
+      "sentence_pinyin": "Zhè shì yì 条 鳗鱼.",
+      "sound": "无",
+      "english": "eel",
+      "tags": [
+        "nature",
+        "water"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute green eel with long wavy body, big round eyes, small fins, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "蝙蝠",
+      "pinyin": "biān fú",
+      "measure_word": "只",
+      "sentence": "这是一只蝙蝠。",
+      "sentence_pinyin": "Zhè shì yì 只 蝙蝠.",
+      "sound": "无",
+      "english": "bat",
+      "tags": [
+        "sky"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute brown bat with big ears and small wings, big round eyes, hanging upside down, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "乌鸦",
+      "pinyin": "wū yā",
+      "measure_word": "只",
+      "sentence": "这是一只乌鸦。",
+      "sentence_pinyin": "Zhè shì yì 只 乌鸦.",
+      "sound": "无",
+      "english": "crow",
+      "tags": [
+        "sky"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute black crow with glossy feathers, big round eyes, orange beak, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "鹦鹉",
+      "pinyin": "yīng wǔ",
+      "measure_word": "只",
+      "sentence": "这是一只鹦鹉。",
+      "sentence_pinyin": "Zhè shì yì 只 鹦鹉.",
+      "sound": "无",
+      "english": "parrot",
+      "tags": [
+        "sky"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute colorful parrot with red and green feathers, big round eyes, curved beak, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "老鹰",
+      "pinyin": "lǎo yīng",
+      "measure_word": "只",
+      "sentence": "这是一只老鹰。",
+      "sentence_pinyin": "Zhè shì yì 只 老鹰.",
+      "sound": "无",
+      "english": "eagle",
+      "tags": [
+        "sky"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute brown eagle with white head feathers, big round eyes, yellow beak, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "鸽子",
+      "pinyin": "gē zi",
+      "measure_word": "只",
+      "sentence": "这是一只鸽子。",
+      "sentence_pinyin": "Zhè shì yì 只 鸽子.",
+      "sound": "无",
+      "english": "pigeon",
+      "tags": [
+        "sky"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon a cute gray pigeon with iridescent neck, big round eyes, small orange beak, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "啄木鸟",
+      "pinyin": "zhuó mù niǎo",
+      "measure_word": "只",
+      "sentence": "这是一只啄木鸟。",
+      "sentence_pinyin": "Zhè shì yì 只 啄木鸟.",
+      "sound": "无",
+      "english": "woodpecker",
+      "tags": [
+        "nature",
+        "sky"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon a cute red-headed woodpecker on a tree trunk, big round eyes, strong beak, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
+    },
+    {
+      "word": "变色龙",
+      "pinyin": "biàn sè lóng",
+      "measure_word": "只",
+      "sentence": "这是一只变色龙。",
+      "sentence_pinyin": "Zhè shì yì 只 变色龙.",
+      "sound": "无",
+      "english": "chameleon",
+      "tags": [
+        "nature"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon a cute green chameleon with curly tail, big round eyes, standing on a branch, flat illustration, big round eyes, rounded shapes, pastel colors, friendly expression, white background, children's book style, vector art, minimalist, clean design, no text, no watermark",
+      "pinyin_parts": [],
+      "spelling_sequence": []
     }
   ]
 }
