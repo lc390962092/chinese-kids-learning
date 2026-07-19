@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 认识水果蔬菜</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: linear-gradient(135deg, #FFF8E1 0%, #E8F5E9 100%); min-height: 100vh; overflow-x: hidden; }
+        .header { text-align: center; padding: 20px 10px 10px; }
+        .header h1 { color: #FF8C42; font-size: 28px; margin-bottom: 5px; }
+        .header p { color: #888; font-size: 14px; }
+        .mascot { text-align: center; padding: 10px; }
+        .mascot-bubble { display: inline-block; background: white; border-radius: 25px; padding: 12px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: #555; font-size: 16px; max-width: 80%; position: relative; margin-bottom: 15px; }
+        .mascot-bubble::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-width: 10px 10px 0; border-style: solid; border-color: white transparent transparent transparent; }
+        .mascot-avatar { width: 60px; height: 60px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .filter-bar { display: flex; justify-content: center; gap: 10px; padding: 10px 15px; flex-wrap: wrap; }
+        .filter-btn { border: none; border-radius: 20px; padding: 8px 20px; font-size: 15px; cursor: pointer; background: white; color: #666; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.2s; }
+        .filter-btn.active { background: #FF8C42; color: white; }
+        .filter-btn:active { transform: scale(0.95); }
+        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); }
+        .item-card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
+        .item-card.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideLeftIn { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideRightIn { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideLeftOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(-60px); } }
+        @keyframes slideRightOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(60px); } }
+        .slide-left-in { animation: slideLeftIn 0.3s ease forwards; }
+        .slide-right-in { animation: slideRightIn 0.3s ease forwards; }
+        .slide-left-out { animation: slideLeftOut 0.3s ease forwards; }
+        .slide-right-out { animation: slideRightOut 0.3s ease forwards; }
+        .card-image-wrapper { position: relative; display: inline-block; width: 240px; height: 240px; margin: 10px auto; }
+        .item-image { width: 240px; height: 240px; object-fit: contain; cursor: pointer; transition: transform 0.2s; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+        .item-image:active { transform: scale(0.95); }
+        .side-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.15); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: transform 0.2s, background 0.2s; }
+        .side-arrow:active { transform: translateY(-50%) scale(0.9); background: #A5D6A7; }
+        .side-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+        .side-arrow.left { left: -15px; }
+        .side-arrow.right { right: -15px; }
+        .item-word { font-size: 48px; color: #333; margin: 10px 0 5px; font-weight: bold; }
+        .item-pinyin { font-size: 22px; color: #888; margin-bottom: 5px; }
+        .item-english { font-size: 16px; color: #FF8C42; margin-bottom: 15px; }
+        .btn-group { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { border: none; border-radius: 25px; padding: 12px 25px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+        .btn:active { transform: scale(0.95); }
+        .btn-word { background: #FF8C42; }
+        .btn-sentence { background: #66BB6A; }
+        .btn-measure { background: #FFD93D; color: #333; }
+        .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .nav-btn { background: #A5D6A7; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .nav-btn:active { transform: scale(0.95); }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .progress { display: flex; justify-content: center; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+        .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
+        .progress-dot.active { background: #FF8C42; }
+        .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
+        @media (max-width: 400px) { .item-image { width: 200px; height: 200px; } .item-word { font-size: 40px; } }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-bar">← 回首页</a>
+    <div class="header">
+        <h1>🍎 小豆中文</h1>
+        <p>今天我们来认识水果蔬菜</p>
+    </div>
+    <div class="mascot">
+        <div class="mascot-bubble" id="mascotText">你好！点击水果蔬菜，听听它们的名字～</div>
+        <div class="mascot-avatar">🐼</div>
+    </div>
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all" onclick="filterItems('all')">全部</button>
+        <button class="filter-btn" data-filter="fruit" onclick="filterItems('fruit')">🍎 水果</button>
+        <button class="filter-btn" data-filter="vegetable" onclick="filterItems('vegetable')">🥬 蔬菜</button>
+    </div>
+    <div class="main-stage">
+        <div id="itemCards"></div>
+        <div class="nav-btns">
+            <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+            <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+        </div>
+        <div class="progress" id="progressDots"></div>
+        <div style="text-align:center;margin-top:25px;">
+            <a href="index.html" style="color:#888;text-decoration:none;font-size:14px;">← 回首页</a>
+        </div>
+    </div>
+<script>
+        const allItems = [
+            { word: "苹果", pinyin: "píng guǒ", file: "apple", measure: "个", english: "apple", sentence: "这是一个苹果。", tags: ["fruit"] },
+            { word: "香蕉", pinyin: "xiāng jiāo", file: "banana", measure: "根", english: "banana", sentence: "这是一根香蕉。", tags: ["fruit"] },
+            { word: "橙子", pinyin: "chéng zi", file: "orange", measure: "个", english: "orange", sentence: "这是一个橙子。", tags: ["fruit"] },
+            { word: "葡萄", pinyin: "pú tao", file: "grape", measure: "串", english: "grape", sentence: "这是一串葡萄。", tags: ["fruit"] },
+            { word: "西瓜", pinyin: "xī guā", file: "watermelon", measure: "个", english: "watermelon", sentence: "这是一个西瓜。", tags: ["fruit"] },
+            { word: "草莓", pinyin: "cǎo méi", file: "strawberry", measure: "颗", english: "strawberry", sentence: "这是一颗草莓。", tags: ["fruit"] },
+            { word: "梨", pinyin: "lí", file: "pear", measure: "个", english: "pear", sentence: "这是一个梨。", tags: ["fruit"] },
+            { word: "桃子", pinyin: "táo zi", file: "peach", measure: "个", english: "peach", sentence: "这是一个桃子。", tags: ["fruit"] },
+            { word: "樱桃", pinyin: "yīng táo", file: "cherry", measure: "颗", english: "cherry", sentence: "这是一颗樱桃。", tags: ["fruit"] },
+            { word: "蓝莓", pinyin: "lán méi", file: "blueberry", measure: "颗", english: "blueberry", sentence: "这是一颗蓝莓。", tags: ["fruit"] },
+            { word: "芒果", pinyin: "máng guǒ", file: "mango", measure: "个", english: "mango", sentence: "这是一个芒果。", tags: ["fruit"] },
+            { word: "菠萝", pinyin: "bō luó", file: "pineapple", measure: "个", english: "pineapple", sentence: "这是一个菠萝。", tags: ["fruit"] },
+            { word: "柠檬", pinyin: "níng méng", file: "lemon", measure: "个", english: "lemon", sentence: "这是一个柠檬。", tags: ["fruit"] },
+            { word: "猕猴桃", pinyin: "mí hóu táo", file: "kiwi", measure: "个", english: "kiwi", sentence: "这是一个猕猴桃。", tags: ["fruit"] },
+            { word: "椰子", pinyin: "yē zi", file: "coconut", measure: "个", english: "coconut", sentence: "这是一个椰子。", tags: ["fruit"] },
+            { word: "哈密瓜", pinyin: "hā mì guā", file: "honeydew", measure: "个", english: "honeydew", sentence: "这是一个哈密瓜。", tags: ["fruit"] },
+            { word: "榴莲", pinyin: "liú lián", file: "durian", measure: "个", english: "durian", sentence: "这是一个榴莲。", tags: ["fruit"] },
+            { word: "火龙果", pinyin: "huǒ lóng guǒ", file: "dragon_fruit", measure: "个", english: "dragon_fruit", sentence: "这是一个火龙果。", tags: ["fruit"] },
+            { word: "山竹", pinyin: "shān zhú", file: "mangosteen", measure: "个", english: "mangosteen", sentence: "这是一个山竹。", tags: ["fruit"] },
+            { word: "荔枝", pinyin: "lì zhī", file: "lychee", measure: "颗", english: "lychee", sentence: "这是一颗荔枝。", tags: ["fruit"] },
+            { word: "龙眼", pinyin: "lóng yǎn", file: "longan", measure: "颗", english: "longan", sentence: "这是一颗龙眼。", tags: ["fruit"] },
+            { word: "杨梅", pinyin: "yáng méi", file: "bayberry", measure: "颗", english: "bayberry", sentence: "这是一颗杨梅。", tags: ["fruit"] },
+            { word: "枇杷", pinyin: "pí pa", file: "loquat", measure: "个", english: "loquat", sentence: "这是一个枇杷。", tags: ["fruit"] },
+            { word: "杨桃", pinyin: "yáng táo", file: "starfruit", measure: "个", english: "starfruit", sentence: "这是一个杨桃。", tags: ["fruit"] },
+            { word: "牛油果", pinyin: "niú yóu guǒ", file: "avocado", measure: "个", english: "avocado", sentence: "这是一个牛油果。", tags: ["fruit"] },
+            { word: "石榴", pinyin: "shí liu", file: "pomegranate", measure: "个", english: "pomegranate", sentence: "这是一个石榴。", tags: ["fruit"] },
+            { word: "柚子", pinyin: "yòu zi", file: "pomelo", measure: "个", english: "pomelo", sentence: "这是一个柚子。", tags: ["fruit"] },
+            { word: "柿子", pinyin: "shì zi", file: "persimmon", measure: "个", english: "persimmon", sentence: "这是一个柿子。", tags: ["fruit"] },
+            { word: "枣", pinyin: "zǎo", file: "jujube", measure: "颗", english: "jujube", sentence: "这是一颗枣。", tags: ["fruit"] },
+            { word: "桑葚", pinyin: "sāng shèn", file: "mulberry", measure: "颗", english: "mulberry", sentence: "这是一颗桑葚。", tags: ["fruit"] },
+            { word: "胡萝卜", pinyin: "hú luó bo", file: "carrot", measure: "根", english: "carrot", sentence: "这是一根胡萝卜。", tags: ["vegetable"] },
+            { word: "西红柿", pinyin: "xī hóng shì", file: "tomato", measure: "个", english: "tomato", sentence: "这是一个西红柿。", tags: ["vegetable"] },
+            { word: "黄瓜", pinyin: "huáng guā", file: "cucumber", measure: "根", english: "cucumber", sentence: "这是一根黄瓜。", tags: ["vegetable"] },
+            { word: "土豆", pinyin: "tǔ dòu", file: "potato", measure: "个", english: "potato", sentence: "这是一个土豆。", tags: ["vegetable"] },
+            { word: "白菜", pinyin: "bái cài", file: "chinese_cabbage", measure: "棵", english: "chinese_cabbage", sentence: "这是一棵白菜。", tags: ["vegetable"] },
+            { word: "菠菜", pinyin: "bō cài", file: "spinach", measure: "棵", english: "spinach", sentence: "这是一棵菠菜。", tags: ["vegetable"] },
+            { word: "茄子", pinyin: "qié zi", file: "eggplant", measure: "个", english: "eggplant", sentence: "这是一个茄子。", tags: ["vegetable"] },
+            { word: "南瓜", pinyin: "nán guā", file: "pumpkin", measure: "个", english: "pumpkin", sentence: "这是一个南瓜。", tags: ["vegetable"] },
+            { word: "玉米", pinyin: "yù mǐ", file: "corn", measure: "根", english: "corn", sentence: "这是一根玉米。", tags: ["vegetable"] },
+            { word: "豌豆", pinyin: "wān dòu", file: "pea", measure: "颗", english: "pea", sentence: "这是一颗豌豆。", tags: ["vegetable"] },
+            { word: "洋葱", pinyin: "yáng cōng", file: "onion", measure: "个", english: "onion", sentence: "这是一个洋葱。", tags: ["vegetable"] },
+            { word: "大蒜", pinyin: "dà suàn", file: "garlic", measure: "头", english: "garlic", sentence: "这是一头大蒜。", tags: ["vegetable"] },
+            { word: "生姜", pinyin: "shēng jiāng", file: "ginger", measure: "块", english: "ginger", sentence: "这是一块生姜。", tags: ["vegetable"] },
+            { word: "蘑菇", pinyin: "mó gu", file: "mushroom", measure: "个", english: "mushroom", sentence: "这是一个蘑菇。", tags: ["vegetable"] },
+            { word: "青椒", pinyin: "qīng jiāo", file: "green_pepper", measure: "个", english: "green_pepper", sentence: "这是一个青椒。", tags: ["vegetable"] },
+            { word: "辣椒", pinyin: "là jiāo", file: "chili", measure: "个", english: "chili", sentence: "这是一个辣椒。", tags: ["vegetable"] },
+            { word: "芹菜", pinyin: "qín cài", file: "celery", measure: "棵", english: "celery", sentence: "这是一棵芹菜。", tags: ["vegetable"] },
+            { word: "西兰花", pinyin: "xī lán huā", file: "broccoli", measure: "棵", english: "broccoli", sentence: "这是一棵西兰花。", tags: ["vegetable"] },
+            { word: "花菜", pinyin: "huā cài", file: "cauliflower", measure: "棵", english: "cauliflower", sentence: "这是一棵花菜。", tags: ["vegetable"] },
+            { word: "生菜", pinyin: "shēng cài", file: "lettuce", measure: "棵", english: "lettuce", sentence: "这是一棵生菜。", tags: ["vegetable"] },
+            { word: "豆角", pinyin: "dòu jiǎo", file: "green_bean", measure: "根", english: "green_bean", sentence: "这是一根豆角。", tags: ["vegetable"] },
+            { word: "冬瓜", pinyin: "dōng guā", file: "winter_melon", measure: "个", english: "winter_melon", sentence: "这是一个冬瓜。", tags: ["vegetable"] },
+            { word: "丝瓜", pinyin: "sī guā", file: "loofah", measure: "根", english: "loofah", sentence: "这是一根丝瓜。", tags: ["vegetable"] },
+            { word: "苦瓜", pinyin: "kǔ guā", file: "bitter_melon", measure: "根", english: "bitter_melon", sentence: "这是一根苦瓜。", tags: ["vegetable"] },
+            { word: "红薯", pinyin: "hóng shǔ", file: "sweet_potato", measure: "个", english: "sweet_potato", sentence: "这是一个红薯。", tags: ["vegetable"] },
+            { word: "白萝卜", pinyin: "bái luó bo", file: "daikon", measure: "根", english: "daikon", sentence: "这是一根白萝卜。", tags: ["vegetable"] },
+            { word: "莲藕", pinyin: "lián ǒu", file: "lotus_root", measure: "节", english: "lotus_root", sentence: "这是一节莲藕。", tags: ["vegetable"] },
+            { word: "竹笋", pinyin: "zhú sǔn", file: "bamboo_shoot", measure: "根", english: "bamboo_shoot", sentence: "这是一根竹笋。", tags: ["vegetable"] },
+            { word: "芦笋", pinyin: "lú sǔn", file: "asparagus", measure: "根", english: "asparagus", sentence: "这是一根芦笋。", tags: ["vegetable"] },
+            { word: "秋葵", pinyin: "qiū kuí", file: "okra", measure: "根", english: "okra", sentence: "这是一根秋葵。", tags: ["vegetable"] },
+            { word: "荸荠", pinyin: "bí qí", file: "water_chestnut", measure: "个", english: "water_chestnut", sentence: "这是一个荸荠。", tags: ["vegetable"] }
+        ];
+
+        let filteredItems = [...allItems];
+        let currentIndex = 0;
+        let currentFilter = 'all';
+
+        const synth = window.speechSynthesis;
+        let chineseVoice = null;
+
+        function findChineseVoice() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) {
+                if (v.lang.startsWith('zh')) { chineseVoice = v; break; }
+            }
+        }
+
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = findChineseVoice;
+        }
+        findChineseVoice();
+
+        function playAudio(path) {
+            return new Promise((resolve, reject) => {
+                const audio = new Audio(path);
+                audio.onended = resolve;
+                audio.onerror = reject;
+                audio.play().catch(reject);
+            });
+        }
+
+        function speakWithFallback(text, mp3Path, rate = 0.8) {
+            if (mp3Path) {
+                playAudio(mp3Path).catch(() => speak(text, rate));
+            } else {
+                speak(text, rate);
+            }
+        }
+
+        function speak(text, rate = 0.8) {
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'zh-CN';
+            utter.rate = rate;
+            utter.pitch = 1.1;
+            if (chineseVoice) utter.voice = chineseVoice;
+            synth.speak(utter);
+        }
+
+        function showMascot(text) { document.getElementById('mascotText').textContent = text; }
+
+        function filterItems(tag) {
+            currentFilter = tag;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === tag);
+            });
+            if (tag === 'all') {
+                filteredItems = [...allItems];
+            } else {
+                filteredItems = allItems.filter(item => item.tags.includes(tag));
+            }
+            currentIndex = 0;
+            renderCards();
+            showMascot(tag === 'all' ? '全部水果蔬菜都在这里啦！' : tag === 'fruit' ? '我们来看看好吃的水果！' : '我们来看看健康的蔬菜！');
+        }
+
+        function renderCards() {
+            const container = document.getElementById('itemCards');
+            const progress = document.getElementById('progressDots');
+            container.innerHTML = '';
+            progress.innerHTML = '';
+
+            filteredItems.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'item-card' + (index === 0 ? ' active' : '');
+                const emoji = item.tags.includes('fruit') ? '🍎' : '🥬';
+                const svgFallback = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Crect fill='%23f0f0f0' width='240' height='240'/%3E%3Ctext x='120' y='150' font-size='90' text-anchor='middle'%3E" + emoji + "%3C/text%3E%3C/svg%3E";
+                card.innerHTML = `
+                    <div class="card-image-wrapper">
+                        <button class="side-arrow left" id="prevArrow" onclick="prevItem()">❮</button>
+                        <img class="item-image" src="assets/images/fruits_vegetables/${item.file}.png" alt="${item.word}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
+                        <button class="side-arrow right" id="nextArrow" onclick="nextItem()">❯</button>
+                    </div>
+                    <div class="item-word">${item.word}</div>
+                    <div class="item-pinyin">${item.pinyin}</div>
+                    <div class="item-english">${item.english} · 一${item.measure}</div>
+                    <div class="btn-group">
+                        <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
+                        <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
+                        <button class="btn btn-measure" onclick="playMeasure(${index})">📏 量词</button>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                const dot = document.createElement('div');
+                dot.className = 'progress-dot' + (index === 0 ? ' active' : '');
+                progress.appendChild(dot);
+            });
+            updateArrowState();
+        }
+
+        function updateArrowState() {
+            const prevArrow = document.getElementById('prevArrow');
+            const nextArrow = document.getElementById('nextArrow');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            if (prevArrow) prevArrow.disabled = currentIndex === 0;
+            if (nextArrow) nextArrow.disabled = currentIndex === filteredItems.length - 1;
+            if (prevBtn) prevBtn.disabled = currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = currentIndex === filteredItems.length - 1;
+        }
+
+        function playWord(index) {
+            const item = filteredItems[index];
+            const mp3Path = `assets/audio/fruits_vegetables/${item.file}_word.mp3`;
+            speakWithFallback(`${item.word}，${item.pinyin}`, mp3Path);
+            showMascot(`这是${item.word}，${item.pinyin}。`);
+        }
+
+        function playSentence(index) {
+            const item = filteredItems[index];
+            const mp3Path = `assets/audio/fruits_vegetables/sentences/${item.file}_sentence.mp3`;
+            speakWithFallback(item.sentence, mp3Path);
+            showMascot(item.sentence);
+        }
+
+        function playMeasure(index) {
+            const item = filteredItems[index];
+            const text = `${item.word}的量词是${item.measure}，一${item.measure}${item.word}。`;
+            speak(text);
+            showMascot(text);
+        }
+
+        function switchItem(direction) {
+            const cards = document.querySelectorAll('.item-card');
+            const dots = document.querySelectorAll('.progress-dot');
+            if (cards.length === 0) return;
+            let newIndex;
+            if (direction === 'next') {
+                newIndex = (currentIndex + 1) % filteredItems.length;
+            } else {
+                newIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
+            }
+            cards[currentIndex].classList.remove('active');
+            cards[currentIndex].classList.remove('slide-left-in', 'slide-right-in');
+            cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-out' : 'slide-right-out');
+            dots[currentIndex].classList.remove('active');
+            currentIndex = newIndex;
+            cards[currentIndex].classList.remove('slide-left-out', 'slide-right-out');
+            cards[currentIndex].classList.add('active');
+            cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-in' : 'slide-right-in');
+            dots[currentIndex].classList.add('active');
+            updateArrowState();
+            const item = filteredItems[currentIndex];
+            showMascot(`我们来学${item.word}！`);
+            setTimeout(() => playWord(currentIndex), 500);
+        }
+
+        function nextItem() { switchItem('next'); }
+        function prevItem() { switchItem('prev'); }
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+        function setupSwipe() {
+            const mainStage = document.querySelector('.main-stage');
+            if (!mainStage) return;
+            mainStage.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            mainStage.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+        }
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchStartX - touchEndX > swipeThreshold) nextItem();
+            else if (touchEndX - touchStartX > swipeThreshold) prevItem();
+        }
+
+        renderCards();
+        setupSwipe();
+    </script>
+</body>
+</html>
