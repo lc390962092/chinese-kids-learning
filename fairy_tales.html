@@ -18,25 +18,29 @@
         .card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .card.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .card-emoji { width: 200px; height: 200px; font-size: 130px; line-height: 200px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; }
+        .card-emoji { width: 180px; height: 180px; font-size: 110px; line-height: 180px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; }
         .card-emoji:active { transform: scale(0.95); }
-        .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
-        .card-subtitle { font-size: 22px; color: #888; margin-bottom: 15px; }
-        .card-text { background: #f8f8f8; border-radius: 20px; padding: 18px 20px; margin: 15px auto; max-width: 90%; text-align: left; font-size: 18px; line-height: 1.7; color: #444; }
-        .keywords { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 18px 0; padding: 0 10px; }
-        .keyword { background: #f0f0f0; color: #555; padding: 8px 16px; border-radius: 20px; font-size: 16px; cursor: pointer; }
+        .card-title { font-size: 36px; color: #333; margin: 10px 0 5px; font-weight: bold; }
+        .card-subtitle { font-size: 20px; color: #888; margin-bottom: 12px; }
+        .card-summary { background: #FFF8E7; border-radius: 18px; padding: 14px 18px; margin: 12px auto; max-width: 92%; text-align: left; font-size: 17px; line-height: 1.6; color: #5D4037; }
+        .card-story { background: #f8f8f8; border-radius: 18px; padding: 16px 18px; margin: 12px auto; max-width: 92%; text-align: left; font-size: 16px; line-height: 1.8; color: #444; max-height: 260px; overflow-y: auto; }
+        .card-story p { margin-bottom: 10px; text-indent: 2em; }
+        .card-moral { background: #E8F5E9; border-radius: 18px; padding: 14px 18px; margin: 12px auto; max-width: 92%; text-align: left; font-size: 16px; line-height: 1.6; color: #2E7D32; }
+        .keywords { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 14px 0; padding: 0 10px; }
+        .keyword { background: #f0f0f0; color: #555; padding: 7px 14px; border-radius: 20px; font-size: 15px; cursor: pointer; }
         .keyword:active { background: #ddd; }
-        .btn-group { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
-        .btn { border: none; border-radius: 25px; padding: 12px 25px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .btn-group { display: flex; justify-content: center; gap: 10px; margin: 16px 0; flex-wrap: wrap; }
+        .btn { border: none; border-radius: 22px; padding: 11px 20px; font-size: 15px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .btn:active { transform: scale(0.95); }
         .btn-primary { background: #43A047; }
         .btn-secondary { background: #4ECDC4; }
         .btn-third { background: #FFD93D; color: #333; }
-        .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .btn-fourth { background: #AB47BC; }
+        .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 18px; }
         .nav-btn { background: #95E1D3; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .nav-btn:active { transform: scale(0.95); }
         .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .progress { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+        .progress { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
         .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
         .progress-dot.active { background: #43A047; }
         .hint { color: #999; font-size: 13px; margin-top: 15px; text-align: center; }
@@ -49,7 +53,7 @@
         .start-btn:active { transform: scale(0.95); }
         .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
         .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
-        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }
+        @media (max-width: 400px) { .card-emoji { width: 150px; height: 150px; line-height: 150px; font-size: 90px; } .card-title { font-size: 30px; } .card-story { max-height: 220px; } }
     </style>
 </head>
 <body>
@@ -75,12 +79,14 @@
             <div class="card-emoji" onclick="playTitle(0)">🐷🐷🐷</div>
             <div class="card-title">三只小猪</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">三只小猪分别用稻草、木头和砖头盖房子，大灰狼吹倒了前两座，只有砖房保护了他们。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>勤劳和认真做事很重要。</div>
+            <div class="card-summary"><strong>简介：</strong>三只小猪分别用稻草、木头和砖头盖房子，大灰狼吹倒了前两座，只有砖房保护了他们。</div>
+            <div class="card-story"><p>从前有三只小猪，他们长大了，猪妈妈让他们各自出去盖房子住。第一只小猪很懒，他用稻草很快地搭了一座房子。第二只小猪也觉得麻烦，他用木头盖了一座房子。第三只小猪最勤劳，他用一块一块的砖头，认真地盖了一座结实的房子。</p><p>有一天，一只大灰狼来了。他来到稻草房前，用力一吹，呼——稻草房就倒了。第一只小猪急忙跑到第二只小猪的木头房子里。大灰狼又追了过来，他对木头房子吹了又吹，木头房子也倒了。两只小猪赶紧跑到第三只小猪的砖房子里。</p><p>大灰狼来到砖房子前，吹呀吹，吹得满头大汗，房子却纹丝不动。他又想从烟囱爬进去，第三只小猪早就生起了火。大灰狼被烧得尾巴疼，大叫着逃跑了。三只小猪从此在砖房子里过着安全快乐的生活。这个故事告诉我们：勤劳和认真做事很重要。</p></div>
+            <div class="card-moral"><strong>道理：</strong>勤劳和认真做事很重要。</div>
             <div class="keywords"><span class="keyword" onclick="speak('小猪')">小猪</span><span class="keyword" onclick="speak('房子')">房子</span><span class="keyword" onclick="speak('大灰狼')">大灰狼</span><span class="keyword" onclick="speak('勤劳')">勤劳</span><span class="keyword" onclick="speak('安全')">安全</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(0)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(0)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(0)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(0)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(0)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -92,12 +98,14 @@
             <div class="card-emoji" onclick="playTitle(1)">🐸🔍</div>
             <div class="card-title">小蝌蚪找妈妈</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">小蝌蚪出生不认识妈妈，一路问鲤鱼、乌龟，最后终于找到青蛙妈妈。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>遇到困难要坚持，妈妈永远爱我们。</div>
+            <div class="card-summary"><strong>简介：</strong>小蝌蚪出生不认识妈妈，一路问鲤鱼、乌龟，最后终于找到青蛙妈妈。</div>
+            <div class="card-story"><p>暖和的春天来了，池塘里游着一群黑黑的小蝌蚪。他们不知道自己的妈妈在哪里。一只小蝌蚪问鲤鱼阿姨：“您看见我们的妈妈了吗？”鲤鱼说：“你们的妈妈有两只大眼睛，你们去找找吧。”</p><p>小蝌蚪游呀游，看见一只乌龟，她长着两只大眼睛。小蝌蚪高兴地叫：“妈妈，妈妈！”乌龟笑着说：“我不是你们的妈妈，你们的妈妈肚皮是雪白的。”</p><p>小蝌蚪又游呀游，看见一只大白鹅，她的肚皮是雪白的。小蝌蚪喊：“妈妈！”白鹅摇摇头说：“你们的妈妈有四条腿。”</p><p>小蝌蚪继续游，看见一只青蛙蹲在荷叶上。她有两只大眼睛、雪白的肚皮，还有四条腿。小蝌蚪们围上去叫：“妈妈！”青蛙妈妈笑着说：“好孩子，我就是你们的妈妈。你们小时候是黑黑的小蝌蚪，慢慢长大才会变成青蛙。”小蝌蚪们终于找到了妈妈，开心地在池塘里玩耍。</p></div>
+            <div class="card-moral"><strong>道理：</strong>遇到困难要坚持，妈妈永远爱我们。</div>
             <div class="keywords"><span class="keyword" onclick="speak('蝌蚪')">蝌蚪</span><span class="keyword" onclick="speak('青蛙')">青蛙</span><span class="keyword" onclick="speak('妈妈')">妈妈</span><span class="keyword" onclick="speak('坚持')">坚持</span><span class="keyword" onclick="speak('寻找')">寻找</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(1)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(1)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(1)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(1)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(1)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -109,12 +117,14 @@
             <div class="card-emoji" onclick="playTitle(2)">🐴🌊</div>
             <div class="card-title">小马过河</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">小马要过河，老牛说浅，松鼠说深，小马自己试一试才发现刚好。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>别人的经验不一定适合自己，要亲自尝试。</div>
+            <div class="card-summary"><strong>简介：</strong>小马要过河，老牛说浅，松鼠说深，小马自己试一试才发现刚好。</div>
+            <div class="card-story"><p>马棚里住着一匹老马和一匹小马。有一天，老马对小马说：“你已经长大了，能帮妈妈做点事吗？”小马高兴地说：“我愿意！”老马让他把一袋麦子驮到磨坊去。</p><p>小马驮起麦子，飞快地往磨坊跑去。跑着跑着，一条小河挡住了去路。河水哗哗地流，小马不知道能不能过去。</p><p>河边有一头老牛在吃草。小马问：“牛伯伯，这条河我能过去吗？”老牛说：“水很浅，刚没过小腿，能过去。”小马正要下河，一只松鼠拦住了他：“小马，别下去！河水很深，我的小伙伴就是掉进河里淹死的。”</p><p>小马为难了，只好跑回家问妈妈。妈妈说：“孩子，光听别人说，自己不动脑筋，是不行的。河水是深是浅，你试一试就知道。”</p><p>小马跑到河边，小心地把蹄子伸进水里。原来河水既不深，也不浅，刚好能过去。他顺利地过了河，把麦子送到了磨坊。</p></div>
+            <div class="card-moral"><strong>道理：</strong>别人的经验不一定适合自己，要亲自尝试。</div>
             <div class="keywords"><span class="keyword" onclick="speak('小马')">小马</span><span class="keyword" onclick="speak('过河')">过河</span><span class="keyword" onclick="speak('尝试')">尝试</span><span class="keyword" onclick="speak('勇敢')">勇敢</span><span class="keyword" onclick="speak('河水')">河水</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(2)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(2)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(2)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(2)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(2)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -126,12 +136,14 @@
             <div class="card-emoji" onclick="playTitle(3)">🐺📢</div>
             <div class="card-title">狼来了</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">放羊娃多次喊狼来了骗人，后来真狼来了，没人相信他。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>说谎会失去别人的信任。</div>
+            <div class="card-summary"><strong>简介：</strong>放羊娃多次喊狼来了骗人，后来真狼来了，没人相信他。</div>
+            <div class="card-story"><p>从前，有个放羊娃每天都上山放羊。他觉得无聊，就想捉弄村里的人。</p><p>有一天，他站在山坡上大喊：“狼来了！狼来了！”村民们听到喊声，急忙拿着锄头和扁担跑上山。可是到了山上，根本没有狼。放羊娃哈哈大笑：“你们上当了！”村民们生气地离开了。</p><p>过了几天，放羊娃又喊：“狼来了！狼来了！”善良的村民们又跑上山，还是没看见狼。放羊娃笑得更大声了。村民们非常生气，说：“下次我们再也不相信你了。”</p><p>过了几天，真的来了一只大灰狼。狼冲进羊群，咬死了好多小羊。放羊娃吓得大喊：“狼真的来了！救命啊！”可是村民们以为他又在骗人，谁也没有来。</p><p>结果，放羊娃的羊被狼咬死了很多。他坐在地上大哭，后悔地说：“我不该说谎啊！”从此，他再也不敢骗人了。</p></div>
+            <div class="card-moral"><strong>道理：</strong>说谎会失去别人的信任。</div>
             <div class="keywords"><span class="keyword" onclick="speak('放羊娃')">放羊娃</span><span class="keyword" onclick="speak('说谎')">说谎</span><span class="keyword" onclick="speak('狼')">狼</span><span class="keyword" onclick="speak('信任')">信任</span><span class="keyword" onclick="speak('后悔')">后悔</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(3)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(3)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(3)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(3)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(3)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -143,12 +155,14 @@
             <div class="card-emoji" onclick="playTitle(4)">🐢🐰</div>
             <div class="card-title">龟兔赛跑</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">兔子嘲笑乌龟慢，中途睡大觉，乌龟一步一步走到了终点。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>骄傲使人落后，坚持才能胜利。</div>
+            <div class="card-summary"><strong>简介：</strong>兔子嘲笑乌龟慢，中途睡大觉，乌龟一步一步走到了终点。</div>
+            <div class="card-story"><p>森林里要举行跑步比赛，小兔子报名参加了。小兔子跑得非常快，他看见乌龟也报了名，就笑着说：“乌龟，你爬得那么慢，还敢跟我比赛？”乌龟说：“我会坚持到底的。”</p><p>比赛开始了。小兔子像箭一样冲了出去，很快就把乌龟远远地甩在后面。他回头一看，乌龟才爬了一点点。小兔子心想：“乌龟这么慢，我先睡一会儿也来得及。”</p><p>于是，小兔子躺在路边的大树下，呼呼地睡着了。乌龟一步一步不停地往前爬。他爬过小兔子身边时，没有停下来，继续向终点爬去。</p><p>太阳慢慢升高了，小兔子醒来一看，太阳都到头顶了。他跳起来就往终点跑，可是已经来不及了。乌龟已经到达了终点，小动物们都为乌龟鼓掌。小兔子低下头，明白了：骄傲使人落后，坚持才能胜利。</p></div>
+            <div class="card-moral"><strong>道理：</strong>骄傲使人落后，坚持才能胜利。</div>
             <div class="keywords"><span class="keyword" onclick="speak('兔子')">兔子</span><span class="keyword" onclick="speak('乌龟')">乌龟</span><span class="keyword" onclick="speak('比赛')">比赛</span><span class="keyword" onclick="speak('坚持')">坚持</span><span class="keyword" onclick="speak('骄傲')">骄傲</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(4)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(4)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(4)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(4)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(4)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -160,12 +174,14 @@
             <div class="card-emoji" onclick="playTitle(5)">🍐👦</div>
             <div class="card-title">孔融让梨</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">小孔融把大梨让给哥哥和长辈，自己拿最小的梨。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>懂得谦让，尊敬长辈。</div>
+            <div class="card-summary"><strong>简介：</strong>小孔融把大梨让给哥哥和长辈，自己拿最小的梨。</div>
+            <div class="card-story"><p>东汉时候，有一个聪明又懂事的小男孩，名叫孔融。他四岁那年，家里来了一位客人，送来了一篮新鲜的梨子。</p><p>爸爸让孔融把梨子分给大家。孔融看了看篮子，选了一个最小的梨子拿在手里。爸爸奇怪地问：“你为什么不拿大的，反而拿最小的呢？”孔融认真地说：“我年纪小，应该吃小梨；大梨留给哥哥和长辈吃。”</p><p>爸爸听了，笑着摸摸他的头，又问：“那弟弟比你更小，为什么小梨不留给他呢？”孔融说：“我是哥哥，应该让着弟弟。”</p><p>客人和家人们听了，都夸孔融懂事。从此，“孔融让梨”的故事流传下来，教育孩子们要懂得谦让、尊敬长辈。</p></div>
+            <div class="card-moral"><strong>道理：</strong>懂得谦让，尊敬长辈。</div>
             <div class="keywords"><span class="keyword" onclick="speak('孔融')">孔融</span><span class="keyword" onclick="speak('梨子')">梨子</span><span class="keyword" onclick="speak('谦让')">谦让</span><span class="keyword" onclick="speak('哥哥')">哥哥</span><span class="keyword" onclick="speak('礼貌')">礼貌</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(5)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(5)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(5)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(5)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(5)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -177,12 +193,14 @@
             <div class="card-emoji" onclick="playTitle(6)">🏺💥</div>
             <div class="card-title">司马光砸缸</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">小伙伴掉进大水缸，司马光砸破缸，水流出救了人。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>遇到危险要冷静，想办法救人。</div>
+            <div class="card-summary"><strong>简介：</strong>小伙伴掉进大水缸，司马光砸破缸，水流出救了人。</div>
+            <div class="card-story"><p>古时候，有一群孩子在院子里玩耍。院子里有一口很大的水缸，里面装满了水。一个调皮的小男孩爬到了水缸边上，一不小心，“扑通”一声掉进了水缸里。</p><p>其他孩子都吓坏了，有的哭，有的跑去找大人。只有司马光没有慌张。他想：“水缸这么深，掉进去的小朋友肯定会被淹死，必须马上救他！”可是大家都太小，根本够不到水缸里。</p><p>司马光看见地上有一块石头，他灵机一动，抱起石头用力向水缸砸去。“砰！”水缸破了一个大洞，水哗哗地流了出来。不一会儿，水缸里的水就流干了，掉进去的小朋友也得救了。大家都夸司马光又聪明又勇敢。</p></div>
+            <div class="card-moral"><strong>道理：</strong>遇到危险要冷静，想办法救人。</div>
             <div class="keywords"><span class="keyword" onclick="speak('司马光')">司马光</span><span class="keyword" onclick="speak('水缸')">水缸</span><span class="keyword" onclick="speak('救人')">救人</span><span class="keyword" onclick="speak('聪明')">聪明</span><span class="keyword" onclick="speak('勇敢')">勇敢</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(6)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(6)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(6)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(6)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(6)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -194,12 +212,14 @@
             <div class="card-emoji" onclick="playTitle(7)">🖌️✨</div>
             <div class="card-title">神笔马良</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">马良有一支神笔，画什么变什么，他用它帮助穷人，惩治坏人。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>善良和正义会战胜贪婪。</div>
+            <div class="card-summary"><strong>简介：</strong>马良有一支神笔，画什么变什么，他用它帮助穷人，惩治坏人。</div>
+            <div class="card-story"><p>从前有一个穷苦的孩子，名叫马良。他非常喜欢画画，可是家里穷，连一支笔都买不起。马良就用树枝在沙地上画，用草根在石头上画，天天练习。</p><p>一天晚上，一位白胡子老爷爷出现在马良面前，送给他一支金光闪闪的神笔。老爷爷说：“这支笔会帮助善良的人。”马良接过神笔，画了一只公鸡，公鸡竟然活了，喔喔地叫了起来。</p><p>马良用神笔给穷人画粮食、画耕牛、画房子。消息传到了县官耳朵里，贪婪的县官把马良抓了起来，逼他画金山银山。马良不肯，县官就抢走了神笔。可是县官自己画，画出来的东西都不会动。</p><p>马良拿回神笔，画了一片大海，又画了一座金山。县官急忙跳上大船去金山，马良又画了几笔大风。大浪把船打翻了，县官掉进了海里。马良继续用神笔帮助穷苦的百姓。</p></div>
+            <div class="card-moral"><strong>道理：</strong>善良和正义会战胜贪婪。</div>
             <div class="keywords"><span class="keyword" onclick="speak('马良')">马良</span><span class="keyword" onclick="speak('神笔')">神笔</span><span class="keyword" onclick="speak('画画')">画画</span><span class="keyword" onclick="speak('善良')">善良</span><span class="keyword" onclick="speak('正义')">正义</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(7)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(7)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(7)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(7)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(7)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -211,12 +231,14 @@
             <div class="card-emoji" onclick="playTitle(8)">🐒🌙</div>
             <div class="card-title">猴子捞月</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">猴子看见井里的月亮倒影，以为月亮掉进去了，怎么也捞不上来。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>遇事要仔细观察，不要忙中出错。</div>
+            <div class="card-summary"><strong>简介：</strong>猴子看见井里的月亮倒影，以为月亮掉进去了，怎么也捞不上来。</div>
+            <div class="card-story"><p>一天晚上，一群猴子在井边玩耍。一只小猴子抬头看见天上圆圆的月亮，又低头看见井里也有一轮圆圆的月亮。小猴子大叫：“不好了！月亮掉进井里了！”</p><p>猴群都围了过来，大家看着井里的月亮，都很着急。老猴子说：“月亮掉在井里，我们一起把它捞上来！”一只猴子倒挂在树上，抓住另一只猴子的脚，猴子们一只接一只倒挂下来，像一条长长的链子。</p><p>最下面的小猴子伸手去捞月亮，他的手刚碰到水面，月亮就碎成了一片一片。小猴子捞了又捞，怎么也捞不上来。</p><p>这时，一只聪明的小猴子抬头看了看天，大声说：“月亮不是好好地挂在天上吗？井里的月亮只是影子！”大家抬头一看，果然，月亮还挂在天上呢。这个故事告诉我们：遇事要仔细观察，不要忙中出错。</p></div>
+            <div class="card-moral"><strong>道理：</strong>遇事要仔细观察，不要忙中出错。</div>
             <div class="keywords"><span class="keyword" onclick="speak('猴子')">猴子</span><span class="keyword" onclick="speak('月亮')">月亮</span><span class="keyword" onclick="speak('井')">井</span><span class="keyword" onclick="speak('观察')">观察</span><span class="keyword" onclick="speak('倒影')">倒影</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(8)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(8)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(8)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(8)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(8)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -228,12 +250,14 @@
             <div class="card-emoji" onclick="playTitle(9)">🦊🐯</div>
             <div class="card-title">狐假虎威</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">狐狸被老虎抓住，却骗老虎说自己是百兽之王，借着老虎的威风吓跑动物。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>不要借别人的威风吓唬人。</div>
+            <div class="card-summary"><strong>简介：</strong>狐狸被老虎抓住，却骗老虎说自己是百兽之王，借着老虎的威风吓跑动物。</div>
+            <div class="card-story"><p>在一片森林里，有一只饥饿的老虎抓住了一只狐狸。狐狸吓得浑身发抖，可是他眼珠一转，想出了一个办法。</p><p>狐狸对老虎说：“老天爷让我做百兽之王，你怎么敢吃我？如果你不信，就跟我到森林里走一趟，看看其他动物怕不怕我。”老虎心想：“这狐狸这么大胆，难道真的是百兽之王？”</p><p>于是老虎跟着狐狸往森林里走去。小动物们看见老虎来了，都吓得四处逃跑。狐狸得意地走在老虎前面，边走边说：“看见了吗？他们多怕我！”老虎以为小动物们真的害怕狐狸，就乖乖地放了狐狸。</p><p>其实，小动物们怕的不是狐狸，而是跟在狐狸后面的老虎。狐狸是借着老虎的威风才吓跑了大家。这个故事告诉我们：不要借别人的威风吓唬人。</p></div>
+            <div class="card-moral"><strong>道理：</strong>不要借别人的威风吓唬人。</div>
             <div class="keywords"><span class="keyword" onclick="speak('狐狸')">狐狸</span><span class="keyword" onclick="speak('老虎')">老虎</span><span class="keyword" onclick="speak('威风')">威风</span><span class="keyword" onclick="speak('狡猾')">狡猾</span><span class="keyword" onclick="speak('害怕')">害怕</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(9)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(9)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(9)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(9)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(9)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -245,12 +269,14 @@
             <div class="card-emoji" onclick="playTitle(10)">🍎👸</div>
             <div class="card-title">白雪公主</div>
             <div class="card-subtitle">来源：德国/格林</div>
-            <div class="card-text">白雪公主被继母嫉妒陷害，逃进森林，七个小矮人帮助她，最后王子救醒了她。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>善良的心比美丽的外表更重要。</div>
+            <div class="card-summary"><strong>简介：</strong>白雪公主被继母嫉妒陷害，逃进森林，七个小矮人帮助她，最后王子救醒了她。</div>
+            <div class="card-story"><p>从前有一位美丽的公主，她的皮肤像雪一样白，大家叫她白雪公主。她的继母是一个坏皇后，有一面魔镜。她每天问魔镜：“谁是世界上最美丽的女人？”魔镜总是说：“是您。”</p><p>可是有一天，魔镜说：“白雪公主比您美丽一千倍。”皇后听了非常嫉妒，命令猎人把白雪公主带到森林里杀掉。猎人同情白雪公主，放走了她。</p><p>白雪公主逃到森林里，发现了七个小矮人的房子。她帮小矮人打扫屋子，小矮人收留了她。坏皇后得知后，扮成老婆婆，骗白雪公主吃了一个毒苹果。白雪公主倒在地上，像睡着了一样。</p><p>后来，一位王子路过，他爱上了白雪公主。王子轻轻地抱起她，毒苹果从她嘴里掉了出来。白雪公主醒了过来，和王子幸福地生活在一起。坏皇后也得到了应有的惩罚。</p></div>
+            <div class="card-moral"><strong>道理：</strong>善良的心比美丽的外表更重要。</div>
             <div class="keywords"><span class="keyword" onclick="speak('白雪公主')">白雪公主</span><span class="keyword" onclick="speak('小矮人')">小矮人</span><span class="keyword" onclick="speak('皇后')">皇后</span><span class="keyword" onclick="speak('善良')">善良</span><span class="keyword" onclick="speak('镜子')">镜子</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(10)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(10)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(10)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(10)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(10)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -262,12 +288,14 @@
             <div class="card-emoji" onclick="playTitle(11)">👠🕛</div>
             <div class="card-title">灰姑娘</div>
             <div class="card-subtitle">来源：德国/格林</div>
-            <div class="card-text">灰姑娘受继母欺负，仙女帮她参加舞会，水晶鞋让她与王子重逢。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>保持善良，机会会眷顾努力的人。</div>
+            <div class="card-summary"><strong>简介：</strong>灰姑娘受继母欺负，仙女帮她参加舞会，水晶鞋让她与王子重逢。</div>
+            <div class="card-story"><p>从前有一个善良的女孩，她的继母和姐姐们对她很不好，总是让她穿旧衣服、干粗活，还叫她灰姑娘。</p><p>一天，王子要举办舞会，邀请全国的姑娘参加。灰姑娘也很想去，可是继母不让她去。灰姑娘伤心地哭了起来。这时，一位仙女出现了，她用魔法给灰姑娘穿上了漂亮的礼服和水晶鞋，还变出了一辆南瓜马车。</p><p>仙女告诉灰姑娘：“午夜十二点前必须回来，不然魔法就会消失。”灰姑娘来到王宫，王子被她深深吸引，整晚只和她跳舞。</p><p>钟声敲响了十二下，灰姑娘急忙跑走，不小心掉了一只水晶鞋。王子拿着水晶鞋到处寻找，终于找到了灰姑娘。灰姑娘穿上水晶鞋，正好合适。王子娶她为妻，灰姑娘从此过上了幸福的生活。</p></div>
+            <div class="card-moral"><strong>道理：</strong>保持善良，机会会眷顾努力的人。</div>
             <div class="keywords"><span class="keyword" onclick="speak('灰姑娘')">灰姑娘</span><span class="keyword" onclick="speak('水晶鞋')">水晶鞋</span><span class="keyword" onclick="speak('王子')">王子</span><span class="keyword" onclick="speak('仙女')">仙女</span><span class="keyword" onclick="speak('南瓜')">南瓜</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(11)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(11)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(11)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(11)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(11)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -279,12 +307,14 @@
             <div class="card-emoji" onclick="playTitle(12)">🧺🔴</div>
             <div class="card-title">小红帽</div>
             <div class="card-subtitle">来源：德国/格林</div>
-            <div class="card-text">小红帽去看望外婆，路上被大灰狼骗，猎人赶来救了她们。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>不要和陌生人说话，要听妈妈的话。</div>
+            <div class="card-summary"><strong>简介：</strong>小红帽去看望外婆，路上被大灰狼骗，猎人赶来救了她们。</div>
+            <div class="card-story"><p>从前有一个可爱的小女孩，她喜欢戴着外婆送的红帽子，大家都叫她小红帽。一天，妈妈让她带着蛋糕去看望生病的外婆。</p><p>小红帽走在森林里，一只大灰狼拦住了她：“小姑娘，你要去哪里？”小红帽说：“我要去看外婆。”大灰狼又问：“外婆家住在哪里？”小红帽告诉了他。</p><p>大灰狼抢先跑到外婆家，把外婆关进了衣柜，然后穿上外婆的衣服躺在床上。小红帽到了外婆家，觉得外婆的耳朵、眼睛和嘴巴都变得好大。大灰狼跳起来，把小红帽也吞进了肚子。</p><p>幸好一位猎人路过，他剪开大灰狼的肚皮，救出了小红帽和外婆。大家用石头填满狼肚子，大灰狼再也跑不动了。小红帽以后再也不敢跟陌生人说话了。</p></div>
+            <div class="card-moral"><strong>道理：</strong>不要和陌生人说话，要听妈妈的话。</div>
             <div class="keywords"><span class="keyword" onclick="speak('小红帽')">小红帽</span><span class="keyword" onclick="speak('大灰狼')">大灰狼</span><span class="keyword" onclick="speak('外婆')">外婆</span><span class="keyword" onclick="speak('猎人')">猎人</span><span class="keyword" onclick="speak('森林')">森林</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(12)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(12)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(12)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(12)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(12)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -296,12 +326,14 @@
             <div class="card-emoji" onclick="playTitle(13)">👸😴</div>
             <div class="card-title">睡美人</div>
             <div class="card-subtitle">来源：德国/格林</div>
-            <div class="card-text">公主被诅咒沉睡一百年，王子勇敢的吻唤醒了她。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>真爱和善良能打破诅咒。</div>
+            <div class="card-summary"><strong>简介：</strong>公主被诅咒沉睡一百年，王子勇敢的吻唤醒了她。</div>
+            <div class="card-story"><p>很久很久以前，国王和王后生了一位美丽的小公主，他们为她举办盛大的宴会。国王邀请了十二位仙女，却忘了邀请一位坏女巫。</p><p>坏女巫非常生气，她在宴会上诅咒公主：“公主十五岁时会被纺锤刺死！”一位善良的仙女把诅咒改成了：“公主不会死，只会沉睡一百年，直到有一位王子来唤醒她。”</p><p>国王下令全国销毁纺锤。可是公主十五岁那年，还是在城堡里找到了一个纺锤。她的手指被刺破了，立刻倒在地上睡着了。整个城堡的人也都跟着睡着了。城堡周围长满了高高的荆棘。</p><p>一百年后，一位勇敢的王子来到城堡。他披荆斩棘，找到了沉睡的公主。王子轻轻吻了她，公主睁开了眼睛。城堡里的人都醒了过来，王子和公主举行了盛大的婚礼。</p></div>
+            <div class="card-moral"><strong>道理：</strong>真爱和善良能打破诅咒。</div>
             <div class="keywords"><span class="keyword" onclick="speak('公主')">公主</span><span class="keyword" onclick="speak('王子')">王子</span><span class="keyword" onclick="speak('诅咒')">诅咒</span><span class="keyword" onclick="speak('纺锤')">纺锤</span><span class="keyword" onclick="speak('沉睡')">沉睡</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(13)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(13)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(13)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(13)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(13)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -313,12 +345,14 @@
             <div class="card-emoji" onclick="playTitle(14)">🐸👑</div>
             <div class="card-title">青蛙王子</div>
             <div class="card-subtitle">来源：德国/格林</div>
-            <div class="card-text">公主的金球掉进池塘，青蛙帮她捡回，她遵守诺言亲吻青蛙，青蛙变回王子。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>答应别人的事要做到，守信很重要。</div>
+            <div class="card-summary"><strong>简介：</strong>公主的金球掉进池塘，青蛙帮她捡回，她遵守诺言亲吻青蛙，青蛙变回王子。</div>
+            <div class="card-story"><p>从前有一位小公主，她最喜欢玩一个金色的球。有一天，她在池塘边玩球，一不小心，金球掉进了水里。小公主坐在池塘边哭了起来。</p><p>一只青蛙从水里伸出头来，对她说：“我可以帮你把球捞上来，但是你要答应和我做朋友。”小公主答应了。青蛙潜入水里，把金球捞了上来。小公主高兴地接过金球，转身就跑，完全忘了答应青蛙的事。</p><p>第二天，青蛙来到王宫，要求小公主履行诺言。国王知道后，严肃地说：“答应别人的事一定要做到。”小公主只好让青蛙一起吃饭、一起玩耍。晚上，小公主亲了青蛙一下。奇迹发生了，青蛙变成了一位英俊的王子。原来王子被坏女巫施了魔法，只有信守诺言的人才能救他。</p></div>
+            <div class="card-moral"><strong>道理：</strong>答应别人的事要做到，守信很重要。</div>
             <div class="keywords"><span class="keyword" onclick="speak('公主')">公主</span><span class="keyword" onclick="speak('青蛙')">青蛙</span><span class="keyword" onclick="speak('金球')">金球</span><span class="keyword" onclick="speak('守信')">守信</span><span class="keyword" onclick="speak('池塘')">池塘</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(14)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(14)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(14)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(14)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(14)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -330,12 +364,14 @@
             <div class="card-emoji" onclick="playTitle(15)">🦆🦢</div>
             <div class="card-title">丑小鸭</div>
             <div class="card-subtitle">来源：丹麦/安徒生</div>
-            <div class="card-text">丑小鸭被嘲笑长得难看，长大后变成美丽的天鹅。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>不要小看自己，每个人都有自己的美丽。</div>
+            <div class="card-summary"><strong>简介：</strong>丑小鸭被嘲笑长得难看，长大后变成美丽的天鹅。</div>
+            <div class="card-story"><p>鸭妈妈孵出了一群小鸭子，其中有一只长得又大又灰，大家都叫他丑小鸭。其他的小鸭子都不喜欢他，啄他、咬他，连鸭妈妈也叹气。丑小鸭又伤心又孤单，只好离开了家。</p><p>他来到野鸭家，野鸭们也嘲笑他。他来到农家，鸡群和猫也欺负他。冬天来了，丑小鸭又冷又饿，躲在一丛芦苇里。</p><p>春天来了，丑小鸭慢慢长大了。有一天，他走到河边，看见水面上有一只美丽的天鹅。他低头一看，倒影里的自己竟然也变成了一只雪白的天鹅！</p><p>其他天鹅围了过来，称赞他漂亮。丑小鸭终于明白：不要因为别人说自己丑就难过，每个人都有自己的美丽。</p></div>
+            <div class="card-moral"><strong>道理：</strong>不要小看自己，每个人都有自己的美丽。</div>
             <div class="keywords"><span class="keyword" onclick="speak('丑小鸭')">丑小鸭</span><span class="keyword" onclick="speak('天鹅')">天鹅</span><span class="keyword" onclick="speak('成长')">成长</span><span class="keyword" onclick="speak('自信')">自信</span><span class="keyword" onclick="speak('美丽')">美丽</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(15)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(15)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(15)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(15)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(15)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -347,12 +383,14 @@
             <div class="card-emoji" onclick="playTitle(16)">🔥👧</div>
             <div class="card-title">卖火柴的小女孩</div>
             <div class="card-subtitle">来源：丹麦/安徒生</div>
-            <div class="card-text">大年夜，小女孩卖不出火柴，在寒冷中擦亮火柴看到美好的幻象。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>珍惜温暖幸福的生活，学会关爱他人。</div>
+            <div class="card-summary"><strong>简介：</strong>大年夜，小女孩卖不出火柴，在寒冷中擦亮火柴看到美好的幻象。</div>
+            <div class="card-story"><p>除夕夜，街上飘着雪花，家家户户都亮着温暖的灯。一个小女孩赤着脚，手里拿着一把火柴，在街上卖火柴。她已经一整天没卖出去了。</p><p>她又冷又饿，不敢回家，因为爸爸会打她。她只好躲在墙角，擦亮了一根火柴。火柴的光芒里，她看见了一个温暖的火炉。她又擦亮一根火柴，看见了香喷喷的烤鹅。她还看见了美丽的圣诞树和慈祥的奶奶。</p><p>奶奶是唯一疼爱她的人。小女孩赶紧擦亮了一大把火柴，想留住奶奶。在火光中，奶奶微笑着把她抱了起来。</p><p>第二天早上，人们在墙角发现了小女孩。她脸上带着微笑，手里还握着烧过的火柴梗。她跟着奶奶去了没有寒冷、没有饥饿的地方。这个故事让我们懂得珍惜温暖幸福的生活，学会关爱他人。</p></div>
+            <div class="card-moral"><strong>道理：</strong>珍惜温暖幸福的生活，学会关爱他人。</div>
             <div class="keywords"><span class="keyword" onclick="speak('小女孩')">小女孩</span><span class="keyword" onclick="speak('火柴')">火柴</span><span class="keyword" onclick="speak('寒冷')">寒冷</span><span class="keyword" onclick="speak('奶奶')">奶奶</span><span class="keyword" onclick="speak('温暖')">温暖</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(16)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(16)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(16)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(16)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(16)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -364,12 +402,14 @@
             <div class="card-emoji" onclick="playTitle(17)">👑👀</div>
             <div class="card-title">皇帝的新装</div>
             <div class="card-subtitle">来源：丹麦/安徒生</div>
-            <div class="card-text">皇帝被两个骗子欺骗，穿着不存在的新衣游行，只有小孩说出真相。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>要勇敢说真话，不要被虚荣蒙蔽。</div>
+            <div class="card-summary"><strong>简介：</strong>皇帝被两个骗子欺骗，穿着不存在的新衣游行，只有小孩说出真相。</div>
+            <div class="card-story"><p>从前有一个皇帝，他特别喜欢穿新衣服。有一天，来了两个骗子，说能织出世界上最美丽的布，而且这种布只有聪明人才能看见。</p><p>皇帝给了他们很多钱，让他们织布。其实骗子什么也没织。大臣们去检查时，明明什么也看不见，却怕别人说自己愚蠢，都假装称赞布料多么漂亮。</p><p>新衣服做好了。皇帝穿上“新衣”，光着身子走上街头游行。街道两旁的人都怕被别人笑话，都大声说：“皇帝的新衣服真漂亮！”</p><p>这时，一个小孩子大声说：“皇帝什么衣服也没穿呀！”大家这才敢说出真话。皇帝的脸红得像个苹果，可是他只能继续完成游行。这个故事告诉我们：要勇敢说真话，不要被虚荣蒙蔽。</p></div>
+            <div class="card-moral"><strong>道理：</strong>要勇敢说真话，不要被虚荣蒙蔽。</div>
             <div class="keywords"><span class="keyword" onclick="speak('皇帝')">皇帝</span><span class="keyword" onclick="speak('骗子')">骗子</span><span class="keyword" onclick="speak('新衣')">新衣</span><span class="keyword" onclick="speak('真话')">真话</span><span class="keyword" onclick="speak('虚荣')">虚荣</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(17)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(17)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(17)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(17)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(17)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -381,12 +421,14 @@
             <div class="card-emoji" onclick="playTitle(18)">🧜‍♀️🌊</div>
             <div class="card-title">海的女儿</div>
             <div class="card-subtitle">来源：丹麦/安徒生</div>
-            <div class="card-text">小人鱼为了王子变成人，最后却选择化成泡沫守护他。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>真正的爱是成全和善良。</div>
+            <div class="card-summary"><strong>简介：</strong>小人鱼为了王子变成人，最后却选择化成泡沫守护他。</div>
+            <div class="card-story"><p>在大海深处，住着一位美丽的人鱼公主。她救了落水的王子，爱上了他。她想知道陆地上的世界，就去问海巫婆。</p><p>海巫婆说：“我可以把你的尾巴变成双腿，但你每走一步都像踩在刀尖上。而且你必须让王子爱上你，否则你就会变成海上的泡沫。”小人鱼还是答应了。</p><p>她来到王宫，和王子成了朋友。可是王子要娶邻国的公主。婚礼那天，小人鱼的姐姐们用长发换来一把匕首，告诉她：“只要杀了王子，你就能回到大海。”</p><p>小人鱼来到王子的床边，她看着熟睡的王子，不忍心下手。她把匕首扔进了大海，自己也跳进了海里。太阳升起时，她化成了海上的泡沫。但她没有消失，她变成了天空的女儿。真正的爱是成全和善良。</p></div>
+            <div class="card-moral"><strong>道理：</strong>真正的爱是成全和善良。</div>
             <div class="keywords"><span class="keyword" onclick="speak('美人鱼')">美人鱼</span><span class="keyword" onclick="speak('王子')">王子</span><span class="keyword" onclick="speak('大海')">大海</span><span class="keyword" onclick="speak('泡沫')">泡沫</span><span class="keyword" onclick="speak('牺牲')">牺牲</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(18)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(18)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(18)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(18)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(18)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -398,12 +440,14 @@
             <div class="card-emoji" onclick="playTitle(19)">🌸👧</div>
             <div class="card-title">拇指姑娘</div>
             <div class="card-subtitle">来源：丹麦/安徒生</div>
-            <div class="card-text">拇指姑娘只有拇指那么大，经历了许多冒险，最后找到了花精灵的家。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>即使很小，也能勇敢追求幸福。</div>
+            <div class="card-summary"><strong>简介：</strong>拇指姑娘只有拇指那么大，经历了许多冒险，最后找到了花精灵的家。</div>
+            <div class="card-story"><p>从前有一个妇人，她非常想要一个小孩子。一位女巫给了她一颗种子。妇人把种子种在花盆里，很快就开出了一朵美丽的花。花心里面坐着一个只有拇指那么大的小姑娘，大家都叫她拇指姑娘。</p><p>一天晚上，一只癞蛤蟆把拇指姑娘偷走了，想让她给自己的儿子当新娘。拇指姑娘很害怕，鱼儿们帮她咬断了荷叶，让她漂走了。</p><p>后来，拇指姑娘被一只好心的田鼠收留。田鼠的朋友鼹鼠想娶她，可是拇指姑娘不想生活在黑暗的地洞里。她帮助了一只受伤的燕子，燕子康复后带她飞到了温暖的南方。</p><p>在那里，拇指姑娘遇到了花精灵王子。王子请她做花中的王后，拇指姑娘高兴地答应了。她终于找到了自己的家。</p></div>
+            <div class="card-moral"><strong>道理：</strong>即使很小，也能勇敢追求幸福。</div>
             <div class="keywords"><span class="keyword" onclick="speak('拇指姑娘')">拇指姑娘</span><span class="keyword" onclick="speak('花')">花</span><span class="keyword" onclick="speak('田鼠')">田鼠</span><span class="keyword" onclick="speak('燕子')">燕子</span><span class="keyword" onclick="speak('勇敢')">勇敢</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(19)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(19)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(19)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(19)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(19)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -415,12 +459,14 @@
             <div class="card-emoji" onclick="playTitle(20)">🗝️🚪</div>
             <div class="card-title">阿里巴巴与四十大盗</div>
             <div class="card-subtitle">来源：阿拉伯/一千零一夜</div>
-            <div class="card-text">阿里巴巴发现强盗宝库，用智慧和女仆 Morgana 打败四十大盗。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>智慧和勇气能战胜坏人。</div>
+            <div class="card-summary"><strong>简介：</strong>阿里巴巴发现强盗宝库，用智慧和女仆 Morgana 打败四十大盗。</div>
+            <div class="card-story"><p>从前有一个穷人叫阿里巴巴。有一天他在山上砍柴，看见一伙强盗来到一个山洞前。强盗首领大声说：“芝麻开门！”山洞的门就开了；强盗进去后说：“芝麻关门！”门就关上了。</p><p>强盗走后，阿里巴巴也学着说：“芝麻开门！”门真的开了，里面全是金银财宝。阿里巴巴只拿了一点金币，就关上门回家了。</p><p>他的哥哥卡西姆知道后，也来到山洞。他因为太贪心，拿了太多财宝，出洞时忘了咒语，被强盗抓住了。强盗把他杀了。</p><p>强盗们到处寻找拿走财宝的人。聪明的女仆马尔基娜识破了他的阴谋，她用热油烫死了藏在油罐里的强盗，又用匕首杀了强盗首领。阿里巴巴非常感谢马尔基娜，让她嫁给了自己的儿子。从此以后，他们幸福地生活在一起。</p></div>
+            <div class="card-moral"><strong>道理：</strong>智慧和勇气能战胜坏人。</div>
             <div class="keywords"><span class="keyword" onclick="speak('阿里巴巴')">阿里巴巴</span><span class="keyword" onclick="speak('山洞')">山洞</span><span class="keyword" onclick="speak('芝麻开门')">芝麻开门</span><span class="keyword" onclick="speak('强盗')">强盗</span><span class="keyword" onclick="speak('智慧')">智慧</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(20)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(20)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(20)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(20)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(20)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -432,12 +478,14 @@
             <div class="card-emoji" onclick="playTitle(21)">🧞✨</div>
             <div class="card-title">阿拉丁神灯</div>
             <div class="card-subtitle">来源：阿拉伯/一千零一夜</div>
-            <div class="card-text">阿拉丁得到神灯，在灯神帮助下战胜坏巫师，和公主幸福生活。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>善良和勇敢会得到帮助。</div>
+            <div class="card-summary"><strong>简介：</strong>阿拉丁得到神灯，在灯神帮助下战胜坏巫师，和公主幸福生活。</div>
+            <div class="card-story"><p>很久以前，在中国有一个穷小子叫阿拉丁。一天，一个自称是他叔叔的坏巫师把他骗到一个山洞里，让他去取一盏旧油灯。阿拉丁拿到油灯后，巫师却把他关在山洞里。</p><p>阿拉丁害怕地搓着油灯，突然一个蓝色巨人出现了，说：“我是灯神，可以满足你三个愿望。”阿拉丁许愿回到家，又许愿有了很多钱。</p><p>后来，阿拉丁爱上了公主。他用神灯和飞毯来到王宫，娶到了公主。坏巫师知道后，骗走了神灯，抢走了公主和宫殿。阿拉丁用计谋夺回了神灯，打败了巫师。他和公主幸福地生活在一起。善良和勇敢的人总会得到帮助。</p></div>
+            <div class="card-moral"><strong>道理：</strong>善良和勇敢会得到帮助。</div>
             <div class="keywords"><span class="keyword" onclick="speak('阿拉丁')">阿拉丁</span><span class="keyword" onclick="speak('神灯')">神灯</span><span class="keyword" onclick="speak('灯神')">灯神</span><span class="keyword" onclick="speak('飞毯')">飞毯</span><span class="keyword" onclick="speak('公主')">公主</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(21)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(21)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(21)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(21)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(21)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -449,12 +497,14 @@
             <div class="card-emoji" onclick="playTitle(22)">🤥🪵</div>
             <div class="card-title">木偶奇遇记</div>
             <div class="card-subtitle">来源：意大利</div>
-            <div class="card-text">木偶匹诺曹一说谎鼻子就长，他学会诚实、勇敢，最后变成真正的小男孩。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>说谎鼻子会变长，诚实最重要。</div>
+            <div class="card-summary"><strong>简介：</strong>木偶匹诺曹一说谎鼻子就长，他学会诚实、勇敢，最后变成真正的小男孩。</div>
+            <div class="card-story"><p>老木匠杰佩托用一块木头做了一个木偶，取名叫匹诺曹。匹诺曹一出生就调皮捣蛋，他一说谎，鼻子就会变长。</p><p>匹诺曹不好好上学，跑去看木偶戏，还被两个坏蛋骗到了“快乐岛”。在那里，他玩得不亦乐乎，可是慢慢地，他的耳朵变成了驴耳朵，最后变成了一头驴。</p><p>匹诺曹被卖到马戏团，吃了很多苦。后来，他跳进海里，被一条大鲸鱼吞进了肚子里。在鲸鱼肚子里，他意外地遇见了前来寻找他的爸爸。匹诺曹背着爸爸逃出了鲸鱼肚子。</p><p>回到家后，匹诺曹变得诚实、勤劳、勇敢。有一天早上，他醒来发现自己变成了真正的小男孩。这个故事告诉我们：说谎鼻子会变长，诚实最重要。</p></div>
+            <div class="card-moral"><strong>道理：</strong>说谎鼻子会变长，诚实最重要。</div>
             <div class="keywords"><span class="keyword" onclick="speak('匹诺曹')">匹诺曹</span><span class="keyword" onclick="speak('鼻子')">鼻子</span><span class="keyword" onclick="speak('诚实')">诚实</span><span class="keyword" onclick="speak('爸爸')">爸爸</span><span class="keyword" onclick="speak('鲸鱼')">鲸鱼</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(22)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(22)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(22)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(22)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(22)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -466,12 +516,14 @@
             <div class="card-emoji" onclick="playTitle(23)">🧚‍♂️🏴‍☠️</div>
             <div class="card-title">彼得潘</div>
             <div class="card-subtitle">来源：英国</div>
-            <div class="card-text">彼得潘带温蒂去永无岛，和海盗船长战斗，经历奇妙冒险。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>保持童心，但也要勇敢成长。</div>
+            <div class="card-summary"><strong>简介：</strong>彼得潘带温蒂去永无岛，和海盗船长战斗，经历奇妙冒险。</div>
+            <div class="card-story"><p>在伦敦，有一个叫温蒂的小女孩。一天晚上，一个永远长不大的小男孩彼得潘从窗户飞进来，带她去了永无岛。</p><p>永无岛上有美丽的仙子、野蛮的印第安人、凶狠的海盗，还有美人鱼。彼得潘和温蒂带着两个弟弟，和岛上的孩子们一起快乐地生活。</p><p>可是海盗船长虎克一直想抓住彼得潘。虎克抓走了孩子们，还想喂他们吃毒药。彼得潘和虎克展开了一场激烈的战斗。最后，彼得潘把虎克推下了鳄鱼等待的大海。</p><p>温蒂想家了，彼得潘把她和弟弟们送回了伦敦。彼得潘继续留在永无岛，和新的孩子们一起冒险。这个故事告诉我们：保持童心，但也要勇敢成长。</p></div>
+            <div class="card-moral"><strong>道理：</strong>保持童心，但也要勇敢成长。</div>
             <div class="keywords"><span class="keyword" onclick="speak('彼得潘')">彼得潘</span><span class="keyword" onclick="speak('永无岛')">永无岛</span><span class="keyword" onclick="speak('海盗')">海盗</span><span class="keyword" onclick="speak('飞翔')">飞翔</span><span class="keyword" onclick="speak('冒险')">冒险</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(23)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(23)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(23)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(23)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(23)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -483,12 +535,14 @@
             <div class="card-emoji" onclick="playTitle(24)">🐷🕸️</div>
             <div class="card-title">夏洛的网</div>
             <div class="card-subtitle">来源：美国</div>
-            <div class="card-text">小猪威尔伯和蜘蛛夏洛成为朋友，夏洛织字救了威尔伯的命。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>真正的友谊很珍贵，朋友会互相帮助。</div>
+            <div class="card-summary"><strong>简介：</strong>小猪威尔伯和蜘蛛夏洛成为朋友，夏洛织字救了威尔伯的命。</div>
+            <div class="card-story"><p>在农场里，有一只小猪叫威尔伯。他生下来很弱小，主人差点不要他。幸好小女孩芬救了他，把他养大。</p><p>威尔伯来到舅舅的农场，认识了蜘蛛夏洛。夏洛和威尔伯成了最好的朋友。有一天，农场主说威尔伯太胖了，冬天要杀了他做火腿。威尔伯很害怕。</p><p>夏洛想救威尔伯。她在蜘蛛网上织出了“王牌猪”“了不起”“光彩照人”这些字。人们看见了，都觉得威尔伯是一只神奇的猪。</p><p>威尔伯在比赛中得了大奖，再也不用被杀了。可是夏洛因为太劳累，生下宝宝后就死去了。威尔伯一直记得夏洛，他把夏洛的宝宝们带回农场。真正的友谊很珍贵，朋友会互相帮助。</p></div>
+            <div class="card-moral"><strong>道理：</strong>真正的友谊很珍贵，朋友会互相帮助。</div>
             <div class="keywords"><span class="keyword" onclick="speak('小猪')">小猪</span><span class="keyword" onclick="speak('蜘蛛')">蜘蛛</span><span class="keyword" onclick="speak('朋友')">朋友</span><span class="keyword" onclick="speak('农场')">农场</span><span class="keyword" onclick="speak('友谊')">友谊</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(24)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(24)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(24)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(24)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(24)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -500,12 +554,14 @@
             <div class="card-emoji" onclick="playTitle(25)">👶🔱</div>
             <div class="card-title">哪吒闹海</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">小哪吒为救百姓，打死龙王三太子，最后舍身保护陈塘关。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>勇敢反抗不公，保护弱小。</div>
+            <div class="card-summary"><strong>简介：</strong>小哪吒为救百姓，打死龙王三太子，最后舍身保护陈塘关。</div>
+            <div class="card-story"><p>很久很久以前，陈塘关总兵李靖有一个儿子叫哪吒。哪吒天生神力，脖子上戴着乾坤圈，手臂上缠着混天绫。</p><p>一天，哪吒在海边玩耍。东海龙王的三太子出来行凶，要吃童男童女。哪吒见义勇为，打败了三太子，还抽了他的龙筋。东海龙王大怒，跑到天庭告状。</p><p>龙王们联合起来，水淹陈塘关，威胁要淹死所有百姓。哪吒为了不连累父母和陈塘关的百姓，大声说：“我自己做的事，自己来承担！”他拔剑自刎，用自己的生命保护了大家。</p><p>后来，师父太乙真人用莲花和莲藕为哪吒重新塑造了身体。哪吒复活后，变得更加勇敢，最终打败了龙王，保护了百姓。</p></div>
+            <div class="card-moral"><strong>道理：</strong>勇敢反抗不公，保护弱小。</div>
             <div class="keywords"><span class="keyword" onclick="speak('哪吒')">哪吒</span><span class="keyword" onclick="speak('龙王')">龙王</span><span class="keyword" onclick="speak('混天绫')">混天绫</span><span class="keyword" onclick="speak('勇敢')">勇敢</span><span class="keyword" onclick="speak('保护')">保护</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(25)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(25)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(25)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(25)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(25)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -517,12 +573,14 @@
             <div class="card-emoji" onclick="playTitle(26)">🌙🧚‍♀️</div>
             <div class="card-title">嫦娥奔月</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">嫦娥为了保护仙药不落入坏人之手，吞下仙药飞向月亮。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>善良的选择有时需要牺牲。</div>
+            <div class="card-summary"><strong>简介：</strong>嫦娥为了保护仙药不落入坏人之手，吞下仙药飞向月亮。</div>
+            <div class="card-story"><p>古时候，天上有十个太阳，烤得大地干裂。一个叫后羿的英雄射下了九个太阳，救了百姓。王母娘娘奖励他一包长生不老药。</p><p>后羿舍不得离开妻子嫦娥，没有立刻吃药，他把药交给嫦娥保管。后羿的一个徒弟蓬蒙知道了这件事，想要偷走仙药。</p><p>一天，后羿出门了，蓬蒙闯进家里逼嫦娥交出仙药。嫦娥知道自己打不过坏人，她不想让仙药落入坏人之手，就把整包药吞了下去。</p><p>嫦娥的身体变得轻飘飘的，飞出了窗户，一直飞到了月亮上。后羿回来后，望着月亮伤心地呼喊嫦娥。嫦娥在月亮上看着人间，也非常想念后羿。每到中秋，人们就赏月纪念嫦娥。善良的选择有时需要牺牲。</p></div>
+            <div class="card-moral"><strong>道理：</strong>善良的选择有时需要牺牲。</div>
             <div class="keywords"><span class="keyword" onclick="speak('嫦娥')">嫦娥</span><span class="keyword" onclick="speak('月亮')">月亮</span><span class="keyword" onclick="speak('后羿')">后羿</span><span class="keyword" onclick="speak('仙药')">仙药</span><span class="keyword" onclick="speak('飞天')">飞天</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(26)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(26)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(26)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(26)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(26)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -534,12 +592,14 @@
             <div class="card-emoji" onclick="playTitle(27)">🐌👧</div>
             <div class="card-title">田螺姑娘</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">贫穷青年捡到田螺，田螺变成姑娘默默帮他做家务，两人幸福生活。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>勤劳善良的人会得到好报。</div>
+            <div class="card-summary"><strong>简介：</strong>贫穷青年捡到田螺，田螺变成姑娘默默帮他做家务，两人幸福生活。</div>
+            <div class="card-story"><p>很久很久以前，有一个勤劳善良的年轻人，一个人住在山脚下。他每天早出晚归，种地砍柴，可是生活很穷苦。</p><p>有一天，年轻人从田里捡回一只大田螺，把它养在水缸里。从那以后，他每天干完活回家，发现桌子上都摆着热腾腾的饭菜。他以为是邻居们帮忙，去问了一圈，却没有人承认。</p><p>年轻人决定偷偷看看是谁在帮忙。有一天，他假装出门，又悄悄返回，从窗户缝里看见一位美丽的姑娘从水缸里走出来，为他做饭。年轻人走进屋，姑娘想回到水缸里，已经来不及了。</p><p>原来姑娘是田螺变的仙女，被年轻人的勤劳善良感动了。她愿意留下来做他的妻子。从此，两人一起劳动，过上了幸福的生活。勤劳善良的人会得到好报。</p></div>
+            <div class="card-moral"><strong>道理：</strong>勤劳善良的人会得到好报。</div>
             <div class="keywords"><span class="keyword" onclick="speak('田螺')">田螺</span><span class="keyword" onclick="speak('姑娘')">姑娘</span><span class="keyword" onclick="speak('勤劳')">勤劳</span><span class="keyword" onclick="speak('善良')">善良</span><span class="keyword" onclick="speak('幸福')">幸福</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(27)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(27)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(27)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(27)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(27)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -551,12 +611,14 @@
             <div class="card-emoji" onclick="playTitle(28)">🐒☁️</div>
             <div class="card-title">大闹天宫</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">孙悟空不满天庭轻视，大闹天宫，展现七十二变的本领。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>勇敢挑战不合理的规则。</div>
+            <div class="card-summary"><strong>简介：</strong>孙悟空不满天庭轻视，大闹天宫，展现七十二变的本领。</div>
+            <div class="card-story"><p>花果山上有一只石猴，名叫孙悟空。他学会了一身本领，能七十二变，一个筋斗能翻十万八千里。他因为没有兵器，去龙宫借走了定海神针，变成了一根金箍棒。</p><p>玉帝想管他，让他到天庭当个小官。孙悟空发现玉帝看不起自己，非常生气。他回到花果山，自称“齐天大圣”。玉帝派天兵天将去捉拿他，可谁也不是孙悟空的对手。</p><p>孙悟空大闹天宫，把玉帝打得钻到桌子底下。他还吃光了王母娘娘的蟠桃，喝光了仙酒，搅乱了蟠桃会。最后，如来佛祖把孙悟空压在五行山下。五百年后，孙悟空才会出来，护送唐僧去西天取经。勇敢挑战不合理的规则是对的，但也要遵守规则。</p></div>
+            <div class="card-moral"><strong>道理：</strong>勇敢挑战不合理的规则。</div>
             <div class="keywords"><span class="keyword" onclick="speak('孙悟空')">孙悟空</span><span class="keyword" onclick="speak('天宫')">天宫</span><span class="keyword" onclick="speak('金箍棒')">金箍棒</span><span class="keyword" onclick="speak('神仙')">神仙</span><span class="keyword" onclick="speak('勇敢')">勇敢</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(28)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(28)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(28)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(28)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(28)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -568,12 +630,14 @@
             <div class="card-emoji" onclick="playTitle(29)">🐂👩🌌</div>
             <div class="card-title">牛郎织女</div>
             <div class="card-subtitle">来源：中国</div>
-            <div class="card-text">牛郎和织女相爱，被王母娘娘分开，每年七夕鹊桥相会。</div>
-            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>真爱能跨越距离，相聚值得珍惜。</div>
+            <div class="card-summary"><strong>简介：</strong>牛郎和织女相爱，被王母娘娘分开，每年七夕鹊桥相会。</div>
+            <div class="card-story"><p>很久很久以前，有一个叫牛郎的孤儿，他勤劳善良，和一头老牛相依为命。老牛告诉他，天上的仙女会在银河里洗澡，让他去河边。</p><p>牛郎来到河边，看见一位美丽的仙女，她是王母娘娘的外孙女，名叫织女。织女擅长织布，她织出的云霞就是天上的云彩。牛郎和织女相爱了，结为夫妻，生下了一双儿女。</p><p>王母娘娘知道后非常生气，派天兵把织女抓回天庭。牛郎急忙披上老牛留下的牛皮，挑着两个孩子追了上去。眼看就要追上了，王母娘娘拔下头上的金簪，在天空划出一道波涛汹涌的银河，把牛郎和织女隔开了。</p><p>他们的真情感动了喜鹊。每年农历七月初七，成千上万的喜鹊飞来，搭成鹊桥，让牛郎和织女相会。这一天，人们称为七夕节。</p></div>
+            <div class="card-moral"><strong>道理：</strong>真爱能跨越距离，相聚值得珍惜。</div>
             <div class="keywords"><span class="keyword" onclick="speak('牛郎')">牛郎</span><span class="keyword" onclick="speak('织女')">织女</span><span class="keyword" onclick="speak('鹊桥')">鹊桥</span><span class="keyword" onclick="speak('七夕')">七夕</span><span class="keyword" onclick="speak('星星')">星星</span></div>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="playTitle(29)">🔊 读标题</button>
-                <button class="btn btn-secondary" onclick="playSummary(29)">📖 读故事</button>
+                <button class="btn btn-secondary" onclick="playSummary(29)">📖 读简介</button>
+                <button class="btn btn-fourth" onclick="playStory(29)">📚 读完整故事</button>
                 <button class="btn btn-third" onclick="playMoral(29)">💡 读道理</button>
             </div>
             <div class="nav-btns">
@@ -615,7 +679,7 @@
         <a href="index.html" class="back-home">⬅️ 返回首页</a>
     </div>
 <script>
-        const items = [{"title": "三只小猪", "emoji": "🐷🐷🐷", "origin": "中国", "moral": "勤劳和认真做事很重要。", "summary": "三只小猪分别用稻草、木头和砖头盖房子，大灰狼吹倒了前两座，只有砖房保护了他们。", "words": ["小猪", "房子", "大灰狼", "勤劳", "安全"]}, {"title": "小蝌蚪找妈妈", "emoji": "🐸🔍", "origin": "中国", "moral": "遇到困难要坚持，妈妈永远爱我们。", "summary": "小蝌蚪出生不认识妈妈，一路问鲤鱼、乌龟，最后终于找到青蛙妈妈。", "words": ["蝌蚪", "青蛙", "妈妈", "坚持", "寻找"]}, {"title": "小马过河", "emoji": "🐴🌊", "origin": "中国", "moral": "别人的经验不一定适合自己，要亲自尝试。", "summary": "小马要过河，老牛说浅，松鼠说深，小马自己试一试才发现刚好。", "words": ["小马", "过河", "尝试", "勇敢", "河水"]}, {"title": "狼来了", "emoji": "🐺📢", "origin": "中国", "moral": "说谎会失去别人的信任。", "summary": "放羊娃多次喊狼来了骗人，后来真狼来了，没人相信他。", "words": ["放羊娃", "说谎", "狼", "信任", "后悔"]}, {"title": "龟兔赛跑", "emoji": "🐢🐰", "origin": "中国", "moral": "骄傲使人落后，坚持才能胜利。", "summary": "兔子嘲笑乌龟慢，中途睡大觉，乌龟一步一步走到了终点。", "words": ["兔子", "乌龟", "比赛", "坚持", "骄傲"]}, {"title": "孔融让梨", "emoji": "🍐👦", "origin": "中国", "moral": "懂得谦让，尊敬长辈。", "summary": "小孔融把大梨让给哥哥和长辈，自己拿最小的梨。", "words": ["孔融", "梨子", "谦让", "哥哥", "礼貌"]}, {"title": "司马光砸缸", "emoji": "🏺💥", "origin": "中国", "moral": "遇到危险要冷静，想办法救人。", "summary": "小伙伴掉进大水缸，司马光砸破缸，水流出救了人。", "words": ["司马光", "水缸", "救人", "聪明", "勇敢"]}, {"title": "神笔马良", "emoji": "🖌️✨", "origin": "中国", "moral": "善良和正义会战胜贪婪。", "summary": "马良有一支神笔，画什么变什么，他用它帮助穷人，惩治坏人。", "words": ["马良", "神笔", "画画", "善良", "正义"]}, {"title": "猴子捞月", "emoji": "🐒🌙", "origin": "中国", "moral": "遇事要仔细观察，不要忙中出错。", "summary": "猴子看见井里的月亮倒影，以为月亮掉进去了，怎么也捞不上来。", "words": ["猴子", "月亮", "井", "观察", "倒影"]}, {"title": "狐假虎威", "emoji": "🦊🐯", "origin": "中国", "moral": "不要借别人的威风吓唬人。", "summary": "狐狸被老虎抓住，却骗老虎说自己是百兽之王，借着老虎的威风吓跑动物。", "words": ["狐狸", "老虎", "威风", "狡猾", "害怕"]}, {"title": "白雪公主", "emoji": "🍎👸", "origin": "德国/格林", "moral": "善良的心比美丽的外表更重要。", "summary": "白雪公主被继母嫉妒陷害，逃进森林，七个小矮人帮助她，最后王子救醒了她。", "words": ["白雪公主", "小矮人", "皇后", "善良", "镜子"]}, {"title": "灰姑娘", "emoji": "👠🕛", "origin": "德国/格林", "moral": "保持善良，机会会眷顾努力的人。", "summary": "灰姑娘受继母欺负，仙女帮她参加舞会，水晶鞋让她与王子重逢。", "words": ["灰姑娘", "水晶鞋", "王子", "仙女", "南瓜"]}, {"title": "小红帽", "emoji": "🧺🔴", "origin": "德国/格林", "moral": "不要和陌生人说话，要听妈妈的话。", "summary": "小红帽去看望外婆，路上被大灰狼骗，猎人赶来救了她们。", "words": ["小红帽", "大灰狼", "外婆", "猎人", "森林"]}, {"title": "睡美人", "emoji": "👸😴", "origin": "德国/格林", "moral": "真爱和善良能打破诅咒。", "summary": "公主被诅咒沉睡一百年，王子勇敢的吻唤醒了她。", "words": ["公主", "王子", "诅咒", "纺锤", "沉睡"]}, {"title": "青蛙王子", "emoji": "🐸👑", "origin": "德国/格林", "moral": "答应别人的事要做到，守信很重要。", "summary": "公主的金球掉进池塘，青蛙帮她捡回，她遵守诺言亲吻青蛙，青蛙变回王子。", "words": ["公主", "青蛙", "金球", "守信", "池塘"]}, {"title": "丑小鸭", "emoji": "🦆🦢", "origin": "丹麦/安徒生", "moral": "不要小看自己，每个人都有自己的美丽。", "summary": "丑小鸭被嘲笑长得难看，长大后变成美丽的天鹅。", "words": ["丑小鸭", "天鹅", "成长", "自信", "美丽"]}, {"title": "卖火柴的小女孩", "emoji": "🔥👧", "origin": "丹麦/安徒生", "moral": "珍惜温暖幸福的生活，学会关爱他人。", "summary": "大年夜，小女孩卖不出火柴，在寒冷中擦亮火柴看到美好的幻象。", "words": ["小女孩", "火柴", "寒冷", "奶奶", "温暖"]}, {"title": "皇帝的新装", "emoji": "👑👀", "origin": "丹麦/安徒生", "moral": "要勇敢说真话，不要被虚荣蒙蔽。", "summary": "皇帝被两个骗子欺骗，穿着不存在的新衣游行，只有小孩说出真相。", "words": ["皇帝", "骗子", "新衣", "真话", "虚荣"]}, {"title": "海的女儿", "emoji": "🧜‍♀️🌊", "origin": "丹麦/安徒生", "moral": "真正的爱是成全和善良。", "summary": "小人鱼为了王子变成人，最后却选择化成泡沫守护他。", "words": ["美人鱼", "王子", "大海", "泡沫", "牺牲"]}, {"title": "拇指姑娘", "emoji": "🌸👧", "origin": "丹麦/安徒生", "moral": "即使很小，也能勇敢追求幸福。", "summary": "拇指姑娘只有拇指那么大，经历了许多冒险，最后找到了花精灵的家。", "words": ["拇指姑娘", "花", "田鼠", "燕子", "勇敢"]}, {"title": "阿里巴巴与四十大盗", "emoji": "🗝️🚪", "origin": "阿拉伯/一千零一夜", "moral": "智慧和勇气能战胜坏人。", "summary": "阿里巴巴发现强盗宝库，用智慧和女仆 Morgana 打败四十大盗。", "words": ["阿里巴巴", "山洞", "芝麻开门", "强盗", "智慧"]}, {"title": "阿拉丁神灯", "emoji": "🧞✨", "origin": "阿拉伯/一千零一夜", "moral": "善良和勇敢会得到帮助。", "summary": "阿拉丁得到神灯，在灯神帮助下战胜坏巫师，和公主幸福生活。", "words": ["阿拉丁", "神灯", "灯神", "飞毯", "公主"]}, {"title": "木偶奇遇记", "emoji": "🤥🪵", "origin": "意大利", "moral": "说谎鼻子会变长，诚实最重要。", "summary": "木偶匹诺曹一说谎鼻子就长，他学会诚实、勇敢，最后变成真正的小男孩。", "words": ["匹诺曹", "鼻子", "诚实", "爸爸", "鲸鱼"]}, {"title": "彼得潘", "emoji": "🧚‍♂️🏴‍☠️", "origin": "英国", "moral": "保持童心，但也要勇敢成长。", "summary": "彼得潘带温蒂去永无岛，和海盗船长战斗，经历奇妙冒险。", "words": ["彼得潘", "永无岛", "海盗", "飞翔", "冒险"]}, {"title": "夏洛的网", "emoji": "🐷🕸️", "origin": "美国", "moral": "真正的友谊很珍贵，朋友会互相帮助。", "summary": "小猪威尔伯和蜘蛛夏洛成为朋友，夏洛织字救了威尔伯的命。", "words": ["小猪", "蜘蛛", "朋友", "农场", "友谊"]}, {"title": "哪吒闹海", "emoji": "👶🔱", "origin": "中国", "moral": "勇敢反抗不公，保护弱小。", "summary": "小哪吒为救百姓，打死龙王三太子，最后舍身保护陈塘关。", "words": ["哪吒", "龙王", "混天绫", "勇敢", "保护"]}, {"title": "嫦娥奔月", "emoji": "🌙🧚‍♀️", "origin": "中国", "moral": "善良的选择有时需要牺牲。", "summary": "嫦娥为了保护仙药不落入坏人之手，吞下仙药飞向月亮。", "words": ["嫦娥", "月亮", "后羿", "仙药", "飞天"]}, {"title": "田螺姑娘", "emoji": "🐌👧", "origin": "中国", "moral": "勤劳善良的人会得到好报。", "summary": "贫穷青年捡到田螺，田螺变成姑娘默默帮他做家务，两人幸福生活。", "words": ["田螺", "姑娘", "勤劳", "善良", "幸福"]}, {"title": "大闹天宫", "emoji": "🐒☁️", "origin": "中国", "moral": "勇敢挑战不合理的规则。", "summary": "孙悟空不满天庭轻视，大闹天宫，展现七十二变的本领。", "words": ["孙悟空", "天宫", "金箍棒", "神仙", "勇敢"]}, {"title": "牛郎织女", "emoji": "🐂👩🌌", "origin": "中国", "moral": "真爱能跨越距离，相聚值得珍惜。", "summary": "牛郎和织女相爱，被王母娘娘分开，每年七夕鹊桥相会。", "words": ["牛郎", "织女", "鹊桥", "七夕", "星星"]}];
+        const items = [{"title": "三只小猪", "emoji": "🐷🐷🐷", "origin": "中国", "moral": "勤劳和认真做事很重要。", "summary": "三只小猪分别用稻草、木头和砖头盖房子，大灰狼吹倒了前两座，只有砖房保护了他们。", "story": "从前有三只小猪，他们长大了，猪妈妈让他们各自出去盖房子住。第一只小猪很懒，他用稻草很快地搭了一座房子。第二只小猪也觉得麻烦，他用木头盖了一座房子。第三只小猪最勤劳，他用一块一块的砖头，认真地盖了一座结实的房子。\n有一天，一只大灰狼来了。他来到稻草房前，用力一吹，呼——稻草房就倒了。第一只小猪急忙跑到第二只小猪的木头房子里。大灰狼又追了过来，他对木头房子吹了又吹，木头房子也倒了。两只小猪赶紧跑到第三只小猪的砖房子里。\n大灰狼来到砖房子前，吹呀吹，吹得满头大汗，房子却纹丝不动。他又想从烟囱爬进去，第三只小猪早就生起了火。大灰狼被烧得尾巴疼，大叫着逃跑了。三只小猪从此在砖房子里过着安全快乐的生活。这个故事告诉我们：勤劳和认真做事很重要。", "words": ["小猪", "房子", "大灰狼", "勤劳", "安全"]}, {"title": "小蝌蚪找妈妈", "emoji": "🐸🔍", "origin": "中国", "moral": "遇到困难要坚持，妈妈永远爱我们。", "summary": "小蝌蚪出生不认识妈妈，一路问鲤鱼、乌龟，最后终于找到青蛙妈妈。", "story": "暖和的春天来了，池塘里游着一群黑黑的小蝌蚪。他们不知道自己的妈妈在哪里。一只小蝌蚪问鲤鱼阿姨：“您看见我们的妈妈了吗？”鲤鱼说：“你们的妈妈有两只大眼睛，你们去找找吧。”\n小蝌蚪游呀游，看见一只乌龟，她长着两只大眼睛。小蝌蚪高兴地叫：“妈妈，妈妈！”乌龟笑着说：“我不是你们的妈妈，你们的妈妈肚皮是雪白的。”\n小蝌蚪又游呀游，看见一只大白鹅，她的肚皮是雪白的。小蝌蚪喊：“妈妈！”白鹅摇摇头说：“你们的妈妈有四条腿。”\n小蝌蚪继续游，看见一只青蛙蹲在荷叶上。她有两只大眼睛、雪白的肚皮，还有四条腿。小蝌蚪们围上去叫：“妈妈！”青蛙妈妈笑着说：“好孩子，我就是你们的妈妈。你们小时候是黑黑的小蝌蚪，慢慢长大才会变成青蛙。”小蝌蚪们终于找到了妈妈，开心地在池塘里玩耍。", "words": ["蝌蚪", "青蛙", "妈妈", "坚持", "寻找"]}, {"title": "小马过河", "emoji": "🐴🌊", "origin": "中国", "moral": "别人的经验不一定适合自己，要亲自尝试。", "summary": "小马要过河，老牛说浅，松鼠说深，小马自己试一试才发现刚好。", "story": "马棚里住着一匹老马和一匹小马。有一天，老马对小马说：“你已经长大了，能帮妈妈做点事吗？”小马高兴地说：“我愿意！”老马让他把一袋麦子驮到磨坊去。\n小马驮起麦子，飞快地往磨坊跑去。跑着跑着，一条小河挡住了去路。河水哗哗地流，小马不知道能不能过去。\n河边有一头老牛在吃草。小马问：“牛伯伯，这条河我能过去吗？”老牛说：“水很浅，刚没过小腿，能过去。”小马正要下河，一只松鼠拦住了他：“小马，别下去！河水很深，我的小伙伴就是掉进河里淹死的。”\n小马为难了，只好跑回家问妈妈。妈妈说：“孩子，光听别人说，自己不动脑筋，是不行的。河水是深是浅，你试一试就知道。”\n小马跑到河边，小心地把蹄子伸进水里。原来河水既不深，也不浅，刚好能过去。他顺利地过了河，把麦子送到了磨坊。", "words": ["小马", "过河", "尝试", "勇敢", "河水"]}, {"title": "狼来了", "emoji": "🐺📢", "origin": "中国", "moral": "说谎会失去别人的信任。", "summary": "放羊娃多次喊狼来了骗人，后来真狼来了，没人相信他。", "story": "从前，有个放羊娃每天都上山放羊。他觉得无聊，就想捉弄村里的人。\n有一天，他站在山坡上大喊：“狼来了！狼来了！”村民们听到喊声，急忙拿着锄头和扁担跑上山。可是到了山上，根本没有狼。放羊娃哈哈大笑：“你们上当了！”村民们生气地离开了。\n过了几天，放羊娃又喊：“狼来了！狼来了！”善良的村民们又跑上山，还是没看见狼。放羊娃笑得更大声了。村民们非常生气，说：“下次我们再也不相信你了。”\n过了几天，真的来了一只大灰狼。狼冲进羊群，咬死了好多小羊。放羊娃吓得大喊：“狼真的来了！救命啊！”可是村民们以为他又在骗人，谁也没有来。\n结果，放羊娃的羊被狼咬死了很多。他坐在地上大哭，后悔地说：“我不该说谎啊！”从此，他再也不敢骗人了。", "words": ["放羊娃", "说谎", "狼", "信任", "后悔"]}, {"title": "龟兔赛跑", "emoji": "🐢🐰", "origin": "中国", "moral": "骄傲使人落后，坚持才能胜利。", "summary": "兔子嘲笑乌龟慢，中途睡大觉，乌龟一步一步走到了终点。", "story": "森林里要举行跑步比赛，小兔子报名参加了。小兔子跑得非常快，他看见乌龟也报了名，就笑着说：“乌龟，你爬得那么慢，还敢跟我比赛？”乌龟说：“我会坚持到底的。”\n比赛开始了。小兔子像箭一样冲了出去，很快就把乌龟远远地甩在后面。他回头一看，乌龟才爬了一点点。小兔子心想：“乌龟这么慢，我先睡一会儿也来得及。”\n于是，小兔子躺在路边的大树下，呼呼地睡着了。乌龟一步一步不停地往前爬。他爬过小兔子身边时，没有停下来，继续向终点爬去。\n太阳慢慢升高了，小兔子醒来一看，太阳都到头顶了。他跳起来就往终点跑，可是已经来不及了。乌龟已经到达了终点，小动物们都为乌龟鼓掌。小兔子低下头，明白了：骄傲使人落后，坚持才能胜利。", "words": ["兔子", "乌龟", "比赛", "坚持", "骄傲"]}, {"title": "孔融让梨", "emoji": "🍐👦", "origin": "中国", "moral": "懂得谦让，尊敬长辈。", "summary": "小孔融把大梨让给哥哥和长辈，自己拿最小的梨。", "story": "东汉时候，有一个聪明又懂事的小男孩，名叫孔融。他四岁那年，家里来了一位客人，送来了一篮新鲜的梨子。\n爸爸让孔融把梨子分给大家。孔融看了看篮子，选了一个最小的梨子拿在手里。爸爸奇怪地问：“你为什么不拿大的，反而拿最小的呢？”孔融认真地说：“我年纪小，应该吃小梨；大梨留给哥哥和长辈吃。”\n爸爸听了，笑着摸摸他的头，又问：“那弟弟比你更小，为什么小梨不留给他呢？”孔融说：“我是哥哥，应该让着弟弟。”\n客人和家人们听了，都夸孔融懂事。从此，“孔融让梨”的故事流传下来，教育孩子们要懂得谦让、尊敬长辈。", "words": ["孔融", "梨子", "谦让", "哥哥", "礼貌"]}, {"title": "司马光砸缸", "emoji": "🏺💥", "origin": "中国", "moral": "遇到危险要冷静，想办法救人。", "summary": "小伙伴掉进大水缸，司马光砸破缸，水流出救了人。", "story": "古时候，有一群孩子在院子里玩耍。院子里有一口很大的水缸，里面装满了水。一个调皮的小男孩爬到了水缸边上，一不小心，“扑通”一声掉进了水缸里。\n其他孩子都吓坏了，有的哭，有的跑去找大人。只有司马光没有慌张。他想：“水缸这么深，掉进去的小朋友肯定会被淹死，必须马上救他！”可是大家都太小，根本够不到水缸里。\n司马光看见地上有一块石头，他灵机一动，抱起石头用力向水缸砸去。“砰！”水缸破了一个大洞，水哗哗地流了出来。不一会儿，水缸里的水就流干了，掉进去的小朋友也得救了。大家都夸司马光又聪明又勇敢。", "words": ["司马光", "水缸", "救人", "聪明", "勇敢"]}, {"title": "神笔马良", "emoji": "🖌️✨", "origin": "中国", "moral": "善良和正义会战胜贪婪。", "summary": "马良有一支神笔，画什么变什么，他用它帮助穷人，惩治坏人。", "story": "从前有一个穷苦的孩子，名叫马良。他非常喜欢画画，可是家里穷，连一支笔都买不起。马良就用树枝在沙地上画，用草根在石头上画，天天练习。\n一天晚上，一位白胡子老爷爷出现在马良面前，送给他一支金光闪闪的神笔。老爷爷说：“这支笔会帮助善良的人。”马良接过神笔，画了一只公鸡，公鸡竟然活了，喔喔地叫了起来。\n马良用神笔给穷人画粮食、画耕牛、画房子。消息传到了县官耳朵里，贪婪的县官把马良抓了起来，逼他画金山银山。马良不肯，县官就抢走了神笔。可是县官自己画，画出来的东西都不会动。\n马良拿回神笔，画了一片大海，又画了一座金山。县官急忙跳上大船去金山，马良又画了几笔大风。大浪把船打翻了，县官掉进了海里。马良继续用神笔帮助穷苦的百姓。", "words": ["马良", "神笔", "画画", "善良", "正义"]}, {"title": "猴子捞月", "emoji": "🐒🌙", "origin": "中国", "moral": "遇事要仔细观察，不要忙中出错。", "summary": "猴子看见井里的月亮倒影，以为月亮掉进去了，怎么也捞不上来。", "story": "一天晚上，一群猴子在井边玩耍。一只小猴子抬头看见天上圆圆的月亮，又低头看见井里也有一轮圆圆的月亮。小猴子大叫：“不好了！月亮掉进井里了！”\n猴群都围了过来，大家看着井里的月亮，都很着急。老猴子说：“月亮掉在井里，我们一起把它捞上来！”一只猴子倒挂在树上，抓住另一只猴子的脚，猴子们一只接一只倒挂下来，像一条长长的链子。\n最下面的小猴子伸手去捞月亮，他的手刚碰到水面，月亮就碎成了一片一片。小猴子捞了又捞，怎么也捞不上来。\n这时，一只聪明的小猴子抬头看了看天，大声说：“月亮不是好好地挂在天上吗？井里的月亮只是影子！”大家抬头一看，果然，月亮还挂在天上呢。这个故事告诉我们：遇事要仔细观察，不要忙中出错。", "words": ["猴子", "月亮", "井", "观察", "倒影"]}, {"title": "狐假虎威", "emoji": "🦊🐯", "origin": "中国", "moral": "不要借别人的威风吓唬人。", "summary": "狐狸被老虎抓住，却骗老虎说自己是百兽之王，借着老虎的威风吓跑动物。", "story": "在一片森林里，有一只饥饿的老虎抓住了一只狐狸。狐狸吓得浑身发抖，可是他眼珠一转，想出了一个办法。\n狐狸对老虎说：“老天爷让我做百兽之王，你怎么敢吃我？如果你不信，就跟我到森林里走一趟，看看其他动物怕不怕我。”老虎心想：“这狐狸这么大胆，难道真的是百兽之王？”\n于是老虎跟着狐狸往森林里走去。小动物们看见老虎来了，都吓得四处逃跑。狐狸得意地走在老虎前面，边走边说：“看见了吗？他们多怕我！”老虎以为小动物们真的害怕狐狸，就乖乖地放了狐狸。\n其实，小动物们怕的不是狐狸，而是跟在狐狸后面的老虎。狐狸是借着老虎的威风才吓跑了大家。这个故事告诉我们：不要借别人的威风吓唬人。", "words": ["狐狸", "老虎", "威风", "狡猾", "害怕"]}, {"title": "白雪公主", "emoji": "🍎👸", "origin": "德国/格林", "moral": "善良的心比美丽的外表更重要。", "summary": "白雪公主被继母嫉妒陷害，逃进森林，七个小矮人帮助她，最后王子救醒了她。", "story": "从前有一位美丽的公主，她的皮肤像雪一样白，大家叫她白雪公主。她的继母是一个坏皇后，有一面魔镜。她每天问魔镜：“谁是世界上最美丽的女人？”魔镜总是说：“是您。”\n可是有一天，魔镜说：“白雪公主比您美丽一千倍。”皇后听了非常嫉妒，命令猎人把白雪公主带到森林里杀掉。猎人同情白雪公主，放走了她。\n白雪公主逃到森林里，发现了七个小矮人的房子。她帮小矮人打扫屋子，小矮人收留了她。坏皇后得知后，扮成老婆婆，骗白雪公主吃了一个毒苹果。白雪公主倒在地上，像睡着了一样。\n后来，一位王子路过，他爱上了白雪公主。王子轻轻地抱起她，毒苹果从她嘴里掉了出来。白雪公主醒了过来，和王子幸福地生活在一起。坏皇后也得到了应有的惩罚。", "words": ["白雪公主", "小矮人", "皇后", "善良", "镜子"]}, {"title": "灰姑娘", "emoji": "👠🕛", "origin": "德国/格林", "moral": "保持善良，机会会眷顾努力的人。", "summary": "灰姑娘受继母欺负，仙女帮她参加舞会，水晶鞋让她与王子重逢。", "story": "从前有一个善良的女孩，她的继母和姐姐们对她很不好，总是让她穿旧衣服、干粗活，还叫她灰姑娘。\n一天，王子要举办舞会，邀请全国的姑娘参加。灰姑娘也很想去，可是继母不让她去。灰姑娘伤心地哭了起来。这时，一位仙女出现了，她用魔法给灰姑娘穿上了漂亮的礼服和水晶鞋，还变出了一辆南瓜马车。\n仙女告诉灰姑娘：“午夜十二点前必须回来，不然魔法就会消失。”灰姑娘来到王宫，王子被她深深吸引，整晚只和她跳舞。\n钟声敲响了十二下，灰姑娘急忙跑走，不小心掉了一只水晶鞋。王子拿着水晶鞋到处寻找，终于找到了灰姑娘。灰姑娘穿上水晶鞋，正好合适。王子娶她为妻，灰姑娘从此过上了幸福的生活。", "words": ["灰姑娘", "水晶鞋", "王子", "仙女", "南瓜"]}, {"title": "小红帽", "emoji": "🧺🔴", "origin": "德国/格林", "moral": "不要和陌生人说话，要听妈妈的话。", "summary": "小红帽去看望外婆，路上被大灰狼骗，猎人赶来救了她们。", "story": "从前有一个可爱的小女孩，她喜欢戴着外婆送的红帽子，大家都叫她小红帽。一天，妈妈让她带着蛋糕去看望生病的外婆。\n小红帽走在森林里，一只大灰狼拦住了她：“小姑娘，你要去哪里？”小红帽说：“我要去看外婆。”大灰狼又问：“外婆家住在哪里？”小红帽告诉了他。\n大灰狼抢先跑到外婆家，把外婆关进了衣柜，然后穿上外婆的衣服躺在床上。小红帽到了外婆家，觉得外婆的耳朵、眼睛和嘴巴都变得好大。大灰狼跳起来，把小红帽也吞进了肚子。\n幸好一位猎人路过，他剪开大灰狼的肚皮，救出了小红帽和外婆。大家用石头填满狼肚子，大灰狼再也跑不动了。小红帽以后再也不敢跟陌生人说话了。", "words": ["小红帽", "大灰狼", "外婆", "猎人", "森林"]}, {"title": "睡美人", "emoji": "👸😴", "origin": "德国/格林", "moral": "真爱和善良能打破诅咒。", "summary": "公主被诅咒沉睡一百年，王子勇敢的吻唤醒了她。", "story": "很久很久以前，国王和王后生了一位美丽的小公主，他们为她举办盛大的宴会。国王邀请了十二位仙女，却忘了邀请一位坏女巫。\n坏女巫非常生气，她在宴会上诅咒公主：“公主十五岁时会被纺锤刺死！”一位善良的仙女把诅咒改成了：“公主不会死，只会沉睡一百年，直到有一位王子来唤醒她。”\n国王下令全国销毁纺锤。可是公主十五岁那年，还是在城堡里找到了一个纺锤。她的手指被刺破了，立刻倒在地上睡着了。整个城堡的人也都跟着睡着了。城堡周围长满了高高的荆棘。\n一百年后，一位勇敢的王子来到城堡。他披荆斩棘，找到了沉睡的公主。王子轻轻吻了她，公主睁开了眼睛。城堡里的人都醒了过来，王子和公主举行了盛大的婚礼。", "words": ["公主", "王子", "诅咒", "纺锤", "沉睡"]}, {"title": "青蛙王子", "emoji": "🐸👑", "origin": "德国/格林", "moral": "答应别人的事要做到，守信很重要。", "summary": "公主的金球掉进池塘，青蛙帮她捡回，她遵守诺言亲吻青蛙，青蛙变回王子。", "story": "从前有一位小公主，她最喜欢玩一个金色的球。有一天，她在池塘边玩球，一不小心，金球掉进了水里。小公主坐在池塘边哭了起来。\n一只青蛙从水里伸出头来，对她说：“我可以帮你把球捞上来，但是你要答应和我做朋友。”小公主答应了。青蛙潜入水里，把金球捞了上来。小公主高兴地接过金球，转身就跑，完全忘了答应青蛙的事。\n第二天，青蛙来到王宫，要求小公主履行诺言。国王知道后，严肃地说：“答应别人的事一定要做到。”小公主只好让青蛙一起吃饭、一起玩耍。晚上，小公主亲了青蛙一下。奇迹发生了，青蛙变成了一位英俊的王子。原来王子被坏女巫施了魔法，只有信守诺言的人才能救他。", "words": ["公主", "青蛙", "金球", "守信", "池塘"]}, {"title": "丑小鸭", "emoji": "🦆🦢", "origin": "丹麦/安徒生", "moral": "不要小看自己，每个人都有自己的美丽。", "summary": "丑小鸭被嘲笑长得难看，长大后变成美丽的天鹅。", "story": "鸭妈妈孵出了一群小鸭子，其中有一只长得又大又灰，大家都叫他丑小鸭。其他的小鸭子都不喜欢他，啄他、咬他，连鸭妈妈也叹气。丑小鸭又伤心又孤单，只好离开了家。\n他来到野鸭家，野鸭们也嘲笑他。他来到农家，鸡群和猫也欺负他。冬天来了，丑小鸭又冷又饿，躲在一丛芦苇里。\n春天来了，丑小鸭慢慢长大了。有一天，他走到河边，看见水面上有一只美丽的天鹅。他低头一看，倒影里的自己竟然也变成了一只雪白的天鹅！\n其他天鹅围了过来，称赞他漂亮。丑小鸭终于明白：不要因为别人说自己丑就难过，每个人都有自己的美丽。", "words": ["丑小鸭", "天鹅", "成长", "自信", "美丽"]}, {"title": "卖火柴的小女孩", "emoji": "🔥👧", "origin": "丹麦/安徒生", "moral": "珍惜温暖幸福的生活，学会关爱他人。", "summary": "大年夜，小女孩卖不出火柴，在寒冷中擦亮火柴看到美好的幻象。", "story": "除夕夜，街上飘着雪花，家家户户都亮着温暖的灯。一个小女孩赤着脚，手里拿着一把火柴，在街上卖火柴。她已经一整天没卖出去了。\n她又冷又饿，不敢回家，因为爸爸会打她。她只好躲在墙角，擦亮了一根火柴。火柴的光芒里，她看见了一个温暖的火炉。她又擦亮一根火柴，看见了香喷喷的烤鹅。她还看见了美丽的圣诞树和慈祥的奶奶。\n奶奶是唯一疼爱她的人。小女孩赶紧擦亮了一大把火柴，想留住奶奶。在火光中，奶奶微笑着把她抱了起来。\n第二天早上，人们在墙角发现了小女孩。她脸上带着微笑，手里还握着烧过的火柴梗。她跟着奶奶去了没有寒冷、没有饥饿的地方。这个故事让我们懂得珍惜温暖幸福的生活，学会关爱他人。", "words": ["小女孩", "火柴", "寒冷", "奶奶", "温暖"]}, {"title": "皇帝的新装", "emoji": "👑👀", "origin": "丹麦/安徒生", "moral": "要勇敢说真话，不要被虚荣蒙蔽。", "summary": "皇帝被两个骗子欺骗，穿着不存在的新衣游行，只有小孩说出真相。", "story": "从前有一个皇帝，他特别喜欢穿新衣服。有一天，来了两个骗子，说能织出世界上最美丽的布，而且这种布只有聪明人才能看见。\n皇帝给了他们很多钱，让他们织布。其实骗子什么也没织。大臣们去检查时，明明什么也看不见，却怕别人说自己愚蠢，都假装称赞布料多么漂亮。\n新衣服做好了。皇帝穿上“新衣”，光着身子走上街头游行。街道两旁的人都怕被别人笑话，都大声说：“皇帝的新衣服真漂亮！”\n这时，一个小孩子大声说：“皇帝什么衣服也没穿呀！”大家这才敢说出真话。皇帝的脸红得像个苹果，可是他只能继续完成游行。这个故事告诉我们：要勇敢说真话，不要被虚荣蒙蔽。", "words": ["皇帝", "骗子", "新衣", "真话", "虚荣"]}, {"title": "海的女儿", "emoji": "🧜‍♀️🌊", "origin": "丹麦/安徒生", "moral": "真正的爱是成全和善良。", "summary": "小人鱼为了王子变成人，最后却选择化成泡沫守护他。", "story": "在大海深处，住着一位美丽的人鱼公主。她救了落水的王子，爱上了他。她想知道陆地上的世界，就去问海巫婆。\n海巫婆说：“我可以把你的尾巴变成双腿，但你每走一步都像踩在刀尖上。而且你必须让王子爱上你，否则你就会变成海上的泡沫。”小人鱼还是答应了。\n她来到王宫，和王子成了朋友。可是王子要娶邻国的公主。婚礼那天，小人鱼的姐姐们用长发换来一把匕首，告诉她：“只要杀了王子，你就能回到大海。”\n小人鱼来到王子的床边，她看着熟睡的王子，不忍心下手。她把匕首扔进了大海，自己也跳进了海里。太阳升起时，她化成了海上的泡沫。但她没有消失，她变成了天空的女儿。真正的爱是成全和善良。", "words": ["美人鱼", "王子", "大海", "泡沫", "牺牲"]}, {"title": "拇指姑娘", "emoji": "🌸👧", "origin": "丹麦/安徒生", "moral": "即使很小，也能勇敢追求幸福。", "summary": "拇指姑娘只有拇指那么大，经历了许多冒险，最后找到了花精灵的家。", "story": "从前有一个妇人，她非常想要一个小孩子。一位女巫给了她一颗种子。妇人把种子种在花盆里，很快就开出了一朵美丽的花。花心里面坐着一个只有拇指那么大的小姑娘，大家都叫她拇指姑娘。\n一天晚上，一只癞蛤蟆把拇指姑娘偷走了，想让她给自己的儿子当新娘。拇指姑娘很害怕，鱼儿们帮她咬断了荷叶，让她漂走了。\n后来，拇指姑娘被一只好心的田鼠收留。田鼠的朋友鼹鼠想娶她，可是拇指姑娘不想生活在黑暗的地洞里。她帮助了一只受伤的燕子，燕子康复后带她飞到了温暖的南方。\n在那里，拇指姑娘遇到了花精灵王子。王子请她做花中的王后，拇指姑娘高兴地答应了。她终于找到了自己的家。", "words": ["拇指姑娘", "花", "田鼠", "燕子", "勇敢"]}, {"title": "阿里巴巴与四十大盗", "emoji": "🗝️🚪", "origin": "阿拉伯/一千零一夜", "moral": "智慧和勇气能战胜坏人。", "summary": "阿里巴巴发现强盗宝库，用智慧和女仆 Morgana 打败四十大盗。", "story": "从前有一个穷人叫阿里巴巴。有一天他在山上砍柴，看见一伙强盗来到一个山洞前。强盗首领大声说：“芝麻开门！”山洞的门就开了；强盗进去后说：“芝麻关门！”门就关上了。\n强盗走后，阿里巴巴也学着说：“芝麻开门！”门真的开了，里面全是金银财宝。阿里巴巴只拿了一点金币，就关上门回家了。\n他的哥哥卡西姆知道后，也来到山洞。他因为太贪心，拿了太多财宝，出洞时忘了咒语，被强盗抓住了。强盗把他杀了。\n强盗们到处寻找拿走财宝的人。聪明的女仆马尔基娜识破了他的阴谋，她用热油烫死了藏在油罐里的强盗，又用匕首杀了强盗首领。阿里巴巴非常感谢马尔基娜，让她嫁给了自己的儿子。从此以后，他们幸福地生活在一起。", "words": ["阿里巴巴", "山洞", "芝麻开门", "强盗", "智慧"]}, {"title": "阿拉丁神灯", "emoji": "🧞✨", "origin": "阿拉伯/一千零一夜", "moral": "善良和勇敢会得到帮助。", "summary": "阿拉丁得到神灯，在灯神帮助下战胜坏巫师，和公主幸福生活。", "story": "很久以前，在中国有一个穷小子叫阿拉丁。一天，一个自称是他叔叔的坏巫师把他骗到一个山洞里，让他去取一盏旧油灯。阿拉丁拿到油灯后，巫师却把他关在山洞里。\n阿拉丁害怕地搓着油灯，突然一个蓝色巨人出现了，说：“我是灯神，可以满足你三个愿望。”阿拉丁许愿回到家，又许愿有了很多钱。\n后来，阿拉丁爱上了公主。他用神灯和飞毯来到王宫，娶到了公主。坏巫师知道后，骗走了神灯，抢走了公主和宫殿。阿拉丁用计谋夺回了神灯，打败了巫师。他和公主幸福地生活在一起。善良和勇敢的人总会得到帮助。", "words": ["阿拉丁", "神灯", "灯神", "飞毯", "公主"]}, {"title": "木偶奇遇记", "emoji": "🤥🪵", "origin": "意大利", "moral": "说谎鼻子会变长，诚实最重要。", "summary": "木偶匹诺曹一说谎鼻子就长，他学会诚实、勇敢，最后变成真正的小男孩。", "story": "老木匠杰佩托用一块木头做了一个木偶，取名叫匹诺曹。匹诺曹一出生就调皮捣蛋，他一说谎，鼻子就会变长。\n匹诺曹不好好上学，跑去看木偶戏，还被两个坏蛋骗到了“快乐岛”。在那里，他玩得不亦乐乎，可是慢慢地，他的耳朵变成了驴耳朵，最后变成了一头驴。\n匹诺曹被卖到马戏团，吃了很多苦。后来，他跳进海里，被一条大鲸鱼吞进了肚子里。在鲸鱼肚子里，他意外地遇见了前来寻找他的爸爸。匹诺曹背着爸爸逃出了鲸鱼肚子。\n回到家后，匹诺曹变得诚实、勤劳、勇敢。有一天早上，他醒来发现自己变成了真正的小男孩。这个故事告诉我们：说谎鼻子会变长，诚实最重要。", "words": ["匹诺曹", "鼻子", "诚实", "爸爸", "鲸鱼"]}, {"title": "彼得潘", "emoji": "🧚‍♂️🏴‍☠️", "origin": "英国", "moral": "保持童心，但也要勇敢成长。", "summary": "彼得潘带温蒂去永无岛，和海盗船长战斗，经历奇妙冒险。", "story": "在伦敦，有一个叫温蒂的小女孩。一天晚上，一个永远长不大的小男孩彼得潘从窗户飞进来，带她去了永无岛。\n永无岛上有美丽的仙子、野蛮的印第安人、凶狠的海盗，还有美人鱼。彼得潘和温蒂带着两个弟弟，和岛上的孩子们一起快乐地生活。\n可是海盗船长虎克一直想抓住彼得潘。虎克抓走了孩子们，还想喂他们吃毒药。彼得潘和虎克展开了一场激烈的战斗。最后，彼得潘把虎克推下了鳄鱼等待的大海。\n温蒂想家了，彼得潘把她和弟弟们送回了伦敦。彼得潘继续留在永无岛，和新的孩子们一起冒险。这个故事告诉我们：保持童心，但也要勇敢成长。", "words": ["彼得潘", "永无岛", "海盗", "飞翔", "冒险"]}, {"title": "夏洛的网", "emoji": "🐷🕸️", "origin": "美国", "moral": "真正的友谊很珍贵，朋友会互相帮助。", "summary": "小猪威尔伯和蜘蛛夏洛成为朋友，夏洛织字救了威尔伯的命。", "story": "在农场里，有一只小猪叫威尔伯。他生下来很弱小，主人差点不要他。幸好小女孩芬救了他，把他养大。\n威尔伯来到舅舅的农场，认识了蜘蛛夏洛。夏洛和威尔伯成了最好的朋友。有一天，农场主说威尔伯太胖了，冬天要杀了他做火腿。威尔伯很害怕。\n夏洛想救威尔伯。她在蜘蛛网上织出了“王牌猪”“了不起”“光彩照人”这些字。人们看见了，都觉得威尔伯是一只神奇的猪。\n威尔伯在比赛中得了大奖，再也不用被杀了。可是夏洛因为太劳累，生下宝宝后就死去了。威尔伯一直记得夏洛，他把夏洛的宝宝们带回农场。真正的友谊很珍贵，朋友会互相帮助。", "words": ["小猪", "蜘蛛", "朋友", "农场", "友谊"]}, {"title": "哪吒闹海", "emoji": "👶🔱", "origin": "中国", "moral": "勇敢反抗不公，保护弱小。", "summary": "小哪吒为救百姓，打死龙王三太子，最后舍身保护陈塘关。", "story": "很久很久以前，陈塘关总兵李靖有一个儿子叫哪吒。哪吒天生神力，脖子上戴着乾坤圈，手臂上缠着混天绫。\n一天，哪吒在海边玩耍。东海龙王的三太子出来行凶，要吃童男童女。哪吒见义勇为，打败了三太子，还抽了他的龙筋。东海龙王大怒，跑到天庭告状。\n龙王们联合起来，水淹陈塘关，威胁要淹死所有百姓。哪吒为了不连累父母和陈塘关的百姓，大声说：“我自己做的事，自己来承担！”他拔剑自刎，用自己的生命保护了大家。\n后来，师父太乙真人用莲花和莲藕为哪吒重新塑造了身体。哪吒复活后，变得更加勇敢，最终打败了龙王，保护了百姓。", "words": ["哪吒", "龙王", "混天绫", "勇敢", "保护"]}, {"title": "嫦娥奔月", "emoji": "🌙🧚‍♀️", "origin": "中国", "moral": "善良的选择有时需要牺牲。", "summary": "嫦娥为了保护仙药不落入坏人之手，吞下仙药飞向月亮。", "story": "古时候，天上有十个太阳，烤得大地干裂。一个叫后羿的英雄射下了九个太阳，救了百姓。王母娘娘奖励他一包长生不老药。\n后羿舍不得离开妻子嫦娥，没有立刻吃药，他把药交给嫦娥保管。后羿的一个徒弟蓬蒙知道了这件事，想要偷走仙药。\n一天，后羿出门了，蓬蒙闯进家里逼嫦娥交出仙药。嫦娥知道自己打不过坏人，她不想让仙药落入坏人之手，就把整包药吞了下去。\n嫦娥的身体变得轻飘飘的，飞出了窗户，一直飞到了月亮上。后羿回来后，望着月亮伤心地呼喊嫦娥。嫦娥在月亮上看着人间，也非常想念后羿。每到中秋，人们就赏月纪念嫦娥。善良的选择有时需要牺牲。", "words": ["嫦娥", "月亮", "后羿", "仙药", "飞天"]}, {"title": "田螺姑娘", "emoji": "🐌👧", "origin": "中国", "moral": "勤劳善良的人会得到好报。", "summary": "贫穷青年捡到田螺，田螺变成姑娘默默帮他做家务，两人幸福生活。", "story": "很久很久以前，有一个勤劳善良的年轻人，一个人住在山脚下。他每天早出晚归，种地砍柴，可是生活很穷苦。\n有一天，年轻人从田里捡回一只大田螺，把它养在水缸里。从那以后，他每天干完活回家，发现桌子上都摆着热腾腾的饭菜。他以为是邻居们帮忙，去问了一圈，却没有人承认。\n年轻人决定偷偷看看是谁在帮忙。有一天，他假装出门，又悄悄返回，从窗户缝里看见一位美丽的姑娘从水缸里走出来，为他做饭。年轻人走进屋，姑娘想回到水缸里，已经来不及了。\n原来姑娘是田螺变的仙女，被年轻人的勤劳善良感动了。她愿意留下来做他的妻子。从此，两人一起劳动，过上了幸福的生活。勤劳善良的人会得到好报。", "words": ["田螺", "姑娘", "勤劳", "善良", "幸福"]}, {"title": "大闹天宫", "emoji": "🐒☁️", "origin": "中国", "moral": "勇敢挑战不合理的规则。", "summary": "孙悟空不满天庭轻视，大闹天宫，展现七十二变的本领。", "story": "花果山上有一只石猴，名叫孙悟空。他学会了一身本领，能七十二变，一个筋斗能翻十万八千里。他因为没有兵器，去龙宫借走了定海神针，变成了一根金箍棒。\n玉帝想管他，让他到天庭当个小官。孙悟空发现玉帝看不起自己，非常生气。他回到花果山，自称“齐天大圣”。玉帝派天兵天将去捉拿他，可谁也不是孙悟空的对手。\n孙悟空大闹天宫，把玉帝打得钻到桌子底下。他还吃光了王母娘娘的蟠桃，喝光了仙酒，搅乱了蟠桃会。最后，如来佛祖把孙悟空压在五行山下。五百年后，孙悟空才会出来，护送唐僧去西天取经。勇敢挑战不合理的规则是对的，但也要遵守规则。", "words": ["孙悟空", "天宫", "金箍棒", "神仙", "勇敢"]}, {"title": "牛郎织女", "emoji": "🐂👩🌌", "origin": "中国", "moral": "真爱能跨越距离，相聚值得珍惜。", "summary": "牛郎和织女相爱，被王母娘娘分开，每年七夕鹊桥相会。", "story": "很久很久以前，有一个叫牛郎的孤儿，他勤劳善良，和一头老牛相依为命。老牛告诉他，天上的仙女会在银河里洗澡，让他去河边。\n牛郎来到河边，看见一位美丽的仙女，她是王母娘娘的外孙女，名叫织女。织女擅长织布，她织出的云霞就是天上的云彩。牛郎和织女相爱了，结为夫妻，生下了一双儿女。\n王母娘娘知道后非常生气，派天兵把织女抓回天庭。牛郎急忙披上老牛留下的牛皮，挑着两个孩子追了上去。眼看就要追上了，王母娘娘拔下头上的金簪，在天空划出一道波涛汹涌的银河，把牛郎和织女隔开了。\n他们的真情感动了喜鹊。每年农历七月初七，成千上万的喜鹊飞来，搭成鹊桥，让牛郎和织女相会。这一天，人们称为七夕节。", "words": ["牛郎", "织女", "鹊桥", "七夕", "星星"]}];
         let currentIndex = 0;
         const synth = window.speechSynthesis;
         let chineseVoice = null;
@@ -626,6 +690,7 @@
         function showMascot(text){ document.getElementById('mascotText').textContent = text; }
         function playTitle(i){ const item=items[i]; speak(item.title); showMascot(item.title); }
         function playSummary(i){ const item=items[i]; speak(item.summary); showMascot(item.summary); }
+        function playStory(i){ const item=items[i]; speak(item.story); showMascot('正在读《' + item.title + '》'); }
         function playMoral(i){ const item=items[i]; speak('这个故事告诉我们：' + item.moral); showMascot(item.moral); }
         function updateNav(){ document.getElementById('prevBtn').disabled = currentIndex === 0; document.getElementById('nextBtn').disabled = currentIndex === items.length-1; }
         function switchItem(direction){ const cards=document.querySelectorAll('.card'); const dots=document.querySelectorAll('.progress-dot'); cards[currentIndex].classList.remove('active'); dots[currentIndex].classList.remove('active'); if(direction==='next') currentIndex++; else currentIndex--; cards[currentIndex].classList.add('active'); dots[currentIndex].classList.add('active'); updateNav(); const item=items[currentIndex]; speak(item.title); showMascot('这是《' + item.title + '》'); }
