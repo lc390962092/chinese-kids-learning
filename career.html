@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 职业梦想</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: linear-gradient(135deg, #FFF3E0 0%, #FFF0F5 100%); min-height: 100vh; overflow-x: hidden; }
+        .header { text-align: center; padding: 20px 10px 10px; }
+        .header h1 { color: #FB8C00; font-size: 28px; margin-bottom: 5px; }
+        .header p { color: #888; font-size: 14px; }
+        .mascot { text-align: center; padding: 10px; }
+        .mascot-bubble { display: inline-block; background: white; border-radius: 25px; padding: 12px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: #555; font-size: 16px; max-width: 80%; position: relative; margin-bottom: 15px; }
+        .mascot-bubble::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-width: 10px 10px 0; border-style: solid; border-color: white transparent transparent transparent; }
+        .mascot-avatar { width: 60px; height: 60px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); }
+        .card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
+        .card.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-emoji { width: 200px; height: 200px; font-size: 130px; line-height: 200px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; }
+        .card-emoji:active { transform: scale(0.95); }
+        .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
+        .card-subtitle { font-size: 22px; color: #888; margin-bottom: 15px; }
+        .card-text { background: #f8f8f8; border-radius: 20px; padding: 18px 20px; margin: 15px auto; max-width: 90%; text-align: left; font-size: 18px; line-height: 1.7; color: #444; }
+        .keywords { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 18px 0; padding: 0 10px; }
+        .keyword { background: #f0f0f0; color: #555; padding: 8px 16px; border-radius: 20px; font-size: 16px; cursor: pointer; }
+        .keyword:active { background: #ddd; }
+        .btn-group { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { border: none; border-radius: 25px; padding: 12px 25px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .btn:active { transform: scale(0.95); }
+        .btn-primary { background: #FB8C00; }
+        .btn-secondary { background: #4ECDC4; }
+        .btn-third { background: #FFD93D; color: #333; }
+        .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .nav-btn { background: #95E1D3; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .nav-btn:active { transform: scale(0.95); }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .progress { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+        .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
+        .progress-dot.active { background: #FB8C00; }
+        .hint { color: #999; font-size: 13px; margin-top: 15px; text-align: center; }
+        .start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #FFF3E0 0%, #FFF0F5 100%); z-index: 1000; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .start-content { background: white; padding: 40px 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 320px; width: 90%; }
+        .start-panda { font-size: 80px; margin-bottom: 10px; }
+        .start-content h2 { color: #FB8C00; font-size: 32px; margin-bottom: 10px; }
+        .start-content p { color: #888; font-size: 16px; margin-bottom: 25px; }
+        .start-btn { background: #FB8C00; color: white; border: none; border-radius: 30px; padding: 15px 50px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .start-btn:active { transform: scale(0.95); }
+        .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
+        .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
+        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-bar">← 回首页</a>
+    <div class="start-overlay" id="startOverlay">
+        <div class="start-content">
+            <div class="start-panda">🐼</div>
+            <h2>小豆职业梦想</h2>
+            <p>一起认识各种职业</p>
+            <button class="start-btn" onclick="startApp()">开始学习</button>
+        </div>
+    </div>
+    <div class="header">
+        <h1>🐼 小豆中文</h1>
+        <p>今天我们来一起认识各种职业</p>
+    </div>
+    <div class="mascot">
+        <div class="mascot-bubble" id="mascotText">你好！点击卡片，听听怎么读～</div>
+        <div class="mascot-avatar">🐼</div>
+    </div>
+    <div class="main-stage">
+        <div id="cards"><div class="card active">
+            <div class="card-emoji" onclick="playWord(0)">👨‍⚕️</div>
+            <div class="card-title">医生</div>
+            <div class="card-subtitle">yī shēng</div>
+            <div class="card-text">医生穿白大褂，给病人看病，帮助大家恢复健康。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('医生')">医生</span><span class="keyword" onclick="speak('病人')">病人</span><span class="keyword" onclick="speak('医院')">医院</span><span class="keyword" onclick="speak('听诊器')">听诊器</span><span class="keyword" onclick="speak('健康')">健康</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playWord(0)">🔊 读词语</button>
+                <button class="btn btn-secondary" onclick="playSentence(0)">📝 读句子</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playWord(1)">👨‍🚒</div>
+            <div class="card-title">消防员</div>
+            <div class="card-subtitle">xiāo fáng yuán</div>
+            <div class="card-text">消防员开着消防车，扑灭大火，救出被困的人。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('消防员')">消防员</span><span class="keyword" onclick="speak('消防车')">消防车</span><span class="keyword" onclick="speak('灭火')">灭火</span><span class="keyword" onclick="speak('勇敢')">勇敢</span><span class="keyword" onclick="speak('救援')">救援</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playWord(1)">🔊 读词语</button>
+                <button class="btn btn-secondary" onclick="playSentence(1)">📝 读句子</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playWord(2)">👩‍🏫</div>
+            <div class="card-title">老师</div>
+            <div class="card-subtitle">lǎo shī</div>
+            <div class="card-text">老师站在黑板前，教我们读书写字，回答我们的问题。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('老师')">老师</span><span class="keyword" onclick="speak('黑板')">黑板</span><span class="keyword" onclick="speak('学生')">学生</span><span class="keyword" onclick="speak('读书')">读书</span><span class="keyword" onclick="speak('学习')">学习</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playWord(2)">🔊 读词语</button>
+                <button class="btn btn-secondary" onclick="playSentence(2)">📝 读句子</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playWord(3)">👮</div>
+            <div class="card-title">警察</div>
+            <div class="card-subtitle">jǐng chá</div>
+            <div class="card-text">警察保护我们的安全，帮助迷路的人找到家。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('警察')">警察</span><span class="keyword" onclick="speak('警车')">警车</span><span class="keyword" onclick="speak('安全')">安全</span><span class="keyword" onclick="speak('帮助')">帮助</span><span class="keyword" onclick="speak('抓坏人')">抓坏人</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playWord(3)">🔊 读词语</button>
+                <button class="btn btn-secondary" onclick="playSentence(3)">📝 读句子</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playWord(4)">👨‍🚀</div>
+            <div class="card-title">宇航员</div>
+            <div class="card-subtitle">yǔ háng yuán</div>
+            <div class="card-text">宇航员坐火箭飞到太空，探索星星和月亮。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('宇航员')">宇航员</span><span class="keyword" onclick="speak('火箭')">火箭</span><span class="keyword" onclick="speak('太空')">太空</span><span class="keyword" onclick="speak('星星')">星星</span><span class="keyword" onclick="speak('月亮')">月亮</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playWord(4)">🔊 读词语</button>
+                <button class="btn btn-secondary" onclick="playSentence(4)">📝 读句子</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playWord(5)">👨‍🍳</div>
+            <div class="card-title">厨师</div>
+            <div class="card-subtitle">chú shī</div>
+            <div class="card-text">厨师在厨房里做饭，做出香喷喷的菜和甜点。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('厨师')">厨师</span><span class="keyword" onclick="speak('厨房')">厨房</span><span class="keyword" onclick="speak('做饭')">做饭</span><span class="keyword" onclick="speak('菜')">菜</span><span class="keyword" onclick="speak('甜点')">甜点</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playWord(5)">🔊 读词语</button>
+                <button class="btn btn-secondary" onclick="playSentence(5)">📝 读句子</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playWord(6)">👨‍🌾</div>
+            <div class="card-title">农民</div>
+            <div class="card-subtitle">nóng mín</div>
+            <div class="card-text">农民在田里种地，种出大米、蔬菜和水果。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('农民')">农民</span><span class="keyword" onclick="speak('田地')">田地</span><span class="keyword" onclick="speak('种地')">种地</span><span class="keyword" onclick="speak('大米')">大米</span><span class="keyword" onclick="speak('蔬菜')">蔬菜</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playWord(6)">🔊 读词语</button>
+                <button class="btn btn-secondary" onclick="playSentence(6)">📝 读句子</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playWord(7)">👨‍✈️</div>
+            <div class="card-title">司机</div>
+            <div class="card-subtitle">sī jī</div>
+            <div class="card-text">司机开着公交车，把大家安全送到目的地。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('司机')">司机</span><span class="keyword" onclick="speak('公交车')">公交车</span><span class="keyword" onclick="speak('开车')">开车</span><span class="keyword" onclick="speak('乘客')">乘客</span><span class="keyword" onclick="speak('安全')">安全</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playWord(7)">🔊 读词语</button>
+                <button class="btn btn-secondary" onclick="playSentence(7)">📝 读句子</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playWord(8)">📮</div>
+            <div class="card-title">邮递员</div>
+            <div class="card-subtitle">yóu dì yuán</div>
+            <div class="card-text">邮递员骑着车送信和包裹，把思念送到远方。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('邮递员')">邮递员</span><span class="keyword" onclick="speak('送信')">送信</span><span class="keyword" onclick="speak('包裹')">包裹</span><span class="keyword" onclick="speak('自行车')">自行车</span><span class="keyword" onclick="speak('远方')">远方</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playWord(8)">🔊 读词语</button>
+                <button class="btn btn-secondary" onclick="playSentence(8)">📝 读句子</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playWord(9)">👨‍🎨</div>
+            <div class="card-title">画家</div>
+            <div class="card-subtitle">huà jiā</div>
+            <div class="card-text">画家用画笔和颜料，把美好的世界画下来。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('画家')">画家</span><span class="keyword" onclick="speak('画笔')">画笔</span><span class="keyword" onclick="speak('颜料')">颜料</span><span class="keyword" onclick="speak('画画')">画画</span><span class="keyword" onclick="speak('颜色')">颜色</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playWord(9)">🔊 读词语</button>
+                <button class="btn btn-secondary" onclick="playSentence(9)">📝 读句子</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div></div>
+        <div class="progress" id="progressDots"><div class="progress-dot active"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div></div>
+        <div class="hint">提示：如果听不到声音，请检查浏览器是否允许播放音频</div>
+        <a href="index.html" class="back-home">⬅️ 返回首页</a>
+    </div>
+<script>
+        const items = [{"word": "医生", "pinyin": "yī shēng", "summary": "医生穿白大褂，给病人看病，帮助大家恢复健康。", "words": ["医生", "病人", "医院", "听诊器", "健康"], "emoji": "👨‍⚕️"}, {"word": "消防员", "pinyin": "xiāo fáng yuán", "summary": "消防员开着消防车，扑灭大火，救出被困的人。", "words": ["消防员", "消防车", "灭火", "勇敢", "救援"], "emoji": "👨‍🚒"}, {"word": "老师", "pinyin": "lǎo shī", "summary": "老师站在黑板前，教我们读书写字，回答我们的问题。", "words": ["老师", "黑板", "学生", "读书", "学习"], "emoji": "👩‍🏫"}, {"word": "警察", "pinyin": "jǐng chá", "summary": "警察保护我们的安全，帮助迷路的人找到家。", "words": ["警察", "警车", "安全", "帮助", "抓坏人"], "emoji": "👮"}, {"word": "宇航员", "pinyin": "yǔ háng yuán", "summary": "宇航员坐火箭飞到太空，探索星星和月亮。", "words": ["宇航员", "火箭", "太空", "星星", "月亮"], "emoji": "👨‍🚀"}, {"word": "厨师", "pinyin": "chú shī", "summary": "厨师在厨房里做饭，做出香喷喷的菜和甜点。", "words": ["厨师", "厨房", "做饭", "菜", "甜点"], "emoji": "👨‍🍳"}, {"word": "农民", "pinyin": "nóng mín", "summary": "农民在田里种地，种出大米、蔬菜和水果。", "words": ["农民", "田地", "种地", "大米", "蔬菜"], "emoji": "👨‍🌾"}, {"word": "司机", "pinyin": "sī jī", "summary": "司机开着公交车，把大家安全送到目的地。", "words": ["司机", "公交车", "开车", "乘客", "安全"], "emoji": "👨‍✈️"}, {"word": "邮递员", "pinyin": "yóu dì yuán", "summary": "邮递员骑着车送信和包裹，把思念送到远方。", "words": ["邮递员", "送信", "包裹", "自行车", "远方"], "emoji": "📮"}, {"word": "画家", "pinyin": "huà jiā", "summary": "画家用画笔和颜料，把美好的世界画下来。", "words": ["画家", "画笔", "颜料", "画画", "颜色"], "emoji": "👨‍🎨"}];
+        let currentIndex = 0;
+        const synth = window.speechSynthesis;
+        let chineseVoice = null;
+        function findChineseVoice(){ if(!synth) return; const voices=synth.getVoices(); for(let v of voices){ if(v.lang.startsWith('zh')){ chineseVoice=v; break; } } }
+        if(speechSynthesis.onvoiceschanged !== undefined){ speechSynthesis.onvoiceschanged = findChineseVoice; }
+        findChineseVoice();
+        function speak(text, rate=0.82){ if(!synth) return; synth.cancel(); const utter=new SpeechSynthesisUtterance(text); utter.lang='zh-CN'; utter.rate=rate; utter.pitch=1.1; if(chineseVoice) utter.voice=chineseVoice; synth.speak(utter); }
+        function showMascot(text){ document.getElementById('mascotText').textContent = text; }
+        function playWord(i){ const item=items[i]; speak(item.word + '，' + item.pinyin); showMascot('这是' + item.word + '，' + item.pinyin + '。'); }
+        function playSentence(i){ const item=items[i]; speak(item.summary); showMascot(item.summary); }
+        function updateNav(){ document.getElementById('prevBtn').disabled = currentIndex === 0; document.getElementById('nextBtn').disabled = currentIndex === items.length-1; }
+        function switchItem(direction){ const cards=document.querySelectorAll('.card'); const dots=document.querySelectorAll('.progress-dot'); cards[currentIndex].classList.remove('active'); dots[currentIndex].classList.remove('active'); if(direction==='next') currentIndex++; else currentIndex--; cards[currentIndex].classList.add('active'); dots[currentIndex].classList.add('active'); updateNav(); const item=items[currentIndex]; speak(item.word); showMascot('这是' + item.word + '，' + item.pinyin + '。'); }
+        function nextItem(){ if(currentIndex < items.length-1) switchItem('next'); }
+        function prevItem(){ if(currentIndex > 0) switchItem('prev'); }
+        function startApp(){ document.getElementById('startOverlay').style.display='none'; if(items.length>0){ speak('你好！我是小豆。今天我们来学习职业梦想。'); showMascot('你好！我是小豆。今天我们来学习职业梦想。'); } }
+        updateNav();
+    </script>
+</body>
+</html>

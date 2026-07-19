@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 童话故事</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: linear-gradient(135deg, #E8F5E9 0%, #FFF0F5 100%); min-height: 100vh; overflow-x: hidden; }
+        .header { text-align: center; padding: 20px 10px 10px; }
+        .header h1 { color: #43A047; font-size: 28px; margin-bottom: 5px; }
+        .header p { color: #888; font-size: 14px; }
+        .mascot { text-align: center; padding: 10px; }
+        .mascot-bubble { display: inline-block; background: white; border-radius: 25px; padding: 12px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: #555; font-size: 16px; max-width: 80%; position: relative; margin-bottom: 15px; }
+        .mascot-bubble::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-width: 10px 10px 0; border-style: solid; border-color: white transparent transparent transparent; }
+        .mascot-avatar { width: 60px; height: 60px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); }
+        .card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
+        .card.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-emoji { width: 200px; height: 200px; font-size: 130px; line-height: 200px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; }
+        .card-emoji:active { transform: scale(0.95); }
+        .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
+        .card-subtitle { font-size: 22px; color: #888; margin-bottom: 15px; }
+        .card-text { background: #f8f8f8; border-radius: 20px; padding: 18px 20px; margin: 15px auto; max-width: 90%; text-align: left; font-size: 18px; line-height: 1.7; color: #444; }
+        .keywords { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 18px 0; padding: 0 10px; }
+        .keyword { background: #f0f0f0; color: #555; padding: 8px 16px; border-radius: 20px; font-size: 16px; cursor: pointer; }
+        .keyword:active { background: #ddd; }
+        .btn-group { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { border: none; border-radius: 25px; padding: 12px 25px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .btn:active { transform: scale(0.95); }
+        .btn-primary { background: #43A047; }
+        .btn-secondary { background: #4ECDC4; }
+        .btn-third { background: #FFD93D; color: #333; }
+        .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .nav-btn { background: #95E1D3; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .nav-btn:active { transform: scale(0.95); }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .progress { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+        .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
+        .progress-dot.active { background: #43A047; }
+        .hint { color: #999; font-size: 13px; margin-top: 15px; text-align: center; }
+        .start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #E8F5E9 0%, #FFF0F5 100%); z-index: 1000; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .start-content { background: white; padding: 40px 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 320px; width: 90%; }
+        .start-panda { font-size: 80px; margin-bottom: 10px; }
+        .start-content h2 { color: #43A047; font-size: 32px; margin-bottom: 10px; }
+        .start-content p { color: #888; font-size: 16px; margin-bottom: 25px; }
+        .start-btn { background: #43A047; color: white; border: none; border-radius: 30px; padding: 15px 50px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .start-btn:active { transform: scale(0.95); }
+        .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
+        .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
+        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-bar">← 回首页</a>
+    <div class="start-overlay" id="startOverlay">
+        <div class="start-content">
+            <div class="start-panda">🐼</div>
+            <h2>小豆童话故事</h2>
+            <p>一起听好故事，学道理</p>
+            <button class="start-btn" onclick="startApp()">开始学习</button>
+        </div>
+    </div>
+    <div class="header">
+        <h1>🐼 小豆中文</h1>
+        <p>今天我们来一起听好故事，学道理</p>
+    </div>
+    <div class="mascot">
+        <div class="mascot-bubble" id="mascotText">你好！点击卡片，听听怎么读～</div>
+        <div class="mascot-avatar">🐼</div>
+    </div>
+    <div class="main-stage">
+        <div id="cards"><div class="card active">
+            <div class="card-emoji" onclick="playTitle(0)">🐷🐷🐷</div>
+            <div class="card-title">三只小猪</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">三只小猪分别用稻草、木头和砖头盖房子，大灰狼吹倒了前两座，只有砖房保护了他们。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>勤劳和认真做事很重要。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('小猪')">小猪</span><span class="keyword" onclick="speak('房子')">房子</span><span class="keyword" onclick="speak('大灰狼')">大灰狼</span><span class="keyword" onclick="speak('勤劳')">勤劳</span><span class="keyword" onclick="speak('安全')">安全</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(0)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(0)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(0)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(1)">🐸🔍</div>
+            <div class="card-title">小蝌蚪找妈妈</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">小蝌蚪出生不认识妈妈，一路问鲤鱼、乌龟，最后终于找到青蛙妈妈。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>遇到困难要坚持，妈妈永远爱我们。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('蝌蚪')">蝌蚪</span><span class="keyword" onclick="speak('青蛙')">青蛙</span><span class="keyword" onclick="speak('妈妈')">妈妈</span><span class="keyword" onclick="speak('坚持')">坚持</span><span class="keyword" onclick="speak('寻找')">寻找</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(1)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(1)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(1)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(2)">🐴🌊</div>
+            <div class="card-title">小马过河</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">小马要过河，老牛说浅，松鼠说深，小马自己试一试才发现刚好。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>别人的经验不一定适合自己，要亲自尝试。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('小马')">小马</span><span class="keyword" onclick="speak('过河')">过河</span><span class="keyword" onclick="speak('尝试')">尝试</span><span class="keyword" onclick="speak('勇敢')">勇敢</span><span class="keyword" onclick="speak('河水')">河水</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(2)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(2)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(2)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(3)">🐺📢</div>
+            <div class="card-title">狼来了</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">放羊娃多次喊狼来了骗人，后来真狼来了，没人相信他。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>说谎会失去别人的信任。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('放羊娃')">放羊娃</span><span class="keyword" onclick="speak('说谎')">说谎</span><span class="keyword" onclick="speak('狼')">狼</span><span class="keyword" onclick="speak('信任')">信任</span><span class="keyword" onclick="speak('后悔')">后悔</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(3)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(3)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(3)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(4)">🐢🐰</div>
+            <div class="card-title">龟兔赛跑</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">兔子嘲笑乌龟慢，中途睡大觉，乌龟一步一步走到了终点。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>骄傲使人落后，坚持才能胜利。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('兔子')">兔子</span><span class="keyword" onclick="speak('乌龟')">乌龟</span><span class="keyword" onclick="speak('比赛')">比赛</span><span class="keyword" onclick="speak('坚持')">坚持</span><span class="keyword" onclick="speak('骄傲')">骄傲</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(4)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(4)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(4)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(5)">🍐👦</div>
+            <div class="card-title">孔融让梨</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">小孔融把大梨让给哥哥和长辈，自己拿最小的梨。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>懂得谦让，尊敬长辈。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('孔融')">孔融</span><span class="keyword" onclick="speak('梨子')">梨子</span><span class="keyword" onclick="speak('谦让')">谦让</span><span class="keyword" onclick="speak('哥哥')">哥哥</span><span class="keyword" onclick="speak('礼貌')">礼貌</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(5)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(5)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(5)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(6)">🏺💥</div>
+            <div class="card-title">司马光砸缸</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">小伙伴掉进大水缸，司马光砸破缸，水流出救了人。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>遇到危险要冷静，想办法救人。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('司马光')">司马光</span><span class="keyword" onclick="speak('水缸')">水缸</span><span class="keyword" onclick="speak('救人')">救人</span><span class="keyword" onclick="speak('聪明')">聪明</span><span class="keyword" onclick="speak('勇敢')">勇敢</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(6)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(6)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(6)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(7)">🖌️✨</div>
+            <div class="card-title">神笔马良</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">马良有一支神笔，画什么变什么，他用它帮助穷人，惩治坏人。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>善良和正义会战胜贪婪。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('马良')">马良</span><span class="keyword" onclick="speak('神笔')">神笔</span><span class="keyword" onclick="speak('画画')">画画</span><span class="keyword" onclick="speak('善良')">善良</span><span class="keyword" onclick="speak('正义')">正义</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(7)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(7)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(7)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(8)">🐒🌙</div>
+            <div class="card-title">猴子捞月</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">猴子看见井里的月亮倒影，以为月亮掉进去了，怎么也捞不上来。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>遇事要仔细观察，不要忙中出错。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('猴子')">猴子</span><span class="keyword" onclick="speak('月亮')">月亮</span><span class="keyword" onclick="speak('井')">井</span><span class="keyword" onclick="speak('观察')">观察</span><span class="keyword" onclick="speak('倒影')">倒影</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(8)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(8)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(8)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(9)">🦊🐯</div>
+            <div class="card-title">狐假虎威</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">狐狸被老虎抓住，却骗老虎说自己是百兽之王，借着老虎的威风吓跑动物。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>不要借别人的威风吓唬人。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('狐狸')">狐狸</span><span class="keyword" onclick="speak('老虎')">老虎</span><span class="keyword" onclick="speak('威风')">威风</span><span class="keyword" onclick="speak('狡猾')">狡猾</span><span class="keyword" onclick="speak('害怕')">害怕</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(9)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(9)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(9)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(10)">🍎👸</div>
+            <div class="card-title">白雪公主</div>
+            <div class="card-subtitle">来源：德国/格林</div>
+            <div class="card-text">白雪公主被继母嫉妒陷害，逃进森林，七个小矮人帮助她，最后王子救醒了她。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>善良的心比美丽的外表更重要。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('白雪公主')">白雪公主</span><span class="keyword" onclick="speak('小矮人')">小矮人</span><span class="keyword" onclick="speak('皇后')">皇后</span><span class="keyword" onclick="speak('善良')">善良</span><span class="keyword" onclick="speak('镜子')">镜子</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(10)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(10)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(10)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(11)">👠🕛</div>
+            <div class="card-title">灰姑娘</div>
+            <div class="card-subtitle">来源：德国/格林</div>
+            <div class="card-text">灰姑娘受继母欺负，仙女帮她参加舞会，水晶鞋让她与王子重逢。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>保持善良，机会会眷顾努力的人。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('灰姑娘')">灰姑娘</span><span class="keyword" onclick="speak('水晶鞋')">水晶鞋</span><span class="keyword" onclick="speak('王子')">王子</span><span class="keyword" onclick="speak('仙女')">仙女</span><span class="keyword" onclick="speak('南瓜')">南瓜</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(11)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(11)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(11)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(12)">🧺🔴</div>
+            <div class="card-title">小红帽</div>
+            <div class="card-subtitle">来源：德国/格林</div>
+            <div class="card-text">小红帽去看望外婆，路上被大灰狼骗，猎人赶来救了她们。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>不要和陌生人说话，要听妈妈的话。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('小红帽')">小红帽</span><span class="keyword" onclick="speak('大灰狼')">大灰狼</span><span class="keyword" onclick="speak('外婆')">外婆</span><span class="keyword" onclick="speak('猎人')">猎人</span><span class="keyword" onclick="speak('森林')">森林</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(12)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(12)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(12)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(13)">👸😴</div>
+            <div class="card-title">睡美人</div>
+            <div class="card-subtitle">来源：德国/格林</div>
+            <div class="card-text">公主被诅咒沉睡一百年，王子勇敢的吻唤醒了她。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>真爱和善良能打破诅咒。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('公主')">公主</span><span class="keyword" onclick="speak('王子')">王子</span><span class="keyword" onclick="speak('诅咒')">诅咒</span><span class="keyword" onclick="speak('纺锤')">纺锤</span><span class="keyword" onclick="speak('沉睡')">沉睡</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(13)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(13)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(13)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(14)">🐸👑</div>
+            <div class="card-title">青蛙王子</div>
+            <div class="card-subtitle">来源：德国/格林</div>
+            <div class="card-text">公主的金球掉进池塘，青蛙帮她捡回，她遵守诺言亲吻青蛙，青蛙变回王子。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>答应别人的事要做到，守信很重要。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('公主')">公主</span><span class="keyword" onclick="speak('青蛙')">青蛙</span><span class="keyword" onclick="speak('金球')">金球</span><span class="keyword" onclick="speak('守信')">守信</span><span class="keyword" onclick="speak('池塘')">池塘</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(14)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(14)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(14)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(15)">🦆🦢</div>
+            <div class="card-title">丑小鸭</div>
+            <div class="card-subtitle">来源：丹麦/安徒生</div>
+            <div class="card-text">丑小鸭被嘲笑长得难看，长大后变成美丽的天鹅。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>不要小看自己，每个人都有自己的美丽。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('丑小鸭')">丑小鸭</span><span class="keyword" onclick="speak('天鹅')">天鹅</span><span class="keyword" onclick="speak('成长')">成长</span><span class="keyword" onclick="speak('自信')">自信</span><span class="keyword" onclick="speak('美丽')">美丽</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(15)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(15)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(15)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(16)">🔥👧</div>
+            <div class="card-title">卖火柴的小女孩</div>
+            <div class="card-subtitle">来源：丹麦/安徒生</div>
+            <div class="card-text">大年夜，小女孩卖不出火柴，在寒冷中擦亮火柴看到美好的幻象。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>珍惜温暖幸福的生活，学会关爱他人。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('小女孩')">小女孩</span><span class="keyword" onclick="speak('火柴')">火柴</span><span class="keyword" onclick="speak('寒冷')">寒冷</span><span class="keyword" onclick="speak('奶奶')">奶奶</span><span class="keyword" onclick="speak('温暖')">温暖</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(16)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(16)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(16)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(17)">👑👀</div>
+            <div class="card-title">皇帝的新装</div>
+            <div class="card-subtitle">来源：丹麦/安徒生</div>
+            <div class="card-text">皇帝被两个骗子欺骗，穿着不存在的新衣游行，只有小孩说出真相。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>要勇敢说真话，不要被虚荣蒙蔽。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('皇帝')">皇帝</span><span class="keyword" onclick="speak('骗子')">骗子</span><span class="keyword" onclick="speak('新衣')">新衣</span><span class="keyword" onclick="speak('真话')">真话</span><span class="keyword" onclick="speak('虚荣')">虚荣</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(17)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(17)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(17)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(18)">🧜‍♀️🌊</div>
+            <div class="card-title">海的女儿</div>
+            <div class="card-subtitle">来源：丹麦/安徒生</div>
+            <div class="card-text">小人鱼为了王子变成人，最后却选择化成泡沫守护他。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>真正的爱是成全和善良。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('美人鱼')">美人鱼</span><span class="keyword" onclick="speak('王子')">王子</span><span class="keyword" onclick="speak('大海')">大海</span><span class="keyword" onclick="speak('泡沫')">泡沫</span><span class="keyword" onclick="speak('牺牲')">牺牲</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(18)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(18)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(18)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(19)">🌸👧</div>
+            <div class="card-title">拇指姑娘</div>
+            <div class="card-subtitle">来源：丹麦/安徒生</div>
+            <div class="card-text">拇指姑娘只有拇指那么大，经历了许多冒险，最后找到了花精灵的家。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>即使很小，也能勇敢追求幸福。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('拇指姑娘')">拇指姑娘</span><span class="keyword" onclick="speak('花')">花</span><span class="keyword" onclick="speak('田鼠')">田鼠</span><span class="keyword" onclick="speak('燕子')">燕子</span><span class="keyword" onclick="speak('勇敢')">勇敢</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(19)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(19)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(19)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(20)">🗝️🚪</div>
+            <div class="card-title">阿里巴巴与四十大盗</div>
+            <div class="card-subtitle">来源：阿拉伯/一千零一夜</div>
+            <div class="card-text">阿里巴巴发现强盗宝库，用智慧和女仆 Morgana 打败四十大盗。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>智慧和勇气能战胜坏人。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('阿里巴巴')">阿里巴巴</span><span class="keyword" onclick="speak('山洞')">山洞</span><span class="keyword" onclick="speak('芝麻开门')">芝麻开门</span><span class="keyword" onclick="speak('强盗')">强盗</span><span class="keyword" onclick="speak('智慧')">智慧</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(20)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(20)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(20)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(21)">🧞✨</div>
+            <div class="card-title">阿拉丁神灯</div>
+            <div class="card-subtitle">来源：阿拉伯/一千零一夜</div>
+            <div class="card-text">阿拉丁得到神灯，在灯神帮助下战胜坏巫师，和公主幸福生活。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>善良和勇敢会得到帮助。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('阿拉丁')">阿拉丁</span><span class="keyword" onclick="speak('神灯')">神灯</span><span class="keyword" onclick="speak('灯神')">灯神</span><span class="keyword" onclick="speak('飞毯')">飞毯</span><span class="keyword" onclick="speak('公主')">公主</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(21)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(21)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(21)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(22)">🤥🪵</div>
+            <div class="card-title">木偶奇遇记</div>
+            <div class="card-subtitle">来源：意大利</div>
+            <div class="card-text">木偶匹诺曹一说谎鼻子就长，他学会诚实、勇敢，最后变成真正的小男孩。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>说谎鼻子会变长，诚实最重要。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('匹诺曹')">匹诺曹</span><span class="keyword" onclick="speak('鼻子')">鼻子</span><span class="keyword" onclick="speak('诚实')">诚实</span><span class="keyword" onclick="speak('爸爸')">爸爸</span><span class="keyword" onclick="speak('鲸鱼')">鲸鱼</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(22)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(22)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(22)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(23)">🧚‍♂️🏴‍☠️</div>
+            <div class="card-title">彼得潘</div>
+            <div class="card-subtitle">来源：英国</div>
+            <div class="card-text">彼得潘带温蒂去永无岛，和海盗船长战斗，经历奇妙冒险。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>保持童心，但也要勇敢成长。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('彼得潘')">彼得潘</span><span class="keyword" onclick="speak('永无岛')">永无岛</span><span class="keyword" onclick="speak('海盗')">海盗</span><span class="keyword" onclick="speak('飞翔')">飞翔</span><span class="keyword" onclick="speak('冒险')">冒险</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(23)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(23)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(23)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(24)">🐷🕸️</div>
+            <div class="card-title">夏洛的网</div>
+            <div class="card-subtitle">来源：美国</div>
+            <div class="card-text">小猪威尔伯和蜘蛛夏洛成为朋友，夏洛织字救了威尔伯的命。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>真正的友谊很珍贵，朋友会互相帮助。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('小猪')">小猪</span><span class="keyword" onclick="speak('蜘蛛')">蜘蛛</span><span class="keyword" onclick="speak('朋友')">朋友</span><span class="keyword" onclick="speak('农场')">农场</span><span class="keyword" onclick="speak('友谊')">友谊</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(24)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(24)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(24)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(25)">👶🔱</div>
+            <div class="card-title">哪吒闹海</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">小哪吒为救百姓，打死龙王三太子，最后舍身保护陈塘关。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>勇敢反抗不公，保护弱小。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('哪吒')">哪吒</span><span class="keyword" onclick="speak('龙王')">龙王</span><span class="keyword" onclick="speak('混天绫')">混天绫</span><span class="keyword" onclick="speak('勇敢')">勇敢</span><span class="keyword" onclick="speak('保护')">保护</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(25)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(25)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(25)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(26)">🌙🧚‍♀️</div>
+            <div class="card-title">嫦娥奔月</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">嫦娥为了保护仙药不落入坏人之手，吞下仙药飞向月亮。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>善良的选择有时需要牺牲。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('嫦娥')">嫦娥</span><span class="keyword" onclick="speak('月亮')">月亮</span><span class="keyword" onclick="speak('后羿')">后羿</span><span class="keyword" onclick="speak('仙药')">仙药</span><span class="keyword" onclick="speak('飞天')">飞天</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(26)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(26)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(26)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(27)">🐌👧</div>
+            <div class="card-title">田螺姑娘</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">贫穷青年捡到田螺，田螺变成姑娘默默帮他做家务，两人幸福生活。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>勤劳善良的人会得到好报。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('田螺')">田螺</span><span class="keyword" onclick="speak('姑娘')">姑娘</span><span class="keyword" onclick="speak('勤劳')">勤劳</span><span class="keyword" onclick="speak('善良')">善良</span><span class="keyword" onclick="speak('幸福')">幸福</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(27)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(27)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(27)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(28)">🐒☁️</div>
+            <div class="card-title">大闹天宫</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">孙悟空不满天庭轻视，大闹天宫，展现七十二变的本领。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>勇敢挑战不合理的规则。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('孙悟空')">孙悟空</span><span class="keyword" onclick="speak('天宫')">天宫</span><span class="keyword" onclick="speak('金箍棒')">金箍棒</span><span class="keyword" onclick="speak('神仙')">神仙</span><span class="keyword" onclick="speak('勇敢')">勇敢</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(28)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(28)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(28)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="card-emoji" onclick="playTitle(29)">🐂👩🌌</div>
+            <div class="card-title">牛郎织女</div>
+            <div class="card-subtitle">来源：中国</div>
+            <div class="card-text">牛郎和织女相爱，被王母娘娘分开，每年七夕鹊桥相会。</div>
+            <div class="card-text" style="background:#FFF8E7;color:#8B4513"><strong>道理：</strong>真爱能跨越距离，相聚值得珍惜。</div>
+            <div class="keywords"><span class="keyword" onclick="speak('牛郎')">牛郎</span><span class="keyword" onclick="speak('织女')">织女</span><span class="keyword" onclick="speak('鹊桥')">鹊桥</span><span class="keyword" onclick="speak('七夕')">七夕</span><span class="keyword" onclick="speak('星星')">星星</span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="playTitle(29)">🔊 读标题</button>
+                <button class="btn btn-secondary" onclick="playSummary(29)">📖 读故事</button>
+                <button class="btn btn-third" onclick="playMoral(29)">💡 读道理</button>
+            </div>
+            <div class="nav-btns">
+                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+            </div>
+        </div></div>
+        <div class="progress" id="progressDots"><div class="progress-dot active"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div>
+<div class="progress-dot"></div></div>
+        <div class="hint">提示：如果听不到声音，请检查浏览器是否允许播放音频</div>
+        <a href="index.html" class="back-home">⬅️ 返回首页</a>
+    </div>
+<script>
+        const items = [{"title": "三只小猪", "emoji": "🐷🐷🐷", "origin": "中国", "moral": "勤劳和认真做事很重要。", "summary": "三只小猪分别用稻草、木头和砖头盖房子，大灰狼吹倒了前两座，只有砖房保护了他们。", "words": ["小猪", "房子", "大灰狼", "勤劳", "安全"]}, {"title": "小蝌蚪找妈妈", "emoji": "🐸🔍", "origin": "中国", "moral": "遇到困难要坚持，妈妈永远爱我们。", "summary": "小蝌蚪出生不认识妈妈，一路问鲤鱼、乌龟，最后终于找到青蛙妈妈。", "words": ["蝌蚪", "青蛙", "妈妈", "坚持", "寻找"]}, {"title": "小马过河", "emoji": "🐴🌊", "origin": "中国", "moral": "别人的经验不一定适合自己，要亲自尝试。", "summary": "小马要过河，老牛说浅，松鼠说深，小马自己试一试才发现刚好。", "words": ["小马", "过河", "尝试", "勇敢", "河水"]}, {"title": "狼来了", "emoji": "🐺📢", "origin": "中国", "moral": "说谎会失去别人的信任。", "summary": "放羊娃多次喊狼来了骗人，后来真狼来了，没人相信他。", "words": ["放羊娃", "说谎", "狼", "信任", "后悔"]}, {"title": "龟兔赛跑", "emoji": "🐢🐰", "origin": "中国", "moral": "骄傲使人落后，坚持才能胜利。", "summary": "兔子嘲笑乌龟慢，中途睡大觉，乌龟一步一步走到了终点。", "words": ["兔子", "乌龟", "比赛", "坚持", "骄傲"]}, {"title": "孔融让梨", "emoji": "🍐👦", "origin": "中国", "moral": "懂得谦让，尊敬长辈。", "summary": "小孔融把大梨让给哥哥和长辈，自己拿最小的梨。", "words": ["孔融", "梨子", "谦让", "哥哥", "礼貌"]}, {"title": "司马光砸缸", "emoji": "🏺💥", "origin": "中国", "moral": "遇到危险要冷静，想办法救人。", "summary": "小伙伴掉进大水缸，司马光砸破缸，水流出救了人。", "words": ["司马光", "水缸", "救人", "聪明", "勇敢"]}, {"title": "神笔马良", "emoji": "🖌️✨", "origin": "中国", "moral": "善良和正义会战胜贪婪。", "summary": "马良有一支神笔，画什么变什么，他用它帮助穷人，惩治坏人。", "words": ["马良", "神笔", "画画", "善良", "正义"]}, {"title": "猴子捞月", "emoji": "🐒🌙", "origin": "中国", "moral": "遇事要仔细观察，不要忙中出错。", "summary": "猴子看见井里的月亮倒影，以为月亮掉进去了，怎么也捞不上来。", "words": ["猴子", "月亮", "井", "观察", "倒影"]}, {"title": "狐假虎威", "emoji": "🦊🐯", "origin": "中国", "moral": "不要借别人的威风吓唬人。", "summary": "狐狸被老虎抓住，却骗老虎说自己是百兽之王，借着老虎的威风吓跑动物。", "words": ["狐狸", "老虎", "威风", "狡猾", "害怕"]}, {"title": "白雪公主", "emoji": "🍎👸", "origin": "德国/格林", "moral": "善良的心比美丽的外表更重要。", "summary": "白雪公主被继母嫉妒陷害，逃进森林，七个小矮人帮助她，最后王子救醒了她。", "words": ["白雪公主", "小矮人", "皇后", "善良", "镜子"]}, {"title": "灰姑娘", "emoji": "👠🕛", "origin": "德国/格林", "moral": "保持善良，机会会眷顾努力的人。", "summary": "灰姑娘受继母欺负，仙女帮她参加舞会，水晶鞋让她与王子重逢。", "words": ["灰姑娘", "水晶鞋", "王子", "仙女", "南瓜"]}, {"title": "小红帽", "emoji": "🧺🔴", "origin": "德国/格林", "moral": "不要和陌生人说话，要听妈妈的话。", "summary": "小红帽去看望外婆，路上被大灰狼骗，猎人赶来救了她们。", "words": ["小红帽", "大灰狼", "外婆", "猎人", "森林"]}, {"title": "睡美人", "emoji": "👸😴", "origin": "德国/格林", "moral": "真爱和善良能打破诅咒。", "summary": "公主被诅咒沉睡一百年，王子勇敢的吻唤醒了她。", "words": ["公主", "王子", "诅咒", "纺锤", "沉睡"]}, {"title": "青蛙王子", "emoji": "🐸👑", "origin": "德国/格林", "moral": "答应别人的事要做到，守信很重要。", "summary": "公主的金球掉进池塘，青蛙帮她捡回，她遵守诺言亲吻青蛙，青蛙变回王子。", "words": ["公主", "青蛙", "金球", "守信", "池塘"]}, {"title": "丑小鸭", "emoji": "🦆🦢", "origin": "丹麦/安徒生", "moral": "不要小看自己，每个人都有自己的美丽。", "summary": "丑小鸭被嘲笑长得难看，长大后变成美丽的天鹅。", "words": ["丑小鸭", "天鹅", "成长", "自信", "美丽"]}, {"title": "卖火柴的小女孩", "emoji": "🔥👧", "origin": "丹麦/安徒生", "moral": "珍惜温暖幸福的生活，学会关爱他人。", "summary": "大年夜，小女孩卖不出火柴，在寒冷中擦亮火柴看到美好的幻象。", "words": ["小女孩", "火柴", "寒冷", "奶奶", "温暖"]}, {"title": "皇帝的新装", "emoji": "👑👀", "origin": "丹麦/安徒生", "moral": "要勇敢说真话，不要被虚荣蒙蔽。", "summary": "皇帝被两个骗子欺骗，穿着不存在的新衣游行，只有小孩说出真相。", "words": ["皇帝", "骗子", "新衣", "真话", "虚荣"]}, {"title": "海的女儿", "emoji": "🧜‍♀️🌊", "origin": "丹麦/安徒生", "moral": "真正的爱是成全和善良。", "summary": "小人鱼为了王子变成人，最后却选择化成泡沫守护他。", "words": ["美人鱼", "王子", "大海", "泡沫", "牺牲"]}, {"title": "拇指姑娘", "emoji": "🌸👧", "origin": "丹麦/安徒生", "moral": "即使很小，也能勇敢追求幸福。", "summary": "拇指姑娘只有拇指那么大，经历了许多冒险，最后找到了花精灵的家。", "words": ["拇指姑娘", "花", "田鼠", "燕子", "勇敢"]}, {"title": "阿里巴巴与四十大盗", "emoji": "🗝️🚪", "origin": "阿拉伯/一千零一夜", "moral": "智慧和勇气能战胜坏人。", "summary": "阿里巴巴发现强盗宝库，用智慧和女仆 Morgana 打败四十大盗。", "words": ["阿里巴巴", "山洞", "芝麻开门", "强盗", "智慧"]}, {"title": "阿拉丁神灯", "emoji": "🧞✨", "origin": "阿拉伯/一千零一夜", "moral": "善良和勇敢会得到帮助。", "summary": "阿拉丁得到神灯，在灯神帮助下战胜坏巫师，和公主幸福生活。", "words": ["阿拉丁", "神灯", "灯神", "飞毯", "公主"]}, {"title": "木偶奇遇记", "emoji": "🤥🪵", "origin": "意大利", "moral": "说谎鼻子会变长，诚实最重要。", "summary": "木偶匹诺曹一说谎鼻子就长，他学会诚实、勇敢，最后变成真正的小男孩。", "words": ["匹诺曹", "鼻子", "诚实", "爸爸", "鲸鱼"]}, {"title": "彼得潘", "emoji": "🧚‍♂️🏴‍☠️", "origin": "英国", "moral": "保持童心，但也要勇敢成长。", "summary": "彼得潘带温蒂去永无岛，和海盗船长战斗，经历奇妙冒险。", "words": ["彼得潘", "永无岛", "海盗", "飞翔", "冒险"]}, {"title": "夏洛的网", "emoji": "🐷🕸️", "origin": "美国", "moral": "真正的友谊很珍贵，朋友会互相帮助。", "summary": "小猪威尔伯和蜘蛛夏洛成为朋友，夏洛织字救了威尔伯的命。", "words": ["小猪", "蜘蛛", "朋友", "农场", "友谊"]}, {"title": "哪吒闹海", "emoji": "👶🔱", "origin": "中国", "moral": "勇敢反抗不公，保护弱小。", "summary": "小哪吒为救百姓，打死龙王三太子，最后舍身保护陈塘关。", "words": ["哪吒", "龙王", "混天绫", "勇敢", "保护"]}, {"title": "嫦娥奔月", "emoji": "🌙🧚‍♀️", "origin": "中国", "moral": "善良的选择有时需要牺牲。", "summary": "嫦娥为了保护仙药不落入坏人之手，吞下仙药飞向月亮。", "words": ["嫦娥", "月亮", "后羿", "仙药", "飞天"]}, {"title": "田螺姑娘", "emoji": "🐌👧", "origin": "中国", "moral": "勤劳善良的人会得到好报。", "summary": "贫穷青年捡到田螺，田螺变成姑娘默默帮他做家务，两人幸福生活。", "words": ["田螺", "姑娘", "勤劳", "善良", "幸福"]}, {"title": "大闹天宫", "emoji": "🐒☁️", "origin": "中国", "moral": "勇敢挑战不合理的规则。", "summary": "孙悟空不满天庭轻视，大闹天宫，展现七十二变的本领。", "words": ["孙悟空", "天宫", "金箍棒", "神仙", "勇敢"]}, {"title": "牛郎织女", "emoji": "🐂👩🌌", "origin": "中国", "moral": "真爱能跨越距离，相聚值得珍惜。", "summary": "牛郎和织女相爱，被王母娘娘分开，每年七夕鹊桥相会。", "words": ["牛郎", "织女", "鹊桥", "七夕", "星星"]}];
+        let currentIndex = 0;
+        const synth = window.speechSynthesis;
+        let chineseVoice = null;
+        function findChineseVoice(){ if(!synth) return; const voices=synth.getVoices(); for(let v of voices){ if(v.lang.startsWith('zh')){ chineseVoice=v; break; } } }
+        if(speechSynthesis.onvoiceschanged !== undefined){ speechSynthesis.onvoiceschanged = findChineseVoice; }
+        findChineseVoice();
+        function speak(text, rate=0.82){ if(!synth) return; synth.cancel(); const utter=new SpeechSynthesisUtterance(text); utter.lang='zh-CN'; utter.rate=rate; utter.pitch=1.1; if(chineseVoice) utter.voice=chineseVoice; synth.speak(utter); }
+        function showMascot(text){ document.getElementById('mascotText').textContent = text; }
+        function playTitle(i){ const item=items[i]; speak(item.title); showMascot(item.title); }
+        function playSummary(i){ const item=items[i]; speak(item.summary); showMascot(item.summary); }
+        function playMoral(i){ const item=items[i]; speak('这个故事告诉我们：' + item.moral); showMascot(item.moral); }
+        function updateNav(){ document.getElementById('prevBtn').disabled = currentIndex === 0; document.getElementById('nextBtn').disabled = currentIndex === items.length-1; }
+        function switchItem(direction){ const cards=document.querySelectorAll('.card'); const dots=document.querySelectorAll('.progress-dot'); cards[currentIndex].classList.remove('active'); dots[currentIndex].classList.remove('active'); if(direction==='next') currentIndex++; else currentIndex--; cards[currentIndex].classList.add('active'); dots[currentIndex].classList.add('active'); updateNav(); const item=items[currentIndex]; speak(item.title); showMascot('这是《' + item.title + '》'); }
+        function nextItem(){ if(currentIndex < items.length-1) switchItem('next'); }
+        function prevItem(){ if(currentIndex > 0) switchItem('prev'); }
+        function startApp(){ document.getElementById('startOverlay').style.display='none'; if(items.length>0){ speak('你好！我是小豆。今天我们来听童话故事。'); showMascot('你好！我是小豆。今天我们来听童话故事。'); } }
+        updateNav();
+    </script>
+</body>
+</html>
