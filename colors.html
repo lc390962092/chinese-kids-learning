@@ -34,6 +34,8 @@
         .btn-primary { background: #E91E63; }
         .btn-secondary { background: #4ECDC4; }
         .btn-japanese { background: #FF7043; }
+        .btn-english { background: #3F51B5; }
+        .color-english { font-size: 24px; color: #555; margin: 5px 0 0; font-weight: bold; }
         .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
         .nav-btn { background: #FFCDD2; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .nav-btn:active { transform: scale(0.95); }
@@ -79,18 +81,18 @@
     </div>
     <script>
         const items = [
-            { word: "红色", pinyin: "hóng sè", japanese: "赤色", japanese_reading: "あかいろ", summary: "苹果和草莓是红色的，红灯亮时我们要停下来。", words: ["红色", "红", "苹果", "草莓", "红灯"], emoji: "🔴", color: "#F44336" },
-            { word: "黄色", pinyin: "huáng sè", japanese: "黄色", japanese_reading: "きいろ", summary: "香蕉和柠檬是黄色的，小黄鸭也喜欢在水里游。", words: ["黄色", "黄", "香蕉", "柠檬", "小鸭"], emoji: "🟡", color: "#FFEB3B" },
-            { word: "蓝色", pinyin: "lán sè", japanese: "青色", japanese_reading: "あおいろ", summary: "天空和大海是蓝色的，蓝蓝的颜色让人心情平静。", words: ["蓝色", "蓝", "天空", "大海", "平静"], emoji: "🔵", color: "#2196F3" },
-            { word: "绿色", pinyin: "lǜ sè", japanese: "緑色", japanese_reading: "みどりいろ", summary: "小草和树叶是绿色的，绿色代表春天和生机。", words: ["绿色", "绿", "小草", "树叶", "春天"], emoji: "🟢", color: "#4CAF50" },
-            { word: "橙色", pinyin: "chéng sè", japanese: "橙色", japanese_reading: "だいだいいろ", summary: "橙子和胡萝卜是橙色的，像暖暖的秋天。", words: ["橙色", "橙", "橙子", "胡萝卜", "秋天"], emoji: "🟠", color: "#FF9800" },
-            { word: "紫色", pinyin: "zǐ sè", japanese: "紫色", japanese_reading: "むらさきいろ", summary: "葡萄和茄子是紫色的，紫色像神秘的夜晚。", words: ["紫色", "紫", "葡萄", "茄子", "神秘"], emoji: "🟣", color: "#9C27B0" },
-            { word: "粉色", pinyin: "fěn sè", japanese: "桃色", japanese_reading: "ももいろ", summary: "桃花和棉花糖是粉色的，粉粉的颜色很温柔。", words: ["粉色", "粉", "桃花", "棉花糖", "温柔"], emoji: "🌸", color: "#F8BBD0" },
-            { word: "黑色", pinyin: "hēi sè", japanese: "黒色", japanese_reading: "くろいろ", summary: "夜晚和钢琴键是黑色的，黑色也可以很优雅。", words: ["黑色", "黑", "夜晚", "钢琴", "优雅"], emoji: "⚫", color: "#333333" },
-            { word: "白色", pinyin: "bái sè", japanese: "白色", japanese_reading: "しろいろ", summary: "白云和棉花是白色的，白色干干净净。", words: ["白色", "白", "白云", "棉花", "干净"], emoji: "⚪", color: "#EEEEEE" },
-            { word: "棕色", pinyin: "zōng sè", japanese: "茶色", japanese_reading: "ちゃいろ", summary: "小熊和树干是棕色的，棕色像大地一样温暖。", words: ["棕色", "棕", "小熊", "树干", "大地"], emoji: "🟤", color: "#795548" },
-            { word: "灰色", pinyin: "huī sè", japanese: "灰色", japanese_reading: "はいいろ", summary: "乌云和大象是灰色的，下雨天天空常常灰灰的。", words: ["灰色", "灰", "乌云", "大象", "雨天"], emoji: "⬜", color: "#9E9E9E" },
-            { word: "彩虹色", pinyin: "cǎi hóng sè", japanese: "虹色", japanese_reading: "にじいろ", summary: "彩虹有红橙黄绿蓝靛紫七种颜色，雨后挂在天上。", words: ["彩虹色", "彩虹", "七种颜色", "雨后", "天上"], emoji: "🌈", color: "linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet)" }
+            { word: "红色", pinyin: "hóng sè", english: "red", japanese: "赤色", japanese_reading: "あかいろ", summary: "苹果和草莓是红色的，红灯亮时我们要停下来。", words: ["红色", "红", "苹果", "草莓", "红灯"], emoji: "🔴", color: "#F44336" },
+            { word: "黄色", pinyin: "huáng sè", english: "yellow", japanese: "黄色", japanese_reading: "きいろ", summary: "香蕉和柠檬是黄色的，小黄鸭也喜欢在水里游。", words: ["黄色", "黄", "香蕉", "柠檬", "小鸭"], emoji: "🟡", color: "#FFEB3B" },
+            { word: "蓝色", pinyin: "lán sè", english: "blue", japanese: "青色", japanese_reading: "あおいろ", summary: "天空和大海是蓝色的，蓝蓝的颜色让人心情平静。", words: ["蓝色", "蓝", "天空", "大海", "平静"], emoji: "🔵", color: "#2196F3" },
+            { word: "绿色", pinyin: "lǜ sè", english: "green", japanese: "緑色", japanese_reading: "みどりいろ", summary: "小草和树叶是绿色的，绿色代表春天和生机。", words: ["绿色", "绿", "小草", "树叶", "春天"], emoji: "🟢", color: "#4CAF50" },
+            { word: "橙色", pinyin: "chéng sè", english: "orange", japanese: "橙色", japanese_reading: "だいだいいろ", summary: "橙子和胡萝卜是橙色的，像暖暖的秋天。", words: ["橙色", "橙", "橙子", "胡萝卜", "秋天"], emoji: "🟠", color: "#FF9800" },
+            { word: "紫色", pinyin: "zǐ sè", english: "purple", japanese: "紫色", japanese_reading: "むらさきいろ", summary: "葡萄和茄子是紫色的，紫色像神秘的夜晚。", words: ["紫色", "紫", "葡萄", "茄子", "神秘"], emoji: "🟣", color: "#9C27B0" },
+            { word: "粉色", pinyin: "fěn sè", english: "pink", japanese: "桃色", japanese_reading: "ももいろ", summary: "桃花和棉花糖是粉色的，粉粉的颜色很温柔。", words: ["粉色", "粉", "桃花", "棉花糖", "温柔"], emoji: "🌸", color: "#F8BBD0" },
+            { word: "黑色", pinyin: "hēi sè", english: "black", japanese: "黒色", japanese_reading: "くろいろ", summary: "夜晚和钢琴键是黑色的，黑色也可以很优雅。", words: ["黑色", "黑", "夜晚", "钢琴", "优雅"], emoji: "⚫", color: "#333333" },
+            { word: "白色", pinyin: "bái sè", english: "white", japanese: "白色", japanese_reading: "しろいろ", summary: "白云和棉花是白色的，白色干干净净。", words: ["白色", "白", "白云", "棉花", "干净"], emoji: "⚪", color: "#EEEEEE" },
+            { word: "棕色", pinyin: "zōng sè", english: "brown", japanese: "茶色", japanese_reading: "ちゃいろ", summary: "小熊和树干是棕色的，棕色像大地一样温暖。", words: ["棕色", "棕", "小熊", "树干", "大地"], emoji: "🟤", color: "#795548" },
+            { word: "灰色", pinyin: "huī sè", english: "gray", japanese: "灰色", japanese_reading: "はいいろ", summary: "乌云和大象是灰色的，下雨天天空常常灰灰的。", words: ["灰色", "灰", "乌云", "大象", "雨天"], emoji: "⬜", color: "#9E9E9E" },
+            { word: "彩虹色", pinyin: "cǎi hóng sè", english: "rainbow", japanese: "虹色", japanese_reading: "にじいろ", summary: "彩虹有红橙黄绿蓝靛紫七种颜色，雨后挂在天上。", words: ["彩虹色", "彩虹", "七种颜色", "雨后", "天上"], emoji: "🌈", color: "linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet)" }
         ];
 
         let currentIndex = 0;
@@ -100,6 +102,7 @@
         const synth = window.speechSynthesis;
         let chineseVoice = null;
         let japaneseVoice = null;
+        let englishVoice = null;
 
         function findChineseVoice(){
             if (!synth) return;
@@ -111,9 +114,15 @@
             const voices = synth.getVoices();
             for (let v of voices) { if (v.lang.startsWith('ja')) { japaneseVoice = v; break; } }
         }
-        if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = function() { findChineseVoice(); findJapaneseVoice(); };
+        function findEnglishVoice(){
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) { if (v.lang.startsWith('en')) { englishVoice = v; break; } }
+        }
+        if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = function() { findChineseVoice(); findJapaneseVoice(); findEnglishVoice(); };
         findChineseVoice();
         findJapaneseVoice();
+        findEnglishVoice();
 
         function speak(text, rate = 0.82){
             if (!synth) return;
@@ -131,6 +140,21 @@
             utter.lang = 'ja-JP'; utter.rate = rate; utter.pitch = 1.1;
             if (japaneseVoice) utter.voice = japaneseVoice;
             synth.speak(utter);
+        }
+
+        function speakEnglish(text, rate = 0.82){
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'en-US'; utter.rate = rate; utter.pitch = 1.1;
+            if (englishVoice) utter.voice = englishVoice;
+            synth.speak(utter);
+        }
+
+        function playEnglish(index){
+            const item = items[index];
+            speakEnglish(item.english);
+            showMascot('英语说：' + item.english);
         }
 
         function showMascot(text){ document.getElementById('mascotText').textContent = text; }
@@ -156,6 +180,7 @@
                     <div class="card-emoji" onclick="playWord(${i})" style="background:${bgStyle}">${item.emoji}</div>
                     <div class="card-title">${item.word}</div>
                     <div class="card-subtitle">${item.pinyin}</div>
+                    <div class="color-english">${item.english}</div>
                     <div class="card-japanese">${item.japanese}</div>
                     <div class="card-japanese-reading">${item.japanese_reading}</div>
                     <div class="card-text">${item.summary}</div>
@@ -163,6 +188,7 @@
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="playWord(${i})">🔊 读颜色</button>
                         <button class="btn btn-japanese" onclick="speakJapanese(items[${i}].japanese)">🇯🇵 日语</button>
+                        <button class="btn btn-english" onclick="playEnglish(${i})">🇺🇸 英语</button>
                         <button class="btn btn-secondary" onclick="playSentence(${i})">📝 读句子</button>
                     </div>
                     <div class="nav-btns">

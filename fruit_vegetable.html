@@ -49,6 +49,7 @@
         .btn-sentence { background: #66BB6A; }
         .btn-measure { background: #FFD93D; color: #333; }
         .btn-japanese { background: #E91E63; }
+        .btn-english { background: #2196F3; }
         .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
         .nav-btn { background: #A5D6A7; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .nav-btn:active { transform: scale(0.95); }
@@ -158,6 +159,7 @@
         const synth = window.speechSynthesis;
         let chineseVoice = null;
         let japaneseVoice = null;
+        let englishVoice = null;
 
         function findChineseVoice() {
             if (!synth) return;
@@ -175,14 +177,24 @@
             }
         }
 
+        function findEnglishVoice() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) {
+                if (v.lang.startsWith('en')) { englishVoice = v; break; }
+            }
+        }
+
         if (speechSynthesis.onvoiceschanged !== undefined) {
             speechSynthesis.onvoiceschanged = function() {
                 findChineseVoice();
                 findJapaneseVoice();
+                findEnglishVoice();
             };
         }
         findChineseVoice();
         findJapaneseVoice();
+        findEnglishVoice();
 
         function playAudio(path) {
             return new Promise((resolve, reject) => {
@@ -220,6 +232,17 @@
             utter.rate = rate;
             utter.pitch = 1.1;
             if (japaneseVoice) utter.voice = japaneseVoice;
+            synth.speak(utter);
+        }
+
+        function speakEnglish(text, rate = 0.8) {
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'en-US';
+            utter.rate = rate;
+            utter.pitch = 1.1;
+            if (englishVoice) utter.voice = englishVoice;
             synth.speak(utter);
         }
 
@@ -266,8 +289,8 @@
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
                         <button class="btn btn-measure" onclick="playMeasure(${index})">📏 量词</button>
                         <button class="btn btn-japanese" onclick="playJapaneseWord(${index})">🇯🇵 日语</button>
-                    </div>
-                `;
+                        <button class="btn btn-english" onclick="playEnglishWord(${index})">🇺🇸 英语</button>
+                    </div>`;
                 container.appendChild(card);
 
                 const dot = document.createElement('div');
@@ -313,6 +336,12 @@
             const item = filteredItems[index];
             speakJapanese(`${item.japanese}、${item.japanese_reading}`);
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
+        }
+
+        function playEnglishWord(index) {
+            const item = filteredItems[index];
+            speakEnglish(item.english);
+            showMascot(`英语：${item.word} → ${item.english}`);
         }
 
         function switchItem(direction) {

@@ -24,6 +24,9 @@
         .card-subtitle { font-size: 22px; color: #888; margin-bottom: 5px; }
         .card-japanese { font-size: 22px; color: #E91E63; margin: 8px 0 15px; font-weight: 500; cursor: pointer; }
         .card-japanese .reading { color: #999; font-size: 16px; font-weight: normal; margin-left: 6px; }
+        .card-english { font-size: 22px; color: #3F51B5; margin: 8px 0 15px; font-weight: 500; cursor: pointer; }
+        .card-english .reading { color: #999; font-size: 16px; font-weight: normal; margin-left: 6px; }
+        .btn-english { background: #5C6BC0; }
         .card-text { background: #f8f8f8; border-radius: 20px; padding: 18px 20px; margin: 15px auto; max-width: 90%; text-align: left; font-size: 18px; line-height: 1.7; color: #444; }
         .keywords { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 18px 0; padding: 0 10px; }
         .keyword { background: #f0f0f0; color: #555; padding: 8px 16px; border-radius: 20px; font-size: 16px; cursor: pointer; }
@@ -82,21 +85,21 @@
     </div>
     <script>
         const items = [
-            { word: "刷牙", pinyin: "shuā yá", summary: "早晚刷牙，牙齿白白，不会长虫子牙。", sentence: "早晚用牙刷上下刷，牙齿白白净净，没有蛀牙。", words: ["刷牙", "牙齿", "牙刷", "牙膏", "干净"], emoji: "🦷", japanese: "歯を磨く", japanese_reading: "はをみがく" },
-            { word: "洗手", pinyin: "xǐ shǒu", summary: "吃饭前、上厕所后要洗手，洗掉细菌不生病。", sentence: "吃饭前、上完厕所后，用肥皂搓搓手心手背，洗掉细菌。", words: ["洗手", "水", "肥皂", "细菌", "干净"], emoji: "👏", japanese: "手を洗う", japanese_reading: "てをあらう" },
-            { word: "喝水", pinyin: "hē shuǐ", summary: "多喝白开水，身体不缺水，皮肤也更好。", sentence: "口渴了喝白开水，不缺水的小朋友身体棒，皮肤也水灵。", words: ["喝水", "水杯", "白开水", "健康", "解渴"], emoji: "💧", japanese: "水を飲む", japanese_reading: "みずをのむ" },
-            { word: "吃饭", pinyin: "chī fàn", summary: "不挑食，细嚼慢咽，不浪费粮食。", sentence: "不挑食，一口一口慢慢嚼，把碗里的饭菜都吃光。", words: ["吃饭", "米饭", "蔬菜", "不挑食", "粮食"], emoji: "🍚", japanese: "ご飯を食べる", japanese_reading: "ごはんをたべる" },
-            { word: "睡觉", pinyin: "shuì jiào", summary: "晚上早点睡，白天才有精神玩和学习。", sentence: "晚上按时上床，闭上眼睛数小羊，白天才有精神。", words: ["睡觉", "床", "被子", "晚安", "休息"], emoji: "🛏️", japanese: "寝る", japanese_reading: "ねる" },
-            { word: "运动", pinyin: "yùn dòng", summary: "每天跑跑步、跳跳绳，身体棒棒的。", sentence: "每天跑跑步、跳跳绳，和小伙伴一起玩球，身体更强壮。", words: ["运动", "跑步", "跳绳", "身体", "健康"], emoji: "⚽", japanese: "運動する", japanese_reading: "うんどうする" },
-            { word: "打喷嚏", pinyin: "dǎ pēn tì", summary: "打喷嚏捂住嘴，病菌不会传给别人。", sentence: "打喷嚏时转过头，用手肘捂住嘴，病菌不会传给旁边的人。", words: ["打喷嚏", "纸巾", "病菌", "礼貌", "卫生"], emoji: "🤧", japanese: "くしゃみをする", japanese_reading: "くしゃみをする" },
-            { word: "吃水果", pinyin: "chī shuǐ guǒ", summary: "多吃水果，补充维生素，身体更有力。", sentence: "饭后吃一个苹果或几根香蕉，补充维生素身体更有力。", words: ["水果", "苹果", "维生素", "健康", "甜甜"], emoji: "🍎", japanese: "果物を食べる", japanese_reading: "くだものをたべる" },
-            { word: "收拾玩具", pinyin: "shōu shi wán jù", summary: "玩完玩具放回原位，房间整整齐齐。", sentence: "玩完玩具放回原位，房间整整齐齐。", words: ["玩具", "收拾", "整齐", "箱子", "房间"], emoji: "🧸", japanese: "おもちゃを片付ける", japanese_reading: "おもちゃをかたづける" },
-            { word: "穿外套", pinyin: "chuān wài tào", summary: "天冷穿外套，热了脱衣服，保护自己不感冒。", sentence: "天冷穿外套，热了脱衣服，保护自己不感冒。", words: ["外套", "衣服", "天气", "保暖", "健康"], emoji: "🧥", japanese: "上着を着る", japanese_reading: "うわぎをきる" },
-            { word: "按时起床", pinyin: "àn shí qǐ chuáng", summary: "早上听到闹钟就起床，不要赖床，开始新的一天。", sentence: "早上闹钟响了就起床，伸个懒腰，开始新的一天。", words: ["起床", "闹钟", "早上", "按时", "精神"], emoji: "⏰", japanese: "時間通りに起きる", japanese_reading: "じかんどおりにおきる" },
-            { word: "洗脸", pinyin: "xǐ liǎn", summary: "早晚洗脸，把脏东西洗掉，小脸蛋干干净净。", sentence: "早晚用温水洗脸，把灰尘和油光洗掉，小脸蛋清爽又干净。", words: ["洗脸", "毛巾", "水", "干净", "脸"], emoji: "🧼", japanese: "顔を洗う", japanese_reading: "かおをあらう" },
-            { word: "上厕所", pinyin: "shàng cè suǒ", summary: "想上厕所就快去，不要憋着，上完要冲水。", sentence: "想尿尿或便便就快去厕所，上完记得冲水和洗手。", words: ["厕所", "马桶", "冲水", "卫生", "洗手"], emoji: "🚽", japanese: "トイレに行く", japanese_reading: "といれにいく" },
-            { word: "保护眼睛", pinyin: "bǎo hù yǎn jing", summary: "少看手机，看书坐端正，眼睛才能看得清楚。", sentence: "少看屏幕，看书时坐端正，眼睛累了就望望远处的大树。", words: ["眼睛", "看书", "保护", "电视", "明亮"], emoji: "👓", japanese: "目を守る", japanese_reading: "めをまもる" },
-            { word: "整理书包", pinyin: "zhěng lǐ shū bāo", summary: "上学前把书本和文具放进书包，不丢三落四。", sentence: "睡前把书本和文具放进书包，早上上学不慌张。", words: ["书包", "书本", "文具", "整理", "上学"], emoji: "🎒", japanese: "ランドセルを整える", japanese_reading: "らんどせるをととのえる" }
+            { word: "刷牙", pinyin: "shuā yá", summary: "早晚刷牙，牙齿白白，不会长虫子牙。", sentence: "早晚用牙刷上下刷，牙齿白白净净，没有蛀牙。", words: ["刷牙", "牙齿", "牙刷", "牙膏", "干净"], emoji: "🦷", japanese: "歯を磨く", japanese_reading: "はをみがく", english: "brush teeth" },
+            { word: "洗手", pinyin: "xǐ shǒu", summary: "吃饭前、上厕所后要洗手，洗掉细菌不生病。", sentence: "吃饭前、上完厕所后，用肥皂搓搓手心手背，洗掉细菌。", words: ["洗手", "水", "肥皂", "细菌", "干净"], emoji: "👏", japanese: "手を洗う", japanese_reading: "てをあらう", english: "wash hands" },
+            { word: "喝水", pinyin: "hē shuǐ", summary: "多喝白开水，身体不缺水，皮肤也更好。", sentence: "口渴了喝白开水，不缺水的小朋友身体棒，皮肤也水灵。", words: ["喝水", "水杯", "白开水", "健康", "解渴"], emoji: "💧", japanese: "水を飲む", japanese_reading: "みずをのむ", english: "drink water" },
+            { word: "吃饭", pinyin: "chī fàn", summary: "不挑食，细嚼慢咽，不浪费粮食。", sentence: "不挑食，一口一口慢慢嚼，把碗里的饭菜都吃光。", words: ["吃饭", "米饭", "蔬菜", "不挑食", "粮食"], emoji: "🍚", japanese: "ご飯を食べる", japanese_reading: "ごはんをたべる", english: "eat" },
+            { word: "睡觉", pinyin: "shuì jiào", summary: "晚上早点睡，白天才有精神玩和学习。", sentence: "晚上按时上床，闭上眼睛数小羊，白天才有精神。", words: ["睡觉", "床", "被子", "晚安", "休息"], emoji: "🛏️", japanese: "寝る", japanese_reading: "ねる", english: "sleep" },
+            { word: "运动", pinyin: "yùn dòng", summary: "每天跑跑步、跳跳绳，身体棒棒的。", sentence: "每天跑跑步、跳跳绳，和小伙伴一起玩球，身体更强壮。", words: ["运动", "跑步", "跳绳", "身体", "健康"], emoji: "⚽", japanese: "運動する", japanese_reading: "うんどうする", english: "exercise" },
+            { word: "打喷嚏", pinyin: "dǎ pēn tì", summary: "打喷嚏捂住嘴，病菌不会传给别人。", sentence: "打喷嚏时转过头，用手肘捂住嘴，病菌不会传给旁边的人。", words: ["打喷嚏", "纸巾", "病菌", "礼貌", "卫生"], emoji: "🤧", japanese: "くしゃみをする", japanese_reading: "くしゃみをする", english: "sneeze" },
+            { word: "吃水果", pinyin: "chī shuǐ guǒ", summary: "多吃水果，补充维生素，身体更有力。", sentence: "饭后吃一个苹果或几根香蕉，补充维生素身体更有力。", words: ["水果", "苹果", "维生素", "健康", "甜甜"], emoji: "🍎", japanese: "果物を食べる", japanese_reading: "くだものをたべる", english: "eat fruit" },
+            { word: "收拾玩具", pinyin: "shōu shi wán jù", summary: "玩完玩具放回原位，房间整整齐齐。", sentence: "玩完玩具放回原位，房间整整齐齐。", words: ["玩具", "收拾", "整齐", "箱子", "房间"], emoji: "🧸", japanese: "おもちゃを片付ける", japanese_reading: "おもちゃをかたづける", english: "tidy up toys" },
+            { word: "穿外套", pinyin: "chuān wài tào", summary: "天冷穿外套，热了脱衣服，保护自己不感冒。", sentence: "天冷穿外套，热了脱衣服，保护自己不感冒。", words: ["外套", "衣服", "天气", "保暖", "健康"], emoji: "🧥", japanese: "上着を着る", japanese_reading: "うわぎをきる", english: "put on a jacket" },
+            { word: "按时起床", pinyin: "àn shí qǐ chuáng", summary: "早上听到闹钟就起床，不要赖床，开始新的一天。", sentence: "早上闹钟响了就起床，伸个懒腰，开始新的一天。", words: ["起床", "闹钟", "早上", "按时", "精神"], emoji: "⏰", japanese: "時間通りに起きる", japanese_reading: "じかんどおりにおきる", english: "get up on time" },
+            { word: "洗脸", pinyin: "xǐ liǎn", summary: "早晚洗脸，把脏东西洗掉，小脸蛋干干净净。", sentence: "早晚用温水洗脸，把灰尘和油光洗掉，小脸蛋清爽又干净。", words: ["洗脸", "毛巾", "水", "干净", "脸"], emoji: "🧼", japanese: "顔を洗う", japanese_reading: "かおをあらう", english: "wash face" },
+            { word: "上厕所", pinyin: "shàng cè suǒ", summary: "想上厕所就快去，不要憋着，上完要冲水。", sentence: "想尿尿或便便就快去厕所，上完记得冲水和洗手。", words: ["厕所", "马桶", "冲水", "卫生", "洗手"], emoji: "🚽", japanese: "トイレに行く", japanese_reading: "といれにいく", english: "go to the bathroom" },
+            { word: "保护眼睛", pinyin: "bǎo hù yǎn jing", summary: "少看手机，看书坐端正，眼睛才能看得清楚。", sentence: "少看屏幕，看书时坐端正，眼睛累了就望望远处的大树。", words: ["眼睛", "看书", "保护", "电视", "明亮"], emoji: "👓", japanese: "目を守る", japanese_reading: "めをまもる", english: "protect your eyes" },
+            { word: "整理书包", pinyin: "zhěng lǐ shū bāo", summary: "上学前把书本和文具放进书包，不丢三落四。", sentence: "睡前把书本和文具放进书包，早上上学不慌张。", words: ["书包", "书本", "文具", "整理", "上学"], emoji: "🎒", japanese: "ランドセルを整える", japanese_reading: "らんどせるをととのえる", english: "pack your schoolbag" }
         ];
 
         let currentIndex = 0;
@@ -109,6 +112,7 @@
         const synth = window.speechSynthesis;
         let chineseVoice = null;
         let japaneseVoice = null;
+        let englishVoice = null;
 
         function findVoices() {
             if (!synth) return;
@@ -116,7 +120,8 @@
             for (let v of voices) {
                 if (!chineseVoice && v.lang.startsWith('zh')) { chineseVoice = v; }
                 if (!japaneseVoice && v.lang.startsWith('ja')) { japaneseVoice = v; }
-                if (chineseVoice && japaneseVoice) break;
+                if (!englishVoice && v.lang.startsWith('en')) { englishVoice = v; }
+                if (chineseVoice && japaneseVoice && englishVoice) break;
             }
         }
 
@@ -125,15 +130,16 @@
         }
         findVoices();
 
-        function speak(text, rate = 0.82) {
+        function speakEnglish(text, rate = 0.82) {
             if (!synth) return;
             synth.cancel();
             const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'zh-CN';
+            utter.lang = 'en-US';
             utter.rate = rate;
             utter.pitch = 1.1;
-            if (chineseVoice) utter.voice = chineseVoice;
+            if (englishVoice) utter.voice = englishVoice;
             synth.speak(utter);
+            showMascot('English: ' + text);
         }
 
         function speakJapanese(text, rate = 0.82) {
@@ -146,6 +152,17 @@
             if (japaneseVoice) utter.voice = japaneseVoice;
             synth.speak(utter);
             showMascot('日语：' + text);
+        }
+
+        function speak(text, rate = 0.82) {
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'zh-CN';
+            utter.rate = rate;
+            utter.pitch = 1.1;
+            if (chineseVoice) utter.voice = chineseVoice;
+            synth.speak(utter);
         }
 
         function showMascot(text) { document.getElementById('mascotText').textContent = text; }
@@ -170,12 +187,14 @@
                     <div class="card-title">${item.word}</div>
                     <div class="card-subtitle">${item.pinyin}</div>
                     <div class="card-japanese" onclick="speakJapanese('${item.japanese}')">${item.japanese}<span class="reading">${item.japanese_reading}</span></div>
+                    <div class="card-english" onclick="speakEnglish('${item.english}')">${item.english}</div>
                     <div class="card-text">${item.sentence}</div>
                     <div class="keywords">${item.words.map(w => `<span class="keyword" onclick="speak('${w}')">${w}</span>`).join('')}</div>
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="playWord(${index})">🔊 读词语</button>
                         <button class="btn btn-secondary" onclick="playSentence(${index})">📝 读句子</button>
                         <button class="btn btn-japanese" onclick="speakJapanese('${item.japanese}')">🇯🇵 读日语</button>
+                        <button class="btn btn-english" onclick="speakEnglish('${item.english}')">🇺🇸 英语</button>
                     </div>
                     <div class="nav-btns">
                         <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>

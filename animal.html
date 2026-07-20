@@ -202,6 +202,13 @@
         .animal-japanese {
             font-size: 18px;
             color: #E91E63;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .animal-english {
+            font-size: 18px;
+            color: #2196F3;
             margin-bottom: 10px;
             font-weight: 500;
         }
@@ -244,6 +251,10 @@
         
         .btn-japanese {
             background: #E91E63;
+        }
+        
+        .btn-english {
+            background: #2196F3;
         }
         
         .btn-next {
@@ -410,86 +421,86 @@
     <script>
         // 动物数据（20个）
         const animals = [
-            { word: "小猫", pinyin: "xiǎo māo", japanese: "子猫", japanese_reading: "こねこ", file: "cat", sound: "喵喵", sentence: "小猫在沙发上伸了个懒腰，又蹭了蹭主人的手。" },
-            { word: "小狗", pinyin: "xiǎo gǒu", japanese: "子犬", japanese_reading: "こいぬ", file: "dog", sound: "汪汪", sentence: "小狗摇着尾巴，跑过来迎接放学回家的小朋友。" },
-            { word: "小鸟", pinyin: "xiǎo niǎo", japanese: "小鳥", japanese_reading: "ことり", file: "bird", sound: "唧唧", sentence: "小鸟站在树枝上，叽叽喳喳唱着早晨的歌。" },
-            { word: "小鱼", pinyin: "xiǎo yú", japanese: "小魚", japanese_reading: "こざかな", file: "fish", sound: "咕噜", sentence: "小鱼在清澈的水里游来游去，吐出一串泡泡。" },
-            { word: "兔子", pinyin: "tù zi", japanese: "兎", japanese_reading: "うさぎ", file: "rabbit", sound: "咕咕", sentence: "兔子竖起长耳朵，一蹦一跳地在草地上吃胡萝卜。" },
-            { word: "小熊", pinyin: "xiǎo xióng", japanese: "小熊", japanese_reading: "こぐま", file: "bear", sound: "吼", sentence: "小熊在森林里走来走去，寻找甜甜的蜂蜜。" },
-            { word: "小马", pinyin: "xiǎo mǎ", japanese: "子馬", japanese_reading: "こうま", file: "horse", sound: "嘶", sentence: "小马在宽阔的草原上奔跑，鬃毛随风飘扬。" },
-            { word: "大象", pinyin: "dà xiàng", japanese: "象", japanese_reading: "ぞう", file: "elephant", sound: "喇叭", sentence: "大象用长长的鼻子卷起香蕉，慢慢放进嘴里。" },
-            { word: "老鼠", pinyin: "lǎo shǔ", japanese: "鼠", japanese_reading: "ねずみ", file: "mouse", sound: "吱吱", sentence: "小老鼠悄悄溜出洞口，想找一颗落下的米粒。" },
-            { word: "鸭子", pinyin: "yā zi", japanese: "鴨", japanese_reading: "かも", file: "duck", sound: "嘎嘎", sentence: "鸭子排着队跳进池塘，快活地游来游去。" },
-            { word: "小猪", pinyin: "xiǎo zhū", japanese: "子豚", japanese_reading: "こぶた", file: "pig", sound: "哼哼", sentence: "小猪在泥坑里打了个滚，然后满足地哼哼叫。" },
-            { word: "小牛", pinyin: "xiǎo niú", japanese: "子牛", japanese_reading: "こうし", file: "cow", sound: "哞哞", sentence: "小牛跟着妈妈站在草地上，悠闲地嚼着青草。" },
-            { word: "小羊", pinyin: "xiǎo yáng", japanese: "子羊", japanese_reading: "こひつじ", file: "sheep", sound: "咩咩", sentence: "小羊在山上吃草，白色的毛像一团柔软的棉花。" },
-            { word: "小鸡", pinyin: "xiǎo jī", japanese: "ひよこ", japanese_reading: "ひよこ", file: "chicken", sound: "喔喔", sentence: "小鸡跟着母鸡在地上啄米，叽叽喳喳叫个不停。" },
-            { word: "狮子", pinyin: "shī zi", japanese: "獅子", japanese_reading: "しし", file: "lion", sound: "吼吼", sentence: "狮子站在高高的岩石上，大声吼叫，宣示自己的领地。" },
-            { word: "老虎", pinyin: "lǎo hǔ", japanese: "虎", japanese_reading: "とら", file: "tiger", sound: "嗷嗷", sentence: "老虎悄无声息地穿过树林，寻找今天的猎物。" },
-            { word: "猴子", pinyin: "hóu zi", japanese: "猿", japanese_reading: "さる", file: "monkey", sound: "唧唧", sentence: "猴子倒挂在树上，伸手去摘熟透的香蕉。" },
-            { word: "熊猫", pinyin: "xióng māo", japanese: "熊猫", japanese_reading: "ぱんだ", file: "panda", sound: "嗯嗯", sentence: "熊猫坐在竹林里，双手抱着竹子，吃得津津有味。" },
-            { word: "长颈鹿", pinyin: "cháng jǐng lù", japanese: "麒麟", japanese_reading: "きりん", file: "giraffe", sound: "呼呼", sentence: "长颈鹿伸长脖子，轻松地吃到树顶最嫩的叶子。" },
-            { word: "青蛙", pinyin: "qīng wā", japanese: "蛙", japanese_reading: "かえる", file: "frog", sound: "呱呱", sentence: "青蛙蹲在荷叶上，咕呱咕呱地唱着夏天的歌。" },
-            { word: "海龟", pinyin: "hǎi guī", japanese: "海亀", japanese_reading: "うみがめ", file: "sea_turtle", sound: "无", sentence: "海龟慢慢地爬上沙滩，在月光下产下圆圆的蛋。" },
-            { word: "企鹅", pinyin: "qǐ é", japanese: "ペンギン", japanese_reading: "ぺんぎん", file: "penguin", sound: "无", sentence: "企鹅排着整齐的队伍，摇摇摆摆地走向大海。" },
-            { word: "蝴蝶", pinyin: "hú dié", japanese: "蝶", japanese_reading: "ちょう", file: "butterfly", sound: "无", sentence: "蝴蝶扇动彩色的翅膀，在花丛中翩翩起舞。" },
-            { word: "蜜蜂", pinyin: "mì fēng", japanese: "蜜蜂", japanese_reading: "みつばち", file: "bee", sound: "嗡嗡", sentence: "蜜蜂嗡嗡地飞到花朵上，认真地采集甜甜的花蜜。" },
-            { word: "蚂蚁", pinyin: "mǎ yǐ", japanese: "蟻", japanese_reading: "あり", file: "ant", sound: "无", sentence: "蚂蚁们齐心协力，把一块饼干屑搬回了洞里。" },
-            { word: "蜗牛", pinyin: "wō niú", japanese: "蝸牛", japanese_reading: "かたつむり", file: "snail", sound: "无", sentence: "蜗牛背着小小的壳，一步一步慢慢地爬过叶片。" },
-            { word: "瓢虫", pinyin: "piáo chóng", japanese: "天道虫", japanese_reading: "てんとうむし", file: "ladybug", sound: "无", sentence: "瓢虫展开红色的翅膀，飞到叶子上寻找害虫。" },
-            { word: "蜻蜓", pinyin: "qīng tíng", japanese: "蜻蛉", japanese_reading: "とんぼ", file: "dragonfly", sound: "无", sentence: "蜻蜓点着水面飞来飞去，好像在跳一支轻盈的舞。" },
-            { word: "海豚", pinyin: "hǎi tún", japanese: "海豚", japanese_reading: "いるか", file: "dolphin", sound: "吱吱", sentence: "海豚跃出水面，又轻巧地钻回海里，溅起小小的水花。" },
-            { word: "鲸鱼", pinyin: "jīng yú", japanese: "鯨", japanese_reading: "くじら", file: "whale", sound: "呜呜", sentence: "鲸鱼喷出高高的水柱，然后潜入深深的大海。" },
-            { word: "螃蟹", pinyin: "páng xiè", japanese: "蟹", japanese_reading: "かに", file: "crab", sound: "无", sentence: "螃蟹横着身子在沙滩上爬行，两只大钳子一张一合。" },
-            { word: "章鱼", pinyin: "zhāng yú", japanese: "蛸", japanese_reading: "たこ", file: "octopus", sound: "无", sentence: "章鱼张开八条长长的腕足，灵活地在礁石间穿梭。" },
-            { word: "鲨鱼", pinyin: "shā yú", japanese: "鮫", japanese_reading: "さめ", file: "shark", sound: "无", sentence: "鲨鱼张开大嘴，快速地游过蓝色的海水。" },
-            { word: "海星", pinyin: "hǎi xīng", japanese: "海星", japanese_reading: "ひとで", file: "starfish", sound: "无", sentence: "海星静静地躺在海底，五条手臂像绽放的花朵。" },
-            { word: "霸王龙", pinyin: "bà wáng lóng", japanese: "ティラノサウルス", japanese_reading: "てぃらのさうるす", file: "t_rex", sound: "吼吼", sentence: "霸王龙迈开粗壮的大腿，在森林里寻找食物。" },
-            { word: "三角龙", pinyin: "sān jiǎo lóng", japanese: "トリケラトプス", japanese_reading: "とりけらとぷす", file: "triceratops", sound: "无", sentence: "三角龙低下头，用三只尖尖的角保护自己。" },
-            { word: "翼龙", pinyin: "yì lóng", japanese: "翼竜", japanese_reading: "よくりゅう", file: "pterosaur", sound: "无", sentence: "翼龙展开宽大的翅膀，从山顶飞向远方的湖泊。" },
-            { word: "剑龙", pinyin: "jiàn lóng", japanese: "ステゴサウルス", japanese_reading: "すてごさうるす", file: "stegosaurus", sound: "无", sentence: "剑龙背着一排尖尖的骨板，慢慢地走过草地。" },
-            { word: "腕龙", pinyin: "wàn lóng", japanese: "ブラキオサウルス", japanese_reading: "ぶらきおさうるす", file: "brachiosaurus", sound: "无", sentence: "腕龙伸长长长的脖子，轻松地够到最高的树叶。" },
-            { word: "甲龙", pinyin: "jiǎ lóng", japanese: "アンキロサウルス", japanese_reading: "あんきろさうるす", file: "ankylosaurus", sound: "无", sentence: "甲龙披着坚硬的铠甲，尾巴上的锤子左右摆动。" },
-            { word: "袋鼠", pinyin: "dài shǔ", japanese: "カンガルー", japanese_reading: "かんがるー", file: "kangaroo", sound: "无", sentence: "袋鼠妈妈把宝宝装进口袋，一跳一跳地穿过草原。" },
-            { word: "考拉", pinyin: "kǎo lā", japanese: "コアラ", japanese_reading: "こあら", file: "koala", sound: "无", sentence: "考拉抱着桉树枝，闭着眼睛打盹，样子十分可爱。" },
-            { word: "斑马", pinyin: "bān mǎ", japanese: "シマウマ", japanese_reading: "しまうま", file: "zebra", sound: "无", sentence: "斑马身上的条纹像画上去的，一群斑马在草原上奔跑。" },
-            { word: "河马", pinyin: "hé mǎ", japanese: "河馬", japanese_reading: "かば", file: "hippo", sound: "无", sentence: "河马泡在水里，只露出大大的鼻子和圆眼睛。" },
-            { word: "犀牛", pinyin: "xī niú", japanese: "サイ", japanese_reading: "さい", file: "rhino", sound: "无", sentence: "犀牛低下头，用尖尖的角推开挡路的树枝。" },
-            { word: "鳄鱼", pinyin: "è yú", japanese: "鰐", japanese_reading: "わに", file: "crocodile", sound: "无", sentence: "鳄鱼潜伏在河边，只露出两只眼睛观察四周。" },
-            { word: "鸵鸟", pinyin: "tuó niǎo", japanese: "ダチョウ", japanese_reading: "だちょう", file: "ostrich", sound: "无", sentence: "鸵鸟迈开长长的腿，在沙漠里飞快地奔跑。" },
-            { word: "孔雀", pinyin: "kǒng què", japanese: "孔雀", japanese_reading: "くじゃく", file: "peacock", sound: "无", sentence: "孔雀展开五彩缤纷的尾巴，骄傲地站在草地上。" },
-            { word: "天鹅", pinyin: "tiān é", japanese: "白鳥", japanese_reading: "はくちょう", file: "swan", sound: "无", sentence: "天鹅伸长优雅的脖子，在水面上划出漂亮的波纹。" },
-            { word: "火烈鸟", pinyin: "huǒ liè niǎo", japanese: "フラミンゴ", japanese_reading: "ふらみんご", file: "flamingo", sound: "无", sentence: "火烈鸟单脚站在浅水里，粉红色的羽毛像晚霞。" },
-            { word: "刺猬", pinyin: "cì wei", japanese: "猬", japanese_reading: "はりねずみ", file: "hedgehog", sound: "无", sentence: "刺猬身上长满了尖尖的小刺，遇到危险会缩成一团。" },
-            { word: "松鼠", pinyin: "sōng shǔ", japanese: "栗鼠", japanese_reading: "りす", file: "squirrel", sound: "无", sentence: "松鼠抱着松果窜上树，蓬松的大尾巴像一把小伞。" },
-            { word: "狐狸", pinyin: "hú li", japanese: "狐", japanese_reading: "きつね", file: "fox", sound: "无", sentence: "狐狸聪明又机灵，走起路来悄无声息，专找老鼠当晚餐。" },
-            { word: "大灰狼", pinyin: "dà huī láng", japanese: "狼", japanese_reading: "おおかみ", file: "wolf", sound: "无", sentence: "大灰狼在森林里嚎叫，声音传得很远。" },
-            { word: "豹子", pinyin: "bào zi", japanese: "豹", japanese_reading: "ひょう", file: "leopard", sound: "无", sentence: "豹子身上有美丽的斑点，跑起来像一阵风。" },
-            { word: "骆驼", pinyin: "luò tuo", japanese: "駱駝", japanese_reading: "らくだ", file: "camel", sound: "无", sentence: "骆驼背上有高高的驼峰，能在沙漠里走很远。" },
-            { word: "蜘蛛", pinyin: "zhī zhū", japanese: "蜘蛛", japanese_reading: "くも", file: "spider", sound: "无", sentence: "蜘蛛在墙角织网，静静地等待小飞虫。" },
-            { word: "蚯蚓", pinyin: "qiū yǐn", japanese: "蚯蚓", japanese_reading: "みみず", file: "earthworm", sound: "无", sentence: "蚯蚓在泥土里钻来钻去，帮助土壤松土。" },
-            { word: "萤火虫", pinyin: "yíng huǒ chóng", japanese: "蛍", japanese_reading: "ほたる", file: "firefly", sound: "无", sentence: "萤火虫尾部一闪一闪，像提着一盏小灯笼。" },
-            { word: "飞蛾", pinyin: "fēi é", japanese: "蛾", japanese_reading: "が", file: "moth", sound: "无", sentence: "飞蛾围着灯光转圈圈，喜欢扑向明亮的地方。" },
-            { word: "螳螂", pinyin: "táng láng", japanese: "蟷螂", japanese_reading: "かまきり", file: "mantis", sound: "无", sentence: "螳螂举着前足，像拿着两把大刀。" },
-            { word: "知了", pinyin: "zhī liǎo", japanese: "蝉", japanese_reading: "せみ", file: "cicada", sound: "无", sentence: "知了趴在树上，夏天不停地叫着知了知了。" },
-            { word: "蚱蜢", pinyin: "zhà měng", japanese: "蝗虫", japanese_reading: "ばった", file: "grasshopper", sound: "无", sentence: "蚱蜢后腿一蹬，就从草丛里跳走了。" },
-            { word: "蝎子", pinyin: "xiē zi", japanese: "蠍", japanese_reading: "さそり", file: "scorpion", sound: "无", sentence: "蝎子尾巴上有一根毒刺，要小心不要被它碰到。" },
-            { word: "蜈蚣", pinyin: "wú gōng", japanese: "蜈蚣", japanese_reading: "むかで", file: "centipede", sound: "无", sentence: "蜈蚣有很多只脚，爬得很快。" },
-            { word: "海马", pinyin: "hǎi mǎ", japanese: "竜の落とし子", japanese_reading: "たつのおとしご", file: "seahorse", sound: "无", sentence: "海马爸爸肚子里藏着小宝宝，真是神奇。" },
-            { word: "水母", pinyin: "shuǐ mǔ", japanese: "水母", japanese_reading: "くらげ", file: "jellyfish", sound: "无", sentence: "水母在大海里漂浮，身体像一把透明的伞。" },
-            { word: "贝壳", pinyin: "bèi ké", japanese: "貝殻", japanese_reading: "かいがら", file: "seashell", sound: "无", sentence: "海浪把贝壳冲上沙滩，拾起来放在耳边，能听到大海的声音。" },
-            { word: "龙虾", pinyin: "lóng xiā", japanese: "伊勢海老", japanese_reading: "いせえび", file: "lobster", sound: "无", sentence: "龙虾举着两只大钳子，在水里威风地走来走去。" },
-            { word: "海胆", pinyin: "hǎi dǎn", japanese: "海胆", japanese_reading: "うに", file: "sea_urchin", sound: "无", sentence: "海胆浑身长满尖尖的刺，像一只小刺球。" },
-            { word: "海参", pinyin: "hǎi shēn", japanese: "海鼠", japanese_reading: "なまこ", file: "sea_cucumber", sound: "无", sentence: "海参在海底慢慢爬，身体软软的，像一根会动的橡皮。" },
-            { word: "海葵", pinyin: "hǎi kuí", japanese: "海葵", japanese_reading: "いそぎんちゃく", file: "anemone", sound: "无", sentence: "海葵像一朵彩色的花，触手随波轻轻摆动。" },
-            { word: "鳗鱼", pinyin: "mán yú", japanese: "鰻", japanese_reading: "うなぎ", file: "eel", sound: "无", sentence: "鳗鱼长长的、滑滑的，喜欢躲在礁石缝里。" },
-            { word: "蝙蝠", pinyin: "biān fú", japanese: "蝙蝠", japanese_reading: "こうもり", file: "bat", sound: "无", sentence: "蝙蝠晚上飞出来，用特殊的耳朵听回声，在黑夜里也不会撞墙。" },
-            { word: "乌鸦", pinyin: "wū yā", japanese: "烏", japanese_reading: "からす", file: "crow", sound: "无", sentence: "乌鸦站在枝头哑哑叫，在寻找可以吃的小虫子。" },
-            { word: "鹦鹉", pinyin: "yīng wǔ", japanese: "鸚鵡", japanese_reading: "おうむ", file: "parrot", sound: "无", sentence: "鹦鹉会模仿人说话，羽毛五彩缤纷。" },
-            { word: "老鹰", pinyin: "lǎo yīng", japanese: "鷲", japanese_reading: "わし", file: "eagle", sound: "无", sentence: "老鹰在高空盘旋，眼睛锐利，能看到地上很小的猎物。" },
-            { word: "鸽子", pinyin: "gē zi", japanese: "鳩", japanese_reading: "はと", file: "pigeon", sound: "无", sentence: "鸽子咕咕叫着飞到广场，小朋友们会给它撒一些米粒。" },
-            { word: "啄木鸟", pinyin: "zhuó mù niǎo", japanese: "啄木鳥", japanese_reading: "きつつき", file: "woodpecker", sound: "无", sentence: "啄木鸟用尖尖的嘴啄树干，帮大树捉害虫。" },
-            { word: "变色龙", pinyin: "biàn sè lóng", japanese: "カメレオン", japanese_reading: "かめれおん", file: "chameleon", sound: "无", sentence: "变色龙可以改变身体颜色，藏在树叶里很难发现。" }
+            { word: "小猫", pinyin: "xiǎo māo", japanese: "子猫", japanese_reading: "こねこ", file: "cat", sound: "喵喵", sentence: "小猫在沙发上伸了个懒腰，又蹭了蹭主人的手。", english: "cat" },
+            { word: "小狗", pinyin: "xiǎo gǒu", japanese: "子犬", japanese_reading: "こいぬ", file: "dog", sound: "汪汪", sentence: "小狗摇着尾巴，跑过来迎接放学回家的小朋友。", english: "dog" },
+            { word: "小鸟", pinyin: "xiǎo niǎo", japanese: "小鳥", japanese_reading: "ことり", file: "bird", sound: "唧唧", sentence: "小鸟站在树枝上，叽叽喳喳唱着早晨的歌。", english: "bird" },
+            { word: "小鱼", pinyin: "xiǎo yú", japanese: "小魚", japanese_reading: "こざかな", file: "fish", sound: "咕噜", sentence: "小鱼在清澈的水里游来游去，吐出一串泡泡。", english: "fish" },
+            { word: "兔子", pinyin: "tù zi", japanese: "兎", japanese_reading: "うさぎ", file: "rabbit", sound: "咕咕", sentence: "兔子竖起长耳朵，一蹦一跳地在草地上吃胡萝卜。", english: "rabbit" },
+            { word: "小熊", pinyin: "xiǎo xióng", japanese: "小熊", japanese_reading: "こぐま", file: "bear", sound: "吼", sentence: "小熊在森林里走来走去，寻找甜甜的蜂蜜。", english: "bear" },
+            { word: "小马", pinyin: "xiǎo mǎ", japanese: "子馬", japanese_reading: "こうま", file: "horse", sound: "嘶", sentence: "小马在宽阔的草原上奔跑，鬃毛随风飘扬。", english: "horse" },
+            { word: "大象", pinyin: "dà xiàng", japanese: "象", japanese_reading: "ぞう", file: "elephant", sound: "喇叭", sentence: "大象用长长的鼻子卷起香蕉，慢慢放进嘴里。", english: "elephant" },
+            { word: "老鼠", pinyin: "lǎo shǔ", japanese: "鼠", japanese_reading: "ねずみ", file: "mouse", sound: "吱吱", sentence: "小老鼠悄悄溜出洞口，想找一颗落下的米粒。", english: "mouse" },
+            { word: "鸭子", pinyin: "yā zi", japanese: "鴨", japanese_reading: "かも", file: "duck", sound: "嘎嘎", sentence: "鸭子排着队跳进池塘，快活地游来游去。", english: "duck" },
+            { word: "小猪", pinyin: "xiǎo zhū", japanese: "子豚", japanese_reading: "こぶた", file: "pig", sound: "哼哼", sentence: "小猪在泥坑里打了个滚，然后满足地哼哼叫。", english: "pig" },
+            { word: "小牛", pinyin: "xiǎo niú", japanese: "子牛", japanese_reading: "こうし", file: "cow", sound: "哞哞", sentence: "小牛跟着妈妈站在草地上，悠闲地嚼着青草。", english: "cow" },
+            { word: "小羊", pinyin: "xiǎo yáng", japanese: "子羊", japanese_reading: "こひつじ", file: "sheep", sound: "咩咩", sentence: "小羊在山上吃草，白色的毛像一团柔软的棉花。", english: "sheep" },
+            { word: "小鸡", pinyin: "xiǎo jī", japanese: "ひよこ", japanese_reading: "ひよこ", file: "chicken", sound: "喔喔", sentence: "小鸡跟着母鸡在地上啄米，叽叽喳喳叫个不停。", english: "chick" },
+            { word: "狮子", pinyin: "shī zi", japanese: "獅子", japanese_reading: "しし", file: "lion", sound: "吼吼", sentence: "狮子站在高高的岩石上，大声吼叫，宣示自己的领地。", english: "lion" },
+            { word: "老虎", pinyin: "lǎo hǔ", japanese: "虎", japanese_reading: "とら", file: "tiger", sound: "嗷嗷", sentence: "老虎悄无声息地穿过树林，寻找今天的猎物。", english: "tiger" },
+            { word: "猴子", pinyin: "hóu zi", japanese: "猿", japanese_reading: "さる", file: "monkey", sound: "唧唧", sentence: "猴子倒挂在树上，伸手去摘熟透的香蕉。", english: "monkey" },
+            { word: "熊猫", pinyin: "xióng māo", japanese: "熊猫", japanese_reading: "ぱんだ", file: "panda", sound: "嗯嗯", sentence: "熊猫坐在竹林里，双手抱着竹子，吃得津津有味。", english: "panda" },
+            { word: "长颈鹿", pinyin: "cháng jǐng lù", japanese: "麒麟", japanese_reading: "きりん", file: "giraffe", sound: "呼呼", sentence: "长颈鹿伸长脖子，轻松地吃到树顶最嫩的叶子。", english: "giraffe" },
+            { word: "青蛙", pinyin: "qīng wā", japanese: "蛙", japanese_reading: "かえる", file: "frog", sound: "呱呱", sentence: "青蛙蹲在荷叶上，咕呱咕呱地唱着夏天的歌。", english: "frog" },
+            { word: "海龟", pinyin: "hǎi guī", japanese: "海亀", japanese_reading: "うみがめ", file: "sea_turtle", sound: "无", sentence: "海龟慢慢地爬上沙滩，在月光下产下圆圆的蛋。", english: "sea turtle" },
+            { word: "企鹅", pinyin: "qǐ é", japanese: "ペンギン", japanese_reading: "ぺんぎん", file: "penguin", sound: "无", sentence: "企鹅排着整齐的队伍，摇摇摆摆地走向大海。", english: "penguin" },
+            { word: "蝴蝶", pinyin: "hú dié", japanese: "蝶", japanese_reading: "ちょう", file: "butterfly", sound: "无", sentence: "蝴蝶扇动彩色的翅膀，在花丛中翩翩起舞。", english: "butterfly" },
+            { word: "蜜蜂", pinyin: "mì fēng", japanese: "蜜蜂", japanese_reading: "みつばち", file: "bee", sound: "嗡嗡", sentence: "蜜蜂嗡嗡地飞到花朵上，认真地采集甜甜的花蜜。", english: "bee" },
+            { word: "蚂蚁", pinyin: "mǎ yǐ", japanese: "蟻", japanese_reading: "あり", file: "ant", sound: "无", sentence: "蚂蚁们齐心协力，把一块饼干屑搬回了洞里。", english: "ant" },
+            { word: "蜗牛", pinyin: "wō niú", japanese: "蝸牛", japanese_reading: "かたつむり", file: "snail", sound: "无", sentence: "蜗牛背着小小的壳，一步一步慢慢地爬过叶片。", english: "snail" },
+            { word: "瓢虫", pinyin: "piáo chóng", japanese: "天道虫", japanese_reading: "てんとうむし", file: "ladybug", sound: "无", sentence: "瓢虫展开红色的翅膀，飞到叶子上寻找害虫。", english: "ladybug" },
+            { word: "蜻蜓", pinyin: "qīng tíng", japanese: "蜻蛉", japanese_reading: "とんぼ", file: "dragonfly", sound: "无", sentence: "蜻蜓点着水面飞来飞去，好像在跳一支轻盈的舞。", english: "dragonfly" },
+            { word: "海豚", pinyin: "hǎi tún", japanese: "海豚", japanese_reading: "いるか", file: "dolphin", sound: "吱吱", sentence: "海豚跃出水面，又轻巧地钻回海里，溅起小小的水花。", english: "dolphin" },
+            { word: "鲸鱼", pinyin: "jīng yú", japanese: "鯨", japanese_reading: "くじら", file: "whale", sound: "呜呜", sentence: "鲸鱼喷出高高的水柱，然后潜入深深的大海。", english: "whale" },
+            { word: "螃蟹", pinyin: "páng xiè", japanese: "蟹", japanese_reading: "かに", file: "crab", sound: "无", sentence: "螃蟹横着身子在沙滩上爬行，两只大钳子一张一合。", english: "crab" },
+            { word: "章鱼", pinyin: "zhāng yú", japanese: "蛸", japanese_reading: "たこ", file: "octopus", sound: "无", sentence: "章鱼张开八条长长的腕足，灵活地在礁石间穿梭。", english: "octopus" },
+            { word: "鲨鱼", pinyin: "shā yú", japanese: "鮫", japanese_reading: "さめ", file: "shark", sound: "无", sentence: "鲨鱼张开大嘴，快速地游过蓝色的海水。", english: "shark" },
+            { word: "海星", pinyin: "hǎi xīng", japanese: "海星", japanese_reading: "ひとで", file: "starfish", sound: "无", sentence: "海星静静地躺在海底，五条手臂像绽放的花朵。", english: "starfish" },
+            { word: "霸王龙", pinyin: "bà wáng lóng", japanese: "ティラノサウルス", japanese_reading: "てぃらのさうるす", file: "t_rex", sound: "吼吼", sentence: "霸王龙迈开粗壮的大腿，在森林里寻找食物。", english: "T-Rex" },
+            { word: "三角龙", pinyin: "sān jiǎo lóng", japanese: "トリケラトプス", japanese_reading: "とりけらとぷす", file: "triceratops", sound: "无", sentence: "三角龙低下头，用三只尖尖的角保护自己。", english: "triceratops" },
+            { word: "翼龙", pinyin: "yì lóng", japanese: "翼竜", japanese_reading: "よくりゅう", file: "pterosaur", sound: "无", sentence: "翼龙展开宽大的翅膀，从山顶飞向远方的湖泊。", english: "pterosaur" },
+            { word: "剑龙", pinyin: "jiàn lóng", japanese: "ステゴサウルス", japanese_reading: "すてごさうるす", file: "stegosaurus", sound: "无", sentence: "剑龙背着一排尖尖的骨板，慢慢地走过草地。", english: "stegosaurus" },
+            { word: "腕龙", pinyin: "wàn lóng", japanese: "ブラキオサウルス", japanese_reading: "ぶらきおさうるす", file: "brachiosaurus", sound: "无", sentence: "腕龙伸长长长的脖子，轻松地够到最高的树叶。", english: "brachiosaurus" },
+            { word: "甲龙", pinyin: "jiǎ lóng", japanese: "アンキロサウルス", japanese_reading: "あんきろさうるす", file: "ankylosaurus", sound: "无", sentence: "甲龙披着坚硬的铠甲，尾巴上的锤子左右摆动。", english: "ankylosaurus" },
+            { word: "袋鼠", pinyin: "dài shǔ", japanese: "カンガルー", japanese_reading: "かんがるー", file: "kangaroo", sound: "无", sentence: "袋鼠妈妈把宝宝装进口袋，一跳一跳地穿过草原。", english: "kangaroo" },
+            { word: "考拉", pinyin: "kǎo lā", japanese: "コアラ", japanese_reading: "こあら", file: "koala", sound: "无", sentence: "考拉抱着桉树枝，闭着眼睛打盹，样子十分可爱。", english: "koala" },
+            { word: "斑马", pinyin: "bān mǎ", japanese: "シマウマ", japanese_reading: "しまうま", file: "zebra", sound: "无", sentence: "斑马身上的条纹像画上去的，一群斑马在草原上奔跑。", english: "zebra" },
+            { word: "河马", pinyin: "hé mǎ", japanese: "河馬", japanese_reading: "かば", file: "hippo", sound: "无", sentence: "河马泡在水里，只露出大大的鼻子和圆眼睛。", english: "hippo" },
+            { word: "犀牛", pinyin: "xī niú", japanese: "サイ", japanese_reading: "さい", file: "rhino", sound: "无", sentence: "犀牛低下头，用尖尖的角推开挡路的树枝。", english: "rhino" },
+            { word: "鳄鱼", pinyin: "è yú", japanese: "鰐", japanese_reading: "わに", file: "crocodile", sound: "无", sentence: "鳄鱼潜伏在河边，只露出两只眼睛观察四周。", english: "crocodile" },
+            { word: "鸵鸟", pinyin: "tuó niǎo", japanese: "ダチョウ", japanese_reading: "だちょう", file: "ostrich", sound: "无", sentence: "鸵鸟迈开长长的腿，在沙漠里飞快地奔跑。", english: "ostrich" },
+            { word: "孔雀", pinyin: "kǒng què", japanese: "孔雀", japanese_reading: "くじゃく", file: "peacock", sound: "无", sentence: "孔雀展开五彩缤纷的尾巴，骄傲地站在草地上。", english: "peacock" },
+            { word: "天鹅", pinyin: "tiān é", japanese: "白鳥", japanese_reading: "はくちょう", file: "swan", sound: "无", sentence: "天鹅伸长优雅的脖子，在水面上划出漂亮的波纹。", english: "swan" },
+            { word: "火烈鸟", pinyin: "huǒ liè niǎo", japanese: "フラミンゴ", japanese_reading: "ふらみんご", file: "flamingo", sound: "无", sentence: "火烈鸟单脚站在浅水里，粉红色的羽毛像晚霞。", english: "flamingo" },
+            { word: "刺猬", pinyin: "cì wei", japanese: "猬", japanese_reading: "はりねずみ", file: "hedgehog", sound: "无", sentence: "刺猬身上长满了尖尖的小刺，遇到危险会缩成一团。", english: "hedgehog" },
+            { word: "松鼠", pinyin: "sōng shǔ", japanese: "栗鼠", japanese_reading: "りす", file: "squirrel", sound: "无", sentence: "松鼠抱着松果窜上树，蓬松的大尾巴像一把小伞。", english: "squirrel" },
+            { word: "狐狸", pinyin: "hú li", japanese: "狐", japanese_reading: "きつね", file: "fox", sound: "无", sentence: "狐狸聪明又机灵，走起路来悄无声息，专找老鼠当晚餐。", english: "fox" },
+            { word: "大灰狼", pinyin: "dà huī láng", japanese: "狼", japanese_reading: "おおかみ", file: "wolf", sound: "无", sentence: "大灰狼在森林里嚎叫，声音传得很远。", english: "wolf" },
+            { word: "豹子", pinyin: "bào zi", japanese: "豹", japanese_reading: "ひょう", file: "leopard", sound: "无", sentence: "豹子身上有美丽的斑点，跑起来像一阵风。", english: "leopard" },
+            { word: "骆驼", pinyin: "luò tuo", japanese: "駱駝", japanese_reading: "らくだ", file: "camel", sound: "无", sentence: "骆驼背上有高高的驼峰，能在沙漠里走很远。", english: "camel" },
+            { word: "蜘蛛", pinyin: "zhī zhū", japanese: "蜘蛛", japanese_reading: "くも", file: "spider", sound: "无", sentence: "蜘蛛在墙角织网，静静地等待小飞虫。", english: "spider" },
+            { word: "蚯蚓", pinyin: "qiū yǐn", japanese: "蚯蚓", japanese_reading: "みみず", file: "earthworm", sound: "无", sentence: "蚯蚓在泥土里钻来钻去，帮助土壤松土。", english: "earthworm" },
+            { word: "萤火虫", pinyin: "yíng huǒ chóng", japanese: "蛍", japanese_reading: "ほたる", file: "firefly", sound: "无", sentence: "萤火虫尾部一闪一闪，像提着一盏小灯笼。", english: "firefly" },
+            { word: "飞蛾", pinyin: "fēi é", japanese: "蛾", japanese_reading: "が", file: "moth", sound: "无", sentence: "飞蛾围着灯光转圈圈，喜欢扑向明亮的地方。", english: "moth" },
+            { word: "螳螂", pinyin: "táng láng", japanese: "蟷螂", japanese_reading: "かまきり", file: "mantis", sound: "无", sentence: "螳螂举着前足，像拿着两把大刀。", english: "mantis" },
+            { word: "知了", pinyin: "zhī liǎo", japanese: "蝉", japanese_reading: "せみ", file: "cicada", sound: "无", sentence: "知了趴在树上，夏天不停地叫着知了知了。", english: "cicada" },
+            { word: "蚱蜢", pinyin: "zhà měng", japanese: "蝗虫", japanese_reading: "ばった", file: "grasshopper", sound: "无", sentence: "蚱蜢后腿一蹬，就从草丛里跳走了。", english: "grasshopper" },
+            { word: "蝎子", pinyin: "xiē zi", japanese: "蠍", japanese_reading: "さそり", file: "scorpion", sound: "无", sentence: "蝎子尾巴上有一根毒刺，要小心不要被它碰到。", english: "scorpion" },
+            { word: "蜈蚣", pinyin: "wú gōng", japanese: "蜈蚣", japanese_reading: "むかで", file: "centipede", sound: "无", sentence: "蜈蚣有很多只脚，爬得很快。", english: "centipede" },
+            { word: "海马", pinyin: "hǎi mǎ", japanese: "竜の落とし子", japanese_reading: "たつのおとしご", file: "seahorse", sound: "无", sentence: "海马爸爸肚子里藏着小宝宝，真是神奇。", english: "seahorse" },
+            { word: "水母", pinyin: "shuǐ mǔ", japanese: "水母", japanese_reading: "くらげ", file: "jellyfish", sound: "无", sentence: "水母在大海里漂浮，身体像一把透明的伞。", english: "jellyfish" },
+            { word: "贝壳", pinyin: "bèi ké", japanese: "貝殻", japanese_reading: "かいがら", file: "seashell", sound: "无", sentence: "海浪把贝壳冲上沙滩，拾起来放在耳边，能听到大海的声音。", english: "shell" },
+            { word: "龙虾", pinyin: "lóng xiā", japanese: "伊勢海老", japanese_reading: "いせえび", file: "lobster", sound: "无", sentence: "龙虾举着两只大钳子，在水里威风地走来走去。", english: "lobster" },
+            { word: "海胆", pinyin: "hǎi dǎn", japanese: "海胆", japanese_reading: "うに", file: "sea_urchin", sound: "无", sentence: "海胆浑身长满尖尖的刺，像一只小刺球。", english: "sea urchin" },
+            { word: "海参", pinyin: "hǎi shēn", japanese: "海鼠", japanese_reading: "なまこ", file: "sea_cucumber", sound: "无", sentence: "海参在海底慢慢爬，身体软软的，像一根会动的橡皮。", english: "sea cucumber" },
+            { word: "海葵", pinyin: "hǎi kuí", japanese: "海葵", japanese_reading: "いそぎんちゃく", file: "anemone", sound: "无", sentence: "海葵像一朵彩色的花，触手随波轻轻摆动。", english: "sea anemone" },
+            { word: "鳗鱼", pinyin: "mán yú", japanese: "鰻", japanese_reading: "うなぎ", file: "eel", sound: "无", sentence: "鳗鱼长长的、滑滑的，喜欢躲在礁石缝里。", english: "eel" },
+            { word: "蝙蝠", pinyin: "biān fú", japanese: "蝙蝠", japanese_reading: "こうもり", file: "bat", sound: "无", sentence: "蝙蝠晚上飞出来，用特殊的耳朵听回声，在黑夜里也不会撞墙。", english: "bat" },
+            { word: "乌鸦", pinyin: "wū yā", japanese: "烏", japanese_reading: "からす", file: "crow", sound: "无", sentence: "乌鸦站在枝头哑哑叫，在寻找可以吃的小虫子。", english: "crow" },
+            { word: "鹦鹉", pinyin: "yīng wǔ", japanese: "鸚鵡", japanese_reading: "おうむ", file: "parrot", sound: "无", sentence: "鹦鹉会模仿人说话，羽毛五彩缤纷。", english: "parrot" },
+            { word: "老鹰", pinyin: "lǎo yīng", japanese: "鷲", japanese_reading: "わし", file: "eagle", sound: "无", sentence: "老鹰在高空盘旋，眼睛锐利，能看到地上很小的猎物。", english: "eagle" },
+            { word: "鸽子", pinyin: "gē zi", japanese: "鳩", japanese_reading: "はと", file: "pigeon", sound: "无", sentence: "鸽子咕咕叫着飞到广场，小朋友们会给它撒一些米粒。", english: "pigeon" },
+            { word: "啄木鸟", pinyin: "zhuó mù niǎo", japanese: "啄木鳥", japanese_reading: "きつつき", file: "woodpecker", sound: "无", sentence: "啄木鸟用尖尖的嘴啄树干，帮大树捉害虫。", english: "woodpecker" },
+            { word: "变色龙", pinyin: "biàn sè lóng", japanese: "カメレオン", japanese_reading: "かめれおん", file: "chameleon", sound: "无", sentence: "变色龙可以改变身体颜色，藏在树叶里很难发现。", english: "chameleon" }
         ];
         
         let currentIndex = 0;
@@ -499,6 +510,7 @@
         const synth = window.speechSynthesis;
         let chineseVoice = null;
         let japaneseVoice = null;
+        let englishVoice = null;
         
         function findChineseVoice() {
             if (!synth) return;
@@ -523,15 +535,36 @@
             }
         }
         
+        function findEnglishVoice() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) {
+                if (v.lang === 'en-US') {
+                    englishVoice = v;
+                    break;
+                }
+            }
+            if (!englishVoice) {
+                for (let v of voices) {
+                    if (v.lang.startsWith('en')) {
+                        englishVoice = v;
+                        break;
+                    }
+                }
+            }
+        }
+        
         // 某些浏览器需要等待 voices loaded
         if (speechSynthesis.onvoiceschanged !== undefined) {
             speechSynthesis.onvoiceschanged = () => {
                 findChineseVoice();
                 findJapaneseVoice();
+                findEnglishVoice();
             };
         }
         findChineseVoice();
         findJapaneseVoice();
+        findEnglishVoice();
         
         function playAudio(path) {
             return new Promise((resolve, reject) => {
@@ -584,6 +617,20 @@
             synth.speak(utter);
         }
         
+        function speakEnglish(text) {
+            if (!synth || !speechEnabled) {
+                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
+                return;
+            }
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'en-US';
+            utter.rate = 0.85;
+            utter.pitch = 1.0;
+            if (englishVoice) utter.voice = englishVoice;
+            synth.speak(utter);
+        }
+        
         function showMascot(text) {
             document.getElementById('mascotText').textContent = text;
         }
@@ -614,11 +661,13 @@
                     <div class="animal-word">${animal.word}</div>
                     <div class="animal-pinyin">${animal.pinyin}</div>
                     <div class="animal-japanese">${animal.japanese}（${animal.japanese_reading}）</div>
+                    <div class="animal-english">${animal.english}</div>
                     <div class="btn-group">
                         <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
                         ${animal.sound ? `<button class="btn btn-sound" onclick="playSound(${index})">🎵 叫声</button>` : ''}
                         <button class="btn btn-japanese" onclick="playJapanese(${index})">🇯🇵 日语</button>
+                        <button class="btn btn-english" onclick="playEnglish(${index})">🇺🇸 英语</button>
                     </div>
                     <a href="animal_match_game.html" style="display:inline-block;margin-top:12px;color:#FF6B6B;text-decoration:none;font-size:15px;">🎮 玩听音找图游戏</a>
                 `;
@@ -659,6 +708,12 @@
             const animal = animals[index];
             speakJapanese(`${animal.japanese}、${animal.japanese_reading}`);
             showMascot(`${animal.word} 的日语是：${animal.japanese}（${animal.japanese_reading}）`);
+        }
+        
+        function playEnglish(index) {
+            const animal = animals[index];
+            speakEnglish(animal.english);
+            showMascot(`${animal.word} 的英语是：${animal.english}`);
         }
         
         function switchAnimal(direction) {
