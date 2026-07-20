@@ -356,7 +356,7 @@
         function playWord(index) {
             const item = items[index];
             speak(item.word + '，' + item.pinyin);
-            showMascot('这是' + item.word + '，' + item.pinyin + '。');
+            showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
         }
         
         function playSentence(index) {
@@ -376,7 +376,7 @@
             dots[currentIndex].classList.add('active');
             const item = items[currentIndex];
             speak(item.word);
-            showMascot('这是' + item.word + '，' + item.pinyin + '。');
+            showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
         }
         
         function nextItem() { switchCard('next'); }
