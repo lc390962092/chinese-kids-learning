@@ -40,13 +40,15 @@
         .side-arrow.right { right: -15px; }
         .item-word { font-size: 48px; color: #333; margin: 10px 0 5px; font-weight: bold; }
         .item-pinyin { font-size: 22px; color: #888; margin-bottom: 5px; }
-        .item-english { font-size: 16px; color: #FF8C42; margin-bottom: 15px; }
-        .btn-group { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
-        .btn { border: none; border-radius: 25px; padding: 12px 25px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+        .item-english { font-size: 16px; color: #FF8C42; margin-bottom: 5px; }
+        .item-japanese { font-size: 18px; color: #E91E63; margin-bottom: 15px; }
+        .btn-group { display: flex; justify-content: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { border: none; border-radius: 25px; padding: 12px 22px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
         .btn:active { transform: scale(0.95); }
         .btn-word { background: #FF8C42; }
         .btn-sentence { background: #66BB6A; }
         .btn-measure { background: #FFD93D; color: #333; }
+        .btn-japanese { background: #E91E63; }
         .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
         .nav-btn { background: #A5D6A7; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .nav-btn:active { transform: scale(0.95); }
@@ -86,67 +88,67 @@
     </div>
 <script>
         const allItems = [
-            { word: "苹果", pinyin: "píng guǒ", file: "apple", measure: "个", english: "apple", sentence: "苹果红彤彤的，咬一口又脆又甜。", tags: ["fruit"] },
-            { word: "香蕉", pinyin: "xiāng jiāo", file: "banana", measure: "根", english: "banana", sentence: "香蕉弯弯像月亮，剥开皮就能吃。", tags: ["fruit"] },
-            { word: "橙子", pinyin: "chéng zi", file: "orange", measure: "个", english: "orange", sentence: "橙子圆圆黄黄的，用力一剥香气扑鼻。", tags: ["fruit"] },
-            { word: "葡萄", pinyin: "pú tao", file: "grape", measure: "串", english: "grape", sentence: "葡萄一串一串挂在藤上，像紫色的珍珠。", tags: ["fruit"] },
-            { word: "西瓜", pinyin: "xī guā", file: "watermelon", measure: "个", english: "watermelon", sentence: "夏天吃上一块凉凉的西瓜，红色的瓤甜甜的，汁水流到嘴角。", tags: ["fruit"] },
-            { word: "草莓", pinyin: "cǎo méi", file: "strawberry", measure: "颗", english: "strawberry", sentence: "草莓小小的，红红的，咬一口满嘴甜汁。", tags: ["fruit"] },
-            { word: "梨", pinyin: "lí", file: "pear", measure: "个", english: "pear", sentence: "梨的水分很多，嗓子不舒服时吃最好。", tags: ["fruit"] },
-            { word: "桃子", pinyin: "táo zi", file: "peach", measure: "个", english: "peach", sentence: "桃子毛茸茸的，果肉又软又香。", tags: ["fruit"] },
-            { word: "樱桃", pinyin: "yīng táo", file: "cherry", measure: "颗", english: "cherry", sentence: "樱桃红红的像小宝石，一颗一颗放进嘴里。", tags: ["fruit"] },
-            { word: "蓝莓", pinyin: "lán méi", file: "blueberry", measure: "颗", english: "blueberry", sentence: "蓝莓小小的蓝蓝的，对眼睛很好。", tags: ["fruit"] },
-            { word: "芒果", pinyin: "máng guǒ", file: "mango", measure: "个", english: "mango", sentence: "芒果香气扑鼻，果肉金黄，切成小块用勺子挖着吃。", tags: ["fruit"] },
-            { word: "菠萝", pinyin: "bō luó", file: "pineapple", measure: "个", english: "pineapple", sentence: "菠萝切开后黄澄澄的，泡过盐水再吃，酸甜又解渴。", tags: ["fruit"] },
-            { word: "柠檬", pinyin: "níng méng", file: "lemon", measure: "个", english: "lemon", sentence: "柠檬黄黄的，味道很酸，可以做柠檬水。", tags: ["fruit"] },
-            { word: "猕猴桃", pinyin: "mí hóu táo", file: "kiwi", measure: "个", english: "kiwi", sentence: "猕猴桃剥掉棕色的薄皮，里面是绿色的果肉，有许多小黑籽。", tags: ["fruit"] },
-            { word: "椰子", pinyin: "yē zi", file: "coconut", measure: "个", english: "coconut", sentence: "椰子里面有清甜的椰汁，还有白白的椰肉。", tags: ["fruit"] },
-            { word: "哈密瓜", pinyin: "hā mì guā", file: "honeydew", measure: "个", english: "honeydew", sentence: "哈密瓜甜丝丝的，切成小块和小伙伴一起分享最开心。", tags: ["fruit"] },
-            { word: "榴莲", pinyin: "liú lián", file: "durian", measure: "个", english: "durian", sentence: "榴莲闻起来很特别，喜欢吃的人觉得它又香又糯。", tags: ["fruit"] },
-            { word: "火龙果", pinyin: "huǒ lóng guǒ", file: "dragon_fruit", measure: "个", english: "dragon_fruit", sentence: "火龙果的果肉里有密密麻麻的小黑籽，吃起来清爽又有趣。", tags: ["fruit"] },
-            { word: "山竹", pinyin: "shān zhú", file: "mangosteen", measure: "个", english: "mangosteen", sentence: "山竹紫红色的壳里，藏着像蒜瓣一样的白肉。", tags: ["fruit"] },
-            { word: "荔枝", pinyin: "lì zhī", file: "lychee", measure: "颗", english: "lychee", sentence: "荔枝外壳红红的，剥开后果肉又白又甜。", tags: ["fruit"] },
-            { word: "龙眼", pinyin: "lóng yǎn", file: "longan", measure: "颗", english: "longan", sentence: "龙眼剥开半透明，像一颗小小的珍珠。", tags: ["fruit"] },
-            { word: "杨梅", pinyin: "yáng méi", file: "bayberry", measure: "颗", english: "bayberry", sentence: "杨梅酸酸甜甜的，吃多了牙齿会软软的。", tags: ["fruit"] },
-            { word: "枇杷", pinyin: "pí pa", file: "loquat", measure: "个", english: "loquat", sentence: "枇杷黄澄澄的，剥皮吃可以润润嗓子。", tags: ["fruit"] },
-            { word: "杨桃", pinyin: "yáng táo", file: "starfruit", measure: "个", english: "starfruit", sentence: "把杨桃横着切成一片一片，每一片都像一颗小星星。", tags: ["fruit"] },
-            { word: "牛油果", pinyin: "niú yóu guǒ", file: "avocado", measure: "个", english: "avocado", sentence: "牛油果软软的，做成沙拉或涂在面包上都好吃。", tags: ["fruit"] },
-            { word: "石榴", pinyin: "shí liu", file: "pomegranate", measure: "个", english: "pomegranate", sentence: "石榴里面有许多红宝石一样的籽粒，咬一口甜甜的。", tags: ["fruit"] },
-            { word: "柚子", pinyin: "yòu zi", file: "pomelo", measure: "个", english: "pomelo", sentence: "柚子大大的，皮厚厚的，果肉一瓣一瓣分开。", tags: ["fruit"] },
-            { word: "柿子", pinyin: "shì zi", file: "persimmon", measure: "个", english: "persimmon", sentence: "柿子熟了软软的，像挂了一盏小灯笼。", tags: ["fruit"] },
-            { word: "枣", pinyin: "zǎo", file: "jujube", measure: "颗", english: "jujube", sentence: "枣红红的、小小的，晒干了煮粥，甜甜的很好吃。", tags: ["fruit"] },
-            { word: "桑葚", pinyin: "sāng shèn", file: "mulberry", measure: "颗", english: "mulberry", sentence: "桑葚成熟后变成紫黑色，吃一把嘴唇和手指都染成了紫色。", tags: ["fruit"] },
-            { word: "胡萝卜", pinyin: "hú luó bo", file: "carrot", measure: "根", english: "carrot", sentence: "胡萝卜橙橙的，兔子最爱吃，对眼睛也很好。", tags: ["vegetable"] },
-            { word: "西红柿", pinyin: "xī hóng shì", file: "tomato", measure: "个", english: "tomato", sentence: "西红柿可以洗干净直接吃，也可以切成小块炒出红红的汁。", tags: ["vegetable"] },
-            { word: "黄瓜", pinyin: "huáng guā", file: "cucumber", measure: "根", english: "cucumber", sentence: "黄瓜咔嚓咬一口，满嘴都是清爽的汁水。", tags: ["vegetable"] },
-            { word: "土豆", pinyin: "tǔ dòu", file: "potato", measure: "个", english: "potato", sentence: "土豆可以切成条炸成薯条，也可以炖得软软的拌饭吃。", tags: ["vegetable"] },
-            { word: "白菜", pinyin: "bái cài", file: "chinese_cabbage", measure: "棵", english: "chinese_cabbage", sentence: "白菜一片一片白白的，冬天煮汤很暖和。", tags: ["vegetable"] },
-            { word: "菠菜", pinyin: "bō cài", file: "spinach", measure: "棵", english: "spinach", sentence: "菠菜绿绿的，含有丰富的营养，吃了有力气。", tags: ["vegetable"] },
-            { word: "茄子", pinyin: "qié zi", file: "eggplant", measure: "个", english: "eggplant", sentence: "茄子烧熟后软软的，吸饱了酱汁，配米饭特别香。", tags: ["vegetable"] },
-            { word: "南瓜", pinyin: "nán guā", file: "pumpkin", measure: "个", english: "pumpkin", sentence: "南瓜煮熟后甜甜面面的，妈妈常做成香喷喷的南瓜饼。", tags: ["vegetable"] },
-            { word: "玉米", pinyin: "yù mǐ", file: "corn", measure: "根", english: "corn", sentence: "玉米粒一粒一粒排在棒子上，煮熟后散发着甜甜的香味。", tags: ["vegetable"] },
-            { word: "豌豆", pinyin: "wān dòu", file: "pea", measure: "颗", english: "pea", sentence: "豌豆从豆荚里剥出来，圆滚滚的，炒熟了又甜又嫩。", tags: ["vegetable"] },
-            { word: "洋葱", pinyin: "yáng cōng", file: "onion", measure: "个", english: "onion", sentence: "洋葱切开会让人流泪，炒熟了却很香甜。", tags: ["vegetable"] },
-            { word: "大蒜", pinyin: "dà suàn", file: "garlic", measure: "头", english: "garlic", sentence: "大蒜闻起来有点辣，炒菜时放一点很香。", tags: ["vegetable"] },
-            { word: "生姜", pinyin: "shēng jiāng", file: "ginger", measure: "块", english: "ginger", sentence: "生姜黄黄的，煮汤时放一点可以去腥。", tags: ["vegetable"] },
-            { word: "蘑菇", pinyin: "mó gu", file: "mushroom", measure: "个", english: "mushroom", sentence: "雨后蘑菇像一把把小伞，从湿润的泥土里冒出来。", tags: ["vegetable"] },
-            { word: "青椒", pinyin: "qīng jiāo", file: "green_pepper", measure: "个", english: "green_pepper", sentence: "青椒绿绿的，不辣，切成丝可以炒肉。", tags: ["vegetable"] },
-            { word: "辣椒", pinyin: "là jiāo", file: "chili", measure: "个", english: "chili", sentence: "辣椒红红的，炒进菜里会让舌头辣辣的，但很开胃。", tags: ["vegetable"] },
-            { word: "芹菜", pinyin: "qín cài", file: "celery", measure: "棵", english: "celery", sentence: "芹菜长长的，咬起来咔嚓响，有一股清香味。", tags: ["vegetable"] },
-            { word: "西兰花", pinyin: "xī lán huā", file: "broccoli", measure: "棵", english: "broccoli", sentence: "西兰花像一棵绿色的小花树，煮一煮蘸酱吃很有营养。", tags: ["vegetable"] },
-            { word: "花菜", pinyin: "huā cài", file: "cauliflower", measure: "棵", english: "cauliflower", sentence: "花菜白白的一团，掰成小朵炒肉，软软香香。", tags: ["vegetable"] },
-            { word: "生菜", pinyin: "shēng cài", file: "lettuce", measure: "棵", english: "lettuce", sentence: "生菜叶子脆脆的，洗干净后可以包着烤肉一起吃。", tags: ["vegetable"] },
-            { word: "豆角", pinyin: "dòu jiǎo", file: "green_bean", measure: "根", english: "green_bean", sentence: "豆角长长的，切成小段和肉一起炒，很下饭。", tags: ["vegetable"] },
-            { word: "冬瓜", pinyin: "dōng guā", file: "winter_melon", measure: "个", english: "winter_melon", sentence: "冬瓜煮汤清清淡淡的，夏天喝上一碗很解暑。", tags: ["vegetable"] },
-            { word: "丝瓜", pinyin: "sī guā", file: "loofah", measure: "根", english: "loofah", sentence: "丝瓜长长的，去皮后炒蛋，滑溜溜的口感很好。", tags: ["vegetable"] },
-            { word: "苦瓜", pinyin: "kǔ guā", file: "bitter_melon", measure: "根", english: "bitter_melon", sentence: "苦瓜味道有点苦，但夏天吃可以清热降火。", tags: ["vegetable"] },
-            { word: "红薯", pinyin: "hóng shǔ", file: "sweet_potato", measure: "个", english: "sweet_potato", sentence: "红薯烤熟后香喷喷的，里面是金黄色的瓤，又甜又面。", tags: ["vegetable"] },
-            { word: "白萝卜", pinyin: "bái luó bo", file: "daikon", measure: "根", english: "daikon", sentence: "白萝卜白白胖胖的，可以炖汤，也可以做成爽口的泡菜。", tags: ["vegetable"] },
-            { word: "莲藕", pinyin: "lián ǒu", file: "lotus_root", measure: "节", english: "lotus_root", sentence: "莲藕一节一节的，横切开来有漂亮的小孔，煮软后粉粉糯糯。", tags: ["vegetable"] },
-            { word: "竹笋", pinyin: "zhú sǔn", file: "bamboo_shoot", measure: "根", english: "bamboo_shoot", sentence: "竹笋从土里钻出来，剥掉外皮炒肉，鲜嫩又爽口。", tags: ["vegetable"] },
-            { word: "芦笋", pinyin: "lú sǔn", file: "asparagus", measure: "根", english: "asparagus", sentence: "芦笋嫩嫩的，顶端尖尖的，用水焯一下就能吃。", tags: ["vegetable"] },
-            { word: "秋葵", pinyin: "qiū kuí", file: "okra", measure: "根", english: "okra", sentence: "秋葵横着切开像一颗小星星，表面黏黏滑滑的。", tags: ["vegetable"] },
-            { word: "荸荠", pinyin: "bí qí", file: "water_chestnut", measure: "个", english: "water_chestnut", sentence: "荸荠外皮黑褐色，洗掉泥土后里面白白脆脆，像水果一样甜。", tags: ["vegetable"] }
+            { word: "苹果", pinyin: "píng guǒ", file: "apple", measure: "个", english: "apple", sentence: "苹果红彤彤的，咬一口又脆又甜。", tags: ["fruit"], japanese: "りんご", japanese_reading: "りんご" },
+            { word: "香蕉", pinyin: "xiāng jiāo", file: "banana", measure: "根", english: "banana", sentence: "香蕉弯弯像月亮，剥开皮就能吃。", tags: ["fruit"], japanese: "バナナ", japanese_reading: "ばなな" },
+            { word: "橙子", pinyin: "chéng zi", file: "orange", measure: "个", english: "orange", sentence: "橙子圆圆黄黄的，用力一剥香气扑鼻。", tags: ["fruit"], japanese: "オレンジ", japanese_reading: "おれんじ" },
+            { word: "葡萄", pinyin: "pú tao", file: "grape", measure: "串", english: "grape", sentence: "葡萄一串一串挂在藤上，像紫色的珍珠。", tags: ["fruit"], japanese: "ぶどう", japanese_reading: "ぶどう" },
+            { word: "西瓜", pinyin: "xī guā", file: "watermelon", measure: "个", english: "watermelon", sentence: "夏天吃上一块凉凉的西瓜，红色的瓤甜甜的，汁水流到嘴角。", tags: ["fruit"], japanese: "スイカ", japanese_reading: "すいか" },
+            { word: "草莓", pinyin: "cǎo méi", file: "strawberry", measure: "颗", english: "strawberry", sentence: "草莓小小的，红红的，咬一口满嘴甜汁。", tags: ["fruit"], japanese: "いちご", japanese_reading: "いちご" },
+            { word: "梨", pinyin: "lí", file: "pear", measure: "个", english: "pear", sentence: "梨的水分很多，嗓子不舒服时吃最好。", tags: ["fruit"], japanese: "梨", japanese_reading: "なし" },
+            { word: "桃子", pinyin: "táo zi", file: "peach", measure: "个", english: "peach", sentence: "桃子毛茸茸的，果肉又软又香。", tags: ["fruit"], japanese: "桃", japanese_reading: "もも" },
+            { word: "樱桃", pinyin: "yīng táo", file: "cherry", measure: "颗", english: "cherry", sentence: "樱桃红红的像小宝石，一颗一颗放进嘴里。", tags: ["fruit"], japanese: "さくらんぼ", japanese_reading: "さくらんぼ" },
+            { word: "蓝莓", pinyin: "lán méi", file: "blueberry", measure: "颗", english: "blueberry", sentence: "蓝莓小小的蓝蓝的，对眼睛很好。", tags: ["fruit"], japanese: "ブルーベリー", japanese_reading: "ぶるーべりー" },
+            { word: "芒果", pinyin: "máng guǒ", file: "mango", measure: "个", english: "mango", sentence: "芒果香气扑鼻，果肉金黄，切成小块用勺子挖着吃。", tags: ["fruit"], japanese: "マンゴー", japanese_reading: "まんごー" },
+            { word: "菠萝", pinyin: "bō luó", file: "pineapple", measure: "个", english: "pineapple", sentence: "菠萝切开后黄澄澄的，泡过盐水再吃，酸甜又解渴。", tags: ["fruit"], japanese: "パイナップル", japanese_reading: "ぱいなっぷる" },
+            { word: "柠檬", pinyin: "níng méng", file: "lemon", measure: "个", english: "lemon", sentence: "柠檬黄黄的，味道很酸，可以做柠檬水。", tags: ["fruit"], japanese: "レモン", japanese_reading: "れもん" },
+            { word: "猕猴桃", pinyin: "mí hóu táo", file: "kiwi", measure: "个", english: "kiwi", sentence: "猕猴桃剥掉棕色的薄皮，里面是绿色的果肉，有许多小黑籽。", tags: ["fruit"], japanese: "キウイ", japanese_reading: "きうい" },
+            { word: "椰子", pinyin: "yē zi", file: "coconut", measure: "个", english: "coconut", sentence: "椰子里面有清甜的椰汁，还有白白的椰肉。", tags: ["fruit"], japanese: "ココナッツ", japanese_reading: "ここなっつ" },
+            { word: "哈密瓜", pinyin: "hā mì guā", file: "honeydew", measure: "个", english: "honeydew", sentence: "哈密瓜甜丝丝的，切成小块和小伙伴一起分享最开心。", tags: ["fruit"], japanese: "メロン", japanese_reading: "めろん" },
+            { word: "榴莲", pinyin: "liú lián", file: "durian", measure: "个", english: "durian", sentence: "榴莲闻起来很特别，喜欢吃的人觉得它又香又糯。", tags: ["fruit"], japanese: "ドリアン", japanese_reading: "どりあん" },
+            { word: "火龙果", pinyin: "huǒ lóng guǒ", file: "dragon_fruit", measure: "个", english: "dragon_fruit", sentence: "火龙果的果肉里有密密麻麻的小黑籽，吃起来清爽又有趣。", tags: ["fruit"], japanese: "ドラゴンフルーツ", japanese_reading: "どらごんふるーつ" },
+            { word: "山竹", pinyin: "shān zhú", file: "mangosteen", measure: "个", english: "mangosteen", sentence: "山竹紫红色的壳里，藏着像蒜瓣一样的白肉。", tags: ["fruit"], japanese: "マンゴスチン", japanese_reading: "まんごすちん" },
+            { word: "荔枝", pinyin: "lì zhī", file: "lychee", measure: "颗", english: "lychee", sentence: "荔枝外壳红红的，剥开后果肉又白又甜。", tags: ["fruit"], japanese: "ライチ", japanese_reading: "らいち" },
+            { word: "龙眼", pinyin: "lóng yǎn", file: "longan", measure: "颗", english: "longan", sentence: "龙眼剥开半透明，像一颗小小的珍珠。", tags: ["fruit"], japanese: "リュウガン", japanese_reading: "りゅうがん" },
+            { word: "杨梅", pinyin: "yáng méi", file: "bayberry", measure: "颗", english: "bayberry", sentence: "杨梅酸酸甜甜的，吃多了牙齿会软软的。", tags: ["fruit"], japanese: "ヤマモモ", japanese_reading: "やまもも" },
+            { word: "枇杷", pinyin: "pí pa", file: "loquat", measure: "个", english: "loquat", sentence: "枇杷黄澄澄的，剥皮吃可以润润嗓子。", tags: ["fruit"], japanese: "びわ", japanese_reading: "びわ" },
+            { word: "杨桃", pinyin: "yáng táo", file: "starfruit", measure: "个", english: "starfruit", sentence: "把杨桃横着切成一片一片，每一片都像一颗小星星。", tags: ["fruit"], japanese: "スターフルーツ", japanese_reading: "すたーふるーつ" },
+            { word: "牛油果", pinyin: "niú yóu guǒ", file: "avocado", measure: "个", english: "avocado", sentence: "牛油果软软的，做成沙拉或涂在面包上都好吃。", tags: ["fruit"], japanese: "アボカド", japanese_reading: "あぼかど" },
+            { word: "石榴", pinyin: "shí liu", file: "pomegranate", measure: "个", english: "pomegranate", sentence: "石榴里面有许多红宝石一样的籽粒，咬一口甜甜的。", tags: ["fruit"], japanese: "ザクロ", japanese_reading: "ざくろ" },
+            { word: "柚子", pinyin: "yòu zi", file: "pomelo", measure: "个", english: "pomelo", sentence: "柚子大大的，皮厚厚的，果肉一瓣一瓣分开。", tags: ["fruit"], japanese: "柚子", japanese_reading: "ゆず" },
+            { word: "柿子", pinyin: "shì zi", file: "persimmon", measure: "个", english: "persimmon", sentence: "柿子熟了软软的，像挂了一盏小灯笼。", tags: ["fruit"], japanese: "柿", japanese_reading: "かき" },
+            { word: "枣", pinyin: "zǎo", file: "jujube", measure: "颗", english: "jujube", sentence: "枣红红的、小小的，晒干了煮粥，甜甜的很好吃。", tags: ["fruit"], japanese: "ナツメ", japanese_reading: "なつめ" },
+            { word: "桑葚", pinyin: "sāng shèn", file: "mulberry", measure: "颗", english: "mulberry", sentence: "桑葚成熟后变成紫黑色，吃一把嘴唇和手指都染成了紫色。", tags: ["fruit"], japanese: "桑の実", japanese_reading: "くわのみ" },
+            { word: "胡萝卜", pinyin: "hú luó bo", file: "carrot", measure: "根", english: "carrot", sentence: "胡萝卜橙橙的，兔子最爱吃，对眼睛也很好。", tags: ["vegetable"], japanese: "にんじん", japanese_reading: "にんじん" },
+            { word: "西红柿", pinyin: "xī hóng shì", file: "tomato", measure: "个", english: "tomato", sentence: "西红柿可以洗干净直接吃，也可以切成小块炒出红红的汁。", tags: ["vegetable"], japanese: "トマト", japanese_reading: "とまと" },
+            { word: "黄瓜", pinyin: "huáng guā", file: "cucumber", measure: "根", english: "cucumber", sentence: "黄瓜咔嚓咬一口，满嘴都是清爽的汁水。", tags: ["vegetable"], japanese: "きゅうり", japanese_reading: "きゅうり" },
+            { word: "土豆", pinyin: "tǔ dòu", file: "potato", measure: "个", english: "potato", sentence: "土豆可以切成条炸成薯条，也可以炖得软软的拌饭吃。", tags: ["vegetable"], japanese: "じゃがいも", japanese_reading: "じゃがいも" },
+            { word: "白菜", pinyin: "bái cài", file: "chinese_cabbage", measure: "棵", english: "chinese_cabbage", sentence: "白菜一片一片白白的，冬天煮汤很暖和。", tags: ["vegetable"], japanese: "白菜", japanese_reading: "はくさい" },
+            { word: "菠菜", pinyin: "bō cài", file: "spinach", measure: "棵", english: "spinach", sentence: "菠菜绿绿的，含有丰富的营养，吃了有力气。", tags: ["vegetable"], japanese: "ほうれん草", japanese_reading: "ほうれんそう" },
+            { word: "茄子", pinyin: "qié zi", file: "eggplant", measure: "个", english: "eggplant", sentence: "茄子烧熟后软软的，吸饱了酱汁，配米饭特别香。", tags: ["vegetable"], japanese: "なす", japanese_reading: "なす" },
+            { word: "南瓜", pinyin: "nán guā", file: "pumpkin", measure: "个", english: "pumpkin", sentence: "南瓜煮熟后甜甜面面的，妈妈常做成香喷喷的南瓜饼。", tags: ["vegetable"], japanese: "かぼちゃ", japanese_reading: "かぼちゃ" },
+            { word: "玉米", pinyin: "yù mǐ", file: "corn", measure: "根", english: "corn", sentence: "玉米粒一粒一粒排在棒子上，煮熟后散发着甜甜的香味。", tags: ["vegetable"], japanese: "とうもろこし", japanese_reading: "とうもろこし" },
+            { word: "豌豆", pinyin: "wān dòu", file: "pea", measure: "颗", english: "pea", sentence: "豌豆从豆荚里剥出来，圆滚滚的，炒熟了又甜又嫩。", tags: ["vegetable"], japanese: "えんどう豆", japanese_reading: "えんどうまめ" },
+            { word: "洋葱", pinyin: "yáng cōng", file: "onion", measure: "个", english: "onion", sentence: "洋葱切开会让人流泪，炒熟了却很香甜。", tags: ["vegetable"], japanese: "玉ねぎ", japanese_reading: "たまねぎ" },
+            { word: "大蒜", pinyin: "dà suàn", file: "garlic", measure: "头", english: "garlic", sentence: "大蒜闻起来有点辣，炒菜时放一点很香。", tags: ["vegetable"], japanese: "にんにく", japanese_reading: "にんにく" },
+            { word: "生姜", pinyin: "shēng jiāng", file: "ginger", measure: "块", english: "ginger", sentence: "生姜黄黄的，煮汤时放一点可以去腥。", tags: ["vegetable"], japanese: "しょうが", japanese_reading: "しょうが" },
+            { word: "蘑菇", pinyin: "mó gu", file: "mushroom", measure: "个", english: "mushroom", sentence: "雨后蘑菇像一把把小伞，从湿润的泥土里冒出来。", tags: ["vegetable"], japanese: "きのこ", japanese_reading: "きのこ" },
+            { word: "青椒", pinyin: "qīng jiāo", file: "green_pepper", measure: "个", english: "green_pepper", sentence: "青椒绿绿的，不辣，切成丝可以炒肉。", tags: ["vegetable"], japanese: "ピーマン", japanese_reading: "ぴーまん" },
+            { word: "辣椒", pinyin: "là jiāo", file: "chili", measure: "个", english: "chili", sentence: "辣椒红红的，炒进菜里会让舌头辣辣的，但很开胃。", tags: ["vegetable"], japanese: "唐辛子", japanese_reading: "とうがらし" },
+            { word: "芹菜", pinyin: "qín cài", file: "celery", measure: "棵", english: "celery", sentence: "芹菜长长的，咬起来咔嚓响，有一股清香味。", tags: ["vegetable"], japanese: "セロリ", japanese_reading: "せろり" },
+            { word: "西兰花", pinyin: "xī lán huā", file: "broccoli", measure: "棵", english: "broccoli", sentence: "西兰花像一棵绿色的小花树，煮一煮蘸酱吃很有营养。", tags: ["vegetable"], japanese: "ブロッコリー", japanese_reading: "ぶろっこりー" },
+            { word: "花菜", pinyin: "huā cài", file: "cauliflower", measure: "棵", english: "cauliflower", sentence: "花菜白白的一团，掰成小朵炒肉，软软香香。", tags: ["vegetable"], japanese: "カリフラワー", japanese_reading: "かりふらわー" },
+            { word: "生菜", pinyin: "shēng cài", file: "lettuce", measure: "棵", english: "lettuce", sentence: "生菜叶子脆脆的，洗干净后可以包着烤肉一起吃。", tags: ["vegetable"], japanese: "レタス", japanese_reading: "れたす" },
+            { word: "豆角", pinyin: "dòu jiǎo", file: "green_bean", measure: "根", english: "green_bean", sentence: "豆角长长的，切成小段和肉一起炒，很下饭。", tags: ["vegetable"], japanese: "インゲン", japanese_reading: "いんげん" },
+            { word: "冬瓜", pinyin: "dōng guā", file: "winter_melon", measure: "个", english: "winter_melon", sentence: "冬瓜煮汤清清淡淡的，夏天喝上一碗很解暑。", tags: ["vegetable"], japanese: "冬瓜", japanese_reading: "とうがん" },
+            { word: "丝瓜", pinyin: "sī guā", file: "loofah", measure: "根", english: "loofah", sentence: "丝瓜长长的，去皮后炒蛋，滑溜溜的口感很好。", tags: ["vegetable"], japanese: "ヘチマ", japanese_reading: "へちま" },
+            { word: "苦瓜", pinyin: "kǔ guā", file: "bitter_melon", measure: "根", english: "bitter_melon", sentence: "苦瓜味道有点苦，但夏天吃可以清热降火。", tags: ["vegetable"], japanese: "ゴーヤ", japanese_reading: "ごーや" },
+            { word: "红薯", pinyin: "hóng shǔ", file: "sweet_potato", measure: "个", english: "sweet_potato", sentence: "红薯烤熟后香喷喷的，里面是金黄色的瓤，又甜又面。", tags: ["vegetable"], japanese: "さつまいも", japanese_reading: "さつまいも" },
+            { word: "白萝卜", pinyin: "bái luó bo", file: "daikon", measure: "根", english: "daikon", sentence: "白萝卜白白胖胖的，可以炖汤，也可以做成爽口的泡菜。", tags: ["vegetable"], japanese: "大根", japanese_reading: "だいこん" },
+            { word: "莲藕", pinyin: "lián ǒu", file: "lotus_root", measure: "节", english: "lotus_root", sentence: "莲藕一节一节的，横切开来有漂亮的小孔，煮软后粉粉糯糯。", tags: ["vegetable"], japanese: "れんこん", japanese_reading: "れんこん" },
+            { word: "竹笋", pinyin: "zhú sǔn", file: "bamboo_shoot", measure: "根", english: "bamboo_shoot", sentence: "竹笋从土里钻出来，剥掉外皮炒肉，鲜嫩又爽口。", tags: ["vegetable"], japanese: "たけのこ", japanese_reading: "たけのこ" },
+            { word: "芦笋", pinyin: "lú sǔn", file: "asparagus", measure: "根", english: "asparagus", sentence: "芦笋嫩嫩的，顶端尖尖的，用水焯一下就能吃。", tags: ["vegetable"], japanese: "アスパラガス", japanese_reading: "あすぱらがす" },
+            { word: "秋葵", pinyin: "qiū kuí", file: "okra", measure: "根", english: "okra", sentence: "秋葵横着切开像一颗小星星，表面黏黏滑滑的。", tags: ["vegetable"], japanese: "オクラ", japanese_reading: "おくら" },
+            { word: "荸荠", pinyin: "bí qí", file: "water_chestnut", measure: "个", english: "water_chestnut", sentence: "荸荠外皮黑褐色，洗掉泥土后里面白白脆脆，像水果一样甜。", tags: ["vegetable"], japanese: "くわい", japanese_reading: "くわい" }
         ];
 
         let filteredItems = [...allItems];
@@ -155,6 +157,7 @@
 
         const synth = window.speechSynthesis;
         let chineseVoice = null;
+        let japaneseVoice = null;
 
         function findChineseVoice() {
             if (!synth) return;
@@ -164,10 +167,22 @@
             }
         }
 
+        function findJapaneseVoice() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) {
+                if (v.lang.startsWith('ja')) { japaneseVoice = v; break; }
+            }
+        }
+
         if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = findChineseVoice;
+            speechSynthesis.onvoiceschanged = function() {
+                findChineseVoice();
+                findJapaneseVoice();
+            };
         }
         findChineseVoice();
+        findJapaneseVoice();
 
         function playAudio(path) {
             return new Promise((resolve, reject) => {
@@ -194,6 +209,17 @@
             utter.rate = rate;
             utter.pitch = 1.1;
             if (chineseVoice) utter.voice = chineseVoice;
+            synth.speak(utter);
+        }
+
+        function speakJapanese(text, rate = 0.8) {
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'ja-JP';
+            utter.rate = rate;
+            utter.pitch = 1.1;
+            if (japaneseVoice) utter.voice = japaneseVoice;
             synth.speak(utter);
         }
 
@@ -234,10 +260,12 @@
                     <div class="item-word">${item.word}</div>
                     <div class="item-pinyin">${item.pinyin}</div>
                     <div class="item-english">${item.english} · 一${item.measure}</div>
+                    <div class="item-japanese">${item.word} → ${item.japanese}（${item.japanese_reading}）</div>
                     <div class="btn-group">
                         <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
                         <button class="btn btn-measure" onclick="playMeasure(${index})">📏 量词</button>
+                        <button class="btn btn-japanese" onclick="playJapaneseWord(${index})">🇯🇵 日语</button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -279,6 +307,12 @@
             const text = `${item.word}的量词是${item.measure}，一${item.measure}${item.word}。`;
             speak(text);
             showMascot(text);
+        }
+
+        function playJapaneseWord(index) {
+            const item = filteredItems[index];
+            speakJapanese(`${item.japanese}、${item.japanese_reading}`);
+            showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
         function switchItem(direction) {

@@ -14,7 +14,7 @@
         .mascot-bubble { display: inline-block; background: white; border-radius: 25px; padding: 12px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: #555; font-size: 16px; max-width: 80%; position: relative; margin-bottom: 15px; }
         .mascot-bubble::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-width: 10px 10px 0; border-style: solid; border-color: white transparent transparent transparent; }
         .mascot-avatar { width: 60px; height: 60px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); }
+        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); touch-action: pan-y; }
         .card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .card.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -77,7 +77,8 @@
         <div class="mascot-avatar">🐼</div>
     </div>
     <div class="main-stage">
-        <div id="cards"><div class="card active" id="card-0">
+        <div id="cards">
+        <div class="card active" id="card-0">
             <div class="card-emoji" onclick="playTitle(0)">🐷🐷🐷</div>
             <div class="card-title">三只小猪</div>
             <div class="card-subtitle">来源：中国</div>
@@ -95,11 +96,11 @@
                 <button class="btn btn-auto" id="autoBtn-0" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-1">
+        <div class="card" id="card-1">
             <div class="card-emoji" onclick="playTitle(1)">🐸🔍</div>
             <div class="card-title">小蝌蚪找妈妈</div>
             <div class="card-subtitle">来源：中国</div>
@@ -117,11 +118,11 @@
                 <button class="btn btn-auto" id="autoBtn-1" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-2">
+        <div class="card" id="card-2">
             <div class="card-emoji" onclick="playTitle(2)">🐴🌊</div>
             <div class="card-title">小马过河</div>
             <div class="card-subtitle">来源：中国</div>
@@ -139,11 +140,11 @@
                 <button class="btn btn-auto" id="autoBtn-2" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-3">
+        <div class="card" id="card-3">
             <div class="card-emoji" onclick="playTitle(3)">🐺📢</div>
             <div class="card-title">狼来了</div>
             <div class="card-subtitle">来源：中国</div>
@@ -161,11 +162,11 @@
                 <button class="btn btn-auto" id="autoBtn-3" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-4">
+        <div class="card" id="card-4">
             <div class="card-emoji" onclick="playTitle(4)">🐢🐰</div>
             <div class="card-title">龟兔赛跑</div>
             <div class="card-subtitle">来源：中国</div>
@@ -183,11 +184,11 @@
                 <button class="btn btn-auto" id="autoBtn-4" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-5">
+        <div class="card" id="card-5">
             <div class="card-emoji" onclick="playTitle(5)">🍐👦</div>
             <div class="card-title">孔融让梨</div>
             <div class="card-subtitle">来源：中国</div>
@@ -205,11 +206,11 @@
                 <button class="btn btn-auto" id="autoBtn-5" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-6">
+        <div class="card" id="card-6">
             <div class="card-emoji" onclick="playTitle(6)">🏺💥</div>
             <div class="card-title">司马光砸缸</div>
             <div class="card-subtitle">来源：中国</div>
@@ -227,11 +228,11 @@
                 <button class="btn btn-auto" id="autoBtn-6" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-7">
+        <div class="card" id="card-7">
             <div class="card-emoji" onclick="playTitle(7)">🖌️✨</div>
             <div class="card-title">神笔马良</div>
             <div class="card-subtitle">来源：中国</div>
@@ -249,11 +250,11 @@
                 <button class="btn btn-auto" id="autoBtn-7" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-8">
+        <div class="card" id="card-8">
             <div class="card-emoji" onclick="playTitle(8)">🐒🌙</div>
             <div class="card-title">猴子捞月</div>
             <div class="card-subtitle">来源：中国</div>
@@ -271,11 +272,11 @@
                 <button class="btn btn-auto" id="autoBtn-8" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-9">
+        <div class="card" id="card-9">
             <div class="card-emoji" onclick="playTitle(9)">🦊🐯</div>
             <div class="card-title">狐假虎威</div>
             <div class="card-subtitle">来源：中国</div>
@@ -293,11 +294,11 @@
                 <button class="btn btn-auto" id="autoBtn-9" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-10">
+        <div class="card" id="card-10">
             <div class="card-emoji" onclick="playTitle(10)">🍎👸</div>
             <div class="card-title">白雪公主</div>
             <div class="card-subtitle">来源：德国/格林</div>
@@ -315,11 +316,11 @@
                 <button class="btn btn-auto" id="autoBtn-10" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-11">
+        <div class="card" id="card-11">
             <div class="card-emoji" onclick="playTitle(11)">👠🕛</div>
             <div class="card-title">灰姑娘</div>
             <div class="card-subtitle">来源：德国/格林</div>
@@ -337,11 +338,11 @@
                 <button class="btn btn-auto" id="autoBtn-11" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-12">
+        <div class="card" id="card-12">
             <div class="card-emoji" onclick="playTitle(12)">🧺🔴</div>
             <div class="card-title">小红帽</div>
             <div class="card-subtitle">来源：德国/格林</div>
@@ -359,11 +360,11 @@
                 <button class="btn btn-auto" id="autoBtn-12" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-13">
+        <div class="card" id="card-13">
             <div class="card-emoji" onclick="playTitle(13)">👸😴</div>
             <div class="card-title">睡美人</div>
             <div class="card-subtitle">来源：德国/格林</div>
@@ -381,11 +382,11 @@
                 <button class="btn btn-auto" id="autoBtn-13" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-14">
+        <div class="card" id="card-14">
             <div class="card-emoji" onclick="playTitle(14)">🐸👑</div>
             <div class="card-title">青蛙王子</div>
             <div class="card-subtitle">来源：德国/格林</div>
@@ -403,11 +404,11 @@
                 <button class="btn btn-auto" id="autoBtn-14" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-15">
+        <div class="card" id="card-15">
             <div class="card-emoji" onclick="playTitle(15)">🦆🦢</div>
             <div class="card-title">丑小鸭</div>
             <div class="card-subtitle">来源：丹麦/安徒生</div>
@@ -425,11 +426,11 @@
                 <button class="btn btn-auto" id="autoBtn-15" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-16">
+        <div class="card" id="card-16">
             <div class="card-emoji" onclick="playTitle(16)">🔥👧</div>
             <div class="card-title">卖火柴的小女孩</div>
             <div class="card-subtitle">来源：丹麦/安徒生</div>
@@ -447,11 +448,11 @@
                 <button class="btn btn-auto" id="autoBtn-16" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-17">
+        <div class="card" id="card-17">
             <div class="card-emoji" onclick="playTitle(17)">👑👀</div>
             <div class="card-title">皇帝的新装</div>
             <div class="card-subtitle">来源：丹麦/安徒生</div>
@@ -469,11 +470,11 @@
                 <button class="btn btn-auto" id="autoBtn-17" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-18">
+        <div class="card" id="card-18">
             <div class="card-emoji" onclick="playTitle(18)">🧜‍♀️🌊</div>
             <div class="card-title">海的女儿</div>
             <div class="card-subtitle">来源：丹麦/安徒生</div>
@@ -491,11 +492,11 @@
                 <button class="btn btn-auto" id="autoBtn-18" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-19">
+        <div class="card" id="card-19">
             <div class="card-emoji" onclick="playTitle(19)">🌸👧</div>
             <div class="card-title">拇指姑娘</div>
             <div class="card-subtitle">来源：丹麦/安徒生</div>
@@ -513,11 +514,11 @@
                 <button class="btn btn-auto" id="autoBtn-19" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-20">
+        <div class="card" id="card-20">
             <div class="card-emoji" onclick="playTitle(20)">🗝️🚪</div>
             <div class="card-title">阿里巴巴与四十大盗</div>
             <div class="card-subtitle">来源：阿拉伯/一千零一夜</div>
@@ -535,11 +536,11 @@
                 <button class="btn btn-auto" id="autoBtn-20" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-21">
+        <div class="card" id="card-21">
             <div class="card-emoji" onclick="playTitle(21)">🧞✨</div>
             <div class="card-title">阿拉丁神灯</div>
             <div class="card-subtitle">来源：阿拉伯/一千零一夜</div>
@@ -557,11 +558,11 @@
                 <button class="btn btn-auto" id="autoBtn-21" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-22">
+        <div class="card" id="card-22">
             <div class="card-emoji" onclick="playTitle(22)">🤥🪵</div>
             <div class="card-title">木偶奇遇记</div>
             <div class="card-subtitle">来源：意大利</div>
@@ -579,11 +580,11 @@
                 <button class="btn btn-auto" id="autoBtn-22" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-23">
+        <div class="card" id="card-23">
             <div class="card-emoji" onclick="playTitle(23)">🧚‍♂️🏴‍☠️</div>
             <div class="card-title">彼得潘</div>
             <div class="card-subtitle">来源：英国</div>
@@ -601,11 +602,11 @@
                 <button class="btn btn-auto" id="autoBtn-23" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-24">
+        <div class="card" id="card-24">
             <div class="card-emoji" onclick="playTitle(24)">🐷🕸️</div>
             <div class="card-title">夏洛的网</div>
             <div class="card-subtitle">来源：美国</div>
@@ -623,11 +624,11 @@
                 <button class="btn btn-auto" id="autoBtn-24" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-25">
+        <div class="card" id="card-25">
             <div class="card-emoji" onclick="playTitle(25)">👶🔱</div>
             <div class="card-title">哪吒闹海</div>
             <div class="card-subtitle">来源：中国</div>
@@ -645,11 +646,11 @@
                 <button class="btn btn-auto" id="autoBtn-25" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-26">
+        <div class="card" id="card-26">
             <div class="card-emoji" onclick="playTitle(26)">🌙🧚‍♀️</div>
             <div class="card-title">嫦娥奔月</div>
             <div class="card-subtitle">来源：中国</div>
@@ -667,11 +668,11 @@
                 <button class="btn btn-auto" id="autoBtn-26" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-27">
+        <div class="card" id="card-27">
             <div class="card-emoji" onclick="playTitle(27)">🐌👧</div>
             <div class="card-title">田螺姑娘</div>
             <div class="card-subtitle">来源：中国</div>
@@ -689,11 +690,11 @@
                 <button class="btn btn-auto" id="autoBtn-27" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-28">
+        <div class="card" id="card-28">
             <div class="card-emoji" onclick="playTitle(28)">🐒☁️</div>
             <div class="card-title">大闹天宫</div>
             <div class="card-subtitle">来源：中国</div>
@@ -711,11 +712,11 @@
                 <button class="btn btn-auto" id="autoBtn-28" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
         </div>
-<div class="card" id="card-29">
+        <div class="card" id="card-29">
             <div class="card-emoji" onclick="playTitle(29)">🐂👩🌌</div>
             <div class="card-title">牛郎织女</div>
             <div class="card-subtitle">来源：中国</div>
@@ -733,59 +734,605 @@
                 <button class="btn btn-auto" id="autoBtn-29" onclick="toggleAutoPlay()">▶️ 自动循环</button>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
+                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
             </div>
-        </div></div>
-        <div class="progress" id="progressDots"><div class="progress-dot active"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div></div>
-        <div class="hint">提示：如果听不到声音，请检查浏览器是否允许播放音频</div>
-        <a href="index.html" class="back-home">⬅️ 返回首页</a>
+        </div>
+        </div>
+        <div class="progress" id="progressDots">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+        </div>
     </div>
-<script>
-        const items = [{"title": "三只小猪", "emoji": "🐷🐷🐷", "origin": "中国", "moral": "勤劳和认真做事很重要。", "summary": "三只小猪分别用稻草、木头和砖头盖房子，大灰狼吹倒了前两座，只有砖房保护了他们。", "story": "从前有三只小猪，他们长大了，猪妈妈让他们各自出去盖房子住。第一只小猪很懒，他用稻草很快地搭了一座房子。第二只小猪也觉得麻烦，他用木头盖了一座房子。第三只小猪最勤劳，他用一块一块的砖头，认真地盖了一座结实的房子。\n有一天，一只大灰狼来了。他来到稻草房前，用力一吹，呼——稻草房就倒了。第一只小猪急忙跑到第二只小猪的木头房子里。大灰狼又追了过来，他对木头房子吹了又吹，木头房子也倒了。两只小猪赶紧跑到第三只小猪的砖房子里。\n大灰狼来到砖房子前，吹呀吹，吹得满头大汗，房子却纹丝不动。他又想从烟囱爬进去，第三只小猪早就生起了火。大灰狼被烧得尾巴疼，大叫着逃跑了。三只小猪从此在砖房子里过着安全快乐的生活。这个故事告诉我们：勤劳和认真做事很重要。", "words": ["小猪", "房子", "大灰狼", "勤劳", "安全"]}, {"title": "小蝌蚪找妈妈", "emoji": "🐸🔍", "origin": "中国", "moral": "遇到困难要坚持，妈妈永远爱我们。", "summary": "小蝌蚪出生不认识妈妈，一路问鲤鱼、乌龟，最后终于找到青蛙妈妈。", "story": "暖和的春天来了，池塘里游着一群黑黑的小蝌蚪。他们不知道自己的妈妈在哪里。一只小蝌蚪问鲤鱼阿姨：“您看见我们的妈妈了吗？”鲤鱼说：“你们的妈妈有两只大眼睛，你们去找找吧。”\n小蝌蚪游呀游，看见一只乌龟，她长着两只大眼睛。小蝌蚪高兴地叫：“妈妈，妈妈！”乌龟笑着说：“我不是你们的妈妈，你们的妈妈肚皮是雪白的。”\n小蝌蚪又游呀游，看见一只大白鹅，她的肚皮是雪白的。小蝌蚪喊：“妈妈！”白鹅摇摇头说：“你们的妈妈有四条腿。”\n小蝌蚪继续游，看见一只青蛙蹲在荷叶上。她有两只大眼睛、雪白的肚皮，还有四条腿。小蝌蚪们围上去叫：“妈妈！”青蛙妈妈笑着说：“好孩子，我就是你们的妈妈。你们小时候是黑黑的小蝌蚪，慢慢长大才会变成青蛙。”小蝌蚪们终于找到了妈妈，开心地在池塘里玩耍。", "words": ["蝌蚪", "青蛙", "妈妈", "坚持", "寻找"]}, {"title": "小马过河", "emoji": "🐴🌊", "origin": "中国", "moral": "别人的经验不一定适合自己，要亲自尝试。", "summary": "小马要过河，老牛说浅，松鼠说深，小马自己试一试才发现刚好。", "story": "马棚里住着一匹老马和一匹小马。有一天，老马对小马说：“你已经长大了，能帮妈妈做点事吗？”小马高兴地说：“我愿意！”老马让他把一袋麦子驮到磨坊去。\n小马驮起麦子，飞快地往磨坊跑去。跑着跑着，一条小河挡住了去路。河水哗哗地流，小马不知道能不能过去。\n河边有一头老牛在吃草。小马问：“牛伯伯，这条河我能过去吗？”老牛说：“水很浅，刚没过小腿，能过去。”小马正要下河，一只松鼠拦住了他：“小马，别下去！河水很深，我的小伙伴就是掉进河里淹死的。”\n小马为难了，只好跑回家问妈妈。妈妈说：“孩子，光听别人说，自己不动脑筋，是不行的。河水是深是浅，你试一试就知道。”\n小马跑到河边，小心地把蹄子伸进水里。原来河水既不深，也不浅，刚好能过去。他顺利地过了河，把麦子送到了磨坊。", "words": ["小马", "过河", "尝试", "勇敢", "河水"]}, {"title": "狼来了", "emoji": "🐺📢", "origin": "中国", "moral": "说谎会失去别人的信任。", "summary": "放羊娃多次喊狼来了骗人，后来真狼来了，没人相信他。", "story": "从前，有个放羊娃每天都上山放羊。他觉得无聊，就想捉弄村里的人。\n有一天，他站在山坡上大喊：“狼来了！狼来了！”村民们听到喊声，急忙拿着锄头和扁担跑上山。可是到了山上，根本没有狼。放羊娃哈哈大笑：“你们上当了！”村民们生气地离开了。\n过了几天，放羊娃又喊：“狼来了！狼来了！”善良的村民们又跑上山，还是没看见狼。放羊娃笑得更大声了。村民们非常生气，说：“下次我们再也不相信你了。”\n过了几天，真的来了一只大灰狼。狼冲进羊群，咬死了好多小羊。放羊娃吓得大喊：“狼真的来了！救命啊！”可是村民们以为他又在骗人，谁也没有来。\n结果，放羊娃的羊被狼咬死了很多。他坐在地上大哭，后悔地说：“我不该说谎啊！”从此，他再也不敢骗人了。", "words": ["放羊娃", "说谎", "狼", "信任", "后悔"]}, {"title": "龟兔赛跑", "emoji": "🐢🐰", "origin": "中国", "moral": "骄傲使人落后，坚持才能胜利。", "summary": "兔子嘲笑乌龟慢，中途睡大觉，乌龟一步一步走到了终点。", "story": "森林里要举行跑步比赛，小兔子报名参加了。小兔子跑得非常快，他看见乌龟也报了名，就笑着说：“乌龟，你爬得那么慢，还敢跟我比赛？”乌龟说：“我会坚持到底的。”\n比赛开始了。小兔子像箭一样冲了出去，很快就把乌龟远远地甩在后面。他回头一看，乌龟才爬了一点点。小兔子心想：“乌龟这么慢，我先睡一会儿也来得及。”\n于是，小兔子躺在路边的大树下，呼呼地睡着了。乌龟一步一步不停地往前爬。他爬过小兔子身边时，没有停下来，继续向终点爬去。\n太阳慢慢升高了，小兔子醒来一看，太阳都到头顶了。他跳起来就往终点跑，可是已经来不及了。乌龟已经到达了终点，小动物们都为乌龟鼓掌。小兔子低下头，明白了：骄傲使人落后，坚持才能胜利。", "words": ["兔子", "乌龟", "比赛", "坚持", "骄傲"]}, {"title": "孔融让梨", "emoji": "🍐👦", "origin": "中国", "moral": "懂得谦让，尊敬长辈。", "summary": "小孔融把大梨让给哥哥和长辈，自己拿最小的梨。", "story": "东汉时候，有一个聪明又懂事的小男孩，名叫孔融。他四岁那年，家里来了一位客人，送来了一篮新鲜的梨子。\n爸爸让孔融把梨子分给大家。孔融看了看篮子，选了一个最小的梨子拿在手里。爸爸奇怪地问：“你为什么不拿大的，反而拿最小的呢？”孔融认真地说：“我年纪小，应该吃小梨；大梨留给哥哥和长辈吃。”\n爸爸听了，笑着摸摸他的头，又问：“那弟弟比你更小，为什么小梨不留给他呢？”孔融说：“我是哥哥，应该让着弟弟。”\n客人和家人们听了，都夸孔融懂事。从此，“孔融让梨”的故事流传下来，教育孩子们要懂得谦让、尊敬长辈。", "words": ["孔融", "梨子", "谦让", "哥哥", "礼貌"]}, {"title": "司马光砸缸", "emoji": "🏺💥", "origin": "中国", "moral": "遇到危险要冷静，想办法救人。", "summary": "小伙伴掉进大水缸，司马光砸破缸，水流出救了人。", "story": "古时候，有一群孩子在院子里玩耍。院子里有一口很大的水缸，里面装满了水。一个调皮的小男孩爬到了水缸边上，一不小心，“扑通”一声掉进了水缸里。\n其他孩子都吓坏了，有的哭，有的跑去找大人。只有司马光没有慌张。他想：“水缸这么深，掉进去的小朋友肯定会被淹死，必须马上救他！”可是大家都太小，根本够不到水缸里。\n司马光看见地上有一块石头，他灵机一动，抱起石头用力向水缸砸去。“砰！”水缸破了一个大洞，水哗哗地流了出来。不一会儿，水缸里的水就流干了，掉进去的小朋友也得救了。大家都夸司马光又聪明又勇敢。", "words": ["司马光", "水缸", "救人", "聪明", "勇敢"]}, {"title": "神笔马良", "emoji": "🖌️✨", "origin": "中国", "moral": "善良和正义会战胜贪婪。", "summary": "马良有一支神笔，画什么变什么，他用它帮助穷人，惩治坏人。", "story": "从前有一个穷苦的孩子，名叫马良。他非常喜欢画画，可是家里穷，连一支笔都买不起。马良就用树枝在沙地上画，用草根在石头上画，天天练习。\n一天晚上，一位白胡子老爷爷出现在马良面前，送给他一支金光闪闪的神笔。老爷爷说：“这支笔会帮助善良的人。”马良接过神笔，画了一只公鸡，公鸡竟然活了，喔喔地叫了起来。\n马良用神笔给穷人画粮食、画耕牛、画房子。消息传到了县官耳朵里，贪婪的县官把马良抓了起来，逼他画金山银山。马良不肯，县官就抢走了神笔。可是县官自己画，画出来的东西都不会动。\n马良拿回神笔，画了一片大海，又画了一座金山。县官急忙跳上大船去金山，马良又画了几笔大风。大浪把船打翻了，县官掉进了海里。马良继续用神笔帮助穷苦的百姓。", "words": ["马良", "神笔", "画画", "善良", "正义"]}, {"title": "猴子捞月", "emoji": "🐒🌙", "origin": "中国", "moral": "遇事要仔细观察，不要忙中出错。", "summary": "猴子看见井里的月亮倒影，以为月亮掉进去了，怎么也捞不上来。", "story": "一天晚上，一群猴子在井边玩耍。一只小猴子抬头看见天上圆圆的月亮，又低头看见井里也有一轮圆圆的月亮。小猴子大叫：“不好了！月亮掉进井里了！”\n猴群都围了过来，大家看着井里的月亮，都很着急。老猴子说：“月亮掉在井里，我们一起把它捞上来！”一只猴子倒挂在树上，抓住另一只猴子的脚，猴子们一只接一只倒挂下来，像一条长长的链子。\n最下面的小猴子伸手去捞月亮，他的手刚碰到水面，月亮就碎成了一片一片。小猴子捞了又捞，怎么也捞不上来。\n这时，一只聪明的小猴子抬头看了看天，大声说：“月亮不是好好地挂在天上吗？井里的月亮只是影子！”大家抬头一看，果然，月亮还挂在天上呢。这个故事告诉我们：遇事要仔细观察，不要忙中出错。", "words": ["猴子", "月亮", "井", "观察", "倒影"]}, {"title": "狐假虎威", "emoji": "🦊🐯", "origin": "中国", "moral": "不要借别人的威风吓唬人。", "summary": "狐狸被老虎抓住，却骗老虎说自己是百兽之王，借着老虎的威风吓跑动物。", "story": "在一片森林里，有一只饥饿的老虎抓住了一只狐狸。狐狸吓得浑身发抖，可是他眼珠一转，想出了一个办法。\n狐狸对老虎说：“老天爷让我做百兽之王，你怎么敢吃我？如果你不信，就跟我到森林里走一趟，看看其他动物怕不怕我。”老虎心想：“这狐狸这么大胆，难道真的是百兽之王？”\n于是老虎跟着狐狸往森林里走去。小动物们看见老虎来了，都吓得四处逃跑。狐狸得意地走在老虎前面，边走边说：“看见了吗？他们多怕我！”老虎以为小动物们真的害怕狐狸，就乖乖地放了狐狸。\n其实，小动物们怕的不是狐狸，而是跟在狐狸后面的老虎。狐狸是借着老虎的威风才吓跑了大家。这个故事告诉我们：不要借别人的威风吓唬人。", "words": ["狐狸", "老虎", "威风", "狡猾", "害怕"]}, {"title": "白雪公主", "emoji": "🍎👸", "origin": "德国/格林", "moral": "善良的心比美丽的外表更重要。", "summary": "白雪公主被继母嫉妒陷害，逃进森林，七个小矮人帮助她，最后王子救醒了她。", "story": "从前有一位美丽的公主，她的皮肤像雪一样白，大家叫她白雪公主。她的继母是一个坏皇后，有一面魔镜。她每天问魔镜：“谁是世界上最美丽的女人？”魔镜总是说：“是您。”\n可是有一天，魔镜说：“白雪公主比您美丽一千倍。”皇后听了非常嫉妒，命令猎人把白雪公主带到森林里杀掉。猎人同情白雪公主，放走了她。\n白雪公主逃到森林里，发现了七个小矮人的房子。她帮小矮人打扫屋子，小矮人收留了她。坏皇后得知后，扮成老婆婆，骗白雪公主吃了一个毒苹果。白雪公主倒在地上，像睡着了一样。\n后来，一位王子路过，他爱上了白雪公主。王子轻轻地抱起她，毒苹果从她嘴里掉了出来。白雪公主醒了过来，和王子幸福地生活在一起。坏皇后也得到了应有的惩罚。", "words": ["白雪公主", "小矮人", "皇后", "善良", "镜子"]}, {"title": "灰姑娘", "emoji": "👠🕛", "origin": "德国/格林", "moral": "保持善良，机会会眷顾努力的人。", "summary": "灰姑娘受继母欺负，仙女帮她参加舞会，水晶鞋让她与王子重逢。", "story": "从前有一个善良的女孩，她的继母和姐姐们对她很不好，总是让她穿旧衣服、干粗活，还叫她灰姑娘。\n一天，王子要举办舞会，邀请全国的姑娘参加。灰姑娘也很想去，可是继母不让她去。灰姑娘伤心地哭了起来。这时，一位仙女出现了，她用魔法给灰姑娘穿上了漂亮的礼服和水晶鞋，还变出了一辆南瓜马车。\n仙女告诉灰姑娘：“午夜十二点前必须回来，不然魔法就会消失。”灰姑娘来到王宫，王子被她深深吸引，整晚只和她跳舞。\n钟声敲响了十二下，灰姑娘急忙跑走，不小心掉了一只水晶鞋。王子拿着水晶鞋到处寻找，终于找到了灰姑娘。灰姑娘穿上水晶鞋，正好合适。王子娶她为妻，灰姑娘从此过上了幸福的生活。", "words": ["灰姑娘", "水晶鞋", "王子", "仙女", "南瓜"]}, {"title": "小红帽", "emoji": "🧺🔴", "origin": "德国/格林", "moral": "不要和陌生人说话，要听妈妈的话。", "summary": "小红帽去看望外婆，路上被大灰狼骗，猎人赶来救了她们。", "story": "从前有一个可爱的小女孩，她喜欢戴着外婆送的红帽子，大家都叫她小红帽。一天，妈妈让她带着蛋糕去看望生病的外婆。\n小红帽走在森林里，一只大灰狼拦住了她：“小姑娘，你要去哪里？”小红帽说：“我要去看外婆。”大灰狼又问：“外婆家住在哪里？”小红帽告诉了他。\n大灰狼抢先跑到外婆家，把外婆关进了衣柜，然后穿上外婆的衣服躺在床上。小红帽到了外婆家，觉得外婆的耳朵、眼睛和嘴巴都变得好大。大灰狼跳起来，把小红帽也吞进了肚子。\n幸好一位猎人路过，他剪开大灰狼的肚皮，救出了小红帽和外婆。大家用石头填满狼肚子，大灰狼再也跑不动了。小红帽以后再也不敢跟陌生人说话了。", "words": ["小红帽", "大灰狼", "外婆", "猎人", "森林"]}, {"title": "睡美人", "emoji": "👸😴", "origin": "德国/格林", "moral": "真爱和善良能打破诅咒。", "summary": "公主被诅咒沉睡一百年，王子勇敢的吻唤醒了她。", "story": "很久很久以前，国王和王后生了一位美丽的小公主，他们为她举办盛大的宴会。国王邀请了十二位仙女，却忘了邀请一位坏女巫。\n坏女巫非常生气，她在宴会上诅咒公主：“公主十五岁时会被纺锤刺死！”一位善良的仙女把诅咒改成了：“公主不会死，只会沉睡一百年，直到有一位王子来唤醒她。”\n国王下令全国销毁纺锤。可是公主十五岁那年，还是在城堡里找到了一个纺锤。她的手指被刺破了，立刻倒在地上睡着了。整个城堡的人也都跟着睡着了。城堡周围长满了高高的荆棘。\n一百年后，一位勇敢的王子来到城堡。他披荆斩棘，找到了沉睡的公主。王子轻轻吻了她，公主睁开了眼睛。城堡里的人都醒了过来，王子和公主举行了盛大的婚礼。", "words": ["公主", "王子", "诅咒", "纺锤", "沉睡"]}, {"title": "青蛙王子", "emoji": "🐸👑", "origin": "德国/格林", "moral": "答应别人的事要做到，守信很重要。", "summary": "公主的金球掉进池塘，青蛙帮她捡回，她遵守诺言亲吻青蛙，青蛙变回王子。", "story": "从前有一位小公主，她最喜欢玩一个金色的球。有一天，她在池塘边玩球，一不小心，金球掉进了水里。小公主坐在池塘边哭了起来。\n一只青蛙从水里伸出头来，对她说：“我可以帮你把球捞上来，但是你要答应和我做朋友。”小公主答应了。青蛙潜入水里，把金球捞了上来。小公主高兴地接过金球，转身就跑，完全忘了答应青蛙的事。\n第二天，青蛙来到王宫，要求小公主履行诺言。国王知道后，严肃地说：“答应别人的事一定要做到。”小公主只好让青蛙一起吃饭、一起玩耍。晚上，小公主亲了青蛙一下。奇迹发生了，青蛙变成了一位英俊的王子。原来王子被坏女巫施了魔法，只有信守诺言的人才能救他。", "words": ["公主", "青蛙", "金球", "守信", "池塘"]}, {"title": "丑小鸭", "emoji": "🦆🦢", "origin": "丹麦/安徒生", "moral": "不要小看自己，每个人都有自己的美丽。", "summary": "丑小鸭被嘲笑长得难看，长大后变成美丽的天鹅。", "story": "鸭妈妈孵出了一群小鸭子，其中有一只长得又大又灰，大家都叫他丑小鸭。其他的小鸭子都不喜欢他，啄他、咬他，连鸭妈妈也叹气。丑小鸭又伤心又孤单，只好离开了家。\n他来到野鸭家，野鸭们也嘲笑他。他来到农家，鸡群和猫也欺负他。冬天来了，丑小鸭又冷又饿，躲在一丛芦苇里。\n春天来了，丑小鸭慢慢长大了。有一天，他走到河边，看见水面上有一只美丽的天鹅。他低头一看，倒影里的自己竟然也变成了一只雪白的天鹅！\n其他天鹅围了过来，称赞他漂亮。丑小鸭终于明白：不要因为别人说自己丑就难过，每个人都有自己的美丽。", "words": ["丑小鸭", "天鹅", "成长", "自信", "美丽"]}, {"title": "卖火柴的小女孩", "emoji": "🔥👧", "origin": "丹麦/安徒生", "moral": "珍惜温暖幸福的生活，学会关爱他人。", "summary": "大年夜，小女孩卖不出火柴，在寒冷中擦亮火柴看到美好的幻象。", "story": "除夕夜，街上飘着雪花，家家户户都亮着温暖的灯。一个小女孩赤着脚，手里拿着一把火柴，在街上卖火柴。她已经一整天没卖出去了。\n她又冷又饿，不敢回家，因为爸爸会打她。她只好躲在墙角，擦亮了一根火柴。火柴的光芒里，她看见了一个温暖的火炉。她又擦亮一根火柴，看见了香喷喷的烤鹅。她还看见了美丽的圣诞树和慈祥的奶奶。\n奶奶是唯一疼爱她的人。小女孩赶紧擦亮了一大把火柴，想留住奶奶。在火光中，奶奶微笑着把她抱了起来。\n第二天早上，人们在墙角发现了小女孩。她脸上带着微笑，手里还握着烧过的火柴梗。她跟着奶奶去了没有寒冷、没有饥饿的地方。这个故事让我们懂得珍惜温暖幸福的生活，学会关爱他人。", "words": ["小女孩", "火柴", "寒冷", "奶奶", "温暖"]}, {"title": "皇帝的新装", "emoji": "👑👀", "origin": "丹麦/安徒生", "moral": "要勇敢说真话，不要被虚荣蒙蔽。", "summary": "皇帝被两个骗子欺骗，穿着不存在的新衣游行，只有小孩说出真相。", "story": "从前有一个皇帝，他特别喜欢穿新衣服。有一天，来了两个骗子，说能织出世界上最美丽的布，而且这种布只有聪明人才能看见。\n皇帝给了他们很多钱，让他们织布。其实骗子什么也没织。大臣们去检查时，明明什么也看不见，却怕别人说自己愚蠢，都假装称赞布料多么漂亮。\n新衣服做好了。皇帝穿上“新衣”，光着身子走上街头游行。街道两旁的人都怕被别人笑话，都大声说：“皇帝的新衣服真漂亮！”\n这时，一个小孩子大声说：“皇帝什么衣服也没穿呀！”大家这才敢说出真话。皇帝的脸红得像个苹果，可是他只能继续完成游行。这个故事告诉我们：要勇敢说真话，不要被虚荣蒙蔽。", "words": ["皇帝", "骗子", "新衣", "真话", "虚荣"]}, {"title": "海的女儿", "emoji": "🧜‍♀️🌊", "origin": "丹麦/安徒生", "moral": "真正的爱是成全和善良。", "summary": "小人鱼为了王子变成人，最后却选择化成泡沫守护他。", "story": "在大海深处，住着一位美丽的人鱼公主。她救了落水的王子，爱上了他。她想知道陆地上的世界，就去问海巫婆。\n海巫婆说：“我可以把你的尾巴变成双腿，但你每走一步都像踩在刀尖上。而且你必须让王子爱上你，否则你就会变成海上的泡沫。”小人鱼还是答应了。\n她来到王宫，和王子成了朋友。可是王子要娶邻国的公主。婚礼那天，小人鱼的姐姐们用长发换来一把匕首，告诉她：“只要杀了王子，你就能回到大海。”\n小人鱼来到王子的床边，她看着熟睡的王子，不忍心下手。她把匕首扔进了大海，自己也跳进了海里。太阳升起时，她化成了海上的泡沫。但她没有消失，她变成了天空的女儿。真正的爱是成全和善良。", "words": ["美人鱼", "王子", "大海", "泡沫", "牺牲"]}, {"title": "拇指姑娘", "emoji": "🌸👧", "origin": "丹麦/安徒生", "moral": "即使很小，也能勇敢追求幸福。", "summary": "拇指姑娘只有拇指那么大，经历了许多冒险，最后找到了花精灵的家。", "story": "从前有一个妇人，她非常想要一个小孩子。一位女巫给了她一颗种子。妇人把种子种在花盆里，很快就开出了一朵美丽的花。花心里面坐着一个只有拇指那么大的小姑娘，大家都叫她拇指姑娘。\n一天晚上，一只癞蛤蟆把拇指姑娘偷走了，想让她给自己的儿子当新娘。拇指姑娘很害怕，鱼儿们帮她咬断了荷叶，让她漂走了。\n后来，拇指姑娘被一只好心的田鼠收留。田鼠的朋友鼹鼠想娶她，可是拇指姑娘不想生活在黑暗的地洞里。她帮助了一只受伤的燕子，燕子康复后带她飞到了温暖的南方。\n在那里，拇指姑娘遇到了花精灵王子。王子请她做花中的王后，拇指姑娘高兴地答应了。她终于找到了自己的家。", "words": ["拇指姑娘", "花", "田鼠", "燕子", "勇敢"]}, {"title": "阿里巴巴与四十大盗", "emoji": "🗝️🚪", "origin": "阿拉伯/一千零一夜", "moral": "智慧和勇气能战胜坏人。", "summary": "阿里巴巴发现强盗宝库，用智慧和女仆 Morgana 打败四十大盗。", "story": "从前有一个穷人叫阿里巴巴。有一天他在山上砍柴，看见一伙强盗来到一个山洞前。强盗首领大声说：“芝麻开门！”山洞的门就开了；强盗进去后说：“芝麻关门！”门就关上了。\n强盗走后，阿里巴巴也学着说：“芝麻开门！”门真的开了，里面全是金银财宝。阿里巴巴只拿了一点金币，就关上门回家了。\n他的哥哥卡西姆知道后，也来到山洞。他因为太贪心，拿了太多财宝，出洞时忘了咒语，被强盗抓住了。强盗把他杀了。\n强盗们到处寻找拿走财宝的人。聪明的女仆马尔基娜识破了他的阴谋，她用热油烫死了藏在油罐里的强盗，又用匕首杀了强盗首领。阿里巴巴非常感谢马尔基娜，让她嫁给了自己的儿子。从此以后，他们幸福地生活在一起。", "words": ["阿里巴巴", "山洞", "芝麻开门", "强盗", "智慧"]}, {"title": "阿拉丁神灯", "emoji": "🧞✨", "origin": "阿拉伯/一千零一夜", "moral": "善良和勇敢会得到帮助。", "summary": "阿拉丁得到神灯，在灯神帮助下战胜坏巫师，和公主幸福生活。", "story": "很久以前，在中国有一个穷小子叫阿拉丁。一天，一个自称是他叔叔的坏巫师把他骗到一个山洞里，让他去取一盏旧油灯。阿拉丁拿到油灯后，巫师却把他关在山洞里。\n阿拉丁害怕地搓着油灯，突然一个蓝色巨人出现了，说：“我是灯神，可以满足你三个愿望。”阿拉丁许愿回到家，又许愿有了很多钱。\n后来，阿拉丁爱上了公主。他用神灯和飞毯来到王宫，娶到了公主。坏巫师知道后，骗走了神灯，抢走了公主和宫殿。阿拉丁用计谋夺回了神灯，打败了巫师。他和公主幸福地生活在一起。善良和勇敢的人总会得到帮助。", "words": ["阿拉丁", "神灯", "灯神", "飞毯", "公主"]}, {"title": "木偶奇遇记", "emoji": "🤥🪵", "origin": "意大利", "moral": "说谎鼻子会变长，诚实最重要。", "summary": "木偶匹诺曹一说谎鼻子就长，他学会诚实、勇敢，最后变成真正的小男孩。", "story": "老木匠杰佩托用一块木头做了一个木偶，取名叫匹诺曹。匹诺曹一出生就调皮捣蛋，他一说谎，鼻子就会变长。\n匹诺曹不好好上学，跑去看木偶戏，还被两个坏蛋骗到了“快乐岛”。在那里，他玩得不亦乐乎，可是慢慢地，他的耳朵变成了驴耳朵，最后变成了一头驴。\n匹诺曹被卖到马戏团，吃了很多苦。后来，他跳进海里，被一条大鲸鱼吞进了肚子里。在鲸鱼肚子里，他意外地遇见了前来寻找他的爸爸。匹诺曹背着爸爸逃出了鲸鱼肚子。\n回到家后，匹诺曹变得诚实、勤劳、勇敢。有一天早上，他醒来发现自己变成了真正的小男孩。这个故事告诉我们：说谎鼻子会变长，诚实最重要。", "words": ["匹诺曹", "鼻子", "诚实", "爸爸", "鲸鱼"]}, {"title": "彼得潘", "emoji": "🧚‍♂️🏴‍☠️", "origin": "英国", "moral": "保持童心，但也要勇敢成长。", "summary": "彼得潘带温蒂去永无岛，和海盗船长战斗，经历奇妙冒险。", "story": "在伦敦，有一个叫温蒂的小女孩。一天晚上，一个永远长不大的小男孩彼得潘从窗户飞进来，带她去了永无岛。\n永无岛上有美丽的仙子、野蛮的印第安人、凶狠的海盗，还有美人鱼。彼得潘和温蒂带着两个弟弟，和岛上的孩子们一起快乐地生活。\n可是海盗船长虎克一直想抓住彼得潘。虎克抓走了孩子们，还想喂他们吃毒药。彼得潘和虎克展开了一场激烈的战斗。最后，彼得潘把虎克推下了鳄鱼等待的大海。\n温蒂想家了，彼得潘把她和弟弟们送回了伦敦。彼得潘继续留在永无岛，和新的孩子们一起冒险。这个故事告诉我们：保持童心，但也要勇敢成长。", "words": ["彼得潘", "永无岛", "海盗", "飞翔", "冒险"]}, {"title": "夏洛的网", "emoji": "🐷🕸️", "origin": "美国", "moral": "真正的友谊很珍贵，朋友会互相帮助。", "summary": "小猪威尔伯和蜘蛛夏洛成为朋友，夏洛织字救了威尔伯的命。", "story": "在农场里，有一只小猪叫威尔伯。他生下来很弱小，主人差点不要他。幸好小女孩芬救了他，把他养大。\n威尔伯来到舅舅的农场，认识了蜘蛛夏洛。夏洛和威尔伯成了最好的朋友。有一天，农场主说威尔伯太胖了，冬天要杀了他做火腿。威尔伯很害怕。\n夏洛想救威尔伯。她在蜘蛛网上织出了“王牌猪”“了不起”“光彩照人”这些字。人们看见了，都觉得威尔伯是一只神奇的猪。\n威尔伯在比赛中得了大奖，再也不用被杀了。可是夏洛因为太劳累，生下宝宝后就死去了。威尔伯一直记得夏洛，他把夏洛的宝宝们带回农场。真正的友谊很珍贵，朋友会互相帮助。", "words": ["小猪", "蜘蛛", "朋友", "农场", "友谊"]}, {"title": "哪吒闹海", "emoji": "👶🔱", "origin": "中国", "moral": "勇敢反抗不公，保护弱小。", "summary": "小哪吒为救百姓，打死龙王三太子，最后舍身保护陈塘关。", "story": "很久很久以前，陈塘关总兵李靖有一个儿子叫哪吒。哪吒天生神力，脖子上戴着乾坤圈，手臂上缠着混天绫。\n一天，哪吒在海边玩耍。东海龙王的三太子出来行凶，要吃童男童女。哪吒见义勇为，打败了三太子，还抽了他的龙筋。东海龙王大怒，跑到天庭告状。\n龙王们联合起来，水淹陈塘关，威胁要淹死所有百姓。哪吒为了不连累父母和陈塘关的百姓，大声说：“我自己做的事，自己来承担！”他拔剑自刎，用自己的生命保护了大家。\n后来，师父太乙真人用莲花和莲藕为哪吒重新塑造了身体。哪吒复活后，变得更加勇敢，最终打败了龙王，保护了百姓。", "words": ["哪吒", "龙王", "混天绫", "勇敢", "保护"]}, {"title": "嫦娥奔月", "emoji": "🌙🧚‍♀️", "origin": "中国", "moral": "善良的选择有时需要牺牲。", "summary": "嫦娥为了保护仙药不落入坏人之手，吞下仙药飞向月亮。", "story": "古时候，天上有十个太阳，烤得大地干裂。一个叫后羿的英雄射下了九个太阳，救了百姓。王母娘娘奖励他一包长生不老药。\n后羿舍不得离开妻子嫦娥，没有立刻吃药，他把药交给嫦娥保管。后羿的一个徒弟蓬蒙知道了这件事，想要偷走仙药。\n一天，后羿出门了，蓬蒙闯进家里逼嫦娥交出仙药。嫦娥知道自己打不过坏人，她不想让仙药落入坏人之手，就把整包药吞了下去。\n嫦娥的身体变得轻飘飘的，飞出了窗户，一直飞到了月亮上。后羿回来后，望着月亮伤心地呼喊嫦娥。嫦娥在月亮上看着人间，也非常想念后羿。每到中秋，人们就赏月纪念嫦娥。善良的选择有时需要牺牲。", "words": ["嫦娥", "月亮", "后羿", "仙药", "飞天"]}, {"title": "田螺姑娘", "emoji": "🐌👧", "origin": "中国", "moral": "勤劳善良的人会得到好报。", "summary": "贫穷青年捡到田螺，田螺变成姑娘默默帮他做家务，两人幸福生活。", "story": "很久很久以前，有一个勤劳善良的年轻人，一个人住在山脚下。他每天早出晚归，种地砍柴，可是生活很穷苦。\n有一天，年轻人从田里捡回一只大田螺，把它养在水缸里。从那以后，他每天干完活回家，发现桌子上都摆着热腾腾的饭菜。他以为是邻居们帮忙，去问了一圈，却没有人承认。\n年轻人决定偷偷看看是谁在帮忙。有一天，他假装出门，又悄悄返回，从窗户缝里看见一位美丽的姑娘从水缸里走出来，为他做饭。年轻人走进屋，姑娘想回到水缸里，已经来不及了。\n原来姑娘是田螺变的仙女，被年轻人的勤劳善良感动了。她愿意留下来做他的妻子。从此，两人一起劳动，过上了幸福的生活。勤劳善良的人会得到好报。", "words": ["田螺", "姑娘", "勤劳", "善良", "幸福"]}, {"title": "大闹天宫", "emoji": "🐒☁️", "origin": "中国", "moral": "勇敢挑战不合理的规则。", "summary": "孙悟空不满天庭轻视，大闹天宫，展现七十二变的本领。", "story": "花果山上有一只石猴，名叫孙悟空。他学会了一身本领，能七十二变，一个筋斗能翻十万八千里。他因为没有兵器，去龙宫借走了定海神针，变成了一根金箍棒。\n玉帝想管他，让他到天庭当个小官。孙悟空发现玉帝看不起自己，非常生气。他回到花果山，自称“齐天大圣”。玉帝派天兵天将去捉拿他，可谁也不是孙悟空的对手。\n孙悟空大闹天宫，把玉帝打得钻到桌子底下。他还吃光了王母娘娘的蟠桃，喝光了仙酒，搅乱了蟠桃会。最后，如来佛祖把孙悟空压在五行山下。五百年后，孙悟空才会出来，护送唐僧去西天取经。勇敢挑战不合理的规则是对的，但也要遵守规则。", "words": ["孙悟空", "天宫", "金箍棒", "神仙", "勇敢"]}, {"title": "牛郎织女", "emoji": "🐂👩🌌", "origin": "中国", "moral": "真爱能跨越距离，相聚值得珍惜。", "summary": "牛郎和织女相爱，被王母娘娘分开，每年七夕鹊桥相会。", "story": "很久很久以前，有一个叫牛郎的孤儿，他勤劳善良，和一头老牛相依为命。老牛告诉他，天上的仙女会在银河里洗澡，让他去河边。\n牛郎来到河边，看见一位美丽的仙女，她是王母娘娘的外孙女，名叫织女。织女擅长织布，她织出的云霞就是天上的云彩。牛郎和织女相爱了，结为夫妻，生下了一双儿女。\n王母娘娘知道后非常生气，派天兵把织女抓回天庭。牛郎急忙披上老牛留下的牛皮，挑着两个孩子追了上去。眼看就要追上了，王母娘娘拔下头上的金簪，在天空划出一道波涛汹涌的银河，把牛郎和织女隔开了。\n他们的真情感动了喜鹊。每年农历七月初七，成千上万的喜鹊飞来，搭成鹊桥，让牛郎和织女相会。这一天，人们称为七夕节。", "words": ["牛郎", "织女", "鹊桥", "七夕", "星星"]}];
+
+    <script>
+        const items = [
+            {
+                        "title": "三只小猪",
+                        "japanese_title": "三匹の子ぶた",
+                        "emoji": "🐷🐷🐷",
+                        "origin": "中国",
+                        "summary": "三只小猪分别用稻草、木头和砖头盖房子，大灰狼吹倒了前两座，只有砖房保护了他们。",
+                        "japanese_summary": "三匹の子ぶたはそれぞれわら、木、レンガで家を建てました。オオカミが前の二つの家を吹き飛ばしましたが、レンガの家だけは守ってくれました。",
+                        "story": "从前有三只小猪，他们长大了，猪妈妈让他们各自出去盖房子住。第一只小猪很懒，他用稻草很快地搭了一座房子。第二只小猪也觉得麻烦，他用木头盖了一座房子。第三只小猪最勤劳，他用一块一块的砖头，认真地盖了一座结实的房子。\n有一天，一只大灰狼来了。他来到稻草房前，用力一吹，呼——稻草房就倒了。第一只小猪急忙跑到第二只小猪的木头房子里。大灰狼又追了过来，他对木头房子吹了又吹，木头房子也倒了。两只小猪赶紧跑到第三只小猪的砖房子里。\n大灰狼来到砖房子前，吹呀吹，吹得满头大汗，房子却纹丝不动。他又想从烟囱爬进去，第三只小猪早就生起了火。大灰狼被烧得尾巴疼，大叫着逃跑了。三只小猪从此在砖房子里过着安全快乐的生活。这个故事告诉我们：勤劳和认真做事很重要。",
+                        "moral": "勤劳和认真做事很重要。",
+                        "japanese_moral": "勤勉にしっかり仕事をすることが大切です。",
+                        "words": [
+                                    "小猪",
+                                    "房子",
+                                    "大灰狼",
+                                    "勤劳",
+                                    "安全"
+                        ]
+            },
+            {
+                        "title": "小蝌蚪找妈妈",
+                        "japanese_title": "おたまじゃくしのかあさん",
+                        "emoji": "🐸🔍",
+                        "origin": "中国",
+                        "summary": "小蝌蚪出生不认识妈妈，一路问鲤鱼、乌龟，最后终于找到青蛙妈妈。",
+                        "japanese_summary": "おたまじゃくしは生まれたときにお母さんを知りませんでした。鯉やカメに聞いて、やっとカエルのお母さんを見つけました。",
+                        "story": "暖和的春天来了，池塘里游着一群黑黑的小蝌蚪。他们不知道自己的妈妈在哪里。一只小蝌蚪问鲤鱼阿姨：“您看见我们的妈妈了吗？”鲤鱼说：“你们的妈妈有两只大眼睛，你们去找找吧。”\n小蝌蚪游呀游，看见一只乌龟，她长着两只大眼睛。小蝌蚪高兴地叫：“妈妈，妈妈！”乌龟笑着说：“我不是你们的妈妈，你们的妈妈肚皮是雪白的。”\n小蝌蚪又游呀游，看见一只大白鹅，她的肚皮是雪白的。小蝌蚪喊：“妈妈！”白鹅摇摇头说：“你们的妈妈有四条腿。”\n小蝌蚪继续游，看见一只青蛙蹲在荷叶上。她有两只大眼睛、雪白的肚皮，还有四条腿。小蝌蚪们围上去叫：“妈妈！”青蛙妈妈笑着说：“好孩子，我就是你们的妈妈。你们小时候是黑黑的小蝌蚪，慢慢长大才会变成青蛙。”小蝌蚪们终于找到了妈妈，开心地在池塘里玩耍。",
+                        "moral": "遇到困难要坚持，妈妈永远爱我们。",
+                        "japanese_moral": "困難なときもあきらめないで、お母さんはいつも私たちを愛しています。",
+                        "words": [
+                                    "蝌蚪",
+                                    "青蛙",
+                                    "妈妈",
+                                    "坚持",
+                                    "寻找"
+                        ]
+            },
+            {
+                        "title": "小马过河",
+                        "japanese_title": "こうまの川渡り",
+                        "emoji": "🐴🌊",
+                        "origin": "中国",
+                        "summary": "小马要过河，老牛说浅，松鼠说深，小马自己试一试才发现刚好。",
+                        "japanese_summary": "こうまは川を渡ろうとしました。牛は浅いと言い、リスは深いと言いました。こうまが自分で試すと、ちょうどよい深さでした。",
+                        "story": "马棚里住着一匹老马和一匹小马。有一天，老马对小马说：“你已经长大了，能帮妈妈做点事吗？”小马高兴地说：“我愿意！”老马让他把一袋麦子驮到磨坊去。\n小马驮起麦子，飞快地往磨坊跑去。跑着跑着，一条小河挡住了去路。河水哗哗地流，小马不知道能不能过去。\n河边有一头老牛在吃草。小马问：“牛伯伯，这条河我能过去吗？”老牛说：“水很浅，刚没过小腿，能过去。”小马正要下河，一只松鼠拦住了他：“小马，别下去！河水很深，我的小伙伴就是掉进河里淹死的。”\n小马为难了，只好跑回家问妈妈。妈妈说：“孩子，光听别人说，自己不动脑筋，是不行的。河水是深是浅，你试一试就知道。”\n小马跑到河边，小心地把蹄子伸进水里。原来河水既不深，也不浅，刚好能过去。他顺利地过了河，把麦子送到了磨坊。",
+                        "moral": "别人的经验不一定适合自己，要亲自尝试。",
+                        "japanese_moral": "人の経験は必ずしも自分に合うとは限りません。自分で試すことが大切です。",
+                        "words": [
+                                    "小马",
+                                    "过河",
+                                    "尝试",
+                                    "勇敢",
+                                    "河水"
+                        ]
+            },
+            {
+                        "title": "狼来了",
+                        "japanese_title": "オオカミが来た",
+                        "emoji": "🐺📢",
+                        "origin": "中国",
+                        "summary": "放羊娃多次喊狼来了骗人，后来真狼来了，没人相信他。",
+                        "japanese_summary": "羊飼いの少年は何度も「オオカミが来た」と人々をだましました。本当にオオカミが来たとき、誰も信じてくれませんでした。",
+                        "story": "从前，有个放羊娃每天都上山放羊。他觉得无聊，就想捉弄村里的人。\n有一天，他站在山坡上大喊：“狼来了！狼来了！”村民们听到喊声，急忙拿着锄头和扁担跑上山。可是到了山上，根本没有狼。放羊娃哈哈大笑：“你们上当了！”村民们生气地离开了。\n过了几天，放羊娃又喊：“狼来了！狼来了！”善良的村民们又跑上山，还是没看见狼。放羊娃笑得更大声了。村民们非常生气，说：“下次我们再也不相信你了。”\n过了几天，真的来了一只大灰狼。狼冲进羊群，咬死了好多小羊。放羊娃吓得大喊：“狼真的来了！救命啊！”可是村民们以为他又在骗人，谁也没有来。\n结果，放羊娃的羊被狼咬死了很多。他坐在地上大哭，后悔地说：“我不该说谎啊！”从此，他再也不敢骗人了。",
+                        "moral": "说谎会失去别人的信任。",
+                        "japanese_moral": "嘘をつくと、人々の信頼を失います。",
+                        "words": [
+                                    "放羊娃",
+                                    "说谎",
+                                    "狼",
+                                    "信任",
+                                    "后悔"
+                        ]
+            },
+            {
+                        "title": "龟兔赛跑",
+                        "japanese_title": "うさぎとかめ",
+                        "emoji": "🐢🐰",
+                        "origin": "中国",
+                        "summary": "兔子嘲笑乌龟慢，中途睡大觉，乌龟一步一步走到了终点。",
+                        "japanese_summary": "うさぎはかめを遅いとあざ笑い、途中で眠ってしまいました。かめは一歩一歩進んで、先にゴールしました。",
+                        "story": "森林里要举行跑步比赛，小兔子报名参加了。小兔子跑得非常快，他看见乌龟也报了名，就笑着说：“乌龟，你爬得那么慢，还敢跟我比赛？”乌龟说：“我会坚持到底的。”\n比赛开始了。小兔子像箭一样冲了出去，很快就把乌龟远远地甩在后面。他回头一看，乌龟才爬了一点点。小兔子心想：“乌龟这么慢，我先睡一会儿也来得及。”\n于是，小兔子躺在路边的大树下，呼呼地睡着了。乌龟一步一步不停地往前爬。他爬过小兔子身边时，没有停下来，继续向终点爬去。\n太阳慢慢升高了，小兔子醒来一看，太阳都到头顶了。他跳起来就往终点跑，可是已经来不及了。乌龟已经到达了终点，小动物们都为乌龟鼓掌。小兔子低下头，明白了：骄傲使人落后，坚持才能胜利。",
+                        "moral": "骄傲使人落后，坚持才能胜利。",
+                        "japanese_moral": "傲慢な人は負けます。最後まで続ける人が勝ちます。",
+                        "words": [
+                                    "兔子",
+                                    "乌龟",
+                                    "比赛",
+                                    "坚持",
+                                    "骄傲"
+                        ]
+            },
+            {
+                        "title": "孔融让梨",
+                        "japanese_title": "孔融が梨を譲る",
+                        "emoji": "🍐👦",
+                        "origin": "中国",
+                        "summary": "小孔融把大梨让给哥哥和长辈，自己拿最小的梨。",
+                        "japanese_summary": "小さな孔融は大きな梨をお兄さんや年長者に譲り、自分は一番小さな梨を取りました。",
+                        "story": "东汉时候，有一个聪明又懂事的小男孩，名叫孔融。他四岁那年，家里来了一位客人，送来了一篮新鲜的梨子。\n爸爸让孔融把梨子分给大家。孔融看了看篮子，选了一个最小的梨子拿在手里。爸爸奇怪地问：“你为什么不拿大的，反而拿最小的呢？”孔融认真地说：“我年纪小，应该吃小梨；大梨留给哥哥和长辈吃。”\n爸爸听了，笑着摸摸他的头，又问：“那弟弟比你更小，为什么小梨不留给他呢？”孔融说：“我是哥哥，应该让着弟弟。”\n客人和家人们听了，都夸孔融懂事。从此，“孔融让梨”的故事流传下来，教育孩子们要懂得谦让、尊敬长辈。",
+                        "moral": "懂得谦让，尊敬长辈。",
+                        "japanese_moral": "譲り合いの心を持ち、年長者を敬いましょう。",
+                        "words": [
+                                    "孔融",
+                                    "梨子",
+                                    "谦让",
+                                    "哥哥",
+                                    "礼貌"
+                        ]
+            },
+            {
+                        "title": "司马光砸缸",
+                        "japanese_title": "司馬光が瓮を割る",
+                        "emoji": "🏺💥",
+                        "origin": "中国",
+                        "summary": "小伙伴掉进大水缸，司马光砸破缸，水流出救了人。",
+                        "japanese_summary": "友達が大きな水の瓮の中に落ちたとき、司馬光は瓮を割って水を出し、助けました。",
+                        "story": "古时候，有一群孩子在院子里玩耍。院子里有一口很大的水缸，里面装满了水。一个调皮的小男孩爬到了水缸边上，一不小心，“扑通”一声掉进了水缸里。\n其他孩子都吓坏了，有的哭，有的跑去找大人。只有司马光没有慌张。他想：“水缸这么深，掉进去的小朋友肯定会被淹死，必须马上救他！”可是大家都太小，根本够不到水缸里。\n司马光看见地上有一块石头，他灵机一动，抱起石头用力向水缸砸去。“砰！”水缸破了一个大洞，水哗哗地流了出来。不一会儿，水缸里的水就流干了，掉进去的小朋友也得救了。大家都夸司马光又聪明又勇敢。",
+                        "moral": "遇到危险要冷静，想办法救人。",
+                        "japanese_moral": "危険なときは落ち着いて、助ける方法を考えましょう。",
+                        "words": [
+                                    "司马光",
+                                    "水缸",
+                                    "救人",
+                                    "聪明",
+                                    "勇敢"
+                        ]
+            },
+            {
+                        "title": "神笔马良",
+                        "japanese_title": "神筆馬良",
+                        "emoji": "🖌️✨",
+                        "origin": "中国",
+                        "summary": "马良有一支神笔，画什么变什么，他用它帮助穷人，惩治坏人。",
+                        "japanese_summary": "馬良には神の筆があり、何を描いても本物になりました。彼はそれで貧しい人々を助け、悪者を懲らしめました。",
+                        "story": "从前有一个穷苦的孩子，名叫马良。他非常喜欢画画，可是家里穷，连一支笔都买不起。马良就用树枝在沙地上画，用草根在石头上画，天天练习。\n一天晚上，一位白胡子老爷爷出现在马良面前，送给他一支金光闪闪的神笔。老爷爷说：“这支笔会帮助善良的人。”马良接过神笔，画了一只公鸡，公鸡竟然活了，喔喔地叫了起来。\n马良用神笔给穷人画粮食、画耕牛、画房子。消息传到了县官耳朵里，贪婪的县官把马良抓了起来，逼他画金山银山。马良不肯，县官就抢走了神笔。可是县官自己画，画出来的东西都不会动。\n马良拿回神笔，画了一片大海，又画了一座金山。县官急忙跳上大船去金山，马良又画了几笔大风。大浪把船打翻了，县官掉进了海里。马良继续用神笔帮助穷苦的百姓。",
+                        "moral": "善良和正义会战胜贪婪。",
+                        "japanese_moral": "善良さと正義は貪欲さに勝ちます。",
+                        "words": [
+                                    "马良",
+                                    "神笔",
+                                    "画画",
+                                    "善良",
+                                    "正义"
+                        ]
+            },
+            {
+                        "title": "猴子捞月",
+                        "japanese_title": "猿の月掬い",
+                        "emoji": "🐒🌙",
+                        "origin": "中国",
+                        "summary": "猴子看见井里的月亮倒影，以为月亮掉进去了，怎么也捞不上来。",
+                        "japanese_summary": "猿たちは井戸に映る月を本物だと思い、月をすくおうとしましたが、どうしてもすくえませんでした。",
+                        "story": "一天晚上，一群猴子在井边玩耍。一只小猴子抬头看见天上圆圆的月亮，又低头看见井里也有一轮圆圆的月亮。小猴子大叫：“不好了！月亮掉进井里了！”\n猴群都围了过来，大家看着井里的月亮，都很着急。老猴子说：“月亮掉在井里，我们一起把它捞上来！”一只猴子倒挂在树上，抓住另一只猴子的脚，猴子们一只接一只倒挂下来，像一条长长的链子。\n最下面的小猴子伸手去捞月亮，他的手刚碰到水面，月亮就碎成了一片一片。小猴子捞了又捞，怎么也捞不上来。\n这时，一只聪明的小猴子抬头看了看天，大声说：“月亮不是好好地挂在天上吗？井里的月亮只是影子！”大家抬头一看，果然，月亮还挂在天上呢。这个故事告诉我们：遇事要仔细观察，不要忙中出错。",
+                        "moral": "遇事要仔细观察，不要忙中出错。",
+                        "japanese_moral": "物事をよく観察し、慌てて失敗しないことが大切です。",
+                        "words": [
+                                    "猴子",
+                                    "月亮",
+                                    "井",
+                                    "观察",
+                                    "倒影"
+                        ]
+            },
+            {
+                        "title": "狐假虎威",
+                        "japanese_title": "キツネの威福",
+                        "emoji": "🦊🐯",
+                        "origin": "中国",
+                        "summary": "狐狸被老虎抓住，却骗老虎说自己是百兽之王，借着老虎的威风吓跑动物。",
+                        "japanese_summary": "キツネはトラに捕まりましたが、自分は百獣の王だとだまして、トラの威勢を借りて動物たちを追い散らしました。",
+                        "story": "在一片森林里，有一只饥饿的老虎抓住了一只狐狸。狐狸吓得浑身发抖，可是他眼珠一转，想出了一个办法。\n狐狸对老虎说：“老天爷让我做百兽之王，你怎么敢吃我？如果你不信，就跟我到森林里走一趟，看看其他动物怕不怕我。”老虎心想：“这狐狸这么大胆，难道真的是百兽之王？”\n于是老虎跟着狐狸往森林里走去。小动物们看见老虎来了，都吓得四处逃跑。狐狸得意地走在老虎前面，边走边说：“看见了吗？他们多怕我！”老虎以为小动物们真的害怕狐狸，就乖乖地放了狐狸。\n其实，小动物们怕的不是狐狸，而是跟在狐狸后面的老虎。狐狸是借着老虎的威风才吓跑了大家。这个故事告诉我们：不要借别人的威风吓唬人。",
+                        "moral": "不要借别人的威风吓唬人。",
+                        "japanese_moral": "人の威勢を借りて恐ろしがらせてはいけません。",
+                        "words": [
+                                    "狐狸",
+                                    "老虎",
+                                    "威风",
+                                    "狡猾",
+                                    "害怕"
+                        ]
+            },
+            {
+                        "title": "白雪公主",
+                        "japanese_title": "白雪姫",
+                        "emoji": "🍎👸",
+                        "origin": "德国/格林",
+                        "summary": "白雪公主被继母嫉妒陷害，逃进森林，七个小矮人帮助她，最后王子救醒了她。",
+                        "japanese_summary": "白雪姫は継母に妬まれ、森に逃げました。七人のこびとが助けて、最後には王子が彼女を目覚めさせました。",
+                        "story": "从前有一位美丽的公主，她的皮肤像雪一样白，大家叫她白雪公主。她的继母是一个坏皇后，有一面魔镜。她每天问魔镜：“谁是世界上最美丽的女人？”魔镜总是说：“是您。”\n可是有一天，魔镜说：“白雪公主比您美丽一千倍。”皇后听了非常嫉妒，命令猎人把白雪公主带到森林里杀掉。猎人同情白雪公主，放走了她。\n白雪公主逃到森林里，发现了七个小矮人的房子。她帮小矮人打扫屋子，小矮人收留了她。坏皇后得知后，扮成老婆婆，骗白雪公主吃了一个毒苹果。白雪公主倒在地上，像睡着了一样。\n后来，一位王子路过，他爱上了白雪公主。王子轻轻地抱起她，毒苹果从她嘴里掉了出来。白雪公主醒了过来，和王子幸福地生活在一起。坏皇后也得到了应有的惩罚。",
+                        "moral": "善良的心比美丽的外表更重要。",
+                        "japanese_moral": "優しい心は美しい外見より大切です。",
+                        "words": [
+                                    "白雪公主",
+                                    "小矮人",
+                                    "皇后",
+                                    "善良",
+                                    "镜子"
+                        ]
+            },
+            {
+                        "title": "灰姑娘",
+                        "japanese_title": "シンデレラ",
+                        "emoji": "👠🕛",
+                        "origin": "德国/格林",
+                        "summary": "灰姑娘受继母欺负，仙女帮她参加舞会，水晶鞋让她与王子重逢。",
+                        "japanese_summary": "シンデレラは継母にいじめられましたが、妖精が舞踏会に連れて行ってくれ、ガラスの靴で王子と再会しました。",
+                        "story": "从前有一个善良的女孩，她的继母和姐姐们对她很不好，总是让她穿旧衣服、干粗活，还叫她灰姑娘。\n一天，王子要举办舞会，邀请全国的姑娘参加。灰姑娘也很想去，可是继母不让她去。灰姑娘伤心地哭了起来。这时，一位仙女出现了，她用魔法给灰姑娘穿上了漂亮的礼服和水晶鞋，还变出了一辆南瓜马车。\n仙女告诉灰姑娘：“午夜十二点前必须回来，不然魔法就会消失。”灰姑娘来到王宫，王子被她深深吸引，整晚只和她跳舞。\n钟声敲响了十二下，灰姑娘急忙跑走，不小心掉了一只水晶鞋。王子拿着水晶鞋到处寻找，终于找到了灰姑娘。灰姑娘穿上水晶鞋，正好合适。王子娶她为妻，灰姑娘从此过上了幸福的生活。",
+                        "moral": "保持善良，机会会眷顾努力的人。",
+                        "japanese_moral": "優しく努力を続ける人に、チャンスは訪れます。",
+                        "words": [
+                                    "灰姑娘",
+                                    "水晶鞋",
+                                    "王子",
+                                    "仙女",
+                                    "南瓜"
+                        ]
+            },
+            {
+                        "title": "小红帽",
+                        "japanese_title": "赤ずきん",
+                        "emoji": "🧺🔴",
+                        "origin": "德国/格林",
+                        "summary": "小红帽去看望外婆，路上被大灰狼骗，猎人赶来救了她们。",
+                        "japanese_summary": "赤ずきんはおばあさんを見舞う途中でオオカミにだまされ、ハンターが来て助けてくれました。",
+                        "story": "从前有一个可爱的小女孩，她喜欢戴着外婆送的红帽子，大家都叫她小红帽。一天，妈妈让她带着蛋糕去看望生病的外婆。\n小红帽走在森林里，一只大灰狼拦住了她：“小姑娘，你要去哪里？”小红帽说：“我要去看外婆。”大灰狼又问：“外婆家住在哪里？”小红帽告诉了他。\n大灰狼抢先跑到外婆家，把外婆关进了衣柜，然后穿上外婆的衣服躺在床上。小红帽到了外婆家，觉得外婆的耳朵、眼睛和嘴巴都变得好大。大灰狼跳起来，把小红帽也吞进了肚子。\n幸好一位猎人路过，他剪开大灰狼的肚皮，救出了小红帽和外婆。大家用石头填满狼肚子，大灰狼再也跑不动了。小红帽以后再也不敢跟陌生人说话了。",
+                        "moral": "不要和陌生人说话，要听妈妈的话。",
+                        "japanese_moral": "知らない人と話さず、お母さんの言うことを聞きましょう。",
+                        "words": [
+                                    "小红帽",
+                                    "大灰狼",
+                                    "外婆",
+                                    "猎人",
+                                    "森林"
+                        ]
+            },
+            {
+                        "title": "睡美人",
+                        "japanese_title": "眠り姫",
+                        "emoji": "👸😴",
+                        "origin": "德国/格林",
+                        "summary": "公主被诅咒沉睡一百年，王子勇敢的吻唤醒了她。",
+                        "japanese_summary": "姫は呪いで一百年眠り、勇敢な王子のキスで目覚めました。",
+                        "story": "很久很久以前，国王和王后生了一位美丽的小公主，他们为她举办盛大的宴会。国王邀请了十二位仙女，却忘了邀请一位坏女巫。\n坏女巫非常生气，她在宴会上诅咒公主：“公主十五岁时会被纺锤刺死！”一位善良的仙女把诅咒改成了：“公主不会死，只会沉睡一百年，直到有一位王子来唤醒她。”\n国王下令全国销毁纺锤。可是公主十五岁那年，还是在城堡里找到了一个纺锤。她的手指被刺破了，立刻倒在地上睡着了。整个城堡的人也都跟着睡着了。城堡周围长满了高高的荆棘。\n一百年后，一位勇敢的王子来到城堡。他披荆斩棘，找到了沉睡的公主。王子轻轻吻了她，公主睁开了眼睛。城堡里的人都醒了过来，王子和公主举行了盛大的婚礼。",
+                        "moral": "真爱和善良能打破诅咒。",
+                        "japanese_moral": "真実の愛と優しさは呪いを破ることができます。",
+                        "words": [
+                                    "公主",
+                                    "王子",
+                                    "诅咒",
+                                    "纺锤",
+                                    "沉睡"
+                        ]
+            },
+            {
+                        "title": "青蛙王子",
+                        "japanese_title": "カエルの王子",
+                        "emoji": "🐸👑",
+                        "origin": "德国/格林",
+                        "summary": "公主的金球掉进池塘，青蛙帮她捡回，她遵守诺言亲吻青蛙，青蛙变回王子。",
+                        "japanese_summary": "姫の金色の玉が池に落ち、カエルが拾ってくれました。約束を守ってカエルにキスをすると、カエルは王子に戻りました。",
+                        "story": "从前有一位小公主，她最喜欢玩一个金色的球。有一天，她在池塘边玩球，一不小心，金球掉进了水里。小公主坐在池塘边哭了起来。\n一只青蛙从水里伸出头来，对她说：“我可以帮你把球捞上来，但是你要答应和我做朋友。”小公主答应了。青蛙潜入水里，把金球捞了上来。小公主高兴地接过金球，转身就跑，完全忘了答应青蛙的事。\n第二天，青蛙来到王宫，要求小公主履行诺言。国王知道后，严肃地说：“答应别人的事一定要做到。”小公主只好让青蛙一起吃饭、一起玩耍。晚上，小公主亲了青蛙一下。奇迹发生了，青蛙变成了一位英俊的王子。原来王子被坏女巫施了魔法，只有信守诺言的人才能救他。",
+                        "moral": "答应别人的事要做到，守信很重要。",
+                        "japanese_moral": "約束は守ることが大切です。信用が大切です。",
+                        "words": [
+                                    "公主",
+                                    "青蛙",
+                                    "金球",
+                                    "守信",
+                                    "池塘"
+                        ]
+            },
+            {
+                        "title": "丑小鸭",
+                        "japanese_title": "みにくいあひるの子",
+                        "emoji": "🦆🦢",
+                        "origin": "丹麦/安徒生",
+                        "summary": "丑小鸭被嘲笑长得难看，长大后变成美丽的天鹅。",
+                        "japanese_summary": "みにくいあひるの子は笑われましたが、大きくなって美しい白鳥になりました。",
+                        "story": "鸭妈妈孵出了一群小鸭子，其中有一只长得又大又灰，大家都叫他丑小鸭。其他的小鸭子都不喜欢他，啄他、咬他，连鸭妈妈也叹气。丑小鸭又伤心又孤单，只好离开了家。\n他来到野鸭家，野鸭们也嘲笑他。他来到农家，鸡群和猫也欺负他。冬天来了，丑小鸭又冷又饿，躲在一丛芦苇里。\n春天来了，丑小鸭慢慢长大了。有一天，他走到河边，看见水面上有一只美丽的天鹅。他低头一看，倒影里的自己竟然也变成了一只雪白的天鹅！\n其他天鹅围了过来，称赞他漂亮。丑小鸭终于明白：不要因为别人说自己丑就难过，每个人都有自己的美丽。",
+                        "moral": "不要小看自己，每个人都有自己的美丽。",
+                        "japanese_moral": "自分をけなさないで。誰にでも輝く美しさがあります。",
+                        "words": [
+                                    "丑小鸭",
+                                    "天鹅",
+                                    "成长",
+                                    "自信",
+                                    "美丽"
+                        ]
+            },
+            {
+                        "title": "卖火柴的小女孩",
+                        "japanese_title": "マッチ売りの少女",
+                        "emoji": "🔥👧",
+                        "origin": "丹麦/安徒生",
+                        "summary": "大年夜，小女孩卖不出火柴，在寒冷中擦亮火柴看到美好的幻象。",
+                        "japanese_summary": "大晦日の夜、マッチが売れない少女は寒さの中でマッチを擦り、美しい夢を見ました。",
+                        "story": "除夕夜，街上飘着雪花，家家户户都亮着温暖的灯。一个小女孩赤着脚，手里拿着一把火柴，在街上卖火柴。她已经一整天没卖出去了。\n她又冷又饿，不敢回家，因为爸爸会打她。她只好躲在墙角，擦亮了一根火柴。火柴的光芒里，她看见了一个温暖的火炉。她又擦亮一根火柴，看见了香喷喷的烤鹅。她还看见了美丽的圣诞树和慈祥的奶奶。\n奶奶是唯一疼爱她的人。小女孩赶紧擦亮了一大把火柴，想留住奶奶。在火光中，奶奶微笑着把她抱了起来。\n第二天早上，人们在墙角发现了小女孩。她脸上带着微笑，手里还握着烧过的火柴梗。她跟着奶奶去了没有寒冷、没有饥饿的地方。这个故事让我们懂得珍惜温暖幸福的生活，学会关爱他人。",
+                        "moral": "珍惜温暖幸福的生活，学会关爱他人。",
+                        "japanese_moral": "温かい幸せを大切にし、人を思いやる心を持ちましょう。",
+                        "words": [
+                                    "小女孩",
+                                    "火柴",
+                                    "寒冷",
+                                    "奶奶",
+                                    "温暖"
+                        ]
+            },
+            {
+                        "title": "皇帝的新装",
+                        "japanese_title": "裸の王様",
+                        "emoji": "👑👀",
+                        "origin": "丹麦/安徒生",
+                        "summary": "皇帝被两个骗子欺骗，穿着不存在的新衣游行，只有小孩说出真相。",
+                        "japanese_summary": "皇帝は二つのだましにだまされ、何も着ていない新衣を着て行列を歩きました。ただの子供だけが真実を言いました。",
+                        "story": "从前有一个皇帝，他特别喜欢穿新衣服。有一天，来了两个骗子，说能织出世界上最美丽的布，而且这种布只有聪明人才能看见。\n皇帝给了他们很多钱，让他们织布。其实骗子什么也没织。大臣们去检查时，明明什么也看不见，却怕别人说自己愚蠢，都假装称赞布料多么漂亮。\n新衣服做好了。皇帝穿上“新衣”，光着身子走上街头游行。街道两旁的人都怕被别人笑话，都大声说：“皇帝的新衣服真漂亮！”\n这时，一个小孩子大声说：“皇帝什么衣服也没穿呀！”大家这才敢说出真话。皇帝的脸红得像个苹果，可是他只能继续完成游行。这个故事告诉我们：要勇敢说真话，不要被虚荣蒙蔽。",
+                        "moral": "要勇敢说真话，不要被虚荣蒙蔽。",
+                        "japanese_moral": "真実を言う勇気を持ち、虚栄に惑わされないようにしましょう。",
+                        "words": [
+                                    "皇帝",
+                                    "骗子",
+                                    "新衣",
+                                    "真话",
+                                    "虚荣"
+                        ]
+            },
+            {
+                        "title": "海的女儿",
+                        "japanese_title": "人魚姫",
+                        "emoji": "🧜‍♀️🌊",
+                        "origin": "丹麦/安徒生",
+                        "summary": "小人鱼为了王子变成人，最后却选择化成泡沫守护他。",
+                        "japanese_summary": "小さな人魚は王子のために人間になりましたが、最後には王子を守るために泡となりました。",
+                        "story": "在大海深处，住着一位美丽的人鱼公主。她救了落水的王子，爱上了他。她想知道陆地上的世界，就去问海巫婆。\n海巫婆说：“我可以把你的尾巴变成双腿，但你每走一步都像踩在刀尖上。而且你必须让王子爱上你，否则你就会变成海上的泡沫。”小人鱼还是答应了。\n她来到王宫，和王子成了朋友。可是王子要娶邻国的公主。婚礼那天，小人鱼的姐姐们用长发换来一把匕首，告诉她：“只要杀了王子，你就能回到大海。”\n小人鱼来到王子的床边，她看着熟睡的王子，不忍心下手。她把匕首扔进了大海，自己也跳进了海里。太阳升起时，她化成了海上的泡沫。但她没有消失，她变成了天空的女儿。真正的爱是成全和善良。",
+                        "moral": "真正的爱是成全和善良。",
+                        "japanese_moral": "本当の愛は相手の幸せを願い、優しさです。",
+                        "words": [
+                                    "美人鱼",
+                                    "王子",
+                                    "大海",
+                                    "泡沫",
+                                    "牺牲"
+                        ]
+            },
+            {
+                        "title": "拇指姑娘",
+                        "japanese_title": "親指姫",
+                        "emoji": "🌸👧",
+                        "origin": "丹麦/安徒生",
+                        "summary": "拇指姑娘只有拇指那么大，经历了许多冒险，最后找到了花精灵的家。",
+                        "japanese_summary": "親指姫は親指の大きさの女の子で、たくさんの冒険を経て、花の精の家を見つけました。",
+                        "story": "从前有一个妇人，她非常想要一个小孩子。一位女巫给了她一颗种子。妇人把种子种在花盆里，很快就开出了一朵美丽的花。花心里面坐着一个只有拇指那么大的小姑娘，大家都叫她拇指姑娘。\n一天晚上，一只癞蛤蟆把拇指姑娘偷走了，想让她给自己的儿子当新娘。拇指姑娘很害怕，鱼儿们帮她咬断了荷叶，让她漂走了。\n后来，拇指姑娘被一只好心的田鼠收留。田鼠的朋友鼹鼠想娶她，可是拇指姑娘不想生活在黑暗的地洞里。她帮助了一只受伤的燕子，燕子康复后带她飞到了温暖的南方。\n在那里，拇指姑娘遇到了花精灵王子。王子请她做花中的王后，拇指姑娘高兴地答应了。她终于找到了自己的家。",
+                        "moral": "即使很小，也能勇敢追求幸福。",
+                        "japanese_moral": "小さくても、幸せを勇気を持って追い求めることができます。",
+                        "words": [
+                                    "拇指姑娘",
+                                    "花",
+                                    "田鼠",
+                                    "燕子",
+                                    "勇敢"
+                        ]
+            },
+            {
+                        "title": "阿里巴巴与四十大盗",
+                        "japanese_title": "アリババと四十人の盗賊",
+                        "emoji": "🗝️🚪",
+                        "origin": "阿拉伯/一千零一夜",
+                        "summary": "阿里巴巴发现强盗宝库，用智慧和女仆 Morgana 打败四十大盗。",
+                        "japanese_summary": "アリババは盗賊の宝庫を見つけ、知恵とメイドのモルガーナと共に四十人の盗賊を倒しました。",
+                        "story": "从前有一个穷人叫阿里巴巴。有一天他在山上砍柴，看见一伙强盗来到一个山洞前。强盗首领大声说：“芝麻开门！”山洞的门就开了；强盗进去后说：“芝麻关门！”门就关上了。\n强盗走后，阿里巴巴也学着说：“芝麻开门！”门真的开了，里面全是金银财宝。阿里巴巴只拿了一点金币，就关上门回家了。\n他的哥哥卡西姆知道后，也来到山洞。他因为太贪心，拿了太多财宝，出洞时忘了咒语，被强盗抓住了。强盗把他杀了。\n强盗们到处寻找拿走财宝的人。聪明的女仆马尔基娜识破了他的阴谋，她用热油烫死了藏在油罐里的强盗，又用匕首杀了强盗首领。阿里巴巴非常感谢马尔基娜，让她嫁给了自己的儿子。从此以后，他们幸福地生活在一起。",
+                        "moral": "智慧和勇气能战胜坏人。",
+                        "japanese_moral": "知恵と勇気が悪を打ち負かします。",
+                        "words": [
+                                    "阿里巴巴",
+                                    "山洞",
+                                    "芝麻开门",
+                                    "强盗",
+                                    "智慧"
+                        ]
+            },
+            {
+                        "title": "阿拉丁神灯",
+                        "japanese_title": "アラジンと魔法のランプ",
+                        "emoji": "🧞✨",
+                        "origin": "阿拉伯/一千零一夜",
+                        "summary": "阿拉丁得到神灯，在灯神帮助下战胜坏巫师，和公主幸福生活。",
+                        "japanese_summary": "アラジンは魔法のランプを手に入れ、ランプの精の力で悪い魔術師を倒し、姫と幸せに暮らしました。",
+                        "story": "很久以前，在中国有一个穷小子叫阿拉丁。一天，一个自称是他叔叔的坏巫师把他骗到一个山洞里，让他去取一盏旧油灯。阿拉丁拿到油灯后，巫师却把他关在山洞里。\n阿拉丁害怕地搓着油灯，突然一个蓝色巨人出现了，说：“我是灯神，可以满足你三个愿望。”阿拉丁许愿回到家，又许愿有了很多钱。\n后来，阿拉丁爱上了公主。他用神灯和飞毯来到王宫，娶到了公主。坏巫师知道后，骗走了神灯，抢走了公主和宫殿。阿拉丁用计谋夺回了神灯，打败了巫师。他和公主幸福地生活在一起。善良和勇敢的人总会得到帮助。",
+                        "moral": "善良和勇敢会得到帮助。",
+                        "japanese_moral": "善良で勇敢な人は助けを得ます。",
+                        "words": [
+                                    "阿拉丁",
+                                    "神灯",
+                                    "灯神",
+                                    "飞毯",
+                                    "公主"
+                        ]
+            },
+            {
+                        "title": "木偶奇遇记",
+                        "japanese_title": "ピノキオ",
+                        "emoji": "🤥🪵",
+                        "origin": "意大利",
+                        "summary": "木偶匹诺曹一说谎鼻子就长，他学会诚实、勇敢，最后变成真正的小男孩。",
+                        "japanese_summary": "木偶のピノキオは嘘をつくと鼻が伸び、正直と勇敢を学んで、本当の男の子になりました。",
+                        "story": "老木匠杰佩托用一块木头做了一个木偶，取名叫匹诺曹。匹诺曹一出生就调皮捣蛋，他一说谎，鼻子就会变长。\n匹诺曹不好好上学，跑去看木偶戏，还被两个坏蛋骗到了“快乐岛”。在那里，他玩得不亦乐乎，可是慢慢地，他的耳朵变成了驴耳朵，最后变成了一头驴。\n匹诺曹被卖到马戏团，吃了很多苦。后来，他跳进海里，被一条大鲸鱼吞进了肚子里。在鲸鱼肚子里，他意外地遇见了前来寻找他的爸爸。匹诺曹背着爸爸逃出了鲸鱼肚子。\n回到家后，匹诺曹变得诚实、勤劳、勇敢。有一天早上，他醒来发现自己变成了真正的小男孩。这个故事告诉我们：说谎鼻子会变长，诚实最重要。",
+                        "moral": "说谎鼻子会变长，诚实最重要。",
+                        "japanese_moral": "嘘をつくと鼻が伸びる、正直が一番大切です。",
+                        "words": [
+                                    "匹诺曹",
+                                    "鼻子",
+                                    "诚实",
+                                    "爸爸",
+                                    "鲸鱼"
+                        ]
+            },
+            {
+                        "title": "彼得潘",
+                        "japanese_title": "ピーター・パン",
+                        "emoji": "🧚‍♂️🏴‍☠️",
+                        "origin": "英国",
+                        "summary": "彼得潘带温蒂去永无岛，和海盗船长战斗，经历奇妙冒险。",
+                        "japanese_summary": "ピーター・パンはウェンディをネバーランドに連れて行き、海賊船長と戦って、素晴らしい冒険をしました。",
+                        "story": "在伦敦，有一个叫温蒂的小女孩。一天晚上，一个永远长不大的小男孩彼得潘从窗户飞进来，带她去了永无岛。\n永无岛上有美丽的仙子、野蛮的印第安人、凶狠的海盗，还有美人鱼。彼得潘和温蒂带着两个弟弟，和岛上的孩子们一起快乐地生活。\n可是海盗船长虎克一直想抓住彼得潘。虎克抓走了孩子们，还想喂他们吃毒药。彼得潘和虎克展开了一场激烈的战斗。最后，彼得潘把虎克推下了鳄鱼等待的大海。\n温蒂想家了，彼得潘把她和弟弟们送回了伦敦。彼得潘继续留在永无岛，和新的孩子们一起冒险。这个故事告诉我们：保持童心，但也要勇敢成长。",
+                        "moral": "保持童心，但也要勇敢成长。",
+                        "japanese_moral": "子供の心を保ちながら、勇敢に成長しましょう。",
+                        "words": [
+                                    "彼得潘",
+                                    "永无岛",
+                                    "海盗",
+                                    "飞翔",
+                                    "冒险"
+                        ]
+            },
+            {
+                        "title": "夏洛的网",
+                        "japanese_title": "シャーロットの巣",
+                        "emoji": "🐷🕸️",
+                        "origin": "美国",
+                        "summary": "小猪威尔伯和蜘蛛夏洛成为朋友，夏洛织字救了威尔伯的命。",
+                        "japanese_summary": "子ぶたのウィルバーと蜘蛛のシャーロットは友達になり、シャーロットが巣に文字を織ってウィルバーの命を救いました。",
+                        "story": "在农场里，有一只小猪叫威尔伯。他生下来很弱小，主人差点不要他。幸好小女孩芬救了他，把他养大。\n威尔伯来到舅舅的农场，认识了蜘蛛夏洛。夏洛和威尔伯成了最好的朋友。有一天，农场主说威尔伯太胖了，冬天要杀了他做火腿。威尔伯很害怕。\n夏洛想救威尔伯。她在蜘蛛网上织出了“王牌猪”“了不起”“光彩照人”这些字。人们看见了，都觉得威尔伯是一只神奇的猪。\n威尔伯在比赛中得了大奖，再也不用被杀了。可是夏洛因为太劳累，生下宝宝后就死去了。威尔伯一直记得夏洛，他把夏洛的宝宝们带回农场。真正的友谊很珍贵，朋友会互相帮助。",
+                        "moral": "真正的友谊很珍贵，朋友会互相帮助。",
+                        "japanese_moral": "本当の友情は大切です。友達は助け合います。",
+                        "words": [
+                                    "小猪",
+                                    "蜘蛛",
+                                    "朋友",
+                                    "农场",
+                                    "友谊"
+                        ]
+            },
+            {
+                        "title": "哪吒闹海",
+                        "japanese_title": "哪吒の海荒らし",
+                        "emoji": "👶🔱",
+                        "origin": "中国",
+                        "summary": "小哪吒为救百姓，打死龙王三太子，最后舍身保护陈塘关。",
+                        "japanese_summary": "小さな哪吒は民を救うために竜王の三太子を倒し、最後には陳塘関を守るために身を捧げました。",
+                        "story": "很久很久以前，陈塘关总兵李靖有一个儿子叫哪吒。哪吒天生神力，脖子上戴着乾坤圈，手臂上缠着混天绫。\n一天，哪吒在海边玩耍。东海龙王的三太子出来行凶，要吃童男童女。哪吒见义勇为，打败了三太子，还抽了他的龙筋。东海龙王大怒，跑到天庭告状。\n龙王们联合起来，水淹陈塘关，威胁要淹死所有百姓。哪吒为了不连累父母和陈塘关的百姓，大声说：“我自己做的事，自己来承担！”他拔剑自刎，用自己的生命保护了大家。\n后来，师父太乙真人用莲花和莲藕为哪吒重新塑造了身体。哪吒复活后，变得更加勇敢，最终打败了龙王，保护了百姓。",
+                        "moral": "勇敢反抗不公，保护弱小。",
+                        "japanese_moral": "不公平に立ち向かい、弱い者を守りましょう。",
+                        "words": [
+                                    "哪吒",
+                                    "龙王",
+                                    "混天绫",
+                                    "勇敢",
+                                    "保护"
+                        ]
+            },
+            {
+                        "title": "嫦娥奔月",
+                        "japanese_title": "嫦娥の月昇り",
+                        "emoji": "🌙🧚‍♀️",
+                        "origin": "中国",
+                        "summary": "嫦娥为了保护仙药不落入坏人之手，吞下仙药飞向月亮。",
+                        "japanese_summary": "嫦娥は仙薬が悪者の手に渡るのを防ぐため、仙薬を飲んで月へ飛んで行きました。",
+                        "story": "古时候，天上有十个太阳，烤得大地干裂。一个叫后羿的英雄射下了九个太阳，救了百姓。王母娘娘奖励他一包长生不老药。\n后羿舍不得离开妻子嫦娥，没有立刻吃药，他把药交给嫦娥保管。后羿的一个徒弟蓬蒙知道了这件事，想要偷走仙药。\n一天，后羿出门了，蓬蒙闯进家里逼嫦娥交出仙药。嫦娥知道自己打不过坏人，她不想让仙药落入坏人之手，就把整包药吞了下去。\n嫦娥的身体变得轻飘飘的，飞出了窗户，一直飞到了月亮上。后羿回来后，望着月亮伤心地呼喊嫦娥。嫦娥在月亮上看着人间，也非常想念后羿。每到中秋，人们就赏月纪念嫦娥。善良的选择有时需要牺牲。",
+                        "moral": "善良的选择有时需要牺牲。",
+                        "japanese_moral": "善良な選択には時に犠牲が伴います。",
+                        "words": [
+                                    "嫦娥",
+                                    "月亮",
+                                    "后羿",
+                                    "仙药",
+                                    "飞天"
+                        ]
+            },
+            {
+                        "title": "田螺姑娘",
+                        "japanese_title": "タニシの娘",
+                        "emoji": "🐌👧",
+                        "origin": "中国",
+                        "summary": "贫穷青年捡到田螺，田螺变成姑娘默默帮他做家务，两人幸福生活。",
+                        "japanese_summary": "貧しい青年がタニシを拾うと、タニシが娘に変わって家事を手伝い、二人は幸せに暮らしました。",
+                        "story": "很久很久以前，有一个勤劳善良的年轻人，一个人住在山脚下。他每天早出晚归，种地砍柴，可是生活很穷苦。\n有一天，年轻人从田里捡回一只大田螺，把它养在水缸里。从那以后，他每天干完活回家，发现桌子上都摆着热腾腾的饭菜。他以为是邻居们帮忙，去问了一圈，却没有人承认。\n年轻人决定偷偷看看是谁在帮忙。有一天，他假装出门，又悄悄返回，从窗户缝里看见一位美丽的姑娘从水缸里走出来，为他做饭。年轻人走进屋，姑娘想回到水缸里，已经来不及了。\n原来姑娘是田螺变的仙女，被年轻人的勤劳善良感动了。她愿意留下来做他的妻子。从此，两人一起劳动，过上了幸福的生活。勤劳善良的人会得到好报。",
+                        "moral": "勤劳善良的人会得到好报。",
+                        "japanese_moral": "勤勉で優しい人は良い報いを受けます。",
+                        "words": [
+                                    "田螺",
+                                    "姑娘",
+                                    "勤劳",
+                                    "善良",
+                                    "幸福"
+                        ]
+            },
+            {
+                        "title": "大闹天宫",
+                        "japanese_title": "大鬧天宮",
+                        "emoji": "🐒☁️",
+                        "origin": "中国",
+                        "summary": "孙悟空不满天庭轻视，大闹天宫，展现七十二变的本领。",
+                        "japanese_summary": "孫悟空は天界に軽く見られたことに怒り、天宮を大騒ぎにし、七十二変の力を見せつけました。",
+                        "story": "花果山上有一只石猴，名叫孙悟空。他学会了一身本领，能七十二变，一个筋斗能翻十万八千里。他因为没有兵器，去龙宫借走了定海神针，变成了一根金箍棒。\n玉帝想管他，让他到天庭当个小官。孙悟空发现玉帝看不起自己，非常生气。他回到花果山，自称“齐天大圣”。玉帝派天兵天将去捉拿他，可谁也不是孙悟空的对手。\n孙悟空大闹天宫，把玉帝打得钻到桌子底下。他还吃光了王母娘娘的蟠桃，喝光了仙酒，搅乱了蟠桃会。最后，如来佛祖把孙悟空压在五行山下。五百年后，孙悟空才会出来，护送唐僧去西天取经。勇敢挑战不合理的规则是对的，但也要遵守规则。",
+                        "moral": "勇敢挑战不合理的规则。",
+                        "japanese_moral": "不合理な決まりに勇敢に立ち向かうことが大切です。",
+                        "words": [
+                                    "孙悟空",
+                                    "天宫",
+                                    "金箍棒",
+                                    "神仙",
+                                    "勇敢"
+                        ]
+            },
+            {
+                        "title": "牛郎织女",
+                        "japanese_title": "牛郎織女",
+                        "emoji": "🐂👩🌌",
+                        "origin": "中国",
+                        "summary": "牛郎和织女相爱，被王母娘娘分开，每年七夕鹊桥相会。",
+                        "japanese_summary": "牛郎と織女は愛し合いましたが、王母娘娘に引き裂かれ、毎年七夕に鵲橋で会うことになりました。",
+                        "story": "很久很久以前，有一个叫牛郎的孤儿，他勤劳善良，和一头老牛相依为命。老牛告诉他，天上的仙女会在银河里洗澡，让他去河边。\n牛郎来到河边，看见一位美丽的仙女，她是王母娘娘的外孙女，名叫织女。织女擅长织布，她织出的云霞就是天上的云彩。牛郎和织女相爱了，结为夫妻，生下了一双儿女。\n王母娘娘知道后非常生气，派天兵把织女抓回天庭。牛郎急忙披上老牛留下的牛皮，挑着两个孩子追了上去。眼看就要追上了，王母娘娘拔下头上的金簪，在天空划出一道波涛汹涌的银河，把牛郎和织女隔开了。\n他们的真情感动了喜鹊。每年农历七月初七，成千上万的喜鹊飞来，搭成鹊桥，让牛郎和织女相会。这一天，人们称为七夕节。",
+                        "moral": "真爱能跨越距离，相聚值得珍惜。",
+                        "japanese_moral": "真実の愛は距離を越え、会える時間を大切にしましょう。",
+                        "words": [
+                                    "牛郎",
+                                    "织女",
+                                    "鹊桥",
+                                    "七夕",
+                                    "星星"
+                        ]
+            }
+];
         let currentIndex = 0;
         let autoPlaying = false;
         let stopRequested = false;
         const synth = window.speechSynthesis;
         let chineseVoice = null;
-        
+
         function findChineseVoice(){
             if(!synth) return;
             const voices = synth.getVoices();
             for(let v of voices){ if(v.lang.startsWith('zh')){ chineseVoice = v; break; } }
         }
-        if(speechSynthesis.onvoiceschanged !== undefined){ speechSynthesis.onvoiceschanged = findChineseVoice; }
+
+        if(speechSynthesis.onvoiceschanged !== undefined){
+            speechSynthesis.onvoiceschanged = function(){ findChineseVoice(); };
+        }
         findChineseVoice();
-        
+
         function speak(text, rate=0.82){
             return new Promise((resolve) => {
                 if(!synth){ resolve(); return; }
@@ -800,7 +1347,7 @@
                 synth.speak(utter);
             });
         }
-        
+
         function showMascot(text){ document.getElementById('mascotText').textContent = text; }
         function updateAutoButtons(){
             document.querySelectorAll('[id^="autoBtn-"]').forEach(btn => {
@@ -808,12 +1355,12 @@
                 else{ btn.textContent = '▶️ 自动循环'; btn.classList.remove('playing'); }
             });
         }
-        
+
         function playTitle(i){ const item=items[i]; return speak(item.title).then(() => showMascot(item.title)); }
         function playSummary(i){ const item=items[i]; return speak(item.summary).then(() => showMascot(item.summary)); }
         function playStory(i){ const item=items[i]; return speak(item.story).then(() => showMascot('《' + item.title + '》')); }
         function playMoral(i){ const item=items[i]; return speak('这个故事告诉我们：' + item.moral).then(() => showMascot(item.moral)); }
-        
+
         async function playStoryFull(i){
             const item = items[i];
             showMascot('开始讲《' + item.title + '》');
@@ -822,7 +1369,7 @@
             await speak(item.story);
             await speak('这个故事告诉我们：' + item.moral);
         }
-        
+
         function switchToCard(index){
             const cards = document.querySelectorAll('.card');
             const dots = document.querySelectorAll('.progress-dot');
@@ -834,23 +1381,21 @@
             updateNav();
             document.getElementById('card-' + currentIndex).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-        
+
         function updateNav(){
-            // 循环模式下，上一个/下一个按钮始终可用
-            document.getElementById('prevBtn').disabled = false;
-            document.getElementById('nextBtn').disabled = false;
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.disabled = false);
         }
-        
+
         function switchItem(direction){
             let newIndex = currentIndex + (direction === 'next' ? 1 : -1);
             if(newIndex < 0) newIndex = items.length - 1;
             if(newIndex >= items.length) newIndex = 0;
             switchToCard(newIndex);
         }
-        
+
         function nextItem(){ switchItem('next'); }
         function prevItem(){ switchItem('prev'); }
-        
+
         async function autoPlay(){
             autoPlaying = true;
             stopRequested = false;
@@ -866,7 +1411,7 @@
             autoPlaying = false;
             updateAutoButtons();
         }
-        
+
         function stopAutoPlay(){
             stopRequested = true;
             autoPlaying = false;
@@ -874,20 +1419,38 @@
             updateAutoButtons();
             showMascot('已停止自动播放');
         }
-        
+
         function toggleAutoPlay(){
             if(autoPlaying){ stopAutoPlay(); }
             else{ autoPlay(); }
         }
-        
+
         function startApp(){
             document.getElementById('startOverlay').style.display = 'none';
             if(items.length > 0){
                 speak('你好！我是小豆。今天我们来听童话故事。').then(() => showMascot('你好！我是小豆。今天我们来听童话故事。'));
             }
         }
-        
+
         updateNav();
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        const mainStage = document.querySelector('.main-stage');
+        mainStage.addEventListener('touchstart', function(e){
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        mainStage.addEventListener('touchend', function(e){
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const diffX = touchStartX - endX;
+            const diffY = touchStartY - endY;
+            if(Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50){
+                if(diffX > 0) nextItem();
+                else prevItem();
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>

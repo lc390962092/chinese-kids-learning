@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 形状乐园</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: linear-gradient(135deg, #FFF8E1 0%, #E8F5E9 100%); min-height: 100vh; overflow-x: hidden; }
+        .header { text-align: center; padding: 20px 10px 10px; }
+        .header h1 { color: #F57C00; font-size: 28px; margin-bottom: 5px; }
+        .header p { color: #888; font-size: 14px; }
+        .mascot { text-align: center; padding: 10px; }
+        .mascot-bubble { display: inline-block; background: white; border-radius: 25px; padding: 12px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: #555; font-size: 16px; max-width: 80%; position: relative; margin-bottom: 15px; }
+        .mascot-bubble::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-width: 10px 10px 0; border-style: solid; border-color: white transparent transparent transparent; }
+        .mascot-avatar { width: 60px; height: 60px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); touch-action: pan-y; }
+        .card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
+        .card.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-emoji { width: 200px; height: 200px; font-size: 130px; line-height: 200px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; }
+        .card-emoji:active { transform: scale(0.95); }
+        .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
+        .card-subtitle { font-size: 22px; color: #888; margin-bottom: 5px; }
+        .card-japanese { font-size: 24px; color: #555; margin: 5px 0 0; font-weight: bold; }
+        .card-japanese-reading { font-size: 16px; color: #999; margin-bottom: 12px; }
+        .card-text { background: #f8f8f8; border-radius: 20px; padding: 18px 20px; margin: 10px auto 15px; max-width: 90%; text-align: left; font-size: 18px; line-height: 1.7; color: #444; }
+        .keywords { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 18px 0; padding: 0 10px; }
+        .keyword { background: #f0f0f0; color: #555; padding: 8px 16px; border-radius: 20px; font-size: 16px; cursor: pointer; }
+        .keyword:active { background: #ddd; }
+        .btn-group { display: flex; justify-content: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { border: none; border-radius: 25px; padding: 12px 20px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .btn:active { transform: scale(0.95); }
+        .btn-primary { background: #F57C00; }
+        .btn-secondary { background: #4ECDC4; }
+        .btn-japanese { background: #FF7043; }
+        .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .nav-btn { background: #FFD54F; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .nav-btn:active { transform: scale(0.95); }
+        .progress { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+        .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
+        .progress-dot.active { background: #F57C00; }
+        .swipe-hint { color: #bbb; font-size: 12px; margin-top: 8px; text-align: center; }
+        .start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #FFF8E1 0%, #E8F5E9 100%); z-index: 1000; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .start-content { background: white; padding: 40px 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 320px; width: 90%; }
+        .start-panda { font-size: 80px; margin-bottom: 10px; }
+        .start-content h2 { color: #F57C00; font-size: 32px; margin-bottom: 10px; }
+        .start-content p { color: #888; font-size: 16px; margin-bottom: 25px; }
+        .start-btn { background: #F57C00; color: white; border: none; border-radius: 30px; padding: 15px 50px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .start-btn:active { transform: scale(0.95); }
+        .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
+        .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
+        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-bar">← 回首页</a>
+    <div class="start-overlay" id="startOverlay">
+        <div class="start-content">
+            <div class="start-panda">🐼</div>
+            <h2>小豆形状乐园</h2>
+            <p>一起认识有趣的形状</p>
+            <button class="start-btn" onclick="startApp()">开始学习</button>
+        </div>
+    </div>
+    <div class="header">
+        <h1>🐼 小豆中文</h1>
+        <p>今天我们来学习形状</p>
+    </div>
+    <div class="mascot">
+        <div class="mascot-bubble" id="mascotText">你好！点击卡片，听听怎么读～左右滑动可以切换</div>
+        <div class="mascot-avatar">🐼</div>
+    </div>
+    <div class="main-stage" id="mainStage">
+        <div id="cards"></div>
+        <div class="progress" id="progressDots"></div>
+        <div class="swipe-hint">← 左右滑动切换卡片 →</div>
+        <a href="index.html" class="back-home">⬅️ 返回首页</a>
+    </div>
+    <script>
+        const items = [
+            { word: "圆形", pinyin: "yuán xíng", japanese: "円形", japanese_reading: "えんけい", summary: "太阳和皮球都是圆圆的，没有角，能滚来滚去。", words: ["圆形", "圆", "太阳", "皮球", "滚"], emoji: "🔴" },
+            { word: "方形", pinyin: "fāng xíng", japanese: "方形", japanese_reading: "ほうけい", summary: "书本和窗户都是方方正正的，有四条直直的边。", words: ["方形", "方", "书本", "窗户", "边"], emoji: "🟦" },
+            { word: "三角形", pinyin: "sān jiǎo xíng", japanese: "三角形", japanese_reading: "さんかっけい", summary: "三角板和三明治都有三个角，三条边围在一起。", words: ["三角形", "三角", "三个角", "三明治", "边"], emoji: "🔺" },
+            { word: "长方形", pinyin: "cháng fāng xíng", japanese: "長方形", japanese_reading: "ちょうほうけい", summary: "门和黑板都是长方形，两条边长，两条边短。", words: ["长方形", "长", "门", "黑板", "边"], emoji: "▭" },
+            { word: "椭圆形", pinyin: "tuǒ yuán xíng", japanese: "楕円形", japanese_reading: "だえんけい", summary: "鸡蛋和橄榄球是椭圆形，比圆形长一些，两头圆圆的。", words: ["椭圆形", "椭圆", "鸡蛋", "橄榄球", "长"], emoji: "🥚" },
+            { word: "星形", pinyin: "xīng xíng", japanese: "星形", japanese_reading: "ほしがた", summary: "天上的星星和魔术棒顶端都是五角星形，一闪一闪。", words: ["星形", "星星", "五角星", "魔术棒", "闪"], emoji: "⭐" },
+            { word: "心形", pinyin: "xīn xíng", japanese: "ハート形", japanese_reading: "はーとがた", summary: "爱心是心形，代表喜欢和关心，送给爸爸妈妈最好。", words: ["心形", "爱心", "喜欢", "关心", "送"], emoji: "❤️" },
+            { word: "菱形", pinyin: "líng xíng", japanese: "菱形", japanese_reading: "ひしがた", summary: "风筝和菱形贴片四个边一样长，斜斜地很好看。", words: ["菱形", "风筝", "四个边", "斜", "好看"], emoji: "🔶" },
+            { word: "梯形", pinyin: "tī xíng", japanese: "台形", japanese_reading: "だいけい", summary: "梯子的侧面像梯形，有一组边平行，一组边不平行。", words: ["梯形", "梯子", "平行", "边", "像"], emoji: "🪜" },
+            { word: "半圆形", pinyin: "bàn yuán xíng", japanese: "半円形", japanese_reading: "はんえんけい", summary: "彩虹和桥洞都是半圆形，像圆的一半。", words: ["半圆形", "半圆", "彩虹", "桥洞", "一半"], emoji: "🌈" },
+            { word: "十字形", pinyin: "shí zì xíng", japanese: "十字形", japanese_reading: "じゅうじがた", summary: "十字路口是十字形，横一条竖一条，行人要按灯走。", words: ["十字形", "十字", "路口", "横", "竖"], emoji: "➕" },
+            { word: "螺旋形", pinyin: "luó xuán xíng", japanese: "螺旋形", japanese_reading: "らせんけい", summary: "蜗牛壳和棒棒糖是螺旋形，一圈一圈绕上去。", words: ["螺旋形", "螺旋", "蜗牛壳", "棒棒糖", "绕"], emoji: "🌀" }
+        ];
+
+        let currentIndex = 0;
+        let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+        const SWIPE_THRESHOLD = 50;
+
+        const synth = window.speechSynthesis;
+        let chineseVoice = null;
+        let japaneseVoice = null;
+
+        function findChineseVoice(){
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) { if (v.lang.startsWith('zh')) { chineseVoice = v; break; } }
+        }
+        function findJapaneseVoice(){
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) { if (v.lang.startsWith('ja')) { japaneseVoice = v; break; } }
+        }
+        if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = function() { findChineseVoice(); findJapaneseVoice(); };
+        findChineseVoice();
+        findJapaneseVoice();
+
+        function speak(text, rate = 0.82){
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'zh-CN'; utter.rate = rate; utter.pitch = 1.1;
+            if (chineseVoice) utter.voice = chineseVoice;
+            synth.speak(utter);
+        }
+
+        function speakJapanese(text, rate = 0.82){
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'ja-JP'; utter.rate = rate; utter.pitch = 1.1;
+            if (japaneseVoice) utter.voice = japaneseVoice;
+            synth.speak(utter);
+        }
+
+        function showMascot(text){ document.getElementById('mascotText').textContent = text; }
+
+        function playWord(index){
+            const item = items[index];
+            speak(item.word + '，' + item.pinyin);
+            showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
+        }
+
+        function playSentence(index){
+            const item = items[index];
+            speak(item.summary);
+            showMascot(item.summary);
+        }
+
+        function renderCards(){
+            const container = document.getElementById('cards');
+            container.innerHTML = items.map((item, i) => {
+                const keywords = item.words.map(w => `<span class="keyword" onclick="speak('${w}')">${w}</span>`).join('');
+                return `<div class="card ${i===0?'active':''}">
+                    <div class="card-emoji" onclick="playWord(${i})">${item.emoji}</div>
+                    <div class="card-title">${item.word}</div>
+                    <div class="card-subtitle">${item.pinyin}</div>
+                    <div class="card-japanese">${item.japanese}</div>
+                    <div class="card-japanese-reading">${item.japanese_reading}</div>
+                    <div class="card-text">${item.summary}</div>
+                    <div class="keywords">${keywords}</div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="playWord(${i})">🔊 读词语</button>
+                        <button class="btn btn-japanese" onclick="speakJapanese(items[${i}].japanese)">🇯🇵 日语</button>
+                        <button class="btn btn-secondary" onclick="playSentence(${i})">📝 读句子</button>
+                    </div>
+                    <div class="nav-btns">
+                        <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                        <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderProgress(){
+            const dots = document.getElementById('progressDots');
+            dots.innerHTML = items.map((_, i) => `<div class="progress-dot ${i===0?'active':''}"></div>`).join('');
+        }
+
+        function switchCard(direction){
+            const cards = document.querySelectorAll('.card');
+            const dots = document.querySelectorAll('.progress-dot');
+            cards[currentIndex].classList.remove('active');
+            dots[currentIndex].classList.remove('active');
+            if (direction === 'next') currentIndex = (currentIndex + 1) % items.length;
+            else currentIndex = (currentIndex - 1 + items.length) % items.length;
+            cards[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+            const item = items[currentIndex];
+            speak(item.word);
+            showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
+        }
+
+        function nextItem(){ switchCard('next'); }
+        function prevItem(){ switchCard('prev'); }
+
+        function startApp(){
+            document.getElementById('startOverlay').style.display = 'none';
+            if (items.length > 0){
+                speak('你好！我是小豆。今天我们来学习形状。');
+                showMascot('你好！我是小豆。今天我们来学习形状。');
+            }
+        }
+
+        const mainStage = document.getElementById('mainStage');
+        mainStage.addEventListener('touchstart', function(e){
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchStartTime = Date.now();
+        }, { passive: true });
+        mainStage.addEventListener('touchend', function(e){
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const diffX = touchStartX - endX;
+            const diffY = touchStartY - endY;
+            const timeDiff = Date.now() - touchStartTime;
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > SWIPE_THRESHOLD && timeDiff < 500){
+                if (diffX > 0) nextItem(); else prevItem();
+            }
+        }, { passive: true });
+
+        renderCards();
+        renderProgress();
+    </script>
+</body>
+</html>

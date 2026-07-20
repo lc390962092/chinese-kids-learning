@@ -210,13 +210,19 @@
         .vehicle-pinyin {
             font-size: 22px;
             color: #888;
+            margin-bottom: 5px;
+        }
+
+        .vehicle-japanese {
+            font-size: 18px;
+            color: #E91E63;
             margin-bottom: 15px;
         }
         
         .btn-group {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             margin: 20px 0;
             flex-wrap: wrap;
         }
@@ -224,7 +230,7 @@
         .btn {
             border: none;
             border-radius: 25px;
-            padding: 12px 25px;
+            padding: 12px 22px;
             font-size: 16px;
             color: white;
             cursor: pointer;
@@ -239,6 +245,7 @@
         .btn-word { background: #5C6BC0; }
         .btn-sentence { background: #4ECDC4; }
         .btn-sound { background: #FFD93D; color: #333; }
+        .btn-japanese { background: #E91E63; }
 
         .progress {
             display: flex;
@@ -371,58 +378,58 @@
 
     <script>
         const vehicles = [
-            { word: "汽车", pinyin: "qì chē", file: "car", sound: "滴滴", sentence: "爸爸开着汽车，送我去幼儿园。" },
-            { word: "公交车", pinyin: "gōng jiāo chē", file: "bus", sound: "无", sentence: "公交车到站了，大家排队刷卡上车。" },
-            { word: "地铁", pinyin: "dì tiě", file: "subway", sound: "轰轰", sentence: "地铁在地下飞快奔跑，载很多人去上班。" },
-            { word: "高铁", pinyin: "gāo tiě", file: "high_speed_train", sound: "嗖嗖", sentence: "高铁跑得像风一样快，很快就到了另一个城市。" },
-            { word: "火车", pinyin: "huǒ chē", file: "train", sound: "呜呜", sentence: "火车轰隆轰隆穿过山洞，长长的车厢望不到头。" },
-            { word: "飞机", pinyin: "fēi jī", file: "airplane", sound: "轰隆隆", sentence: "飞机飞上蓝天，带着旅客去远方的国家。" },
-            { word: "直升机", pinyin: "zhí shēng jī", file: "helicopter", sound: "嗒嗒嗒", sentence: "直升机螺旋桨转个不停，可以从空中救人。" },
-            { word: "热气球", pinyin: "rè qì qiú", file: "hot_air_balloon", sound: "无", sentence: "热气球慢慢升到空中，游客俯瞰美丽的风景。" },
-            { word: "火箭", pinyin: "huǒ jiàn", file: "rocket", sound: "轰", sentence: "火箭点火后冲向太空，把卫星送上天。" },
-            { word: "船", pinyin: "chuán", file: "ship", sound: "呜呜", sentence: "船在水面上平稳航行，远处是蓝蓝的海。" },
-            { word: "轮船", pinyin: "lún chuán", file: "steamship", sound: "呜呜", sentence: "轮船在海面上慢慢航行，甲板上有很多游客在拍照。" },
-            { word: "帆船", pinyin: "fān chuán", file: "sailboat", sound: "无", sentence: "帆船借着海风向前驶去，白色的帆鼓起来像翅膀。" },
-            { word: "潜艇", pinyin: "qián tǐng", file: "submarine", sound: "无", sentence: "潜艇潜入深海，悄悄观察水下的世界。" },
-            { word: "自行车", pinyin: "zì xíng chē", file: "bicycle", sound: "叮铃铃", sentence: "我骑着自行车去公园，风在耳边呼呼响。" },
-            { word: "滑板车", pinyin: "huá bǎn chē", file: "scooter", sound: "无", sentence: "小朋友踩着滑板车，在小区里欢快地滑行。" },
-            { word: "摩托车", pinyin: "mó tuō chē", file: "motorcycle", sound: "突突", sentence: "摩托车灵活地穿过街道，骑手戴好了头盔。" },
-            { word: "出租车", pinyin: "chū zū chē", file: "taxi", sound: "无", sentence: "出租车在路边停下，载着乘客去目的地。" },
-            { word: "卡车", pinyin: "kǎ chē", file: "truck", sound: "嘟嘟", sentence: "卡车拖着长长的货箱，把货物运到城市各处。" },
-            { word: "校车", pinyin: "xiào chē", file: "school_bus", sound: "无", sentence: "校车停在学校门口，同学们背着书包排队上车，跟司机问好。" },
-            { word: "救护车", pinyin: "jiù hù chē", file: "ambulance", sound: "呜哇呜哇", sentence: "救护车闪着灯，飞快地把病人送到医院。" },
-            { word: "警车", pinyin: "jǐng chē", file: "police_car", sound: "嘀嘟嘀嘟", sentence: "警车开着警灯，正在追捕坏人的路上。" },
-            { word: "消防车", pinyin: "xiāo fáng chē", file: "fire_truck", sound: "嘀呜嘀呜", sentence: "消防车呼啸而过，赶去扑灭大火。" },
-            { word: "洒水车", pinyin: "sǎ shuǐ chē", file: "water_truck", sound: "无", sentence: "洒水车一边开一边喷水，把马路洗得干干净净。" },
-            { word: "垃圾车", pinyin: "lā jī chē", file: "garbage_truck", sound: "无", sentence: "垃圾车把小区的垃圾收走，保持环境整洁。" },
-            { word: "拖拉机", pinyin: "tuō lā jī", file: "tractor", sound: "哒哒", sentence: "拖拉机在田里突突地跑，帮农民伯伯耕地。" },
-            { word: "挖掘机", pinyin: "wā jué jī", file: "excavator", sound: "轰轰", sentence: "挖掘机伸出长长的铁手臂，一铲一铲地把土挖起来。" },
-            { word: "磁悬浮", pinyin: "cí xuán fú", file: "maglev", sound: "嗖嗖", sentence: "磁悬浮列车没有轮子，悬浮在轨道上跑得又快又稳。" },
-            { word: "有轨电车", pinyin: "yǒu guǐ diàn chē", file: "tram", sound: "叮铃", sentence: "有轨电车沿着轨道叮叮当当穿过城市。" },
-            { word: "无轨电车", pinyin: "wú guǐ diàn chē", file: "trolleybus", sound: "无", sentence: "无轨电车头顶连着电线，在街上安静地行驶。" },
-            { word: "双层巴士", pinyin: "shuāng céng bā shì", file: "double_decker_bus", sound: "无", sentence: "双层巴士有两层座位，坐在上层可以看得更远。" },
-            { word: "滑翔机", pinyin: "huá xiáng jī", file: "glider", sound: "呼呼", sentence: "滑翔机乘着气流在天空滑翔，像一只大鸟。" },
-            { word: "飞艇", pinyin: "fēi tǐng", file: "airship", sound: "无", sentence: "飞艇慢悠悠地飘在空中，下面挂着大大的广告横幅。" },
-            { word: "无人机", pinyin: "wú rén jī", file: "drone", sound: "嗡嗡", sentence: "无人机嗡嗡地升到空中，可以从天上拍下漂亮的照片。" },
-            { word: "喷气式飞机", pinyin: "pēn qì shì fēi jī", file: "jet", sound: "轰隆隆", sentence: "喷气式飞机速度极快，发出巨大的轰鸣声。" },
-            { word: "皮划艇", pinyin: "pí huá tǐng", file: "kayak", sound: "哗哗", sentence: "皮划艇在河面上划动，运动员喊着口号一起划桨。" },
-            { word: "独木舟", pinyin: "dú mù zhōu", file: "canoe", sound: "哗哗", sentence: "独木舟又窄又长，适合在平静的湖上慢慢划行。" },
-            { word: "快艇", pinyin: "kuài tǐng", file: "speedboat", sound: "轰轰", sentence: "快艇在海面上飞驰，激起白色的浪花。" },
-            { word: "游艇", pinyin: "yóu tǐng", file: "yacht", sound: "无", sentence: "游艇停在码头，人们上去出海游玩。" },
-            { word: "气垫船", pinyin: "qì diàn chuán", file: "hovercraft", sound: "呼呼", sentence: "气垫船下面有气垫，既能在水面滑行，也能在陆地上跑。" },
-            { word: "水上飞机", pinyin: "shuǐ shàng fēi jī", file: "seaplane", sound: "轰隆隆", sentence: "水上飞机降落在水面上，又能像普通飞机一样飞上天。" },
-            { word: "推土机", pinyin: "tuī tǔ jī", file: "bulldozer", sound: "轰轰", sentence: "推土机用宽大的铲子，把土堆推平。" },
-            { word: "起重机", pinyin: "qǐ zhòng jī", file: "crane", sound: "轰轰", sentence: "起重机伸出长长的吊臂，把沉重的货物吊到卡车上。" },
-            { word: "叉车", pinyin: "chā chē", file: "forklift", sound: "嘟嘟", sentence: "叉车在仓库里灵活穿梭，把高高的货物稳稳托起。" },
-            { word: "装载机", pinyin: "zhuāng zài jī", file: "loader", sound: "轰轰", sentence: "装载机把沙子铲进大卡车，工地里很忙碌。" },
-            { word: "压路机", pinyin: "yā lù jī", file: "road_roller", sound: "轰轰", sentence: "压路机的大滚筒咕噜咕噜转，把新铺的路面压得平平整整。" },
-            { word: "搅拌车", pinyin: "jiǎo bàn chē", file: "cement_mixer", sound: "轰轰", sentence: "搅拌车的大圆筒一直转个不停，混凝土就不会变干。" },
-            { word: "吊车", pinyin: "diào chē", file: "tow_truck", sound: "嘟嘟", sentence: "吊车伸出长长的臂膀，把坏了的车吊上救援车。" },
-            { word: "混凝土泵车", pinyin: "hùn níng tǔ bèng chē", file: "concrete_pump", sound: "轰轰", sentence: "混凝土泵车把水泥输送到高高的建筑上。" },
-            { word: "救援直升机", pinyin: "jiù yuán zhí shēng jī", file: "rescue_helicopter", sound: "嗒嗒嗒", sentence: "救援直升机在山上盘旋，救助受伤的人。" },
-            { word: "坦克", pinyin: "tǎn kè", file: "tank", sound: "轰隆隆", sentence: "坦克披着厚厚的装甲，履带碾过地面。" },
-            { word: "缆车", pinyin: "lǎn chē", file: "cable_car", sound: "嗖嗖", sentence: "缆车沿着钢索慢慢爬上山，游客从空中俯瞰山谷。" },
-            { word: "碰碰车", pinyin: "pèng pèng chē", file: "bumper_car", sound: "叮铃", sentence: "游乐场里碰碰车互相碰撞，大家笑着躲开、再撞过去。" }
+            { word: "汽车", pinyin: "qì chē", file: "car", sound: "滴滴", sentence: "爸爸开着汽车，送我去幼儿园。", japanese: "車", japanese_reading: "くるま" },
+            { word: "公交车", pinyin: "gōng jiāo chē", file: "bus", sound: "无", sentence: "公交车到站了，大家排队刷卡上车。", japanese: "バス", japanese_reading: "ばす" },
+            { word: "地铁", pinyin: "dì tiě", file: "subway", sound: "轰轰", sentence: "地铁在地下飞快奔跑，载很多人去上班。", japanese: "地下鉄", japanese_reading: "ちかてつ" },
+            { word: "高铁", pinyin: "gāo tiě", file: "high_speed_train", sound: "嗖嗖", sentence: "高铁跑得像风一样快，很快就到了另一个城市。", japanese: "新幹線", japanese_reading: "しんかんせん" },
+            { word: "火车", pinyin: "huǒ chē", file: "train", sound: "呜呜", sentence: "火车轰隆轰隆穿过山洞，长长的车厢望不到头。", japanese: "電車", japanese_reading: "でんしゃ" },
+            { word: "飞机", pinyin: "fēi jī", file: "airplane", sound: "轰隆隆", sentence: "飞机飞上蓝天，带着旅客去远方的国家。", japanese: "飛行機", japanese_reading: "ひこうき" },
+            { word: "直升机", pinyin: "zhí shēng jī", file: "helicopter", sound: "嗒嗒嗒", sentence: "直升机螺旋桨转个不停，可以从空中救人。", japanese: "ヘリコプター", japanese_reading: "へりこぷたー" },
+            { word: "热气球", pinyin: "rè qì qiú", file: "hot_air_balloon", sound: "无", sentence: "热气球慢慢升到空中，游客俯瞰美丽的风景。", japanese: "熱気球", japanese_reading: "ねっききゅう" },
+            { word: "火箭", pinyin: "huǒ jiàn", file: "rocket", sound: "轰", sentence: "火箭点火后冲向太空，把卫星送上天。", japanese: "ロケット", japanese_reading: "ろけっと" },
+            { word: "船", pinyin: "chuán", file: "ship", sound: "呜呜", sentence: "船在水面上平稳航行，远处是蓝蓝的海。", japanese: "船", japanese_reading: "ふね" },
+            { word: "轮船", pinyin: "lún chuán", file: "steamship", sound: "呜呜", sentence: "轮船在海面上慢慢航行，甲板上有很多游客在拍照。", japanese: "客船", japanese_reading: "きゃくせん" },
+            { word: "帆船", pinyin: "fān chuán", file: "sailboat", sound: "无", sentence: "帆船借着海风向前驶去，白色的帆鼓起来像翅膀。", japanese: "帆船", japanese_reading: "はんせん" },
+            { word: "潜艇", pinyin: "qián tǐng", file: "submarine", sound: "无", sentence: "潜艇潜入深海，悄悄观察水下的世界。", japanese: "潜水艦", japanese_reading: "せんすいかん" },
+            { word: "自行车", pinyin: "zì xíng chē", file: "bicycle", sound: "叮铃铃", sentence: "我骑着自行车去公园，风在耳边呼呼响。", japanese: "自転車", japanese_reading: "じてんしゃ" },
+            { word: "滑板车", pinyin: "huá bǎn chē", file: "scooter", sound: "无", sentence: "小朋友踩着滑板车，在小区里欢快地滑行。", japanese: "キックボード", japanese_reading: "きっくぼーど" },
+            { word: "摩托车", pinyin: "mó tuō chē", file: "motorcycle", sound: "突突", sentence: "摩托车灵活地穿过街道，骑手戴好了头盔。", japanese: "バイク", japanese_reading: "ばいく" },
+            { word: "出租车", pinyin: "chū zū chē", file: "taxi", sound: "无", sentence: "出租车在路边停下，载着乘客去目的地。", japanese: "タクシー", japanese_reading: "たくしー" },
+            { word: "卡车", pinyin: "kǎ chē", file: "truck", sound: "嘟嘟", sentence: "卡车拖着长长的货箱，把货物运到城市各处。", japanese: "トラック", japanese_reading: "とらっく" },
+            { word: "校车", pinyin: "xiào chē", file: "school_bus", sound: "无", sentence: "校车停在学校门口，同学们背着书包排队上车，跟司机问好。", japanese: "スクールバス", japanese_reading: "すくーるばす" },
+            { word: "救护车", pinyin: "jiù hù chē", file: "ambulance", sound: "呜哇呜哇", sentence: "救护车闪着灯，飞快地把病人送到医院。", japanese: "救急車", japanese_reading: "きゅうきゅうしゃ" },
+            { word: "警车", pinyin: "jǐng chē", file: "police_car", sound: "嘀嘟嘀嘟", sentence: "警车开着警灯，正在追捕坏人的路上。", japanese: "パトカー", japanese_reading: "ぱとかー" },
+            { word: "消防车", pinyin: "xiāo fáng chē", file: "fire_truck", sound: "嘀呜嘀呜", sentence: "消防车呼啸而过，赶去扑灭大火。", japanese: "消防車", japanese_reading: "しょうぼうしゃ" },
+            { word: "洒水车", pinyin: "sǎ shuǐ chē", file: "water_truck", sound: "无", sentence: "洒水车一边开一边喷水，把马路洗得干干净净。", japanese: "散水車", japanese_reading: "さんすいしゃ" },
+            { word: "垃圾车", pinyin: "lā jī chē", file: "garbage_truck", sound: "无", sentence: "垃圾车把小区的垃圾收走，保持环境整洁。", japanese: "ゴミ収集車", japanese_reading: "ごみしゅうしゅうしゃ" },
+            { word: "拖拉机", pinyin: "tuō lā jī", file: "tractor", sound: "哒哒", sentence: "拖拉机在田里突突地跑，帮农民伯伯耕地。", japanese: "トラクター", japanese_reading: "とらくたー" },
+            { word: "挖掘机", pinyin: "wā jué jī", file: "excavator", sound: "轰轰", sentence: "挖掘机伸出长长的铁手臂，一铲一铲地把土挖起来。", japanese: "ショベルカー", japanese_reading: "しょべるかー" },
+            { word: "磁悬浮", pinyin: "cí xuán fú", file: "maglev", sound: "嗖嗖", sentence: "磁悬浮列车没有轮子，悬浮在轨道上跑得又快又稳。", japanese: "リニアモーターカー", japanese_reading: "りにあもーたーかー" },
+            { word: "有轨电车", pinyin: "yǒu guǐ diàn chē", file: "tram", sound: "叮铃", sentence: "有轨电车沿着轨道叮叮当当穿过城市。", japanese: "路面電車", japanese_reading: "ろめんでんしゃ" },
+            { word: "无轨电车", pinyin: "wú guǐ diàn chē", file: "trolleybus", sound: "无", sentence: "无轨电车头顶连着电线，在街上安静地行驶。", japanese: "トロリーバス", japanese_reading: "とろりーばす" },
+            { word: "双层巴士", pinyin: "shuāng céng bā shì", file: "double_decker_bus", sound: "无", sentence: "双层巴士有两层座位，坐在上层可以看得更远。", japanese: "二階建てバス", japanese_reading: "にかいだてばす" },
+            { word: "滑翔机", pinyin: "huá xiáng jī", file: "glider", sound: "呼呼", sentence: "滑翔机乘着气流在天空滑翔，像一只大鸟。", japanese: "グライダー", japanese_reading: "ぐらいだー" },
+            { word: "飞艇", pinyin: "fēi tǐng", file: "airship", sound: "无", sentence: "飞艇慢悠悠地飘在空中，下面挂着大大的广告横幅。", japanese: "飛行船", japanese_reading: "ひこうせん" },
+            { word: "无人机", pinyin: "wú rén jī", file: "drone", sound: "嗡嗡", sentence: "无人机嗡嗡地升到空中，可以从天上拍下漂亮的照片。", japanese: "ドローン", japanese_reading: "どろーん" },
+            { word: "喷气式飞机", pinyin: "pēn qì shì fēi jī", file: "jet", sound: "轰隆隆", sentence: "喷气式飞机速度极快，发出巨大的轰鸣声。", japanese: "ジェット機", japanese_reading: "じぇっとき" },
+            { word: "皮划艇", pinyin: "pí huá tǐng", file: "kayak", sound: "哗哗", sentence: "皮划艇在河面上划动，运动员喊着口号一起划桨。", japanese: "カヤック", japanese_reading: "かやっく" },
+            { word: "独木舟", pinyin: "dú mù zhōu", file: "canoe", sound: "哗哗", sentence: "独木舟又窄又长，适合在平静的湖上慢慢划行。", japanese: "カヌー", japanese_reading: "かぬー" },
+            { word: "快艇", pinyin: "kuài tǐng", file: "speedboat", sound: "轰轰", sentence: "快艇在海面上飞驰，激起白色的浪花。", japanese: "モーターボート", japanese_reading: "もーたーぼーと" },
+            { word: "游艇", pinyin: "yóu tǐng", file: "yacht", sound: "无", sentence: "游艇停在码头，人们上去出海游玩。", japanese: "ヨット", japanese_reading: "よっと" },
+            { word: "气垫船", pinyin: "qì diàn chuán", file: "hovercraft", sound: "呼呼", sentence: "气垫船下面有气垫，既能在水面滑行，也能在陆地上跑。", japanese: "ホバークラフト", japanese_reading: "ほばーくらふと" },
+            { word: "水上飞机", pinyin: "shuǐ shàng fēi jī", file: "seaplane", sound: "轰隆隆", sentence: "水上飞机降落在水面上，又能像普通飞机一样飞上天。", japanese: "水上飛行機", japanese_reading: "すいじょうひこうき" },
+            { word: "推土机", pinyin: "tuī tǔ jī", file: "bulldozer", sound: "轰轰", sentence: "推土机用宽大的铲子，把土堆推平。", japanese: "ブルドーザー", japanese_reading: "ぶるどーざー" },
+            { word: "起重机", pinyin: "qǐ zhòng jī", file: "crane", sound: "轰轰", sentence: "起重机伸出长长的吊臂，把沉重的货物吊到卡车上。", japanese: "クレーン車", japanese_reading: "くれーんしゃ" },
+            { word: "叉车", pinyin: "chā chē", file: "forklift", sound: "嘟嘟", sentence: "叉车在仓库里灵活穿梭，把高高的货物稳稳托起。", japanese: "フォークリフト", japanese_reading: "ふぉーくりふと" },
+            { word: "装载机", pinyin: "zhuāng zài jī", file: "loader", sound: "轰轰", sentence: "装载机把沙子铲进大卡车，工地里很忙碌。", japanese: "ホイールローダー", japanese_reading: "ほいーるろーだー" },
+            { word: "压路机", pinyin: "yā lù jī", file: "road_roller", sound: "轰轰", sentence: "压路机的大滚筒咕噜咕噜转，把新铺的路面压得平平整整。", japanese: "ロードローラー", japanese_reading: "ろーどろーらー" },
+            { word: "搅拌车", pinyin: "jiǎo bàn chē", file: "cement_mixer", sound: "轰轰", sentence: "搅拌车的大圆筒一直转个不停，混凝土就不会变干。", japanese: "コンクリートミキサー車", japanese_reading: "こんくりーとみきさーしゃ" },
+            { word: "吊车", pinyin: "diào chē", file: "tow_truck", sound: "嘟嘟", sentence: "吊车伸出长长的臂膀，把坏了的车吊上救援车。", japanese: "レッカー車", japanese_reading: "れっかーしゃ" },
+            { word: "混凝土泵车", pinyin: "hùn níng tǔ bèng chē", file: "concrete_pump", sound: "轰轰", sentence: "混凝土泵车把水泥输送到高高的建筑上。", japanese: "コンクリートポンプ車", japanese_reading: "こんくりーとぽんぷしゃ" },
+            { word: "救援直升机", pinyin: "jiù yuán zhí shēng jī", file: "rescue_helicopter", sound: "嗒嗒嗒", sentence: "救援直升机在山上盘旋，救助受伤的人。", japanese: "救難ヘリコプター", japanese_reading: "きゅうなんへりこぷたー" },
+            { word: "坦克", pinyin: "tǎn kè", file: "tank", sound: "轰隆隆", sentence: "坦克披着厚厚的装甲，履带碾过地面。", japanese: "戦車", japanese_reading: "せんしゃ" },
+            { word: "缆车", pinyin: "lǎn chē", file: "cable_car", sound: "嗖嗖", sentence: "缆车沿着钢索慢慢爬上山，游客从空中俯瞰山谷。", japanese: "ロープウェイ", japanese_reading: "ろーぷうぇい" },
+            { word: "碰碰车", pinyin: "pèng pèng chē", file: "bumper_car", sound: "叮铃", sentence: "游乐场里碰碰车互相碰撞，大家笑着躲开、再撞过去。", japanese: "バンパーカー", japanese_reading: "ばんぱーかー" }
         ];
         
         let currentIndex = 0;
@@ -430,6 +437,7 @@
         
         const synth = window.speechSynthesis;
         let chineseVoice = null;
+        let japaneseVoice = null;
         
         function findChineseVoice() {
             if (!synth) return;
@@ -438,11 +446,23 @@
                 if (v.lang.startsWith('zh')) { chineseVoice = v; break; }
             }
         }
+
+        function findJapaneseVoice() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) {
+                if (v.lang.startsWith('ja')) { japaneseVoice = v; break; }
+            }
+        }
         
         if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = findChineseVoice;
+            speechSynthesis.onvoiceschanged = function() {
+                findChineseVoice();
+                findJapaneseVoice();
+            };
         }
         findChineseVoice();
+        findJapaneseVoice();
         
         function playAudio(path) {
             return new Promise((resolve, reject) => {
@@ -471,6 +491,17 @@
             if (chineseVoice) utter.voice = chineseVoice;
             synth.speak(utter);
         }
+
+        function speakJapanese(text, rate = 0.8) {
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'ja-JP';
+            utter.rate = rate;
+            utter.pitch = 1.1;
+            if (japaneseVoice) utter.voice = japaneseVoice;
+            synth.speak(utter);
+        }
         
         function showMascot(text) { document.getElementById('mascotText').textContent = text; }
         
@@ -488,10 +519,12 @@
                          onclick="playWord(${index})">
                     <div class="vehicle-word">${vehicle.word}</div>
                     <div class="vehicle-pinyin">${vehicle.pinyin}</div>
+                    <div class="vehicle-japanese">${vehicle.word} → ${vehicle.japanese}（${vehicle.japanese_reading}）</div>
                     <div class="btn-group">
                         <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
                         ${vehicle.sound !== '无' ? `<button class="btn btn-sound" onclick="playSound(${index})">🎵 声音</button>` : ''}
+                        <button class="btn btn-japanese" onclick="playJapaneseWord(${index})">🇯🇵 日语</button>
                     </div>
                     <div class="nav-btns">
                         <button class="nav-btn" id="prevBtn" onclick="prevVehicle()">⬅️ 上一个</button>
@@ -527,6 +560,12 @@
                 speakWithFallback(vehicle.sound, mp3Path, 1.0);
                 showMascot(`${vehicle.word}的声音：${vehicle.sound}！`);
             }
+        }
+
+        function playJapaneseWord(index) {
+            const vehicle = vehicles[index];
+            speakJapanese(`${vehicle.japanese}、${vehicle.japanese_reading}`);
+            showMascot(`日语：${vehicle.word} → ${vehicle.japanese}（${vehicle.japanese_reading}）`);
         }
         
         function switchVehicle(direction) {

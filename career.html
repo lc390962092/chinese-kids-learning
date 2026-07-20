@@ -49,6 +49,9 @@
         .start-btn:active { transform: scale(0.95); }
         .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
         .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
+        .card-japanese { font-size: 28px; color: #E91E63; margin: 5px 0; font-weight: bold; }
+        .card-japanese-reading { font-size: 16px; color: #888; margin-bottom: 10px; }
+        .btn-japanese { background: #E91E63; }
         @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }
     </style>
 </head>
@@ -71,335 +74,317 @@
         <div class="mascot-avatar">🐼</div>
     </div>
     <div class="main-stage" id="mainStage">
-        <div id="cards"><div class="card active">
-            <div class="card-emoji" onclick="playWord(0)">👨‍⚕️</div>
-            <div class="card-title">医生</div>
-            <div class="card-subtitle">yī shēng</div>
-            <div class="card-text">医生穿白大褂，给病人看病，帮助大家恢复健康。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('医生')">医生</span><span class="keyword" onclick="speak('病人')">病人</span><span class="keyword" onclick="speak('医院')">医院</span><span class="keyword" onclick="speak('听诊器')">听诊器</span><span class="keyword" onclick="speak('健康')">健康</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(0)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(0)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(1)">👨‍🚒</div>
-            <div class="card-title">消防员</div>
-            <div class="card-subtitle">xiāo fáng yuán</div>
-            <div class="card-text">消防员开着消防车，扑灭大火，救出被困的人。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('消防员')">消防员</span><span class="keyword" onclick="speak('消防车')">消防车</span><span class="keyword" onclick="speak('灭火')">灭火</span><span class="keyword" onclick="speak('勇敢')">勇敢</span><span class="keyword" onclick="speak('救援')">救援</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(1)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(1)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(2)">👩‍🏫</div>
-            <div class="card-title">老师</div>
-            <div class="card-subtitle">lǎo shī</div>
-            <div class="card-text">老师站在黑板前，教我们读书写字，回答我们的问题。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('老师')">老师</span><span class="keyword" onclick="speak('黑板')">黑板</span><span class="keyword" onclick="speak('学生')">学生</span><span class="keyword" onclick="speak('读书')">读书</span><span class="keyword" onclick="speak('学习')">学习</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(2)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(2)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(3)">👮</div>
-            <div class="card-title">警察</div>
-            <div class="card-subtitle">jǐng chá</div>
-            <div class="card-text">警察保护我们的安全，帮助迷路的人找到家。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('警察')">警察</span><span class="keyword" onclick="speak('警车')">警车</span><span class="keyword" onclick="speak('安全')">安全</span><span class="keyword" onclick="speak('帮助')">帮助</span><span class="keyword" onclick="speak('抓坏人')">抓坏人</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(3)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(3)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(4)">👨‍🚀</div>
-            <div class="card-title">宇航员</div>
-            <div class="card-subtitle">yǔ háng yuán</div>
-            <div class="card-text">宇航员坐火箭飞到太空，探索星星和月亮。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('宇航员')">宇航员</span><span class="keyword" onclick="speak('火箭')">火箭</span><span class="keyword" onclick="speak('太空')">太空</span><span class="keyword" onclick="speak('星星')">星星</span><span class="keyword" onclick="speak('月亮')">月亮</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(4)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(4)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(5)">👨‍🍳</div>
-            <div class="card-title">厨师</div>
-            <div class="card-subtitle">chú shī</div>
-            <div class="card-text">厨师在厨房里做饭，做出香喷喷的菜和甜点。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('厨师')">厨师</span><span class="keyword" onclick="speak('厨房')">厨房</span><span class="keyword" onclick="speak('做饭')">做饭</span><span class="keyword" onclick="speak('菜')">菜</span><span class="keyword" onclick="speak('甜点')">甜点</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(5)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(5)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(6)">👨‍🌾</div>
-            <div class="card-title">农民</div>
-            <div class="card-subtitle">nóng mín</div>
-            <div class="card-text">农民在田里种地，种出大米、蔬菜和水果。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('农民')">农民</span><span class="keyword" onclick="speak('田地')">田地</span><span class="keyword" onclick="speak('种地')">种地</span><span class="keyword" onclick="speak('大米')">大米</span><span class="keyword" onclick="speak('蔬菜')">蔬菜</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(6)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(6)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(7)">👨‍✈️</div>
-            <div class="card-title">司机</div>
-            <div class="card-subtitle">sī jī</div>
-            <div class="card-text">司机稳稳地握着方向盘，把乘客安全送到目的地。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('司机')">司机</span><span class="keyword" onclick="speak('公交车')">公交车</span><span class="keyword" onclick="speak('开车')">开车</span><span class="keyword" onclick="speak('乘客')">乘客</span><span class="keyword" onclick="speak('安全')">安全</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(7)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(7)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(8)">📮</div>
-            <div class="card-title">邮递员</div>
-            <div class="card-subtitle">yóu dì yuán</div>
-            <div class="card-text">邮递员骑着自行车挨家挨户送信，把远方的思念送到家门口。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('邮递员')">邮递员</span><span class="keyword" onclick="speak('送信')">送信</span><span class="keyword" onclick="speak('包裹')">包裹</span><span class="keyword" onclick="speak('自行车')">自行车</span><span class="keyword" onclick="speak('远方')">远方</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(8)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(8)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(9)">👨‍🎨</div>
-            <div class="card-title">画家</div>
-            <div class="card-subtitle">huà jiā</div>
-            <div class="card-text">画家拿着调色板，把看到的美丽风景一笔一笔画下来。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('画家')">画家</span><span class="keyword" onclick="speak('画笔')">画笔</span><span class="keyword" onclick="speak('颜料')">颜料</span><span class="keyword" onclick="speak('画画')">画画</span><span class="keyword" onclick="speak('颜色')">颜色</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(9)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(9)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(10)">🧑‍🔬</div>
-            <div class="card-title">科学家</div>
-            <div class="card-subtitle">kē xué jiā</div>
-            <div class="card-text">科学家穿着白大褂做实验，显微镜下能看到很小很小的世界。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('科学家')">科学家</span><span class="keyword" onclick="speak('实验')">实验</span><span class="keyword" onclick="speak('显微镜')">显微镜</span><span class="keyword" onclick="speak('发现')">发现</span><span class="keyword" onclick="speak('知识')">知识</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(10)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(10)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(11)">👩‍⚕️</div>
-            <div class="card-title">护士</div>
-            <div class="card-subtitle">hù shi</div>
-            <div class="card-text">护士照顾生病的人，帮助他们打针、吃药、恢复健康。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('护士')">护士</span><span class="keyword" onclick="speak('医院')">医院</span><span class="keyword" onclick="speak('照顾')">照顾</span><span class="keyword" onclick="speak('打针')">打针</span><span class="keyword" onclick="speak('健康')">健康</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(11)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(11)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(12)">👷</div>
-            <div class="card-title">工程师</div>
-            <div class="card-subtitle">gōng chéng shī</div>
-            <div class="card-text">工程师看着图纸，用工具和零件把机器组装起来。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('工程师')">工程师</span><span class="keyword" onclick="speak('机器')">机器</span><span class="keyword" onclick="speak('设计')">设计</span><span class="keyword" onclick="speak('工具')">工具</span><span class="keyword" onclick="speak('修理')">修理</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(12)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(12)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(13)">👷‍♂️</div>
-            <div class="card-title">建筑师</div>
-            <div class="card-subtitle">jiàn zhù shī</div>
-            <div class="card-text">建筑师先在电脑上画出设计图，再看着房子一栋栋盖起来。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('建筑师')">建筑师</span><span class="keyword" onclick="speak('房子')">房子</span><span class="keyword" onclick="speak('设计图')">设计图</span><span class="keyword" onclick="speak('建筑')">建筑</span><span class="keyword" onclick="speak('家')">家</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(13)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(13)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(14)">🏃‍♂️</div>
-            <div class="card-title">运动员</div>
-            <div class="card-subtitle">yùn dòng yuán</div>
-            <div class="card-text">运动员每天早早起床训练，赛场上拼尽全力争取好成绩。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('运动员')">运动员</span><span class="keyword" onclick="speak('比赛')">比赛</span><span class="keyword" onclick="speak('训练')">训练</span><span class="keyword" onclick="speak('奖杯')">奖杯</span><span class="keyword" onclick="speak('跑步')">跑步</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(14)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(14)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-emoji" onclick="playWord(15)">🐕</div>
-            <div class="card-title">兽医</div>
-            <div class="card-subtitle">shòu yī</div>
-            <div class="card-text">兽医温柔地给小猫小狗检查身体，让它们不再生病。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('兽医')">兽医</span><span class="keyword" onclick="speak('动物')">动物</span><span class="keyword" onclick="speak('看病')">看病</span><span class="keyword" onclick="speak('小狗')">小狗</span><span class="keyword" onclick="speak('健康')">健康</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(15)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(15)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-emoji" onclick="playWord(16)">✈️</div>
-            <div class="card-title">飞行员</div>
-            <div class="card-subtitle">fēi xíng yuán</div>
-            <div class="card-text">飞行员坐在驾驶舱里，操作着飞机飞向蓝天。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('飞行员')">飞行员</span><span class="keyword" onclick="speak('飞机')">飞机</span><span class="keyword" onclick="speak('天空')">天空</span><span class="keyword" onclick="speak('乘客')">乘客</span><span class="keyword" onclick="speak('旅行')">旅行</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(16)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(16)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-emoji" onclick="playWord(17)">📷</div>
-            <div class="card-title">摄影师</div>
-            <div class="card-subtitle">shè yǐng shī</div>
-            <div class="card-text">摄影师举着相机，等待最好的光线，拍下精彩的瞬间。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('摄影师')">摄影师</span><span class="keyword" onclick="speak('相机')">相机</span><span class="keyword" onclick="speak('照片')">照片</span><span class="keyword" onclick="speak('回忆')">回忆</span><span class="keyword" onclick="speak('美好')">美好</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(17)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(17)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-emoji" onclick="playWord(18)">💃</div>
-            <div class="card-title">舞蹈家</div>
-            <div class="card-subtitle">wǔ dǎo jiā</div>
-            <div class="card-text">舞蹈家在舞台上旋转跳跃，用优美的动作讲述故事。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('舞蹈家')">舞蹈家</span><span class="keyword" onclick="speak('跳舞')">跳舞</span><span class="keyword" onclick="speak('舞台')">舞台</span><span class="keyword" onclick="speak('音乐')">音乐</span><span class="keyword" onclick="speak('优美')">优美</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(18)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(18)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-emoji" onclick="playWord(19)">📚</div>
-            <div class="card-title">图书管理员</div>
-            <div class="card-subtitle">tú shū guǎn lǐ yuán</div>
-            <div class="card-text">图书管理员把书整理得整整齐齐，帮小朋友找到喜欢的故事书。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('图书管理员')">图书管理员</span><span class="keyword" onclick="speak('书籍')">书籍</span><span class="keyword" onclick="speak('图书馆')">图书馆</span><span class="keyword" onclick="speak('故事')">故事</span><span class="keyword" onclick="speak('整理')">整理</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(19)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(19)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
+        <div id="cards">
         </div>
         <div class="progress" id="progressDots">
-        <div class="progress-dot active"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
         </div>
         <div class="hint">提示：如果听不到声音，请检查浏览器是否允许播放音频</div>
         <div class="swipe-hint">← 左右滑动切换卡片 →</div>
         <a href="index.html" class="back-home">⬅️ 返回首页</a>
     </div>
 <script>
-        const items = [{"word": "医生", "pinyin": "yī shēng", "summary": "医生穿白大褂，给病人看病，帮助大家恢复健康。", "words": ["医生", "病人", "医院", "听诊器", "健康"], "emoji": "👨‍⚕️"}, {"word": "消防员", "pinyin": "xiāo fáng yuán", "summary": "消防员开着消防车，扑灭大火，救出被困的人。", "words": ["消防员", "消防车", "灭火", "勇敢", "救援"], "emoji": "👨‍🚒"}, {"word": "老师", "pinyin": "lǎo shī", "summary": "老师站在黑板前，教我们读书写字，回答我们的问题。", "words": ["老师", "黑板", "学生", "读书", "学习"], "emoji": "👩‍🏫"}, {"word": "警察", "pinyin": "jǐng chá", "summary": "警察保护我们的安全，帮助迷路的人找到家。", "words": ["警察", "警车", "安全", "帮助", "抓坏人"], "emoji": "👮"}, {"word": "宇航员", "pinyin": "yǔ háng yuán", "summary": "宇航员坐火箭飞到太空，探索星星和月亮。", "words": ["宇航员", "火箭", "太空", "星星", "月亮"], "emoji": "👨‍🚀"}, {"word": "厨师", "pinyin": "chú shī", "summary": "厨师在厨房里做饭，做出香喷喷的菜和甜点。", "words": ["厨师", "厨房", "做饭", "菜", "甜点"], "emoji": "👨‍🍳"}, {"word": "农民", "pinyin": "nóng mín", "summary": "农民在田里种地，种出大米、蔬菜和水果。", "words": ["农民", "田地", "种地", "大米", "蔬菜"], "emoji": "👨‍🌾"}, {"word": "司机", "pinyin": "sī jī", "summary": "司机开着公交车，把大家安全送到目的地。", "words": ["司机", "公交车", "开车", "乘客", "安全"], "emoji": "👨‍✈️"}, {"word": "邮递员", "pinyin": "yóu dì yuán", "summary": "邮递员骑着车送信和包裹，把思念送到远方。", "words": ["邮递员", "送信", "包裹", "自行车", "远方"], "emoji": "📮"}, {"word": "画家", "pinyin": "huà jiā", "summary": "画家用画笔和颜料，把美好的世界画下来。", "words": ["画家", "画笔", "颜料", "画画", "颜色"], "emoji": "👨‍🎨"}, {"word": "科学家", "pinyin": "kē xué jiā", "summary": "科学家做实验，研究世界上有趣的事情，发现新知识。", "words": ["科学家", "实验", "显微镜", "发现", "知识"], "emoji": "🧑‍🔬"}, {"word": "护士", "pinyin": "hù shi", "summary": "护士照顾生病的人，帮助他们打针、吃药、恢复健康。", "words": ["护士", "医院", "照顾", "打针", "健康"], "emoji": "👩‍⚕️"}, {"word": "工程师", "pinyin": "gōng chéng shī", "summary": "工程师设计和修理机器，让我们的生活更方便。", "words": ["工程师", "机器", "设计", "工具", "修理"], "emoji": "👷"}, {"word": "建筑师", "pinyin": "jiàn zhù shī", "summary": "建筑师画出房子的设计图，让大家住上安全又漂亮的家。", "words": ["建筑师", "房子", "设计图", "建筑", "家"], "emoji": "👷‍♂️"}, {"word": "运动员", "pinyin": "yùn dòng yuán", "summary": "运动员努力训练，参加各种比赛，为国争光。", "words": ["运动员", "比赛", "训练", "奖杯", "跑步"], "emoji": "🏃‍♂️"}, {"word": "兽医", "pinyin": "shòu yī", "summary": "兽医给生病的小动物看病，帮助小猫小狗恢复健康。", "words": ["兽医", "动物", "看病", "小狗", "健康"], "emoji": "🐕"}, {"word": "飞行员", "pinyin": "fēi xíng yuán", "summary": "飞行员驾驶飞机，把乘客安全送到不同的城市。", "words": ["飞行员", "飞机", "天空", "乘客", "旅行"], "emoji": "✈️"}, {"word": "摄影师", "pinyin": "shè yǐng shī", "summary": "摄影师用相机记录美好瞬间，留下珍贵的回忆。", "words": ["摄影师", "相机", "照片", "回忆", "美好"], "emoji": "📷"}, {"word": "舞蹈家", "pinyin": "wǔ dǎo jiā", "summary": "舞蹈家用优美的动作讲故事，给大家带来快乐。", "words": ["舞蹈家", "跳舞", "舞台", "音乐", "优美"], "emoji": "💃"}, {"word": "图书管理员", "pinyin": "tú shū guǎn lǐ yuán", "summary": "图书管理员整理书籍，帮助大家找到想读的故事书。", "words": ["图书管理员", "书籍", "图书馆", "故事", "整理"], "emoji": "📚"}];
+        const items = [
+        {
+                "word": "医生",
+                "pinyin": "yī shēng",
+                "summary": "医生穿白大褂，给病人看病，帮助大家恢复健康。",
+                "words": [
+                        "医生",
+                        "病人",
+                        "医院",
+                        "听诊器",
+                        "健康"
+                ],
+                "emoji": "👨‍⚕️",
+                "japanese": "医者",
+                "japanese_reading": "いしゃ"
+        },
+        {
+                "word": "消防员",
+                "pinyin": "xiāo fáng yuán",
+                "summary": "消防员开着消防车，扑灭大火，救出被困的人。",
+                "words": [
+                        "消防员",
+                        "消防车",
+                        "灭火",
+                        "勇敢",
+                        "救援"
+                ],
+                "emoji": "👨‍🚒",
+                "japanese": "消防士",
+                "japanese_reading": "しょうぼうし"
+        },
+        {
+                "word": "老师",
+                "pinyin": "lǎo shī",
+                "summary": "老师站在黑板前，教我们读书写字，回答我们的问题。",
+                "words": [
+                        "老师",
+                        "黑板",
+                        "学生",
+                        "读书",
+                        "学习"
+                ],
+                "emoji": "👩‍🏫",
+                "japanese": "先生",
+                "japanese_reading": "せんせい"
+        },
+        {
+                "word": "警察",
+                "pinyin": "jǐng chá",
+                "summary": "警察保护我们的安全，帮助迷路的人找到家。",
+                "words": [
+                        "警察",
+                        "警车",
+                        "安全",
+                        "帮助",
+                        "抓坏人"
+                ],
+                "emoji": "👮",
+                "japanese": "警察",
+                "japanese_reading": "けいさつ"
+        },
+        {
+                "word": "宇航员",
+                "pinyin": "yǔ háng yuán",
+                "summary": "宇航员坐火箭飞到太空，探索星星和月亮。",
+                "words": [
+                        "宇航员",
+                        "火箭",
+                        "太空",
+                        "星星",
+                        "月亮"
+                ],
+                "emoji": "👨‍🚀",
+                "japanese": "宇宙飛行士",
+                "japanese_reading": "うちゅうひこうし"
+        },
+        {
+                "word": "厨师",
+                "pinyin": "chú shī",
+                "summary": "厨师在厨房里做饭，做出香喷喷的菜和甜点。",
+                "words": [
+                        "厨师",
+                        "厨房",
+                        "做饭",
+                        "菜",
+                        "甜点"
+                ],
+                "emoji": "👨‍🍳",
+                "japanese": "料理人",
+                "japanese_reading": "りょうりにん"
+        },
+        {
+                "word": "农民",
+                "pinyin": "nóng mín",
+                "summary": "农民在田里种地，种出大米、蔬菜和水果。",
+                "words": [
+                        "农民",
+                        "田地",
+                        "种地",
+                        "大米",
+                        "蔬菜"
+                ],
+                "emoji": "👨‍🌾",
+                "japanese": "農民",
+                "japanese_reading": "のうみん"
+        },
+        {
+                "word": "司机",
+                "pinyin": "sī jī",
+                "summary": "司机开着公交车，把大家安全送到目的地。",
+                "words": [
+                        "司机",
+                        "公交车",
+                        "开车",
+                        "乘客",
+                        "安全"
+                ],
+                "emoji": "👨‍✈️",
+                "japanese": "運転手",
+                "japanese_reading": "うんてんしゅ"
+        },
+        {
+                "word": "邮递员",
+                "pinyin": "yóu dì yuán",
+                "summary": "邮递员骑着车送信和包裹，把思念送到远方。",
+                "words": [
+                        "邮递员",
+                        "送信",
+                        "包裹",
+                        "自行车",
+                        "远方"
+                ],
+                "emoji": "📮",
+                "japanese": "郵便配達員",
+                "japanese_reading": "ゆうびんはいたついん"
+        },
+        {
+                "word": "画家",
+                "pinyin": "huà jiā",
+                "summary": "画家用画笔和颜料，把美好的世界画下来。",
+                "words": [
+                        "画家",
+                        "画笔",
+                        "颜料",
+                        "画画",
+                        "颜色"
+                ],
+                "emoji": "👨‍🎨",
+                "japanese": "画家",
+                "japanese_reading": "がか"
+        },
+        {
+                "word": "科学家",
+                "pinyin": "kē xué jiā",
+                "summary": "科学家做实验，研究世界上有趣的事情，发现新知识。",
+                "words": [
+                        "科学家",
+                        "实验",
+                        "显微镜",
+                        "发现",
+                        "知识"
+                ],
+                "emoji": "🧑‍🔬",
+                "japanese": "科学者",
+                "japanese_reading": "かがくしゃ"
+        },
+        {
+                "word": "护士",
+                "pinyin": "hù shi",
+                "summary": "护士照顾生病的人，帮助他们打针、吃药、恢复健康。",
+                "words": [
+                        "护士",
+                        "医院",
+                        "照顾",
+                        "打针",
+                        "健康"
+                ],
+                "emoji": "👩‍⚕️",
+                "japanese": "看護師",
+                "japanese_reading": "かんごし"
+        },
+        {
+                "word": "工程师",
+                "pinyin": "gōng chéng shī",
+                "summary": "工程师设计和修理机器，让我们的生活更方便。",
+                "words": [
+                        "工程师",
+                        "机器",
+                        "设计",
+                        "工具",
+                        "修理"
+                ],
+                "emoji": "👷",
+                "japanese": "技師",
+                "japanese_reading": "ぎし"
+        },
+        {
+                "word": "建筑师",
+                "pinyin": "jiàn zhù shī",
+                "summary": "建筑师画出房子的设计图，让大家住上安全又漂亮的家。",
+                "words": [
+                        "建筑师",
+                        "房子",
+                        "设计图",
+                        "建筑",
+                        "家"
+                ],
+                "emoji": "👷‍♂️",
+                "japanese": "建築家",
+                "japanese_reading": "けんちくか"
+        },
+        {
+                "word": "运动员",
+                "pinyin": "yùn dòng yuán",
+                "summary": "运动员努力训练，参加各种比赛，为国争光。",
+                "words": [
+                        "运动员",
+                        "比赛",
+                        "训练",
+                        "奖杯",
+                        "跑步"
+                ],
+                "emoji": "🏃‍♂️",
+                "japanese": "運動選手",
+                "japanese_reading": "うんどうせんしゅ"
+        },
+        {
+                "word": "兽医",
+                "pinyin": "shòu yī",
+                "summary": "兽医给生病的小动物看病，帮助小猫小狗恢复健康。",
+                "words": [
+                        "兽医",
+                        "动物",
+                        "看病",
+                        "小狗",
+                        "健康"
+                ],
+                "emoji": "🐕",
+                "japanese": "獣医",
+                "japanese_reading": "じゅうい"
+        },
+        {
+                "word": "飞行员",
+                "pinyin": "fēi xíng yuán",
+                "summary": "飞行员驾驶飞机，把乘客安全送到不同的城市。",
+                "words": [
+                        "飞行员",
+                        "飞机",
+                        "天空",
+                        "乘客",
+                        "旅行"
+                ],
+                "emoji": "✈️",
+                "japanese": "パイロット",
+                "japanese_reading": "ぱいろっと"
+        },
+        {
+                "word": "摄影师",
+                "pinyin": "shè yǐng shī",
+                "summary": "摄影师用相机记录美好瞬间，留下珍贵的回忆。",
+                "words": [
+                        "摄影师",
+                        "相机",
+                        "照片",
+                        "回忆",
+                        "美好"
+                ],
+                "emoji": "📷",
+                "japanese": "カメラマン",
+                "japanese_reading": "かめらまん"
+        },
+        {
+                "word": "舞蹈家",
+                "pinyin": "wǔ dǎo jiā",
+                "summary": "舞蹈家用优美的动作讲故事，给大家带来快乐。",
+                "words": [
+                        "舞蹈家",
+                        "跳舞",
+                        "舞台",
+                        "音乐",
+                        "优美"
+                ],
+                "emoji": "💃",
+                "japanese": "ダンサー",
+                "japanese_reading": "だんさー"
+        },
+        {
+                "word": "图书管理员",
+                "pinyin": "tú shū guǎn lǐ yuán",
+                "summary": "图书管理员整理书籍，帮助大家找到想读的故事书。",
+                "words": [
+                        "图书管理员",
+                        "书籍",
+                        "图书馆",
+                        "故事",
+                        "整理"
+                ],
+                "emoji": "📚",
+                "japanese": "司書",
+                "japanese_reading": "ししょ"
+        }
+];
         let currentIndex = 0;
         let touchStartX = 0;
         let touchStartY = 0;
@@ -422,6 +407,7 @@
             speechSynthesis.onvoiceschanged = findChineseVoice;
         }
         findChineseVoice();
+        findJapaneseVoice();
         
         function speak(text, rate = 0.82) {
             if (!synth) return;
@@ -434,6 +420,64 @@
             synth.speak(utter);
         }
         
+
+        let japaneseVoice = null;
+        
+        function findJapaneseVoice(){
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) {
+                if (v.lang.startsWith('ja')) { japaneseVoice = v; break; }
+            }
+        }
+        
+        function renderCards() {
+            const cardsContainer = document.getElementById('cards');
+            const dotsContainer = document.getElementById('progressDots');
+            cardsContainer.innerHTML = '';
+            dotsContainer.innerHTML = '';
+            items.forEach((item, index) => {
+                const keywordsHtml = item.words.map(w => `<span class="keyword" onclick="speak('${w}')">${w}</span>`).join('');
+                const card = document.createElement('div');
+                card.className = 'card' + (index === 0 ? ' active' : '');
+                card.innerHTML = `
+                    <div class="card-emoji" onclick="playWord(${index})">${item.emoji}</div>
+                    <div class="card-title">${item.word}</div>
+                    <div class="card-subtitle">${item.pinyin}</div>
+                    <div class="card-japanese">${item.japanese}</div>
+                    <div class="card-japanese-reading">${item.japanese_reading}</div>
+                    <div class="card-text">${item.summary}</div>
+                    <div class="keywords">${keywordsHtml}</div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="playWord(${index})">🔊 读词语</button>
+                        <button class="btn btn-secondary" onclick="playSentence(${index})">📝 读句子</button>
+                        <button class="btn btn-japanese" onclick="speakJapanese(${index})">🇯🇵 日语</button>
+                    </div>
+                    <div class="nav-btns">
+                        <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                        <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
+                    </div>
+                `;
+                cardsContainer.appendChild(card);
+                const dot = document.createElement('div');
+                dot.className = 'progress-dot' + (index === 0 ? ' active' : '');
+                dotsContainer.appendChild(dot);
+            });
+        }
+        
+        function speakJapanese(index) {
+            if (!synth) return;
+            const item = items[index];
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(item.japanese);
+            utter.lang = 'ja-JP';
+            utter.rate = 0.8;
+            utter.pitch = 1.1;
+            if (japaneseVoice) utter.voice = japaneseVoice;
+            synth.speak(utter);
+            showMascot(item.japanese + '（' + item.japanese_reading + '）');
+        }
+
         function showMascot(text) { document.getElementById('mascotText').textContent = text; }
         
         function playWord(index) {
@@ -465,8 +509,11 @@
         function nextItem() { switchCard('next'); }
         function prevItem() { switchCard('prev'); }
         
+        renderCards();
+        
         function startApp() {
             document.getElementById('startOverlay').style.display = 'none';
+            renderCards();
             if (items.length > 0) {
                 speak('你好！我是小豆。今天我们来学习职业梦想。');
                 showMascot('你好！我是小豆。今天我们来学习职业梦想。');

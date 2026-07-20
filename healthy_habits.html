@@ -21,16 +21,19 @@
         .card-emoji { width: 200px; height: 200px; font-size: 130px; line-height: 200px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; }
         .card-emoji:active { transform: scale(0.95); }
         .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
-        .card-subtitle { font-size: 22px; color: #888; margin-bottom: 15px; }
+        .card-subtitle { font-size: 22px; color: #888; margin-bottom: 5px; }
+        .card-japanese { font-size: 22px; color: #E91E63; margin: 8px 0 15px; font-weight: 500; cursor: pointer; }
+        .card-japanese .reading { color: #999; font-size: 16px; font-weight: normal; margin-left: 6px; }
         .card-text { background: #f8f8f8; border-radius: 20px; padding: 18px 20px; margin: 15px auto; max-width: 90%; text-align: left; font-size: 18px; line-height: 1.7; color: #444; }
         .keywords { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 18px 0; padding: 0 10px; }
         .keyword { background: #f0f0f0; color: #555; padding: 8px 16px; border-radius: 20px; font-size: 16px; cursor: pointer; }
         .keyword:active { background: #ddd; }
-        .btn-group { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
-        .btn { border: none; border-radius: 25px; padding: 12px 25px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .btn-group { display: flex; justify-content: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { border: none; border-radius: 25px; padding: 12px 20px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .btn:active { transform: scale(0.95); }
         .btn-primary { background: #00ACC1; }
         .btn-secondary { background: #4ECDC4; }
+        .btn-japanese { background: #FF80AB; }
         .hint { color: #999; font-size: 13px; margin-top: 15px; text-align: center; }
         .swipe-hint { color: #bbb; font-size: 12px; margin-top: 8px; text-align: center; }
         .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
@@ -49,7 +52,7 @@
         .start-btn:active { transform: scale(0.95); }
         .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
         .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
-        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }
+        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } .card-japanese { font-size: 20px; } .btn { padding: 10px 16px; font-size: 15px; } }
     </style>
 </head>
 <body>
@@ -71,275 +74,57 @@
         <div class="mascot-avatar">🐼</div>
     </div>
     <div class="main-stage" id="mainStage">
-        <div id="cards"><div class="card active">
-            <div class="card-emoji" onclick="playWord(0)">🦷</div>
-            <div class="card-title">刷牙</div>
-            <div class="card-subtitle">shuā yá</div>
-            <div class="card-text">早晚用牙刷上下刷，牙齿白白净净，没有蛀牙。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('刷牙')">刷牙</span><span class="keyword" onclick="speak('牙齿')">牙齿</span><span class="keyword" onclick="speak('牙刷')">牙刷</span><span class="keyword" onclick="speak('牙膏')">牙膏</span><span class="keyword" onclick="speak('干净')">干净</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(0)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(0)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(1)">👏</div>
-            <div class="card-title">洗手</div>
-            <div class="card-subtitle">xǐ shǒu</div>
-            <div class="card-text">吃饭前、上完厕所后，用肥皂搓搓手心手背，洗掉细菌。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('洗手')">洗手</span><span class="keyword" onclick="speak('水')">水</span><span class="keyword" onclick="speak('肥皂')">肥皂</span><span class="keyword" onclick="speak('细菌')">细菌</span><span class="keyword" onclick="speak('干净')">干净</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(1)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(1)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(2)">💧</div>
-            <div class="card-title">喝水</div>
-            <div class="card-subtitle">hē shuǐ</div>
-            <div class="card-text">口渴了喝白开水，不缺水的小朋友身体棒，皮肤也水灵。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('喝水')">喝水</span><span class="keyword" onclick="speak('水杯')">水杯</span><span class="keyword" onclick="speak('白开水')">白开水</span><span class="keyword" onclick="speak('健康')">健康</span><span class="keyword" onclick="speak('解渴')">解渴</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(2)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(2)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(3)">🍚</div>
-            <div class="card-title">吃饭</div>
-            <div class="card-subtitle">chī fàn</div>
-            <div class="card-text">不挑食，一口一口慢慢嚼，把碗里的饭菜都吃光。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('吃饭')">吃饭</span><span class="keyword" onclick="speak('米饭')">米饭</span><span class="keyword" onclick="speak('蔬菜')">蔬菜</span><span class="keyword" onclick="speak('不挑食')">不挑食</span><span class="keyword" onclick="speak('粮食')">粮食</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(3)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(3)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(4)">🛏️</div>
-            <div class="card-title">睡觉</div>
-            <div class="card-subtitle">shuì jiào</div>
-            <div class="card-text">晚上按时上床，闭上眼睛数小羊，白天才有精神。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('睡觉')">睡觉</span><span class="keyword" onclick="speak('床')">床</span><span class="keyword" onclick="speak('被子')">被子</span><span class="keyword" onclick="speak('晚安')">晚安</span><span class="keyword" onclick="speak('休息')">休息</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(4)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(4)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(5)">⚽</div>
-            <div class="card-title">运动</div>
-            <div class="card-subtitle">yùn dòng</div>
-            <div class="card-text">每天跑跑步、跳跳绳，和小伙伴一起玩球，身体更强壮。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('运动')">运动</span><span class="keyword" onclick="speak('跑步')">跑步</span><span class="keyword" onclick="speak('跳绳')">跳绳</span><span class="keyword" onclick="speak('身体')">身体</span><span class="keyword" onclick="speak('健康')">健康</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(5)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(5)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(6)">🤧</div>
-            <div class="card-title">打喷嚏</div>
-            <div class="card-subtitle">dǎ pēn tì</div>
-            <div class="card-text">打喷嚏时转过头，用手肘捂住嘴，病菌不会传给旁边的人。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('打喷嚏')">打喷嚏</span><span class="keyword" onclick="speak('纸巾')">纸巾</span><span class="keyword" onclick="speak('病菌')">病菌</span><span class="keyword" onclick="speak('礼貌')">礼貌</span><span class="keyword" onclick="speak('卫生')">卫生</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(6)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(6)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(7)">🍎</div>
-            <div class="card-title">吃水果</div>
-            <div class="card-subtitle">chī shuǐ guǒ</div>
-            <div class="card-text">饭后吃一个苹果或几根香蕉，补充维生素身体更有力。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('水果')">水果</span><span class="keyword" onclick="speak('苹果')">苹果</span><span class="keyword" onclick="speak('维生素')">维生素</span><span class="keyword" onclick="speak('健康')">健康</span><span class="keyword" onclick="speak('甜甜')">甜甜</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(7)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(7)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(8)">🧸</div>
-            <div class="card-title">收拾玩具</div>
-            <div class="card-subtitle">shōu shi wán jù</div>
-            <div class="card-text">玩完玩具放回原位，房间整整齐齐。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('玩具')">玩具</span><span class="keyword" onclick="speak('收拾')">收拾</span><span class="keyword" onclick="speak('整齐')">整齐</span><span class="keyword" onclick="speak('箱子')">箱子</span><span class="keyword" onclick="speak('房间')">房间</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(8)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(8)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(9)">🧥</div>
-            <div class="card-title">穿外套</div>
-            <div class="card-subtitle">chuān wài tào</div>
-            <div class="card-text">天冷穿外套，热了脱衣服，保护自己不感冒。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('外套')">外套</span><span class="keyword" onclick="speak('衣服')">衣服</span><span class="keyword" onclick="speak('天气')">天气</span><span class="keyword" onclick="speak('保暖')">保暖</span><span class="keyword" onclick="speak('健康')">健康</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(9)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(9)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(10)">⏰</div>
-            <div class="card-title">按时起床</div>
-            <div class="card-subtitle">àn shí qǐ chuáng</div>
-            <div class="card-text">早上闹钟响了就起床，伸个懒腰，开始新的一天。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('起床')">起床</span><span class="keyword" onclick="speak('闹钟')">闹钟</span><span class="keyword" onclick="speak('早上')">早上</span><span class="keyword" onclick="speak('按时')">按时</span><span class="keyword" onclick="speak('精神')">精神</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(10)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(10)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(11)">🧼</div>
-            <div class="card-title">洗脸</div>
-            <div class="card-subtitle">xǐ liǎn</div>
-            <div class="card-text">早晚用温水洗脸，把灰尘和油光洗掉，小脸蛋清爽又干净。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('洗脸')">洗脸</span><span class="keyword" onclick="speak('毛巾')">毛巾</span><span class="keyword" onclick="speak('水')">水</span><span class="keyword" onclick="speak('干净')">干净</span><span class="keyword" onclick="speak('脸')">脸</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(11)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(11)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(12)">🚽</div>
-            <div class="card-title">上厕所</div>
-            <div class="card-subtitle">shàng cè suǒ</div>
-            <div class="card-text">想尿尿或便便就快去厕所，上完记得冲水和洗手。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('厕所')">厕所</span><span class="keyword" onclick="speak('马桶')">马桶</span><span class="keyword" onclick="speak('冲水')">冲水</span><span class="keyword" onclick="speak('卫生')">卫生</span><span class="keyword" onclick="speak('洗手')">洗手</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(12)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(12)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(13)">👓</div>
-            <div class="card-title">保护眼睛</div>
-            <div class="card-subtitle">bǎo hù yǎn jing</div>
-            <div class="card-text">少看屏幕，看书时坐端正，眼睛累了就望望远处的大树。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('眼睛')">眼睛</span><span class="keyword" onclick="speak('看书')">看书</span><span class="keyword" onclick="speak('保护')">保护</span><span class="keyword" onclick="speak('电视')">电视</span><span class="keyword" onclick="speak('明亮')">明亮</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(13)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(13)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div>
-<div class="card">
-            <div class="card-emoji" onclick="playWord(14)">🎒</div>
-            <div class="card-title">整理书包</div>
-            <div class="card-subtitle">zhěng lǐ shū bāo</div>
-            <div class="card-text">睡前把书本和文具放进书包，早上上学不慌张。</div>
-            <div class="keywords"><span class="keyword" onclick="speak('书包')">书包</span><span class="keyword" onclick="speak('书本')">书本</span><span class="keyword" onclick="speak('文具')">文具</span><span class="keyword" onclick="speak('整理')">整理</span><span class="keyword" onclick="speak('上学')">上学</span></div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="playWord(14)">🔊 读词语</button>
-                <button class="btn btn-secondary" onclick="playSentence(14)">📝 读句子</button>
-            </div>
-            <div class="nav-btns">
-                <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
-            </div>
-        </div></div>
-        <div class="progress" id="progressDots"><div class="progress-dot active"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div>
-<div class="progress-dot"></div></div>
+        <div id="cards"></div>
+        <div class="progress" id="progressDots"></div>
         <div class="hint">提示：如果听不到声音，请检查浏览器是否允许播放音频</div>
         <div class="swipe-hint">← 左右滑动切换卡片 →</div>
         <a href="index.html" class="back-home">⬅️ 返回首页</a>
     </div>
-<script>
-        const items = [{"word": "刷牙", "pinyin": "shuā yá", "summary": "早晚刷牙，牙齿白白，不会长虫子牙。", "words": ["刷牙", "牙齿", "牙刷", "牙膏", "干净"], "emoji": "🦷"}, {"word": "洗手", "pinyin": "xǐ shǒu", "summary": "吃饭前、上厕所后要洗手，洗掉细菌不生病。", "words": ["洗手", "水", "肥皂", "细菌", "干净"], "emoji": "👏"}, {"word": "喝水", "pinyin": "hē shuǐ", "summary": "多喝白开水，身体不缺水，皮肤也更好。", "words": ["喝水", "水杯", "白开水", "健康", "解渴"], "emoji": "💧"}, {"word": "吃饭", "pinyin": "chī fàn", "summary": "不挑食，细嚼慢咽，不浪费粮食。", "words": ["吃饭", "米饭", "蔬菜", "不挑食", "粮食"], "emoji": "🍚"}, {"word": "睡觉", "pinyin": "shuì jiào", "summary": "晚上早点睡，白天才有精神玩和学习。", "words": ["睡觉", "床", "被子", "晚安", "休息"], "emoji": "🛏️"}, {"word": "运动", "pinyin": "yùn dòng", "summary": "每天跑跑步、跳跳绳，身体棒棒的。", "words": ["运动", "跑步", "跳绳", "身体", "健康"], "emoji": "⚽"}, {"word": "打喷嚏", "pinyin": "dǎ pēn tì", "summary": "打喷嚏捂住嘴，病菌不会传给别人。", "words": ["打喷嚏", "纸巾", "病菌", "礼貌", "卫生"], "emoji": "🤧"}, {"word": "吃水果", "pinyin": "chī shuǐ guǒ", "summary": "多吃水果，补充维生素，身体更有力。", "words": ["水果", "苹果", "维生素", "健康", "甜甜"], "emoji": "🍎"}, {"word": "收拾玩具", "pinyin": "shōu shi wán jù", "summary": "玩完玩具放回原位，房间整整齐齐。", "words": ["玩具", "收拾", "整齐", "箱子", "房间"], "emoji": "🧸"}, {"word": "穿外套", "pinyin": "chuān wài tào", "summary": "天冷穿外套，热了脱衣服，保护自己不感冒。", "words": ["外套", "衣服", "天气", "保暖", "健康"], "emoji": "🧥"}, {"word": "按时起床", "pinyin": "àn shí qǐ chuáng", "summary": "早上听到闹钟就起床，不要赖床，开始新的一天。", "words": ["起床", "闹钟", "早上", "按时", "精神"], "emoji": "⏰"}, {"word": "洗脸", "pinyin": "xǐ liǎn", "summary": "早晚洗脸，把脏东西洗掉，小脸蛋干干净净。", "words": ["洗脸", "毛巾", "水", "干净", "脸"], "emoji": "🧼"}, {"word": "上厕所", "pinyin": "shàng cè suǒ", "summary": "想上厕所就快去，不要憋着，上完要冲水。", "words": ["厕所", "马桶", "冲水", "卫生", "洗手"], "emoji": "🚽"}, {"word": "保护眼睛", "pinyin": "bǎo hù yǎn jing", "summary": "少看手机，看书坐端正，眼睛才能看得清楚。", "words": ["眼睛", "看书", "保护", "电视", "明亮"], "emoji": "👓"}, {"word": "整理书包", "pinyin": "zhěng lǐ shū bāo", "summary": "上学前把书本和文具放进书包，不丢三落四。", "words": ["书包", "书本", "文具", "整理", "上学"], "emoji": "🎒"}];
+    <script>
+        const items = [
+            { word: "刷牙", pinyin: "shuā yá", summary: "早晚刷牙，牙齿白白，不会长虫子牙。", sentence: "早晚用牙刷上下刷，牙齿白白净净，没有蛀牙。", words: ["刷牙", "牙齿", "牙刷", "牙膏", "干净"], emoji: "🦷", japanese: "歯を磨く", japanese_reading: "はをみがく" },
+            { word: "洗手", pinyin: "xǐ shǒu", summary: "吃饭前、上厕所后要洗手，洗掉细菌不生病。", sentence: "吃饭前、上完厕所后，用肥皂搓搓手心手背，洗掉细菌。", words: ["洗手", "水", "肥皂", "细菌", "干净"], emoji: "👏", japanese: "手を洗う", japanese_reading: "てをあらう" },
+            { word: "喝水", pinyin: "hē shuǐ", summary: "多喝白开水，身体不缺水，皮肤也更好。", sentence: "口渴了喝白开水，不缺水的小朋友身体棒，皮肤也水灵。", words: ["喝水", "水杯", "白开水", "健康", "解渴"], emoji: "💧", japanese: "水を飲む", japanese_reading: "みずをのむ" },
+            { word: "吃饭", pinyin: "chī fàn", summary: "不挑食，细嚼慢咽，不浪费粮食。", sentence: "不挑食，一口一口慢慢嚼，把碗里的饭菜都吃光。", words: ["吃饭", "米饭", "蔬菜", "不挑食", "粮食"], emoji: "🍚", japanese: "ご飯を食べる", japanese_reading: "ごはんをたべる" },
+            { word: "睡觉", pinyin: "shuì jiào", summary: "晚上早点睡，白天才有精神玩和学习。", sentence: "晚上按时上床，闭上眼睛数小羊，白天才有精神。", words: ["睡觉", "床", "被子", "晚安", "休息"], emoji: "🛏️", japanese: "寝る", japanese_reading: "ねる" },
+            { word: "运动", pinyin: "yùn dòng", summary: "每天跑跑步、跳跳绳，身体棒棒的。", sentence: "每天跑跑步、跳跳绳，和小伙伴一起玩球，身体更强壮。", words: ["运动", "跑步", "跳绳", "身体", "健康"], emoji: "⚽", japanese: "運動する", japanese_reading: "うんどうする" },
+            { word: "打喷嚏", pinyin: "dǎ pēn tì", summary: "打喷嚏捂住嘴，病菌不会传给别人。", sentence: "打喷嚏时转过头，用手肘捂住嘴，病菌不会传给旁边的人。", words: ["打喷嚏", "纸巾", "病菌", "礼貌", "卫生"], emoji: "🤧", japanese: "くしゃみをする", japanese_reading: "くしゃみをする" },
+            { word: "吃水果", pinyin: "chī shuǐ guǒ", summary: "多吃水果，补充维生素，身体更有力。", sentence: "饭后吃一个苹果或几根香蕉，补充维生素身体更有力。", words: ["水果", "苹果", "维生素", "健康", "甜甜"], emoji: "🍎", japanese: "果物を食べる", japanese_reading: "くだものをたべる" },
+            { word: "收拾玩具", pinyin: "shōu shi wán jù", summary: "玩完玩具放回原位，房间整整齐齐。", sentence: "玩完玩具放回原位，房间整整齐齐。", words: ["玩具", "收拾", "整齐", "箱子", "房间"], emoji: "🧸", japanese: "おもちゃを片付ける", japanese_reading: "おもちゃをかたづける" },
+            { word: "穿外套", pinyin: "chuān wài tào", summary: "天冷穿外套，热了脱衣服，保护自己不感冒。", sentence: "天冷穿外套，热了脱衣服，保护自己不感冒。", words: ["外套", "衣服", "天气", "保暖", "健康"], emoji: "🧥", japanese: "上着を着る", japanese_reading: "うわぎをきる" },
+            { word: "按时起床", pinyin: "àn shí qǐ chuáng", summary: "早上听到闹钟就起床，不要赖床，开始新的一天。", sentence: "早上闹钟响了就起床，伸个懒腰，开始新的一天。", words: ["起床", "闹钟", "早上", "按时", "精神"], emoji: "⏰", japanese: "時間通りに起きる", japanese_reading: "じかんどおりにおきる" },
+            { word: "洗脸", pinyin: "xǐ liǎn", summary: "早晚洗脸，把脏东西洗掉，小脸蛋干干净净。", sentence: "早晚用温水洗脸，把灰尘和油光洗掉，小脸蛋清爽又干净。", words: ["洗脸", "毛巾", "水", "干净", "脸"], emoji: "🧼", japanese: "顔を洗う", japanese_reading: "かおをあらう" },
+            { word: "上厕所", pinyin: "shàng cè suǒ", summary: "想上厕所就快去，不要憋着，上完要冲水。", sentence: "想尿尿或便便就快去厕所，上完记得冲水和洗手。", words: ["厕所", "马桶", "冲水", "卫生", "洗手"], emoji: "🚽", japanese: "トイレに行く", japanese_reading: "といれにいく" },
+            { word: "保护眼睛", pinyin: "bǎo hù yǎn jing", summary: "少看手机，看书坐端正，眼睛才能看得清楚。", sentence: "少看屏幕，看书时坐端正，眼睛累了就望望远处的大树。", words: ["眼睛", "看书", "保护", "电视", "明亮"], emoji: "👓", japanese: "目を守る", japanese_reading: "めをまもる" },
+            { word: "整理书包", pinyin: "zhěng lǐ shū bāo", summary: "上学前把书本和文具放进书包，不丢三落四。", sentence: "睡前把书本和文具放进书包，早上上学不慌张。", words: ["书包", "书本", "文具", "整理", "上学"], emoji: "🎒", japanese: "ランドセルを整える", japanese_reading: "らんどせるをととのえる" }
+        ];
+
         let currentIndex = 0;
         let touchStartX = 0;
         let touchStartY = 0;
         let touchStartTime = 0;
         const SWIPE_THRESHOLD = 50;
         const TAP_THRESHOLD = 10;
-        
+
         const synth = window.speechSynthesis;
         let chineseVoice = null;
-        
-        function findChineseVoice(){
+        let japaneseVoice = null;
+
+        function findVoices() {
             if (!synth) return;
             const voices = synth.getVoices();
             for (let v of voices) {
-                if (v.lang.startsWith('zh')) { chineseVoice = v; break; }
+                if (!chineseVoice && v.lang.startsWith('zh')) { chineseVoice = v; }
+                if (!japaneseVoice && v.lang.startsWith('ja')) { japaneseVoice = v; }
+                if (chineseVoice && japaneseVoice) break;
             }
         }
-        
+
         if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = findChineseVoice;
+            speechSynthesis.onvoiceschanged = findVoices;
         }
-        findChineseVoice();
-        
+        findVoices();
+
         function speak(text, rate = 0.82) {
             if (!synth) return;
             synth.cancel();
@@ -350,21 +135,64 @@
             if (chineseVoice) utter.voice = chineseVoice;
             synth.speak(utter);
         }
-        
+
+        function speakJapanese(text, rate = 0.82) {
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'ja-JP';
+            utter.rate = rate;
+            utter.pitch = 1.1;
+            if (japaneseVoice) utter.voice = japaneseVoice;
+            synth.speak(utter);
+            showMascot('日语：' + text);
+        }
+
         function showMascot(text) { document.getElementById('mascotText').textContent = text; }
-        
+
         function playWord(index) {
             const item = items[index];
             speak(item.word + '，' + item.pinyin);
             showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
         }
-        
+
         function playSentence(index) {
             const item = items[index];
             speak(item.summary);
             showMascot(item.summary);
         }
-        
+
+        function renderCards() {
+            const cardsContainer = document.getElementById('cards');
+            cardsContainer.innerHTML = items.map((item, index) => `
+                <div class="card ${index === 0 ? 'active' : ''}">
+                    <div class="card-emoji" onclick="playWord(${index})">${item.emoji}</div>
+                    <div class="card-title">${item.word}</div>
+                    <div class="card-subtitle">${item.pinyin}</div>
+                    <div class="card-japanese" onclick="speakJapanese('${item.japanese}')">${item.japanese}<span class="reading">${item.japanese_reading}</span></div>
+                    <div class="card-text">${item.sentence}</div>
+                    <div class="keywords">${item.words.map(w => `<span class="keyword" onclick="speak('${w}')">${w}</span>`).join('')}</div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="playWord(${index})">🔊 读词语</button>
+                        <button class="btn btn-secondary" onclick="playSentence(${index})">📝 读句子</button>
+                        <button class="btn btn-japanese" onclick="speakJapanese('${item.japanese}')">🇯🇵 读日语</button>
+                    </div>
+                    <div class="nav-btns">
+                        <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                        <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProgress() {
+            const dotsContainer = document.getElementById('progressDots');
+            dotsContainer.innerHTML = items.map((_, index) => `<div class="progress-dot ${index === 0 ? 'active' : ''}"></div>`).join('');
+        }
+
+        renderCards();
+        renderProgress();
+
         function switchCard(direction) {
             const cards = document.querySelectorAll('.card');
             const dots = document.querySelectorAll('.progress-dot');
@@ -378,10 +206,10 @@
             speak(item.word);
             showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
         }
-        
+
         function nextItem() { switchCard('next'); }
         function prevItem() { switchCard('prev'); }
-        
+
         function startApp() {
             document.getElementById('startOverlay').style.display = 'none';
             if (items.length > 0) {
@@ -389,7 +217,7 @@
                 showMascot('你好！我是小豆。今天我们来学习健康习惯。');
             }
         }
-        
+
         // 滑动切换
         const mainStage = document.getElementById('mainStage');
         mainStage.addEventListener('touchstart', function(e) {
@@ -397,18 +225,18 @@
             touchStartY = e.touches[0].clientY;
             touchStartTime = Date.now();
         }, { passive: true });
-        
+
         mainStage.addEventListener('touchmove', function(e) {
             // 默认不阻止，保留垂直滚动
         }, { passive: true });
-        
+
         mainStage.addEventListener('touchend', function(e) {
             const touchEndX = e.changedTouches[0].clientX;
             const touchEndY = e.changedTouches[0].clientY;
             const diffX = touchStartX - touchEndX;
             const diffY = touchStartY - touchEndY;
             const timeDiff = Date.now() - touchStartTime;
-            
+
             // 如果主要是水平滑动，且距离和时间满足条件
             if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > SWIPE_THRESHOLD && timeDiff < 500) {
                 if (diffX > 0) nextItem();
