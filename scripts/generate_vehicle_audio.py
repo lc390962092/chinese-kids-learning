@@ -15,6 +15,7 @@ OUTPUT_DIR = BASE_DIR / "assets" / "audio" / "vehicles"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 VOICE = "zh-CN-XiaoxiaoNeural"
+JAPANESE_VOICE = "ja-JP-NanamiNeural"
 
 async def speak_and_save(text, output_path, voice=VOICE, rate="+0%"):
     communicate = edge_tts.Communicate(text=text, voice=voice, rate=rate)
@@ -33,6 +34,8 @@ async def main():
         sentence = item["sentence"]
         sound = item["sound"]
         english = item["english"]
+        japanese = item.get("japanese", "")
+        japanese_reading = item.get("japanese_reading", "")
         
         print(f"\n生成: {word}")
         
@@ -45,6 +48,11 @@ async def main():
         
         if sound != "无":
             await speak_and_save(sound, OUTPUT_DIR / f"{english}_sound.mp3", rate="+0%")
+        
+        if japanese_reading:
+            japanese_dir = OUTPUT_DIR / "japanese"
+            japanese_dir.mkdir(parents=True, exist_ok=True)
+            await speak_and_save(japanese_reading, japanese_dir / f"{english}_japanese.mp3", voice=JAPANESE_VOICE, rate="+0%")
     
     print("\n全部完成！")
 

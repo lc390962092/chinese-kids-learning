@@ -17,7 +17,9 @@
         "vehicle"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon car, flat illustration, red body, big round headlights, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon car, flat illustration, red body, big round headlights, friendly smile, white background, children's book style, vector art",
+      "japanese": "車",
+      "japanese_reading": "くるま"
     },
     {
       "word": "公交车",
@@ -32,7 +34,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon bus, flat illustration, yellow body, big windows, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon bus, flat illustration, yellow body, big windows, friendly smile, white background, children's book style, vector art",
+      "japanese": "バス",
+      "japanese_reading": "ばす"
     },
     {
       "word": "地铁",
@@ -47,7 +51,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon subway train, flat illustration, silver body with blue stripes, big windows, underground tunnel, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon subway train, flat illustration, silver body with blue stripes, big windows, underground tunnel, friendly smile, white background, children's book style, vector art",
+      "japanese": "地下鉄",
+      "japanese_reading": "ちかてつ"
     },
     {
       "word": "高铁",
@@ -62,7 +68,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon high-speed train, flat illustration, white body with red stripe, streamlined nose, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon high-speed train, flat illustration, white body with red stripe, streamlined nose, friendly smile, white background, children's book style, vector art",
+      "japanese": "新幹線",
+      "japanese_reading": "しんかんせん"
     },
     {
       "word": "火车",
@@ -77,7 +85,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon train, flat illustration, blue locomotive with smoke, big round windows, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon train, flat illustration, blue locomotive with smoke, big round windows, friendly smile, white background, children's book style, vector art",
+      "japanese": "電車",
+      "japanese_reading": "でんしゃ"
     },
     {
       "word": "飞机",
@@ -92,7 +102,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon airplane, flat illustration, white body with blue wings, big round windows, friendly smile, flying in clouds, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon airplane, flat illustration, white body with blue wings, big round windows, friendly smile, flying in clouds, white background, children's book style, vector art",
+      "japanese": "飛行機",
+      "japanese_reading": "ひこうき"
     },
     {
       "word": "直升机",
@@ -107,7 +119,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon helicopter, flat illustration, yellow body with spinning rotor, big windows, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon helicopter, flat illustration, yellow body with spinning rotor, big windows, friendly smile, white background, children's book style, vector art",
+      "japanese": "ヘリコプター",
+      "japanese_reading": "へりこぷたー"
     },
     {
       "word": "热气球",
@@ -122,7 +136,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon hot air balloon, flat illustration, rainbow colored stripes, big round basket, fluffy clouds, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon hot air balloon, flat illustration, rainbow colored stripes, big round basket, fluffy clouds, friendly smile, white background, children's book style, vector art",
+      "japanese": "熱気球",
+      "japanese_reading": "ねっききゅう"
     },
     {
       "word": "火箭",
@@ -137,7 +153,9 @@
         "space"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon rocket, flat illustration, white body with red nose cone, orange flames, stars around, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon rocket, flat illustration, white body with red nose cone, orange flames, stars around, friendly smile, white background, children's book style, vector art",
+      "japanese": "ロケット",
+      "japanese_reading": "ろけっと"
     },
     {
       "word": "船",
@@ -152,7 +170,9 @@
         "vehicle"
       ],
       "difficulty": 1,
-      "image_prompt": "A cute cartoon ship, flat illustration, white hull with red stripe, big round windows, friendly smile, sailing on blue waves, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon ship, flat illustration, white hull with red stripe, big round windows, friendly smile, sailing on blue waves, white background, children's book style, vector art",
+      "japanese": "船",
+      "japanese_reading": "ふね"
     },
     {
       "word": "轮船",
@@ -167,7 +187,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon steamship, flat illustration, big white hull with red bottom, multiple decks, smoke stack, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon steamship, flat illustration, big white hull with red bottom, multiple decks, smoke stack, friendly smile, white background, children's book style, vector art",
+      "japanese": "客船",
+      "japanese_reading": "きゃくせん"
     },
     {
       "word": "帆船",
@@ -182,7 +204,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon sailboat, flat illustration, white sail with blue hull, small waves, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon sailboat, flat illustration, white sail with blue hull, small waves, friendly smile, white background, children's book style, vector art",
+      "japanese": "帆船",
+      "japanese_reading": "はんせん"
     },
     {
       "word": "潜艇",
@@ -197,7 +221,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon submarine, flat illustration, yellow body with periscope, small portholes, underwater bubbles, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon submarine, flat illustration, yellow body with periscope, small portholes, underwater bubbles, friendly smile, white background, children's book style, vector art",
+      "japanese": "潜水艦",
+      "japanese_reading": "せんすいかん"
     },
     {
       "word": "自行车",
@@ -212,7 +238,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon bicycle, flat illustration, red frame, big round wheels, friendly bell, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon bicycle, flat illustration, red frame, big round wheels, friendly bell, white background, children's book style, vector art",
+      "japanese": "自転車",
+      "japanese_reading": "じてんしゃ"
     },
     {
       "word": "滑板车",
@@ -227,7 +255,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon scooter, flat illustration, blue deck with small wheels, handlebar, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon scooter, flat illustration, blue deck with small wheels, handlebar, friendly smile, white background, children's book style, vector art",
+      "japanese": "キックボード",
+      "japanese_reading": "きっくぼーど"
     },
     {
       "word": "摩托车",
@@ -242,7 +272,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon motorcycle, flat illustration, red body, big round headlight, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon motorcycle, flat illustration, red body, big round headlight, friendly smile, white background, children's book style, vector art",
+      "japanese": "バイク",
+      "japanese_reading": "ばいく"
     },
     {
       "word": "出租车",
@@ -257,7 +289,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon taxi, flat illustration, yellow body with checker pattern, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon taxi, flat illustration, yellow body with checker pattern, friendly smile, white background, children's book style, vector art",
+      "japanese": "タクシー",
+      "japanese_reading": "たくしー"
     },
     {
       "word": "卡车",
@@ -272,7 +306,9 @@
         "work"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon truck, flat illustration, blue cargo container with big wheels, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon truck, flat illustration, blue cargo container with big wheels, friendly smile, white background, children's book style, vector art",
+      "japanese": "トラック",
+      "japanese_reading": "とらっく"
     },
     {
       "word": "校车",
@@ -287,7 +323,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon school bus, flat illustration, yellow body with black stripes, big windows, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon school bus, flat illustration, yellow body with black stripes, big windows, friendly smile, white background, children's book style, vector art",
+      "japanese": "スクールバス",
+      "japanese_reading": "すくーるばす"
     },
     {
       "word": "救护车",
@@ -302,7 +340,9 @@
         "emergency"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon ambulance, flat illustration, white body with red cross, flashing lights, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon ambulance, flat illustration, white body with red cross, flashing lights, friendly smile, white background, children's book style, vector art",
+      "japanese": "救急車",
+      "japanese_reading": "きゅうきゅうしゃ"
     },
     {
       "word": "警车",
@@ -317,7 +357,9 @@
         "emergency"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon police car, flat illustration, blue and white body, siren light on top, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon police car, flat illustration, blue and white body, siren light on top, friendly smile, white background, children's book style, vector art",
+      "japanese": "パトカー",
+      "japanese_reading": "ぱとかー"
     },
     {
       "word": "消防车",
@@ -332,7 +374,9 @@
         "emergency"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon fire truck, flat illustration, red body with ladder, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon fire truck, flat illustration, red body with ladder, friendly smile, white background, children's book style, vector art",
+      "japanese": "消防車",
+      "japanese_reading": "しょうぼうしゃ"
     },
     {
       "word": "洒水车",
@@ -347,7 +391,9 @@
         "work"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon water truck, flat illustration, green tank with sprinkler, water drops, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon water truck, flat illustration, green tank with sprinkler, water drops, friendly smile, white background, children's book style, vector art",
+      "japanese": "散水車",
+      "japanese_reading": "さんすいしゃ"
     },
     {
       "word": "垃圾车",
@@ -362,7 +408,9 @@
         "work"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon garbage truck, flat illustration, gray body with lifting arm, trash bin, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon garbage truck, flat illustration, gray body with lifting arm, trash bin, friendly smile, white background, children's book style, vector art",
+      "japanese": "ゴミ収集車",
+      "japanese_reading": "ごみしゅうしゅうしゃ"
     },
     {
       "word": "拖拉机",
@@ -377,7 +425,9 @@
         "farm"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon tractor, flat illustration, green body with big rear wheels, farmer cabin, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon tractor, flat illustration, green body with big rear wheels, farmer cabin, friendly smile, white background, children's book style, vector art",
+      "japanese": "トラクター",
+      "japanese_reading": "とらくたー"
     },
     {
       "word": "挖掘机",
@@ -392,7 +442,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon excavator, flat illustration, yellow body with big arm and bucket, caterpillar tracks, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon excavator, flat illustration, yellow body with big arm and bucket, caterpillar tracks, friendly smile, white background, children's book style, vector art",
+      "japanese": "ショベルカー",
+      "japanese_reading": "しょべるかー"
     },
     {
       "word": "磁悬浮",
@@ -407,7 +459,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon maglev train, flat illustration, white streamlined body with blue stripe, floating above track, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon maglev train, flat illustration, white streamlined body with blue stripe, floating above track, friendly smile, white background, children's book style, vector art",
+      "japanese": "リニアモーターカー",
+      "japanese_reading": "りにあもーたーかー"
     },
     {
       "word": "有轨电车",
@@ -422,7 +476,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon tram, flat illustration, green and yellow body, big windows, overhead wire, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon tram, flat illustration, green and yellow body, big windows, overhead wire, friendly smile, white background, children's book style, vector art",
+      "japanese": "路面電車",
+      "japanese_reading": "ろめんでんしゃ"
     },
     {
       "word": "无轨电车",
@@ -437,7 +493,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon trolleybus, flat illustration, blue body with poles on roof, big windows, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon trolleybus, flat illustration, blue body with poles on roof, big windows, friendly smile, white background, children's book style, vector art",
+      "japanese": "トロリーバス",
+      "japanese_reading": "とろりーばす"
     },
     {
       "word": "双层巴士",
@@ -452,7 +510,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon double-decker bus, flat illustration, red body with two levels of windows, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon double-decker bus, flat illustration, red body with two levels of windows, friendly smile, white background, children's book style, vector art",
+      "japanese": "二階建てバス",
+      "japanese_reading": "にかいだてばす"
     },
     {
       "word": "滑翔机",
@@ -467,7 +527,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon glider, flat illustration, long white wings, yellow nose, flying in blue sky with clouds, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon glider, flat illustration, long white wings, yellow nose, flying in blue sky with clouds, friendly smile, white background, children's book style, vector art",
+      "japanese": "グライダー",
+      "japanese_reading": "ぐらいだー"
     },
     {
       "word": "飞艇",
@@ -482,7 +544,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon airship blimp, flat illustration, long gray body with small fins, propellers, friendly smile, white clouds, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon airship blimp, flat illustration, long gray body with small fins, propellers, friendly smile, white clouds, white background, children's book style, vector art",
+      "japanese": "飛行船",
+      "japanese_reading": "ひこうせん"
     },
     {
       "word": "无人机",
@@ -497,7 +561,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon quadcopter drone, flat illustration, gray body with four propellers, small camera, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon quadcopter drone, flat illustration, gray body with four propellers, small camera, friendly smile, white background, children's book style, vector art",
+      "japanese": "ドローン",
+      "japanese_reading": "どろーん"
     },
     {
       "word": "喷气式飞机",
@@ -512,7 +578,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon jet airplane, flat illustration, white body with swept wings, blue windows, flying fast, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon jet airplane, flat illustration, white body with swept wings, blue windows, flying fast, friendly smile, white background, children's book style, vector art",
+      "japanese": "ジェット機",
+      "japanese_reading": "じぇっとき"
     },
     {
       "word": "皮划艇",
@@ -527,7 +595,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon kayak, flat illustration, small yellow kayak with paddle, blue water splashes, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon kayak, flat illustration, small yellow kayak with paddle, blue water splashes, friendly smile, white background, children's book style, vector art",
+      "japanese": "カヤック",
+      "japanese_reading": "かやっく"
     },
     {
       "word": "独木舟",
@@ -542,7 +612,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon canoe, flat illustration, wooden brown canoe with paddle, small waves, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon canoe, flat illustration, wooden brown canoe with paddle, small waves, friendly smile, white background, children's book style, vector art",
+      "japanese": "カヌー",
+      "japanese_reading": "かぬー"
     },
     {
       "word": "快艇",
@@ -557,7 +629,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon speedboat, flat illustration, red and white boat speeding on water, big waves, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon speedboat, flat illustration, red and white boat speeding on water, big waves, friendly smile, white background, children's book style, vector art",
+      "japanese": "モーターボート",
+      "japanese_reading": "もーたーぼーと"
     },
     {
       "word": "游艇",
@@ -572,7 +646,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon yacht, flat illustration, white luxury boat with blue windows, sailing on calm water, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon yacht, flat illustration, white luxury boat with blue windows, sailing on calm water, friendly smile, white background, children's book style, vector art",
+      "japanese": "ヨット",
+      "japanese_reading": "よっと"
     },
     {
       "word": "气垫船",
@@ -587,7 +663,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon hovercraft, flat illustration, gray craft with big fan on back, floating over water, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon hovercraft, flat illustration, gray craft with big fan on back, floating over water, friendly smile, white background, children's book style, vector art",
+      "japanese": "ホバークラフト",
+      "japanese_reading": "ほばーくらふと"
     },
     {
       "word": "水上飞机",
@@ -602,7 +680,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon seaplane, flat illustration, white body with pontoons, blue wings, landing on water, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon seaplane, flat illustration, white body with pontoons, blue wings, landing on water, friendly smile, white background, children's book style, vector art",
+      "japanese": "水上飛行機",
+      "japanese_reading": "すいじょうひこうき"
     },
     {
       "word": "推土机",
@@ -617,7 +697,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon bulldozer, flat illustration, yellow body with big blade in front, caterpillar tracks, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon bulldozer, flat illustration, yellow body with big blade in front, caterpillar tracks, friendly smile, white background, children's book style, vector art",
+      "japanese": "ブルドーザー",
+      "japanese_reading": "ぶるどーざー"
     },
     {
       "word": "起重机",
@@ -632,7 +714,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon tower crane, flat illustration, yellow tall crane with long arm and hook, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon tower crane, flat illustration, yellow tall crane with long arm and hook, friendly smile, white background, children's book style, vector art",
+      "japanese": "クレーン車",
+      "japanese_reading": "くれーんしゃ"
     },
     {
       "word": "叉车",
@@ -647,7 +731,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon forklift, flat illustration, orange body with lifting forks, black wheels, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon forklift, flat illustration, orange body with lifting forks, black wheels, friendly smile, white background, children's book style, vector art",
+      "japanese": "フォークリフト",
+      "japanese_reading": "ふぉーくりふと"
     },
     {
       "word": "装载机",
@@ -662,7 +748,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon front loader, flat illustration, yellow body with big bucket, black wheels, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon front loader, flat illustration, yellow body with big bucket, black wheels, friendly smile, white background, children's book style, vector art",
+      "japanese": "ホイールローダー",
+      "japanese_reading": "ほいーるろーだー"
     },
     {
       "word": "压路机",
@@ -677,7 +765,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon road roller, flat illustration, yellow body with big smooth roller, black wheels, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon road roller, flat illustration, yellow body with big smooth roller, black wheels, friendly smile, white background, children's book style, vector art",
+      "japanese": "ロードローラー",
+      "japanese_reading": "ろーどろーらー"
     },
     {
       "word": "搅拌车",
@@ -692,7 +782,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon cement mixer truck, flat illustration, gray body with rotating drum, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon cement mixer truck, flat illustration, gray body with rotating drum, friendly smile, white background, children's book style, vector art",
+      "japanese": "コンクリートミキサー車",
+      "japanese_reading": "こんくりーとみきさーしゃ"
     },
     {
       "word": "吊车",
@@ -707,7 +799,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon tow truck, flat illustration, blue body with crane arm, hook on back, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon tow truck, flat illustration, blue body with crane arm, hook on back, friendly smile, white background, children's book style, vector art",
+      "japanese": "レッカー車",
+      "japanese_reading": "れっかーしゃ"
     },
     {
       "word": "混凝土泵车",
@@ -722,7 +816,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon concrete pump truck, flat illustration, white body with long folding arm, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon concrete pump truck, flat illustration, white body with long folding arm, friendly smile, white background, children's book style, vector art",
+      "japanese": "コンクリートポンプ車",
+      "japanese_reading": "こんくりーとぽんぷしゃ"
     },
     {
       "word": "救援直升机",
@@ -737,7 +833,9 @@
         "vehicle"
       ],
       "difficulty": 3,
-      "image_prompt": "A cute cartoon rescue helicopter, flat illustration, red and white body with yellow cross, spinning rotor, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon rescue helicopter, flat illustration, red and white body with yellow cross, spinning rotor, friendly smile, white background, children's book style, vector art",
+      "japanese": "救難ヘリコプター",
+      "japanese_reading": "きゅうなんへりこぷたー"
     },
     {
       "word": "坦克",
@@ -752,7 +850,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon tank, flat illustration, green armored body with big treads and small turret, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon tank, flat illustration, green armored body with big treads and small turret, friendly smile, white background, children's book style, vector art",
+      "japanese": "戦車",
+      "japanese_reading": "せんしゃ"
     },
     {
       "word": "缆车",
@@ -767,7 +867,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon cable car, flat illustration, red small cabin hanging from cable, mountain background, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon cable car, flat illustration, red small cabin hanging from cable, mountain background, friendly smile, white background, children's book style, vector art",
+      "japanese": "ロープウェイ",
+      "japanese_reading": "ろーぷうぇい"
     },
     {
       "word": "碰碰车",
@@ -782,7 +884,9 @@
         "vehicle"
       ],
       "difficulty": 2,
-      "image_prompt": "A cute cartoon bumper car, flat illustration, colorful round car with rubber bumper, sparkles, friendly smile, white background, children's book style, vector art"
+      "image_prompt": "A cute cartoon bumper car, flat illustration, colorful round car with rubber bumper, sparkles, friendly smile, white background, children's book style, vector art",
+      "japanese": "バンパーカー",
+      "japanese_reading": "ばんぱーかー"
     }
   ]
 }

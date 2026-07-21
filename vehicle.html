@@ -628,7 +628,8 @@
 
         function playJapaneseWord(index) {
             const vehicle = vehicles[index];
-            speakJapanese(`${vehicle.japanese}、${vehicle.japanese_reading}`);
+            const mp3Path = `assets/audio/vehicles/japanese/${vehicle.file}_japanese.mp3`;
+            speakWithFallback(vehicle.japanese_reading, mp3Path);
             showMascot(`日语：${vehicle.word} → ${vehicle.japanese}（${vehicle.japanese_reading}）`);
         }
 
