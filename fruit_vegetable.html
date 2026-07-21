@@ -189,7 +189,7 @@
             }
         }
 
-function findEnglishVoice() {
+        function findEnglishVoice() {
             if (!synth) return;
             const voices = synth.getVoices();
             for (let v of voices) {
@@ -243,28 +243,28 @@ function findEnglishVoice() {
             }
             synth.cancel();
 
-            // 如果系统有日语语音包，优先使用本地 TTS
-            if (japaneseVoice) {
-                const utter = new SpeechSynthesisUtterance(text);
+            // 手机浏览器经常把 CJK 统一汉字读成中文，所以日语朗读时只保留假名和日文基本符号
+            const kanaOnly = text.replace(/[^\u3040-\u309F\u30A0-\u30FF\uFF10-\uFF19\u3000-\u303F\s]/g, '').replace(/[\u3001\u3002\uff0c\uff0e]/g, ' ').trim();
+            const toSpeak = kanaOnly || text;
+
+            // 优先使用真正的日语语音包
+            if (japaneseVoice && japaneseVoice.lang && japaneseVoice.lang.startsWith('ja')) {
+                const utter = new SpeechSynthesisUtterance(toSpeak);
                 utter.lang = 'ja-JP';
-                utter.rate = 0.85;
-                utter.pitch = 1.0;
+                utter.rate = 0.82;
+                utter.pitch = 1.05;
                 utter.voice = japaneseVoice;
                 synth.speak(utter);
                 return;
             }
 
-            // 没有日语语音包时，尝试 Google Translate 在线 TTS（仅日语）
-            const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q=' + encodeURIComponent(text);
+            // 没有本地日语语音时，尝试在线 Google TTS（仅日语假名）
+            const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q=' + encodeURIComponent(toSpeak);
             const audio = new Audio(url);
             audio.play().catch((err) => {
                 console.log('在线日语 TTS 播放失败:', err);
-                // 最后再尝试系统默认语音，让用户至少能听到内容（但可能是中文发音）
-                const utter = new SpeechSynthesisUtterance(text);
-                utter.lang = 'ja-JP';
-                utter.rate = 0.85;
-                utter.pitch = 1.0;
-                synth.speak(utter);
+                // 最后明确提示，不再用中文语音冒充日语
+                showMascot("小提示：当前设备没有日语语音包，所以日语念不出来。建议用电脑或换浏览器试试～");
             });
         }
 
