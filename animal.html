@@ -525,10 +525,9 @@
             // 如果没有中文语音，使用默认语音
         }
         
-        function findJapaneseVoice() {
+                function findJapaneseVoice() {
             if (!synth) return;
             const voices = synth.getVoices();
-            // 优先 ja-JP，其次任何 ja 开头的日语语音
             let best = null;
             for (let v of voices) {
                 if (v.lang === 'ja-JP') { best = v; break; }
@@ -543,10 +542,8 @@
                 console.log('未找到日语语音包，日语朗读将使用在线 TTS 或系统默认语音');
             }
         }
-            }
-        }
-        
-        function findEnglishVoice() {
+
+function findEnglishVoice() {
             if (!synth) return;
             const voices = synth.getVoices();
             for (let v of voices) {
@@ -644,14 +641,6 @@
                 utter.pitch = 1.0;
                 synth.speak(utter);
             });
-        }
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'ja-JP';
-            utter.rate = 0.85;
-            utter.pitch = 1.0;
-            if (japaneseVoice) utter.voice = japaneseVoice;
-            synth.speak(utter);
         }
         
         function speakEnglish(text) {

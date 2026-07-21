@@ -116,3 +116,50 @@
     .status-text { color: #66BB6A !important; }
     .status-text.waiting { color: #FF8C42 !important; }
 }
+
+/* 童话故事深色模式 */
+@media (prefers-color-scheme: dark) {
+    .card-summary, .card-story, .card-moral, .card-emoji {
+        background: #2a2a3e !important;
+        color: #ffffff !important;
+    }
+    .card-summary strong, .card-moral strong, .card-story strong {
+        color: #ffffff !important;
+    }
+    .card-subtitle {
+        color: #cccccc !important;
+    }
+    .keyword {
+        background: #3a3a55 !important;
+        color: #ffffff !important;
+    }
+}
+
+/* 钢琴页面深色模式 */
+@media (prefers-color-scheme: dark) {
+    .song-panel {
+        background: #1e1e2f !important;
+    }
+    .song-btn {
+        background: #2a2a3e !important;
+        color: #ffffff !important;
+    }
+    .song-btn.active {
+        background: #FF8C42 !important;
+        color: #ffffff !important;
+    }
+    .note {
+        background: #3a3a55 !important;
+        color: #FF8C42 !important;
+    }
+    .note.active {
+        background: #FF8C42 !important;
+        color: #ffffff !important;
+    }
+    .assist-toggle, .follow-toggle {
+        background: #2a2a3e !important;
+        color: #ffffff !important;
+    }
+    .status-text { color: #66BB6A !important; }
+    .status-text.waiting { color: #FF8C42 !important; }
+}
