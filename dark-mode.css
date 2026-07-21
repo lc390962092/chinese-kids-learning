@@ -77,3 +77,42 @@
         color: #cccccc !important;
     }
 }
+
+/* 首页卡片在深色模式下：去掉 inline 渐变，用统一深色背景 */
+@media (prefers-color-scheme: dark) {
+    .module-card {
+        background: #2a2a3e !important;
+        border: 1px solid #444466 !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+    }
+    .module-card:active {
+        background: #353550 !important;
+    }
+    .module-icon {
+        background: #3a3a55 !important;
+    }
+    .module-arrow {
+        color: #aaaaaa !important;
+    }
+    .footer {
+        color: #8888aa !important;
+    }
+    /* piano 页面 */
+    .song-panel {
+        background: #1e1e2f !important;
+    }
+    .song-btn {
+        background: #2a2a3e !important;
+        color: #ffffff !important;
+    }
+    .song-btn.active {
+        background: #FF8C42 !important;
+        color: #ffffff !important;
+    }
+    .assist-toggle, .follow-toggle {
+        background: #2a2a3e !important;
+        color: #ffffff !important;
+    }
+    .status-text { color: #66BB6A !important; }
+    .status-text.waiting { color: #FF8C42 !important; }
+}
