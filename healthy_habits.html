@@ -57,49 +57,7 @@
         .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
         @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } .card-japanese { font-size: 20px; } .btn { padding: 10px 16px; font-size: 15px; } }
     </style>
-    <style>
-        /* 深色模式自适应：跟随系统/浏览器主题设置 */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
-                color: #f0f0f0;
-            }
-            .header h1, .header p, .mascot-bubble, .animal-word, .item-word, .shape-word, .color-word, .number-word, .career-word, .healthy-word, .fruit-word, .vehicle-word, .title, h1, h2, h3, p {
-                color: #f0f0f0;
-            }
-            .mascot-bubble {
-                background: #2a2a3e;
-                color: #f0f0f0;
-            }
-            .mascot-bubble::after {
-                border-color: #2a2a3e transparent transparent transparent;
-            }
-            .main-stage, .card, .category-card, .game-card, .module-card, .start-content, .modal-content, .result-panel {
-                background: #232336 !important;
-                color: #f0f0f0;
-            }
-            .back-bar, a {
-                color: #cccccc;
-            }
-            .btn {
-                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            }
-            .hint, .subtitle, .desc {
-                color: #aaaaaa;
-            }
-            .progress-dot {
-                background: #555;
-            }
-            .progress-dot.active {
-                background: #FF6B6B;
-            }
-            input, select, textarea {
-                background: #2a2a3e;
-                color: #f0f0f0;
-                border-color: #444;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
     <a href="index.html" class="back-bar">← 回首页</a>

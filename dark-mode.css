@@ -1,0 +1,79 @@
+/* 深色模式自适应：跟随系统/浏览器主题设置 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #121212 !important;
+        color: #ffffff;
+    }
+
+    /* 所有文字强制变白 */
+    *, *::before, *::after {
+        color: #ffffff !important;
+    }
+
+    /* 链接 */
+    a, a:visited, a:hover, a:active {
+        color: #80d8ff !important;
+    }
+
+    /* 顶部栏、返回栏 */
+    .back-bar {
+        background: rgba(30, 30, 45, 0.9) !important;
+        color: #ffffff !important;
+    }
+
+    /* 主内容卡片 */
+    .main-stage, .card, .category-card, .game-card, .module-card, .start-content, .modal-content, .result-panel, .mascot-bubble {
+        background: #1e1e2f !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    /* 吉祥物气泡三角 */
+    .mascot-bubble::after {
+        border-color: #1e1e2f transparent transparent transparent !important;
+    }
+
+    /* 图片容器：加浅色边框/背景，让图片不糊进黑背景 */
+    .animal-image, .vehicle-image, .fruit-image, .career-image, .healthy-image, .shape-image, .color-image, .number-image, .card-image, .category-image, .game-image, .module-image {
+        background: #2a2a3e !important;
+        border-radius: 20px !important;
+        padding: 10px !important;
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .card-image-wrapper, .image-wrapper, .img-wrapper {
+        background: #2a2a3e !important;
+        border-radius: 24px !important;
+        padding: 12px !important;
+    }
+
+    /* 按钮：保持彩色但文字强制白/深 */
+    .btn, button {
+        color: #ffffff !important;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.5) !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .btn-sound, .btn-primary, .btn-word, .btn-secondary, .btn-japanese, .btn-english, .btn-next {
+        color: #ffffff !important;
+    }
+
+    /* 进度点 */
+    .progress-dot {
+        background: #555577 !important;
+    }
+    .progress-dot.active {
+        background: #ff6b6b !important;
+    }
+
+    /* 输入框 */
+    input, select, textarea {
+        background: #2a2a3e !important;
+        color: #ffffff !important;
+        border-color: #555577 !important;
+    }
+
+    /* 提示、小字 */
+    .hint, .subtitle, .desc, .header p, .small {
+        color: #cccccc !important;
+    }
+}
