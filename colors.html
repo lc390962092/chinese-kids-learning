@@ -148,6 +148,14 @@
             synth.speak(utter);
         }
 
+        
+        function playJapanese(index) {
+            const item = items[index];
+            const mp3Path = `assets/audio/colors/japanese/${item.file}_japanese.mp3`;
+            speakWithFallback(item.japanese_reading, mp3Path);
+            showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
+        }
+
         function speakJapanese(text) {
             if (!synth || !speechEnabled) {
                 showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
@@ -225,7 +233,7 @@
                     <div class="keywords">${keywords}</div>
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="playWord(${i})">🔊 读颜色</button>
-                        <button class="btn btn-japanese" onclick="speakJapanese(items[${i}].japanese)">🇯🇵 日语</button>
+                        <button class="btn btn-japanese" onclick="playJapanese(${i})">🇯🇵 日语</button>
                         <button class="btn btn-english" onclick="playEnglish(${i})">🇺🇸 英语</button>
                         <button class="btn btn-secondary" onclick="playSentence(${i})">📝 读句子</button>
                     </div>

@@ -500,7 +500,7 @@
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="playWord(${index})">🔊 读词语</button>
                         <button class="btn btn-secondary" onclick="playSentence(${index})">📝 读句子</button>
-                        <button class="btn btn-japanese" onclick="speakJapanese('${item.japanese}')">🇯🇵 日语</button>
+                        <button class="btn btn-japanese" onclick="playJapanese(${index})">🇯🇵 日语</button>
                         <button class="btn btn-english" onclick="speakEnglish(${index})">🇺🇸 英语</button>
                     </div>
                     <div class="nav-btns">
@@ -515,6 +515,14 @@
             });
         }
         
+        
+        function playJapanese(index) {
+            const item = items[index];
+            const mp3Path = `assets/audio/career/japanese/${item.file}_japanese.mp3`;
+            speakWithFallback(item.japanese_reading, mp3Path);
+            showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
+        }
+
         function speakJapanese(text) {
             if (!synth || !speechEnabled) {
                 showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
