@@ -452,11 +452,24 @@
 
         let japaneseVoice = null;
         
-        function findJapaneseVoice(){
+        function findJapaneseVoice() {
             if (!synth) return;
             const voices = synth.getVoices();
+            // 优先 ja-JP，其次任何 ja 开头的日语语音
+            let best = null;
             for (let v of voices) {
-                if (v.lang.startsWith('ja')) { japaneseVoice = v; break; }
+                if (v.lang === 'ja-JP') { best = v; break; }
+            }
+            if (!best) {
+                for (let v of voices) {
+                    if (v.lang.startsWith('ja')) { best = v; break; }
+                }
+            }
+            japaneseVoice = best;
+            if (!japaneseVoice) {
+                console.log('未找到日语语音包，日语朗读将使用在线 TTS 或系统默认语音');
+            }
+        }
             }
         }
         
@@ -491,7 +504,7 @@
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="playWord(${index})">🔊 读词语</button>
                         <button class="btn btn-secondary" onclick="playSentence(${index})">📝 读句子</button>
-                        <button class="btn btn-japanese" onclick="speakJapanese(${index})">🇯🇵 日语</button>
+                        <button class="btn btn-japanese" onclick="speakJapanese('${item.japanese}')">🇯🇵 日语</button>
                         <button class="btn btn-english" onclick="speakEnglish(${index})">🇺🇸 英语</button>
                     </div>
                     <div class="nav-btns">
@@ -506,17 +519,36 @@
             });
         }
         
-        function speakJapanese(index) {
-            if (!synth) return;
-            const item = items[index];
+        function speakJapanese(text) {
+            if (!synth || !speechEnabled) {
+                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
+                return;
+            }
             synth.cancel();
-            const utter = new SpeechSynthesisUtterance(item.japanese);
-            utter.lang = 'ja-JP';
-            utter.rate = 0.8;
-            utter.pitch = 1.1;
-            if (japaneseVoice) utter.voice = japaneseVoice;
-            synth.speak(utter);
-            showMascot(item.japanese + '（' + item.japanese_reading + '）');
+
+            // 如果系统有日语语音包，优先使用本地 TTS
+            if (japaneseVoice) {
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = 'ja-JP';
+                utter.rate = 0.85;
+                utter.pitch = 1.0;
+                utter.voice = japaneseVoice;
+                synth.speak(utter);
+                return;
+            }
+
+            // 没有日语语音包时，尝试 Google Translate 在线 TTS（仅日语）
+            const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q=' + encodeURIComponent(text);
+            const audio = new Audio(url);
+            audio.play().catch((err) => {
+                console.log('在线日语 TTS 播放失败:', err);
+                // 最后再尝试系统默认语音，让用户至少能听到内容（但可能是中文发音）
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = 'ja-JP';
+                utter.rate = 0.85;
+                utter.pitch = 1.0;
+                synth.speak(utter);
+            });
         }
         
         function speakEnglish(index) {
