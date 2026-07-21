@@ -367,7 +367,8 @@
 
         function playJapaneseWord(index) {
             const item = filteredItems[index];
-            speakJapanese(`${item.japanese}、${item.japanese_reading}`);
+            const mp3Path = `assets/audio/fruit_vegetable/japanese/${item.file}_japanese.mp3`;
+            speakWithFallback(item.japanese_reading, mp3Path);
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
