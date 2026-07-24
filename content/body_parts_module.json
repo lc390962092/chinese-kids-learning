@@ -1,0 +1,218 @@
+{
+  "module": "body_parts",
+  "title": "我的身体",
+  "target_age": "3-6",
+  "lesson_duration_min": 5,
+  "words": [
+    {
+      "word": "头",
+      "pinyin": "tóu",
+      "english": "head",
+      "japanese": "頭",
+      "japanese_reading": "あたま",
+      "summary": "我用头思考问题，洗头时要把泡沫冲干净。",
+      "words": [
+        "头",
+        "头发",
+        "洗头",
+        "思考"
+      ]
+    },
+    {
+      "word": "眼睛",
+      "pinyin": "yǎn jing",
+      "english": "eyes",
+      "japanese": "目",
+      "japanese_reading": "め",
+      "summary": "眼睛亮亮的，我用眼睛看绘本和远方的山。",
+      "words": [
+        "眼睛",
+        "看",
+        "绘本",
+        "亮亮"
+      ]
+    },
+    {
+      "word": "耳朵",
+      "pinyin": "ěr duo",
+      "english": "ears",
+      "japanese": "耳",
+      "japanese_reading": "みみ",
+      "summary": "耳朵能听到小鸟唱歌，也能听到妈妈叫我吃饭。",
+      "words": [
+        "耳朵",
+        "听",
+        "小鸟",
+        "妈妈"
+      ]
+    },
+    {
+      "word": "鼻子",
+      "pinyin": "bí zi",
+      "english": "nose",
+      "japanese": "鼻",
+      "japanese_reading": "はな",
+      "summary": "鼻子闻到花香，也闻到米饭的香味，不要用手挖鼻子。",
+      "words": [
+        "鼻子",
+        "闻",
+        "花香",
+        "米饭"
+      ]
+    },
+    {
+      "word": "嘴巴",
+      "pinyin": "zuǐ ba",
+      "english": "mouth",
+      "japanese": "口",
+      "japanese_reading": "くち",
+      "summary": "嘴巴用来吃饭和说话，吃完东西要擦一擦嘴巴。",
+      "words": [
+        "嘴巴",
+        "吃饭",
+        "说话",
+        "擦"
+      ]
+    },
+    {
+      "word": "牙齿",
+      "pinyin": "yá chǐ",
+      "english": "teeth",
+      "japanese": "歯",
+      "japanese_reading": "は",
+      "summary": "牙齿能咬碎食物，每天早晚要用牙刷刷牙。",
+      "words": [
+        "牙齿",
+        "牙刷",
+        "刷牙",
+        "咬碎"
+      ]
+    },
+    {
+      "word": "舌头",
+      "pinyin": "shé tou",
+      "english": "tongue",
+      "japanese": "舌",
+      "japanese_reading": "した",
+      "summary": "舌头能尝到甜和咸，说话时也靠舌头帮忙。",
+      "words": [
+        "舌头",
+        "尝",
+        "甜",
+        "咸"
+      ]
+    },
+    {
+      "word": "手",
+      "pinyin": "shǒu",
+      "english": "hand",
+      "japanese": "手",
+      "japanese_reading": "て",
+      "summary": "我有两只手，能拿筷子、画画，还能帮妈妈拿东西。",
+      "words": [
+        "手",
+        "两只手",
+        "筷子",
+        "画画"
+      ]
+    },
+    {
+      "word": "手指",
+      "pinyin": "shǒu zhǐ",
+      "english": "fingers",
+      "japanese": "指",
+      "japanese_reading": "ゆび",
+      "summary": "一只手有五根手指，手指能扣扣子、翻书页。",
+      "words": [
+        "手指",
+        "五根",
+        "扣子",
+        "翻书"
+      ]
+    },
+    {
+      "word": "脚",
+      "pinyin": "jiǎo",
+      "english": "foot",
+      "japanese": "足",
+      "japanese_reading": "あし",
+      "summary": "我用脚走路和跑步，小脚脏了要洗干净。",
+      "words": [
+        "脚",
+        "走路",
+        "跑步",
+        "干净"
+      ]
+    },
+    {
+      "word": "腿",
+      "pinyin": "tuǐ",
+      "english": "leg",
+      "japanese": "脚",
+      "japanese_reading": "あし",
+      "summary": "腿很有力气，能蹲下来、站起来，还能踢球。",
+      "words": [
+        "腿",
+        "力气",
+        "蹲下",
+        "踢球"
+      ]
+    },
+    {
+      "word": "肚子",
+      "pinyin": "dù zi",
+      "english": "tummy",
+      "japanese": "お腹",
+      "japanese_reading": "おなか",
+      "summary": "肚子饿了会咕咕叫，吃饱后肚子圆鼓鼓的。",
+      "words": [
+        "肚子",
+        "饿了",
+        "吃饱",
+        "圆鼓鼓"
+      ]
+    },
+    {
+      "word": "后背",
+      "pinyin": "hòu bèi",
+      "english": "back",
+      "japanese": "背中",
+      "japanese_reading": "せなか",
+      "summary": "后背要挺直，写字和看书时不能弯着腰。",
+      "words": [
+        "后背",
+        "挺直",
+        "写字",
+        "弯着腰"
+      ]
+    },
+    {
+      "word": "胳膊",
+      "pinyin": "gē bo",
+      "english": "arm",
+      "japanese": "腕",
+      "japanese_reading": "うで",
+      "summary": "胳膊能伸得高高的，可以拿书架上的书，还能拥抱。",
+      "words": [
+        "胳膊",
+        "高高",
+        "书架",
+        "拥抱"
+      ]
+    },
+    {
+      "word": "肩膀",
+      "pinyin": "jiān bǎng",
+      "english": "shoulders",
+      "japanese": "肩",
+      "japanese_reading": "かた",
+      "summary": "爸爸把我放在肩膀上，我能看到更远的地方。",
+      "words": [
+        "肩膀",
+        "爸爸",
+        "远处",
+        "地方"
+      ]
+    }
+  ]
+}

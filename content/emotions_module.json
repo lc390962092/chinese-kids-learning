@@ -1,0 +1,176 @@
+{
+  "module": "emotions",
+  "title": "我的心情",
+  "target_age": "3-6",
+  "lesson_duration_min": 5,
+  "words": [
+    {
+      "word": "开心",
+      "pinyin": "kāi xīn",
+      "english": "happy",
+      "japanese": "嬉しい",
+      "japanese_reading": "うれしい",
+      "summary": "收到礼物我很开心，笑起来眼睛弯弯的。",
+      "words": [
+        "开心",
+        "礼物",
+        "笑",
+        "眼睛"
+      ]
+    },
+    {
+      "word": "难过",
+      "pinyin": "nán guò",
+      "english": "sad",
+      "japanese": "悲しい",
+      "japanese_reading": "かなしい",
+      "summary": "玩具坏了，我有点难过，妈妈抱一抱就好多了。",
+      "words": [
+        "难过",
+        "玩具",
+        "坏了",
+        "抱抱"
+      ]
+    },
+    {
+      "word": "生气",
+      "pinyin": "shēng qì",
+      "english": "angry",
+      "japanese": "怒った",
+      "japanese_reading": "おこった",
+      "summary": "弟弟抢了我的积木，我很生气，但我可以深呼吸。",
+      "words": [
+        "生气",
+        "积木",
+        "抢",
+        "深呼吸"
+      ]
+    },
+    {
+      "word": "害怕",
+      "pinyin": "hài pà",
+      "english": "scared",
+      "japanese": "怖い",
+      "japanese_reading": "こわい",
+      "summary": "夜里听到雷声，我有点害怕，拉着爸爸的手就不怕了。",
+      "words": [
+        "害怕",
+        "雷声",
+        "夜里",
+        "爸爸"
+      ]
+    },
+    {
+      "word": "惊讶",
+      "pinyin": "jīng yà",
+      "english": "surprised",
+      "japanese": "驚いた",
+      "japanese_reading": "びっくりした",
+      "summary": "打开盒子，里面跳出一只小青蛙，大家都很惊讶。",
+      "words": [
+        "惊讶",
+        "盒子",
+        "青蛙",
+        "跳出来"
+      ]
+    },
+    {
+      "word": "害羞",
+      "pinyin": "hài xiū",
+      "english": "shy",
+      "japanese": "恥ずかしい",
+      "japanese_reading": "はずかしい",
+      "summary": "第一次见到新朋友，我有点害羞，慢慢说你好就可以。",
+      "words": [
+        "害羞",
+        "新朋友",
+        "你好",
+        "慢慢"
+      ]
+    },
+    {
+      "word": "自豪",
+      "pinyin": "zì háo",
+      "english": "proud",
+      "japanese": "誇りに思う",
+      "japanese_reading": "ほこりにおもう",
+      "summary": "我自己把鞋带系好了，感到很自豪，爸爸夸我真棒。",
+      "words": [
+        "自豪",
+        "鞋带",
+        "系好",
+        "真棒"
+      ]
+    },
+    {
+      "word": "无聊",
+      "pinyin": "wú liáo",
+      "english": "bored",
+      "japanese": "退屈",
+      "japanese_reading": "たいくつ",
+      "summary": "下雨天不能出去玩，我觉得有点无聊，可以读一本书。",
+      "words": [
+        "无聊",
+        "下雨天",
+        "出去玩",
+        "读书"
+      ]
+    },
+    {
+      "word": "困倦",
+      "pinyin": "kùn juàn",
+      "english": "sleepy",
+      "japanese": "眠い",
+      "japanese_reading": "ねむい",
+      "summary": "到了睡觉时间，我眼睛睁不开，该上床睡觉了。",
+      "words": [
+        "困倦",
+        "睡觉",
+        "眼睛",
+        "上床"
+      ]
+    },
+    {
+      "word": "兴奋",
+      "pinyin": "xīng fèn",
+      "english": "excited",
+      "japanese": "興奮した",
+      "japanese_reading": "こうふんした",
+      "summary": "明天要去游乐园，我兴奋得睡不着觉。",
+      "words": [
+        "兴奋",
+        "游乐园",
+        "明天",
+        "睡不着觉"
+      ]
+    },
+    {
+      "word": "失望",
+      "pinyin": "shī wàng",
+      "english": "disappointed",
+      "japanese": "がっかりした",
+      "japanese_reading": "がっかりした",
+      "summary": "蛋糕掉在地上了，我有点失望，但还可以再吃一小块。",
+      "words": [
+        "失望",
+        "蛋糕",
+        "地上",
+        "一小块"
+      ]
+    },
+    {
+      "word": "安心",
+      "pinyin": "ān xīn",
+      "english": "relieved",
+      "japanese": "安心した",
+      "japanese_reading": "あんしんした",
+      "summary": "找不到的小狗终于回来了，我感到很安心。",
+      "words": [
+        "安心",
+        "小狗",
+        "回来",
+        "终于"
+      ]
+    }
+  ]
+}

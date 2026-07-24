@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 我的身体</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: linear-gradient(135deg, #E3F2FD 0%, #F3E5F5 100%); min-height: 100vh; overflow-x: hidden; }
+        .header { text-align: center; padding: 20px 10px 10px; }
+        .header h1 { color: #7E57C2; font-size: 28px; margin-bottom: 5px; }
+        .header p { color: #888; font-size: 14px; }
+        .mascot { text-align: center; padding: 10px; }
+        .mascot-bubble { display: inline-block; background: white; border-radius: 25px; padding: 12px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: #555; font-size: 16px; max-width: 80%; position: relative; margin-bottom: 15px; }
+        .mascot-bubble::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-width: 10px 10px 0; border-style: solid; border-color: white transparent transparent transparent; }
+        .mascot-avatar { width: 60px; height: 60px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); touch-action: pan-y; }
+        .card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
+        .card.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-emoji { width: 200px; height: 200px; font-size: 130px; line-height: 200px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; }
+        .card-emoji:active { transform: scale(0.95); }
+        .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
+        .card-subtitle { font-size: 22px; color: #888; margin-bottom: 5px; }
+        .card-japanese { font-size: 24px; color: #555; margin: 5px 0 0; font-weight: bold; }
+        .card-japanese-reading { font-size: 16px; color: #999; margin-bottom: 12px; }
+        .card-english { font-size: 26px; color: #3F51B5; margin: 5px 0 0; font-weight: bold; }
+        .card-text { background: #f8f8f8; border-radius: 20px; padding: 18px 20px; margin: 10px auto 15px; max-width: 90%; text-align: left; font-size: 18px; line-height: 1.7; color: #444; }
+        .keywords { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 18px 0; padding: 0 10px; }
+        .keyword { background: #f0f0f0; color: #555; padding: 8px 16px; border-radius: 20px; font-size: 16px; cursor: pointer; }
+        .keyword:active { background: #ddd; }
+        .btn-group { display: flex; justify-content: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { border: none; border-radius: 25px; padding: 12px 20px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .btn:active { transform: scale(0.95); }
+        .btn-primary { background: #7E57C2; }
+        .btn-secondary { background: #4ECDC4; }
+        .btn-japanese { background: #FF7043; }
+        .btn-english { background: #3F51B5; }
+        .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .nav-btn { background: #D1C4E9; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .nav-btn:active { transform: scale(0.95); }
+        .progress { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+        .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
+        .progress-dot.active { background: #7E57C2; }
+        .swipe-hint { color: #bbb; font-size: 12px; margin-top: 8px; text-align: center; }
+        .start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #E3F2FD 0%, #F3E5F5 100%); z-index: 1000; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .start-content { background: white; padding: 40px 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 320px; width: 90%; }
+        .start-panda { font-size: 80px; margin-bottom: 10px; }
+        .start-content h2 { color: #7E57C2; font-size: 32px; margin-bottom: 10px; }
+        .start-content p { color: #888; font-size: 16px; margin-bottom: 25px; }
+        .start-btn { background: #7E57C2; color: white; border: none; border-radius: 30px; padding: 15px 50px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .start-btn:active { transform: scale(0.95); }
+        .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
+        .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
+        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }
+    </style>
+    <link rel="stylesheet" href="dark-mode.css">
+</head>
+<body>
+    <a href="index.html" class="back-bar">← 回首页</a>
+    <div class="start-overlay" id="startOverlay">
+        <div class="start-content">
+            <div class="start-panda">🐼</div>
+            <h2>小豆身体部位</h2>
+            <p>一起认识我们的身体</p>
+            <button class="start-btn" onclick="startApp()">开始学习</button>
+        </div>
+    </div>
+    <div class="header">
+        <h1>🐼 小豆中文</h1>
+        <p>今天我们来学习身体部位</p>
+    </div>
+    <div class="mascot">
+        <div class="mascot-bubble" id="mascotText">你好！点击卡片，听听怎么读～左右滑动可以切换</div>
+        <div class="mascot-avatar">🐼</div>
+    </div>
+    <div class="main-stage" id="mainStage">
+        <div id="cards"></div>
+        <div class="progress" id="progressDots"></div>
+        <div class="swipe-hint">← 左右滑动切换卡片 →</div>
+        <a href="index.html" class="back-home">⬅️ 返回首页</a>
+    </div>
+    <script>
+        const items = [
+            { word: "头", pinyin: "tóu", english: "head", japanese: "頭", japanese_reading: "あたま", summary: "我用头思考问题，洗头时要把泡沫冲干净。", words: ['头', '头发', '洗头', '思考'] },
+            { word: "眼睛", pinyin: "yǎn jing", english: "eyes", japanese: "目", japanese_reading: "め", summary: "眼睛亮亮的，我用眼睛看绘本和远方的山。", words: ['眼睛', '看', '绘本', '亮亮'] },
+            { word: "耳朵", pinyin: "ěr duo", english: "ears", japanese: "耳", japanese_reading: "みみ", summary: "耳朵能听到小鸟唱歌，也能听到妈妈叫我吃饭。", words: ['耳朵', '听', '小鸟', '妈妈'] },
+            { word: "鼻子", pinyin: "bí zi", english: "nose", japanese: "鼻", japanese_reading: "はな", summary: "鼻子闻到花香，也闻到米饭的香味，不要用手挖鼻子。", words: ['鼻子', '闻', '花香', '米饭'] },
+            { word: "嘴巴", pinyin: "zuǐ ba", english: "mouth", japanese: "口", japanese_reading: "くち", summary: "嘴巴用来吃饭和说话，吃完东西要擦一擦嘴巴。", words: ['嘴巴', '吃饭', '说话', '擦'] },
+            { word: "牙齿", pinyin: "yá chǐ", english: "teeth", japanese: "歯", japanese_reading: "は", summary: "牙齿能咬碎食物，每天早晚要用牙刷刷牙。", words: ['牙齿', '牙刷', '刷牙', '咬碎'] },
+            { word: "舌头", pinyin: "shé tou", english: "tongue", japanese: "舌", japanese_reading: "した", summary: "舌头能尝到甜和咸，说话时也靠舌头帮忙。", words: ['舌头', '尝', '甜', '咸'] },
+            { word: "手", pinyin: "shǒu", english: "hand", japanese: "手", japanese_reading: "て", summary: "我有两只手，能拿筷子、画画，还能帮妈妈拿东西。", words: ['手', '两只手', '筷子', '画画'] },
+            { word: "手指", pinyin: "shǒu zhǐ", english: "fingers", japanese: "指", japanese_reading: "ゆび", summary: "一只手有五根手指，手指能扣扣子、翻书页。", words: ['手指', '五根', '扣子', '翻书'] },
+            { word: "脚", pinyin: "jiǎo", english: "foot", japanese: "足", japanese_reading: "あし", summary: "我用脚走路和跑步，小脚脏了要洗干净。", words: ['脚', '走路', '跑步', '干净'] },
+            { word: "腿", pinyin: "tuǐ", english: "leg", japanese: "脚", japanese_reading: "あし", summary: "腿很有力气，能蹲下来、站起来，还能踢球。", words: ['腿', '力气', '蹲下', '踢球'] },
+            { word: "肚子", pinyin: "dù zi", english: "tummy", japanese: "お腹", japanese_reading: "おなか", summary: "肚子饿了会咕咕叫，吃饱后肚子圆鼓鼓的。", words: ['肚子', '饿了', '吃饱', '圆鼓鼓'] },
+            { word: "后背", pinyin: "hòu bèi", english: "back", japanese: "背中", japanese_reading: "せなか", summary: "后背要挺直，写字和看书时不能弯着腰。", words: ['后背', '挺直', '写字', '弯着腰'] },
+            { word: "胳膊", pinyin: "gē bo", english: "arm", japanese: "腕", japanese_reading: "うで", summary: "胳膊能伸得高高的，可以拿书架上的书，还能拥抱。", words: ['胳膊', '高高', '书架', '拥抱'] },
+            { word: "肩膀", pinyin: "jiān bǎng", english: "shoulders", japanese: "肩", japanese_reading: "かた", summary: "爸爸把我放在肩膀上，我能看到更远的地方。", words: ['肩膀', '爸爸', '远处', '地方'] }
+        ];
+
+        let currentIndex = 0;
+        let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+        const SWIPE_THRESHOLD = 50;
+
+        const synth = window.speechSynthesis;
+        let chineseVoice = null;
+        let japaneseVoice = null;
+        let englishVoice = null;
+        let speechEnabled = true;
+
+        function findChineseVoice(){
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) { if (v.lang.startsWith('zh')) { chineseVoice = v; break; } }
+        }
+        function findJapaneseVoice() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            let best = null;
+            for (let v of voices) { if (v.lang === 'ja-JP') { best = v; break; } }
+            if (!best) { for (let v of voices) { if (v.lang.startsWith('ja')) { best = v; break; } } }
+            japaneseVoice = best;
+        }
+        function findEnglishVoice(){
+            if (!synth) return;
+            const voices = synth.getVoices();
+            for (let v of voices) { if (v.lang.startsWith('en')) { englishVoice = v; break; } }
+        }
+        if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = function() { findChineseVoice(); findJapaneseVoice(); findEnglishVoice(); };
+        findChineseVoice();
+        findJapaneseVoice();
+        findEnglishVoice();
+
+        function speak(text, rate = 0.82){
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'zh-CN'; utter.rate = rate; utter.pitch = 1.1;
+            if (chineseVoice) utter.voice = chineseVoice;
+            synth.speak(utter);
+        }
+
+        function playAudio(path) {
+            return new Promise((resolve, reject) => {
+                const audio = new Audio(path);
+                audio.onended = resolve;
+                audio.onerror = reject;
+                audio.play().catch(reject);
+            });
+        }
+
+        function speakWithFallback(text, mp3Path, rate = 0.8) {
+            if (mp3Path) {
+                playAudio(mp3Path).catch(() => speak(text, rate));
+            } else {
+                speak(text, rate);
+            }
+        }
+
+        function playJapanese(index) {
+            const item = items[index];
+            const mp3Path = `assets/audio/body_parts/japanese/${item.english.replace(/ /g, '_')}_japanese.mp3`;
+            speakWithFallback(item.japanese_reading, mp3Path);
+            showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
+        }
+
+        function speakJapanese(text) {
+            if (!synth || !speechEnabled) {
+                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
+                return;
+            }
+            synth.cancel();
+            const kanaOnly = text.replace(/[^\u3040-\u309F\u30A0-\u30FF\uFF10-\uFF19\u3000-\u303F\s]/g, '').replace(/[\u3001\u3002\uff0c\uff0e]/g, ' ').trim();
+            const toSpeak = kanaOnly || text;
+            if (japaneseVoice && japaneseVoice.lang && japaneseVoice.lang.startsWith('ja')) {
+                const utter = new SpeechSynthesisUtterance(toSpeak);
+                utter.lang = 'ja-JP';
+                utter.rate = 0.82;
+                utter.pitch = 1.05;
+                utter.voice = japaneseVoice;
+                synth.speak(utter);
+                return;
+            }
+            const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q=' + encodeURIComponent(toSpeak);
+            const audio = new Audio(url);
+            audio.play().catch((err) => {
+                console.log('在线日语 TTS 播放失败:', err);
+                showMascot("小提示：当前设备没有日语语音包，所以日语念不出来。建议用电脑或换浏览器试试～");
+            });
+        }
+
+        function speakEnglish(text, rate = 0.85){
+            if (!synth) return;
+            synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'en-US'; utter.rate = rate; utter.pitch = 1.0;
+            if (englishVoice) utter.voice = englishVoice;
+            synth.speak(utter);
+        }
+
+        function showMascot(text){ document.getElementById('mascotText').textContent = text; }
+
+        function playWord(index){
+            const item = items[index];
+            const mp3Path = `assets/audio/body_parts/${item.english.replace(/ /g, '_')}_word.mp3`;
+            speakWithFallback(item.word + '，' + item.pinyin, mp3Path);
+            showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
+        }
+
+        function playSentence(index){
+            const item = items[index];
+            const mp3Path = `assets/audio/body_parts/sentences/${item.english.replace(/ /g, '_')}_sentence.mp3`;
+            speakWithFallback(item.summary, mp3Path);
+            showMascot(item.summary);
+        }
+
+        function playEnglish(index){
+            const item = items[index];
+            speakEnglish(item.english);
+            showMascot('英语说：' + item.english);
+        }
+
+        function renderCards(){
+            const container = document.getElementById('cards');
+            container.innerHTML = items.map((item, i) => {
+                const keywords = item.words.map(w => `<span class="keyword" onclick="speak('${w}')">${w}</span>`).join('');
+                return `<div class="card ${i===0?'active':''}">
+                    <div class="card-emoji" onclick="playWord(${i})">${item.emoji || '🧍'}</div>
+                    <div class="card-title">${item.word}</div>
+                    <div class="card-subtitle">${item.pinyin}</div>
+                    <div class="card-japanese">${item.japanese}</div>
+                    <div class="card-japanese-reading">${item.japanese_reading}</div>
+                    <div class="card-english">${item.english}</div>
+                    <div class="card-text">${item.summary}</div>
+                    <div class="keywords">${keywords}</div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="playWord(${i})">🔊 读词语</button>
+                        <button class="btn btn-japanese" onclick="playJapanese(${i})">🇯🇵 日语</button>
+                        <button class="btn btn-english" onclick="playEnglish(${i})">🇺🇸 英语</button>
+                        <button class="btn btn-secondary" onclick="playSentence(${i})">📝 读句子</button>
+                    </div>
+                    <div class="nav-btns">
+                        <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
+                        <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderProgress(){
+            const dots = document.getElementById('progressDots');
+            dots.innerHTML = items.map((_, i) => `<div class="progress-dot ${i===0?'active':''}"></div>`).join('');
+        }
+
+        function switchCard(direction){
+            const cards = document.querySelectorAll('.card');
+            const dots = document.querySelectorAll('.progress-dot');
+            cards[currentIndex].classList.remove('active');
+            dots[currentIndex].classList.remove('active');
+            if (direction === 'next') currentIndex = (currentIndex + 1) % items.length;
+            else currentIndex = (currentIndex - 1 + items.length) % items.length;
+            cards[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+            const item = items[currentIndex];
+            speak(item.word);
+            showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
+        }
+
+        function nextItem(){ switchCard('next'); }
+        function prevItem(){ switchCard('prev'); }
+
+        function startApp(){
+            document.getElementById('startOverlay').style.display = 'none';
+            if (items.length > 0){
+                speak('你好！我是小豆。今天我们来认识身体部位。');
+                showMascot('你好！我是小豆。今天我们来认识身体部位。');
+            }
+        }
+
+        const mainStage = document.getElementById('mainStage');
+        mainStage.addEventListener('touchstart', function(e){
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchStartTime = Date.now();
+        }, { passive: true });
+        mainStage.addEventListener('touchend', function(e){
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const diffX = touchStartX - endX;
+            const diffY = touchStartY - endY;
+            const timeDiff = Date.now() - touchStartTime;
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > SWIPE_THRESHOLD && timeDiff < 500){
+                if (diffX > 0) nextItem(); else prevItem();
+            }
+        }, { passive: true });
+
+        renderCards();
+        renderProgress();
+    </script>
+</body>
+</html>
