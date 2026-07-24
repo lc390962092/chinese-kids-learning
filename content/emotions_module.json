@@ -16,7 +16,9 @@
         "礼物",
         "笑",
         "眼睛"
-      ]
+      ],
+      "file": "happy",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine happy emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "难过",
@@ -30,7 +32,9 @@
         "玩具",
         "坏了",
         "抱抱"
-      ]
+      ],
+      "file": "sad",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine sad emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "生气",
@@ -44,7 +48,9 @@
         "积木",
         "抢",
         "深呼吸"
-      ]
+      ],
+      "file": "angry",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine angry emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "害怕",
@@ -58,7 +64,9 @@
         "雷声",
         "夜里",
         "爸爸"
-      ]
+      ],
+      "file": "scared",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine scared emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "惊讶",
@@ -72,7 +80,9 @@
         "盒子",
         "青蛙",
         "跳出来"
-      ]
+      ],
+      "file": "surprised",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine surprised emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "害羞",
@@ -86,7 +96,9 @@
         "新朋友",
         "你好",
         "慢慢"
-      ]
+      ],
+      "file": "shy",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine shy emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "自豪",
@@ -100,7 +112,9 @@
         "鞋带",
         "系好",
         "真棒"
-      ]
+      ],
+      "file": "proud",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine proud emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "无聊",
@@ -114,7 +128,9 @@
         "下雨天",
         "出去玩",
         "读书"
-      ]
+      ],
+      "file": "bored",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine bored emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "困倦",
@@ -128,7 +144,9 @@
         "睡觉",
         "眼睛",
         "上床"
-      ]
+      ],
+      "file": "sleepy",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine sleepy emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "兴奋",
@@ -142,7 +160,9 @@
         "游乐园",
         "明天",
         "睡不着觉"
-      ]
+      ],
+      "file": "excited",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine excited emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "失望",
@@ -156,7 +176,9 @@
         "蛋糕",
         "地上",
         "一小块"
-      ]
+      ],
+      "file": "disappointed",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine disappointed emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     },
     {
       "word": "安心",
@@ -170,7 +192,9 @@
         "小狗",
         "回来",
         "终于"
-      ]
+      ],
+      "file": "relieved",
+      "image_prompt": "A realistic photograph of a young child's face showing genuine relieved emotion, natural lighting, soft focus background, authentic expression, no text, no watermark"
     }
   ]
 }

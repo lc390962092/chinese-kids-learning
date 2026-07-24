@@ -16,7 +16,9 @@
         "头发",
         "洗头",
         "思考"
-      ]
+      ],
+      "file": "head",
+      "image_prompt": "A realistic close-up photograph of head, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "眼睛",
@@ -30,7 +32,9 @@
         "看",
         "绘本",
         "亮亮"
-      ]
+      ],
+      "file": "eyes",
+      "image_prompt": "A realistic close-up photograph of eyes, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "耳朵",
@@ -44,7 +48,9 @@
         "听",
         "小鸟",
         "妈妈"
-      ]
+      ],
+      "file": "ears",
+      "image_prompt": "A realistic close-up photograph of ears, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "鼻子",
@@ -58,7 +64,9 @@
         "闻",
         "花香",
         "米饭"
-      ]
+      ],
+      "file": "nose",
+      "image_prompt": "A realistic close-up photograph of nose, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "嘴巴",
@@ -72,7 +80,9 @@
         "吃饭",
         "说话",
         "擦"
-      ]
+      ],
+      "file": "mouth",
+      "image_prompt": "A realistic close-up photograph of mouth, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "牙齿",
@@ -86,7 +96,9 @@
         "牙刷",
         "刷牙",
         "咬碎"
-      ]
+      ],
+      "file": "teeth",
+      "image_prompt": "A realistic close-up photograph of teeth, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "舌头",
@@ -100,7 +112,9 @@
         "尝",
         "甜",
         "咸"
-      ]
+      ],
+      "file": "tongue",
+      "image_prompt": "A realistic close-up photograph of tongue, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "手",
@@ -114,7 +128,9 @@
         "两只手",
         "筷子",
         "画画"
-      ]
+      ],
+      "file": "hand",
+      "image_prompt": "A realistic close-up photograph of hand, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "手指",
@@ -128,7 +144,9 @@
         "五根",
         "扣子",
         "翻书"
-      ]
+      ],
+      "file": "fingers",
+      "image_prompt": "A realistic close-up photograph of fingers, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "脚",
@@ -142,7 +160,9 @@
         "走路",
         "跑步",
         "干净"
-      ]
+      ],
+      "file": "foot",
+      "image_prompt": "A realistic close-up photograph of foot, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "腿",
@@ -156,7 +176,9 @@
         "力气",
         "蹲下",
         "踢球"
-      ]
+      ],
+      "file": "leg",
+      "image_prompt": "A realistic close-up photograph of leg, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "肚子",
@@ -170,7 +192,9 @@
         "饿了",
         "吃饱",
         "圆鼓鼓"
-      ]
+      ],
+      "file": "tummy",
+      "image_prompt": "A realistic close-up photograph of tummy, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "后背",
@@ -184,7 +208,9 @@
         "挺直",
         "写字",
         "弯着腰"
-      ]
+      ],
+      "file": "back",
+      "image_prompt": "A realistic close-up photograph of back, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "胳膊",
@@ -198,7 +224,9 @@
         "高高",
         "书架",
         "拥抱"
-      ]
+      ],
+      "file": "arm",
+      "image_prompt": "A realistic close-up photograph of arm, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     },
     {
       "word": "肩膀",
@@ -212,7 +240,9 @@
         "爸爸",
         "远处",
         "地方"
-      ]
+      ],
+      "file": "shoulders",
+      "image_prompt": "A realistic close-up photograph of shoulders, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark"
     }
   ]
 }
