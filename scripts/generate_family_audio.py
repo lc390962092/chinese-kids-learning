@@ -1,45 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-使用 Edge TTS 生成称谓模块音频
-需要依赖：edge-tts (pip install edge-tts)
+生成称谓模块音频（含中文单词、句子、日语读音）
 """
 
 import json
 import asyncio
-import sys
+import edge_tts
 from pathlib import Path
-
-# 确保 edge-tts 库存在
-try:
-    import edge_tts
-except ImportError:
-    print("Warning: 'edge_tts' module not found. Please install it with 'pip install edge-tts'.")
-    print("We will define the generator script but you need to run it after installing the dependencies.")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 CONTENT_FILE = BASE_DIR / "content" / "family_module.json"
 OUTPUT_DIR = BASE_DIR / "assets" / "audio" / "family"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-VOICE = "zh-CN-XiaoxiaoNeural"  # 标准女声
+VOICE = "zh-CN-XiaoxiaoNeural"
+JAPANESE_VOICE = "ja-JP-NanamiNeural"
 
-async def speak_and_save(text, output_path, voice=VOICE):
-    """保存合成音频"""
-    try:
-        communicate = edge_tts.Communicate(text=text, voice=voice)
-        await communicate.save(str(output_path))
-        print(f"  ✓ 已生成: {output_path.name}")
-        return True
-    except Exception as e:
-        print(f"  ✗ 失败: {output_path.name} - {e}")
-        return False
+async def speak_and_save(text, output_path, voice=VOICE, rate="+0%"):
+    communicate = edge_tts.Communicate(text=text, voice=voice, rate=rate)
+    await communicate.save(str(output_path))
+    print(f"  ✓ 已生成: {output_path.name}")
 
 async def main():
-    if 'edge_tts' not in sys.modules:
-        print("Error: edge-tts is not installed. Run 'pip install edge-tts' first.")
-        return
-
     if not CONTENT_FILE.exists():
         print(f"Error: {CONTENT_FILE} not found.")
         return
@@ -55,6 +38,7 @@ async def main():
         pinyin = item["pinyin"]
         sentence = item["sentence"]
         english = item["english"].replace(" ", "_")
+        japanese_reading = item.get("japanese_reading", "")
         
         print(f"\n[{idx}/{len(words)}] 生成: {word}")
         
@@ -69,13 +53,15 @@ async def main():
         sentence_path = sentence_dir / f"{english}_sentence.mp3"
         await speak_and_save(sentence, sentence_path)
         
+        # 3. 日语读音
+        if japanese_reading:
+            japanese_dir = OUTPUT_DIR / "japanese"
+            japanese_dir.mkdir(parents=True, exist_ok=True)
+            japanese_path = japanese_dir / f"{english}_japanese.mp3"
+            await speak_and_save(japanese_reading, japanese_path, voice=JAPANESE_VOICE, rate="+0%")
+        
     print("\n称谓音频全部处理完成！")
     print(f"保存路径: {OUTPUT_DIR}")
 
 if __name__ == "__main__":
-    if 'edge_tts' in sys.modules:
-        asyncio.run(main())
-    else:
-        print("To generate local audio files, run:")
-        print("  pip install edge-tts")
-        print("  python3 scripts/generate_family_audio.py")
+    asyncio.run(main())
