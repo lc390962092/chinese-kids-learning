@@ -18,8 +18,9 @@
         .card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .card.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .card-emoji { width: 200px; height: 200px; font-size: 100px; line-height: 200px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 5px; }
-        .card-emoji:active { transform: scale(0.95); }
+        .card-number { width: 220px; height: 220px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; user-select: none; font-size: 120px; font-weight: bold; color: #00897B; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .card-number:active { transform: scale(0.95); }
+        .card-emoji { display: none; }
         .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
         .card-subtitle { font-size: 22px; color: #888; margin-bottom: 5px; }
         .card-japanese { font-size: 24px; color: #555; margin: 5px 0 0; font-weight: bold; }
@@ -53,7 +54,7 @@
         .start-btn:active { transform: scale(0.95); }
         .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
         .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
-        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 80px; } .card-title { font-size: 34px; } }
+        @media (max-width: 400px) { .card-number { width: 180px; height: 180px; font-size: 100px; } .card-title { font-size: 34px; } }
     </style>
     <link rel="stylesheet" href="dark-mode.css">
 </head>
@@ -83,20 +84,20 @@
     </div>
     <script>
         const items = [
-            { word: "一", pinyin: "yī", japanese: "一", japanese_reading: "いち", english: "one", summary: "一个太阳挂在天上，一只小鸟站在树上。", words: ["一", "一个", "太阳", "小鸟"], emoji: "☝️" },
-            { word: "二", pinyin: "èr", japanese: "二", japanese_reading: "に", english: "two", summary: "我有两只小手，两根筷子一起吃饭。", words: ["二", "两只", "小手", "筷子"], emoji: "✌️" },
-            { word: "三", pinyin: "sān", japanese: "三", japanese_reading: "さん", english: "three", summary: "三角形有三条边，三只小鸭排队游。", words: ["三", "三角形", "三条边", "小鸭"], emoji: "3️⃣" },
-            { word: "四", pinyin: "sì", japanese: "四", japanese_reading: "よん", english: "four", summary: "一年有四个季节，正方形有四条边。", words: ["四", "四个", "季节", "正方形"], emoji: "4️⃣" },
-            { word: "五", pinyin: "wǔ", japanese: "五", japanese_reading: "ご", english: "five", summary: "一只手有五根手指，五角星有五个角。", words: ["五", "五根", "手指", "五角星"], emoji: "🖐️" },
-            { word: "六", pinyin: "liù", japanese: "六", japanese_reading: "ろく", english: "six", summary: "六只蜜蜂在花丛里采蜜，六个积木搭成塔。", words: ["六", "蜜蜂", "花丛", "积木"], emoji: "6️⃣" },
-            { word: "七", pinyin: "qī", japanese: "七", japanese_reading: "なな", english: "seven", summary: "一个星期有七天，七色彩虹挂在天上。", words: ["七", "星期", "七天", "彩虹"], emoji: "7️⃣" },
-            { word: "八", pinyin: "bā", japanese: "八", japanese_reading: "はち", english: "eight", summary: "八只脚的小螃蟹横着走，八仙桌可以坐很多人。", words: ["八", "八只脚", "螃蟹", "八仙桌"], emoji: "8️⃣" },
-            { word: "九", pinyin: "jiǔ", japanese: "九", japanese_reading: "きゅう", english: "nine", summary: "九月开学啦，九颗葡萄一串甜。", words: ["九", "九月", "开学", "葡萄"], emoji: "9️⃣" },
-            { word: "十", pinyin: "shí", japanese: "十", japanese_reading: "じゅう", english: "ten", summary: "十根手指数一数，十全十美最圆满。", words: ["十", "十根", "手指", "圆满"], emoji: "🔟" },
-            { word: "零", pinyin: "líng", japanese: "零", japanese_reading: "れい", english: "zero", summary: "零像一个鸡蛋，也表示一个也没有。", words: ["零", "鸡蛋", "没有", "圆圈"], emoji: "0️⃣" },
-            { word: "百", pinyin: "bǎi", japanese: "百", japanese_reading: "ひゃく", english: "hundred", summary: "一百颗星星在天上闪，一百个小朋友手拉手。", words: ["百", "一百", "星星", "小朋友"], emoji: "💯" },
-            { word: "千", pinyin: "qiān", japanese: "千", japanese_reading: "せん", english: "thousand", summary: "一千米好远，一千颗米粒堆成小山。", words: ["千", "一千", "米", "米粒"], emoji: "🏔️" },
-            { word: "万", pinyin: "wàn", japanese: "万", japanese_reading: "まん", english: "ten thousand", summary: "一万个人很多，万水千山也不怕。", words: ["万", "一万", "很多", "万水千山"], emoji: "🌏" }
+            { word: "一", pinyin: "yī", arabic: "1", japanese: "一", japanese_reading: "いち", english: "one", summary: "一个太阳挂在天上，一只小鸟站在树上。", words: ["一", "一个", "太阳", "小鸟"] },
+            { word: "二", pinyin: "èr", arabic: "2", japanese: "二", japanese_reading: "に", english: "two", summary: "我有两只小手，两根筷子一起吃饭。", words: ["二", "两只", "小手", "筷子"] },
+            { word: "三", pinyin: "sān", arabic: "3", japanese: "三", japanese_reading: "さん", english: "three", summary: "三角形有三条边，三只小鸭排队游。", words: ["三", "三角形", "三条边", "小鸭"] },
+            { word: "四", pinyin: "sì", arabic: "4", japanese: "四", japanese_reading: "よん", english: "four", summary: "一年有四个季节，正方形有四条边。", words: ["四", "四个", "季节", "正方形"] },
+            { word: "五", pinyin: "wǔ", arabic: "5", japanese: "五", japanese_reading: "ご", english: "five", summary: "一只手有五根手指，五角星有五个角。", words: ["五", "五根", "手指", "五角星"] },
+            { word: "六", pinyin: "liù", arabic: "6", japanese: "六", japanese_reading: "ろく", english: "six", summary: "六只蜜蜂在花丛里采蜜，六个积木搭成塔。", words: ["六", "蜜蜂", "花丛", "积木"] },
+            { word: "七", pinyin: "qī", arabic: "7", japanese: "七", japanese_reading: "なな", english: "seven", summary: "一个星期有七天，七色彩虹挂在天上。", words: ["七", "星期", "七天", "彩虹"] },
+            { word: "八", pinyin: "bā", arabic: "8", japanese: "八", japanese_reading: "はち", english: "eight", summary: "八只脚的小螃蟹横着走，八仙桌可以坐很多人。", words: ["八", "八只脚", "螃蟹", "八仙桌"] },
+            { word: "九", pinyin: "jiǔ", arabic: "9", japanese: "九", japanese_reading: "きゅう", english: "nine", summary: "九月开学啦，九颗葡萄一串甜。", words: ["九", "九月", "开学", "葡萄"] },
+            { word: "十", pinyin: "shí", arabic: "10", japanese: "十", japanese_reading: "じゅう", english: "ten", summary: "十根手指数一数，十全十美最圆满。", words: ["十", "十根", "手指", "圆满"] },
+            { word: "零", pinyin: "líng", arabic: "0", japanese: "零", japanese_reading: "れい", english: "zero", summary: "零像一个鸡蛋，也表示一个也没有。", words: ["零", "鸡蛋", "没有", "圆圈"] },
+            { word: "百", pinyin: "bǎi", arabic: "100", japanese: "百", japanese_reading: "ひゃく", english: "hundred", summary: "一百颗星星在天上闪，一百个小朋友手拉手。", words: ["百", "一百", "星星", "小朋友"] },
+            { word: "千", pinyin: "qiān", arabic: "1000", japanese: "千", japanese_reading: "せん", english: "thousand", summary: "一千米好远，一千颗米粒堆成小山。", words: ["千", "一千", "米", "米粒"] },
+            { word: "万", pinyin: "wàn", arabic: "10000", japanese: "万", japanese_reading: "まん", english: "ten thousand", summary: "一万个人很多，万水千山也不怕。", words: ["万", "一万", "很多", "万水千山"] }
         ];
 
         let currentIndex = 0;
@@ -154,9 +155,26 @@
         
         function playJapanese(index) {
             const item = items[index];
-            const mp3Path = `assets/audio/numbers/japanese/${item.file}_japanese.mp3`;
+            const mp3Path = `assets/audio/numbers/japanese/${item.word}_japanese.mp3`;
             speakWithFallback(item.japanese_reading, mp3Path);
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
+        }
+
+        function playAudio(path) {
+            return new Promise((resolve, reject) => {
+                const audio = new Audio(path);
+                audio.onended = resolve;
+                audio.onerror = reject;
+                audio.play().catch(reject);
+            });
+        }
+
+        function speakWithFallback(text, mp3Path, rate = 0.8) {
+            if (mp3Path) {
+                playAudio(mp3Path).catch(() => speak(text, rate));
+            } else {
+                speak(text, rate);
+            }
         }
 
         function speakJapanese(text) {
@@ -225,7 +243,7 @@
             container.innerHTML = items.map((item, i) => {
                 const keywords = item.words.map(w => `<span class="keyword" onclick="speak('${w}')">${w}</span>`).join('');
                 return `<div class="card ${i===0?'active':''}">
-                    <div class="card-emoji" onclick="playWord(${i})">${item.emoji}</div>
+                    <div class="card-number" onclick="playWord(${i})">${item.arabic}</div>
                     <div class="card-title">${item.word}</div>
                     <div class="card-subtitle">${item.pinyin}</div>
                     <div class="card-japanese">${item.japanese}</div>
