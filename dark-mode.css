@@ -1,13 +1,38 @@
-/* 深色模式自适应：跟随系统/浏览器主题设置 */
+/* =========================================================
+   小豆中文 - 深色模式 / 深夜模式自适应
+   目标：所有页面在 dark 模式下保持高对比、可读、不刺眼
+   ========================================================= */
+
 @media (prefers-color-scheme: dark) {
-    body {
+
+    /* ---------- 基础背景与文字 ---------- */
+    html, body {
         background: #121212 !important;
-        color: #ffffff;
+        color: #f0f0f0;
     }
 
-    /* 所有文字强制变白 */
-    *, *::before, *::after {
-        color: #ffffff !important;
+    /* 不粗暴覆盖所有颜色，只控制原本浅色/看不清的文字。
+       各页面标题 h1 保留原品牌色（在深底上对比度足够）。 */
+    body, p, div, li, small {
+        color: #f0f0f0;
+    }
+
+    /* 大字标题、卡片主文字在深色模式下变白 */
+    .card-title, .animal-word, .vehicle-word, .item-word, .number-word,
+    .family-title, .color-english, .shape-english, .big-pinyin, .example-word,
+    .card-english, .card-japanese, .item-japanese, .animal-japanese,
+    .vehicle-japanese, .item-english, .animal-english, .vehicle-english,
+    .family-english, .tone-info, .solfege, .start-content h2, .start-content p {
+        color: #f0f0f0 !important;
+    }
+
+    /* 小字/辅助文字：用浅灰，避免刺眼 */
+    .header p,
+    .hint, .subtitle, .desc, .small, .swipe-hint,
+    .card-subtitle, .animal-pinyin, .vehicle-pinyin, .item-pinyin,
+    .card-japanese-reading, .card-english-reading,
+    .back-home, .back-bar, .footer, .example-pinyin, .card-japanese-reading {
+        color: #aaaaaa !important;
     }
 
     /* 链接 */
@@ -15,151 +40,240 @@
         color: #80d8ff !important;
     }
 
-    /* 顶部栏、返回栏 */
-    .back-bar {
-        background: rgba(30, 30, 45, 0.9) !important;
-        color: #ffffff !important;
-    }
-
-    /* 主内容卡片 */
-    .main-stage, .card, .category-card, .game-card, .module-card, .start-content, .modal-content, .result-panel, .mascot-bubble {
+    /* ---------- 通用容器：全部变成深色 ---------- */
+    .main-stage, .card, .category-card, .game-card, .module-card,
+    .start-content, .start-overlay, .modal-content, .result-panel,
+    .mascot-bubble, .filter-btn, .tab-btn, .song-btn, .song-panel,
+    .card-number, .keyword, .card-text, .card-emoji, .card-summary,
+    .card-story, .card-moral, .note, .assist-toggle, .follow-toggle,
+    .card-image-wrapper, .image-wrapper, .img-wrapper, .item-image,
+    .vehicle-image, .animal-image, .fruit-image, .career-image,
+    .healthy-image, .shape-image, .color-image, .number-image,
+    .card-image, .category-image, .game-image, .module-image,
+    .body-image, .emotion-image, .family-image {
         background: #1e1e2f !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
     }
 
+    /* 开始覆盖层：必须强制深色，不要保留渐变 */
+    .start-overlay {
+        background: #121212 !important;
+    }
+    .start-content {
+        background: #1e1e2f !important;
+        border: 1px solid #444466 !important;
+    }
+    .start-content h2,
+    .start-content p,
+    .start-panda {
+        color: #f0f0f0 !important;
+    }
+
     /* 吉祥物气泡三角 */
+    .mascot-bubble {
+        color: #ffffff !important;
+    }
     .mascot-bubble::after {
         border-color: #1e1e2f transparent transparent transparent !important;
     }
 
-    /* 图片容器：加浅色边框/背景，让图片不糊进黑背景 */
-    .animal-image, .vehicle-image, .fruit-image, .career-image, .healthy-image, .shape-image, .color-image, .number-image, .card-image, .category-image, .game-image, .module-image {
+    /* 吉祥物头像：保持黄色但加暗色阴影 */
+    .mascot-avatar {
+        background: #FFD93D !important;
+        color: #333 !important;
+    }
+
+    /* ---------- 图片容器：深色底 + 亮边框 ---------- */
+    .animal-image, .vehicle-image, .fruit-image, .career-image,
+    .healthy-image, .shape-image, .color-image, .number-image,
+    .card-image, .category-image, .game-image, .module-image,
+    .body-image, .emotion-image, .family-image, .item-image {
         background: #2a2a3e !important;
+        border: 1px solid #444466 !important;
         border-radius: 20px !important;
         padding: 10px !important;
         box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08) !important;
     }
-
     .card-image-wrapper, .image-wrapper, .img-wrapper {
         background: #2a2a3e !important;
+        border: 1px solid #444466 !important;
         border-radius: 24px !important;
         padding: 12px !important;
     }
 
-    /* 按钮：保持彩色但文字强制白/深 */
-    .btn, button {
+    /* ---------- 按钮 ---------- */
+    .btn, button, .nav-btn, .start-btn, .listen-btn, .next-btn,
+    .btn-word, .btn-sentence, .btn-sound, .btn-japanese, .btn-english,
+    .btn-primary, .btn-secondary, .btn-measure, .btn-auto,
+    .btn-third, .btn-fourth, .btn-play, .btn-japanese, .btn-english {
         color: #ffffff !important;
         text-shadow: 0 1px 2px rgba(0,0,0,0.5) !important;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
     }
 
-    .btn-sound, .btn-primary, .btn-word, .btn-secondary, .btn-japanese, .btn-english, .btn-next {
+    /* 导航按钮统一深色背景，避免各页面原浅色背景 + 白字对比不足 */
+    .nav-btn, .start-btn, .listen-btn, .next-btn {
+        background: #3a3a55 !important;
         color: #ffffff !important;
     }
-
-    /* 进度点 */
-    .progress-dot {
-        background: #555577 !important;
-    }
-    .progress-dot.active {
-        background: #ff6b6b !important;
+    .nav-btn:active, .start-btn:active, .listen-btn:active, .next-btn:active {
+        background: #4a4a6a !important;
     }
 
-    /* 输入框 */
+    /* 筛选/标签按钮：未选中深色，选中保持原色但文字白 */
+    .filter-btn, .tab-btn, .song-btn {
+        background: #1e1e2f !important;
+        color: #f0f0f0 !important;
+        border: 1px solid #444466 !important;
+    }
+    .filter-btn.active, .tab-btn.active, .song-btn.active {
+        background: #FF8C42 !important;
+        color: #ffffff !important;
+        border-color: #FF8C42 !important;
+    }
+
+    /* 侧边箭头 */
+    .side-arrow {
+        background: #2a2a3e !important;
+        color: #ffffff !important;
+        border: 1px solid #444466 !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important;
+    }
+    .side-arrow:active {
+        background: #3a3a55 !important;
+    }
+
+    /* ---------- 进度与状态 ---------- */
+    .progress-dot { background: #555577 !important; }
+    .progress-dot.active { background: #ff6b6b !important; }
+    .progress-bar { background: #2a2a3e !important; }
+    .progress-fill { background: #ff6b6b !important; }
+    .status-text { color: #66BB6A !important; }
+    .status-text.waiting { color: #FF8C42 !important; }
+
+    /* ---------- 输入框 ---------- */
     input, select, textarea {
         background: #2a2a3e !important;
         color: #ffffff !important;
         border-color: #555577 !important;
     }
 
-    /* 提示、小字 */
-    .hint, .subtitle, .desc, .header p, .small {
-        color: #cccccc !important;
-    }
-}
-
-/* 首页卡片在深色模式下：去掉 inline 渐变，用统一深色背景 */
-@media (prefers-color-scheme: dark) {
+    /* ---------- 首页卡片 ---------- */
     .module-card {
-        background: #2a2a3e !important;
+        background: #1e1e2f !important;
         border: 1px solid #444466 !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
     }
-    .module-card:active {
-        background: #353550 !important;
+    .module-card:active { background: #353550 !important; }
+    .module-info h3 { color: #f0f0f0 !important; }
+    .module-info p { color: #aaaaaa !important; }
+    .module-icon { background: #3a3a55 !important; }
+    .module-arrow { color: #aaaaaa !important; }
+    .footer { color: #8888aa !important; }
+
+    /* ---------- 颜色学习页面：颜色块本身不能被覆盖 ---------- */
+    .color-card, .color-swatch {
+        color: #f0f0f0 !important;
     }
-    .module-icon {
-        background: #3a3a55 !important;
+    .color-swatch {
+        border: 2px solid #ffffff !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
     }
-    .module-arrow {
+
+    /* ---------- 数字页面：大数字卡片 ---------- */
+    .card-number {
+        background: #2a2a3e !important;
+        color: #4db6ac !important;
+        border: 1px solid #444466 !important;
+    }
+
+    /* ---------- 身体/情绪/水果等卡片标题 ---------- */
+    .card-title, .animal-word, .vehicle-word, .item-word, .color-english,
+    .shape-english, .card-english, .number-word, .card-japanese,
+    .item-japanese, .animal-japanese, .vehicle-japanese, .item-english,
+    .family-title {
+        color: #f0f0f0 !important;
+    }
+
+    /* ---------- 钢琴页面：黑白键保持正常 ---------- */
+    .white-keys {
+        background: #e0e0e0 !important;
+        color: #333 !important;
+    }
+    .white-key {
+        background: #ffffff !important;
+        color: #333 !important;
+        border: 1px solid #999999 !important;
+    }
+    .black-key {
+        background: #111111 !important;
+        color: #ffffff !important;
+    }
+    .black-keys {
+        background: #111111 !important;
+        color: #ffffff !important;
+    }
+    .song-panel { background: #1e1e2f !important; }
+    .song-btn { background: #2a2a3e !important; color: #ffffff !important; }
+    .song-btn.active { background: #FF8C42 !important; color: #ffffff !important; }
+    .note { background: #3a3a55 !important; color: #FF8C42 !important; }
+    .note.active { background: #FF8C42 !important; color: #ffffff !important; }
+    .assist-toggle, .follow-toggle {
+        background: #2a2a3e !important;
+        color: #ffffff !important;
+    }
+    .solfege { color: #f0f0f0 !important; }
+    .play-btn { color: #ffffff !important; }
+
+    /* ---------- 童话故事页面 ---------- */
+    .card-summary, .card-story, .card-moral, .card-emoji {
+        background: #1e1e2f !important;
+        color: #f0f0f0 !important;
+    }
+    .card-summary strong, .card-moral strong, .card-story strong { color: #ffffff !important; }
+    .card-subtitle { color: #aaaaaa !important; }
+    .keyword { background: #3a3a55 !important; color: #f0f0f0 !important; }
+
+    /* ---------- 听音找图游戏 ---------- */
+    .game-screen { background: #1e1e2f !important; }
+    .options-grid .option-card {
+        background: #2a2a3e !important;
+        border: 1px solid #444466 !important;
+    }
+    .options-grid .option-card img {
+        background: #2a2a3e !important;
+        border-radius: 12px !important;
+        padding: 6px !important;
+    }
+    .feedback { color: #f0f0f0 !important; }
+    .score-bar { color: #f0f0f0 !important; }
+    .trophy { color: #FFD93D !important; }
+    .correct { background: #66BB6A !important; color: #ffffff !important; }
+    .wrong { background: #EF5350 !important; color: #ffffff !important; }
+    .confetti { display: none !important; }
+
+    /* ---------- 拼音页面 ---------- */
+    .big-pinyin { color: #f0f0f0 !important; }
+    .example-word { color: #f0f0f0 !important; }
+    .example-pinyin { color: #aaaaaa !important; }
+    .tone-info { color: #f0f0f0 !important; }
+    .tone-icon { color: #f0f0f0 !important; }
+    .tone-example-item { background: #2a2a3e !important; border: 1px solid #444466 !important; }
+
+    /* ---------- 回首页/返回条 ---------- */
+    .back-bar, .back-home {
+        background: rgba(30, 30, 47, 0.9) !important;
         color: #aaaaaa !important;
     }
-    .footer {
-        color: #8888aa !important;
-    }
-    /* piano 页面 */
-    .song-panel {
+    .back-bar a, .back-home a { color: #80d8ff !important; }
+
+    /* ---------- 滚动条 ---------- */
+    ::-webkit-scrollbar { background: #1e1e2f !important; }
+    ::-webkit-scrollbar-thumb { background: #555577 !important; }
+
+    /* ---------- 强制修复：任何漏网之鱼的白色背景 ---------- */
+    [style*="background: white"], [style*="background:#fff"], [style*="background: #fff"],
+    [style*="background-color: white"], [style*="background-color:#fff"] {
         background: #1e1e2f !important;
     }
-    .song-btn {
-        background: #2a2a3e !important;
-        color: #ffffff !important;
-    }
-    .song-btn.active {
-        background: #FF8C42 !important;
-        color: #ffffff !important;
-    }
-    .assist-toggle, .follow-toggle {
-        background: #2a2a3e !important;
-        color: #ffffff !important;
-    }
-    .status-text { color: #66BB6A !important; }
-    .status-text.waiting { color: #FF8C42 !important; }
-}
-
-/* 童话故事深色模式 */
-@media (prefers-color-scheme: dark) {
-    .card-summary, .card-story, .card-moral, .card-emoji {
-        background: #2a2a3e !important;
-        color: #ffffff !important;
-    }
-    .card-summary strong, .card-moral strong, .card-story strong {
-        color: #ffffff !important;
-    }
-    .card-subtitle {
-        color: #cccccc !important;
-    }
-    .keyword {
-        background: #3a3a55 !important;
-        color: #ffffff !important;
-    }
-}
-
-/* 钢琴页面深色模式 */
-@media (prefers-color-scheme: dark) {
-    .song-panel {
-        background: #1e1e2f !important;
-    }
-    .song-btn {
-        background: #2a2a3e !important;
-        color: #ffffff !important;
-    }
-    .song-btn.active {
-        background: #FF8C42 !important;
-        color: #ffffff !important;
-    }
-    .note {
-        background: #3a3a55 !important;
-        color: #FF8C42 !important;
-    }
-    .note.active {
-        background: #FF8C42 !important;
-        color: #ffffff !important;
-    }
-    .assist-toggle, .follow-toggle {
-        background: #2a2a3e !important;
-        color: #ffffff !important;
-    }
-    .status-text { color: #66BB6A !important; }
-    .status-text.waiting { color: #FF8C42 !important; }
 }
