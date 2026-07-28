@@ -1,0 +1,19 @@
+{
+  "module": "colors",
+  "title": "颜色世界",
+  "target_age": "3-6",
+  "words": [
+    {"word": "红色", "pinyin": "hóng sè", "english": "red", "japanese": "赤色", "japanese_reading": "あかいろ", "summary": "苹果和草莓是红色的，红灯亮时我们要停下来。", "emoji": "🔴", "color": "#F44336"},
+    {"word": "黄色", "pinyin": "huáng sè", "english": "yellow", "japanese": "黄色", "japanese_reading": "きいろ", "summary": "香蕉和柠檬是黄色的，小黄鸭也喜欢在水里游。", "emoji": "🟡", "color": "#FFEB3B"},
+    {"word": "蓝色", "pinyin": "lán sè", "english": "blue", "japanese": "青色", "japanese_reading": "あおいろ", "summary": "天空和大海是蓝色的，蓝蓝的颜色让人心情平静。", "emoji": "🔵", "color": "#2196F3"},
+    {"word": "绿色", "pinyin": "lǜ sè", "english": "green", "japanese": "緑色", "japanese_reading": "みどりいろ", "summary": "小草和树叶是绿色的，绿色代表春天和生机。", "emoji": "🟢", "color": "#4CAF50"},
+    {"word": "橙色", "pinyin": "chéng sè", "english": "orange", "japanese": "橙色", "japanese_reading": "だいだいいろ", "summary": "橙子和胡萝卜是橙色的，像暖暖的秋天。", "emoji": "🟠", "color": "#FF9800"},
+    {"word": "紫色", "pinyin": "zǐ sè", "english": "purple", "japanese": "紫色", "japanese_reading": "むらさきいろ", "summary": "葡萄和茄子是紫色的，紫色像神秘的夜晚。", "emoji": "🟣", "color": "#9C27B0"},
+    {"word": "粉色", "pinyin": "fěn sè", "english": "pink", "japanese": "桃色", "japanese_reading": "ももいろ", "summary": "桃花和棉花糖是粉色的，粉粉的颜色很温柔。", "emoji": "🌸", "color": "#F8BBD0"},
+    {"word": "黑色", "pinyin": "hēi sè", "english": "black", "japanese": "黒色", "japanese_reading": "くろいろ", "summary": "夜晚和钢琴键是黑色的，黑色也可以很优雅。", "emoji": "⚫", "color": "#333333"},
+    {"word": "白色", "pinyin": "bái sè", "english": "white", "japanese": "白色", "japanese_reading": "しろいろ", "summary": "白云和棉花是白色的，白色干干净净。", "emoji": "⚪", "color": "#EEEEEE"},
+    {"word": "棕色", "pinyin": "zōng sè", "english": "brown", "japanese": "茶色", "japanese_reading": "ちゃいろ", "summary": "小熊和树干是棕色的，棕色像大地一样温暖。", "emoji": "🟤", "color": "#795548"},
+    {"word": "灰色", "pinyin": "huī sè", "english": "gray", "japanese": "灰色", "japanese_reading": "はいいろ", "summary": "乌云和大象是灰色的，下雨天天空常常灰灰的。", "emoji": "⬜", "color": "#9E9E9E"},
+    {"word": "彩虹色", "pinyin": "cǎi hóng sè", "english": "rainbow", "japanese": "虹色", "japanese_reading": "にじいろ", "summary": "彩虹有红橙黄绿蓝靛紫七种颜色，雨后挂在天上。", "emoji": "🌈", "color": "linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet)"}
+  ]
+}

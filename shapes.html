@@ -151,22 +151,23 @@
         
         function playJapanese(index) {
             const item = items[index];
-            speakJapanese(item.japanese_reading);
+            const audio = new Audio(`assets/audio/shapes/japanese/${item.english}_jp.mp3`);
+            audio.play().catch(err => {
+                console.log('本地日语音频播放失败:', err);
+                speakJapaneseFallback(item.japanese_reading);
+            });
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
-        function speakJapanese(text) {
+        function speakJapaneseFallback(text) {
             if (!synth || !speechEnabled) {
                 showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
                 return;
             }
             synth.cancel();
-
-            // 手机浏览器经常把 CJK 统一汉字读成中文，所以日语朗读时只保留假名和日文基本符号
+            // 只保留假名，避免 CJK 统一汉字被读成中文
             const kanaOnly = text.replace(/[^\u3040-\u309F\u30A0-\u30FF\uFF10-\uFF19\u3000-\u303F\s]/g, '').replace(/[\u3001\u3002\uff0c\uff0e]/g, ' ').trim();
             const toSpeak = kanaOnly || text;
-
-            // 优先使用真正的日语语音包
             if (japaneseVoice && japaneseVoice.lang && japaneseVoice.lang.startsWith('ja')) {
                 const utter = new SpeechSynthesisUtterance(toSpeak);
                 utter.lang = 'ja-JP';
@@ -174,17 +175,9 @@
                 utter.pitch = 1.05;
                 utter.voice = japaneseVoice;
                 synth.speak(utter);
-                return;
+            } else {
+                showMascot("小提示：当前设备没有日语语音包，建议用电脑或换浏览器试试～");
             }
-
-            // 没有本地日语语音时，尝试在线 Google TTS（仅日语假名）
-            const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q=' + encodeURIComponent(toSpeak);
-            const audio = new Audio(url);
-            audio.play().catch((err) => {
-                console.log('在线日语 TTS 播放失败:', err);
-                // 最后明确提示，不再用中文语音冒充日语
-                showMascot("小提示：当前设备没有日语语音包，所以日语念不出来。建议用电脑或换浏览器试试～");
-            });
         }
 
         function speakEnglish(text, rate = 0.85){
