@@ -151,8 +151,7 @@
         
         function playJapanese(index) {
             const item = items[index];
-            const mp3Path = `assets/audio/shapes/japanese/${item.file}_japanese.mp3`;
-            speakWithFallback(item.japanese_reading, mp3Path);
+            speakJapanese(item.japanese_reading);
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
