@@ -1,0 +1,62 @@
+
+[2026-07-28 15:49:48] Resuming: 24 pending
+[1/24] Generating hello ... attempt 1
+[1/24] hello saved (35932 bytes)
+[2/24] Generating goodbye ... attempt 1
+[2/24] goodbye saved (40658 bytes)
+[3/24] Generating thank_you ... attempt 1
+[3/24] thank_you saved (41094 bytes)
+[4/24] Generating sorry ... attempt 1
+[4/24] sorry error: <urlopen error [Errno -3] Temporary failure in name resolution>
+Retrying in 2s...
+[4/24] Generating sorry ... attempt 2
+[4/24] sorry saved (41758 bytes)
+[5/24] Generating im_hungry ... attempt 1
+[5/24] im_hungry saved (34136 bytes)
+[6/24] Generating im_thirsty ... attempt 1
+[6/24] im_thirsty saved (34037 bytes)
+[7/24] Generating delicious ... attempt 1
+[7/24] delicious saved (36258 bytes)
+[8/24] Generating im_full ... attempt 1
+[8/24] im_full saved (29563 bytes)
+[9/24] Generating i_want ... attempt 1
+[9/24] i_want saved (42742 bytes)
+[10/24] Generating help ... attempt 1
+[10/24] help saved (37861 bytes)
+[11/24] Generating wash_hands ... attempt 1
+[11/24] wash_hands saved (36026 bytes)
+[12/24] Generating brush_teeth ... attempt 1
+[12/24] brush_teeth saved (33619 bytes)
+[13/24] Generating get_dressed ... attempt 1
+[13/24] get_dressed saved (41874 bytes)
+[14/24] Generating go_potty ... attempt 1
+[14/24] go_potty saved (24727 bytes)
+[15/24] Generating wake_up ... attempt 1
+[15/24] wake_up saved (29256 bytes)
+[16/24] Generating sleep ... attempt 1
+
+[2026-07-28 16:00:55] Resuming: 9 pending
+[1/9] Generating sleep ... attempt 1
+[1/9] sleep saved (37293 bytes)
+[2/9] Generating play_together ... attempt 1
+[2/9] play_together saved (43166 bytes)
+[3/9] Generating share ... attempt 1
+[3/9] share saved (43312 bytes)
+[4/9] Generating line_up ... attempt 1
+[4/9] line_up saved (47039 bytes)
+[5/9] Generating happy ... attempt 1
+[5/9] happy saved (39227 bytes)
+[6/9] Generating sad ... attempt 1
+[6/9] sad saved (40006 bytes)
+[7/9] Generating scared ... attempt 1
+[7/9] scared saved (32971 bytes)
+[8/9] Generating hurt ... attempt 1
+[8/9] hurt saved (32166 bytes)
+[9/9] Generating no_want ... attempt 1
+
+[2026-07-28 16:06:56] Resuming: 1 pending
+[1/1] Generating no_want ... attempt 1
+[1/1] no_want saved (35214 bytes)
+
+Final: 24 files, missing: 0
+[2026-07-28 16:07:08] Done

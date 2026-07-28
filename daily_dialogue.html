@@ -327,14 +327,15 @@
 
         function playJapaneseWord(index) {
             const item = filteredItems[index];
-            const mp3Path = `assets/audio/fruit_vegetable/japanese/${item.file}_japanese.mp3`;
+            const mp3Path = `assets/audio/daily_dialogue/japanese/${item.file}_japanese.mp3`;
             speakWithFallback(item.japanese_reading, mp3Path);
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
         function playEnglishWord(index) {
             const item = filteredItems[index];
-            speakEnglish(item.english);
+            const mp3Path = `assets/audio/daily_dialogue/english/${item.file}_english.mp3`;
+            speakWithFallback(item.english, mp3Path);
             showMascot(`英语：${item.word} → ${item.english}`);
         }
 
