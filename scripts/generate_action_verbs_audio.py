@@ -43,6 +43,7 @@ async def main():
         pinyin = item["pinyin"]
         sentence = item["sentence"]
         english = item["english"]
+        japanese = item["japanese"]
         japanese_reading = item["japanese_reading"]
 
         print(f"生成: {word}")
@@ -53,8 +54,9 @@ async def main():
         # 中文句子
         await speak_and_save(sentence, sentence_dir / f"{file}_sentence.mp3", voice=VOICE, rate="+0%")
 
-        # 日语读音（仅假名）
-        await speak_and_save(japanese_reading, japanese_dir / f"{file}_japanese.mp3", voice=JAPANESE_VOICE, rate="+0%")
+        # 日语读音（日文汉字 + 假名双读，更清晰）
+        japanese_text = f"{japanese}、{japanese_reading}。"
+        await speak_and_save(japanese_text, japanese_dir / f"{file}_japanese.mp3", voice=JAPANESE_VOICE, rate="-15%")
 
         # 英语
         await speak_and_save(english, english_dir / f"{file}_english.mp3", voice=ENGLISH_VOICE, rate="+0%")

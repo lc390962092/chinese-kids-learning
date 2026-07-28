@@ -137,31 +137,27 @@
         const synth = window.speechSynthesis;
         let chineseVoice = null;
         let englishVoice = null;
+        let japaneseVoice = null;
 
-        function findChineseVoice() {
-            if (!synth) return;
+        function findVoice(langPrefix) {
+            if (!synth) return null;
             const voices = synth.getVoices();
             for (let v of voices) {
-                if (v.lang.startsWith('zh')) { chineseVoice = v; break; }
+                if (v.lang.toLowerCase().startsWith(langPrefix)) return v;
             }
+            return null;
         }
 
-        function findEnglishVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.startsWith('en')) { englishVoice = v; break; }
-            }
+        function refreshVoices() {
+            chineseVoice = findVoice('zh');
+            englishVoice = findVoice('en');
+            japaneseVoice = findVoice('ja');
         }
 
         if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = function() {
-                findChineseVoice();
-                findEnglishVoice();
-            };
+            speechSynthesis.onvoiceschanged = refreshVoices;
         }
-        findChineseVoice();
-        findEnglishVoice();
+        refreshVoices();
 
         function playAudio(path) {
             return new Promise((resolve, reject) => {
@@ -172,34 +168,33 @@
             });
         }
 
-        function speakWithFallback(text, mp3Path, rate = 0.8) {
+        function speakWithFallback(text, mp3Path, lang = 'zh-CN', rate = 0.8) {
             if (mp3Path) {
-                playAudio(mp3Path).catch(() => speak(text, rate));
+                playAudio(mp3Path).catch(() => speak(text, lang, rate));
             } else {
-                speak(text, rate);
+                speak(text, lang, rate);
             }
         }
 
-        function speak(text, rate = 0.8) {
+        function speak(text, lang = 'zh-CN', rate = 0.8) {
             if (!synth) return;
             synth.cancel();
             const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'zh-CN';
+            utter.lang = lang;
             utter.rate = rate;
             utter.pitch = 1.1;
-            if (chineseVoice) utter.voice = chineseVoice;
+            if (lang.startsWith('zh') && chineseVoice) utter.voice = chineseVoice;
+            else if (lang.startsWith('en') && englishVoice) utter.voice = englishVoice;
+            else if (lang.startsWith('ja') && japaneseVoice) utter.voice = japaneseVoice;
             synth.speak(utter);
         }
 
         function speakEnglish(text, rate = 0.8) {
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'en-US';
-            utter.rate = rate;
-            utter.pitch = 1.1;
-            if (englishVoice) utter.voice = englishVoice;
-            synth.speak(utter);
+            speak(text, 'en-US', rate);
+        }
+
+        function speakJapanese(text, rate = 0.75) {
+            speak(text, 'ja-JP', rate);
         }
 
         function showMascot(text) { document.getElementById('mascotText').textContent = text; }
@@ -291,14 +286,14 @@
         function playJapaneseWord(index) {
             const item = filteredItems[index];
             const mp3Path = `assets/audio/action_verbs/japanese/${item.file}_japanese.mp3`;
-            speakWithFallback(item.japanese_reading, mp3Path);
+            speakWithFallback(item.japanese_reading, mp3Path, 'ja-JP', 0.75);
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
         function playEnglishWord(index) {
             const item = filteredItems[index];
             const mp3Path = `assets/audio/action_verbs/english/${item.file}_english.mp3`;
-            speakWithFallback(item.english, mp3Path);
+            speakWithFallback(item.english, mp3Path, 'en-US', 0.8);
             showMascot(`英语：${item.word} → ${item.english}`);
         }
 
