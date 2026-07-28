@@ -1,0 +1,62 @@
+
+[2026-07-28 17:23:06] Resuming: 27 pending
+[1/27] Generating stand ... attempt 1
+[1/27] stand saved (34931 bytes)
+[2/27] Generating sit ... attempt 1
+[2/27] sit saved (31859 bytes)
+[3/27] Generating walk ... attempt 1
+[3/27] walk saved (30459 bytes)
+[4/27] Generating run ... attempt 1
+[4/27] run saved (33166 bytes)
+[5/27] Generating jump ... attempt 1
+[5/27] jump saved (26234 bytes)
+[6/27] Generating climb ... attempt 1
+[6/27] climb saved (35002 bytes)
+[7/27] Generating spin ... attempt 1
+[7/27] spin saved (35221 bytes)
+[8/27] Generating bow ... attempt 1
+[8/27] bow saved (34348 bytes)
+[9/27] Generating hold ... attempt 1
+[9/27] hold saved (33013 bytes)
+[10/27] Generating put ... attempt 1
+[10/27] put saved (35245 bytes)
+[11/27] Generating push ... attempt 1
+[11/27] push saved (36385 bytes)
+[12/27] Generating pull ... attempt 1
+[12/27] pull saved (35185 bytes)
+[13/27] Generating hug ... attempt 1
+[13/27] hug saved (33581 bytes)
+[14/27] Generating wave ... attempt 1
+[14/27] wave saved (33066 bytes)
+[15/27] Generating point ... attempt 1
+[15/27] point saved (32586 bytes)
+[16/27] Generating pat ... attempt 1
+
+[2026-07-28 17:34:20] Resuming: 12 pending
+[1/12] Generating pat ... attempt 1
+[1/12] pat saved (35661 bytes)
+[2/12] Generating look ... attempt 1
+[2/12] look saved (34483 bytes)
+[3/12] Generating listen ... attempt 1
+[3/12] listen saved (35097 bytes)
+[4/12] Generating speak ... attempt 1
+[4/12] speak saved (36780 bytes)
+[5/12] Generating laugh ... attempt 1
+[5/12] laugh saved (34700 bytes)
+[6/12] Generating cry ... attempt 1
+[6/12] cry saved (36292 bytes)
+[7/12] Generating eat ... attempt 1
+[7/12] eat saved (37720 bytes)
+[8/12] Generating drink ... attempt 1
+[8/12] drink saved (36687 bytes)
+[9/12] Generating kiss ... attempt 1
+[9/12] kiss saved (34095 bytes)
+[10/12] Generating hide ... attempt 1
+[10/12] hide saved (34254 bytes)
+[11/12] Generating fly ... attempt 1
+[11/12] fly saved (34441 bytes)
+[12/12] Generating swim ... attempt 1
+[12/12] swim saved (40342 bytes)
+
+Final: 27 files, missing: 0
+[2026-07-28 17:42:38] Done

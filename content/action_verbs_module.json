@@ -1,0 +1,33 @@
+{
+  "title": "动词与动作",
+  "subtitle": "站起来、跑一跑、跳一跳",
+  "words": [
+    { "word": "站", "pinyin": "zhàn", "file": "stand", "english": "stand", "japanese": "立つ", "japanese_reading": "たつ", "sentence": "听到名字，我站起来回答。", "tags": ["body"] },
+    { "word": "坐", "pinyin": "zuò", "file": "sit", "english": "sit", "japanese": "座る", "japanese_reading": "すわる", "sentence": "吃饭前，我先坐在小椅子上。", "tags": ["body"] },
+    { "word": "走", "pinyin": "zǒu", "file": "walk", "english": "walk", "japanese": "歩く", "japanese_reading": "あるく", "sentence": "我和妈妈一起走路上学。", "tags": ["body"] },
+    { "word": "跑", "pinyin": "pǎo", "file": "run", "english": "run", "japanese": "走る", "japanese_reading": "はしる", "sentence": "小狗在草地上跑得很快。", "tags": ["body"] },
+    { "word": "跳", "pinyin": "tiào", "file": "jump", "english": "jump", "japanese": "跳ぶ", "japanese_reading": "とぶ", "sentence": "我喜欢在蹦床上跳一跳。", "tags": ["body"] },
+    { "word": "爬", "pinyin": "pá", "file": "climb", "english": "climb", "japanese": "登る", "japanese_reading": "のぼる", "sentence": "弟弟正在爬楼梯。", "tags": ["body"] },
+    { "word": "转圈", "pinyin": "zhuàn quān", "file": "spin", "english": "spin", "japanese": "回る", "japanese_reading": "まわる", "sentence": "音乐响起，我们手拉手转圈。", "tags": ["body"] },
+    { "word": "鞠躬", "pinyin": "jū gōng", "file": "bow", "english": "bow", "japanese": "お辞儀する", "japanese_reading": "おじぎする", "sentence": "见到老师，我鞠躬问好。", "tags": ["body"] },
+    { "word": "拿", "pinyin": "ná", "file": "hold", "english": "hold", "japanese": "持つ", "japanese_reading": "もつ", "sentence": "我拿着杯子喝水。", "tags": ["hand"] },
+    { "word": "放", "pinyin": "fàng", "file": "put", "english": "put", "japanese": "置く", "japanese_reading": "おく", "sentence": "玩完玩具，我把它们放回箱子。", "tags": ["hand"] },
+    { "word": "推", "pinyin": "tuī", "file": "push", "english": "push", "japanese": "押す", "japanese_reading": "おす", "sentence": "我帮妈妈推购物车。", "tags": ["hand"] },
+    { "word": "拉", "pinyin": "lā", "file": "pull", "english": "pull", "japanese": "引く", "japanese_reading": "ひく", "sentence": "爸爸拉着我的手过马路。", "tags": ["hand"] },
+    { "word": "抱", "pinyin": "bào", "file": "hug", "english": "hug", "japanese": "抱きしめる", "japanese_reading": "だきしめる", "sentence": "睡觉前，妈妈抱了抱我。", "tags": ["hand"] },
+    { "word": "挥", "pinyin": "huī", "file": "wave", "english": "wave", "japanese": "振る", "japanese_reading": "ふる", "sentence": "看到奶奶，我挥了挥手。", "tags": ["hand"] },
+    { "word": "指", "pinyin": "zhǐ", "file": "point", "english": "point", "japanese": "指差す", "japanese_reading": "ゆびさす", "sentence": "我指着天上的小鸟说：看！", "tags": ["hand"] },
+    { "word": "拍", "pinyin": "pāi", "file": "pat", "english": "pat", "japanese": "叩く", "japanese_reading": "たたく", "sentence": "小狗跑过来，我拍了拍它的头。", "tags": ["hand"] },
+    { "word": "看", "pinyin": "kàn", "file": "look", "english": "look", "japanese": "見る", "japanese_reading": "みる", "sentence": "我在看书里的图画。", "tags": ["face"] },
+    { "word": "听", "pinyin": "tīng", "file": "listen", "english": "listen", "japanese": "聞く", "japanese_reading": "きく", "sentence": "我闭上眼睛听音乐。", "tags": ["face"] },
+    { "word": "说", "pinyin": "shuō", "file": "speak", "english": "speak", "japanese": "話す", "japanese_reading": "はなす", "sentence": "老师问问题，我举手说答案。", "tags": ["face"] },
+    { "word": "笑", "pinyin": "xiào", "file": "laugh", "english": "laugh", "japanese": "笑う", "japanese_reading": "わらう", "sentence": "爸爸讲笑话，我们都笑了。", "tags": ["face"] },
+    { "word": "哭", "pinyin": "kū", "file": "cry", "english": "cry", "japanese": "泣く", "japanese_reading": "なく", "sentence": "妹妹摔倒了，哭了一会儿。", "tags": ["face"] },
+    { "word": "吃", "pinyin": "chī", "file": "eat", "english": "eat", "japanese": "食べる", "japanese_reading": "たべる", "sentence": "我在吃香喷喷的米饭。", "tags": ["face"] },
+    { "word": "喝", "pinyin": "hē", "file": "drink", "english": "drink", "japanese": "飲む", "japanese_reading": "のむ", "sentence": "运动后，我大口喝水。", "tags": ["face"] },
+    { "word": "亲", "pinyin": "qīn", "file": "kiss", "english": "kiss", "japanese": "キスする", "japanese_reading": "きすする", "sentence": "妈妈亲了亲我的额头。", "tags": ["face"] },
+    { "word": "躲", "pinyin": "duǒ", "file": "hide", "english": "hide", "japanese": "隠れる", "japanese_reading": "かくれる", "sentence": "我躲在窗帘后面，等爸爸来找我。", "tags": ["play"] },
+    { "word": "飞", "pinyin": "fēi", "file": "fly", "english": "fly", "japanese": "飛ぶ", "japanese_reading": "とぶ", "sentence": "小鸟张开翅膀飞走了。", "tags": ["play"] },
+    { "word": "游", "pinyin": "yóu", "file": "swim", "english": "swim", "japanese": "泳ぐ", "japanese_reading": "およぐ", "sentence": "夏天到了，我想去游泳。", "tags": ["play"] }
+  ]
+}
