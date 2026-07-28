@@ -1,0 +1,184 @@
+{
+  "module": "seasons_weather",
+  "title": "季节和天气",
+  "target_age": "3-6",
+  "lesson_duration_min": 5,
+  "words": [
+    {
+      "word": "春天",
+      "pinyin": "chūn tiān",
+      "measure_word": "个",
+      "sentence": "春天来了，小树发芽，花儿张开笑脸。",
+      "sentence_pinyin": "Chūn tiān lái le, xiǎo shù fā yá, huār zhāng kāi xiào liǎn.",
+      "english": "spring",
+      "tags": ["season"],
+      "difficulty": 1,
+      "image_prompt": "A realistic children's educational illustration of spring, green meadow with blooming flowers and budding trees, gentle warm sunlight, butterflies, soft colors, nature scene, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "夏天",
+      "pinyin": "xià tiān",
+      "measure_word": "个",
+      "sentence": "夏天很热，蝉在树上唱歌，我们去海边玩水。",
+      "sentence_pinyin": "Xià tiān hěn rè, chán zài shù shàng chàng gē, wǒ men qù hǎi biān wán shuǐ.",
+      "english": "summer",
+      "tags": ["season"],
+      "difficulty": 1,
+      "image_prompt": "A realistic children's educational illustration of summer, bright blue sky, green trees, children playing at the beach, gentle waves, warm sunlight, soft colors, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "秋天",
+      "pinyin": "qiū tiān",
+      "measure_word": "个",
+      "sentence": "秋天到了，树叶变黄，一片片从树上落下来。",
+      "sentence_pinyin": "Qiū tiān dào le, shù yè biàn huáng, yí piàn piàn cóng shù shàng luò xià lái.",
+      "english": "autumn",
+      "tags": ["season"],
+      "difficulty": 1,
+      "image_prompt": "A realistic children's educational illustration of autumn, golden and orange falling leaves, children walking on a path, soft sunlight, harvest pumpkins, gentle colors, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "冬天",
+      "pinyin": "dōng tiān",
+      "measure_word": "个",
+      "sentence": "冬天很冷，雪花飘飘，大地穿上了白棉袄。",
+      "sentence_pinyin": "Dōng tiān hěn lěng, xuě huā piāo piāo, dà dì chuān shàng le bái mián ǎo.",
+      "english": "winter",
+      "tags": ["season"],
+      "difficulty": 1,
+      "image_prompt": "A realistic children's educational illustration of winter, snowy landscape with snow-covered trees, children making a snowman, soft cold blue and white tones, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "晴天",
+      "pinyin": "qíng tiān",
+      "measure_word": "个",
+      "sentence": "太阳出来了，天空蓝蓝的，适合去公园玩。",
+      "sentence_pinyin": "Tài yáng chū lái le, tiān kōng lán lán de, shì hé qù gōng yuán wán.",
+      "english": "sunny",
+      "tags": ["weather"],
+      "difficulty": 1,
+      "image_prompt": "A realistic children's educational illustration of sunny weather, bright blue sky with a shining sun, children playing in a park, green grass, soft warm colors, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "阴天",
+      "pinyin": "yīn tiān",
+      "measure_word": "个",
+      "sentence": "天空灰灰的，太阳躲在云后面，适合在家读书。",
+      "sentence_pinyin": "Tiān kōng huī huī de, tài yáng duǒ zài yún hòu miàn, shì hé zài jiā dú shū.",
+      "english": "cloudy",
+      "tags": ["weather"],
+      "difficulty": 1,
+      "image_prompt": "A realistic children's educational illustration of overcast weather, gray sky with soft clouds, a child reading by a window, cozy indoor scene, gentle colors, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "多云",
+      "pinyin": "duō yún",
+      "measure_word": "个",
+      "sentence": "天上飘着一朵朵白云，太阳时隐时现。",
+      "sentence_pinyin": "Tiān shàng piāo zhe yí duǒ duǒ bái yún, tài yáng shí yǐn shí xiàn.",
+      "english": "partly_cloudy",
+      "tags": ["weather"],
+      "difficulty": 2,
+      "image_prompt": "A realistic children's educational illustration of partly cloudy weather, blue sky with scattered white fluffy clouds, sunlight filtering through, green landscape below, soft colors, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "下雨",
+      "pinyin": "xià yǔ",
+      "measure_word": "场",
+      "sentence": "雨滴落在窗上，嗒嗒嗒地唱歌，出门记得带伞。",
+      "sentence_pinyin": "Yǔ dī luò zài chuāng shàng, dā dā dā de chàng gē, chū mén jì de dài sǎn.",
+      "english": "rainy",
+      "tags": ["weather"],
+      "difficulty": 1,
+      "image_prompt": "A realistic children's educational illustration of rainy weather, gentle rain falling on a window, child holding a colorful umbrella, puddles on the ground, soft blue and gray tones, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "下雪",
+      "pinyin": "xià xuě",
+      "measure_word": "场",
+      "sentence": "雪花从天上飘下来，大地变成白色，我们可以堆雪人。",
+      "sentence_pinyin": "Xuě huā cóng tiān shàng piāo xià lái, dà dì biàn chéng bái sè, wǒ men kě yǐ duī xuě rén.",
+      "english": "snowy",
+      "tags": ["weather"],
+      "difficulty": 1,
+      "image_prompt": "A realistic children's educational illustration of snowy weather, soft snowflakes falling from gray sky, children building a snowman, snow-covered houses, gentle white and blue tones, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "刮风",
+      "pinyin": "guā fēng",
+      "measure_word": "阵",
+      "sentence": "风吹得树叶沙沙响，旗子呼呼地飘起来。",
+      "sentence_pinyin": "Fēng chuī de shù yè shā shā xiǎng, qí zi hū hū de piāo qǐ lái.",
+      "english": "windy",
+      "tags": ["weather"],
+      "difficulty": 2,
+      "image_prompt": "A realistic children's educational illustration of windy weather, trees bending in the wind, a colorful flag flying, leaves swirling in the air, gentle dynamic movement, soft colors, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "打雷",
+      "pinyin": "dǎ léi",
+      "measure_word": "阵",
+      "sentence": "轰隆隆，雷公公敲鼓了，快躲进屋子里。",
+      "sentence_pinyin": "Hōng lóng lóng, léi gōng gong qiāo gǔ le, kuài duǒ jìn wū zi lǐ.",
+      "english": "thunder",
+      "tags": ["weather"],
+      "difficulty": 2,
+      "image_prompt": "A realistic children's educational illustration of thunder, dark stormy sky with lightning bolts, a child safely watching from a window, cozy house interior, dramatic but not scary, soft colors, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "闪电",
+      "pinyin": "shǎn diàn",
+      "measure_word": "道",
+      "sentence": "一道亮亮的闪电划过天空，把黑夜照亮。",
+      "sentence_pinyin": "Yí dào liàng liàng de shǎn diàn huá guò tiān kōng, bǎ hēi yè zhào liàng.",
+      "english": "lightning",
+      "tags": ["weather"],
+      "difficulty": 2,
+      "image_prompt": "A realistic children's educational illustration of lightning, dark sky with bright zigzag lightning bolt illuminating clouds, seen from a safe distance, dramatic but gentle, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "彩虹",
+      "pinyin": "cǎi hóng",
+      "measure_word": "道",
+      "sentence": "雨后天晴，天上挂着一座七彩的桥，真漂亮。",
+      "sentence_pinyin": "Yǔ hòu tiān qíng, tiān shàng guà zhe yí zuò qī cǎi de qiáo, zhēn piào liang.",
+      "english": "rainbow",
+      "tags": ["weather"],
+      "difficulty": 1,
+      "image_prompt": "A realistic children's educational illustration of a rainbow, colorful arc in a bright blue sky after rain, green meadow with gentle puddles, soft warm colors, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "雾",
+      "pinyin": "wù",
+      "measure_word": "团",
+      "sentence": "早上雾蒙蒙的，远处的房子都看不见了。",
+      "sentence_pinyin": "Zǎo shang wù méng méng de, yuǎn chù de fáng zi dōu kàn bú jiàn le.",
+      "english": "fog",
+      "tags": ["weather"],
+      "difficulty": 2,
+      "image_prompt": "A realistic children's educational illustration of foggy weather, soft misty morning scene, trees and houses barely visible through white fog, a child walking carefully, gentle muted colors, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "霜",
+      "pinyin": "shuāng",
+      "measure_word": "层",
+      "sentence": "早晨草地上结了一层白白的霜，像撒了糖一样。",
+      "sentence_pinyin": "Zǎo chén cǎo dì shàng jié le yì céng bái bái de shuāng, xiàng sā le táng yí yàng.",
+      "english": "frost",
+      "tags": ["weather"],
+      "difficulty": 3,
+      "image_prompt": "A realistic children's educational illustration of frost, white frost crystals covering grass and leaves in early morning, soft cold light, delicate icy patterns, gentle colors, no cartoon eyes, no text, no watermark"
+    },
+    {
+      "word": "冰雹",
+      "pinyin": "bīng báo",
+      "measure_word": "场",
+      "sentence": "天上掉下来一颗颗小冰球，砸在地上蹦蹦跳。",
+      "sentence_pinyin": "Tiān shàng diào xià lái yì kē kē xiǎo bīng qiú, zá zài dì shàng bèng bèng tiào.",
+      "english": "hail",
+      "tags": ["weather"],
+      "difficulty": 3,
+      "image_prompt": "A realistic children's educational illustration of hail weather, small ice balls falling from dark clouds onto the ground, child watching safely from under a roof, soft cool colors, no cartoon eyes, no text, no watermark"
+    }
+  ]
+}
