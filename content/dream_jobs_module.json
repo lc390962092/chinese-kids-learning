@@ -15,7 +15,11 @@
         "听诊器",
         "健康"
       ],
-      "image_prompt": "Realistic photo of a friendly doctor with a stethoscope, hospital background, natural lighting, no text, no watermark"
+      "emoji": "👨‍⚕️",
+      "japanese": "医者",
+      "japanese_reading": "いしゃ",
+      "english": "doctor",
+      "file": "doctor"
     },
     {
       "word": "消防员",
@@ -28,7 +32,11 @@
         "勇敢",
         "救援"
       ],
-      "image_prompt": "Realistic photo of a firefighter in uniform standing by a red fire truck, natural lighting, no text, no watermark"
+      "emoji": "👨‍🚒",
+      "japanese": "消防士",
+      "japanese_reading": "しょうぼうし",
+      "english": "firefighter",
+      "file": "firefighter"
     },
     {
       "word": "老师",
@@ -41,7 +49,11 @@
         "读书",
         "学习"
       ],
-      "image_prompt": "Realistic photo of a teacher writing on a blackboard with children in a classroom, natural lighting, no text, no watermark"
+      "emoji": "👩‍🏫",
+      "japanese": "先生",
+      "japanese_reading": "せんせい",
+      "english": "teacher",
+      "file": "teacher"
     },
     {
       "word": "警察",
@@ -54,7 +66,11 @@
         "帮助",
         "抓坏人"
       ],
-      "image_prompt": "Realistic photo of a police officer smiling and helping a child, police car in background, natural lighting, no text, no watermark"
+      "emoji": "👮",
+      "japanese": "警察",
+      "japanese_reading": "けいさつ",
+      "english": "police officer",
+      "file": "police_officer"
     },
     {
       "word": "宇航员",
@@ -67,7 +83,11 @@
         "星星",
         "月亮"
       ],
-      "image_prompt": "Realistic photo of an astronaut floating in space with Earth in the background, stars shining, no text, no watermark"
+      "emoji": "👨‍🚀",
+      "japanese": "宇宙飛行士",
+      "japanese_reading": "うちゅうひこうし",
+      "english": "astronaut",
+      "file": "astronaut"
     },
     {
       "word": "厨师",
@@ -80,7 +100,11 @@
         "菜",
         "甜点"
       ],
-      "image_prompt": "Realistic photo of a chef cooking in a kitchen with fresh vegetables, steam rising, natural lighting, no text, no watermark"
+      "emoji": "👨‍🍳",
+      "japanese": "料理人",
+      "japanese_reading": "りょうりにん",
+      "english": "chef",
+      "file": "chef"
     },
     {
       "word": "农民",
@@ -93,7 +117,11 @@
         "大米",
         "蔬菜"
       ],
-      "image_prompt": "Realistic photo of a farmer working in a green field with vegetables and rice, natural lighting, no text, no watermark"
+      "emoji": "👨‍🌾",
+      "japanese": "農民",
+      "japanese_reading": "のうみん",
+      "english": "farmer",
+      "file": "farmer"
     },
     {
       "word": "司机",
@@ -106,7 +134,11 @@
         "乘客",
         "安全"
       ],
-      "image_prompt": "Realistic photo of a bus driver smiling at the wheel, passengers in the bus, natural lighting, no text, no watermark"
+      "emoji": "👨‍✈️",
+      "japanese": "運転手",
+      "japanese_reading": "うんてんしゅ",
+      "english": "driver",
+      "file": "driver"
     },
     {
       "word": "邮递员",
@@ -119,7 +151,11 @@
         "自行车",
         "远方"
       ],
-      "image_prompt": "Realistic photo of a mail carrier delivering letters on a bicycle, sunny street, natural lighting, no text, no watermark"
+      "emoji": "📮",
+      "japanese": "郵便配達員",
+      "japanese_reading": "ゆうびんはいたついん",
+      "english": "postman",
+      "file": "postman"
     },
     {
       "word": "画家",
@@ -132,7 +168,11 @@
         "画画",
         "颜色"
       ],
-      "image_prompt": "Realistic photo of an artist painting on canvas with colorful paints, studio with natural light, no text, no watermark"
+      "emoji": "👨‍🎨",
+      "japanese": "画家",
+      "japanese_reading": "がか",
+      "english": "painter",
+      "file": "painter"
     },
     {
       "word": "科学家",
@@ -145,7 +185,11 @@
         "发现",
         "知识"
       ],
-      "image_prompt": "Realistic photo of a scientist looking through a microscope in a bright laboratory, no text, no watermark"
+      "emoji": "🧑‍🔬",
+      "japanese": "科学者",
+      "japanese_reading": "かがくしゃ",
+      "english": "scientist",
+      "file": "scientist"
     },
     {
       "word": "护士",
@@ -158,7 +202,11 @@
         "打针",
         "健康"
       ],
-      "image_prompt": "Realistic photo of a kind nurse holding a child's hand in a hospital, natural lighting, no text, no watermark"
+      "emoji": "👩‍⚕️",
+      "japanese": "看護師",
+      "japanese_reading": "かんごし",
+      "english": "nurse",
+      "file": "nurse"
     },
     {
       "word": "工程师",
@@ -171,7 +219,11 @@
         "工具",
         "修理"
       ],
-      "image_prompt": "Realistic photo of an engineer with blueprints and tools in a modern workshop, no text, no watermark"
+      "emoji": "👷",
+      "japanese": "技師",
+      "japanese_reading": "ぎし",
+      "english": "engineer",
+      "file": "engineer"
     },
     {
       "word": "建筑师",
@@ -184,7 +236,11 @@
         "建筑",
         "家"
       ],
-      "image_prompt": "Realistic photo of an architect holding building plans and looking at a construction model, no text, no watermark"
+      "emoji": "👷‍♂️",
+      "japanese": "建築家",
+      "japanese_reading": "けんちくか",
+      "english": "architect",
+      "file": "architect"
     },
     {
       "word": "运动员",
@@ -197,7 +253,96 @@
         "奖杯",
         "跑步"
       ],
-      "image_prompt": "Realistic photo of a young athlete running on a track with a stadium in background, no text, no watermark"
+      "emoji": "🏃‍♂️",
+      "japanese": "運動選手",
+      "japanese_reading": "うんどうせんしゅ",
+      "english": "athlete",
+      "file": "athlete"
+    },
+    {
+      "word": "兽医",
+      "pinyin": "shòu yī",
+      "summary": "兽医给生病的小动物看病，帮助小猫小狗恢复健康。",
+      "words": [
+        "兽医",
+        "动物",
+        "看病",
+        "小狗",
+        "健康"
+      ],
+      "emoji": "🐕",
+      "japanese": "獣医",
+      "japanese_reading": "じゅうい",
+      "english": "veterinarian",
+      "file": "veterinarian"
+    },
+    {
+      "word": "飞行员",
+      "pinyin": "fēi xíng yuán",
+      "summary": "飞行员驾驶飞机，把乘客安全送到不同的城市。",
+      "words": [
+        "飞行员",
+        "飞机",
+        "天空",
+        "乘客",
+        "旅行"
+      ],
+      "emoji": "✈️",
+      "japanese": "パイロット",
+      "japanese_reading": "ぱいろっと",
+      "english": "pilot",
+      "file": "pilot"
+    },
+    {
+      "word": "摄影师",
+      "pinyin": "shè yǐng shī",
+      "summary": "摄影师用相机记录美好瞬间，留下珍贵的回忆。",
+      "words": [
+        "摄影师",
+        "相机",
+        "照片",
+        "回忆",
+        "美好"
+      ],
+      "emoji": "📷",
+      "japanese": "カメラマン",
+      "japanese_reading": "かめらまん",
+      "english": "photographer",
+      "file": "photographer"
+    },
+    {
+      "word": "舞蹈家",
+      "pinyin": "wǔ dǎo jiā",
+      "summary": "舞蹈家用优美的动作讲故事，给大家带来快乐。",
+      "words": [
+        "舞蹈家",
+        "跳舞",
+        "舞台",
+        "音乐",
+        "优美"
+      ],
+      "emoji": "💃",
+      "japanese": "ダンサー",
+      "japanese_reading": "だんさー",
+      "english": "dancer",
+      "file": "dancer"
+    },
+    {
+      "word": "图书管理员",
+      "pinyin": "tú shū guǎn lǐ yuán",
+      "summary": "图书管理员整理书籍，帮助大家找到想读的故事书。",
+      "words": [
+        "图书管理员",
+        "书籍",
+        "图书馆",
+        "故事",
+        "整理"
+      ],
+      "emoji": "📚",
+      "japanese": "司書",
+      "japanese_reading": "ししょ",
+      "english": "librarian",
+      "file": "librarian"
     }
   ]
 }
