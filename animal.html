@@ -572,8 +572,14 @@
             if (mp3Path) {
                 playAudio(mp3Path).catch((err) => {
                     console.log('MP3 播放失败，fallback 到 Web Speech API:', err);
-                    speak(text, lang, rate);
+                    if (lang.startsWith('ja')) {
+                        speakJapanese(text);
+                    } else {
+                        speak(text, lang, rate);
+                    }
                 });
+            } else if (lang.startsWith('ja')) {
+                speakJapanese(text);
             } else {
                 speak(text, lang, rate);
             }
@@ -725,7 +731,8 @@
         function playJapanese(index) {
             const animal = animals[index];
             const mp3Path = `assets/audio/animals/japanese/${animal.file}_japanese.mp3`;
-            speakWithFallback(`${animal.japanese}、${animal.japanese_reading}`, mp3Path, 'ja-JP', 0.75);
+            // 优先朗读假名读音，避免日文汉字被中文语音包读错
+            speakWithFallback(animal.japanese_reading, mp3Path, 'ja-JP', 0.75);
             showMascot(`${animal.word} 的日语是：${animal.japanese}（${animal.japanese_reading}）`);
         }
         
