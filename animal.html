@@ -761,7 +761,20 @@
             }
         }
         
+        function stopAllAudio() {
+            // 停止 Web Speech 合成
+            if (synth) synth.cancel();
+            // 停止所有 HTMLAudioElement（包括叫声、日/英预录音频）
+            document.querySelectorAll('audio').forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+        }
+        
         function switchAnimal(direction) {
+            // 切换前先停止上一页可能正在播放的所有内容
+            stopAllAudio();
+            
             const cards = document.querySelectorAll('.animal-card');
             const dots = document.querySelectorAll('.progress-dot');
             const prevBtn = document.querySelector('.side-arrow.left');
