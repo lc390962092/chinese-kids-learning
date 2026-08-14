@@ -85,95 +85,54 @@
             <a href="index.html" style="color:#888;text-decoration:none;font-size:14px;">← 回首页</a>
         </div>
     </div>
-<script>
-        const allItems = [
-            { word: "春天", pinyin: "chūn tiān", file: "spring", tags: ["season"], english: "spring", sentence: "春天来了，小树发芽，花儿张开笑脸。" },
-            { word: "夏天", pinyin: "xià tiān", file: "summer", tags: ["season"], english: "summer", sentence: "夏天很热，蝉在树上唱歌，我们去海边玩水。" },
-            { word: "秋天", pinyin: "qiū tiān", file: "autumn", tags: ["season"], english: "autumn", sentence: "秋天到了，树叶变黄，一片片从树上落下来。" },
-            { word: "冬天", pinyin: "dōng tiān", file: "winter", tags: ["season"], english: "winter", sentence: "冬天很冷，雪花飘飘，大地穿上了白棉袄。" },
-            { word: "晴天", pinyin: "qíng tiān", file: "sunny", tags: ["weather"], english: "sunny", sentence: "太阳出来了，天空蓝蓝的，适合去公园玩。" },
-            { word: "阴天", pinyin: "yīn tiān", file: "cloudy", tags: ["weather"], english: "cloudy", sentence: "天空灰灰的，太阳躲在云后面，适合在家读书。" },
-            { word: "多云", pinyin: "duō yún", file: "partly_cloudy", tags: ["weather"], english: "partly cloudy", sentence: "天上飘着一朵朵白云，太阳时隐时现。" },
-            { word: "下雨", pinyin: "xià yǔ", file: "rainy", tags: ["weather"], english: "rainy", sentence: "雨滴落在窗上，嗒嗒嗒地唱歌，出门记得带伞。" },
-            { word: "下雪", pinyin: "xià xuě", file: "snowy", tags: ["weather"], english: "snowy", sentence: "雪花从天上飘下来，大地变成白色，我们可以堆雪人。" },
-            { word: "刮风", pinyin: "guā fēng", file: "windy", tags: ["weather"], english: "windy", sentence: "风吹得树叶沙沙响，旗子呼呼地飘起来。" },
-            { word: "打雷", pinyin: "dǎ léi", file: "thunder", tags: ["weather"], english: "thunder", sentence: "轰隆隆，雷公公敲鼓了，快躲进屋子里。" },
-            { word: "闪电", pinyin: "shǎn diàn", file: "lightning", tags: ["weather"], english: "lightning", sentence: "一道亮亮的闪电划过天空，把黑夜照亮。" },
-            { word: "彩虹", pinyin: "cǎi hóng", file: "rainbow", tags: ["weather"], english: "rainbow", sentence: "雨后天晴，天上挂着一座七彩的桥，真漂亮。" },
-            { word: "雾", pinyin: "wù", file: "fog", tags: ["weather"], english: "fog", sentence: "早上雾蒙蒙的，远处的房子都看不见了。" },
-            { word: "霜", pinyin: "shuāng", file: "frost", tags: ["weather"], english: "frost", sentence: "早晨草地上结了一层白白的霜，像撒了糖一样。" },
-            { word: "冰雹", pinyin: "bīng báo", file: "hail", tags: ["weather"], english: "hail", sentence: "天上掉下来一颗颗小冰球，砸在地上蹦蹦跳。" }
-        ];
-
-        let filteredItems = [...allItems];
+<script src="js/common.js"></script>
+    <script>
+        let allItems = [];
+        let filteredItems = [];
         let currentIndex = 0;
         let currentFilter = 'all';
 
-        const synth = window.speechSynthesis;
-        let chineseVoice = null;
-        let englishVoice = null;
-        let speechEnabled = true;
-
-        function findChineseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.startsWith('zh')) { chineseVoice = v; break; }
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('seasons_weather');
+                allItems = XiaoDou.getItems(data).map(item => {
+                    item.sentence = item.sentence || item.summary || '';
+                    item.file = item.file || item.english || '';
+                    return item;
+                });
+                filteredItems = [...allItems];
+                renderCards();
+                updateMascot('你好！点击天气卡片，听听它们的名字～');
+            } catch (err) {
+                console.error('加载数据失败:', err);
+                document.querySelector('.main-stage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">季节天气数据加载失败，请刷新再试～</div>';
             }
         }
-
-        function findEnglishVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.startsWith('en')) { englishVoice = v; break; }
-            }
-        }
-
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = function() {
-                findChineseVoice();
-                findEnglishVoice();
-            };
-        }
-
-        findChineseVoice();
-        findEnglishVoice();
 
         function stopSpeech() {
-            if (synth) synth.cancel();
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
         }
 
-        function speak(text, lang = 'zh-CN') {
-            if (!synth || !speechEnabled) return;
-            stopSpeech();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = lang;
-            if (lang === 'zh-CN' && chineseVoice) utterance.voice = chineseVoice;
-            if (lang === 'en-US' && englishVoice) utterance.voice = englishVoice;
-            utterance.rate = 0.9;
-            utterance.pitch = 1.1;
-            synth.speak(utterance);
+        function speak(text, lang = 'zh') {
+            XiaoDou.speak(text, lang);
         }
 
         function playWord(index) {
             const item = filteredItems[index];
-            const audio = new Audio(`assets/audio/seasons_weather/${item.file}_word.mp3`);
-            audio.play().catch(e => speak(`${item.word}，${item.pinyin}`));
+            XiaoDou.playAudio(`assets/audio/seasons_weather/${item.file}_word.mp3`, `${item.word}，${item.pinyin}`, 'zh');
             updateMascot(`正在朗读：${item.word}`);
         }
 
         function playSentence(index) {
             const item = filteredItems[index];
-            const audio = new Audio(`assets/audio/seasons_weather/sentences/${item.file}_sentence.mp3`);
-            audio.play().catch(e => speak(item.sentence));
+            XiaoDou.playAudio(`assets/audio/seasons_weather/sentences/${item.file}_sentence.mp3`, item.sentence, 'zh');
             updateMascot(`正在朗读句子：${item.sentence}`);
         }
 
         function playEnglish(index) {
             const item = filteredItems[index];
-            const english = item.english || item.file.replace(/_/g, ' ');
-            speak(english, 'en-US');
+            const english = item.english || (item.file || '').replace(/_/g, ' ');
+            XiaoDou.speak(english, 'en', 0.85);
             updateMascot(`English: ${english}`);
         }
 
@@ -184,7 +143,6 @@
         function renderCards() {
             const container = document.getElementById('itemCards');
             container.innerHTML = '';
-
             filteredItems.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'item-card' + (index === currentIndex ? ' active' : '');
@@ -192,13 +150,13 @@
                 card.innerHTML = `
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" onclick="prevItem()">‹</button>
-                        <img class="item-image" src="assets/images/seasons_weather/${item.file}.png" alt="${item.word}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22%3E%3Crect width=%22240%22 height=%22240%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%22120%22 y=%22125%22 font-size=%2250%22 text-anchor=%22middle%22%3E${item.word.charAt(0)}%3C/text%3E%3C/svg%3E'" onclick="playWord(${index})">
+                        <img class="item-image" src="${XiaoDou.resolvePath(`assets/images/seasons_weather/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22%3E%3Crect width=%22240%22 height=%22240%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%22120%22 y=%22125%22 font-size=%2250%22 text-anchor=%22middle%22%3E${XiaoDou.escapeHtml(item.word.charAt(0))}%3C/text%3E%3C/svg%3E'" onclick="playWord(${index})">
                         <button class="side-arrow right" onclick="nextItem()">›</button>
                     </div>
-                    <div class="item-word" onclick="playWord(${index})">${item.word}</div>
-                    <div class="item-pinyin">${item.pinyin}</div>
-                    <div class="item-english">${item.english}</div>
-                    <div class="item-sentence" onclick="playSentence(${index})">${item.sentence}</div>
+                    <div class="item-word" onclick="playWord(${index})">${XiaoDou.escapeHtml(item.word)}</div>
+                    <div class="item-pinyin">${XiaoDou.escapeHtml(item.pinyin)}</div>
+                    <div class="item-english">${XiaoDou.escapeHtml(item.english)}</div>
+                    <div class="item-sentence" onclick="playSentence(${index})">${XiaoDou.escapeHtml(item.sentence)}</div>
                     <div class="btn-group">
                         <button class="btn btn-word" onclick="playWord(${index})">🔊 中文</button>
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📖 句子</button>
@@ -206,7 +164,6 @@
                 `;
                 container.appendChild(card);
             });
-
             updateProgress();
             updateNavButtons();
         }
@@ -230,21 +187,17 @@
             const cards = document.querySelectorAll('.item-card');
             const oldCard = cards[currentIndex];
             const newCard = cards[index];
-
             if (oldCard && newCard) {
                 oldCard.classList.add(direction > 0 ? 'slide-left-out' : 'slide-right-out');
                 setTimeout(() => {
                     oldCard.classList.remove('active', 'slide-left-out', 'slide-right-out');
                     newCard.classList.add('active', direction > 0 ? 'slide-left-in' : 'slide-right-in');
-                    setTimeout(() => {
-                        newCard.classList.remove('slide-left-in', 'slide-right-in');
-                    }, 300);
+                    setTimeout(() => newCard.classList.remove('slide-left-in', 'slide-right-in'), 300);
                 }, 280);
             } else {
                 if (oldCard) oldCard.classList.remove('active');
                 if (newCard) newCard.classList.add('active');
             }
-
             currentIndex = index;
             updateProgress();
             updateNavButtons();
@@ -252,15 +205,11 @@
         }
 
         function nextItem() {
-            if (currentIndex < filteredItems.length - 1) {
-                showCard(currentIndex + 1, 1);
-            }
+            if (currentIndex < filteredItems.length - 1) showCard(currentIndex + 1, 1);
         }
 
         function prevItem() {
-            if (currentIndex > 0) {
-                showCard(currentIndex - 1, -1);
-            }
+            if (currentIndex > 0) showCard(currentIndex - 1, -1);
         }
 
         function filterItems(type) {
@@ -268,24 +217,17 @@
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.filter === type);
             });
-
-            if (type === 'all') {
-                filteredItems = [...allItems];
-            } else {
-                filteredItems = allItems.filter(item => item.tags.includes(type));
-            }
+            if (type === 'all') filteredItems = [...allItems];
+            else filteredItems = allItems.filter(item => (item.tags || []).includes(type));
             currentIndex = 0;
             renderCards();
             updateMascot(type === 'all' ? '全部季节和天气' : (type === 'season' ? '季节' : '天气'));
         }
 
-        let touchStartX = 0;
-        let touchEndX = 0;
-
+        let touchStartX = 0, touchEndX = 0;
         document.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
-
         document.addEventListener('touchend', function(e) {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
@@ -295,8 +237,7 @@
             const threshold = 50;
             const diff = touchStartX - touchEndX;
             if (Math.abs(diff) > threshold) {
-                if (diff > 0) nextItem();
-                else prevItem();
+                if (diff > 0) nextItem(); else prevItem();
             }
         }
 
@@ -305,8 +246,6 @@
             if (e.key === 'ArrowLeft') prevItem();
         });
 
-        renderCards();
-        updateMascot('你好！点击天气卡片，听听它们的名字～');
-    </script>
-</body>
+        init();
+    </script></body>
 </html>

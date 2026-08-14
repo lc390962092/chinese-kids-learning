@@ -81,159 +81,63 @@
         <div class="swipe-hint">← 左右滑动切换卡片 →</div>
         <a href="index.html" class="back-home">⬅️ 返回首页</a>
     </div>
+    <script src="js/common.js"></script>
     <script>
-        const items = [
-            { word: "头", pinyin: "tóu", english: "head", japanese: "頭", japanese_reading: "あたま", summary: "我用头思考问题，洗头时要把泡沫冲干净。", words: ["头", "头发", "洗头", "思考"], file: "head", image_prompt: "A realistic close-up photograph of head, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "眼睛", pinyin: "yǎn jing", english: "eyes", japanese: "目", japanese_reading: "め", summary: "眼睛亮亮的，我用眼睛看绘本和远方的山。", words: ["眼睛", "看", "绘本", "亮亮"], file: "eyes", image_prompt: "A realistic close-up photograph of eyes, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "耳朵", pinyin: "ěr duo", english: "ears", japanese: "耳", japanese_reading: "みみ", summary: "耳朵能听到小鸟唱歌，也能听到妈妈叫我吃饭。", words: ["耳朵", "听", "小鸟", "妈妈"], file: "ears", image_prompt: "A realistic close-up photograph of ears, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "鼻子", pinyin: "bí zi", english: "nose", japanese: "鼻", japanese_reading: "はな", summary: "鼻子闻到花香，也闻到米饭的香味，不要用手挖鼻子。", words: ["鼻子", "闻", "花香", "米饭"], file: "nose", image_prompt: "A realistic close-up photograph of nose, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "嘴巴", pinyin: "zuǐ ba", english: "mouth", japanese: "口", japanese_reading: "くち", summary: "嘴巴用来吃饭和说话，吃完东西要擦一擦嘴巴。", words: ["嘴巴", "吃饭", "说话", "擦"], file: "mouth", image_prompt: "A realistic close-up photograph of mouth, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "牙齿", pinyin: "yá chǐ", english: "teeth", japanese: "歯", japanese_reading: "は", summary: "牙齿能咬碎食物，每天早晚要用牙刷刷牙。", words: ["牙齿", "牙刷", "刷牙", "咬碎"], file: "teeth", image_prompt: "A realistic close-up photograph of teeth, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "舌头", pinyin: "shé tou", english: "tongue", japanese: "舌", japanese_reading: "した", summary: "舌头能尝到甜和咸，说话时也靠舌头帮忙。", words: ["舌头", "尝", "甜", "咸"], file: "tongue", image_prompt: "A realistic close-up photograph of tongue, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "手", pinyin: "shǒu", english: "hand", japanese: "手", japanese_reading: "て", summary: "我有两只手，能拿筷子、画画，还能帮妈妈拿东西。", words: ["手", "两只手", "筷子", "画画"], file: "hand", image_prompt: "A realistic close-up photograph of hand, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "手指", pinyin: "shǒu zhǐ", english: "fingers", japanese: "指", japanese_reading: "ゆび", summary: "一只手有五根手指，手指能扣扣子、翻书页。", words: ["手指", "五根", "扣子", "翻书"], file: "fingers", image_prompt: "A realistic close-up photograph of fingers, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "脚", pinyin: "jiǎo", english: "foot", japanese: "足", japanese_reading: "あし", summary: "我用脚走路和跑步，小脚脏了要洗干净。", words: ["脚", "走路", "跑步", "干净"], file: "foot", image_prompt: "A realistic close-up photograph of foot, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "腿", pinyin: "tuǐ", english: "leg", japanese: "脚", japanese_reading: "あし", summary: "腿很有力气，能蹲下来、站起来，还能踢球。", words: ["腿", "力气", "蹲下", "踢球"], file: "leg", image_prompt: "A realistic close-up photograph of leg, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "肚子", pinyin: "dù zi", english: "tummy", japanese: "お腹", japanese_reading: "おなか", summary: "肚子饿了会咕咕叫，吃饱后肚子圆鼓鼓的。", words: ["肚子", "饿了", "吃饱", "圆鼓鼓"], file: "tummy", image_prompt: "A realistic close-up photograph of tummy, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "后背", pinyin: "hòu bèi", english: "back", japanese: "背中", japanese_reading: "せなか", summary: "后背要挺直，写字和看书时不能弯着腰。", words: ["后背", "挺直", "写字", "弯着腰"], file: "back", image_prompt: "A realistic close-up photograph of back, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "胳膊", pinyin: "gē bo", english: "arm", japanese: "腕", japanese_reading: "うで", summary: "胳膊能伸得高高的，可以拿书架上的书，还能拥抱。", words: ["胳膊", "高高", "书架", "拥抱"], file: "arm", image_prompt: "A realistic close-up photograph of arm, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" },
-            { word: "肩膀", pinyin: "jiān bǎng", english: "shoulders", japanese: "肩", japanese_reading: "かた", summary: "爸爸把我放在肩膀上，我能看到更远的地方。", words: ["肩膀", "爸爸", "远处", "地方"], file: "shoulders", image_prompt: "A realistic close-up photograph of shoulders, gentle soft natural lighting, clean background, child-friendly educational medical illustration style, no text, no watermark" }
-        ];
-
+        let items = [];
         let currentIndex = 0;
         let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
         const SWIPE_THRESHOLD = 50;
 
-        const synth = window.speechSynthesis;
-        let chineseVoice = null;
-        let japaneseVoice = null;
-        let englishVoice = null;
-        let speechEnabled = true;
-
-        function findChineseVoice(){
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) { if (v.lang.startsWith('zh')) { chineseVoice = v; break; } }
-        }
-        function findJapaneseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            let best = null;
-            for (let v of voices) { if (v.lang === 'ja-JP') { best = v; break; } }
-            if (!best) { for (let v of voices) { if (v.lang.startsWith('ja')) { best = v; break; } } }
-            japaneseVoice = best;
-        }
-        function findEnglishVoice(){
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) { if (v.lang.startsWith('en')) { englishVoice = v; break; } }
-        }
-        if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = function() { findChineseVoice(); findJapaneseVoice(); findEnglishVoice(); };
-        findChineseVoice();
-        findJapaneseVoice();
-        findEnglishVoice();
-
-        function speak(text, rate = 0.82){
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'zh-CN'; utter.rate = rate; utter.pitch = 1.1;
-            if (chineseVoice) utter.voice = chineseVoice;
-            synth.speak(utter);
-        }
-
-        function playAudio(path) {
-            return new Promise((resolve, reject) => {
-                const audio = new Audio(path);
-                audio.onended = resolve;
-                audio.onerror = reject;
-                audio.play().catch(reject);
-            });
-        }
-
-        function speakWithFallback(text, mp3Path, rate = 0.8) {
-            if (mp3Path) {
-                playAudio(mp3Path).catch(() => speak(text, rate));
-            } else {
-                speak(text, rate);
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('body_parts');
+                items = XiaoDou.getItems(data);
+                renderCards();
+                renderProgress();
+            } catch (err) {
+                console.error('加载数据失败:', err);
+                document.getElementById('mainStage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">内容加载失败，请刷新再试～</div>';
             }
-        }
-
-        function playJapanese(index) {
-            const item = items[index];
-            const mp3Path = `assets/audio/body_parts/japanese/${item.english.replace(/ /g, '_')}_japanese.mp3`;
-            speakWithFallback(item.japanese_reading, mp3Path);
-            showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
-        }
-
-        function speakJapanese(text) {
-            if (!synth || !speechEnabled) {
-                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
-                return;
-            }
-            synth.cancel();
-            const kanaOnly = text.replace(/[^\u3040-\u309F\u30A0-\u30FF\uFF10-\uFF19\u3000-\u303F\s]/g, '').replace(/[\u3001\u3002\uff0c\uff0e]/g, ' ').trim();
-            const toSpeak = kanaOnly || text;
-            if (japaneseVoice && japaneseVoice.lang && japaneseVoice.lang.startsWith('ja')) {
-                const utter = new SpeechSynthesisUtterance(toSpeak);
-                utter.lang = 'ja-JP';
-                utter.rate = 0.82;
-                utter.pitch = 1.05;
-                utter.voice = japaneseVoice;
-                synth.speak(utter);
-                return;
-            }
-            const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q=' + encodeURIComponent(toSpeak);
-            const audio = new Audio(url);
-            audio.play().catch((err) => {
-                console.log('在线日语 TTS 播放失败:', err);
-                showMascot("小提示：当前设备没有日语语音包，所以日语念不出来。建议用电脑或换浏览器试试～");
-            });
-        }
-
-        function speakEnglish(text, rate = 0.85){
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'en-US'; utter.rate = rate; utter.pitch = 1.0;
-            if (englishVoice) utter.voice = englishVoice;
-            synth.speak(utter);
         }
 
         function showMascot(text){ document.getElementById('mascotText').textContent = text; }
 
         function playWord(index){
             const item = items[index];
-            const mp3Path = `assets/audio/body_parts/${item.english.replace(/ /g, '_')}_word.mp3`;
-            speakWithFallback(item.word + '，' + item.pinyin, mp3Path);
+            XiaoDou.playAudio(`assets/audio/body_parts/${item.file}_word.mp3`, item.word + '，' + item.pinyin, 'zh');
             showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
         }
 
         function playSentence(index){
             const item = items[index];
-            const mp3Path = `assets/audio/body_parts/sentences/${item.english.replace(/ /g, '_')}_sentence.mp3`;
-            speakWithFallback(item.summary, mp3Path);
+            XiaoDou.playAudio(`assets/audio/body_parts/sentences/${item.file}_sentence.mp3`, item.summary, 'zh');
             showMascot(item.summary);
+        }
+
+        function playJapanese(index){
+            const item = items[index];
+            XiaoDou.playAudio(`assets/audio/body_parts/japanese/${item.file}_japanese.mp3`, item.japanese_reading, 'ja');
+            showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
         function playEnglish(index){
             const item = items[index];
-            speakEnglish(item.english);
+            XiaoDou.playAudio(`assets/audio/body_parts/english/${item.file}_english.mp3`, item.english, 'en');
             showMascot('英语说：' + item.english);
         }
 
         function renderCards(){
             const container = document.getElementById('cards');
             container.innerHTML = items.map((item, i) => {
-                const keywords = item.words.map(w => `<span class="keyword" onclick="speak('${w}')">${w}</span>`).join('');
+                const keywords = (item.words || []).map(w => `<span class="keyword" onclick="XiaoDou.speak('${XiaoDou.escapeHtml(w)}', 'zh')">${XiaoDou.escapeHtml(w)}</span>`).join('');
                 return `<div class="card ${i===0?'active':''}">
-                    <div class="card-emoji" onclick="playWord(${i})"><img src="assets/images/body_parts/${item.file}.png" alt="${item.word}" onerror="this.style.display='none'; this.parentNode.textContent='🧍'"></div>
-                    <div class="card-title">${item.word}</div>
-                    <div class="card-subtitle">${item.pinyin}</div>
-                    <div class="card-japanese">${item.japanese}</div>
-                    <div class="card-japanese-reading">${item.japanese_reading}</div>
-                    <div class="card-english">${item.english}</div>
-                    <div class="card-text">${item.summary}</div>
+                    <div class="card-emoji" onclick="playWord(${i})"><img src="${XiaoDou.resolvePath(`assets/images/body_parts/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.style.display='none'; this.parentNode.textContent='🧍'"></div>
+                    <div class="card-title">${XiaoDou.escapeHtml(item.word)}</div>
+                    <div class="card-subtitle">${XiaoDou.escapeHtml(item.pinyin)}</div>
+                    <div class="card-japanese">${XiaoDou.escapeHtml(item.japanese)}</div>
+                    <div class="card-japanese-reading">${XiaoDou.escapeHtml(item.japanese_reading)}</div>
+                    <div class="card-english">${XiaoDou.escapeHtml(item.english)}</div>
+                    <div class="card-text">${XiaoDou.escapeHtml(item.summary)}</div>
                     <div class="keywords">${keywords}</div>
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="playWord(${i})">🔊 读词语</button>
@@ -257,6 +161,7 @@
         function switchCard(direction){
             const cards = document.querySelectorAll('.card');
             const dots = document.querySelectorAll('.progress-dot');
+            if (!cards.length) return;
             cards[currentIndex].classList.remove('active');
             dots[currentIndex].classList.remove('active');
             if (direction === 'next') currentIndex = (currentIndex + 1) % items.length;
@@ -264,7 +169,7 @@
             cards[currentIndex].classList.add('active');
             dots[currentIndex].classList.add('active');
             const item = items[currentIndex];
-            speak(item.word);
+            XiaoDou.speak(item.word, 'zh');
             showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
         }
 
@@ -274,7 +179,7 @@
         function startApp(){
             document.getElementById('startOverlay').style.display = 'none';
             if (items.length > 0){
-                speak('你好！我是小豆。今天我们来认识身体部位。');
+                XiaoDou.speak('你好！我是小豆。今天我们来认识身体部位。', 'zh');
                 showMascot('你好！我是小豆。今天我们来认识身体部位。');
             }
         }
@@ -296,8 +201,6 @@
             }
         }, { passive: true });
 
-        renderCards();
-        renderProgress();
-    </script>
-</body>
+        init();
+    </script></body>
 </html>

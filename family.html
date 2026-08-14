@@ -360,166 +360,40 @@
         </div>
     </div>
 
+    <script src="js/common.js"></script>
     <script>
-        const allItems = [
-            { word: "爸爸", pinyin: "bà ba", file: "father", english: "father", sentence: "爸爸的肩膀宽又大，带我骑大马。", tags: ["core", "elder"], japanese: "お父さん", japanese_reading: "おとうさん" },
-            { word: "妈妈", pinyin: "mā ma", file: "mother", english: "mother", sentence: "妈妈的歌声真好听，伴我入梦乡。", tags: ["core", "elder"], japanese: "お母さん", japanese_reading: "おかあさん" },
-            { word: "爷爷", pinyin: "yé ye", file: "grandfather", english: "grandfather", sentence: "爷爷戴着老花镜，给我讲有趣的故事。", tags: ["relatives", "elder"], japanese: "おじいちゃん", japanese_reading: "おじいちゃん" },
-            { word: "奶奶", pinyin: "nǎi nai", file: "grandmother", english: "grandmother", sentence: "奶奶做的包子香喷喷，我最爱吃。", tags: ["relatives", "elder"], japanese: "おばあちゃん", japanese_reading: "おばあちゃん" },
-            { word: "外公", pinyin: "wài gōng", file: "maternal_grandfather", english: "maternal grandfather", sentence: "外公喜欢写毛笔字，字写得真漂亮。", tags: ["relatives", "elder"], japanese: "おじいちゃん", japanese_reading: "おじいちゃん" },
-            { word: "外婆", pinyin: "wài pó", file: "maternal_grandmother", english: "maternal grandmother", sentence: "外婆的菜园里，种了好多红红的西红柿。", tags: ["relatives", "elder"], japanese: "おばあちゃん", japanese_reading: "おばあちゃん" },
-            { word: "哥哥", pinyin: "gē ge", file: "older_brother", english: "older brother", sentence: "哥哥跑得飞快，带我一起踢足球。", tags: ["core", "sibling"], japanese: "お兄さん", japanese_reading: "おにいさん" },
-            { word: "姐姐", pinyin: "jiě jie", file: "older_sister", english: "older sister", sentence: "姐姐画画真好看，画了一只小熊猫。", tags: ["core", "sibling"], japanese: "お姉さん", japanese_reading: "おねえさん" },
-            { word: "弟弟", pinyin: "dì di", file: "younger_brother", english: "younger brother", sentence: "弟弟胖乎乎的，最喜欢在地上玩积木。", tags: ["core", "sibling"], japanese: "弟", japanese_reading: "おとうと" },
-            { word: "妹妹", pinyin: "mèi mei", file: "younger_sister", english: "younger sister", sentence: "妹妹笑起来，有两个甜甜的小酒窝。", tags: ["core", "sibling"], japanese: "妹", japanese_reading: "いもうと" },
-            { word: "叔叔", pinyin: "shū shu", file: "uncle", english: "uncle", sentence: "叔叔送给我一个红色的玩具赛车，跑得可快了。", tags: ["relatives", "elder"], japanese: "おじさん", japanese_reading: "おじさん" },
-            { word: "阿姨", pinyin: "ā yí", file: "aunt", english: "aunt", sentence: "阿姨带我去游乐园，坐了漂亮的旋转木马。", tags: ["relatives", "elder"], japanese: "おばさん", japanese_reading: "おばさん" },
-            { word: "舅舅", pinyin: "jiù jiu", file: "maternal_uncle", english: "maternal uncle", sentence: "舅舅是个摄影师，用相机给我拍了好多照片。", tags: ["relatives", "elder"], japanese: "おじさん", japanese_reading: "おじさん" },
-            { word: "姑姑", pinyin: "gū gu", file: "paternal_aunt", english: "paternal aunt", sentence: "姑姑亲手织了一顶毛线帽，戴着真暖和。", tags: ["relatives", "elder"], japanese: "おばさん", japanese_reading: "おばさん" }
-        ];
-
-
-        let filteredItems = [...allItems];
+        let allItems = [];
+        let filteredItems = [];
         let currentIndex = 0;
         let currentFilter = 'all';
 
-        const synth = window.speechSynthesis;
-        let chineseVoice = null;
-        let japaneseVoice = null;
-        let englishVoice = null;
-        let speechEnabled = true;
-
-        function findChineseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.startsWith('zh')) { chineseVoice = v; break; }
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('family');
+                allItems = XiaoDou.getItems(data).map(item => {
+                    item.sentence = item.sentence || item.summary || '';
+                    item.file = item.file || item.english || '';
+                    return item;
+                });
+                filteredItems = [...allItems];
+                renderCards();
+                setupSwipe();
+                showMascot('你好！我是小豆。点击卡片，听听爸爸妈妈和长辈怎么读吧！');
+            } catch (err) {
+                console.error('加载数据失败:', err);
+                document.querySelector('.main-stage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">家庭称谓数据加载失败，请刷新再试～</div>';
             }
         }
 
-        function findJapaneseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            let best = null;
-            for (let v of voices) {
-                if (v.lang === 'ja-JP') { best = v; break; }
-            }
-            if (!best) {
-                for (let v of voices) {
-                    if (v.lang.startsWith('ja')) { best = v; break; }
-                }
-            }
-            japaneseVoice = best;
-        }
-
-        function findEnglishVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.startsWith('en')) { englishVoice = v; break; }
-            }
-        }
-
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = function() {
-                findChineseVoice();
-                findJapaneseVoice();
-                findEnglishVoice();
-            };
-        }
-        findChineseVoice();
-        findJapaneseVoice();
-        findEnglishVoice();
-
-        function playAudio(path) {
-            return new Promise((resolve, reject) => {
-                const audio = new Audio(path);
-                audio.onended = resolve;
-                audio.onerror = reject;
-                audio.play().catch(reject);
-            });
-        }
-
-        function speakWithFallback(text, mp3Path, rate = 0.8) {
-            if (mp3Path) {
-                playAudio(mp3Path).catch(() => speak(text, rate));
-            } else {
-                speak(text, rate);
-            }
-        }
-
-        function speak(text, rate = 0.8) {
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'zh-CN';
-            utter.rate = rate;
-            utter.pitch = 1.1;
-            if (chineseVoice) utter.voice = chineseVoice;
-            synth.speak(utter);
-        }
-
-        function speakJapanese(text) {
-            if (!synth || !speechEnabled) {
-                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
-                return;
-            }
-            synth.cancel();
-
-            const kanaOnly = text.replace(/[^\u3040-\u309F\u30A0-\u30FF\uFF10-\uFF19\u3000-\u303F\s]/g, '').replace(/[\u3001\u3002\uff0c\uff0e]/g, ' ').trim();
-            const toSpeak = kanaOnly || text;
-
-            if (japaneseVoice && japaneseVoice.lang && japaneseVoice.lang.startsWith('ja')) {
-                const utter = new SpeechSynthesisUtterance(toSpeak);
-                utter.lang = 'ja-JP';
-                utter.rate = 0.82;
-                utter.pitch = 1.05;
-                utter.voice = japaneseVoice;
-                synth.speak(utter);
-                return;
-            }
-
-            const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q=' + encodeURIComponent(toSpeak);
-            const audio = new Audio(url);
-            audio.play().catch((err) => {
-                console.log('在线日语 TTS 播放失败:', err);
-                showMascot("小提示：当前设备没有日语语音包，所以日语念不出来。建议用电脑或换浏览器试试～");
-            });
-        }
-
-        function speakEnglish(text) {
-            if (!synth || !speechEnabled) {
-                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
-                return;
-            }
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'en-US';
-            utter.rate = 0.85;
-            if (englishVoice) utter.voice = englishVoice;
-            synth.speak(utter);
-        }
-
-        function showMascot(text) {
-            document.getElementById('mascotText').innerText = text;
-        }
+        function showMascot(text) { document.getElementById('mascotText').textContent = text; }
 
         function filterItems(category) {
             currentFilter = category;
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            filterBtns.forEach(btn => {
-                if (btn.getAttribute('data-filter') === category) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-filter') === category);
             });
-
-            if (category === 'all') {
-                filteredItems = [...allItems];
-            } else {
-                filteredItems = allItems.filter(item => item.tags.includes(category));
-            }
+            if (category === 'all') filteredItems = [...allItems];
+            else filteredItems = allItems.filter(item => (item.tags || []).includes(category));
             currentIndex = 0;
             renderCards();
             showMascot(category === 'all' ? '大家都来齐啦！点击卡片开始学习吧。' : category === 'elder' ? '我们来认识亲戚长辈们！' : '我们来认识可爱的兄弟姐妹！');
@@ -531,22 +405,21 @@
             container.innerHTML = '';
             progress.innerHTML = '';
 
+            const svgFallback = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Crect fill='%23FFF3E0' width='240' height='240'/%3E%3Ctext x='120' y='145' font-size='80' text-anchor='middle'%3E👪%3C/text%3E%3C/svg%3E";
+
             filteredItems.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'item-card' + (index === 0 ? ' active' : '');
-                
-                const svgFallback = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Crect fill='%23FFF3E0' width='240' height='240'/%3E%3Ctext x='120' y='145' font-size='80' text-anchor='middle'%3E👪%3C/text%3E%3C/svg%3E";
-                
                 card.innerHTML = `
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" id="prevArrow" onclick="prevItem()">❮</button>
-                        <img class="item-image" src="assets/images/family/${item.file}.png" alt="${item.word}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
+                        <img class="item-image" src="${XiaoDou.resolvePath(`assets/images/family/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
                         <button class="side-arrow right" id="nextArrow" onclick="nextItem()">❯</button>
                     </div>
-                    <div class="item-word">${item.word}</div>
-                    <div class="item-pinyin">${item.pinyin}</div>
-                    <div class="item-english">${item.english}</div>
-                    <div class="item-japanese">${item.word} → ${item.japanese}（${item.japanese_reading}）</div>
+                    <div class="item-word">${XiaoDou.escapeHtml(item.word)}</div>
+                    <div class="item-pinyin">${XiaoDou.escapeHtml(item.pinyin)}</div>
+                    <div class="item-english">${XiaoDou.escapeHtml(item.english)}</div>
+                    <div class="item-japanese">${XiaoDou.escapeHtml(item.word)} → ${XiaoDou.escapeHtml(item.japanese)}（${XiaoDou.escapeHtml(item.japanese_reading)}）</div>
                     <div class="btn-group">
                         <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
@@ -567,7 +440,6 @@
             const nextArrow = document.getElementById('nextArrow');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
-            
             if (prevArrow) prevArrow.disabled = currentIndex === 0;
             if (nextArrow) nextArrow.disabled = currentIndex === filteredItems.length - 1;
             if (prevBtn) prevBtn.disabled = currentIndex === 0;
@@ -576,28 +448,25 @@
 
         function playWord(index) {
             const item = filteredItems[index];
-            const mp3Path = `assets/audio/family/${item.file}_word.mp3`;
-            speakWithFallback(`${item.word}，${item.pinyin}`, mp3Path);
+            XiaoDou.playAudio(`assets/audio/family/${item.file}_word.mp3`, `${item.word}，${item.pinyin}`, 'zh');
             showMascot(`我们来学：${item.word}，${item.pinyin}。`);
         }
 
         function playSentence(index) {
             const item = filteredItems[index];
-            const mp3Path = `assets/audio/family/sentences/${item.file}_sentence.mp3`;
-            speakWithFallback(item.sentence, mp3Path);
+            XiaoDou.playAudio(`assets/audio/family/sentences/${item.file}_sentence.mp3`, item.sentence, 'zh');
             showMascot(item.sentence);
         }
 
         function playJapaneseWord(index) {
             const item = filteredItems[index];
-            const mp3Path = `assets/audio/family/japanese/${item.file}_japanese.mp3`;
-            speakJapanese(item.japanese_reading);
+            XiaoDou.playAudio(`assets/audio/family/japanese/${item.file}_japanese.mp3`, item.japanese_reading, 'ja');
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
         function playEnglishWord(index) {
             const item = filteredItems[index];
-            speakEnglish(item.english);
+            XiaoDou.playAudio(`assets/audio/family/english/${item.file}_english.mp3`, item.english, 'en');
             showMascot(`英语：${item.word} → ${item.english}`);
         }
 
@@ -605,26 +474,18 @@
             const cards = document.querySelectorAll('.item-card');
             const dots = document.querySelectorAll('.progress-dot');
             if (cards.length === 0) return;
-            
             let newIndex;
-            if (direction === 'next') {
-                newIndex = (currentIndex + 1) % filteredItems.length;
-            } else {
-                newIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
-            }
-            
+            if (direction === 'next') newIndex = (currentIndex + 1) % filteredItems.length;
+            else newIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
             cards[currentIndex].classList.remove('active');
             cards[currentIndex].classList.remove('slide-left-in', 'slide-right-in');
             cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-out' : 'slide-right-out');
             dots[currentIndex].classList.remove('active');
-            
             currentIndex = newIndex;
-            
             cards[currentIndex].classList.remove('slide-left-out', 'slide-right-out');
             cards[currentIndex].classList.add('active');
             cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-in' : 'slide-right-in');
             dots[currentIndex].classList.add('active');
-            
             updateArrowState();
             const item = filteredItems[currentIndex];
             showMascot(`我们来学：${item.word}！`);
@@ -634,8 +495,7 @@
         function nextItem() { switchItem('next'); }
         function prevItem() { switchItem('prev'); }
 
-        let touchStartX = 0;
-        let touchEndX = 0;
+        let touchStartX = 0, touchEndX = 0;
         function setupSwipe() {
             const mainStage = document.querySelector('.main-stage');
             if (!mainStage) return;
@@ -647,23 +507,25 @@
                 handleSwipe();
             }, { passive: true });
         }
-        
         function handleSwipe() {
             const swipeThreshold = 50;
             if (touchStartX - touchEndX > swipeThreshold) nextItem();
             else if (touchEndX - touchStartX > swipeThreshold) prevItem();
         }
 
-        renderCards();
-        setupSwipe();
-
-        // 键盘方向键支持
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextItem();
             else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevItem();
         });
 
-        // 点击图片播放星星动效
+        document.getElementById('itemCards').addEventListener('click', function(e) {
+            const img = e.target.closest('.item-image');
+            if (img) {
+                const rect = img.getBoundingClientRect();
+                showStars(rect.left + rect.width / 2, rect.top + rect.height / 2);
+            }
+        });
+
         function showStars(x, y) {
             const stars = ['⭐','🌟','✨','💫'];
             for (let i = 0; i < 5; i++) {
@@ -683,14 +545,7 @@
             }
         }
 
-        // 在图片点击上添加动效触发
-        document.getElementById('itemCards').addEventListener('click', function(e) {
-            const img = e.target.closest('.item-image');
-            if (img) {
-                const rect = img.getBoundingClientRect();
-                showStars(rect.left + rect.width / 2, rect.top + rect.height / 2);
-            }
-        });
+        init();
     </script>
 
     <style>
@@ -698,6 +553,5 @@
             0% { opacity: 1; transform: translateY(0) scale(1); }
             100% { opacity: 0; transform: translateY(-80px) scale(1.5); }
         }
-    </style>
-</body>
+    </style></body>
 </html>

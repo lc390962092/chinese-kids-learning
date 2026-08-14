@@ -99,102 +99,27 @@
             <a href="index.html" style="color:#888;text-decoration:none;font-size:14px;">← 回首页</a>
         </div>
     </div>
-<script>
-        const allItems = [
-            { word: "站", pinyin: "zhàn", file: "stand", english: "stand", sentence: "听到名字，我站起来回答。", tags: ["body"], japanese: "立つ", japanese_reading: "たつ" },
-            { word: "坐", pinyin: "zuò", file: "sit", english: "sit", sentence: "吃饭前，我先坐在小椅子上。", tags: ["body"], japanese: "座る", japanese_reading: "すわる" },
-            { word: "走", pinyin: "zǒu", file: "walk", english: "walk", sentence: "我和妈妈一起走路上学。", tags: ["body"], japanese: "歩く", japanese_reading: "あるく" },
-            { word: "跑", pinyin: "pǎo", file: "run", english: "run", sentence: "小狗在草地上跑得很快。", tags: ["body"], japanese: "走る", japanese_reading: "はしる" },
-            { word: "跳", pinyin: "tiào", file: "jump", english: "jump", sentence: "我喜欢在蹦床上跳一跳。", tags: ["body"], japanese: "跳ぶ", japanese_reading: "とぶ" },
-            { word: "爬", pinyin: "pá", file: "climb", english: "climb", sentence: "弟弟正在爬楼梯。", tags: ["body"], japanese: "登る", japanese_reading: "のぼる" },
-            { word: "转圈", pinyin: "zhuàn quān", file: "spin", english: "spin", sentence: "音乐响起，我们手拉手转圈。", tags: ["body"], japanese: "回る", japanese_reading: "まわる" },
-            { word: "鞠躬", pinyin: "jū gōng", file: "bow", english: "bow", sentence: "见到老师，我鞠躬问好。", tags: ["body"], japanese: "お辞儀する", japanese_reading: "おじぎする" },
-            { word: "拿", pinyin: "ná", file: "hold", english: "hold", sentence: "我拿着杯子喝水。", tags: ["hand"], japanese: "持つ", japanese_reading: "もつ" },
-            { word: "放", pinyin: "fàng", file: "put", english: "put", sentence: "玩完玩具，我把它们放回箱子。", tags: ["hand"], japanese: "置く", japanese_reading: "おく" },
-            { word: "推", pinyin: "tuī", file: "push", english: "push", sentence: "我帮妈妈推购物车。", tags: ["hand"], japanese: "押す", japanese_reading: "おす" },
-            { word: "拉", pinyin: "lā", file: "pull", english: "pull", sentence: "爸爸拉着我的手过马路。", tags: ["hand"], japanese: "引く", japanese_reading: "ひく" },
-            { word: "抱", pinyin: "bào", file: "hug", english: "hug", sentence: "睡觉前，妈妈抱了抱我。", tags: ["hand"], japanese: "抱きしめる", japanese_reading: "だきしめる" },
-            { word: "挥", pinyin: "huī", file: "wave", english: "wave", sentence: "看到奶奶，我挥了挥手。", tags: ["hand"], japanese: "振る", japanese_reading: "ふる" },
-            { word: "指", pinyin: "zhǐ", file: "point", english: "point", sentence: "我指着天上的小鸟说：看！", tags: ["hand"], japanese: "指差す", japanese_reading: "ゆびさす" },
-            { word: "拍", pinyin: "pāi", file: "pat", english: "pat", sentence: "小狗跑过来，我拍了拍它的头。", tags: ["hand"], japanese: "叩く", japanese_reading: "たたく" },
-            { word: "看", pinyin: "kàn", file: "look", english: "look", sentence: "我在看书里的图画。", tags: ["face"], japanese: "見る", japanese_reading: "みる" },
-            { word: "听", pinyin: "tīng", file: "listen", english: "listen", sentence: "我闭上眼睛听音乐。", tags: ["face"], japanese: "聞く", japanese_reading: "きく" },
-            { word: "说", pinyin: "shuō", file: "speak", english: "speak", sentence: "老师问问题，我举手说答案。", tags: ["face"], japanese: "話す", japanese_reading: "はなす" },
-            { word: "笑", pinyin: "xiào", file: "laugh", english: "laugh", sentence: "爸爸讲笑话，我们都笑了。", tags: ["face"], japanese: "笑う", japanese_reading: "わらう" },
-            { word: "哭", pinyin: "kū", file: "cry", english: "cry", sentence: "妹妹摔倒了，哭了一会儿。", tags: ["face"], japanese: "泣く", japanese_reading: "なく" },
-            { word: "吃", pinyin: "chī", file: "eat", english: "eat", sentence: "我在吃香喷喷的米饭。", tags: ["face"], japanese: "食べる", japanese_reading: "たべる" },
-            { word: "喝", pinyin: "hē", file: "drink", english: "drink", sentence: "运动后，我大口喝水。", tags: ["face"], japanese: "飲む", japanese_reading: "のむ" },
-            { word: "亲", pinyin: "qīn", file: "kiss", english: "kiss", sentence: "妈妈亲了亲我的额头。", tags: ["face"], japanese: "キスする", japanese_reading: "きすする" },
-            { word: "躲", pinyin: "duǒ", file: "hide", english: "hide", sentence: "我躲在窗帘后面，等爸爸来找我。", tags: ["play"], japanese: "隠れる", japanese_reading: "かくれる" },
-            { word: "飞", pinyin: "fēi", file: "fly", english: "fly", sentence: "小鸟张开翅膀飞走了。", tags: ["play"], japanese: "飛ぶ", japanese_reading: "とぶ" },
-            { word: "游", pinyin: "yóu", file: "swim", english: "swim", sentence: "夏天到了，我想去游泳。", tags: ["play"], japanese: "泳ぐ", japanese_reading: "およぐ" },
-        ];
-
-        let filteredItems = [...allItems];
+<script src="js/common.js"></script>
+    <script>
+        let allItems = [];
+        let filteredItems = [];
         let currentIndex = 0;
         let currentFilter = 'all';
 
-        const synth = window.speechSynthesis;
-        let chineseVoice = null;
-        let englishVoice = null;
-        let japaneseVoice = null;
-
-        function findVoice(langPrefix) {
-            if (!synth) return null;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.toLowerCase().startsWith(langPrefix)) return v;
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('action_verbs');
+                allItems = XiaoDou.getItems(data).map(item => {
+                    item.sentence = item.sentence || item.summary || '';
+                    return item;
+                });
+                filteredItems = [...allItems];
+                renderCards();
+                setupSwipe();
+            } catch (err) {
+                console.error('加载数据失败:', err);
+                document.querySelector('.main-stage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">动词数据加载失败，请刷新再试～</div>';
             }
-            return null;
-        }
-
-        function refreshVoices() {
-            chineseVoice = findVoice('zh');
-            englishVoice = findVoice('en');
-            japaneseVoice = findVoice('ja');
-        }
-
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = refreshVoices;
-        }
-        refreshVoices();
-
-        function playAudio(path) {
-            return new Promise((resolve, reject) => {
-                const audio = new Audio(path);
-                audio.onended = resolve;
-                audio.onerror = reject;
-                audio.play().catch(reject);
-            });
-        }
-
-        function speakWithFallback(text, mp3Path, lang = 'zh-CN', rate = 0.8) {
-            if (mp3Path) {
-                playAudio(mp3Path).catch(() => speak(text, lang, rate));
-            } else {
-                speak(text, lang, rate);
-            }
-        }
-
-        function speak(text, lang = 'zh-CN', rate = 0.8) {
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = lang;
-            utter.rate = rate;
-            utter.pitch = 1.1;
-            if (lang.startsWith('zh') && chineseVoice) utter.voice = chineseVoice;
-            else if (lang.startsWith('en') && englishVoice) utter.voice = englishVoice;
-            else if (lang.startsWith('ja') && japaneseVoice) utter.voice = japaneseVoice;
-            synth.speak(utter);
-        }
-
-        function speakEnglish(text, rate = 0.8) {
-            speak(text, 'en-US', rate);
-        }
-
-        function speakJapanese(text, rate = 0.75) {
-            speak(text, 'ja-JP', rate);
         }
 
         function showMascot(text) { document.getElementById('mascotText').textContent = text; }
@@ -204,11 +129,8 @@
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.filter === tag);
             });
-            if (tag === 'all') {
-                filteredItems = [...allItems];
-            } else {
-                filteredItems = allItems.filter(item => item.tags.includes(tag));
-            }
+            if (tag === 'all') filteredItems = [...allItems];
+            else filteredItems = allItems.filter(item => (item.tags || []).includes(tag));
             currentIndex = 0;
             renderCards();
             const messages = {
@@ -230,19 +152,19 @@
             filteredItems.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'item-card' + (index === 0 ? ' active' : '');
-                const emoji = item.tags.includes('body') ? '🦵' : item.tags.includes('hand') ? '🖐️' : item.tags.includes('face') ? '😊' : '🎈';
+                const emoji = (item.tags || []).includes('body') ? '🦵' : (item.tags || []).includes('hand') ? '🖐️' : (item.tags || []).includes('face') ? '😊' : '🎈';
                 const svgFallback = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Crect fill='%23f0f0f0' width='240' height='240'/%3E%3Ctext x='120' y='150' font-size='90' text-anchor='middle'%3E" + emoji + "%3C/text%3E%3C/svg%3E";
                 card.innerHTML = `
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" id="prevArrow" onclick="prevItem()">❮</button>
-                        <img class="item-image" src="assets/images/action_verbs/${item.file}.png" alt="${item.word}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
+                        <img class="item-image" src="${XiaoDou.resolvePath(`assets/images/action_verbs/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
                         <button class="side-arrow right" id="nextArrow" onclick="nextItem()">❯</button>
                     </div>
-                    <div class="item-word">${item.word}</div>
-                    <div class="item-pinyin">${item.pinyin}</div>
-                    <div class="item-english">${item.english}</div>
-                    <div class="item-sentence">${item.sentence}</div>
-                    <div class="item-japanese">${item.word} → ${item.japanese}（${item.japanese_reading}）</div>
+                    <div class="item-word">${XiaoDou.escapeHtml(item.word)}</div>
+                    <div class="item-pinyin">${XiaoDou.escapeHtml(item.pinyin)}</div>
+                    <div class="item-english">${XiaoDou.escapeHtml(item.english)}</div>
+                    <div class="item-sentence">${XiaoDou.escapeHtml(item.sentence)}</div>
+                    <div class="item-japanese">${XiaoDou.escapeHtml(item.word)} → ${XiaoDou.escapeHtml(item.japanese)}（${XiaoDou.escapeHtml(item.japanese_reading)}）</div>
                     <div class="btn-group">
                         <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
@@ -271,29 +193,25 @@
 
         function playWord(index) {
             const item = filteredItems[index];
-            const mp3Path = `assets/audio/action_verbs/${item.file}_word.mp3`;
-            speakWithFallback(`${item.word}，${item.pinyin}`, mp3Path);
+            XiaoDou.playAudio(`assets/audio/action_verbs/${item.file}_word.mp3`, `${item.word}，${item.pinyin}`, 'zh');
             showMascot(`我们来看看：${item.word}，${item.pinyin}。`);
         }
 
         function playSentence(index) {
             const item = filteredItems[index];
-            const mp3Path = `assets/audio/action_verbs/sentences/${item.file}_sentence.mp3`;
-            speakWithFallback(item.sentence, mp3Path);
+            XiaoDou.playAudio(`assets/audio/action_verbs/sentences/${item.file}_sentence.mp3`, item.sentence, 'zh');
             showMascot(item.sentence);
         }
 
         function playJapaneseWord(index) {
             const item = filteredItems[index];
-            const mp3Path = `assets/audio/action_verbs/japanese/${item.file}_japanese.mp3`;
-            speakWithFallback(item.japanese_reading, mp3Path, 'ja-JP', 0.75);
+            XiaoDou.playAudio(`assets/audio/action_verbs/japanese/${item.file}_japanese.mp3`, item.japanese_reading, 'ja');
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
         function playEnglishWord(index) {
             const item = filteredItems[index];
-            const mp3Path = `assets/audio/action_verbs/english/${item.file}_english.mp3`;
-            speakWithFallback(item.english, mp3Path, 'en-US', 0.8);
+            XiaoDou.playAudio(`assets/audio/action_verbs/english/${item.file}_english.mp3`, item.english, 'en');
             showMascot(`英语：${item.word} → ${item.english}`);
         }
 
@@ -302,11 +220,8 @@
             const dots = document.querySelectorAll('.progress-dot');
             if (cards.length === 0) return;
             let newIndex;
-            if (direction === 'next') {
-                newIndex = (currentIndex + 1) % filteredItems.length;
-            } else {
-                newIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
-            }
+            if (direction === 'next') newIndex = (currentIndex + 1) % filteredItems.length;
+            else newIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
             cards[currentIndex].classList.remove('active');
             cards[currentIndex].classList.remove('slide-left-in', 'slide-right-in');
             cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-out' : 'slide-right-out');
@@ -325,8 +240,7 @@
         function nextItem() { switchItem('next'); }
         function prevItem() { switchItem('prev'); }
 
-        let touchStartX = 0;
-        let touchEndX = 0;
+        let touchStartX = 0, touchEndX = 0;
         function setupSwipe() {
             const mainStage = document.querySelector('.main-stage');
             if (!mainStage) return;
@@ -344,8 +258,11 @@
             else if (touchEndX - touchStartX > swipeThreshold) prevItem();
         }
 
-        renderCards();
-        setupSwipe();
-    </script>
-</body>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextItem();
+            else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevItem();
+        });
+
+        init();
+    </script></body>
 </html>

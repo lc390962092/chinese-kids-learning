@@ -435,148 +435,45 @@
         <div class="progress" id="progressDots"></div>
     </div>
 
+    <script src="js/common.js"></script>
     <script>
-        // 拼音数据
-        const pinyinData = {
-            initials: [
-                { pinyin: "b", example_word: "爸", example_pinyin: "bà" },
-                { pinyin: "p", example_word: "爬", example_pinyin: "pá" },
-                { pinyin: "m", example_word: "妈", example_pinyin: "mā" },
-                { pinyin: "f", example_word: "飞", example_pinyin: "fēi" },
-                { pinyin: "d", example_word: "大", example_pinyin: "dà" },
-                { pinyin: "t", example_word: "兔", example_pinyin: "tù" },
-                { pinyin: "n", example_word: "牛", example_pinyin: "niú" },
-                { pinyin: "l", example_word: "梨", example_pinyin: "lí" },
-                { pinyin: "g", example_word: "狗", example_pinyin: "gǒu" },
-                { pinyin: "k", example_word: "哭", example_pinyin: "kū" },
-                { pinyin: "h", example_word: "老虎", example_pinyin: "lǎo hǔ" },
-                { pinyin: "j", example_word: "鸡", example_pinyin: "jī" },
-                { pinyin: "q", example_word: "七", example_pinyin: "qī" },
-                { pinyin: "x", example_word: "熊", example_pinyin: "xióng" },
-                { pinyin: "zh", example_word: "猪", example_pinyin: "zhū" },
-                { pinyin: "ch", example_word: "虫", example_pinyin: "chóng" },
-                { pinyin: "sh", example_word: "狮", example_pinyin: "shī" },
-                { pinyin: "r", example_word: "人", example_pinyin: "rén" }
-            ],
-            finals: [
-                { pinyin: "a", example_word: "妈", example_pinyin: "mā" },
-                { pinyin: "o", example_word: "波", example_pinyin: "bō" },
-                { pinyin: "e", example_word: "鹅", example_pinyin: "é" },
-                { pinyin: "i", example_word: "衣", example_pinyin: "yī" },
-                { pinyin: "u", example_word: "猪", example_pinyin: "zhū" },
-                { pinyin: "ü", example_word: "鱼", example_pinyin: "yú" },
-                { pinyin: "ai", example_word: "爱", example_pinyin: "ài" },
-                { pinyin: "ei", example_word: "杯", example_pinyin: "bēi" },
-                { pinyin: "ao", example_word: "猫", example_pinyin: "māo" },
-                { pinyin: "ou", example_word: "狗", example_pinyin: "gǒu" },
-                { pinyin: "iu", example_word: "牛", example_pinyin: "niú" },
-                { pinyin: "ie", example_word: "叶", example_pinyin: "yè" },
-                { pinyin: "üe", example_word: "月", example_pinyin: "yuè" },
-                { pinyin: "an", example_word: "三", example_pinyin: "sān" },
-                { pinyin: "en", example_word: "人", example_pinyin: "rén" },
-                { pinyin: "ang", example_word: "羊", example_pinyin: "yáng" },
-                { pinyin: "eng", example_word: "灯", example_pinyin: "dēng" },
-                { pinyin: "ing", example_word: "星", example_pinyin: "xīng" }
-            ],
-            tones: [
-                {
-                    tone: 1, name: "一声", description: "又高又平",
-                    examples: [
-                        { pinyin: "mā", word: "妈" },
-                        { pinyin: "bā", word: "八" },
-                        { pinyin: "fēi", word: "飞" }
-                    ]
-                },
-                {
-                    tone: 2, name: "二声", description: "由低到高",
-                    examples: [
-                        { pinyin: "má", word: "麻" },
-                        { pinyin: "pá", word: "爬" },
-                        { pinyin: "yáng", word: "羊" }
-                    ]
-                },
-                {
-                    tone: 3, name: "三声", description: "先降再升",
-                    examples: [
-                        { pinyin: "mǎ", word: "马" },
-                        { pinyin: "gǒu", word: "狗" },
-                        { pinyin: "hǔ", word: "老虎" }
-                    ]
-                },
-                {
-                    tone: 4, name: "四声", description: "从高到低",
-                    examples: [
-                        { pinyin: "mà", word: "骂" },
-                        { pinyin: "dà", word: "大" },
-                        { pinyin: "xià", word: "下" }
-                    ]
-                }
-            ]
-        };
-        
+        let pinyinData = { initials: [], finals: [], tones: [] };
         let currentSection = 'initials';
         let currentIndex = 0;
         let appStarted = false;
-        
-        const synth = window.speechSynthesis;
-        let chineseVoice = null;
-        
-        function findChineseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.startsWith('zh')) {
-                    chineseVoice = v;
-                    break;
+
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('pinyin');
+                // 保持原数据结构
+                for (const sec of (data.sections || [])) {
+                    if (pinyinData[sec.id]) pinyinData[sec.id] = sec.items || [];
                 }
+                // 原 inline 有 18 个 finals，JSON 只有 18 个，一致
+                renderTabs();
+                renderCard();
+                updateNavButtons();
+                setupSwipe();
+            } catch (err) {
+                console.error('加载拼音数据失败:', err);
+                document.querySelector('.main-stage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">拼音数据加载失败，请刷新再试～</div>';
             }
         }
-        
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = findChineseVoice;
-        }
-        findChineseVoice();
-        
-        function playAudio(path) {
-            return new Promise((resolve, reject) => {
-                const audio = new Audio(path);
-                audio.onended = resolve;
-                audio.onerror = reject;
-                audio.play().catch(reject);
-            });
-        }
-        
-        function speakWithFallback(text, mp3Path, rate = 0.8) {
-            if (mp3Path) {
-                playAudio(mp3Path).catch(() => speak(text, rate));
-            } else {
-                speak(text, rate);
-            }
-        }
-        
-        function speak(text, rate = 0.8) {
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'zh-CN';
-            utter.rate = rate;
-            utter.pitch = 1.1;
-            if (chineseVoice) utter.voice = chineseVoice;
-            synth.speak(utter);
-        }
-        
-        function showMascot(text) {
-            document.getElementById('mascotText').textContent = text;
-        }
-        
+
+        function showMascot(text) { document.getElementById('mascotText').textContent = text; }
+
         function getAudioPath(section, index, tone) {
             if (section === 'tones') {
-                return `assets/audio/pinyin/tones/${String(index).padStart(2, '0')}_tone${tone}.mp3`;
+                return XiaoDou.resolvePath(`assets/audio/pinyin/tones/${String(index).padStart(2, '0')}_tone${tone}.mp3`);
             }
             const item = pinyinData[section][index];
-            return `assets/audio/pinyin/${section}/${String(index).padStart(2, '0')}_${item.pinyin}.mp3`;
+            return XiaoDou.resolvePath(`assets/audio/pinyin/${section}/${String(index).padStart(2, '0')}_${item.pinyin}.mp3`);
         }
-        
+
+        function playPinyinAudio(path, fallbackText) {
+            XiaoDou.playAudio(path, fallbackText, 'zh');
+        }
+
         function renderTabs() {
             const tabNames = { initials: '声母', finals: '韵母', tones: '声调' };
             const tabs = document.getElementById('tabs');
@@ -589,13 +486,13 @@
                 tabs.appendChild(btn);
             }
         }
-        
+
         function renderCard() {
             const container = document.getElementById('cardContainer');
             const section = pinyinData[currentSection];
+            if (!section || section.length === 0) return;
             const item = section[currentIndex];
             let html = '';
-            
             if (currentSection === 'tones') {
                 html = `
                     <div class="tone-icon tone-${item.tone}">${item.examples[0].pinyin}</div>
@@ -603,8 +500,8 @@
                     <div class="tone-examples">
                         ${item.examples.map((ex, i) => `
                             <div class="tone-example-item" onclick="playToneExample(${item.tone}, ${i})">
-                                <div class="word">${ex.word}</div>
-                                <div class="py">${ex.pinyin}</div>
+                                <div class="word">${XiaoDou.escapeHtml(ex.word)}</div>
+                                <div class="py">${XiaoDou.escapeHtml(ex.pinyin)}</div>
                             </div>
                         `).join('')}
                     </div>
@@ -612,18 +509,17 @@
                 `;
             } else {
                 html = `
-                    <div class="big-pinyin" onclick="playCurrent()">${item.pinyin}</div>
-                    <div class="example-word">${item.example_word}</div>
-                    <div class="example-pinyin">${item.example_pinyin}</div>
+                    <div class="big-pinyin" onclick="playCurrent()">${XiaoDou.escapeHtml(item.pinyin)}</div>
+                    <div class="example-word">${XiaoDou.escapeHtml(item.example_word)}</div>
+                    <div class="example-pinyin">${XiaoDou.escapeHtml(item.example_pinyin)}</div>
                     <button class="btn-play" onclick="playCurrent()">🔊 朗读</button>
                 `;
             }
-            
             container.innerHTML = html;
             renderProgress();
             updateNavButtons();
         }
-        
+
         function renderProgress() {
             const progress = document.getElementById('progressDots');
             const count = pinyinData[currentSection].length;
@@ -634,18 +530,17 @@
                 progress.appendChild(dot);
             }
         }
-        
+
         function updateNavButtons() {
             const section = pinyinData[currentSection];
             document.getElementById('prevBtn').disabled = currentIndex === 0;
             document.getElementById('nextBtn').disabled = currentIndex === section.length - 1;
         }
-        
+
         function playCurrent() {
             const item = pinyinData[currentSection][currentIndex];
             let text = '';
             let mp3Path = '';
-            
             if (currentSection === 'tones') {
                 text = `${item.name}，${item.examples[0].pinyin}，${item.examples[0].word}`;
                 mp3Path = getAudioPath(currentSection, currentIndex, item.tone);
@@ -655,17 +550,16 @@
                 mp3Path = getAudioPath(currentSection, currentIndex);
                 showMascot(`${item.pinyin}，${item.example_word}，${item.example_pinyin}。`);
             }
-            
-            speakWithFallback(text, mp3Path);
+            playPinyinAudio(mp3Path, text);
         }
-        
+
         function playToneExample(tone, exampleIndex) {
             const item = pinyinData.tones.find(t => t.tone === tone);
             const ex = item.examples[exampleIndex];
-            speakWithFallback(`${ex.word}，${ex.pinyin}`, null);
+            XiaoDou.speak(`${ex.word}，${ex.pinyin}`, 'zh');
             showMascot(`${ex.word}，${ex.pinyin}。`);
         }
-        
+
         function switchSection(section) {
             currentSection = section;
             currentIndex = 0;
@@ -674,119 +568,65 @@
             updateNavButtons();
             showMascot(section === 'initials' ? '我们来学声母！' : section === 'finals' ? '我们来学韵母！' : '我们来学声调！');
         }
-        
+
         function switchItem(direction) {
             const section = pinyinData[currentSection];
             const oldCard = document.getElementById('cardContainer').firstElementChild;
-            
             let newIndex = currentIndex;
-            if (direction === 'next' && currentIndex < section.length - 1) {
-                newIndex = currentIndex + 1;
-            } else if (direction === 'prev' && currentIndex > 0) {
-                newIndex = currentIndex - 1;
-            }
-            
+            if (direction === 'next' && currentIndex < section.length - 1) newIndex = currentIndex + 1;
+            else if (direction === 'prev' && currentIndex > 0) newIndex = currentIndex - 1;
             if (newIndex === currentIndex) return;
-            
-            // animate out
             if (oldCard) {
                 oldCard.classList.remove('slide-left-in', 'slide-right-in');
                 oldCard.classList.add(direction === 'next' ? 'slide-left-out' : 'slide-right-out');
             }
-            
             currentIndex = newIndex;
             renderCard();
-            
-            // animate in
             const newCard = document.getElementById('cardContainer').firstElementChild;
             if (newCard) {
                 newCard.classList.remove('slide-left-out', 'slide-right-out');
                 newCard.classList.add(direction === 'next' ? 'slide-left-in' : 'slide-right-in');
             }
-            
             updateNavButtons();
             setTimeout(playCurrent, 300);
         }
-        
+
         function nextItem() { switchItem('next'); }
         function prevItem() { switchItem('prev'); }
-        
-        function updateNavButtons() {
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            if (prevBtn) prevBtn.disabled = currentIndex === 0;
-            if (nextBtn) nextBtn.disabled = currentIndex === pinyinData[currentSection].length - 1;
-        }
-        
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
+
+        let touchStartX = 0, touchEndX = 0;
         function setupSwipe() {
             const mainStage = document.querySelector('.main-stage');
             if (!mainStage) return;
-            
-            mainStage.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-            
-            mainStage.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, { passive: true });
-            
+            mainStage.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+            mainStage.addEventListener('touchend', function(e) { touchEndX = e.changedTouches[0].screenX; handleSwipe(); }, { passive: true });
             let mouseDown = false;
-            mainStage.addEventListener('mousedown', function(e) {
-                mouseDown = true;
-                touchStartX = e.screenX;
-            });
-            
-            mainStage.addEventListener('mouseup', function(e) {
-                if (!mouseDown) return;
-                mouseDown = false;
-                touchEndX = e.screenX;
-                handleSwipe();
-            });
-            
-            mainStage.addEventListener('mouseleave', function() {
-                mouseDown = false;
-            });
+            mainStage.addEventListener('mousedown', function(e) { mouseDown = true; touchStartX = e.screenX; });
+            mainStage.addEventListener('mouseup', function(e) { if (!mouseDown) return; mouseDown = false; touchEndX = e.screenX; handleSwipe(); });
+            mainStage.addEventListener('mouseleave', function() { mouseDown = false; });
         }
-        
+
         function handleSwipe() {
             const swipeThreshold = 50;
             const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    nextItem();
-                } else {
-                    prevItem();
-                }
-            }
+            if (Math.abs(diff) > swipeThreshold) { if (diff > 0) nextItem(); else prevItem(); }
         }
-        
+
         function startApp() {
             if (appStarted) return;
             appStarted = true;
-            
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             if (AudioContext) {
                 const ctx = new AudioContext();
                 if (ctx.state === 'suspended') ctx.resume();
             }
-            
             const silentAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
             silentAudio.play().catch(() => {});
-            
             document.getElementById('startOverlay').style.display = 'none';
             showMascot('你好！我是小豆。我们先从声母开始学拼音吧！');
-            
-            renderTabs();
-            renderCard();
-            updateNavButtons();
-            setupSwipe();
-            
-            setTimeout(() => speak('你好！我是小豆。我们先从声母开始学拼音吧！'), 300);
+            XiaoDou.speak('你好！我是小豆。我们先从声母开始学拼音吧！', 'zh');
         }
-    </script>
-</body>
+
+        init();
+    </script></body>
 </html>
