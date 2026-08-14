@@ -1,0 +1,294 @@
+{
+  "title": "日常情景对话",
+  "subtitle": "你好、谢谢、对不起等实用句子",
+  "words": [
+    {
+      "word": "你好",
+      "pinyin": "nǐ hǎo",
+      "file": "hello",
+      "english": "Hello",
+      "sentence": "见到朋友说：你好！",
+      "tags": [
+        "polite"
+      ],
+      "japanese": "こんにちは",
+      "japanese_reading": "こんにちは"
+    },
+    {
+      "word": "再见",
+      "pinyin": "zài jiàn",
+      "file": "goodbye",
+      "english": "Goodbye",
+      "sentence": "放学了，我跟老师说再见。",
+      "tags": [
+        "polite"
+      ],
+      "japanese": "さようなら",
+      "japanese_reading": "さようなら"
+    },
+    {
+      "word": "谢谢",
+      "pinyin": "xiè xie",
+      "file": "thank_you",
+      "english": "Thank you",
+      "sentence": "奶奶给我苹果，我说谢谢。",
+      "tags": [
+        "polite"
+      ],
+      "japanese": "ありがとう",
+      "japanese_reading": "ありがとう"
+    },
+    {
+      "word": "对不起",
+      "pinyin": "duì bu qǐ",
+      "file": "sorry",
+      "english": "Sorry",
+      "sentence": "撞到小朋友，我马上说对不起。",
+      "tags": [
+        "polite"
+      ],
+      "japanese": "ごめんなさい",
+      "japanese_reading": "ごめんなさい"
+    },
+    {
+      "word": "我饿了",
+      "pinyin": "wǒ è le",
+      "file": "im_hungry",
+      "english": "I'm hungry",
+      "sentence": "我饿了，想吃面条。",
+      "tags": [
+        "eatdrink"
+      ],
+      "japanese": "お腹が空いた",
+      "japanese_reading": "おなかがすいた"
+    },
+    {
+      "word": "我渴了",
+      "pinyin": "wǒ kě le",
+      "file": "im_thirsty",
+      "english": "I'm thirsty",
+      "sentence": "我渴了，想喝水。",
+      "tags": [
+        "eatdrink"
+      ],
+      "japanese": "のどが渇いた",
+      "japanese_reading": "のどがかわいた"
+    },
+    {
+      "word": "好吃",
+      "pinyin": "hǎo chī",
+      "file": "delicious",
+      "english": "Delicious",
+      "sentence": "这个蛋糕真好吃！",
+      "tags": [
+        "eatdrink"
+      ],
+      "japanese": "おいしい",
+      "japanese_reading": "おいしい"
+    },
+    {
+      "word": "吃饱了",
+      "pinyin": "chī bǎo le",
+      "file": "im_full",
+      "english": "I'm full",
+      "sentence": "我吃饱了，谢谢妈妈。",
+      "tags": [
+        "eatdrink"
+      ],
+      "japanese": "お腹いっぱい",
+      "japanese_reading": "おなかいっぱい"
+    },
+    {
+      "word": "我想",
+      "pinyin": "wǒ xiǎng",
+      "file": "i_want",
+      "english": "I want to",
+      "sentence": "我想去公园玩。",
+      "tags": [
+        "daily"
+      ],
+      "japanese": "〜したい",
+      "japanese_reading": "したい"
+    },
+    {
+      "word": "帮忙",
+      "pinyin": "bāng máng",
+      "file": "help",
+      "english": "Help",
+      "sentence": "玩具太高了，请爸爸帮忙。",
+      "tags": [
+        "daily"
+      ],
+      "japanese": "手伝って",
+      "japanese_reading": "てつだって"
+    },
+    {
+      "word": "洗手",
+      "pinyin": "xǐ shǒu",
+      "file": "wash_hands",
+      "english": "Wash hands",
+      "sentence": "吃饭前，我把手洗干净。",
+      "tags": [
+        "daily"
+      ],
+      "japanese": "手を洗う",
+      "japanese_reading": "てをあらう"
+    },
+    {
+      "word": "刷牙",
+      "pinyin": "shuā yá",
+      "file": "brush_teeth",
+      "english": "Brush teeth",
+      "sentence": "早上起床后，我要刷牙。",
+      "tags": [
+        "daily"
+      ],
+      "japanese": "歯を磨く",
+      "japanese_reading": "はをみがく"
+    },
+    {
+      "word": "穿衣服",
+      "pinyin": "chuān yī fu",
+      "file": "get_dressed",
+      "english": "Get dressed",
+      "sentence": "天气冷了，我自己穿衣服。",
+      "tags": [
+        "daily"
+      ],
+      "japanese": "服を着る",
+      "japanese_reading": "ふくをきる"
+    },
+    {
+      "word": "上厕所",
+      "pinyin": "shàng cè suǒ",
+      "file": "go_potty",
+      "english": "Go potty",
+      "sentence": "我想上厕所。",
+      "tags": [
+        "daily"
+      ],
+      "japanese": "トイレに行く",
+      "japanese_reading": "といれにいく"
+    },
+    {
+      "word": "起床",
+      "pinyin": "qǐ chuáng",
+      "file": "wake_up",
+      "english": "Wake up",
+      "sentence": "早上太阳出来了，我起床啦。",
+      "tags": [
+        "daily"
+      ],
+      "japanese": "起きる",
+      "japanese_reading": "おきる"
+    },
+    {
+      "word": "睡觉",
+      "pinyin": "shuì jiào",
+      "file": "sleep",
+      "english": "Sleep",
+      "sentence": "晚上该睡觉了，我要听故事。",
+      "tags": [
+        "daily"
+      ],
+      "japanese": "寝る",
+      "japanese_reading": "ねる"
+    },
+    {
+      "word": "一起玩",
+      "pinyin": "yī qǐ wán",
+      "file": "play_together",
+      "english": "Play together",
+      "sentence": "我们一起玩积木吧！",
+      "tags": [
+        "play"
+      ],
+      "japanese": "一緒に遊ぼう",
+      "japanese_reading": "いっしょにあそぼう"
+    },
+    {
+      "word": "分享",
+      "pinyin": "fēn xiǎng",
+      "file": "share",
+      "english": "Share",
+      "sentence": "我把饼干分给小朋友吃。",
+      "tags": [
+        "play"
+      ],
+      "japanese": "分け合う",
+      "japanese_reading": "わけあう"
+    },
+    {
+      "word": "排队",
+      "pinyin": "pái duì",
+      "file": "line_up",
+      "english": "Line up",
+      "sentence": "大家在滑梯前面排队。",
+      "tags": [
+        "play"
+      ],
+      "japanese": "列に並ぶ",
+      "japanese_reading": "れつにならぶ"
+    },
+    {
+      "word": "开心",
+      "pinyin": "kāi xīn",
+      "file": "happy",
+      "english": "Happy",
+      "sentence": "今天去公园，我很开心。",
+      "tags": [
+        "emotion"
+      ],
+      "japanese": "嬉しい",
+      "japanese_reading": "うれしい"
+    },
+    {
+      "word": "难过",
+      "pinyin": "nán guò",
+      "file": "sad",
+      "english": "Sad",
+      "sentence": "玩具坏了，我有点难过。",
+      "tags": [
+        "emotion"
+      ],
+      "japanese": "悲しい",
+      "japanese_reading": "かなしい"
+    },
+    {
+      "word": "害怕",
+      "pinyin": "hài pà",
+      "file": "scared",
+      "english": "Scared",
+      "sentence": "天黑的时候，我有点害怕。",
+      "tags": [
+        "emotion"
+      ],
+      "japanese": "怖い",
+      "japanese_reading": "こわい"
+    },
+    {
+      "word": "疼",
+      "pinyin": "téng",
+      "file": "hurt",
+      "english": "It hurts",
+      "sentence": "我的膝盖摔疼了。",
+      "tags": [
+        "emotion"
+      ],
+      "japanese": "痛い",
+      "japanese_reading": "いたい"
+    },
+    {
+      "word": "不要",
+      "pinyin": "bù yào",
+      "file": "no_want",
+      "english": "I don't want",
+      "sentence": "我现在不想睡觉。",
+      "tags": [
+        "emotion"
+      ],
+      "japanese": "いや",
+      "japanese_reading": "いや"
+    }
+  ]
+}

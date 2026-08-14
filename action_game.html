@@ -39,9 +39,11 @@
         .toggle-btn { background: white; border: none; border-radius: 20px; padding: 10px 20px; color: #666; font-size: 15px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .toggle-btn:active { transform: scale(0.95); }
         .footer { text-align: center; padding: 10px 15px 30px; color: #aaa; font-size: 13px; }
+        .loading, .error { text-align: center; padding: 40px 20px; color: #666; }
+        .error { color: #E53935; }
         @media (max-width: 400px) { .action-word { font-size: 52px; } .action-image { width: 200px; height: 200px; } }
     </style>
-    <link rel="stylesheet" href="dark-mode.css">
+    <link rel="stylesheet" href="dark-mode.css?v=2">
 </head>
 <body>
     <a href="action_verbs.html" class="back-bar">← 回动词学习页</a>
@@ -54,7 +56,9 @@
         <div class="score-pill">连对 <span id="streakCount">0</span></div>
     </div>
     <div class="main-stage">
-        <div class="game-card" id="gameCard">
+        <div id="loading" class="loading">正在加载动作游戏...</div>
+        <div id="error" class="error" style="display:none;">加载失败，请检查网络后刷新。</div>
+        <div class="game-card" id="gameCard" style="display:none;">
             <div class="command-text">请你：</div>
             <div class="action-word" id="actionWord">站</div>
             <div class="action-pinyin" id="actionPinyin">zhàn</div>
@@ -65,7 +69,7 @@
             <button class="big-btn btn-speak" onclick="speakCommand()">🔊 再听一遍</button>
             <button class="big-btn btn-next" onclick="nextAction()">🔄 换一个</button>
         </div>
-        <div class="toggle-bar">
+        <div class="toggle-bar" id="toggleBar" style="display:none;">
             <button class="toggle-btn" onclick="toggleGrid()">📋 查看全部动作</button>
         </div>
         <div class="grid-view" id="actionGrid"></div>
@@ -73,58 +77,35 @@
     <div class="footer">
         <a href="index.html" style="color:#aaa;text-decoration:none;">← 回首页</a>
     </div>
-<script>
-        const allActions = [
-            { word: "站", pinyin: "zhàn", file: "stand", sentence: "听到名字，我站起来回答。", tips: "双脚并拢，身体站直！" },
-            { word: "坐", pinyin: "zuò", file: "sit", sentence: "吃饭前，我先坐在小椅子上。", tips: "慢慢坐下，小手放膝盖。" },
-            { word: "走", pinyin: "zǒu", file: "walk", sentence: "我和妈妈一起走路上学。", tips: "一步一步慢慢走。" },
-            { word: "跑", pinyin: "pǎo", file: "run", sentence: "小狗在草地上跑得很快。", tips: "摆动手臂，跑起来！" },
-            { word: "跳", pinyin: "tiào", file: "jump", sentence: "我喜欢在蹦床上跳一跳。", tips: "双脚离地，跳高高！" },
-            { word: "爬", pinyin: "pá", file: "climb", sentence: "弟弟正在爬楼梯。", tips: "手脚并用，往上爬。" },
-            { word: "转圈", pinyin: "zhuàn quān", file: "spin", sentence: "音乐响起，我们手拉手转圈。", tips: "拉着手，慢慢转个圈。" },
-            { word: "鞠躬", pinyin: "jū gōng", file: "bow", sentence: "见到老师，我鞠躬问好。", tips: "弯腰，说你好。" },
-            { word: "拿", pinyin: "ná", file: "hold", sentence: "我拿着杯子喝水。", tips: "伸出小手，拿住东西。" },
-            { word: "放", pinyin: "fàng", file: "put", sentence: "玩完玩具，我把它们放回箱子。", tips: "把东西轻轻放下去。" },
-            { word: "推", pinyin: "tuī", file: "push", sentence: "我帮妈妈推购物车。", tips: "双手向前推。" },
-            { word: "拉", pinyin: "lā", file: "pull", sentence: "爸爸拉着我的手过马路。", tips: "双手向后拉。" },
-            { word: "抱", pinyin: "bào", file: "hug", sentence: "睡觉前，妈妈抱了抱我。", tips: "张开手臂，抱一抱。" },
-            { word: "挥", pinyin: "huī", file: "wave", sentence: "看到奶奶，我挥了挥手。", tips: "举起手，挥一挥。" },
-            { word: "指", pinyin: "zhǐ", file: "point", sentence: "我指着天上的小鸟说：看！", tips: "用手指一指。" },
-            { word: "拍", pinyin: "pāi", file: "pat", sentence: "小狗跑过来，我拍了拍它的头。", tips: "小手轻轻拍一拍。" },
-            { word: "看", pinyin: "kàn", file: "look", sentence: "我在看书里的图画。", tips: "睁大眼睛看一看。" },
-            { word: "听", pinyin: "tīng", file: "listen", sentence: "我闭上眼睛听音乐。", tips: "捂住耳朵，认真听。" },
-            { word: "说", pinyin: "shuō", file: "speak", sentence: "老师问问题，我举手说答案。", tips: "张开嘴巴说一说。" },
-            { word: "笑", pinyin: "xiào", file: "laugh", sentence: "爸爸讲笑话，我们都笑了。", tips: "嘿嘿，笑一个。" },
-            { word: "哭", pinyin: "kū", file: "cry", sentence: "妹妹摔倒了，哭了一会儿。", tips: "呜呜，假装哭一下。" },
-            { word: "吃", pinyin: "chī", file: "eat", sentence: "我在吃香喷喷的米饭。", tips: "啊呜啊呜，假装吃。" },
-            { word: "喝", pinyin: "hē", file: "drink", sentence: "运动后，我大口喝水。", tips: "拿起杯子，咕嘟咕嘟。" },
-            { word: "亲", pinyin: "qīn", file: "kiss", sentence: "妈妈亲了亲我的额头。", tips: "嘟起小嘴，亲一下。" },
-            { word: "躲", pinyin: "duǒ", file: "hide", sentence: "我躲在窗帘后面，等爸爸来找我。", tips: "快找个地方躲起来。" },
-            { word: "飞", pinyin: "fēi", file: "fly", sentence: "小鸟张开翅膀飞走了。", tips: "张开手臂，像小鸟飞。" },
-            { word: "游", pinyin: "yóu", file: "swim", sentence: "夏天到了，我想去游泳。", tips: "手臂划一划，像游泳。" },
-        ];
-
+    <script src="js/common.js"></script>
+    <script>
+        let allActions = [];
         let currentIndex = 0;
         let doneCount = 0;
         let streakCount = 0;
-        let shuffled = [...allActions];
+        let shuffled = [];
         let usedIndices = new Set();
         let gridVisible = false;
 
-        const synth = window.speechSynthesis;
-        let chineseVoice = null;
-
-        function findChineseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.startsWith('zh')) { chineseVoice = v; break; }
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('action_game');
+                allActions = XiaoDou.getItems(data);
+                if (!allActions.length) throw new Error('没有数据');
+                shuffled = shuffleArray(allActions);
+                currentIndex = Math.floor(Math.random() * shuffled.length);
+                usedIndices.add(currentIndex);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('gameCard').style.display = 'block';
+                document.getElementById('toggleBar').style.display = 'block';
+                renderAction(currentIndex);
+                setTimeout(speakCommand, 500);
+            } catch (err) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                console.error(err);
             }
         }
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = findChineseVoice;
-        }
-        findChineseVoice();
 
         function shuffleArray(arr) {
             const newArr = [...arr];
@@ -135,42 +116,23 @@
             return newArr;
         }
 
-        function playAudio(path) {
-            return new Promise((resolve, reject) => {
-                const audio = new Audio(path);
-                audio.onended = resolve;
-                audio.onerror = reject;
-                audio.play().catch(reject);
-            });
-        }
-
-        function speakFallback(text) {
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'zh-CN';
-            utter.rate = 0.85;
-            utter.pitch = 1.1;
-            if (chineseVoice) utter.voice = chineseVoice;
-            synth.speak(utter);
-        }
-
         function playWord(file, word, pinyin) {
             const mp3Path = `assets/audio/action_verbs/${file}_word.mp3`;
-            playAudio(mp3Path).catch(() => speakFallback(`${word}，${pinyin}`));
+            XiaoDou.playAudio(mp3Path, `${word}，${pinyin}`, 'zh');
         }
 
         function renderAction(index) {
             const item = shuffled[index];
             document.getElementById('actionWord').textContent = item.word;
             document.getElementById('actionPinyin').textContent = item.pinyin;
-            document.getElementById('actionImage').src = `assets/images/action_verbs/${item.file}.png`;
+            document.getElementById('actionImage').src = XiaoDou.resolvePath(`assets/images/action_verbs/${item.file}.png`);
             document.getElementById('actionImage').alt = item.word;
             document.getElementById('actionTips').textContent = item.tips;
             document.getElementById('praiseText').textContent = '';
-            document.getElementById('doneBtn').textContent = '✅ 我做到了';
-            document.getElementById('doneBtn').disabled = false;
-            document.getElementById('doneBtn').style.opacity = '1';
+            const doneBtn = document.getElementById('doneBtn');
+            doneBtn.textContent = '✅ 我做到了';
+            doneBtn.disabled = false;
+            doneBtn.style.opacity = '1';
         }
 
         function speakCommand() {
@@ -200,14 +162,14 @@
             ];
             const randomPraise = praises[Math.floor(Math.random() * praises.length)];
             document.getElementById('praiseText').textContent = randomPraise;
-            document.getElementById('doneBtn').textContent = '已完成 ✅';
-            document.getElementById('doneBtn').disabled = true;
-            document.getElementById('doneBtn').style.opacity = '0.6';
+            const doneBtn = document.getElementById('doneBtn');
+            doneBtn.textContent = '已完成 ✅';
+            doneBtn.disabled = true;
+            doneBtn.style.opacity = '0.6';
             doneCount++;
             streakCount++;
             document.getElementById('doneCount').textContent = doneCount;
             document.getElementById('streakCount').textContent = streakCount;
-            // 播放成功音效（用简单音调）
             try {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
                 if (AudioContext) {
@@ -247,13 +209,13 @@
                 const div = document.createElement('div');
                 div.className = 'grid-item';
                 div.innerHTML = `
-                    <img src="assets/images/action_verbs/${item.file}.png" alt="${item.word}" onerror="this.style.display='none'">
-                    <div class="grid-word">${item.word}</div>
-                    <div class="grid-pinyin">${item.pinyin}</div>
+                    <img src="${XiaoDou.escapeHtml(XiaoDou.resolvePath(`assets/images/action_verbs/${item.file}.png`))}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.style.display='none'">
+                    <div class="grid-word">${XiaoDou.escapeHtml(item.word)}</div>
+                    <div class="grid-pinyin">${XiaoDou.escapeHtml(item.pinyin)}</div>
                 `;
                 div.onclick = () => {
-                    currentIndex = allActions.indexOf(item);
-                    usedIndices.add(currentIndex);
+                    currentIndex = index;
+                    usedIndices.add(index);
                     renderAction(currentIndex);
                     setTimeout(speakCommand, 200);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -262,12 +224,7 @@
             });
         }
 
-        // 初始化
-        shuffled = shuffleArray(allActions);
-        currentIndex = Math.floor(Math.random() * shuffled.length);
-        usedIndices.add(currentIndex);
-        renderAction(currentIndex);
-        setTimeout(speakCommand, 500);
+        init();
     </script>
 </body>
 </html>

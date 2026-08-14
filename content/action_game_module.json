@@ -1,0 +1,195 @@
+{
+  "title": "我说你做",
+  "subtitle": "听小豆的指令，做出动作吧",
+  "words": [
+    {
+      "word": "站",
+      "pinyin": "zhàn",
+      "file": "stand",
+      "sentence": "听到名字，我站起来回答。",
+      "tips": "双脚并拢，身体站直！"
+    },
+    {
+      "word": "坐",
+      "pinyin": "zuò",
+      "file": "sit",
+      "sentence": "吃饭前，我先坐在小椅子上。",
+      "tips": "慢慢坐下，小手放膝盖。"
+    },
+    {
+      "word": "走",
+      "pinyin": "zǒu",
+      "file": "walk",
+      "sentence": "我和妈妈一起走路上学。",
+      "tips": "一步一步慢慢走。"
+    },
+    {
+      "word": "跑",
+      "pinyin": "pǎo",
+      "file": "run",
+      "sentence": "小狗在草地上跑得很快。",
+      "tips": "摆动手臂，跑起来！"
+    },
+    {
+      "word": "跳",
+      "pinyin": "tiào",
+      "file": "jump",
+      "sentence": "我喜欢在蹦床上跳一跳。",
+      "tips": "双脚离地，跳高高！"
+    },
+    {
+      "word": "爬",
+      "pinyin": "pá",
+      "file": "climb",
+      "sentence": "弟弟正在爬楼梯。",
+      "tips": "手脚并用，往上爬。"
+    },
+    {
+      "word": "转圈",
+      "pinyin": "zhuàn quān",
+      "file": "spin",
+      "sentence": "音乐响起，我们手拉手转圈。",
+      "tips": "拉着手，慢慢转个圈。"
+    },
+    {
+      "word": "鞠躬",
+      "pinyin": "jū gōng",
+      "file": "bow",
+      "sentence": "见到老师，我鞠躬问好。",
+      "tips": "弯腰，说你好。"
+    },
+    {
+      "word": "拿",
+      "pinyin": "ná",
+      "file": "hold",
+      "sentence": "我拿着杯子喝水。",
+      "tips": "伸出小手，拿住东西。"
+    },
+    {
+      "word": "放",
+      "pinyin": "fàng",
+      "file": "put",
+      "sentence": "玩完玩具，我把它们放回箱子。",
+      "tips": "把东西轻轻放下去。"
+    },
+    {
+      "word": "推",
+      "pinyin": "tuī",
+      "file": "push",
+      "sentence": "我帮妈妈推购物车。",
+      "tips": "双手向前推。"
+    },
+    {
+      "word": "拉",
+      "pinyin": "lā",
+      "file": "pull",
+      "sentence": "爸爸拉着我的手过马路。",
+      "tips": "双手向后拉。"
+    },
+    {
+      "word": "抱",
+      "pinyin": "bào",
+      "file": "hug",
+      "sentence": "睡觉前，妈妈抱了抱我。",
+      "tips": "张开手臂，抱一抱。"
+    },
+    {
+      "word": "挥",
+      "pinyin": "huī",
+      "file": "wave",
+      "sentence": "看到奶奶，我挥了挥手。",
+      "tips": "举起手，挥一挥。"
+    },
+    {
+      "word": "指",
+      "pinyin": "zhǐ",
+      "file": "point",
+      "sentence": "我指着天上的小鸟说：看！",
+      "tips": "用手指一指。"
+    },
+    {
+      "word": "拍",
+      "pinyin": "pāi",
+      "file": "pat",
+      "sentence": "小狗跑过来，我拍了拍它的头。",
+      "tips": "小手轻轻拍一拍。"
+    },
+    {
+      "word": "看",
+      "pinyin": "kàn",
+      "file": "look",
+      "sentence": "我在看书里的图画。",
+      "tips": "睁大眼睛看一看。"
+    },
+    {
+      "word": "听",
+      "pinyin": "tīng",
+      "file": "listen",
+      "sentence": "我闭上眼睛听音乐。",
+      "tips": "捂住耳朵，认真听。"
+    },
+    {
+      "word": "说",
+      "pinyin": "shuō",
+      "file": "speak",
+      "sentence": "老师问问题，我举手说答案。",
+      "tips": "张开嘴巴说一说。"
+    },
+    {
+      "word": "笑",
+      "pinyin": "xiào",
+      "file": "laugh",
+      "sentence": "爸爸讲笑话，我们都笑了。",
+      "tips": "嘿嘿，笑一个。"
+    },
+    {
+      "word": "哭",
+      "pinyin": "kū",
+      "file": "cry",
+      "sentence": "妹妹摔倒了，哭了一会儿。",
+      "tips": "呜呜，假装哭一下。"
+    },
+    {
+      "word": "吃",
+      "pinyin": "chī",
+      "file": "eat",
+      "sentence": "我在吃香喷喷的米饭。",
+      "tips": "啊呜啊呜，假装吃。"
+    },
+    {
+      "word": "喝",
+      "pinyin": "hē",
+      "file": "drink",
+      "sentence": "运动后，我大口喝水。",
+      "tips": "拿起杯子，咕嘟咕嘟。"
+    },
+    {
+      "word": "亲",
+      "pinyin": "qīn",
+      "file": "kiss",
+      "sentence": "妈妈亲了亲我的额头。",
+      "tips": "嘟起小嘴，亲一下。"
+    },
+    {
+      "word": "躲",
+      "pinyin": "duǒ",
+      "file": "hide",
+      "sentence": "我躲在窗帘后面，等爸爸来找我。",
+      "tips": "快找个地方躲起来。"
+    },
+    {
+      "word": "飞",
+      "pinyin": "fēi",
+      "file": "fly",
+      "sentence": "小鸟张开翅膀飞走了。",
+      "tips": "张开手臂，像小鸟飞。"
+    },
+    {
+      "word": "游",
+      "pinyin": "yóu",
+      "file": "swim",
+      "sentence": "夏天到了，我想去游泳。",
+      "tips": "手臂划一划，像游泳。"
+    }
+  ]
+}

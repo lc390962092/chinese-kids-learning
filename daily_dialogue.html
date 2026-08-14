@@ -34,7 +34,6 @@
         .item-image { width: 240px; height: 240px; object-fit: contain; cursor: pointer; transition: transform 0.2s; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
         .item-image:active { transform: scale(0.95); }
         .item-sentence { font-size: 18px; color: #555; margin: 8px 15px 12px; line-height: 1.5; background: rgba(126,87,194,0.08); padding: 10px 15px; border-radius: 15px; }
-
         .side-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.15); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: transform 0.2s, background 0.2s; }
         .side-arrow:active { transform: translateY(-50%) scale(0.9); background: #A5D6A7; }
         .side-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
@@ -59,9 +58,11 @@
         .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
         .progress-dot.active { background: #7E57C2; }
         .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
+        .loading, .error { text-align: center; padding: 40px 20px; color: #666; }
+        .error { color: #E53935; }
         @media (max-width: 400px) { .item-image { width: 200px; height: 200px; } .item-word { font-size: 40px; } }
     </style>
-    <link rel="stylesheet" href="dark-mode.css">
+    <link rel="stylesheet" href="dark-mode.css?v=2">
 </head>
 <body>
     <a href="index.html" class="back-bar">← 回首页</a>
@@ -78,171 +79,46 @@
         <button class="filter-btn" data-filter="polite" onclick="filterItems('polite')">🙋 礼貌用语</button>
         <button class="filter-btn" data-filter="eatdrink" onclick="filterItems('eatdrink')">🍚 吃喝</button>
         <button class="filter-btn" data-filter="daily" onclick="filterItems('daily')">🏠 日常生活</button>
-        <button class="filter-btn" data-filter="play" onclick="filterItems('play')">🎈 游戏情绪</button>
+        <button class="filter-btn" data-filter="emotion" onclick="filterItems('emotion')">😊 心情</button>
+        <button class="filter-btn" data-filter="play" onclick="filterItems('play')">🎈 游戏</button>
     </div>
     <div class="main-stage">
-        <div id="itemCards"></div>
-        <div class="nav-btns">
+        <div id="loading" class="loading">正在加载情景对话...</div>
+        <div id="error" class="error" style="display:none;">加载失败，请检查网络后刷新。</div>
+        <div id="itemCards" style="display:none;"></div>
+        <div class="progress" id="progressDots" style="display:none;"></div>
+        <div class="nav-btns" id="navButtons" style="display:none;">
             <button class="nav-btn" id="prevBtn" onclick="prevItem()">⬅️ 上一个</button>
             <button class="nav-btn" id="nextBtn" onclick="nextItem()">下一个 ➡️</button>
         </div>
-        <div class="progress" id="progressDots"></div>
         <div style="text-align:center;margin-top:25px;">
             <a href="index.html" style="color:#888;text-decoration:none;font-size:14px;">← 回首页</a>
         </div>
     </div>
-<script>
-        const allItems = [
-            { word: "你好", pinyin: "nǐ hǎo", file: "hello", english: "Hello", sentence: "见到朋友说：你好！", tags: ["polite"], japanese: "こんにちは", japanese_reading: "こんにちは" },
-            { word: "再见", pinyin: "zài jiàn", file: "goodbye", english: "Goodbye", sentence: "放学了，我跟老师说再见。", tags: ["polite"], japanese: "さようなら", japanese_reading: "さようなら" },
-            { word: "谢谢", pinyin: "xiè xie", file: "thank_you", english: "Thank you", sentence: "奶奶给我苹果，我说谢谢。", tags: ["polite"], japanese: "ありがとう", japanese_reading: "ありがとう" },
-            { word: "对不起", pinyin: "duì bu qǐ", file: "sorry", english: "Sorry", sentence: "撞到小朋友，我马上说对不起。", tags: ["polite"], japanese: "ごめんなさい", japanese_reading: "ごめんなさい" },
-            { word: "我饿了", pinyin: "wǒ è le", file: "im_hungry", english: "I'm hungry", sentence: "我饿了，想吃面条。", tags: ["eatdrink"], japanese: "お腹が空いた", japanese_reading: "おなかがすいた" },
-            { word: "我渴了", pinyin: "wǒ kě le", file: "im_thirsty", english: "I'm thirsty", sentence: "我渴了，想喝水。", tags: ["eatdrink"], japanese: "のどが渇いた", japanese_reading: "のどがかわいた" },
-            { word: "好吃", pinyin: "hǎo chī", file: "delicious", english: "Delicious", sentence: "这个蛋糕真好吃！", tags: ["eatdrink"], japanese: "おいしい", japanese_reading: "おいしい" },
-            { word: "吃饱了", pinyin: "chī bǎo le", file: "im_full", english: "I'm full", sentence: "我吃饱了，谢谢妈妈。", tags: ["eatdrink"], japanese: "お腹いっぱい", japanese_reading: "おなかいっぱい" },
-            { word: "我想", pinyin: "wǒ xiǎng", file: "i_want", english: "I want to", sentence: "我想去公园玩。", tags: ["daily"], japanese: "〜したい", japanese_reading: "したい" },
-            { word: "帮忙", pinyin: "bāng máng", file: "help", english: "Help", sentence: "玩具太高了，请爸爸帮忙。", tags: ["daily"], japanese: "手伝って", japanese_reading: "てつだって" },
-            { word: "洗手", pinyin: "xǐ shǒu", file: "wash_hands", english: "Wash hands", sentence: "吃饭前，我把手洗干净。", tags: ["daily"], japanese: "手を洗う", japanese_reading: "てをあらう" },
-            { word: "刷牙", pinyin: "shuā yá", file: "brush_teeth", english: "Brush teeth", sentence: "早上起床后，我要刷牙。", tags: ["daily"], japanese: "歯を磨く", japanese_reading: "はをみがく" },
-            { word: "穿衣服", pinyin: "chuān yī fu", file: "get_dressed", english: "Get dressed", sentence: "天气冷了，我自己穿衣服。", tags: ["daily"], japanese: "服を着る", japanese_reading: "ふくをきる" },
-            { word: "上厕所", pinyin: "shàng cè suǒ", file: "go_potty", english: "Go potty", sentence: "我想上厕所。", tags: ["daily"], japanese: "トイレに行く", japanese_reading: "といれにいく" },
-            { word: "起床", pinyin: "qǐ chuáng", file: "wake_up", english: "Wake up", sentence: "早上太阳出来了，我起床啦。", tags: ["daily"], japanese: "起きる", japanese_reading: "おきる" },
-            { word: "睡觉", pinyin: "shuì jiào", file: "sleep", english: "Sleep", sentence: "晚上该睡觉了，我要听故事。", tags: ["daily"], japanese: "寝る", japanese_reading: "ねる" },
-            { word: "一起玩", pinyin: "yī qǐ wán", file: "play_together", english: "Play together", sentence: "我们一起玩积木吧！", tags: ["play"], japanese: "一緒に遊ぼう", japanese_reading: "いっしょにあそぼう" },
-            { word: "分享", pinyin: "fēn xiǎng", file: "share", english: "Share", sentence: "我把饼干分给小朋友吃。", tags: ["play"], japanese: "分け合う", japanese_reading: "わけあう" },
-            { word: "排队", pinyin: "pái duì", file: "line_up", english: "Line up", sentence: "大家在滑梯前面排队。", tags: ["play"], japanese: "列に並ぶ", japanese_reading: "れつにならぶ" },
-            { word: "开心", pinyin: "kāi xīn", file: "happy", english: "Happy", sentence: "今天去公园，我很开心。", tags: ["emotion"], japanese: "嬉しい", japanese_reading: "うれしい" },
-            { word: "难过", pinyin: "nán guò", file: "sad", english: "Sad", sentence: "玩具坏了，我有点难过。", tags: ["emotion"], japanese: "悲しい", japanese_reading: "かなしい" },
-            { word: "害怕", pinyin: "hài pà", file: "scared", english: "Scared", sentence: "天黑的时候，我有点害怕。", tags: ["emotion"], japanese: "怖い", japanese_reading: "こわい" },
-            { word: "疼", pinyin: "téng", file: "hurt", english: "It hurts", sentence: "我的膝盖摔疼了。", tags: ["emotion"], japanese: "痛い", japanese_reading: "いたい" },
-            { word: "不要", pinyin: "bù yào", file: "no_want", english: "I don't want", sentence: "我现在不想睡觉。", tags: ["emotion"], japanese: "いや", japanese_reading: "いや" },
-        ];
-
-        let filteredItems = [...allItems];
+    <script src="js/common.js"></script>
+    <script>
+        let allItems = [];
+        let filteredItems = [];
         let currentIndex = 0;
         let currentFilter = 'all';
 
-        const synth = window.speechSynthesis;
-        let chineseVoice = null;
-        let japaneseVoice = null;
-        let englishVoice = null;
-        let speechEnabled = true;
-
-        function findChineseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.startsWith('zh')) { chineseVoice = v; break; }
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('daily_dialogue');
+                allItems = XiaoDou.getItems(data);
+                if (!allItems.length) throw new Error('没有数据');
+                filteredItems = [...allItems];
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('itemCards').style.display = 'block';
+                document.getElementById('progressDots').style.display = 'flex';
+                document.getElementById('navButtons').style.display = 'flex';
+                renderCards();
+                setupSwipe();
+            } catch (err) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                console.error(err);
             }
-        }
-
-                function findJapaneseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            let best = null;
-            for (let v of voices) {
-                if (v.lang === 'ja-JP') { best = v; break; }
-            }
-            if (!best) {
-                for (let v of voices) {
-                    if (v.lang.startsWith('ja')) { best = v; break; }
-                }
-            }
-            japaneseVoice = best;
-            if (!japaneseVoice) {
-                console.log('未找到日语语音包，日语朗读将使用在线 TTS 或系统默认语音');
-            }
-        }
-
-        function findEnglishVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.startsWith('en')) { englishVoice = v; break; }
-            }
-        }
-
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = function() {
-                findChineseVoice();
-                findJapaneseVoice();
-                findEnglishVoice();
-            };
-        }
-        findChineseVoice();
-        findJapaneseVoice();
-        findEnglishVoice();
-
-        function playAudio(path) {
-            return new Promise((resolve, reject) => {
-                const audio = new Audio(path);
-                audio.onended = resolve;
-                audio.onerror = reject;
-                audio.play().catch(reject);
-            });
-        }
-
-        function speakWithFallback(text, mp3Path, rate = 0.8) {
-            if (mp3Path) {
-                playAudio(mp3Path).catch(() => speak(text, rate));
-            } else {
-                speak(text, rate);
-            }
-        }
-
-        function speak(text, rate = 0.8) {
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'zh-CN';
-            utter.rate = rate;
-            utter.pitch = 1.1;
-            if (chineseVoice) utter.voice = chineseVoice;
-            synth.speak(utter);
-        }
-
-        function speakJapanese(text) {
-            if (!synth || !speechEnabled) {
-                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
-                return;
-            }
-            synth.cancel();
-
-            // 手机浏览器经常把 CJK 统一汉字读成中文，所以日语朗读时只保留假名和日文基本符号
-            const kanaOnly = text.replace(/[^\u3040-\u309F\u30A0-\u30FF\uFF10-\uFF19\u3000-\u303F\s]/g, '').replace(/[\u3001\u3002\uff0c\uff0e]/g, ' ').trim();
-            const toSpeak = kanaOnly || text;
-
-            // 优先使用真正的日语语音包
-            if (japaneseVoice && japaneseVoice.lang && japaneseVoice.lang.startsWith('ja')) {
-                const utter = new SpeechSynthesisUtterance(toSpeak);
-                utter.lang = 'ja-JP';
-                utter.rate = 0.82;
-                utter.pitch = 1.05;
-                utter.voice = japaneseVoice;
-                synth.speak(utter);
-                return;
-            }
-
-            // 没有本地日语语音时，尝试在线 Google TTS（仅日语假名）
-            const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q=' + encodeURIComponent(toSpeak);
-            const audio = new Audio(url);
-            audio.play().catch((err) => {
-                console.log('在线日语 TTS 播放失败:', err);
-                // 最后明确提示，不再用中文语音冒充日语
-                showMascot("小提示：当前设备没有日语语音包，所以日语念不出来。建议用电脑或换浏览器试试～");
-            });
-        }
-
-        function speakEnglish(text, rate = 0.8) {
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'en-US';
-            utter.rate = rate;
-            utter.pitch = 1.1;
-            if (englishVoice) utter.voice = englishVoice;
-            synth.speak(utter);
         }
 
         function showMascot(text) { document.getElementById('mascotText').textContent = text; }
@@ -255,7 +131,7 @@
             if (tag === 'all') {
                 filteredItems = [...allItems];
             } else {
-                filteredItems = allItems.filter(item => item.tags.includes(tag));
+                filteredItems = allItems.filter(item => item.tags && item.tags.includes(tag));
             }
             currentIndex = 0;
             renderCards();
@@ -271,23 +147,29 @@
             filteredItems.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'item-card' + (index === 0 ? ' active' : '');
-                const emoji = item.tags.includes('polite') ? '🙋' : item.tags.includes('eatdrink') ? '🍚' : item.tags.includes('daily') ? '🏠' : '🎈';
+                const emoji = (item.tags || []).includes('polite') ? '🙋' : (item.tags || []).includes('eatdrink') ? '🍚' : (item.tags || []).includes('daily') ? '🏠' : '🎈';
                 const svgFallback = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Crect fill='%23f0f0f0' width='240' height='240'/%3E%3Ctext x='120' y='150' font-size='90' text-anchor='middle'%3E" + emoji + "%3C/text%3E%3C/svg%3E";
+                const w = XiaoDou.escapeHtml(item.word);
+                const p = XiaoDou.escapeHtml(item.pinyin);
+                const e = XiaoDou.escapeHtml(item.english);
+                const s = XiaoDou.escapeHtml(item.sentence);
+                const j = XiaoDou.escapeHtml(item.japanese);
+                const jr = XiaoDou.escapeHtml(item.japanese_reading);
+                const f = XiaoDou.escapeHtml(item.file);
                 card.innerHTML = `
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" id="prevArrow" onclick="prevItem()">❮</button>
-                        <img class="item-image" src="assets/images/daily_dialogue/${item.file}.png" alt="${item.word}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
+                        <img class="item-image" src="assets/images/daily_dialogue/${f}.png" alt="${w}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
                         <button class="side-arrow right" id="nextArrow" onclick="nextItem()">❯</button>
                     </div>
-                    <div class="item-word">${item.word}</div>
-                    <div class="item-pinyin">${item.pinyin}</div>
-                    <div class="item-english">${item.english}</div>
-                    <div class="item-sentence">${item.sentence}</div>
-                    <div class="item-japanese">${item.word} → ${item.japanese}（${item.japanese_reading}）</div>
+                    <div class="item-word">${w}</div>
+                    <div class="item-pinyin">${p}</div>
+                    <div class="item-english">${e}</div>
+                    <div class="item-sentence">${s}</div>
+                    <div class="item-japanese">${w} → ${j}（${jr}）</div>
                     <div class="btn-group">
                         <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
-                        
                         <button class="btn btn-japanese" onclick="playJapaneseWord(${index})">🇯🇵 日语</button>
                         <button class="btn btn-english" onclick="playEnglishWord(${index})">🇺🇸 英语</button>
                     </div>`;
@@ -301,41 +183,37 @@
         }
 
         function updateArrowState() {
-            const prevArrow = document.getElementById('prevArrow');
-            const nextArrow = document.getElementById('nextArrow');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
-            if (prevArrow) prevArrow.disabled = currentIndex === 0;
-            if (nextArrow) nextArrow.disabled = currentIndex === filteredItems.length - 1;
-            if (prevBtn) prevBtn.disabled = currentIndex === 0;
-            if (nextBtn) nextBtn.disabled = currentIndex === filteredItems.length - 1;
+            if (prevBtn) prevBtn.disabled = filteredItems.length <= 1 || currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = filteredItems.length <= 1 || currentIndex === filteredItems.length - 1;
         }
 
         function playWord(index) {
             const item = filteredItems[index];
             const mp3Path = `assets/audio/daily_dialogue/${item.file}_word.mp3`;
-            speakWithFallback(`${item.word}，${item.pinyin}`, mp3Path);
+            XiaoDou.playAudio(mp3Path, `${item.word}，${item.pinyin}`, 'zh');
             showMascot(`我们来看看：${item.word}，${item.pinyin}。`);
         }
 
         function playSentence(index) {
             const item = filteredItems[index];
             const mp3Path = `assets/audio/daily_dialogue/sentences/${item.file}_sentence.mp3`;
-            speakWithFallback(item.sentence, mp3Path);
+            XiaoDou.playAudio(mp3Path, item.sentence, 'zh');
             showMascot(item.sentence);
         }
 
         function playJapaneseWord(index) {
             const item = filteredItems[index];
             const mp3Path = `assets/audio/daily_dialogue/japanese/${item.file}_japanese.mp3`;
-            speakWithFallback(item.japanese_reading, mp3Path);
+            XiaoDou.playAudio(mp3Path, item.japanese_reading, 'ja');
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
         function playEnglishWord(index) {
             const item = filteredItems[index];
             const mp3Path = `assets/audio/daily_dialogue/english/${item.file}_english.mp3`;
-            speakWithFallback(item.english, mp3Path);
+            XiaoDou.playAudio(mp3Path, item.english, 'en');
             showMascot(`英语：${item.word} → ${item.english}`);
         }
 
@@ -386,8 +264,7 @@
             else if (touchEndX - touchStartX > swipeThreshold) prevItem();
         }
 
-        renderCards();
-        setupSwipe();
+        init();
     </script>
 </body>
 </html>

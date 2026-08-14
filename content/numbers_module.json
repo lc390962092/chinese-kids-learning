@@ -1,0 +1,216 @@
+{
+  "title": "数字王国",
+  "subtitle": "一起来认识中文数字",
+  "words": [
+    {
+      "word": "一",
+      "pinyin": "yī",
+      "arabic": "1",
+      "english": "one",
+      "japanese": "一",
+      "japanese_reading": "いち",
+      "sentence": "一个太阳挂在天上，一只小鸟站在树上。",
+      "tags": [
+        "一",
+        "一个",
+        "太阳",
+        "小鸟"
+      ]
+    },
+    {
+      "word": "二",
+      "pinyin": "èr",
+      "arabic": "2",
+      "english": "two",
+      "japanese": "二",
+      "japanese_reading": "に",
+      "sentence": "我有两只小手，两根筷子一起吃饭。",
+      "tags": [
+        "二",
+        "两只",
+        "小手",
+        "筷子"
+      ]
+    },
+    {
+      "word": "三",
+      "pinyin": "sān",
+      "arabic": "3",
+      "english": "three",
+      "japanese": "三",
+      "japanese_reading": "さん",
+      "sentence": "三角形有三条边，三只小鸭排队游。",
+      "tags": [
+        "三",
+        "三角形",
+        "三条边",
+        "小鸭"
+      ]
+    },
+    {
+      "word": "四",
+      "pinyin": "sì",
+      "arabic": "4",
+      "english": "four",
+      "japanese": "四",
+      "japanese_reading": "よん",
+      "sentence": "一年有四个季节，正方形有四条边。",
+      "tags": [
+        "四",
+        "四个",
+        "季节",
+        "正方形"
+      ]
+    },
+    {
+      "word": "五",
+      "pinyin": "wǔ",
+      "arabic": "5",
+      "english": "five",
+      "japanese": "五",
+      "japanese_reading": "ご",
+      "sentence": "一只手有五根手指，五角星有五个角。",
+      "tags": [
+        "五",
+        "五根",
+        "手指",
+        "五角星"
+      ]
+    },
+    {
+      "word": "六",
+      "pinyin": "liù",
+      "arabic": "6",
+      "english": "six",
+      "japanese": "六",
+      "japanese_reading": "ろく",
+      "sentence": "六只蜜蜂在花丛里采蜜，六个积木搭成塔。",
+      "tags": [
+        "六",
+        "蜜蜂",
+        "花丛",
+        "积木"
+      ]
+    },
+    {
+      "word": "七",
+      "pinyin": "qī",
+      "arabic": "7",
+      "english": "seven",
+      "japanese": "七",
+      "japanese_reading": "なな",
+      "sentence": "一个星期有七天，七色彩虹挂在天上。",
+      "tags": [
+        "七",
+        "星期",
+        "七天",
+        "彩虹"
+      ]
+    },
+    {
+      "word": "八",
+      "pinyin": "bā",
+      "arabic": "8",
+      "english": "eight",
+      "japanese": "八",
+      "japanese_reading": "はち",
+      "sentence": "八只脚的小螃蟹横着走，八仙桌可以坐很多人。",
+      "tags": [
+        "八",
+        "八只脚",
+        "螃蟹",
+        "八仙桌"
+      ]
+    },
+    {
+      "word": "九",
+      "pinyin": "jiǔ",
+      "arabic": "9",
+      "english": "nine",
+      "japanese": "九",
+      "japanese_reading": "きゅう",
+      "sentence": "九月开学啦，九颗葡萄一串甜。",
+      "tags": [
+        "九",
+        "九月",
+        "开学",
+        "葡萄"
+      ]
+    },
+    {
+      "word": "十",
+      "pinyin": "shí",
+      "arabic": "10",
+      "english": "ten",
+      "japanese": "十",
+      "japanese_reading": "じゅう",
+      "sentence": "十根手指数一数，十全十美最圆满。",
+      "tags": [
+        "十",
+        "十根",
+        "手指",
+        "圆满"
+      ]
+    },
+    {
+      "word": "零",
+      "pinyin": "líng",
+      "arabic": "0",
+      "english": "zero",
+      "japanese": "零",
+      "japanese_reading": "れい",
+      "sentence": "零像一个鸡蛋，也表示一个也没有。",
+      "tags": [
+        "零",
+        "鸡蛋",
+        "没有",
+        "圆圈"
+      ]
+    },
+    {
+      "word": "百",
+      "pinyin": "bǎi",
+      "arabic": "100",
+      "english": "hundred",
+      "japanese": "百",
+      "japanese_reading": "ひゃく",
+      "sentence": "一百颗星星在天上闪，一百个小朋友手拉手。",
+      "tags": [
+        "百",
+        "一百",
+        "星星",
+        "小朋友"
+      ]
+    },
+    {
+      "word": "千",
+      "pinyin": "qiān",
+      "arabic": "1000",
+      "english": "thousand",
+      "japanese": "千",
+      "japanese_reading": "せん",
+      "sentence": "一千米好远，一千颗米粒堆成小山。",
+      "tags": [
+        "千",
+        "一千",
+        "米",
+        "米粒"
+      ]
+    },
+    {
+      "word": "万",
+      "pinyin": "wàn",
+      "arabic": "10000",
+      "english": "ten thousand",
+      "japanese": "万",
+      "japanese_reading": "まん",
+      "sentence": "一万个人很多，万水千山也不怕。",
+      "tags": [
+        "万",
+        "一万",
+        "很多",
+        "万水千山"
+      ]
+    }
+  ]
+}
