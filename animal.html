@@ -453,18 +453,16 @@
     
     <div class="stars" id="starEffect">⭐</div>
 
+    <script src="js/common.js"></script>
     <script>
-        // 动物数据从 JSON 加载
         let animals = [];
         let currentIndex = 0;
         let speechEnabled = true;
-        
+
         async function loadAnimals() {
             try {
-                const response = await fetch('content/animal_module.json');
-                if (!response.ok) throw new Error('加载失败');
-                const data = await response.json();
-                animals = data.words || [];
+                const data = await XiaoDou.loadModule('animal');
+                animals = XiaoDou.getItems(data);
                 // 如果 JSON 没有 sound，根据常见动物补默认值
                 const soundMap = {
                     'cat': '喵喵', 'dog': '汪汪', 'bird': '唧唧', 'fish': '咕噜',
@@ -479,205 +477,72 @@
                 });
                 renderCards();
                 setupSwipe();
-                const prevBtn = document.querySelector('.side-arrow.left');
-                const nextBtn = document.querySelector('.side-arrow.right');
-                if (prevBtn) prevBtn.disabled = currentIndex === 0;
-                if (nextBtn) nextBtn.disabled = currentIndex === animals.length - 1;
+                updateNavButtons();
             } catch (err) {
                 console.error('加载动物数据失败:', err);
                 showMascot('动物数据加载失败，请刷新页面试试～');
             }
         }
-        
-        // 初始化语音
-        const synth = window.speechSynthesis;
-        let chineseVoice = null;
-        let japaneseVoice = null;
-        let englishVoice = null;
-        
-        function findChineseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang.startsWith('zh')) {
-                    chineseVoice = v;
-                    break;
-                }
-            }
-            // 如果没有中文语音，使用默认语音
-        }
-        
-        function findJapaneseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            let best = null;
-            for (let v of voices) {
-                if (v.lang === 'ja-JP') { best = v; break; }
-            }
-            if (!best) {
-                for (let v of voices) {
-                    if (v.lang.startsWith('ja')) { best = v; break; }
-                }
-            }
-            japaneseVoice = best;
-            if (!japaneseVoice) {
-                console.log('未找到日语语音包，日语朗读将使用在线 TTS 或系统默认语音');
-            }
-        }
 
-        function findEnglishVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) {
-                if (v.lang === 'en-US') {
-                    englishVoice = v;
-                    break;
-                }
-            }
-            if (!englishVoice) {
-                for (let v of voices) {
-                    if (v.lang.startsWith('en')) {
-                        englishVoice = v;
-                        break;
-                    }
-                }
-            }
-        }
-        
-        // 某些浏览器需要等待 voices loaded
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = () => {
-                findChineseVoice();
-                findJapaneseVoice();
-                findEnglishVoice();
-            };
-        }
-        findChineseVoice();
-        findJapaneseVoice();
-        findEnglishVoice();
-        
-        function playAudio(path) {
-            return new Promise((resolve, reject) => {
-                const audio = new Audio(path);
-                audio.onended = resolve;
-                audio.onerror = (e) => {
-                    console.log('MP3 加载失败:', path, e);
-                    reject(e);
-                };
-                audio.play().catch(reject);
-            });
-        }
-        
-        function speakWithFallback(text, mp3Path, lang = 'zh-CN', rate = 0.8) {
-            if (mp3Path) {
-                playAudio(mp3Path).catch((err) => {
-                    console.log('MP3 播放失败，fallback 到 Web Speech API:', err);
-                    if (lang.startsWith('ja')) {
-                        speakJapanese(text);
-                    } else {
-                        speak(text, lang, rate);
-                    }
-                });
-            } else if (lang.startsWith('ja')) {
-                speakJapanese(text);
-            } else {
-                speak(text, lang, rate);
-            }
-        }
-        
-        function speak(text, lang = 'zh-CN', rate = 0.8) {
-            if (!synth || !speechEnabled) {
-                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
-                return;
-            }
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = lang;
-            utter.rate = rate;
-            utter.pitch = 1.1;
-            if (lang.startsWith('zh') && chineseVoice) utter.voice = chineseVoice;
-            else if (lang.startsWith('en') && englishVoice) utter.voice = englishVoice;
-            else if (lang.startsWith('ja') && japaneseVoice) utter.voice = japaneseVoice;
-            synth.speak(utter);
-        }
-        
-        function speakJapanese(text) {
-            if (!synth || !speechEnabled) {
-                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
-                return;
-            }
-            synth.cancel();
-
-            // 手机浏览器经常把 CJK 统一汉字读成中文，所以日语朗读时只保留假名和日文基本符号
-            const kanaOnly = text.replace(/[^\u3040-\u309F\u30A0-\u30FF\uFF10-\uFF19\u3000-\u303F\s]/g, '').replace(/[\u3001\u3002\uff0c\uff0e]/g, ' ').trim();
-            const toSpeak = kanaOnly || text;
-
-            // 优先使用真正的日语语音包
-            if (japaneseVoice && japaneseVoice.lang && japaneseVoice.lang.startsWith('ja')) {
-                const utter = new SpeechSynthesisUtterance(toSpeak);
-                utter.lang = 'ja-JP';
-                utter.rate = 0.82;
-                utter.pitch = 1.05;
-                utter.voice = japaneseVoice;
-                synth.speak(utter);
-                return;
-            }
-
-            // 没有本地日语语音时，尝试在线 Google TTS（仅日语假名）
-            const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q=' + encodeURIComponent(toSpeak);
-            const audio = new Audio(url);
-            audio.play().catch((err) => {
-                console.log('在线日语 TTS 播放失败:', err);
-                // 最后明确提示，不再用中文语音冒充日语
-                showMascot("小提示：当前设备没有日语语音包，所以日语念不出来。建议用电脑或换浏览器试试～");
-            });
-        }
-        
-        function speakEnglish(text) {
-            if (!synth || !speechEnabled) {
-                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
-                return;
-            }
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'en-US';
-            utter.rate = 0.85;
-            utter.pitch = 1.0;
-            if (englishVoice) utter.voice = englishVoice;
-            synth.speak(utter);
-        }
-        
         function showMascot(text) {
             document.getElementById('mascotText').textContent = text;
         }
-        
+
         function showStars() {
             const star = document.getElementById('starEffect');
             star.style.display = 'block';
             setTimeout(() => { star.style.display = 'none'; }, 1000);
         }
-        
+
+        function updateNavButtons() {
+            const prevBtns = document.querySelectorAll('.side-arrow.left');
+            const nextBtns = document.querySelectorAll('.side-arrow.right');
+            prevBtns.forEach(btn => btn.disabled = currentIndex === 0);
+            nextBtns.forEach(btn => btn.disabled = currentIndex === animals.length - 1);
+        }
+
+        function playAudio(path) {
+            return new Promise((resolve, reject) => {
+                const audio = new Audio(XiaoDou.resolvePath(path));
+                audio.onended = resolve;
+                audio.onerror = (e) => { console.log('MP3 加载失败:', path, e); reject(e); };
+                audio.play().catch(reject);
+            });
+        }
+
+        function speakWithFallback(text, mp3Path, lang = 'zh-CN', rate = 0.8) {
+            if (mp3Path) {
+                playAudio(mp3Path).catch(() => {
+                    console.log('MP3 播放失败，fallback 到 Web Speech API');
+                    XiaoDou.speak(text, lang.startsWith('ja') ? 'ja' : (lang.startsWith('en') ? 'en' : 'zh'), rate);
+                });
+            } else {
+                XiaoDou.speak(text, lang.startsWith('ja') ? 'ja' : (lang.startsWith('en') ? 'en' : 'zh'), rate);
+            }
+        }
+
         function renderCards() {
             const container = document.getElementById('animalCards');
             const progress = document.getElementById('progressDots');
-            
+            container.innerHTML = '';
+            progress.innerHTML = '';
+
             animals.forEach((animal, index) => {
-                // 卡片
                 const card = document.createElement('div');
                 card.className = 'animal-card' + (index === 0 ? ' active' : '');
                 card.innerHTML = `
                     <div class="card-image-wrapper">
-                        <button class="side-arrow left" id="prevBtn" onclick="prevAnimal()" aria-label="上一个">◀</button>
-                        <img class="animal-image" 
-                             src="assets/images/animals/${animal.file}.png" 
-                             alt="${animal.word}"
+                        <button class="side-arrow left" onclick="prevAnimal()" aria-label="上一个">◀</button>
+                        <img class="animal-image"
+                             src="${XiaoDou.resolvePath(`assets/images/animals/${animal.file}.png`)}"
+                             alt="${XiaoDou.escapeHtml(animal.word)}"
                              onclick="playWord(${index})">
-                        <button class="side-arrow right" id="nextBtn" onclick="nextAnimal()" aria-label="下一个">▶</button>
+                        <button class="side-arrow right" onclick="nextAnimal()" aria-label="下一个">▶</button>
                     </div>
-                    <div class="animal-word">${animal.word}</div>
-                    <div class="animal-pinyin">${animal.pinyin}</div>
-                    <div class="animal-japanese">${animal.japanese}（${animal.japanese_reading}）</div>
-                    <div class="animal-english">${animal.english}</div>
+                    <div class="animal-word">${XiaoDou.escapeHtml(animal.word)}</div>
+                    <div class="animal-pinyin">${XiaoDou.escapeHtml(animal.pinyin)}</div>
+                    <div class="animal-japanese">${XiaoDou.escapeHtml(animal.japanese)}（${XiaoDou.escapeHtml(animal.japanese_reading)}）</div>
+                    <div class="animal-english">${XiaoDou.escapeHtml(animal.english)}</div>
                     <div class="btn-group">
                         <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
@@ -687,23 +552,23 @@
                         <button class="btn btn-encyclopedia" onclick="playEncyclopedia(${index})">📖 百科</button>
                     </div>
                     <div class="encyclopedia-card" id="encyclopedia-${index}" style="display:none;">
-                        <div class="encyclopedia-title">📖 ${animal.word} 小百科</div>
-                        <div class="encyclopedia-item"><strong>简介：</strong>${animal.intro || '待补充'}</div>
-                        <div class="encyclopedia-item"><strong>住哪里：</strong>${animal.habitat || '待补充'}</div>
-                        <div class="encyclopedia-item"><strong>吃什么：</strong>${animal.food || '待补充'}</div>
-                        <div class="encyclopedia-item"><strong>小知识：</strong>${animal.fun_fact || '待补充'}</div>
+                        <div class="encyclopedia-title">📖 ${XiaoDou.escapeHtml(animal.word)} 小百科</div>
+                        <div class="encyclopedia-item"><strong>简介：</strong>${XiaoDou.escapeHtml(animal.intro || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>住哪里：</strong>${XiaoDou.escapeHtml(animal.habitat || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>吃什么：</strong>${XiaoDou.escapeHtml(animal.food || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>小知识：</strong>${XiaoDou.escapeHtml(animal.fun_fact || '待补充')}</div>
                     </div>
                     <a href="animal_match_game.html" style="display:inline-block;margin-top:12px;color:#FF6B6B;text-decoration:none;font-size:15px;">🎮 玩听音找图游戏</a>
                 `;
                 container.appendChild(card);
-                
-                // 进度点
+
                 const dot = document.createElement('div');
                 dot.className = 'progress-dot' + (index === 0 ? ' active' : '');
                 progress.appendChild(dot);
             });
+            updateNavButtons();
         }
-        
+
         function playWord(index) {
             const animal = animals[index];
             const mp3Path = `assets/audio/animals/${animal.file}_word.mp3`;
@@ -711,38 +576,37 @@
             showMascot(`我们来看看：${animal.word}，${animal.pinyin}。`);
             showStars();
         }
-        
+
         function playSentence(index) {
             const animal = animals[index];
             const mp3Path = `assets/audio/animals/sentences/${animal.file}_sentence.mp3`;
             speakWithFallback(animal.sentence, mp3Path);
             showMascot(animal.sentence);
         }
-        
+
         function playSound(index) {
             const animal = animals[index];
             if (animal.sound) {
                 const mp3Path = `assets/audio/animals/${animal.file}_sound.mp3`;
-                speakWithFallback(animal.sound, mp3Path, 1.0);
+                speakWithFallback(animal.sound, mp3Path, 'zh-CN', 1.0);
                 showMascot(`${animal.word}的叫声：${animal.sound}！`);
             }
         }
-        
+
         function playJapanese(index) {
             const animal = animals[index];
             const mp3Path = `assets/audio/animals/japanese/${animal.file}_japanese.mp3`;
-            // 优先朗读假名读音，避免日文汉字被中文语音包读错
             speakWithFallback(animal.japanese_reading, mp3Path, 'ja-JP', 0.75);
             showMascot(`${animal.word} 的日语是：${animal.japanese}（${animal.japanese_reading}）`);
         }
-        
+
         function playEnglish(index) {
             const animal = animals[index];
             const mp3Path = `assets/audio/animals/english/${animal.file}_english.mp3`;
             speakWithFallback(animal.english, mp3Path, 'en-US', 0.85);
             showMascot(`${animal.word} 的英语是：${animal.english}`);
         }
-        
+
         function playEncyclopedia(index) {
             const animal = animals[index];
             if (!animal.intro) {
@@ -753,157 +617,124 @@
             const mp3Path = `assets/audio/animals/encyclopedia/${animal.file}_encyclopedia.mp3`;
             speakWithFallback(text, mp3Path, 'zh-CN', 0.8);
             showMascot(`${animal.word}的小百科：${animal.intro}`);
-            
-            // 显示/隐藏百科卡片
+
             const card = document.getElementById(`encyclopedia-${index}`);
             if (card) {
                 card.style.display = card.style.display === 'none' ? 'block' : 'none';
             }
         }
-        
+
         function stopAllAudio() {
-            // 停止 Web Speech 合成
-            if (synth) synth.cancel();
-            // 停止所有 HTMLAudioElement（包括叫声、日/英预录音频）
+            XiaoDou.speak('', 'zh'); // cancel all speech
             document.querySelectorAll('audio').forEach(audio => {
                 audio.pause();
                 audio.currentTime = 0;
             });
         }
-        
+
         function switchAnimal(direction) {
-            // 切换前先停止上一页可能正在播放的所有内容
             stopAllAudio();
-            
             const cards = document.querySelectorAll('.animal-card');
             const dots = document.querySelectorAll('.progress-dot');
-            const prevBtn = document.querySelector('.side-arrow.left');
-            const nextBtn = document.querySelector('.side-arrow.right');
-            
+            if (!cards.length) return;
+
             let newIndex;
             if (direction === 'next') {
                 newIndex = (currentIndex + 1) % animals.length;
             } else {
                 newIndex = (currentIndex - 1 + animals.length) % animals.length;
             }
-            
-            // animate out
+
             cards[currentIndex].classList.remove('active');
             cards[currentIndex].classList.remove('slide-left-in', 'slide-right-in');
             cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-out' : 'slide-right-out');
             dots[currentIndex].classList.remove('active');
-            
+
             currentIndex = newIndex;
-            
-            // 隐藏当前百科卡片
             document.querySelectorAll('.encyclopedia-card').forEach(el => el.style.display = 'none');
-            
-            // 显示新卡片
+
             cards[currentIndex].classList.remove('slide-left-out', 'slide-right-out');
             cards[currentIndex].classList.add('active');
             cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-in' : 'slide-right-in');
             dots[currentIndex].classList.add('active');
-            
-            // update buttons
-            if (prevBtn) prevBtn.disabled = currentIndex === 0;
-            if (nextBtn) nextBtn.disabled = currentIndex === animals.length - 1;
-            
+
+            updateNavButtons();
+
             const animal = animals[currentIndex];
             showMascot(`我们来学${animal.word}！`);
-            
             setTimeout(() => playWord(currentIndex), 500);
         }
-        
+
         function nextAnimal() { switchAnimal('next'); }
         function prevAnimal() { switchAnimal('prev'); }
-        
-        // 滑动切换
+
         let touchStartX = 0;
         let touchEndX = 0;
-        
+
         function setupSwipe() {
             const mainStage = document.querySelector('.main-stage');
             if (!mainStage) return;
-            
+
             mainStage.addEventListener('touchstart', function(e) {
                 touchStartX = e.changedTouches[0].screenX;
             }, { passive: true });
-            
+
             mainStage.addEventListener('touchend', function(e) {
                 touchEndX = e.changedTouches[0].screenX;
                 handleSwipe();
             }, { passive: true });
-            
-            // 鼠标拖拽也支持
+
             let mouseDown = false;
             mainStage.addEventListener('mousedown', function(e) {
                 mouseDown = true;
                 touchStartX = e.screenX;
             });
-            
+
             mainStage.addEventListener('mouseup', function(e) {
                 if (!mouseDown) return;
                 mouseDown = false;
                 touchEndX = e.screenX;
                 handleSwipe();
             });
-            
+
             mainStage.addEventListener('mouseleave', function() {
                 mouseDown = false;
             });
         }
-        
+
         function handleSwipe() {
             const swipeThreshold = 50;
             const diff = touchStartX - touchEndX;
             if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    nextAnimal(); // 左滑，下一个
-                } else {
-                    prevAnimal(); // 右滑，上一个
-                }
+                if (diff > 0) nextAnimal();
+                else prevAnimal();
             }
         }
-        
+
         let appStarted = false;
-        
+
         function startApp() {
             if (appStarted) return;
             appStarted = true;
-            
-            // 初始化音频上下文（解决浏览器自动播放限制）
+
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             if (AudioContext) {
                 const ctx = new AudioContext();
-                if (ctx.state === 'suspended') {
-                    ctx.resume();
-                }
+                if (ctx.state === 'suspended') ctx.resume();
             }
-            
-            // 播放一个无声的音频，解锁自动播放
+
             const silentAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
             silentAudio.play().catch(() => {});
-            
-            // 隐藏开始覆盖层
+
             document.getElementById('startOverlay').style.display = 'none';
-            
-            // 显示欢迎
             showMascot("你好！我是小豆。今天我们来认识动物。点击小动物，听听它叫什么名字。");
-            
-            // 尝试播放欢迎语音
+
             setTimeout(() => {
-                speak("你好！我是小豆。今天我们来认识动物。点击小动物，听听它叫什么名字。");
+                XiaoDou.speak("你好！我是小豆。今天我们来认识动物。点击小动物，听听它叫什么名字。", 'zh');
             }, 300);
         }
-        
-        // 启动
+
         loadAnimals();
-        
-        // 初始化按钮状态
-        const prevBtn = document.querySelector('.side-arrow.left');
-        const nextBtn = document.querySelector('.side-arrow.right');
-        if (prevBtn) prevBtn.disabled = currentIndex === 0;
-        if (nextBtn) nextBtn.disabled = currentIndex === animals.length - 1;
     </script>
 </body>
 </html>

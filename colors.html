@@ -80,148 +80,70 @@
         <div class="swipe-hint">← 左右滑动切换卡片 →</div>
         <a href="index.html" class="back-home">⬅️ 返回首页</a>
     </div>
+    <script src="js/common.js"></script>
     <script>
-        const items = [
-            { word: "红色", pinyin: "hóng sè", english: "red", japanese: "赤色", japanese_reading: "あかいろ", summary: "苹果和草莓是红色的，红灯亮时我们要停下来。", words: ["红色", "红", "苹果", "草莓", "红灯"], emoji: "🔴", color: "#F44336" },
-            { word: "黄色", pinyin: "huáng sè", english: "yellow", japanese: "黄色", japanese_reading: "きいろ", summary: "香蕉和柠檬是黄色的，小黄鸭也喜欢在水里游。", words: ["黄色", "黄", "香蕉", "柠檬", "小鸭"], emoji: "🟡", color: "#FFEB3B" },
-            { word: "蓝色", pinyin: "lán sè", english: "blue", japanese: "青色", japanese_reading: "あおいろ", summary: "天空和大海是蓝色的，蓝蓝的颜色让人心情平静。", words: ["蓝色", "蓝", "天空", "大海", "平静"], emoji: "🔵", color: "#2196F3" },
-            { word: "绿色", pinyin: "lǜ sè", english: "green", japanese: "緑色", japanese_reading: "みどりいろ", summary: "小草和树叶是绿色的，绿色代表春天和生机。", words: ["绿色", "绿", "小草", "树叶", "春天"], emoji: "🟢", color: "#4CAF50" },
-            { word: "橙色", pinyin: "chéng sè", english: "orange", japanese: "橙色", japanese_reading: "だいだいいろ", summary: "橙子和胡萝卜是橙色的，像暖暖的秋天。", words: ["橙色", "橙", "橙子", "胡萝卜", "秋天"], emoji: "🟠", color: "#FF9800" },
-            { word: "紫色", pinyin: "zǐ sè", english: "purple", japanese: "紫色", japanese_reading: "むらさきいろ", summary: "葡萄和茄子是紫色的，紫色像神秘的夜晚。", words: ["紫色", "紫", "葡萄", "茄子", "神秘"], emoji: "🟣", color: "#9C27B0" },
-            { word: "粉色", pinyin: "fěn sè", english: "pink", japanese: "桃色", japanese_reading: "ももいろ", summary: "桃花和棉花糖是粉色的，粉粉的颜色很温柔。", words: ["粉色", "粉", "桃花", "棉花糖", "温柔"], emoji: "🌸", color: "#F8BBD0" },
-            { word: "黑色", pinyin: "hēi sè", english: "black", japanese: "黒色", japanese_reading: "くろいろ", summary: "夜晚和钢琴键是黑色的，黑色也可以很优雅。", words: ["黑色", "黑", "夜晚", "钢琴", "优雅"], emoji: "⚫", color: "#333333" },
-            { word: "白色", pinyin: "bái sè", english: "white", japanese: "白色", japanese_reading: "しろいろ", summary: "白云和棉花是白色的，白色干干净净。", words: ["白色", "白", "白云", "棉花", "干净"], emoji: "⚪", color: "#EEEEEE" },
-            { word: "棕色", pinyin: "zōng sè", english: "brown", japanese: "茶色", japanese_reading: "ちゃいろ", summary: "小熊和树干是棕色的，棕色像大地一样温暖。", words: ["棕色", "棕", "小熊", "树干", "大地"], emoji: "🟤", color: "#795548" },
-            { word: "灰色", pinyin: "huī sè", english: "gray", japanese: "灰色", japanese_reading: "はいいろ", summary: "乌云和大象是灰色的，下雨天天空常常灰灰的。", words: ["灰色", "灰", "乌云", "大象", "雨天"], emoji: "⬜", color: "#9E9E9E" },
-            { word: "彩虹色", pinyin: "cǎi hóng sè", english: "rainbow", japanese: "虹色", japanese_reading: "にじいろ", summary: "彩虹有红橙黄绿蓝靛紫七种颜色，雨后挂在天上。", words: ["彩虹色", "彩虹", "七种颜色", "雨后", "天上"], emoji: "🌈", color: "linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet)" }
-        ];
-
+        let items = [];
         let currentIndex = 0;
         let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
         const SWIPE_THRESHOLD = 50;
 
-        const synth = window.speechSynthesis;
-        let chineseVoice = null;
-        let japaneseVoice = null;
-        let englishVoice = null;
-        let speechEnabled = true;
-
-        function findChineseVoice(){
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) { if (v.lang.startsWith('zh')) { chineseVoice = v; break; } }
-        }
-                function findJapaneseVoice() {
-            if (!synth) return;
-            const voices = synth.getVoices();
-            let best = null;
-            for (let v of voices) {
-                if (v.lang === 'ja-JP') { best = v; break; }
-            }
-            if (!best) {
-                for (let v of voices) {
-                    if (v.lang.startsWith('ja')) { best = v; break; }
-                }
-            }
-            japaneseVoice = best;
-            if (!japaneseVoice) {
-                console.log('未找到日语语音包，日语朗读将使用在线 TTS 或系统默认语音');
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('colors');
+                items = XiaoDou.getItems(data);
+                renderCards();
+                renderProgress();
+            } catch (err) {
+                document.getElementById('mainStage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">颜色数据加载失败，请刷新再试～</div>';
+                console.error(err);
             }
         }
 
-        function findEnglishVoice(){
-            if (!synth) return;
-            const voices = synth.getVoices();
-            for (let v of voices) { if (v.lang.startsWith('en')) { englishVoice = v; break; } }
-        }
-        if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = function() { findChineseVoice(); findJapaneseVoice(); findEnglishVoice(); };
-        findChineseVoice();
-        findJapaneseVoice();
-        findEnglishVoice();
+        function speak(text, lang = 'zh') { XiaoDou.speak(text, lang); }
 
-        function speak(text, rate = 0.82){
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'zh-CN'; utter.rate = rate; utter.pitch = 1.1;
-            if (chineseVoice) utter.voice = chineseVoice;
-            synth.speak(utter);
+        function playAudio(path, fallback, lang) {
+            XiaoDou.playAudio(path, fallback, lang);
         }
 
-        
-        function playJapanese(index) {
-            const item = items[index];
-            const audio = new Audio(`assets/audio/colors/japanese/${item.english}_jp.mp3`);
-            audio.play().catch(err => {
-                console.log('本地日语音频播放失败:', err);
-                speakJapaneseFallback(item.japanese_reading);
-            });
-            showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
-        }
-
-        function speakJapaneseFallback(text) {
-            if (!synth || !speechEnabled) {
-                showMascot("你的浏览器不支持朗读，请用 Chrome 或 Edge 打开～");
-                return;
-            }
-            synth.cancel();
-            // 只保留假名，避免 CJK 统一汉字被读成中文
-            const kanaOnly = text.replace(/[^\u3040-\u309F\u30A0-\u30FF\uFF10-\uFF19\u3000-\u303F\s]/g, '').replace(/[\u3001\u3002\uff0c\uff0e]/g, ' ').trim();
-            const toSpeak = kanaOnly || text;
-            if (japaneseVoice && japaneseVoice.lang && japaneseVoice.lang.startsWith('ja')) {
-                const utter = new SpeechSynthesisUtterance(toSpeak);
-                utter.lang = 'ja-JP';
-                utter.rate = 0.82;
-                utter.pitch = 1.05;
-                utter.voice = japaneseVoice;
-                synth.speak(utter);
-            } else {
-                showMascot("小提示：当前设备没有日语语音包，建议用电脑或换浏览器试试～");
-            }
-        }
-
-        function speakEnglish(text, rate = 0.82){
-            if (!synth) return;
-            synth.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'en-US'; utter.rate = rate; utter.pitch = 1.1;
-            if (englishVoice) utter.voice = englishVoice;
-            synth.speak(utter);
-        }
-
-        function playEnglish(index){
-            const item = items[index];
-            speakEnglish(item.english);
-            showMascot('英语说：' + item.english);
-        }
-
-        function showMascot(text){ document.getElementById('mascotText').textContent = text; }
+        function showMascot(text) { document.getElementById('mascotText').textContent = text; }
 
         function playWord(index){
             const item = items[index];
-            speak(item.word + '，' + item.pinyin);
+            playAudio(`assets/audio/colors/${item.english}_word.mp3`, item.word + '，' + item.pinyin, 'zh');
             showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
         }
 
         function playSentence(index){
             const item = items[index];
-            speak(item.summary);
+            playAudio(`assets/audio/colors/${item.english}_sentence.mp3`, item.summary, 'zh');
             showMascot(item.summary);
+        }
+
+        function playJapanese(index) {
+            const item = items[index];
+            playAudio(`assets/audio/colors/japanese/${item.english}_jp.mp3`, item.japanese_reading, 'ja');
+            showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
+        }
+
+        function playEnglish(index){
+            const item = items[index];
+            playAudio(`assets/audio/colors/english/${item.english}_en.mp3`, item.english, 'en');
+            showMascot('英语说：' + item.english);
         }
 
         function renderCards(){
             const container = document.getElementById('cards');
             container.innerHTML = items.map((item, i) => {
                 const bgStyle = item.color.startsWith('linear') ? item.color : (item.color + '33');
-                const keywords = item.words.map(w => `<span class="keyword" onclick="speak('${w}')">${w}</span>`).join('');
+                const keywords = (item.words || []).map(w => `<span class="keyword" onclick="speak('${XiaoDou.escapeHtml(w)}')">${XiaoDou.escapeHtml(w)}</span>`).join('');
                 return `<div class="card ${i===0?'active':''}">
                     <div class="card-emoji" onclick="playWord(${i})" style="background:${bgStyle}">${item.emoji}</div>
-                    <div class="card-title">${item.word}</div>
-                    <div class="card-subtitle">${item.pinyin}</div>
-                    <div class="color-english">${item.english}</div>
-                    <div class="card-japanese">${item.japanese}</div>
-                    <div class="card-japanese-reading">${item.japanese_reading}</div>
-                    <div class="card-text">${item.summary}</div>
+                    <div class="card-title">${XiaoDou.escapeHtml(item.word)}</div>
+                    <div class="card-subtitle">${XiaoDou.escapeHtml(item.pinyin)}</div>
+                    <div class="color-english">${XiaoDou.escapeHtml(item.english)}</div>
+                    <div class="card-japanese">${XiaoDou.escapeHtml(item.japanese)}</div>
+                    <div class="card-japanese-reading">${XiaoDou.escapeHtml(item.japanese_reading)}</div>
+                    <div class="card-text">${XiaoDou.escapeHtml(item.summary)}</div>
                     <div class="keywords">${keywords}</div>
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="playWord(${i})">🔊 读颜色</button>
@@ -245,6 +167,7 @@
         function switchCard(direction){
             const cards = document.querySelectorAll('.card');
             const dots = document.querySelectorAll('.progress-dot');
+            if (!cards.length) return;
             cards[currentIndex].classList.remove('active');
             dots[currentIndex].classList.remove('active');
             if (direction === 'next') currentIndex = (currentIndex + 1) % items.length;
@@ -262,7 +185,7 @@
         function startApp(){
             document.getElementById('startOverlay').style.display = 'none';
             if (items.length > 0){
-                speak('你好！我是小豆。今天我们来学习颜色。');
+                XiaoDou.speak('你好！我是小豆。今天我们来学习颜色。');
                 showMascot('你好！我是小豆。今天我们来学习颜色。');
             }
         }
@@ -284,8 +207,7 @@
             }
         }, { passive: true });
 
-        renderCards();
-        renderProgress();
+        init();
     </script>
 </body>
 </html>
