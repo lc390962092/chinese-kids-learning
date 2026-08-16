@@ -80,6 +80,9 @@ const Detective = (function() {
           }).join('');
         }
       }
+
+      // 低龄友好：自动朗读欢迎语
+      XiaoDou.speak('欢迎来到侦探事务所，选择一个案件，开始破案吧！');
     }).catch(err => {
       console.error('加载首页失败:', err);
     });
@@ -116,14 +119,14 @@ const Detective = (function() {
         <h2>📜 案情</h2>
         <p>${XiaoDou.escapeHtml(c.intro)}</p>
         <p class="scene-text">${XiaoDou.escapeHtml(c.scene)}</p>
-        <button class="btn-speak" onclick="Detective.speakText('${XiaoDou.escapeHtml(c.intro + c.scene)}')">🔊 读给我听</button>
+        <button class="btn-speak" onclick="Detective.speakText('${XiaoDou.escapeHtml(c.intro + '。' + c.scene)}')">🔊 读给我听</button>
       </section>
 
       <section class="case-scene card">
         <h2>🔍 现场</h2>
         <div class="scene-image">
           <img src="${XiaoDou.resolvePath(c.sceneImage || '')}" alt="案件现场" onerror="this.style.display='none'">
-          <p class="scene-hint">（图片加载失败时，请根据文字线索推理）</p>
+          <p class="scene-hint">点一点图里的可疑地方，仔细观察</p>
         </div>
       </section>
 
@@ -132,20 +135,24 @@ const Detective = (function() {
         <ul>
           ${c.clues.map(cl => `<li>${XiaoDou.escapeHtml(cl)}</li>`).join('')}
         </ul>
+        <button class="btn-speak" onclick="Detective.speakText('${XiaoDou.escapeHtml('线索有：' + c.clues.join('，'))}')">🔊 读线索</button>
       </section>
 
       <section class="case-suspects card">
         <h2>🧑 嫌疑人</h2>
         <p class="hint">💡 提示：${XiaoDou.escapeHtml(c.hint)}</p>
+        <button class="btn-speak" onclick="Detective.speakText('${XiaoDou.escapeHtml('提示：' + c.hint)}')">🔊 听提示</button>
         <div class="suspect-list">
           ${c.suspects.map((s, i) => `
-            <button class="suspect-btn" onclick="Detective.guess('${c.id}', ${i})">
-              <img class="avatar" src="${XiaoDou.resolvePath(s.avatar || '')}" alt="${XiaoDou.escapeHtml(s.name)}" onerror="this.outerHTML='<span class=\'avatar-fallback\'>${s.emoji || '❓'}</span>'">
+            <button class="suspect-btn" onclick="Detective.speakText('${XiaoDou.escapeHtml(s.name + '说：' + s.statement)}')">
+              <img class="avatar" src="${XiaoDou.resolvePath(s.avatar || '')}" alt="${XiaoDou.escapeHtml(s.name)}" onerror="this.outerHTML='<span class=\\'avatar-fallback\\'>${s.emoji || '❓'}</span>'">
               <div class="suspect-info">
                 <strong>${XiaoDou.escapeHtml(s.name)}</strong>
                 <p>${XiaoDou.escapeHtml(s.statement)}</p>
               </div>
             </button>
+            <button class="btn-speak" style="margin-left:70px;" onclick="Detective.speakText('${XiaoDou.escapeHtml(s.name + '说：' + s.statement)}')">🔊 听${XiaoDou.escapeHtml(s.name)}说</button>
+            <button class="btn-suspect" onclick="Detective.guess('${c.id}', ${i})">我选 ${XiaoDou.escapeHtml(s.name)}</button>
           `).join('')}
         </div>
       </section>
@@ -154,6 +161,9 @@ const Detective = (function() {
 
       ${alreadySolved ? '<div class="solved-banner">🏆 这个案件你已经破解过了！</div>' : ''}
     `;
+
+    // 进入案件页自动朗读案情
+    XiaoDou.speak(c.intro + '。' + c.scene + '。我们一起来找线索吧。');
   }
 
   async function guess(caseId, suspectIndex) {
@@ -230,6 +240,7 @@ const Detective = (function() {
         <h2>${XiaoDou.escapeHtml(level.title)}</h2>
         <p>${XiaoDou.escapeHtml(level.description)}</p>
         <p class="hint">💡 ${XiaoDou.escapeHtml(level.hint)}</p>
+        <button class="btn-speak" onclick="Detective.speakText('${XiaoDou.escapeHtml(level.title + '。' + level.description + '。' + level.hint)}')">🔊 听任务</button>
         <div class="progress-bar">
           <span id="observe-progress">找到 0 / ${totalIntruders} 个</span>
         </div>
@@ -242,6 +253,9 @@ const Detective = (function() {
         <div id="observe-result"></div>
       </section>
     `;
+
+    // 自动朗读任务
+    XiaoDou.speak(level.title + '。' + level.description + '。' + level.hint);
 
     const buttons = container.querySelectorAll('.scene-item');
     buttons.forEach(btn => {

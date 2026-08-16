@@ -206,7 +206,8 @@ main {
 /* ================= 按钮 ================= */
 .btn-primary,
 .btn-secondary,
-.btn-speak {
+.btn-speak,
+.btn-suspect {
   display: inline-block;
   border: none;
   border-radius: 12px;
@@ -235,6 +236,14 @@ main {
   font-size: 13px;
 }
 
+.btn-suspect {
+  background: var(--success);
+  color: white;
+  display: block;
+  width: calc(100% - 70px);
+  margin: 4px 0 16px 70px;
+}
+
 button:hover {
   opacity: 0.9;
 }
@@ -259,6 +268,7 @@ button:hover {
 .case-scene img {
   width: 100%;
   height: auto;
+  max-height: none;
   display: block;
 }
 
@@ -271,6 +281,8 @@ button:hover {
   font-size: 12px;
   color: var(--muted);
   margin: 0;
+  background: rgba(255,255,255,0.85);
+  padding: 4px 0;
 }
 
 .case-clues ul {
@@ -388,43 +400,46 @@ button:hover {
 .observe-card .scene-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  max-width: 100%;
   background: #f0ecff;
   border-radius: 14px;
   overflow: hidden;
   margin-top: 14px;
+  font-size: 0;
+  line-height: 0;
 }
 
 .scene-bg {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-width: 100%;
   display: block;
 }
 
 .scene-item {
   position: absolute;
-  width: 44px;
-  height: 44px;
-  border: 3px dashed rgba(91, 79, 207, 0.35);
+  width: 48px;
+  height: 48px;
+  border: 3px dashed rgba(91, 79, 207, 0.45);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.18);
   cursor: pointer;
   transform: translate(-50%, -50%);
   padding: 0;
+  transition: background 0.15s, border-color 0.15s;
 }
 
 .scene-item:hover {
-  background: rgba(255, 209, 102, 0.25);
+  background: rgba(255, 209, 102, 0.35);
 }
 
 .scene-item.found {
-  background: rgba(72, 207, 173, 0.4);
+  background: rgba(72, 207, 173, 0.45);
   border-color: var(--success);
 }
 
 .scene-item.wrong {
-  background: rgba(255, 107, 107, 0.25);
+  background: rgba(255, 107, 107, 0.35);
   border-color: var(--danger);
 }
 
