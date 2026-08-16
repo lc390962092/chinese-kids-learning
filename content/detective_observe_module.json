@@ -27,6 +27,23 @@
         {"name": "小鱼", "x": 81, "y": 66, "isIntruder": true}
       ],
       "hint": "想一想：这些东西通常出现在哪里？房间里应该出现吗？"
+    },
+    {
+      "id": "rainbow-treasure",
+      "title": "丢失的彩虹宝藏",
+      "description": "第3关：彩虹森林里的宝藏被偷走了！快根据清单找回 5 颗宝石。",
+      "background": "assets/images/detective/scenes/observe-rainbow-treasure.jpg",
+      "items": [
+        {"name": "红宝石", "x": 15, "y": 75, "isIntruder": true},
+        {"name": "蓝宝石", "x": 22, "y": 82, "isIntruder": true},
+        {"name": "黄宝石", "x": 26, "y": 31, "isIntruder": true},
+        {"name": "绿宝石", "x": 77, "y": 65, "isIntruder": true},
+        {"name": "紫宝石", "x": 68, "y": 88, "isIntruder": true},
+        {"name": "小侦探", "x": 72, "y": 82, "isIntruder": false},
+        {"name": "宝箱", "x": 48, "y": 62, "isIntruder": false},
+        {"name": "大树", "x": 50, "y": 42, "isIntruder": false}
+      ],
+      "hint": "对照清单：红宝石在蘑菇旁，蓝宝石在荷叶上，黄宝石在鸟巢边，绿宝石在小推车后，紫宝石在彩虹桥下。"
     }
   ]
 }
