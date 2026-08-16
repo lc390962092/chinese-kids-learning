@@ -1,0 +1,476 @@
+/* ================= 侦探主题全局样式 ================= */
+:root {
+  --bg: #f6f3ff;
+  --card: #ffffff;
+  --primary: #5b4fcf;
+  --primary-dark: #4439b0;
+  --accent: #ffd166;
+  --success: #48cfad;
+  --danger: #ff6b6b;
+  --text: #33334d;
+  --muted: #777799;
+  --radius: 18px;
+  --shadow: 0 8px 24px rgba(91, 79, 207, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.detective-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+}
+
+.detective-header .mascot {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.detective-header h1 {
+  margin: 0;
+  font-size: 26px;
+  color: var(--primary-dark);
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+main {
+  flex: 1;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: var(--primary-dark);
+}
+
+.card p {
+  margin: 8px 0;
+}
+
+.hint {
+  color: var(--primary);
+  font-size: 14px;
+  background: rgba(91, 79, 207, 0.08);
+  padding: 10px 14px;
+  border-radius: 12px;
+}
+
+/* ================= 首页 ================= */
+.hero-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #fff 0%, #f0ecff 100%);
+}
+
+.hero-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 16px;
+  background: rgba(91, 79, 207, 0.06);
+}
+
+.hero-text h2 {
+  margin: 0 0 8px;
+  color: var(--primary-dark);
+  font-size: 20px;
+}
+
+.hero-text p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.menu h3,
+.badge-board h3 {
+  margin: 0 0 14px;
+  font-size: 18px;
+  color: var(--primary-dark);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.menu-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 18px 10px;
+  background: var(--card);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.menu-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.menu-btn .icon {
+  font-size: 36px;
+  margin-bottom: 6px;
+}
+
+.menu-btn .label {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.menu-btn .desc {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+}
+
+.badge-item img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 6px;
+}
+
+.badge-item span {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.badge-item.locked img {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ================= 按钮 ================= */
+.btn-primary,
+.btn-secondary,
+.btn-speak {
+  display: inline-block;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 6px 6px 0 0;
+  transition: opacity 0.15s;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-secondary {
+  background: var(--accent);
+  color: var(--text);
+}
+
+.btn-speak {
+  background: #e8e5ff;
+  color: var(--primary-dark);
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* ================= 案件页 ================= */
+.case-intro .scene-text {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.case-scene .scene-image {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f0ecff;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-scene img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.scene-hint {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.case-clues ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.case-clues li {
+  margin: 6px 0;
+  color: var(--text);
+}
+
+.suspect-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.suspect-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  background: #fafaff;
+  border: 2px solid #e8e5ff;
+  border-radius: 14px;
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.suspect-btn:hover {
+  border-color: var(--primary);
+}
+
+.suspect-btn .avatar,
+.suspect-btn .avatar-fallback {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #e8e5ff;
+  flex-shrink: 0;
+}
+
+.suspect-btn .avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.suspect-info strong {
+  display: block;
+  font-size: 16px;
+  color: var(--primary-dark);
+}
+
+.suspect-info p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.result {
+  margin: 16px 0;
+}
+
+.success-card,
+.wrong-card,
+.error-card {
+  border-radius: var(--radius);
+  padding: 18px;
+  text-align: center;
+}
+
+.success-card {
+  background: #e7f9f4;
+  border: 2px solid var(--success);
+}
+
+.wrong-card {
+  background: #fff0f0;
+  border: 2px solid var(--danger);
+}
+
+.error-card {
+  background: #fff8e6;
+  border: 2px solid var(--accent);
+}
+
+.success-card h3,
+.wrong-card h3 {
+  margin: 0 0 10px;
+}
+
+.success-card .badge-img {
+  width: 80px;
+  height: 80px;
+  margin: 12px 0;
+}
+
+.solved-banner {
+  background: var(--success);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ================= 观察训练营 ================= */
+.observe-card .scene-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #f0ecff;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-top: 14px;
+}
+
+.scene-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.scene-item {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border: 3px dashed rgba(91, 79, 207, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  padding: 0;
+}
+
+.scene-item:hover {
+  background: rgba(255, 209, 102, 0.25);
+}
+
+.scene-item.found {
+  background: rgba(72, 207, 173, 0.4);
+  border-color: var(--success);
+}
+
+.scene-item.wrong {
+  background: rgba(255, 107, 107, 0.25);
+  border-color: var(--danger);
+}
+
+.progress-bar {
+  background: #e8e5ff;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 14px;
+  color: var(--primary-dark);
+  margin: 10px 0;
+  display: inline-block;
+}
+
+/* ================= 底部 ================= */
+.detective-footer {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.detective-footer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ================= 加载与错误 ================= */
+#loading {
+  text-align: center;
+  color: var(--muted);
+  padding: 40px 0;
+}
+
+.error {
+  color: var(--danger);
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* ================= 响应式 ================= */
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}

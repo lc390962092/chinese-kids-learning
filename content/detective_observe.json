@@ -1,0 +1,32 @@
+{
+  "title": "观察训练营",
+  "subtitle": "找出场景中隐藏的小秘密",
+  "levels": [
+    {
+      "id": "dino-camp",
+      "title": "谁是小恐龙？",
+      "description": "第1关：森林里藏着一只小恐龙，寻找它的 3 个线索。",
+      "background": "assets/images/detective/scenes/observe-dino-camp.jpg",
+      "items": [
+        {"name": "恐龙脚印", "x": 58, "y": 78, "isIntruder": true},
+        {"name": "恐龙尾巴", "x": 42, "y": 52, "isIntruder": true},
+        {"name": "恐龙蛋", "x": 80, "y": 26, "isIntruder": true}
+      ],
+      "hint": "小恐龙藏起来了，但它的脚印、尾巴和恐龙蛋可能会暴露它。"
+    },
+    {
+      "id": "room-intruder",
+      "title": "凌乱的房间",
+      "description": "房间里藏着不属于这里的东西，把它们点出来！",
+      "background": "assets/images/detective/scenes/observe-room.png",
+      "items": [
+        {"name": "香蕉", "x": 18, "y": 32, "isIntruder": true},
+        {"name": "泰迪熊", "x": 44, "y": 51, "isIntruder": false},
+        {"name": "手机", "x": 72, "y": 26, "isIntruder": true},
+        {"name": "玩具车", "x": 26, "y": 71, "isIntruder": false},
+        {"name": "小鱼", "x": 81, "y": 66, "isIntruder": true}
+      ],
+      "hint": "想一想：这些东西通常出现在哪里？房间里应该出现吗？"
+    }
+  ]
+}

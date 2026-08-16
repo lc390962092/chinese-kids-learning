@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>侦探案件</title>
+  <link rel="stylesheet" href="css/detective.css?v=1">
+</head>
+<body>
+  <div class="app">
+    <header class="detective-header">
+      <div class="mascot">🕵️‍♂️</div>
+      <div>
+        <h1 id="page-title">侦探案件</h1>
+      </div>
+    </header>
+
+    <main id="main">
+      <p id="loading">案件加载中...</p>
+      <div id="error" class="error" style="display:none"></div>
+    </main>
+
+    <footer class="detective-footer">
+      <a href="detective.html">← 返回侦探事务所</a>
+    </footer>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/detective.js"></script>
+  <script>
+    const id = new URLSearchParams(location.search).get('id');
+    if (id) {
+      Detective.loadCase(id);
+    } else {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').textContent = '没有指定案件，请从侦探事务所进入。';
+      document.getElementById('error').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
