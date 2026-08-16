@@ -158,12 +158,21 @@
         .vehicle-image {
             width: 240px;
             height: 240px;
-            object-fit: contain;
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: transform 0.2s;
+        }
+
+        .vehicle-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
         }
-        
+
         .vehicle-image:active { transform: scale(0.95); }
         
         .side-arrow {
@@ -468,19 +477,30 @@
             if (nextBtn) nextBtn.disabled = currentIndex === filteredVehicles.length - 1;
         }
 
+        function stopAllAudio() {
+            document.querySelectorAll('audio').forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+        }
+
         function playVehicle(index) {
+            stopAllAudio();
             const item = filteredVehicles[index];
             XiaoDou.playAudio(`assets/audio/vehicles/${item.file}_word.mp3`, `${item.word}，${item.pinyin}`, 'zh');
             showMascot(`这是${item.word}，${item.pinyin}。`);
         }
 
         function playSentence(index) {
+            stopAllAudio();
             const item = filteredVehicles[index];
             XiaoDou.playAudio(`assets/audio/vehicles/sentences/${item.file}_sentence.mp3`, item.sentence, 'zh');
             showMascot(item.sentence);
         }
 
         function playSound(index) {
+            stopAllAudio();
             const item = filteredVehicles[index];
             if (item.sound) {
                 XiaoDou.playAudio(`assets/audio/vehicles/sounds/${item.sound}.mp3`, item.sound_text || item.word, 'zh');
@@ -492,18 +512,21 @@
         }
 
         function playJapanese(index) {
+            stopAllAudio();
             const item = filteredVehicles[index];
             XiaoDou.playAudio(`assets/audio/vehicles/japanese/${item.file}_japanese.mp3`, item.japanese_reading, 'ja');
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
         function playEnglish(index) {
+            stopAllAudio();
             const item = filteredVehicles[index];
             XiaoDou.playAudio(`assets/audio/vehicles/english/${item.file}_english.mp3`, item.english, 'en');
             showMascot(`英语：${item.word} → ${item.english}`);
         }
 
         function switchVehicle(direction) {
+            stopAllAudio();
             const cards = document.querySelectorAll('.vehicle-card');
             const dots = document.querySelectorAll('.progress-dot');
             if (cards.length === 0) return;
