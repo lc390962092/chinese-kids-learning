@@ -501,23 +501,60 @@
             nextBtns.forEach(btn => btn.disabled = currentIndex === animals.length - 1);
         }
 
+        // 全局音频状态：避免多次点击叠加播放、切换页面不停止
+        let currentAudio = null;
+
+        function stopCurrentAudio() {
+            // 停止本地 MP3 音频
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio.onended = null;
+                currentAudio.onerror = null;
+                currentAudio = null;
+            }
+            // 停止所有 <audio> 元素
+            document.querySelectorAll('audio').forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+            // 停止 TTS
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+        }
+
         function playAudio(path) {
+            stopCurrentAudio();
             return new Promise((resolve, reject) => {
                 const audio = new Audio(XiaoDou.resolvePath(path));
-                audio.onended = resolve;
-                audio.onerror = (e) => { console.log('MP3 加载失败:', path, e); reject(e); };
-                audio.play().catch(reject);
+                currentAudio = audio;
+                audio.onended = () => {
+                    currentAudio = null;
+                    resolve();
+                };
+                audio.onerror = (e) => {
+                    currentAudio = null;
+                    console.log('MP3 加载失败:', path, e);
+                    reject(e);
+                };
+                audio.play().catch((err) => {
+                    currentAudio = null;
+                    reject(err);
+                });
             });
         }
 
         function speakWithFallback(text, mp3Path, lang = 'zh-CN', rate = 0.8) {
+            stopCurrentAudio();
+            const langKey = lang.startsWith('ja') ? 'ja' : (lang.startsWith('en') ? 'en' : 'zh');
             if (mp3Path) {
                 playAudio(mp3Path).catch(() => {
                     console.log('MP3 播放失败，fallback 到 Web Speech API');
-                    XiaoDou.speak(text, lang.startsWith('ja') ? 'ja' : (lang.startsWith('en') ? 'en' : 'zh'), rate);
+                    XiaoDou.speak(text, langKey, rate);
                 });
             } else {
-                XiaoDou.speak(text, lang.startsWith('ja') ? 'ja' : (lang.startsWith('en') ? 'en' : 'zh'), rate);
+                XiaoDou.speak(text, langKey, rate);
             }
         }
 
@@ -625,11 +662,7 @@
         }
 
         function stopAllAudio() {
-            XiaoDou.speak('', 'zh'); // cancel all speech
-            document.querySelectorAll('audio').forEach(audio => {
-                audio.pause();
-                audio.currentTime = 0;
-            });
+            stopCurrentAudio();
         }
 
         function switchAnimal(direction) {
