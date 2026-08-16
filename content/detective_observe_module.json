@@ -44,6 +44,40 @@
         {"name": "大树", "x": 50, "y": 42, "isIntruder": false}
       ],
       "hint": "对照清单：红宝石在蘑菇旁，蓝宝石在荷叶上，黄宝石在鸟巢边，绿宝石在小推车后，紫宝石在彩虹桥下。"
+    },
+    {
+      "id": "cookie-thief",
+      "title": "谁偷吃了饼干？",
+      "description": "第4关：森林茶话会上有人偷吃了曲奇饼干！找出 4 个关键线索，抓住小偷。",
+      "background": "assets/images/detective/scenes/observe-cookie-thief.jpg",
+      "items": [
+        {"name": "饼干碎屑", "x": 38, "y": 72, "isIntruder": true},
+        {"name": "灰色绒毛", "x": 82, "y": 58, "isIntruder": true},
+        {"name": "咬过的饼干", "x": 78, "y": 88, "isIntruder": true},
+        {"name": "小脚印", "x": 52, "y": 82, "isIntruder": true},
+        {"name": "兔子", "x": 18, "y": 35, "isIntruder": false},
+        {"name": "小鹿", "x": 78, "y": 32, "isIntruder": false},
+        {"name": "小狐狸", "x": 88, "y": 82, "isIntruder": false},
+        {"name": "松鼠侦探", "x": 18, "y": 82, "isIntruder": false}
+      ],
+      "hint": "按清单找线索：饼干碎屑、灰色绒毛、咬过的饼干、小脚印。"
+    },
+    {
+      "id": "balloon-code",
+      "title": "丢失的气球密码",
+      "description": "第5关：游乐场里的宝箱打不开！找到 4 个密码碎片，解开气球密码。",
+      "background": "assets/images/detective/scenes/observe-balloon-code.jpg",
+      "items": [
+        {"name": "摩天轮数字", "x": 22, "y": 35, "isIntruder": true},
+        {"name": "旋转木马图形", "x": 78, "y": 42, "isIntruder": true},
+        {"name": "沙池里的水晶", "x": 22, "y": 82, "isIntruder": true},
+        {"name": "售货亭箭头", "x": 82, "y": 82, "isIntruder": true},
+        {"name": "宝箱", "x": 50, "y": 68, "isIntruder": false},
+        {"name": "小男孩", "x": 55, "y": 86, "isIntruder": false},
+        {"name": "彩色气球", "x": 45, "y": 32, "isIntruder": false},
+        {"name": "冰淇淋杯", "x": 82, "y": 76, "isIntruder": false}
+      ],
+      "hint": "密码碎片藏在：摩天轮、旋转木马、沙池和售货亭。"
     }
   ]
 }
