@@ -244,6 +244,7 @@ const Detective = (function() {
         <div class="progress-bar">
           <span id="observe-progress">找到 0 / ${totalIntruders} 个</span>
         </div>
+        <button class="btn-speak" onclick="Detective.nextObserveLevel(${levelIndex + 1})">⏭️ 跳过本关，下一关</button>
         <div class="scene-container" id="scene-container">
           <img class="scene-bg" src="${XiaoDou.resolvePath(level.background || '')}" alt="观察场景" onerror="this.style.display='none'">
           ${level.items.map((item, i) => `

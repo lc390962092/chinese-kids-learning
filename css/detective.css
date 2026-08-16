@@ -418,19 +418,35 @@ button:hover {
 
 .scene-item {
   position: absolute;
-  width: 48px;
-  height: 48px;
-  border: 3px dashed rgba(91, 79, 207, 0.45);
+  width: 72px;
+  height: 72px;
+  border: 4px dashed rgba(91, 79, 207, 0.55);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.22);
   cursor: pointer;
   transform: translate(-50%, -50%);
   padding: 0;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  box-shadow: 0 0 0 8px rgba(91, 79, 207, 0.08);
 }
 
-.scene-item:hover {
+/* 扩大触控热区，但视觉圆圈保持 72px */
+.scene-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.scene-item:hover,
+.scene-item:focus {
   background: rgba(255, 209, 102, 0.35);
+  transform: translate(-50%, -50%) scale(1.08);
 }
 
 .scene-item.found {
