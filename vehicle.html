@@ -259,6 +259,37 @@
         .btn-sound { background: #FFD93D; color: #333; }
         .btn-japanese { background: #E91E63; }
         .btn-english { background: #2196F3; }
+        .btn-encyclopedia { background: #9C27B0; }
+
+        .encyclopedia-card {
+            background: #f3f6ff;
+            border-radius: 20px;
+            padding: 18px 20px;
+            margin: 15px auto 10px;
+            max-width: 420px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .encyclopedia-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #5C6BC0;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .encyclopedia-item {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .encyclopedia-item strong {
+            color: #333;
+            font-weight: 600;
+        }
 
         .progress {
             display: flex;
@@ -461,6 +492,14 @@
                         <button class="btn btn-sound" onclick="playSound(${index})">🔔 声音</button>
                         <button class="btn btn-japanese" onclick="playJapanese(${index})">🇯🇵 日语</button>
                         <button class="btn btn-english" onclick="playEnglish(${index})">🇺🇸 英语</button>
+                        <button class="btn btn-encyclopedia" onclick="playEncyclopedia(${index})">📖 百科</button>
+                    </div>
+                    <div class="encyclopedia-card" id="encyclopedia-${index}" style="display:none;">
+                        <div class="encyclopedia-title">📖 ${XiaoDou.escapeHtml(item.word)} 小百科</div>
+                        <div class="encyclopedia-item"><strong>简介：</strong>${XiaoDou.escapeHtml(item.intro || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>在哪里：</strong>${XiaoDou.escapeHtml(item.where || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>有什么用：</strong>${XiaoDou.escapeHtml(item.use || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>小知识：</strong>${XiaoDou.escapeHtml(item.fun_fact || '待补充')}</div>
                     </div>`;
                 container.appendChild(card);
 
@@ -565,6 +604,25 @@
             const diff = touchStartX - touchEndX;
             if (Math.abs(diff) > threshold) {
                 if (diff > 0) nextVehicle(); else prevVehicle();
+            }
+        }
+
+        function playEncyclopedia(index) {
+            const item = filteredVehicles[index];
+            if (!item.intro) {
+                showMascot(`${item.word} 的百科内容还在准备中，先听听别的吧～`);
+                return;
+            }
+            const text = `${item.intro}${item.where}${item.use}${item.fun_fact}`;
+            const mp3Path = `assets/audio/vehicles/encyclopedia/${item.file}_encyclopedia.mp3`;
+            XiaoDou.playAudio(XiaoDou.resolvePath(mp3Path), text, 'zh').catch(() => {
+                XiaoDou.speak(text, 'zh', 0.8);
+            });
+            showMascot(`${item.word}的小百科：${item.intro}`);
+
+            const card = document.getElementById(`encyclopedia-${index}`);
+            if (card) {
+                card.style.display = card.style.display === 'none' ? 'block' : 'none';
             }
         }
 

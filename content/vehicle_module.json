@@ -19,7 +19,11 @@
       "difficulty": 1,
       "image_prompt": "A cute cartoon car, flat illustration, red body, big round headlights, friendly smile, white background, children's book style, vector art",
       "japanese": "車",
-      "japanese_reading": "くるま"
+      "japanese_reading": "くるま",
+      "intro": "汽车是一种交通工具，爸爸开着汽车，送我去幼儿园。",
+      "where": "在公路上行驶",
+      "use": "载人或货物在路上行驶",
+      "fun_fact": "世界上第一辆汽车是1886年发明的，到现在已经有100多岁了！"
     },
     {
       "word": "公交车",
@@ -36,7 +40,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon bus, flat illustration, yellow body, big windows, friendly smile, white background, children's book style, vector art",
       "japanese": "バス",
-      "japanese_reading": "ばす"
+      "japanese_reading": "ばす",
+      "intro": "公交车是一种交通工具，公交车到站了，大家排队刷卡上车。",
+      "where": "在公路上行驶",
+      "use": "载人或货物在路上行驶",
+      "fun_fact": "公交车可以载几十个人，是城市里最常见的公共交通工具。"
     },
     {
       "word": "地铁",
@@ -53,7 +61,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon subway train, flat illustration, silver body with blue stripes, big windows, underground tunnel, friendly smile, white background, children's book style, vector art",
       "japanese": "地下鉄",
-      "japanese_reading": "ちかてつ"
+      "japanese_reading": "ちかてつ",
+      "intro": "地铁是一种交通工具，地铁在地下飞快奔跑，载很多人去上班。",
+      "where": "在铁轨上行驶",
+      "use": "载很多乘客或货物快速移动",
+      "fun_fact": "地铁在地下跑，不会堵车，很多大城市都有地铁。"
     },
     {
       "word": "高铁",
@@ -70,7 +82,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon high-speed train, flat illustration, white body with red stripe, streamlined nose, friendly smile, white background, children's book style, vector art",
       "japanese": "新幹線",
-      "japanese_reading": "しんかんせん"
+      "japanese_reading": "しんかんせん",
+      "intro": "高铁是一种交通工具，高铁跑得像风一样快，很快就到了另一个城市。",
+      "where": "在铁轨上行驶",
+      "use": "载很多乘客或货物快速移动",
+      "fun_fact": "高铁跑得特别快，时速可以达到300公里以上！"
     },
     {
       "word": "火车",
@@ -87,7 +103,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon train, flat illustration, blue locomotive with smoke, big round windows, friendly smile, white background, children's book style, vector art",
       "japanese": "電車",
-      "japanese_reading": "でんしゃ"
+      "japanese_reading": "でんしゃ",
+      "intro": "火车是一种交通工具，火车轰隆轰隆穿过山洞，长长的车厢望不到头。",
+      "where": "在铁轨上行驶",
+      "use": "载很多乘客或货物快速移动",
+      "fun_fact": "长长的火车由很多车厢连在一起，可以载很多人。"
     },
     {
       "word": "飞机",
@@ -104,7 +124,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon airplane, flat illustration, white body with blue wings, big round windows, friendly smile, flying in clouds, white background, children's book style, vector art",
       "japanese": "飛行機",
-      "japanese_reading": "ひこうき"
+      "japanese_reading": "ひこうき",
+      "intro": "飞机是一种交通工具，飞机飞上蓝天，带着旅客去远方的国家。",
+      "where": "在天空中飞行",
+      "use": "载人或货物飞到远方",
+      "fun_fact": "飞机是速度最快的交通工具之一，可以跨越大洋。"
     },
     {
       "word": "直升机",
@@ -121,7 +145,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon helicopter, flat illustration, yellow body with spinning rotor, big windows, friendly smile, white background, children's book style, vector art",
       "japanese": "ヘリコプター",
-      "japanese_reading": "へりこぷたー"
+      "japanese_reading": "へりこぷたー",
+      "intro": "直升机是一种交通工具，直升机螺旋桨转个不停，可以从空中救人。",
+      "where": "在天空中飞行",
+      "use": "载人或货物飞到远方",
+      "fun_fact": "直升机可以停在空中，还能垂直起降，不需要跑道。"
     },
     {
       "word": "热气球",
@@ -138,7 +166,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon hot air balloon, flat illustration, rainbow colored stripes, big round basket, fluffy clouds, friendly smile, white background, children's book style, vector art",
       "japanese": "熱気球",
-      "japanese_reading": "ねっききゅう"
+      "japanese_reading": "ねっききゅう",
+      "intro": "热气球是一种交通工具，热气球慢慢升到空中，游客俯瞰美丽的风景。",
+      "where": "在天空中飞行",
+      "use": "载人或货物飞到远方",
+      "fun_fact": "热气球靠热空气上升，飞得很慢，但很浪漫。"
     },
     {
       "word": "火箭",
@@ -155,7 +187,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon rocket, flat illustration, white body with red nose cone, orange flames, stars around, friendly smile, white background, children's book style, vector art",
       "japanese": "ロケット",
-      "japanese_reading": "ろけっと"
+      "japanese_reading": "ろけっと",
+      "intro": "火箭是一种交通工具，火箭点火后冲向太空，把卫星送上天。",
+      "where": "在天空中飞行",
+      "use": "载人或货物飞到远方",
+      "fun_fact": "火箭的推力很大，可以把卫星送到太空。"
     },
     {
       "word": "船",
@@ -172,7 +208,11 @@
       "difficulty": 1,
       "image_prompt": "A cute cartoon ship, flat illustration, white hull with red stripe, big round windows, friendly smile, sailing on blue waves, white background, children's book style, vector art",
       "japanese": "船",
-      "japanese_reading": "ふね"
+      "japanese_reading": "ふね",
+      "intro": "船是一种交通工具，船在水面上平稳航行，远处是蓝蓝的海。",
+      "where": "在水面上航行",
+      "use": "载人或货物渡过水面",
+      "fun_fact": "船是人类最早发明的水上交通工具之一。"
     },
     {
       "word": "轮船",
@@ -189,7 +229,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon steamship, flat illustration, big white hull with red bottom, multiple decks, smoke stack, friendly smile, white background, children's book style, vector art",
       "japanese": "客船",
-      "japanese_reading": "きゃくせん"
+      "japanese_reading": "きゃくせん",
+      "intro": "轮船是一种交通工具，轮船在海上慢慢航行，甲板上有很多游客。",
+      "where": "在水面上航行",
+      "use": "载人或货物渡过水面",
+      "fun_fact": "大型轮船可以在海上航行很多天，跨越大洋。"
     },
     {
       "word": "帆船",
@@ -206,7 +250,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon sailboat, flat illustration, white sail with blue hull, small waves, friendly smile, white background, children's book style, vector art",
       "japanese": "帆船",
-      "japanese_reading": "はんせん"
+      "japanese_reading": "はんせん",
+      "intro": "帆船是一种交通工具，帆船借着海风向前驶去，白色的帆像翅膀。",
+      "where": "在水面上航行",
+      "use": "载人或货物渡过水面",
+      "fun_fact": "帆船靠风力前进，不用油也不用电。"
     },
     {
       "word": "潜艇",
@@ -223,7 +271,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon submarine, flat illustration, yellow body with periscope, small portholes, underwater bubbles, friendly smile, white background, children's book style, vector art",
       "japanese": "潜水艦",
-      "japanese_reading": "せんすいかん"
+      "japanese_reading": "せんすいかん",
+      "intro": "潜艇是一种交通工具，潜艇潜入深海，悄悄观察水下的世界。",
+      "where": "在水面上航行",
+      "use": "载人或货物渡过水面",
+      "fun_fact": "潜艇可以在水下航行，像一条大鲸鱼。"
     },
     {
       "word": "自行车",
@@ -240,7 +292,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon bicycle, flat illustration, red frame, big round wheels, friendly bell, white background, children's book style, vector art",
       "japanese": "自転車",
-      "japanese_reading": "じてんしゃ"
+      "japanese_reading": "じてんしゃ",
+      "intro": "自行车是一种交通工具，我骑着自行车去公园，风在耳边呼呼响。",
+      "where": "在公路上行驶",
+      "use": "载人或货物在路上行驶",
+      "fun_fact": "骑自行车既环保又能锻炼身体。"
     },
     {
       "word": "滑板车",
@@ -257,7 +313,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon scooter, flat illustration, blue deck with small wheels, handlebar, friendly smile, white background, children's book style, vector art",
       "japanese": "キックボード",
-      "japanese_reading": "きっくぼーど"
+      "japanese_reading": "きっくぼーど",
+      "intro": "滑板车是一种交通工具，小朋友踩着滑板车，在小区里欢快地滑行。",
+      "where": "在公路上行驶",
+      "use": "载人或货物在路上行驶",
+      "fun_fact": "滑板车小巧灵活，是很多小朋友喜欢的玩具。"
     },
     {
       "word": "摩托车",
@@ -274,7 +334,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon motorcycle, flat illustration, red body, big round headlight, friendly smile, white background, children's book style, vector art",
       "japanese": "バイク",
-      "japanese_reading": "ばいく"
+      "japanese_reading": "ばいく",
+      "intro": "摩托车是一种交通工具，摩托车灵活地穿过街道，骑手戴好了头盔。",
+      "where": "在公路上行驶",
+      "use": "载人或货物在路上行驶",
+      "fun_fact": "摩托车只有两个轮子，穿行街道很灵活。"
     },
     {
       "word": "出租车",
@@ -291,7 +355,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon taxi, flat illustration, yellow body with checker pattern, friendly smile, white background, children's book style, vector art",
       "japanese": "タクシー",
-      "japanese_reading": "たくしー"
+      "japanese_reading": "たくしー",
+      "intro": "出租车是一种交通工具，出租车在路边停下，载着乘客去目的地。",
+      "where": "在公路上行驶",
+      "use": "载人或货物在路上行驶",
+      "fun_fact": "出租车招手即停，可以送你到家门口。"
     },
     {
       "word": "卡车",
@@ -308,7 +376,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon truck, flat illustration, blue cargo container with big wheels, friendly smile, white background, children's book style, vector art",
       "japanese": "トラック",
-      "japanese_reading": "とらっく"
+      "japanese_reading": "とらっく",
+      "intro": "卡车是一种交通工具，卡车拖着长长的货箱，把货物运到城市各处。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "卡车的力气很大，专门运送重重的货物。"
     },
     {
       "word": "校车",
@@ -325,7 +397,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon school bus, flat illustration, yellow body with black stripes, big windows, friendly smile, white background, children's book style, vector art",
       "japanese": "スクールバス",
-      "japanese_reading": "すくーるばす"
+      "japanese_reading": "すくーるばす",
+      "intro": "校车是一种交通工具，校车停在学校门口，同学们背着书包排队上车。",
+      "where": "在公路上行驶",
+      "use": "载人或货物在路上行驶",
+      "fun_fact": "校车是接送小朋友上下学的专用车辆。"
     },
     {
       "word": "救护车",
@@ -342,7 +418,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon ambulance, flat illustration, white body with red cross, flashing lights, friendly smile, white background, children's book style, vector art",
       "japanese": "救急車",
-      "japanese_reading": "きゅうきゅうしゃ"
+      "japanese_reading": "きゅうきゅうしゃ",
+      "intro": "救护车是一种交通工具，救护车闪着灯，飞快地把病人送到医院。",
+      "where": "遇到紧急情况时快速出动",
+      "use": "帮助人们脱离危险或救助病人",
+      "fun_fact": "救护车上有医生和急救设备，专门救助病人。"
     },
     {
       "word": "警车",
@@ -359,7 +439,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon police car, flat illustration, blue and white body, siren light on top, friendly smile, white background, children's book style, vector art",
       "japanese": "パトカー",
-      "japanese_reading": "ぱとかー"
+      "japanese_reading": "ぱとかー",
+      "intro": "警车是一种交通工具，警车开着警灯，正在追捕坏人的路上。",
+      "where": "遇到紧急情况时快速出动",
+      "use": "帮助人们脱离危险或救助病人",
+      "fun_fact": "警车帮助警察维护治安，追捕坏人。"
     },
     {
       "word": "消防车",
@@ -376,7 +460,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon fire truck, flat illustration, red body with ladder, friendly smile, white background, children's book style, vector art",
       "japanese": "消防車",
-      "japanese_reading": "しょうぼうしゃ"
+      "japanese_reading": "しょうぼうしゃ",
+      "intro": "消防车是一种交通工具，消防车呼啸而过，赶去扑灭大火。",
+      "where": "遇到紧急情况时快速出动",
+      "use": "帮助人们脱离危险或救助病人",
+      "fun_fact": "消防车装有云梯和水枪，专门灭火救人。"
     },
     {
       "word": "洒水车",
@@ -393,7 +481,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon water truck, flat illustration, green tank with sprinkler, water drops, friendly smile, white background, children's book style, vector art",
       "japanese": "散水車",
-      "japanese_reading": "さんすいしゃ"
+      "japanese_reading": "さんすいしゃ",
+      "intro": "洒水车是一种交通工具，洒水车一边走一边喷水，马路变得干干净净。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "洒水车一边走一边洒水，让马路更干净。"
     },
     {
       "word": "垃圾车",
@@ -410,7 +502,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon garbage truck, flat illustration, gray body with lifting arm, trash bin, friendly smile, white background, children's book style, vector art",
       "japanese": "ゴミ収集車",
-      "japanese_reading": "ごみしゅうしゅうしゃ"
+      "japanese_reading": "ごみしゅうしゅうしゃ",
+      "intro": "垃圾车是一种交通工具，垃圾车把小区的垃圾收走，保持环境整洁。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "垃圾车把城市里的垃圾收走，保护环境。"
     },
     {
       "word": "拖拉机",
@@ -427,7 +523,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon tractor, flat illustration, green body with big rear wheels, farmer cabin, friendly smile, white background, children's book style, vector art",
       "japanese": "トラクター",
-      "japanese_reading": "とらくたー"
+      "japanese_reading": "とらくたー",
+      "intro": "拖拉机是一种交通工具，拖拉机在田里突突地跑，帮农民伯伯耕地。",
+      "where": "在农田里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "拖拉机在农场里拉农具，是农民伯伯的好帮手。"
     },
     {
       "word": "挖掘机",
@@ -444,7 +544,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon excavator, flat illustration, yellow body with big arm and bucket, caterpillar tracks, friendly smile, white background, children's book style, vector art",
       "japanese": "ショベルカー",
-      "japanese_reading": "しょべるかー"
+      "japanese_reading": "しょべるかー",
+      "intro": "挖掘机是一种交通工具，挖掘机伸出长长的手臂，挖出大大的土坑。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "挖掘机有长长的手臂，可以挖土和搬运东西。"
     },
     {
       "word": "磁悬浮",
@@ -461,7 +565,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon maglev train, flat illustration, white streamlined body with blue stripe, floating above track, friendly smile, white background, children's book style, vector art",
       "japanese": "リニアモーターカー",
-      "japanese_reading": "りにあもーたーかー"
+      "japanese_reading": "りにあもーたーかー",
+      "intro": "磁悬浮是一种交通工具，磁悬浮列车悬浮在轨道上，跑得又快又稳。",
+      "where": "在铁轨上行驶",
+      "use": "载很多乘客或货物快速移动",
+      "fun_fact": "磁悬浮列车不接触轨道，跑得又快又稳。"
     },
     {
       "word": "有轨电车",
@@ -478,7 +586,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon tram, flat illustration, green and yellow body, big windows, overhead wire, friendly smile, white background, children's book style, vector art",
       "japanese": "路面電車",
-      "japanese_reading": "ろめんでんしゃ"
+      "japanese_reading": "ろめんでんしゃ",
+      "intro": "有轨电车是一种交通工具，有轨电车沿着轨道叮叮当当穿过城市。",
+      "where": "在铁轨上行驶",
+      "use": "载很多乘客或货物快速移动",
+      "fun_fact": "有轨电车头顶有电线供电，行驶时发出叮叮声。"
     },
     {
       "word": "无轨电车",
@@ -495,7 +607,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon trolleybus, flat illustration, blue body with poles on roof, big windows, friendly smile, white background, children's book style, vector art",
       "japanese": "トロリーバス",
-      "japanese_reading": "とろりーばす"
+      "japanese_reading": "とろりーばす",
+      "intro": "无轨电车是一种交通工具，无轨电车头顶连着电线，在街上安静地行驶。",
+      "where": "在铁轨上行驶",
+      "use": "载很多乘客或货物快速移动",
+      "fun_fact": "无轨电车靠车顶上的两根杆子从电线取电。"
     },
     {
       "word": "双层巴士",
@@ -512,7 +628,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon double-decker bus, flat illustration, red body with two levels of windows, friendly smile, white background, children's book style, vector art",
       "japanese": "二階建てバス",
-      "japanese_reading": "にかいだてばす"
+      "japanese_reading": "にかいだてばす",
+      "intro": "双层巴士是一种交通工具，双层巴士有两层座位，坐在上层可以看得更远。",
+      "where": "在铁轨上行驶",
+      "use": "载很多乘客或货物快速移动",
+      "fun_fact": "双层巴士有两层座位，坐在上面可以看得很远。"
     },
     {
       "word": "滑翔机",
@@ -529,7 +649,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon glider, flat illustration, long white wings, yellow nose, flying in blue sky with clouds, friendly smile, white background, children's book style, vector art",
       "japanese": "グライダー",
-      "japanese_reading": "ぐらいだー"
+      "japanese_reading": "ぐらいだー",
+      "intro": "滑翔机是一种交通工具，滑翔机乘着气流在天空滑翔，像一只大鸟。",
+      "where": "在天空中飞行",
+      "use": "载人或货物飞到远方",
+      "fun_fact": "滑翔机没有发动机，靠气流在空中滑翔。"
     },
     {
       "word": "飞艇",
@@ -546,7 +670,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon airship blimp, flat illustration, long gray body with small fins, propellers, friendly smile, white clouds, white background, children's book style, vector art",
       "japanese": "飛行船",
-      "japanese_reading": "ひこうせん"
+      "japanese_reading": "ひこうせん",
+      "intro": "飞艇是一种交通工具，飞艇慢悠悠地飘在空中，下面挂满广告。",
+      "where": "在天空中飞行",
+      "use": "载人或货物飞到远方",
+      "fun_fact": "飞艇里面充满了比空气轻的气体，可以飘在空中。"
     },
     {
       "word": "无人机",
@@ -563,7 +691,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon quadcopter drone, flat illustration, gray body with four propellers, small camera, friendly smile, white background, children's book style, vector art",
       "japanese": "ドローン",
-      "japanese_reading": "どろーん"
+      "japanese_reading": "どろーん",
+      "intro": "无人机是一种交通工具，无人机嗡嗡地飞起来，可以从空中拍照。",
+      "where": "在天空中飞行",
+      "use": "载人或货物飞到远方",
+      "fun_fact": "无人机可以遥控飞行，常用来拍照或送货。"
     },
     {
       "word": "喷气式飞机",
@@ -580,7 +712,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon jet airplane, flat illustration, white body with swept wings, blue windows, flying fast, friendly smile, white background, children's book style, vector art",
       "japanese": "ジェット機",
-      "japanese_reading": "じぇっとき"
+      "japanese_reading": "じぇっとき",
+      "intro": "喷气式飞机是一种交通工具，喷气式飞机速度极快，发出巨大的轰鸣声。",
+      "where": "在天空中飞行",
+      "use": "载人或货物飞到远方",
+      "fun_fact": "喷气式飞机用喷气发动机推进，飞得很快。"
     },
     {
       "word": "皮划艇",
@@ -597,7 +733,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon kayak, flat illustration, small yellow kayak with paddle, blue water splashes, friendly smile, white background, children's book style, vector art",
       "japanese": "カヤック",
-      "japanese_reading": "かやっく"
+      "japanese_reading": "かやっく",
+      "intro": "皮划艇是一种交通工具，皮划艇在河面上划动，运动员用力划桨。",
+      "where": "在水面上航行",
+      "use": "载人或货物渡过水面",
+      "fun_fact": "皮划艇轻巧，适合在河流和湖泊里划行。"
     },
     {
       "word": "独木舟",
@@ -614,7 +754,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon canoe, flat illustration, wooden brown canoe with paddle, small waves, friendly smile, white background, children's book style, vector art",
       "japanese": "カヌー",
-      "japanese_reading": "かぬー"
+      "japanese_reading": "かぬー",
+      "intro": "独木舟是一种交通工具，独木舟又窄又长，适合在平静的湖上划行。",
+      "where": "在水面上航行",
+      "use": "载人或货物渡过水面",
+      "fun_fact": "独木舟最早是用一根大木头挖空做成的。"
     },
     {
       "word": "快艇",
@@ -631,7 +775,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon speedboat, flat illustration, red and white boat speeding on water, big waves, friendly smile, white background, children's book style, vector art",
       "japanese": "モーターボート",
-      "japanese_reading": "もーたーぼーと"
+      "japanese_reading": "もーたーぼーと",
+      "intro": "快艇是一种交通工具，快艇在海面上飞驰，激起白色的浪花。",
+      "where": "在水面上航行",
+      "use": "载人或货物渡过水面",
+      "fun_fact": "快艇速度很快，能在水面上激起白色的浪花。"
     },
     {
       "word": "游艇",
@@ -648,7 +796,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon yacht, flat illustration, white luxury boat with blue windows, sailing on calm water, friendly smile, white background, children's book style, vector art",
       "japanese": "ヨット",
-      "japanese_reading": "よっと"
+      "japanese_reading": "よっと",
+      "intro": "游艇是一种交通工具，游艇停在码头，人们上去出海游玩。",
+      "where": "在水面上航行",
+      "use": "载人或货物渡过水面",
+      "fun_fact": "游艇比较豪华，常用来出海游玩。"
     },
     {
       "word": "气垫船",
@@ -665,7 +817,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon hovercraft, flat illustration, gray craft with big fan on back, floating over water, friendly smile, white background, children's book style, vector art",
       "japanese": "ホバークラフト",
-      "japanese_reading": "ほばーくらふと"
+      "japanese_reading": "ほばーくらふと",
+      "intro": "气垫船是一种交通工具，气垫船下面有气垫，可以在水面和陆地之间行驶。",
+      "where": "在水面上航行",
+      "use": "载人或货物渡过水面",
+      "fun_fact": "气垫船下面有气垫，可以在水面和陆地上行驶。"
     },
     {
       "word": "水上飞机",
@@ -682,7 +838,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon seaplane, flat illustration, white body with pontoons, blue wings, landing on water, friendly smile, white background, children's book style, vector art",
       "japanese": "水上飛行機",
-      "japanese_reading": "すいじょうひこうき"
+      "japanese_reading": "すいじょうひこうき",
+      "intro": "水上飞机是一种交通工具，水上飞机降落在水面上，又能在天上飞。",
+      "where": "在天空中飞行",
+      "use": "载人或货物飞到远方",
+      "fun_fact": "水上飞机可以在水面上起飞和降落。"
     },
     {
       "word": "推土机",
@@ -699,7 +859,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon bulldozer, flat illustration, yellow body with big blade in front, caterpillar tracks, friendly smile, white background, children's book style, vector art",
       "japanese": "ブルドーザー",
-      "japanese_reading": "ぶるどーざー"
+      "japanese_reading": "ぶるどーざー",
+      "intro": "推土机是一种交通工具，推土机用宽大的铲子，把土堆推平。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "推土机前面有大铲子，可以把土推开。"
     },
     {
       "word": "起重机",
@@ -716,7 +880,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon tower crane, flat illustration, yellow tall crane with long arm and hook, friendly smile, white background, children's book style, vector art",
       "japanese": "クレーン車",
-      "japanese_reading": "くれーんしゃ"
+      "japanese_reading": "くれーんしゃ",
+      "intro": "起重机是一种交通工具，起重机吊起沉重的货物，稳稳地放到卡车上。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "起重机力大无比，能把很重的货物吊到高处。"
     },
     {
       "word": "叉车",
@@ -733,7 +901,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon forklift, flat illustration, orange body with lifting forks, black wheels, friendly smile, white background, children's book style, vector art",
       "japanese": "フォークリフト",
-      "japanese_reading": "ふぉーくりふと"
+      "japanese_reading": "ふぉーくりふと",
+      "intro": "叉车是一种交通工具，叉车在仓库里穿梭，把托盘货物高高举起。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "叉车有长长的叉子，专门搬运托盘货物。"
     },
     {
       "word": "装载机",
@@ -750,7 +922,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon front loader, flat illustration, yellow body with big bucket, black wheels, friendly smile, white background, children's book style, vector art",
       "japanese": "ホイールローダー",
-      "japanese_reading": "ほいーるろーだー"
+      "japanese_reading": "ほいーるろーだー",
+      "intro": "装载机是一种交通工具，装载机把沙子铲进大卡车，工地里很忙碌。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "装载机有大铲子，可以把沙子、石子装进卡车。"
     },
     {
       "word": "压路机",
@@ -767,7 +943,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon road roller, flat illustration, yellow body with big smooth roller, black wheels, friendly smile, white background, children's book style, vector art",
       "japanese": "ロードローラー",
-      "japanese_reading": "ろーどろーらー"
+      "japanese_reading": "ろーどろーらー",
+      "intro": "压路机是一种交通工具，压路机把新铺的路面压得平平整整。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "压路机有大滚轮，把新修的路压得平平整整。"
     },
     {
       "word": "搅拌车",
@@ -784,7 +964,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon cement mixer truck, flat illustration, gray body with rotating drum, friendly smile, white background, children's book style, vector art",
       "japanese": "コンクリートミキサー車",
-      "japanese_reading": "こんくりーとみきさーしゃ"
+      "japanese_reading": "こんくりーとみきさーしゃ",
+      "intro": "搅拌车是一种交通工具，搅拌车的大圆筒一直转，防止混凝土变干。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "搅拌车的大圆筒会一直转，防止混凝土变硬。"
     },
     {
       "word": "吊车",
@@ -801,7 +985,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon tow truck, flat illustration, blue body with crane arm, hook on back, friendly smile, white background, children's book style, vector art",
       "japanese": "レッカー車",
-      "japanese_reading": "れっかーしゃ"
+      "japanese_reading": "れっかーしゃ",
+      "intro": "吊车是一种交通工具，吊车伸出长长的臂膀，把坏车吊上救援车。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "吊车可以把坏掉的汽车吊起来运走。"
     },
     {
       "word": "混凝土泵车",
@@ -818,7 +1006,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon concrete pump truck, flat illustration, white body with long folding arm, friendly smile, white background, children's book style, vector art",
       "japanese": "コンクリートポンプ車",
-      "japanese_reading": "こんくりーとぽんぷしゃ"
+      "japanese_reading": "こんくりーとぽんぷしゃ",
+      "intro": "混凝土泵车是一种交通工具，混凝土泵车把水泥输送到高高的建筑上。",
+      "where": "在工地或城市里工作",
+      "use": "帮助人们完成各种工作",
+      "fun_fact": "混凝土泵车可以把水泥送到高高的楼顶。"
     },
     {
       "word": "救援直升机",
@@ -835,7 +1027,11 @@
       "difficulty": 3,
       "image_prompt": "A cute cartoon rescue helicopter, flat illustration, red and white body with yellow cross, spinning rotor, friendly smile, white background, children's book style, vector art",
       "japanese": "救難ヘリコプター",
-      "japanese_reading": "きゅうなんへりこぷたー"
+      "japanese_reading": "きゅうなんへりこぷたー",
+      "intro": "救援直升机是一种交通工具，救援直升机在山上盘旋，救助受伤的人。",
+      "where": "在天空中飞行",
+      "use": "载人或货物飞到远方",
+      "fun_fact": "救援直升机可以到陆地车辆去不了的地方救人。"
     },
     {
       "word": "坦克",
@@ -852,7 +1048,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon tank, flat illustration, green armored body with big treads and small turret, friendly smile, white background, children's book style, vector art",
       "japanese": "戦車",
-      "japanese_reading": "せんしゃ"
+      "japanese_reading": "せんしゃ",
+      "intro": "坦克是一种交通工具，坦克披着厚厚的装甲，履带碾过地面。",
+      "where": "遇到紧急情况时快速出动",
+      "use": "帮助人们脱离危险或救助病人",
+      "fun_fact": "坦克有厚厚的装甲和履带，可以在复杂地形行驶。"
     },
     {
       "word": "缆车",
@@ -869,7 +1069,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon cable car, flat illustration, red small cabin hanging from cable, mountain background, friendly smile, white background, children's book style, vector art",
       "japanese": "ロープウェイ",
-      "japanese_reading": "ろーぷうぇい"
+      "japanese_reading": "ろーぷうぇい",
+      "intro": "缆车是一种交通工具，缆车沿着钢索慢慢爬上山，游客可以俯瞰山谷。",
+      "where": "在铁轨上行驶",
+      "use": "载很多乘客或货物快速移动",
+      "fun_fact": "缆车挂在钢索上，可以带我们翻山越岭。"
     },
     {
       "word": "碰碰车",
@@ -886,7 +1090,11 @@
       "difficulty": 2,
       "image_prompt": "A cute cartoon bumper car, flat illustration, colorful round car with rubber bumper, sparkles, friendly smile, white background, children's book style, vector art",
       "japanese": "バンパーカー",
-      "japanese_reading": "ばんぱーかー"
+      "japanese_reading": "ばんぱーかー",
+      "intro": "碰碰车是一种交通工具，游乐场里，碰碰车互相碰撞，大家笑得很开心。",
+      "where": "在公路上行驶",
+      "use": "载人或货物在路上行驶",
+      "fun_fact": "碰碰车周围有橡胶圈，碰撞时不会受伤。"
     }
   ]
 }
