@@ -4,66 +4,1103 @@
   "target_age": "3-6",
   "lesson_duration_min": 5,
   "words": [
-    {"word": "苹果", "pinyin": "píng guǒ", "measure_word": "个", "sentence": "这是一个苹果。", "sentence_pinyin": "Zhè shì yí gè píng guǒ.", "english": "apple", "tags": ["fruit", "sweet"], "difficulty": 1, "image_prompt": "A cute cartoon red apple, flat illustration, big round eyes, friendly smile, green leaf, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "香蕉", "pinyin": "xiāng jiāo", "measure_word": "根", "sentence": "这是一根香蕉。", "sentence_pinyin": "Zhè shì yì gēn xiāng jiāo.", "english": "banana", "tags": ["fruit", "sweet"], "difficulty": 1, "image_prompt": "A cute cartoon bunch of bananas, flat illustration, big round eyes, yellow, friendly expression, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "橙子", "pinyin": "chéng zi", "measure_word": "个", "sentence": "这是一个橙子。", "sentence_pinyin": "Zhè shì yí gè chéng zi.", "english": "orange", "tags": ["fruit", "citrus"], "difficulty": 1, "image_prompt": "A cute cartoon orange fruit, flat illustration, big round eyes, bright orange, small green leaf, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "葡萄", "pinyin": "pú tao", "measure_word": "串", "sentence": "这是一串葡萄。", "sentence_pinyin": "Zhè shì yí chuàn pú tao.", "english": "grape", "tags": ["fruit", "sweet"], "difficulty": 1, "image_prompt": "A cute cartoon bunch of purple grapes, flat illustration, big round eyes, friendly smile, green stem, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "西瓜", "pinyin": "xī guā", "measure_word": "个", "sentence": "这是一个西瓜。", "sentence_pinyin": "Zhè shì yí gè xī guā.", "english": "watermelon", "tags": ["fruit", "summer"], "difficulty": 1, "image_prompt": "A cute cartoon round watermelon with green stripes, flat illustration, big round eyes, red slice, black seeds, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "草莓", "pinyin": "cǎo méi", "measure_word": "颗", "sentence": "这是一颗草莓。", "sentence_pinyin": "Zhè shì yì kē cǎo méi.", "english": "strawberry", "tags": ["fruit", "sweet"], "difficulty": 1, "image_prompt": "A cute cartoon red strawberry, flat illustration, big round eyes, green leaves, tiny seeds, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "梨", "pinyin": "lí", "measure_word": "个", "sentence": "这是一个梨。", "sentence_pinyin": "Zhè shì yí gè lí.", "english": "pear", "tags": ["fruit", "sweet"], "difficulty": 1, "image_prompt": "A cute cartoon yellow pear, flat illustration, big round eyes, small brown stem, friendly smile, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "桃子", "pinyin": "táo zi", "measure_word": "个", "sentence": "这是一个桃子。", "sentence_pinyin": "Zhè shì yí gè táo zi.", "english": "peach", "tags": ["fruit", "sweet"], "difficulty": 1, "image_prompt": "A cute cartoon pink peach, flat illustration, big round eyes, small green leaf, soft colors, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "樱桃", "pinyin": "yīng táo", "measure_word": "颗", "sentence": "这是一颗樱桃。", "sentence_pinyin": "Zhè shì yì kē yīng táo.", "english": "cherry", "tags": ["fruit", "sweet"], "difficulty": 2, "image_prompt": "A cute cartoon red cherry pair, flat illustration, big round eyes, green stems, bright red, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "蓝莓", "pinyin": "lán méi", "measure_word": "颗", "sentence": "这是一颗蓝莓。", "sentence_pinyin": "Zhè shì yì kē lán méi.", "english": "blueberry", "tags": ["fruit", "berry"], "difficulty": 2, "image_prompt": "A cute cartoon blueberries, flat illustration, big round eyes, deep blue, small green leaves, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "芒果", "pinyin": "máng guǒ", "measure_word": "个", "sentence": "这是一个芒果。", "sentence_pinyin": "Zhè shì yí gè máng guǒ.", "english": "mango", "tags": ["fruit", "tropical"], "difficulty": 2, "image_prompt": "A cute cartoon mango, flat illustration, big round eyes, orange yellow skin, red blush, green leaf, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "菠萝", "pinyin": "bō luó", "measure_word": "个", "sentence": "这是一个菠萝。", "sentence_pinyin": "Zhè shì yí gè bō luó.", "english": "pineapple", "tags": ["fruit", "tropical"], "difficulty": 2, "image_prompt": "A cute cartoon pineapple, flat illustration, big round eyes, yellow diamond pattern, green crown leaves, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "柠檬", "pinyin": "níng méng", "measure_word": "个", "sentence": "这是一个柠檬。", "sentence_pinyin": "Zhè shì yí gè níng méng.", "english": "lemon", "tags": ["fruit", "citrus"], "difficulty": 2, "image_prompt": "A cute cartoon yellow lemon, flat illustration, big round eyes, small green leaf, oval shape, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "猕猴桃", "pinyin": "mí hóu táo", "measure_word": "个", "sentence": "这是一个猕猴桃。", "sentence_pinyin": "Zhè shì yí gè mí hóu táo.", "english": "kiwi", "tags": ["fruit", "green"], "difficulty": 3, "image_prompt": "A cute cartoon kiwi fruit, flat illustration, big round eyes, brown fuzzy skin, green inside, black seeds, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "椰子", "pinyin": "yē zi", "measure_word": "个", "sentence": "这是一个椰子。", "sentence_pinyin": "Zhè shì yí gè yē zi.", "english": "coconut", "tags": ["fruit", "tropical"], "difficulty": 2, "image_prompt": "A cute cartoon coconut, flat illustration, big round eyes, brown hairy shell, small straw, tropical, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "哈密瓜", "pinyin": "hā mì guā", "measure_word": "个", "sentence": "这是一个哈密瓜。", "sentence_pinyin": "Zhè shì yí gè hā mì guā.", "english": "honeydew", "tags": ["fruit", "melon"], "difficulty": 3, "image_prompt": "A cute cartoon honeydew melon, flat illustration, big round eyes, tan netted skin, green flesh, slice, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "榴莲", "pinyin": "liú lián", "measure_word": "个", "sentence": "这是一个榴莲。", "sentence_pinyin": "Zhè shì yí gè liú lián.", "english": "durian", "tags": ["fruit", "tropical"], "difficulty": 3, "image_prompt": "A cute cartoon durian, flat illustration, big round eyes, yellow spiky shell, small green stem, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "火龙果", "pinyin": "huǒ lóng guǒ", "measure_word": "个", "sentence": "这是一个火龙果。", "sentence_pinyin": "Zhè shì yí gè huǒ lóng guǒ.", "english": "dragon_fruit", "tags": ["fruit", "tropical"], "difficulty": 3, "image_prompt": "A cute cartoon dragon fruit, flat illustration, big round eyes, pink skin with green scales, white flesh, black seeds, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "山竹", "pinyin": "shān zhú", "measure_word": "个", "sentence": "这是一个山竹。", "sentence_pinyin": "Zhè shì yí gè shān zhú.", "english": "mangosteen", "tags": ["fruit", "tropical"], "difficulty": 3, "image_prompt": "A cute cartoon mangosteen, flat illustration, big round eyes, purple round shell, green calyx, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "荔枝", "pinyin": "lì zhī", "measure_word": "颗", "sentence": "这是一颗荔枝。", "sentence_pinyin": "Zhè shì yì kē lì zhī.", "english": "lychee", "tags": ["fruit", "tropical"], "difficulty": 3, "image_prompt": "A cute cartoon lychee, flat illustration, big round eyes, red bumpy skin, white flesh, small green leaf, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "龙眼", "pinyin": "lóng yǎn", "measure_word": "颗", "sentence": "这是一颗龙眼。", "sentence_pinyin": "Zhè shì yì kē lóng yǎn.", "english": "longan", "tags": ["fruit", "tropical"], "difficulty": 3, "image_prompt": "A cute cartoon longan, flat illustration, big round eyes, brown shell, translucent white flesh, small stem, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "杨梅", "pinyin": "yáng méi", "measure_word": "颗", "sentence": "这是一颗杨梅。", "sentence_pinyin": "Zhè shì yì kē yáng méi.", "english": "bayberry", "tags": ["fruit", "red"], "difficulty": 3, "image_prompt": "A cute cartoon bayberry, flat illustration, big round eyes, dark red bumpy berry, small green leaves, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "枇杷", "pinyin": "pí pa", "measure_word": "个", "sentence": "这是一个枇杷。", "sentence_pinyin": "Zhè shì yí gè pí pa.", "english": "loquat", "tags": ["fruit", "orange"], "difficulty": 3, "image_prompt": "A cute cartoon loquat, flat illustration, big round eyes, orange yellow oval, small brown stem, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "杨桃", "pinyin": "yáng táo", "measure_word": "个", "sentence": "这是一个杨桃。", "sentence_pinyin": "Zhè shì yí gè yáng táo.", "english": "starfruit", "tags": ["fruit", "tropical"], "difficulty": 3, "image_prompt": "A cute cartoon starfruit, flat illustration, big round eyes, yellow star shape, small green leaves, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "牛油果", "pinyin": "niú yóu guǒ", "measure_word": "个", "sentence": "这是一个牛油果。", "sentence_pinyin": "Zhè shì yí gè niú yóu guǒ.", "english": "avocado", "tags": ["fruit", "green"], "difficulty": 3, "image_prompt": "A cute cartoon avocado, flat illustration, big round eyes, dark green bumpy skin, sliced showing yellow green flesh, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "石榴", "pinyin": "shí liu", "measure_word": "个", "sentence": "这是一个石榴。", "sentence_pinyin": "Zhè shì yí gè shí liu.", "english": "pomegranate", "tags": ["fruit", "red"], "difficulty": 3, "image_prompt": "A cute cartoon pomegranate, flat illustration, big round eyes, red round fruit, crown top, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "柚子", "pinyin": "yòu zi", "measure_word": "个", "sentence": "这是一个柚子。", "sentence_pinyin": "Zhè shì yí gè yòu zi.", "english": "pomelo", "tags": ["fruit", "citrus"], "difficulty": 2, "image_prompt": "A cute cartoon pomelo, flat illustration, big round eyes, yellow green skin, round shape, small leaf, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "柿子", "pinyin": "shì zi", "measure_word": "个", "sentence": "这是一个柿子。", "sentence_pinyin": "Zhè shì yí gè shì zi.", "english": "persimmon", "tags": ["fruit", "orange"], "difficulty": 2, "image_prompt": "A cute cartoon persimmon, flat illustration, big round eyes, bright orange, small green leaf, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "枣", "pinyin": "zǎo", "measure_word": "颗", "sentence": "这是一颗枣。", "sentence_pinyin": "Zhè shì yì kē zǎo.", "english": "jujube", "tags": ["fruit", "red"], "difficulty": 2, "image_prompt": "A cute cartoon red jujube, flat illustration, big round eyes, oval red date, small stem, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "桑葚", "pinyin": "sāng shèn", "measure_word": "颗", "sentence": "这是一颗桑葚。", "sentence_pinyin": "Zhè shì yì kē sāng shèn.", "english": "mulberry", "tags": ["fruit", "berry"], "difficulty": 3, "image_prompt": "A cute cartoon mulberries, flat illustration, big round eyes, dark purple clustered berries, green leaves, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "胡萝卜", "pinyin": "hú luó bo", "measure_word": "根", "sentence": "这是一根胡萝卜。", "sentence_pinyin": "Zhè shì yì gēn hú luó bo.", "english": "carrot", "tags": ["vegetable", "orange"], "difficulty": 1, "image_prompt": "A cute cartoon orange carrot, flat illustration, big round eyes, green leafy top, friendly smile, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "西红柿", "pinyin": "xī hóng shì", "measure_word": "个", "sentence": "这是一个西红柿。", "sentence_pinyin": "Zhè shì yí gè xī hóng shì.", "english": "tomato", "tags": ["vegetable", "red"], "difficulty": 2, "image_prompt": "A cute cartoon red tomato, flat illustration, big round eyes, small green stem, shiny surface, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "黄瓜", "pinyin": "huáng guā", "measure_word": "根", "sentence": "这是一根黄瓜。", "sentence_pinyin": "Zhè shì yì gēn huáng guā.", "english": "cucumber", "tags": ["vegetable", "green"], "difficulty": 1, "image_prompt": "A cute cartoon green cucumber, flat illustration, big round eyes, small bumps, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "土豆", "pinyin": "tǔ dòu", "measure_word": "个", "sentence": "这是一个土豆。", "sentence_pinyin": "Zhè shì yí gè tǔ dòu.", "english": "potato", "tags": ["vegetable", "starch"], "difficulty": 1, "image_prompt": "A cute cartoon brown potato, flat illustration, big round eyes, small eyes, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "白菜", "pinyin": "bái cài", "measure_word": "棵", "sentence": "这是一棵白菜。", "sentence_pinyin": "Zhè shì yì kē bái cài.", "english": "chinese_cabbage", "tags": ["vegetable", "green"], "difficulty": 1, "image_prompt": "A cute cartoon napa cabbage, flat illustration, big round eyes, white stalks and green leaves, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "菠菜", "pinyin": "bō cài", "measure_word": "棵", "sentence": "这是一棵菠菜。", "sentence_pinyin": "Zhè shì yì kē bō cài.", "english": "spinach", "tags": ["vegetable", "green"], "difficulty": 2, "image_prompt": "A cute cartoon spinach leaves, flat illustration, big round eyes, dark green leaves, red stems, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "茄子", "pinyin": "qié zi", "measure_word": "个", "sentence": "这是一个茄子。", "sentence_pinyin": "Zhè shì yí gè qié zi.", "english": "eggplant", "tags": ["vegetable", "purple"], "difficulty": 1, "image_prompt": "A cute cartoon purple eggplant, flat illustration, big round eyes, shiny purple skin, green cap, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "南瓜", "pinyin": "nán guā", "measure_word": "个", "sentence": "这是一个南瓜。", "sentence_pinyin": "Zhè shì yí gè nán guā.", "english": "pumpkin", "tags": ["vegetable", "orange"], "difficulty": 1, "image_prompt": "A cute cartoon orange pumpkin, flat illustration, big round eyes, round ribbed shape, green stem, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "玉米", "pinyin": "yù mǐ", "measure_word": "根", "sentence": "这是一根玉米。", "sentence_pinyin": "Zhè shì yì gēn yù mǐ.", "english": "corn", "tags": ["vegetable", "yellow"], "difficulty": 1, "image_prompt": "A cute cartoon corn cob, flat illustration, big round eyes, yellow kernels, green husk, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "豌豆", "pinyin": "wān dòu", "measure_word": "颗", "sentence": "这是一颗豌豆。", "sentence_pinyin": "Zhè shì yì kē wān dòu.", "english": "pea", "tags": ["vegetable", "green"], "difficulty": 2, "image_prompt": "A cute cartoon green peas in pod, flat illustration, big round eyes, plump green pod, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "洋葱", "pinyin": "yáng cōng", "measure_word": "个", "sentence": "这是一个洋葱。", "sentence_pinyin": "Zhè shì yí gè yáng cōng.", "english": "onion", "tags": ["vegetable", "white"], "difficulty": 2, "image_prompt": "A cute cartoon onion, flat illustration, big round eyes, purple brown papery skin, layers, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "大蒜", "pinyin": "dà suàn", "measure_word": "头", "sentence": "这是一头大蒜。", "sentence_pinyin": "Zhè shì yì tóu dà suàn.", "english": "garlic", "tags": ["vegetable", "white"], "difficulty": 2, "image_prompt": "A cute cartoon garlic bulb, flat illustration, big round eyes, white cloves, papery skin, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "生姜", "pinyin": "shēng jiāng", "measure_word": "块", "sentence": "这是一块生姜。", "sentence_pinyin": "Zhè shì yí kuài shēng jiāng.", "english": "ginger", "tags": ["vegetable", "spice"], "difficulty": 2, "image_prompt": "A cute cartoon ginger root, flat illustration, big round eyes, tan knobby shape, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "蘑菇", "pinyin": "mó gu", "measure_word": "个", "sentence": "这是一个蘑菇。", "sentence_pinyin": "Zhè shì yí gè mó gu.", "english": "mushroom", "tags": ["vegetable", "fungi"], "difficulty": 1, "image_prompt": "A cute cartoon mushroom, flat illustration, big round eyes, red cap with white spots, white stem, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "青椒", "pinyin": "qīng jiāo", "measure_word": "个", "sentence": "这是一个青椒。", "sentence_pinyin": "Zhè shì yí gè qīng jiāo.", "english": "green_pepper", "tags": ["vegetable", "green"], "difficulty": 2, "image_prompt": "A cute cartoon green bell pepper, flat illustration, big round eyes, bright green, glossy, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "辣椒", "pinyin": "là jiāo", "measure_word": "个", "sentence": "这是一个辣椒。", "sentence_pinyin": "Zhè shì yí gè là jiāo.", "english": "chili", "tags": ["vegetable", "spice"], "difficulty": 2, "image_prompt": "A cute cartoon red chili pepper, flat illustration, big round eyes, curved red shape, green stem, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "芹菜", "pinyin": "qín cài", "measure_word": "棵", "sentence": "这是一棵芹菜。", "sentence_pinyin": "Zhè shì yì kē qín cài.", "english": "celery", "tags": ["vegetable", "green"], "difficulty": 2, "image_prompt": "A cute cartoon celery stalks, flat illustration, big round eyes, green ribbed stalks, leafy top, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "西兰花", "pinyin": "xī lán huā", "measure_word": "棵", "sentence": "这是一棵西兰花。", "sentence_pinyin": "Zhè shì yì kē xī lán huā.", "english": "broccoli", "tags": ["vegetable", "green"], "difficulty": 3, "image_prompt": "A cute cartoon broccoli, flat illustration, big round eyes, green tree-like florets, thick stalk, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "花菜", "pinyin": "huā cài", "measure_word": "棵", "sentence": "这是一棵花菜。", "sentence_pinyin": "Zhè shì yì kē huā cài.", "english": "cauliflower", "tags": ["vegetable", "white"], "difficulty": 2, "image_prompt": "A cute cartoon cauliflower, flat illustration, big round eyes, white florets, green leaves, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "生菜", "pinyin": "shēng cài", "measure_word": "棵", "sentence": "这是一棵生菜。", "sentence_pinyin": "Zhè shì yì kē shēng cài.", "english": "lettuce", "tags": ["vegetable", "green"], "difficulty": 2, "image_prompt": "A cute cartoon lettuce, flat illustration, big round eyes, green frilly leaves, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "豆角", "pinyin": "dòu jiǎo", "measure_word": "根", "sentence": "这是一根豆角。", "sentence_pinyin": "Zhè shì yì gēn dòu jiǎo.", "english": "green_bean", "tags": ["vegetable", "green"], "difficulty": 2, "image_prompt": "A cute cartoon green beans, flat illustration, big round eyes, long green pods, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "冬瓜", "pinyin": "dōng guā", "measure_word": "个", "sentence": "这是一个冬瓜。", "sentence_pinyin": "Zhè shì yí gè dōng guā.", "english": "winter_melon", "tags": ["vegetable", "green"], "difficulty": 2, "image_prompt": "A cute cartoon winter melon, flat illustration, big round eyes, long green waxy skin, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "丝瓜", "pinyin": "sī guā", "measure_word": "根", "sentence": "这是一根丝瓜。", "sentence_pinyin": "Zhè shì yì gēn sī guā.", "english": "loofah", "tags": ["vegetable", "green"], "difficulty": 2, "image_prompt": "A cute cartoon loofah gourd, flat illustration, big round eyes, long green ridged shape, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "苦瓜", "pinyin": "kǔ guā", "measure_word": "根", "sentence": "这是一根苦瓜。", "sentence_pinyin": "Zhè shì yì gēn kǔ guā.", "english": "bitter_melon", "tags": ["vegetable", "green"], "difficulty": 2, "image_prompt": "A cute cartoon bitter melon, flat illustration, big round eyes, green warty bumpy skin, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "红薯", "pinyin": "hóng shǔ", "measure_word": "个", "sentence": "这是一个红薯。", "sentence_pinyin": "Zhè shì yí gè hóng shǔ.", "english": "sweet_potato", "tags": ["vegetable", "starch"], "difficulty": 2, "image_prompt": "A cute cartoon sweet potato, flat illustration, big round eyes, orange brown skin, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "白萝卜", "pinyin": "bái luó bo", "measure_word": "根", "sentence": "这是一根白萝卜。", "sentence_pinyin": "Zhè shì yì gēn bái luó bo.", "english": "daikon", "tags": ["vegetable", "white"], "difficulty": 3, "image_prompt": "A cute cartoon white daikon radish, flat illustration, big round eyes, long white root, green leafy top, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "莲藕", "pinyin": "lián ǒu", "measure_word": "节", "sentence": "这是一节莲藕。", "sentence_pinyin": "Zhè shì yì jié lián ǒu.", "english": "lotus_root", "tags": ["vegetable", "white"], "difficulty": 3, "image_prompt": "A cute cartoon lotus root slice, flat illustration, big round eyes, beige root with holes, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "竹笋", "pinyin": "zhú sǔn", "measure_word": "根", "sentence": "这是一根竹笋。", "sentence_pinyin": "Zhè shì yì gēn zhú sǔn.", "english": "bamboo_shoot", "tags": ["vegetable", "white"], "difficulty": 3, "image_prompt": "A cute cartoon bamboo shoot, flat illustration, big round eyes, pale green cone shape, layered skin, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "芦笋", "pinyin": "lú sǔn", "measure_word": "根", "sentence": "这是一根芦笋。", "sentence_pinyin": "Zhè shì yì gēn lú sǔn.", "english": "asparagus", "tags": ["vegetable", "green"], "difficulty": 3, "image_prompt": "A cute cartoon asparagus spears, flat illustration, big round eyes, green stalks with purple tips, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "秋葵", "pinyin": "qiū kuí", "measure_word": "根", "sentence": "这是一根秋葵。", "sentence_pinyin": "Zhè shì yì gēn qiū kuí.", "english": "okra", "tags": ["vegetable", "green"], "difficulty": 3, "image_prompt": "A cute cartoon okra, flat illustration, big round eyes, green ridged pod, white background, children's book style, vector art, minimalist, no text, no watermark"},
-    {"word": "荸荠", "pinyin": "bí qí", "measure_word": "个", "sentence": "这是一个荸荠。", "sentence_pinyin": "Zhè shì yí gè bí qí.", "english": "water_chestnut", "tags": ["vegetable", "white"], "difficulty": 3, "image_prompt": "A cute cartoon water chestnut, flat illustration, big round eyes, brown round tuber, white background, children's book style, vector art, minimalist, no text, no watermark"}
+    {
+      "word": "苹果",
+      "pinyin": "píng guǒ",
+      "measure_word": "个",
+      "sentence": "这是一个苹果。",
+      "sentence_pinyin": "Zhè shì yí gè píng guǒ.",
+      "english": "apple",
+      "tags": [
+        "fruit",
+        "sweet"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon red apple, flat illustration, big round eyes, friendly smile, green leaf, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "苹果圆圆的，红彤彤或者绿油油，咬一口又脆又甜。",
+      "where": "它长在苹果树上，秋天成熟。",
+      "use": "洗干净可以直接吃，也可以榨成果汁或做成苹果派。",
+      "fun_fact": "苹果富含营养，俗话说\"一天一苹果，医生远离我\"。"
+    },
+    {
+      "word": "香蕉",
+      "pinyin": "xiāng jiāo",
+      "measure_word": "根",
+      "sentence": "这是一根香蕉。",
+      "sentence_pinyin": "Zhè shì yì gēn xiāng jiāo.",
+      "english": "banana",
+      "tags": [
+        "fruit",
+        "sweet"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon bunch of bananas, flat illustration, big round eyes, yellow, friendly expression, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "香蕉弯弯的，像一个月牙，剥开皮就能吃。",
+      "where": "它生长在热带地区的香蕉树上。",
+      "use": "它是很方便的水果，也可以做成香蕉奶昔或香蕉蛋糕。",
+      "fun_fact": "香蕉含有丰富的钾，运动完吃一根很有帮助。"
+    },
+    {
+      "word": "橙子",
+      "pinyin": "chéng zi",
+      "measure_word": "个",
+      "sentence": "这是一个橙子。",
+      "sentence_pinyin": "Zhè shì yí gè chéng zi.",
+      "english": "orange",
+      "tags": [
+        "fruit",
+        "citrus"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon orange fruit, flat illustration, big round eyes, bright orange, small green leaf, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "橙子圆滚滚的，果皮和果肉都是橙黄色。",
+      "where": "它长在柑橘树上，喜欢温暖的地方。",
+      "use": "剥开吃果肉，或者榨成新鲜的橙汁。",
+      "fun_fact": "橙子富含维生素C，可以帮助我们增强抵抗力。"
+    },
+    {
+      "word": "葡萄",
+      "pinyin": "pú tao",
+      "measure_word": "串",
+      "sentence": "这是一串葡萄。",
+      "sentence_pinyin": "Zhè shì yí chuàn pú tao.",
+      "english": "grape",
+      "tags": [
+        "fruit",
+        "sweet"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon bunch of purple grapes, flat illustration, big round eyes, friendly smile, green stem, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "葡萄一颗一颗挤在一起，像一串串紫色或绿色的小珠子。",
+      "where": "它长在葡萄藤上，常常搭成葡萄架。",
+      "use": "可以直接吃，也可以晒干做成葡萄干，还能酿成葡萄汁。",
+      "fun_fact": "葡萄的颜色有很多种，紫色、绿色、红色都有。"
+    },
+    {
+      "word": "西瓜",
+      "pinyin": "xī guā",
+      "measure_word": "个",
+      "sentence": "这是一个西瓜。",
+      "sentence_pinyin": "Zhè shì yí gè xī guā.",
+      "english": "watermelon",
+      "tags": [
+        "fruit",
+        "summer"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon round watermelon with green stripes, flat illustration, big round eyes, red slice, black seeds, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "西瓜大大的、圆圆的，绿皮红瓤，还有许多黑黑的籽。",
+      "where": "它长在地里，夏天成熟。",
+      "use": "切开后吃红色的果肉，非常解渴。",
+      "fun_fact": "西瓜的水分很多，夏天吃一口凉凉的西瓜最舒服了。"
+    },
+    {
+      "word": "草莓",
+      "pinyin": "cǎo méi",
+      "measure_word": "颗",
+      "sentence": "这是一颗草莓。",
+      "sentence_pinyin": "Zhè shì yì kē cǎo méi.",
+      "english": "strawberry",
+      "tags": [
+        "fruit",
+        "sweet"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon red strawberry, flat illustration, big round eyes, green leaves, tiny seeds, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "草莓小小的，红红的，表面有很多小点点，头上戴着绿叶。",
+      "where": "它长在地里矮矮的草莓植株上。",
+      "use": "洗干净后直接吃，也常用来做草莓蛋糕或草莓酱。",
+      "fun_fact": "草莓表面的小点点其实是它的种子。"
+    },
+    {
+      "word": "梨",
+      "pinyin": "lí",
+      "measure_word": "个",
+      "sentence": "这是一个梨。",
+      "sentence_pinyin": "Zhè shì yí gè lí.",
+      "english": "pear",
+      "tags": [
+        "fruit",
+        "sweet"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon yellow pear, flat illustration, big round eyes, small brown stem, friendly smile, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "梨的形状像一个小葫芦，有黄色、绿色或褐色。",
+      "where": "它长在梨树上，秋天成熟。",
+      "use": "削皮吃果肉，汁水很多，也可以煮成冰糖雪梨。",
+      "fun_fact": "梨的水分特别多，咳嗽时喝点梨汤会很舒服。"
+    },
+    {
+      "word": "桃子",
+      "pinyin": "táo zi",
+      "measure_word": "个",
+      "sentence": "这是一个桃子。",
+      "sentence_pinyin": "Zhè shì yí gè táo zi.",
+      "english": "peach",
+      "tags": [
+        "fruit",
+        "sweet"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon pink peach, flat illustration, big round eyes, small green leaf, soft colors, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "桃子粉嘟嘟的，表面有一层细细的绒毛，闻起来很香。",
+      "where": "它长在桃树上，夏天成熟。",
+      "use": "洗干净剥皮吃，也可以做成桃子罐头。",
+      "fun_fact": "桃子中间有一颗硬硬的核，核里面藏着桃仁。"
+    },
+    {
+      "word": "樱桃",
+      "pinyin": "yīng táo",
+      "measure_word": "颗",
+      "sentence": "这是一颗樱桃。",
+      "sentence_pinyin": "Zhè shì yì kē yīng táo.",
+      "english": "cherry",
+      "tags": [
+        "fruit",
+        "sweet"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon red cherry pair, flat illustration, big round eyes, green stems, bright red, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "樱桃小小的、红红的，像一颗颗晶莹剔透的小宝石。",
+      "where": "它长在樱桃树上，春天结果。",
+      "use": "可以直接吃，也常用来做蛋糕装饰或樱桃酱。",
+      "fun_fact": "樱桃的英文 cherry 听起来很像\"车厘子\"，其实是同一种水果。"
+    },
+    {
+      "word": "蓝莓",
+      "pinyin": "lán méi",
+      "measure_word": "颗",
+      "sentence": "这是一颗蓝莓。",
+      "sentence_pinyin": "Zhè shì yì kē lán méi.",
+      "english": "blueberry",
+      "tags": [
+        "fruit",
+        "berry"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon blueberries, flat illustration, big round eyes, deep blue, small green leaves, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "蓝莓小小的、圆圆的，外皮是深蓝色的，果肉却是浅绿色。",
+      "where": "它长在矮矮的蓝莓灌木上。",
+      "use": "可以直接吃，也常用来做蓝莓酸奶或蓝莓酱。",
+      "fun_fact": "蓝莓富含花青素，对眼睛很好。"
+    },
+    {
+      "word": "芒果",
+      "pinyin": "máng guǒ",
+      "measure_word": "个",
+      "sentence": "这是一个芒果。",
+      "sentence_pinyin": "Zhè shì yí gè máng guǒ.",
+      "english": "mango",
+      "tags": [
+        "fruit",
+        "tropical"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon mango, flat illustration, big round eyes, orange yellow skin, red blush, green leaf, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "芒果椭圆形，有黄色、橙色或绿色，果肉香甜细腻。",
+      "where": "它生长在热带地区的芒果树上。",
+      "use": "剥皮去核吃果肉，也可以做芒果冰沙。",
+      "fun_fact": "芒果被称为\"热带水果之王\"，味道非常香甜。"
+    },
+    {
+      "word": "菠萝",
+      "pinyin": "bō luó",
+      "measure_word": "个",
+      "sentence": "这是一个菠萝。",
+      "sentence_pinyin": "Zhè shì yí gè bō luó.",
+      "english": "pineapple",
+      "tags": [
+        "fruit",
+        "tropical"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon pineapple, flat illustration, big round eyes, yellow diamond pattern, green crown leaves, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "菠萝穿着一身带刺的黄色铠甲，头顶有一丛绿色的叶子。",
+      "where": "它生长在热带地区，长在地里。",
+      "use": "削皮后吃果肉，也可以做成菠萝炒饭。",
+      "fun_fact": "菠萝里面有一种酶，吃多了舌头会有一点点麻麻的感觉。"
+    },
+    {
+      "word": "柠檬",
+      "pinyin": "níng méng",
+      "measure_word": "个",
+      "sentence": "这是一个柠檬。",
+      "sentence_pinyin": "Zhè shì yí gè níng méng.",
+      "english": "lemon",
+      "tags": [
+        "fruit",
+        "citrus"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon yellow lemon, flat illustration, big round eyes, small green leaf, oval shape, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "柠檬黄澄澄的，形状像小橄榄球，闻起来特别清香。",
+      "where": "它长在柠檬树上，喜欢阳光充足的地方。",
+      "use": "常用来泡水喝或做调味料，也可以做成柠檬茶。",
+      "fun_fact": "柠檬很酸，因为它含有丰富的柠檬酸。"
+    },
+    {
+      "word": "猕猴桃",
+      "pinyin": "mí hóu táo",
+      "measure_word": "个",
+      "sentence": "这是一个猕猴桃。",
+      "sentence_pinyin": "Zhè shì yí gè mí hóu táo.",
+      "english": "kiwi",
+      "tags": [
+        "fruit",
+        "green"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon kiwi fruit, flat illustration, big round eyes, brown fuzzy skin, green inside, black seeds, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "猕猴桃外面是棕色的绒毛，里面是绿色的果肉和黑色的小籽。",
+      "where": "它长在猕猴桃藤上，原产地是中国。",
+      "use": "对半切开用勺子挖着吃，也可以做成果汁。",
+      "fun_fact": "猕猴桃的维生素C含量非常高，比很多水果都多。"
+    },
+    {
+      "word": "椰子",
+      "pinyin": "yē zi",
+      "measure_word": "个",
+      "sentence": "这是一个椰子。",
+      "sentence_pinyin": "Zhè shì yí gè yē zi.",
+      "english": "coconut",
+      "tags": [
+        "fruit",
+        "tropical"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon coconut, flat illustration, big round eyes, brown hairy shell, small straw, tropical, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "椰子有坚硬的外壳，里面有白白的椰肉和清甜的椰子水。",
+      "where": "它长在热带的椰子树上，高高的树上挂着大椰子。",
+      "use": "可以喝椰子水、吃椰肉，也可以做椰奶。",
+      "fun_fact": "椰子树很高，椰子落下来时要小心躲开。"
+    },
+    {
+      "word": "哈密瓜",
+      "pinyin": "hā mì guā",
+      "measure_word": "个",
+      "sentence": "这是一个哈密瓜。",
+      "sentence_pinyin": "Zhè shì yí gè hā mì guā.",
+      "english": "honeydew",
+      "tags": [
+        "fruit",
+        "melon"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon honeydew melon, flat illustration, big round eyes, tan netted skin, green flesh, slice, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "哈密瓜大大的，外皮有网状的纹路，果肉是橙黄色或绿色。",
+      "where": "它长在地里，主要产自新疆哈密地区。",
+      "use": "切开吃果肉，味道香甜多汁。",
+      "fun_fact": "哈密瓜的名字来自中国新疆的哈密市。"
+    },
+    {
+      "word": "榴莲",
+      "pinyin": "liú lián",
+      "measure_word": "个",
+      "sentence": "这是一个榴莲。",
+      "sentence_pinyin": "Zhè shì yí gè liú lián.",
+      "english": "durian",
+      "tags": [
+        "fruit",
+        "tropical"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon durian, flat illustration, big round eyes, yellow spiky shell, small green stem, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "榴莲个头很大，外壳长满了尖尖的刺，气味非常特别。",
+      "where": "它生长在热带的榴莲树上。",
+      "use": "剥开硬壳吃里面软软的果肉。",
+      "fun_fact": "有人觉得榴莲很臭，有人觉得榴莲很香，它是水果中的\"争议明星\"。"
+    },
+    {
+      "word": "火龙果",
+      "pinyin": "huǒ lóng guǒ",
+      "measure_word": "个",
+      "sentence": "这是一个火龙果。",
+      "sentence_pinyin": "Zhè shì yí gè huǒ lóng guǒ.",
+      "english": "dragon_fruit",
+      "tags": [
+        "fruit",
+        "tropical"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon dragon fruit, flat illustration, big round eyes, pink skin with green scales, white flesh, black seeds, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "火龙果有粉红色的外皮和绿色的鳞片，果肉是白色或红色，还有小黑籽。",
+      "where": "它长在仙人掌一样的火龙果植株上。",
+      "use": "切开吃果肉，也可以做成漂亮的水果沙拉。",
+      "fun_fact": "火龙果里的小黑籽嚼起来咯吱咯吱响。"
+    },
+    {
+      "word": "山竹",
+      "pinyin": "shān zhú",
+      "measure_word": "个",
+      "sentence": "这是一个山竹。",
+      "sentence_pinyin": "Zhè shì yí gè shān zhú.",
+      "english": "mangosteen",
+      "tags": [
+        "fruit",
+        "tropical"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon mangosteen, flat illustration, big round eyes, purple round shell, green calyx, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "山竹是紫黑色的圆球，剥开厚壳里面是白色的蒜瓣状果肉。",
+      "where": "它生长在热带的山竹树上。",
+      "use": "剥开硬壳吃里面甜甜的白色果肉。",
+      "fun_fact": "山竹被称为\"水果皇后\"，和\"水果之王\"榴莲是好朋友。"
+    },
+    {
+      "word": "荔枝",
+      "pinyin": "lì zhī",
+      "measure_word": "颗",
+      "sentence": "这是一颗荔枝。",
+      "sentence_pinyin": "Zhè shì yì kē lì zhī.",
+      "english": "lychee",
+      "tags": [
+        "fruit",
+        "tropical"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon lychee, flat illustration, big round eyes, red bumpy skin, white flesh, small green leaf, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "荔枝红红的，外壳有点粗糙，剥开后是透明的果肉。",
+      "where": "它长在荔枝树上，主要产在中国南方。",
+      "use": "剥壳吃果肉，味道很甜。",
+      "fun_fact": "古人为了吃到新鲜的荔枝，曾用快马千里送荔枝。"
+    },
+    {
+      "word": "龙眼",
+      "pinyin": "lóng yǎn",
+      "measure_word": "颗",
+      "sentence": "这是一颗龙眼。",
+      "sentence_pinyin": "Zhè shì yì kē lóng yǎn.",
+      "english": "longan",
+      "tags": [
+        "fruit",
+        "tropical"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon longan, flat illustration, big round eyes, brown shell, translucent white flesh, small stem, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "龙眼圆圆的，外皮是黄褐色的，剥开后像一颗透明的小眼珠。",
+      "where": "它长在龙眼树上，和荔枝是亲戚。",
+      "use": "剥壳吃果肉，也可以晒干做成桂圆。",
+      "fun_fact": "晒干的龙眼叫桂圆，常用来煮汤或做甜品。"
+    },
+    {
+      "word": "杨梅",
+      "pinyin": "yáng méi",
+      "measure_word": "颗",
+      "sentence": "这是一颗杨梅。",
+      "sentence_pinyin": "Zhè shì yì kē yáng méi.",
+      "english": "bayberry",
+      "tags": [
+        "fruit",
+        "red"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon bayberry, flat illustration, big round eyes, dark red bumpy berry, small green leaves, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "杨梅小小的，圆圆的，成熟时变成深红色或紫红色。",
+      "where": "它长在杨梅树上，主要产在中国南方。",
+      "use": "可以直接吃，也可以做成杨梅酒或杨梅汤。",
+      "fun_fact": "杨梅吃起来酸酸甜甜，汁水会把嘴唇染成红色。"
+    },
+    {
+      "word": "枇杷",
+      "pinyin": "pí pa",
+      "measure_word": "个",
+      "sentence": "这是一个枇杷。",
+      "sentence_pinyin": "Zhè shì yí gè pí pa.",
+      "english": "loquat",
+      "tags": [
+        "fruit",
+        "orange"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon loquat, flat illustration, big round eyes, orange yellow oval, small brown stem, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "枇杷黄澄澄的，形状像一个小鸡蛋，表面光滑。",
+      "where": "它长在枇杷树上，初夏成熟。",
+      "use": "剥皮吃果肉，也可以做成枇杷膏。",
+      "fun_fact": "枇杷叶子也可以入药，常用来止咳。"
+    },
+    {
+      "word": "杨桃",
+      "pinyin": "yáng táo",
+      "measure_word": "个",
+      "sentence": "这是一个杨桃。",
+      "sentence_pinyin": "Zhè shì yí gè yáng táo.",
+      "english": "starfruit",
+      "tags": [
+        "fruit",
+        "tropical"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon starfruit, flat illustration, big round eyes, yellow star shape, small green leaves, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "杨桃横着切开像一颗小星星，所以也叫星果。",
+      "where": "它长在杨桃树上，主要产在热带地区。",
+      "use": "切成星形片吃，也可以装饰在饮料里。",
+      "fun_fact": "杨桃切成片后，每一片都像一颗五角星。"
+    },
+    {
+      "word": "牛油果",
+      "pinyin": "niú yóu guǒ",
+      "measure_word": "个",
+      "sentence": "这是一个牛油果。",
+      "sentence_pinyin": "Zhè shì yí gè niú yóu guǒ.",
+      "english": "avocado",
+      "tags": [
+        "fruit",
+        "green"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon avocado, flat illustration, big round eyes, dark green bumpy skin, sliced showing yellow green flesh, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "牛油果也叫鳄梨，外皮深绿色，果肉软软像黄油。",
+      "where": "它长在热带的牛油果树上。",
+      "use": "可以做沙拉、抹面包，也可以做成牛油果奶昔。",
+      "fun_fact": "牛油果的脂肪含量比较高，但都是对身体好的油。"
+    },
+    {
+      "word": "石榴",
+      "pinyin": "shí liu",
+      "measure_word": "个",
+      "sentence": "这是一个石榴。",
+      "sentence_pinyin": "Zhè shì yí gè shí liu.",
+      "english": "pomegranate",
+      "tags": [
+        "fruit",
+        "red"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon pomegranate, flat illustration, big round eyes, red round fruit, crown top, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "石榴圆圆的，外皮红色，剥开里面有许多红宝石一样的小籽。",
+      "where": "它长在石榴树上，秋天成熟。",
+      "use": "一把一把吃里面的籽，也可以榨成石榴汁。",
+      "fun_fact": "石榴籽外面包裹着红红的果汁，咬开会爆汁。"
+    },
+    {
+      "word": "柚子",
+      "pinyin": "yòu zi",
+      "measure_word": "个",
+      "sentence": "这是一个柚子。",
+      "sentence_pinyin": "Zhè shì yí gè yòu zi.",
+      "english": "pomelo",
+      "tags": [
+        "fruit",
+        "citrus"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon pomelo, flat illustration, big round eyes, yellow green skin, round shape, small leaf, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "柚子大大的，皮厚厚的，果肉是一瓣一瓣的。",
+      "where": "它长在柚子树上，中秋前后成熟。",
+      "use": "剥开吃果肉，柚子皮还可以做柚子茶。",
+      "fun_fact": "柚子在中国有\"团圆\"的寓意，中秋节常吃。"
+    },
+    {
+      "word": "柿子",
+      "pinyin": "shì zi",
+      "measure_word": "个",
+      "sentence": "这是一个柿子。",
+      "sentence_pinyin": "Zhè shì yí gè shì zi.",
+      "english": "persimmon",
+      "tags": [
+        "fruit",
+        "orange"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon persimmon, flat illustration, big round eyes, bright orange, small green leaf, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "柿子橙红色，圆圆的，像一个个小灯笼挂在树上。",
+      "where": "它长在柿子树上，秋天成熟。",
+      "use": "可以直接吃，也可以晒成柿饼。",
+      "fun_fact": "柿子含有大量的糖分，晒成柿饼后会更甜。"
+    },
+    {
+      "word": "枣",
+      "pinyin": "zǎo",
+      "measure_word": "颗",
+      "sentence": "这是一颗枣。",
+      "sentence_pinyin": "Zhè shì yì kē zǎo.",
+      "english": "jujube",
+      "tags": [
+        "fruit",
+        "red"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon red jujube, flat illustration, big round eyes, oval red date, small stem, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "枣小小的，红红的，吃起来甜甜脆脆。",
+      "where": "它长在枣树上，秋天成熟。",
+      "use": "可以直接吃，也可以煮粥或做成红枣糕。",
+      "fun_fact": "红枣在中国被认为是很补身体的食物。"
+    },
+    {
+      "word": "桑葚",
+      "pinyin": "sāng shèn",
+      "measure_word": "颗",
+      "sentence": "这是一颗桑葚。",
+      "sentence_pinyin": "Zhè shì yì kē sāng shèn.",
+      "english": "mulberry",
+      "tags": [
+        "fruit",
+        "berry"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon mulberries, flat illustration, big round eyes, dark purple clustered berries, green leaves, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "桑葚是一颗颗紫色的小果子挤在一起，像小葡萄。",
+      "where": "它长在桑树上，春天成熟。",
+      "use": "可以直接吃，也可以做成果酱。",
+      "fun_fact": "桑葚的果汁会把嘴巴和手指都染成紫色。"
+    },
+    {
+      "word": "胡萝卜",
+      "pinyin": "hú luó bo",
+      "measure_word": "根",
+      "sentence": "这是一根胡萝卜。",
+      "sentence_pinyin": "Zhè shì yì gēn hú luó bo.",
+      "english": "carrot",
+      "tags": [
+        "vegetable",
+        "orange"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon orange carrot, flat illustration, big round eyes, green leafy top, friendly smile, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "胡萝卜长长的、橙色的，像一根小锥子。",
+      "where": "它长在地里，根部埋在土里。",
+      "use": "可以生吃，也可以炒着吃、煮汤或榨汁。",
+      "fun_fact": "胡萝卜富含胡萝卜素，对眼睛很好。"
+    },
+    {
+      "word": "西红柿",
+      "pinyin": "xī hóng shì",
+      "measure_word": "个",
+      "sentence": "这是一个西红柿。",
+      "sentence_pinyin": "Zhè shì yí gè xī hóng shì.",
+      "english": "tomato",
+      "tags": [
+        "vegetable",
+        "red"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon red tomato, flat illustration, big round eyes, small green stem, shiny surface, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "西红柿红红的、圆圆的，既可以当蔬菜也可以当水果。",
+      "where": "它长在藤蔓上，夏天成熟。",
+      "use": "可以生吃、炒菜、煮汤，还能做成番茄酱。",
+      "fun_fact": "西红柿也叫番茄，炒鸡蛋是一道经典家常菜。"
+    },
+    {
+      "word": "黄瓜",
+      "pinyin": "huáng guā",
+      "measure_word": "根",
+      "sentence": "这是一根黄瓜。",
+      "sentence_pinyin": "Zhè shì yì gēn huáng guā.",
+      "english": "cucumber",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon green cucumber, flat illustration, big round eyes, small bumps, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "黄瓜长长的、绿绿的，表面有一些小刺。",
+      "where": "它长在黄瓜藤上，喜欢搭架子。",
+      "use": "可以生吃，也可以凉拌、炒菜。",
+      "fun_fact": "黄瓜的水分很多，吃起来特别清爽。"
+    },
+    {
+      "word": "土豆",
+      "pinyin": "tǔ dòu",
+      "measure_word": "个",
+      "sentence": "这是一个土豆。",
+      "sentence_pinyin": "Zhè shì yí gè tǔ dòu.",
+      "english": "potato",
+      "tags": [
+        "vegetable",
+        "starch"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon brown potato, flat illustration, big round eyes, small eyes, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "土豆也叫马铃薯，是圆圆的块茎，外皮黄黄的。",
+      "where": "它长在地里，是重要的粮食蔬菜。",
+      "use": "可以炒土豆丝、炖土豆、炸薯条。",
+      "fun_fact": "土豆含有大量的淀粉，是世界上许多国家的主食。"
+    },
+    {
+      "word": "白菜",
+      "pinyin": "bái cài",
+      "measure_word": "棵",
+      "sentence": "这是一棵白菜。",
+      "sentence_pinyin": "Zhè shì yì kē bái cài.",
+      "english": "chinese_cabbage",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon napa cabbage, flat illustration, big round eyes, white stalks and green leaves, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "白菜叶片白白的、绿绿的，一层一层包在一起。",
+      "where": "它长在地里，冬天也能生长。",
+      "use": "可以炒着吃、煮汤，也常用来做酸菜或泡菜。",
+      "fun_fact": "白菜在中国北方冬天很常见，被称为\"百菜不如白菜\"。"
+    },
+    {
+      "word": "菠菜",
+      "pinyin": "bō cài",
+      "measure_word": "棵",
+      "sentence": "这是一棵菠菜。",
+      "sentence_pinyin": "Zhè shì yì kē bō cài.",
+      "english": "spinach",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon spinach leaves, flat illustration, big round eyes, dark green leaves, red stems, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "菠菜叶子绿绿的，叶柄带点红色，营养丰富。",
+      "where": "它长在地里，喜欢凉爽的天气。",
+      "use": "可以炒着吃、做汤，也常用来做菠菜面。",
+      "fun_fact": "大力水手吃菠菜会变强壮，其实菠菜确实很有营养。"
+    },
+    {
+      "word": "茄子",
+      "pinyin": "qié zi",
+      "measure_word": "个",
+      "sentence": "这是一个茄子。",
+      "sentence_pinyin": "Zhè shì yí gè qié zi.",
+      "english": "eggplant",
+      "tags": [
+        "vegetable",
+        "purple"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon purple eggplant, flat illustration, big round eyes, shiny purple skin, green cap, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "茄子长长的、紫紫的，表面光滑发亮。",
+      "where": "它长在茄子植株上，夏天成熟。",
+      "use": "可以红烧、炒着吃、烤着吃。",
+      "fun_fact": "茄子煮熟后会变软，很吸油，所以炒茄子要多放一点油。"
+    },
+    {
+      "word": "南瓜",
+      "pinyin": "nán guā",
+      "measure_word": "个",
+      "sentence": "这是一个南瓜。",
+      "sentence_pinyin": "Zhè shì yí gè nán guā.",
+      "english": "pumpkin",
+      "tags": [
+        "vegetable",
+        "orange"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon orange pumpkin, flat illustration, big round eyes, round ribbed shape, green stem, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "南瓜大大的、圆圆的，外皮橙黄色，里面有甜甜的果肉和籽。",
+      "where": "它长在地里，藤蔓会爬得很长。",
+      "use": "可以煮粥、做南瓜饼，也可以炒着吃。",
+      "fun_fact": "南瓜籽可以炒熟吃，是很香的零食。"
+    },
+    {
+      "word": "玉米",
+      "pinyin": "yù mǐ",
+      "measure_word": "根",
+      "sentence": "这是一根玉米。",
+      "sentence_pinyin": "Zhè shì yì gēn yù mǐ.",
+      "english": "corn",
+      "tags": [
+        "vegetable",
+        "yellow"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon corn cob, flat illustration, big round eyes, yellow kernels, green husk, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "玉米外面包着绿色的皮，里面是一排排黄黄的玉米粒。",
+      "where": "它长在高高的玉米秆上。",
+      "use": "可以煮着吃、烤着吃，也可以做成爆米花。",
+      "fun_fact": "玉米粒一颗颗像小牙齿，吃起来甜甜的。"
+    },
+    {
+      "word": "豌豆",
+      "pinyin": "wān dòu",
+      "measure_word": "颗",
+      "sentence": "这是一颗豌豆。",
+      "sentence_pinyin": "Zhè shì yì kē wān dòu.",
+      "english": "pea",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon green peas in pod, flat illustration, big round eyes, plump green pod, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "豌豆小小的、圆圆的，绿色的，长在豆荚里。",
+      "where": "它长在豌豆藤上。",
+      "use": "可以炒着吃、煮汤，也可以做成豌豆泥。",
+      "fun_fact": "豌豆荚成熟后会裂开，小豌豆就蹦出来。"
+    },
+    {
+      "word": "洋葱",
+      "pinyin": "yáng cōng",
+      "measure_word": "个",
+      "sentence": "这是一个洋葱。",
+      "sentence_pinyin": "Zhè shì yí gè yáng cōng.",
+      "english": "onion",
+      "tags": [
+        "vegetable",
+        "white"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon onion, flat illustration, big round eyes, purple brown papery skin, layers, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "洋葱圆圆的，一层一层的皮包裹着，切开会让人流泪。",
+      "where": "它长在地里，鳞茎埋在土中。",
+      "use": "可以做菜的配料，也可以炒着吃、煮汤。",
+      "fun_fact": "洋葱含有一种特殊物质，切它时会刺激眼睛流泪。"
+    },
+    {
+      "word": "大蒜",
+      "pinyin": "dà suàn",
+      "measure_word": "头",
+      "sentence": "这是一头大蒜。",
+      "sentence_pinyin": "Zhè shì yì tóu dà suàn.",
+      "english": "garlic",
+      "tags": [
+        "vegetable",
+        "white"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon garlic bulb, flat illustration, big round eyes, white cloves, papery skin, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "大蒜一头有好几瓣，外皮白白的，味道辣辣的。",
+      "where": "它长在地里，头是长在土里的。",
+      "use": "常用来做菜的调味料，也可以用来杀菌。",
+      "fun_fact": "大蒜有很浓的气味，吃完大蒜嘴巴会有味道。"
+    },
+    {
+      "word": "生姜",
+      "pinyin": "shēng jiāng",
+      "measure_word": "块",
+      "sentence": "这是一块生姜。",
+      "sentence_pinyin": "Zhè shì yí kuài shēng jiāng.",
+      "english": "ginger",
+      "tags": [
+        "vegetable",
+        "spice"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon ginger root, flat illustration, big round eyes, tan knobby shape, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "生姜黄黄的，形状弯弯曲曲，味道辣辣的。",
+      "where": "它长在地里，是植物的根茎。",
+      "use": "常用来去腥、调味，也可以煮姜汤。",
+      "fun_fact": "冬天喝一碗热姜汤，可以让身体暖暖的。"
+    },
+    {
+      "word": "蘑菇",
+      "pinyin": "mó gu",
+      "measure_word": "个",
+      "sentence": "这是一个蘑菇。",
+      "sentence_pinyin": "Zhè shì yí gè mó gu.",
+      "english": "mushroom",
+      "tags": [
+        "vegetable",
+        "fungi"
+      ],
+      "difficulty": 1,
+      "image_prompt": "A cute cartoon mushroom, flat illustration, big round eyes, red cap with white spots, white stem, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "蘑菇有圆圆的伞盖和细细的柄，像一把把小伞。",
+      "where": "它生长在潮湿的地方，如树林或蘑菇房里。",
+      "use": "可以炒着吃、煮汤、做火锅。",
+      "fun_fact": "蘑菇不是植物也不是动物，它属于真菌。"
+    },
+    {
+      "word": "青椒",
+      "pinyin": "qīng jiāo",
+      "measure_word": "个",
+      "sentence": "这是一个青椒。",
+      "sentence_pinyin": "Zhè shì yí gè qīng jiāo.",
+      "english": "green_pepper",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon green bell pepper, flat illustration, big round eyes, bright green, glossy, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "青椒绿绿的、方方的，表面光滑，肉厚厚的。",
+      "where": "它长在辣椒植株上。",
+      "use": "可以炒肉丝、做酿肉，也可以生吃。",
+      "fun_fact": "青椒不太辣，维生素C含量却很高。"
+    },
+    {
+      "word": "辣椒",
+      "pinyin": "là jiāo",
+      "measure_word": "个",
+      "sentence": "这是一个辣椒。",
+      "sentence_pinyin": "Zhè shì yí gè là jiāo.",
+      "english": "chili",
+      "tags": [
+        "vegetable",
+        "spice"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon red chili pepper, flat illustration, big round eyes, curved red shape, green stem, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "辣椒红红的、尖尖的，吃起来辣辣的。",
+      "where": "它长在辣椒植株上。",
+      "use": "可以做调味料，也可以炒菜。",
+      "fun_fact": "辣椒之所以会辣，是因为里面含有一种叫辣椒素的物质。"
+    },
+    {
+      "word": "芹菜",
+      "pinyin": "qín cài",
+      "measure_word": "棵",
+      "sentence": "这是一棵芹菜。",
+      "sentence_pinyin": "Zhè shì yì kē qín cài.",
+      "english": "celery",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon celery stalks, flat illustration, big round eyes, green ribbed stalks, leafy top, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "芹菜有长长的绿色茎和细细的叶子，吃起来脆脆的。",
+      "where": "它长在地里，喜欢湿润的环境。",
+      "use": "可以炒着吃、做饺子馅，也可以榨汁。",
+      "fun_fact": "芹菜的香味很特别，可以帮助食物变得更香。"
+    },
+    {
+      "word": "西兰花",
+      "pinyin": "xī lán huā",
+      "measure_word": "棵",
+      "sentence": "这是一棵西兰花。",
+      "sentence_pinyin": "Zhè shì yì kē xī lán huā.",
+      "english": "broccoli",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon broccoli, flat illustration, big round eyes, green tree-like florets, thick stalk, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "西兰花长得像一棵绿色的小树，有很多小花蕾。",
+      "where": "它长在地里，喜欢凉爽的气候。",
+      "use": "可以焯水凉拌、炒着吃，营养很丰富。",
+      "fun_fact": "西兰花和菜花是亲戚，都是十字花科的蔬菜。"
+    },
+    {
+      "word": "花菜",
+      "pinyin": "huā cài",
+      "measure_word": "棵",
+      "sentence": "这是一棵花菜。",
+      "sentence_pinyin": "Zhè shì yì kē huā cài.",
+      "english": "cauliflower",
+      "tags": [
+        "vegetable",
+        "white"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon cauliflower, flat illustration, big round eyes, white florets, green leaves, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "花菜白白的，花球紧密地挤在一起，像一朵大花。",
+      "where": "它长在地里，和西兰花是亲戚。",
+      "use": "可以炒着吃、煮汤、做干锅花菜。",
+      "fun_fact": "花菜也叫菜花，炒熟后软软的很好吃。"
+    },
+    {
+      "word": "生菜",
+      "pinyin": "shēng cài",
+      "measure_word": "棵",
+      "sentence": "这是一棵生菜。",
+      "sentence_pinyin": "Zhè shì yì kē shēng cài.",
+      "english": "lettuce",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon lettuce, flat illustration, big round eyes, green frilly leaves, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "生菜叶子绿绿的、脆脆的，叶子一层层散开。",
+      "where": "它长在地里，生长很快。",
+      "use": "常用来做沙拉，也可以包烤肉吃。",
+      "fun_fact": "生菜水分多、热量低，是减肥餐的好朋友。"
+    },
+    {
+      "word": "豆角",
+      "pinyin": "dòu jiǎo",
+      "measure_word": "根",
+      "sentence": "这是一根豆角。",
+      "sentence_pinyin": "Zhè shì yì gēn dòu jiǎo.",
+      "english": "green_bean",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon green beans, flat illustration, big round eyes, long green pods, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "豆角长长的、绿绿的，像一根小绳子。",
+      "where": "它长在豆角藤上，需要搭架子。",
+      "use": "可以炒着吃、炖着吃，也可以做成干豆角。",
+      "fun_fact": "豆角一定要煮熟吃，生吃可能会引起不舒服。"
+    },
+    {
+      "word": "冬瓜",
+      "pinyin": "dōng guā",
+      "measure_word": "个",
+      "sentence": "这是一个冬瓜。",
+      "sentence_pinyin": "Zhè shì yí gè dōng guā.",
+      "english": "winter_melon",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon winter melon, flat illustration, big round eyes, long green waxy skin, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "冬瓜大大的，外皮有白白的霜，像盖了一层雪。",
+      "where": "它长在地里，夏天成熟。",
+      "use": "可以煮汤、红烧，也可以做成冬瓜糖。",
+      "fun_fact": "冬瓜虽然名字里有\"冬\"，但它是在夏天成熟的。"
+    },
+    {
+      "word": "丝瓜",
+      "pinyin": "sī guā",
+      "measure_word": "根",
+      "sentence": "这是一根丝瓜。",
+      "sentence_pinyin": "Zhè shì yì gēn sī guā.",
+      "english": "loofah",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon loofah gourd, flat illustration, big round eyes, long green ridged shape, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "丝瓜长长的，表面有棱，成熟后里面会有网状纤维。",
+      "where": "它长在丝瓜藤上，需要搭架子。",
+      "use": "可以炒着吃、煮汤。",
+      "fun_fact": "老丝瓜里的纤维可以做洗碗用的丝瓜络。"
+    },
+    {
+      "word": "苦瓜",
+      "pinyin": "kǔ guā",
+      "measure_word": "根",
+      "sentence": "这是一根苦瓜。",
+      "sentence_pinyin": "Zhè shì yì gēn kǔ guā.",
+      "english": "bitter_melon",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon bitter melon, flat illustration, big round eyes, green warty bumpy skin, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "苦瓜表面疙疙瘩瘩的，味道有点苦苦的。",
+      "where": "它长在苦瓜藤上。",
+      "use": "可以炒着吃、煮汤，夏天吃苦瓜可以清热。",
+      "fun_fact": "苦瓜虽然苦，但很有营养，吃苦瓜对身体好。"
+    },
+    {
+      "word": "红薯",
+      "pinyin": "hóng shǔ",
+      "measure_word": "个",
+      "sentence": "这是一个红薯。",
+      "sentence_pinyin": "Zhè shì yí gè hóng shǔ.",
+      "english": "sweet_potato",
+      "tags": [
+        "vegetable",
+        "starch"
+      ],
+      "difficulty": 2,
+      "image_prompt": "A cute cartoon sweet potato, flat illustration, big round eyes, orange brown skin, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "红薯也叫地瓜，外皮红褐色，里面黄黄的、甜甜的。",
+      "where": "它长在地里，块根埋在土中。",
+      "use": "可以烤着吃、煮粥、蒸着吃。",
+      "fun_fact": "冬天街上烤红薯的香味，很多人都喜欢闻。"
+    },
+    {
+      "word": "白萝卜",
+      "pinyin": "bái luó bo",
+      "measure_word": "根",
+      "sentence": "这是一根白萝卜。",
+      "sentence_pinyin": "Zhè shì yì gēn bái luó bo.",
+      "english": "daikon",
+      "tags": [
+        "vegetable",
+        "white"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon white daikon radish, flat illustration, big round eyes, long white root, green leafy top, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "白萝卜长长的、白白的，一头粗一头细。",
+      "where": "它长在地里，是根类蔬菜。",
+      "use": "可以生吃、炖汤、炒菜。",
+      "fun_fact": "冬天常说\"冬吃萝卜夏吃姜，不用医生开药方\"。"
+    },
+    {
+      "word": "莲藕",
+      "pinyin": "lián ǒu",
+      "measure_word": "节",
+      "sentence": "这是一节莲藕。",
+      "sentence_pinyin": "Zhè shì yì jié lián ǒu.",
+      "english": "lotus_root",
+      "tags": [
+        "vegetable",
+        "white"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon lotus root slice, flat illustration, big round eyes, beige root with holes, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "莲藕是荷花的地下茎，切开后有很多小孔。",
+      "where": "它长在水塘的淤泥里。",
+      "use": "可以凉拌、炒菜、炖汤。",
+      "fun_fact": "莲藕的小孔里会储存空气，帮助它在水中呼吸。"
+    },
+    {
+      "word": "竹笋",
+      "pinyin": "zhú sǔn",
+      "measure_word": "根",
+      "sentence": "这是一根竹笋。",
+      "sentence_pinyin": "Zhè shì yì gēn zhú sǔn.",
+      "english": "bamboo_shoot",
+      "tags": [
+        "vegetable",
+        "white"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon bamboo shoot, flat illustration, big round eyes, pale green cone shape, layered skin, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "竹笋尖尖的，外面包着一层层的笋壳。",
+      "where": "它长在竹子的根部，春天冒出土。",
+      "use": "可以炒肉、炖汤、做成笋干。",
+      "fun_fact": "春雨过后，竹笋会一节一节快速地长高。"
+    },
+    {
+      "word": "芦笋",
+      "pinyin": "lú sǔn",
+      "measure_word": "根",
+      "sentence": "这是一根芦笋。",
+      "sentence_pinyin": "Zhè shì yì gēn lú sǔn.",
+      "english": "asparagus",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon asparagus spears, flat illustration, big round eyes, green stalks with purple tips, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "芦笋细细长长的，顶部像一个小小的宝塔。",
+      "where": "它长在地里，是芦笋植株的嫩芽。",
+      "use": "可以煎、烤、炒，是很有营养的蔬菜。",
+      "fun_fact": "芦笋生长在春天，出土后要及时采摘，不然会变老。"
+    },
+    {
+      "word": "秋葵",
+      "pinyin": "qiū kuí",
+      "measure_word": "根",
+      "sentence": "这是一根秋葵。",
+      "sentence_pinyin": "Zhè shì yì gēn qiū kuí.",
+      "english": "okra",
+      "tags": [
+        "vegetable",
+        "green"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon okra, flat illustration, big round eyes, green ridged pod, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "秋葵绿绿的，表面有细小的绒毛，横切面像一颗小星星。",
+      "where": "它长在秋葵植株上。",
+      "use": "可以焯水凉拌、炒着吃。",
+      "fun_fact": "秋葵切开后会有黏黏的汁液，这是它的特色。"
+    },
+    {
+      "word": "荸荠",
+      "pinyin": "bí qí",
+      "measure_word": "个",
+      "sentence": "这是一个荸荠。",
+      "sentence_pinyin": "Zhè shì yí gè bí qí.",
+      "english": "water_chestnut",
+      "tags": [
+        "vegetable",
+        "white"
+      ],
+      "difficulty": 3,
+      "image_prompt": "A cute cartoon water chestnut, flat illustration, big round eyes, brown round tuber, white background, children's book style, vector art, minimalist, no text, no watermark",
+      "intro": "荸荠也叫马蹄，外皮紫黑色，里面的果肉白白的、脆脆的。",
+      "where": "它长在水田里，是植物的球茎。",
+      "use": "可以生吃，也可以炒菜、煮汤。",
+      "fun_fact": "荸荠口感清甜爽脆，很多小朋友都喜欢吃。"
+    }
   ]
 }

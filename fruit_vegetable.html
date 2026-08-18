@@ -50,6 +50,33 @@
         .btn-measure { background: #FFD93D; color: #333; }
         .btn-japanese { background: #E91E63; }
         .btn-english { background: #2196F3; }
+        .btn-encyclopedia { background: #9C27B0; }
+        .encyclopedia-card {
+            background: #fff8f0;
+            border-radius: 20px;
+            padding: 18px 20px;
+            margin: 15px auto 10px;
+            max-width: 420px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .encyclopedia-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #FF8C42;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .encyclopedia-item {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .encyclopedia-item strong {
+            color: #333;
+            font-weight: 600;
+        }
         .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
         .nav-btn { background: #A5D6A7; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .nav-btn:active { transform: scale(0.95); }
@@ -115,6 +142,14 @@
             }
         }
 
+        function stopAllAudio() {
+            document.querySelectorAll('audio').forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+        }
+
         function playAudio(path) {
             return new Promise((resolve, reject) => {
                 const audio = new Audio(XiaoDou.resolvePath(path));
@@ -125,6 +160,7 @@
         }
 
         function speakWithFallback(text, mp3Path, lang = 'zh', rate = 0.8) {
+            stopAllAudio();
             if (mp3Path) {
                 playAudio(mp3Path).catch(() => XiaoDou.speak(text, lang, rate));
             } else {
@@ -163,9 +199,9 @@
                 const hasJapanese = !!item.japanese;
                 card.innerHTML = `
                     <div class="card-image-wrapper">
-                        <button class="side-arrow left" id="prevArrow" onclick="prevItem()">❮</button>
+                        <button class="side-arrow left" onclick="event.stopPropagation(); prevItem();">❮</button>
                         <img class="item-image" src="${XiaoDou.resolvePath(`assets/images/fruits_vegetables/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
-                        <button class="side-arrow right" id="nextArrow" onclick="nextItem()">❯</button>
+                        <button class="side-arrow right" onclick="event.stopPropagation(); nextItem();">❯</button>
                     </div>
                     <div class="item-word">${XiaoDou.escapeHtml(item.word)}</div>
                     <div class="item-pinyin">${XiaoDou.escapeHtml(item.pinyin)}</div>
@@ -177,6 +213,14 @@
                         <button class="btn btn-measure" onclick="playMeasure(${index})">📏 量词</button>
                         ${hasJapanese ? `<button class="btn btn-japanese" onclick="playJapaneseWord(${index})">🇯🇵 日语</button>` : ''}
                         <button class="btn btn-english" onclick="playEnglishWord(${index})">🇺🇸 英语</button>
+                        <button class="btn btn-encyclopedia" onclick="playEncyclopedia(${index})">📖 百科</button>
+                    </div>
+                    <div class="encyclopedia-card" id="encyclopedia-${index}" style="display:none;">
+                        <div class="encyclopedia-title">📖 ${XiaoDou.escapeHtml(item.word)} 小百科</div>
+                        <div class="encyclopedia-item"><strong>简介：</strong>${XiaoDou.escapeHtml(item.intro || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>在哪里：</strong>${XiaoDou.escapeHtml(item.where || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>有什么用：</strong>${XiaoDou.escapeHtml(item.use || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>小知识：</strong>${XiaoDou.escapeHtml(item.fun_fact || '待补充')}</div>
                     </div>`;
                 container.appendChild(card);
 
@@ -188,8 +232,9 @@
         }
 
         function updateArrowState() {
-            const prevArrow = document.getElementById('prevArrow');
-            const nextArrow = document.getElementById('nextArrow');
+            const activeCard = document.querySelector('.item-card.active');
+            const prevArrow = activeCard ? activeCard.querySelector('.side-arrow.left') : null;
+            const nextArrow = activeCard ? activeCard.querySelector('.side-arrow.right') : null;
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             if (prevArrow) prevArrow.disabled = currentIndex === 0;
@@ -201,21 +246,23 @@
         function playWord(index) {
             const item = filteredItems[index];
             const mp3Path = `assets/audio/fruit_vegetable/${item.file}_word.mp3`;
-            speakWithFallback(`${item.word}，${item.pinyin}`, mp3Path, 'zh');
+            // 只读词语本身，避免 TTS 把拼音读成英文
+            speakWithFallback(item.word, mp3Path, 'zh');
             showMascot(`我们来看看：${item.word}，${item.pinyin}。`);
         }
 
         function playSentence(index) {
             const item = filteredItems[index];
             const mp3Path = `assets/audio/fruit_vegetable/sentences/${item.file}_sentence.mp3`;
-            speakWithFallback(item.sentence || item.sentence_pinyin, mp3Path, 'zh');
-            showMascot(item.sentence || item.sentence_pinyin || '');
+            const text = item.sentence || '';
+            speakWithFallback(text, mp3Path, 'zh');
+            showMascot(text);
         }
 
         function playMeasure(index) {
             const item = filteredItems[index];
             const text = `${item.word}的量词是${item.measure}，一${item.measure}${item.word}。`;
-            XiaoDou.speak(text, 'zh');
+            speakWithFallback(text, null, 'zh');
             showMascot(text);
         }
 
@@ -229,8 +276,27 @@
 
         function playEnglishWord(index) {
             const item = filteredItems[index];
-            XiaoDou.speak(item.english, 'en', 0.85);
+            speakWithFallback(item.english, null, 'en', 0.85);
             showMascot(`英语：${item.word} → ${item.english}`);
+        }
+
+        function playEncyclopedia(index) {
+            const item = filteredItems[index];
+            if (!item.intro) {
+                showMascot(`${item.word} 的百科内容还在准备中，先听听别的吧～`);
+                return;
+            }
+            const text = `${item.word}。${item.intro}${item.where}${item.use}${item.fun_fact}`;
+            speakWithFallback(text, null, 'zh', 0.8);
+            showMascot(`${item.word}的小百科：${item.intro}`);
+
+            const card = document.getElementById(`encyclopedia-${index}`);
+            if (card) {
+                document.querySelectorAll('.encyclopedia-card').forEach(el => {
+                    if (el.id !== `encyclopedia-${index}`) el.style.display = 'none';
+                });
+                card.style.display = card.style.display === 'none' ? 'block' : 'none';
+            }
         }
 
         function switchItem(direction) {
