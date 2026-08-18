@@ -614,7 +614,7 @@
                 showMascot(`${item.word} 的百科内容还在准备中，先听听别的吧～`);
                 return;
             }
-            const text = `${item.intro}${item.where}${item.use}${item.fun_fact}`;
+            const text = `${item.word}。${item.intro}${item.where}${item.use}${item.fun_fact}`;
             XiaoDou.speak(text, 'zh', 0.8);
             showMascot(`${item.word}的小百科：${item.intro}`);
 
