@@ -119,7 +119,7 @@
 
         function playWord(index) {
             const item = filteredItems[index];
-            XiaoDou.playAudio(`assets/audio/seasons_weather/${item.file}_word.mp3`, `${item.word}，${item.pinyin}`, 'zh');
+            XiaoDou.playAudio(`assets/audio/seasons_weather/${item.file}_word.mp3`, item.word, 'zh');
             updateMascot(`正在朗读：${item.word}`);
         }
 

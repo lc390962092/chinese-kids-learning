@@ -118,7 +118,7 @@
 
         function playWord(file, word, pinyin) {
             const mp3Path = `assets/audio/action_verbs/${file}_word.mp3`;
-            XiaoDou.playAudio(mp3Path, `${word}，${pinyin}`, 'zh');
+            XiaoDou.playAudio(mp3Path, word, 'zh');
         }
 
         function renderAction(index) {

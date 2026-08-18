@@ -556,7 +556,7 @@
         function playToneExample(tone, exampleIndex) {
             const item = pinyinData.tones.find(t => t.tone === tone);
             const ex = item.examples[exampleIndex];
-            XiaoDou.speak(`${ex.word}，${ex.pinyin}`, 'zh');
+            XiaoDou.speak(ex.word, 'zh');
             showMascot(`${ex.word}，${ex.pinyin}。`);
         }
 

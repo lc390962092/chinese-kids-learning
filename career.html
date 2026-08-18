@@ -163,7 +163,7 @@
 
         function playWord(index) {
             const item = items[index];
-            XiaoDou.playAudio(`assets/audio/career/${item.file}_word.mp3`, `${item.word}，${item.pinyin}`, 'zh');
+            XiaoDou.playAudio(`assets/audio/career/${item.file}_word.mp3`, item.word, 'zh');
             showMascot('这是' + item.word + '，' + item.pinyin + '。');
         }
 

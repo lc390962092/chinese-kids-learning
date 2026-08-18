@@ -85,7 +85,6 @@
         <a href="index.html" class="back-home">⬅️ 返回首页</a>
     </div>
     <script src="js/common.js"></script>
-    <script src="js/common.js"></script>
     <script>
         let items = [];
         let currentIndex = 0;
@@ -111,7 +110,8 @@
 
         function playWord(index) {
             const item = items[index];
-            XiaoDou.speak(item.word + '，' + item.pinyin, 'zh');
+            XiaoDou.stopAllAudio ? XiaoDou.stopAllAudio() : (window.speechSynthesis && window.speechSynthesis.cancel());
+            XiaoDou.speak(item.word, 'zh');
             showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
         }
 

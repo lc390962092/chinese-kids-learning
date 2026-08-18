@@ -103,7 +103,7 @@
 
         function playWord(index){
             const item = items[index];
-            XiaoDou.playAudio(`assets/audio/shapes/${item.english}_word.mp3`, item.word + '，' + item.pinyin, 'zh');
+            XiaoDou.playAudio(`assets/audio/shapes/${item.english}_word.mp3`, item.word, 'zh');
             showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
         }
 

@@ -109,7 +109,7 @@
 
         function playWord(index){
             const item = items[index];
-            playAudio(`assets/audio/colors/${item.english}_word.mp3`, item.word + '，' + item.pinyin, 'zh');
+            playAudio(`assets/audio/colors/${item.english}_word.mp3`, item.word, 'zh');
             showMascot('我们来看看：' + item.word + '，' + item.pinyin + '。');
         }
 

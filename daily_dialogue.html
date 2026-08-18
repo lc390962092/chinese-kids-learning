@@ -192,7 +192,7 @@
         function playWord(index) {
             const item = filteredItems[index];
             const mp3Path = `assets/audio/daily_dialogue/${item.file}_word.mp3`;
-            XiaoDou.playAudio(mp3Path, `${item.word}，${item.pinyin}`, 'zh');
+            XiaoDou.playAudio(mp3Path, item.word, 'zh');
             showMascot(`我们来看看：${item.word}，${item.pinyin}。`);
         }
 
