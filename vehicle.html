@@ -608,20 +608,22 @@
         }
 
         function playEncyclopedia(index) {
+            stopAllAudio();
             const item = filteredVehicles[index];
             if (!item.intro) {
                 showMascot(`${item.word} 的百科内容还在准备中，先听听别的吧～`);
                 return;
             }
             const text = `${item.intro}${item.where}${item.use}${item.fun_fact}`;
-            const mp3Path = `assets/audio/vehicles/encyclopedia/${item.file}_encyclopedia.mp3`;
-            XiaoDou.playAudio(XiaoDou.resolvePath(mp3Path), text, 'zh').catch(() => {
-                XiaoDou.speak(text, 'zh', 0.8);
-            });
+            XiaoDou.speak(text, 'zh', 0.8);
             showMascot(`${item.word}的小百科：${item.intro}`);
 
             const card = document.getElementById(`encyclopedia-${index}`);
             if (card) {
+                // 切换当前百科卡片显示；同时隐藏其他卡片，避免多个百科卡片叠在一起
+                document.querySelectorAll('.encyclopedia-card').forEach(el => {
+                    if (el.id !== `encyclopedia-${index}`) el.style.display = 'none';
+                });
                 card.style.display = card.style.display === 'none' ? 'block' : 'none';
             }
         }
