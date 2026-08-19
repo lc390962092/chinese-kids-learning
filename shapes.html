@@ -14,7 +14,7 @@
         .mascot-bubble { display: inline-block; background: white; border-radius: 25px; padding: 12px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: #555; font-size: 16px; max-width: 80%; position: relative; margin-bottom: 15px; }
         .mascot-bubble::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-width: 10px 10px 0; border-style: solid; border-color: white transparent transparent transparent; }
         .mascot-avatar { width: 60px; height: 60px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); touch-action: pan-y; }; position: relative; }
+        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); touch-action: pan-y; position: relative; }
         .card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .card.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -52,7 +52,9 @@
         .start-btn:active { transform: scale(0.95); }
         .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
         .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
-        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }                .stage-arrow {
+        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }
+
+        .stage-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
