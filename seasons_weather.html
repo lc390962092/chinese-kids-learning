@@ -47,6 +47,11 @@
         .btn:active { transform: scale(0.95); }
         .btn-word { background: #1976D2; }
         .btn-sentence { background: #43A047; }
+        .btn-japanese { background: #FF7043; }
+        .btn-english { background: #3F51B5; }
+        .btn-encyclopedia { background: #9C27B0; }
+        .encyclopedia-box { background: #F3E5F5; border-radius: 18px; padding: 15px 18px; margin: 12px auto; max-width: 92%; text-align: left; font-size: 16px; line-height: 1.7; color: #555; display: none; }
+        .encyclopedia-box.show { display: block; animation: fadeIn 0.4s ease; }
         .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
         .nav-btn { background: #90CAF9; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .nav-btn:active { transform: scale(0.95); }
@@ -117,14 +122,54 @@
             XiaoDou.speak(text, lang);
         }
 
+        const JAPANESE_NAMES = {
+            'spring': { ja: '春', reading: 'はる' },
+            'summer': { ja: '夏', reading: 'なつ' },
+            'autumn': { ja: '秋', reading: 'あき' },
+            'winter': { ja: '冬', reading: 'ふゆ' },
+            'sunny': { ja: '晴れ', reading: 'はれ' },
+            'cloudy': { ja: '曇り', reading: 'くもり' },
+            'partly_cloudy': { ja: '曇り時々晴れ', reading: 'くもりときどきはれ' },
+            'rainy': { ja: '雨', reading: 'あめ' },
+            'snowy': { ja: '雪', reading: 'ゆき' },
+            'windy': { ja: '風が強い', reading: 'かぜがつよい' },
+            'thunder': { ja: '雷', reading: 'かみなり' },
+            'lightning': { ja: '稲妻', reading: 'いなずま' },
+            'rainbow': { ja: '虹', reading: 'にじ' },
+            'fog': { ja: '霧', reading: 'きり' },
+            'frost': { ja: '霜', reading: 'しも' },
+            'hail': { ja: '雹', reading: 'ひょう' }
+        };
+
+        const ENCYCLOPEDIA_TEXT = {
+            'spring': '春天是万物复苏的季节，气温慢慢升高，植物开始发芽开花。',
+            'summer': '夏天是一年中最热的季节，白天长夜晚短，很多水果都成熟了。',
+            'autumn': '秋天的天气变凉爽，树叶会变黄变红，是收获的季节。',
+            'winter': '冬天是一年中最冷的季节，北方会下雪，小动物会冬眠。',
+            'sunny': '晴天时阳光充足，太阳能帮助人体合成维生素D，让人心情变好。',
+            'cloudy': '阴天时太阳被云层遮住，光线柔和，不容易晒伤。',
+            'partly_cloudy': '多云天气时，天空有一部分被云遮住，太阳会时隐时现。',
+            'rainy': '下雨天，空气中的水汽凝结成雨滴落下来，滋润大地。',
+            'snowy': '下雪天，水蒸气在空中直接变成冰晶飘落，会形成白白的雪花。',
+            'windy': '刮风天，空气流动形成风，风力太强的时候叫大风或台风。',
+            'thunder': '打雷是云层之间放电时产生的巨大声响，通常伴随闪电。',
+            'lightning': '闪电是云层放电时发出的强光，速度比声音快很多。',
+            'rainbow': '彩虹是阳光穿过雨滴时发生折射和反射形成的七彩光带。',
+            'fog': '雾是空气中很多小水滴聚集在近地面，让能见度变低的天气现象。',
+            'frost': '霜是水蒸气在低温物体表面直接凝华成的小冰晶，像一层白糖。',
+            'hail': '冰雹是强对流天气中形成的冰块，从云中掉下来时会蹦蹦跳跳。'
+        };
+
         function playWord(index) {
             const item = filteredItems[index];
+            stopSpeech();
             XiaoDou.playAudio(`assets/audio/seasons_weather/${item.file}_word.mp3`, item.word, 'zh');
             updateMascot(`正在朗读：${item.word}`);
         }
 
         function playSentence(index) {
             const item = filteredItems[index];
+            stopSpeech();
             XiaoDou.playAudio(`assets/audio/seasons_weather/sentences/${item.file}_sentence.mp3`, item.sentence, 'zh');
             updateMascot(`正在朗读句子：${item.sentence}`);
         }
@@ -132,8 +177,27 @@
         function playEnglish(index) {
             const item = filteredItems[index];
             const english = item.english || (item.file || '').replace(/_/g, ' ');
+            stopSpeech();
             XiaoDou.speak(english, 'en', 0.85);
             updateMascot(`English: ${english}`);
+        }
+
+        function playJapanese(index) {
+            const item = filteredItems[index];
+            const jp = JAPANESE_NAMES[item.english] || { ja: item.word, reading: '' };
+            stopSpeech();
+            XiaoDou.speak(jp.ja, 'ja', 0.85);
+            updateMascot(`日语：${jp.ja}（${jp.reading}）`);
+        }
+
+        function toggleEncyclopedia(index) {
+            const card = document.getElementById(`card-${index}`);
+            const box = card.querySelector('.encyclopedia-box');
+            box.classList.toggle('show');
+            if (box.classList.contains('show')) {
+                stopSpeech();
+                XiaoDou.speak(box.textContent, 'zh');
+            }
         }
 
         function updateMascot(text) {
@@ -157,9 +221,15 @@
                     <div class="item-pinyin">${XiaoDou.escapeHtml(item.pinyin)}</div>
                     <div class="item-english">${XiaoDou.escapeHtml(item.english)}</div>
                     <div class="item-sentence" onclick="playSentence(${index})">${XiaoDou.escapeHtml(item.sentence)}</div>
+                    <div class="encyclopedia-box" id="ency-${index}">
+                        <strong>📚 小知识：</strong>${XiaoDou.escapeHtml(ENCYCLOPEDIA_TEXT[item.english] || '暂无百科内容')}
+                    </div>
                     <div class="btn-group">
                         <button class="btn btn-word" onclick="playWord(${index})">🔊 中文</button>
                         <button class="btn btn-sentence" onclick="playSentence(${index})">📖 句子</button>
+                        <button class="btn btn-english" onclick="playEnglish(${index})">🇺🇸 英语</button>
+                        <button class="btn btn-japanese" onclick="playJapanese(${index})">🇯🇵 日语</button>
+                        <button class="btn btn-encyclopedia" onclick="toggleEncyclopedia(${index})">📚 百科</button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -202,6 +272,8 @@
             updateProgress();
             updateNavButtons();
             updateMascot(`现在学习：${filteredItems[currentIndex].word}`);
+            // 翻页自动朗读中文词语
+            setTimeout(() => playWord(currentIndex), 350);
         }
 
         function nextItem() {
