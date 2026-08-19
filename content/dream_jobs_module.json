@@ -19,7 +19,11 @@
       "japanese": "医者",
       "japanese_reading": "いしゃ",
       "english": "doctor",
-      "file": "doctor"
+      "file": "doctor",
+      "intro": "医生是专门帮助大家看病和恢复健康的人。",
+      "where": "医生在医院、诊所里工作。",
+      "do": "医生给病人检查身体、开药方、做手术。",
+      "fun_fact": "医生看病时经常用一个叫“听诊器”的小工具，可以听见我们心跳的声音哦！"
     },
     {
       "word": "消防员",
@@ -36,7 +40,11 @@
       "japanese": "消防士",
       "japanese_reading": "しょうぼうし",
       "english": "firefighter",
-      "file": "firefighter"
+      "file": "firefighter",
+      "intro": "消防员是勇敢的英雄，专门扑灭大火和救人。",
+      "where": "消防员在消防局工作，随时待命出发。",
+      "do": "消防员开着消防车去灭火，还会救出被困的人和动物。",
+      "fun_fact": "消防员的衣服和头盔很厚很耐热，可以保护他们不被火烧伤。"
     },
     {
       "word": "老师",
@@ -53,7 +61,11 @@
       "japanese": "先生",
       "japanese_reading": "せんせい",
       "english": "teacher",
-      "file": "teacher"
+      "file": "teacher",
+      "intro": "老师是教我们知识和本领的人。",
+      "where": "老师在学校里、教室里工作。",
+      "do": "老师教小朋友读书、写字、算数，还回答大家的问题。",
+      "fun_fact": "世界上很多国家都有老师这个职业，只是叫法不一样，比如日本叫“先生”。"
     },
     {
       "word": "警察",
@@ -70,7 +82,11 @@
       "japanese": "警察",
       "japanese_reading": "けいさつ",
       "english": "police officer",
-      "file": "police_officer"
+      "file": "police_officer",
+      "intro": "警察是保护我们安全、维护秩序的人。",
+      "where": "警察在警察局、马路和社区里工作。",
+      "do": "警察抓坏人、指挥交通、帮助迷路的小朋友找回家人。",
+      "fun_fact": "警车上常常有闪亮的警灯和响亮的警笛，用来提醒路上的车让行。"
     },
     {
       "word": "宇航员",
@@ -87,7 +103,11 @@
       "japanese": "宇宙飛行士",
       "japanese_reading": "うちゅうひこうし",
       "english": "astronaut",
-      "file": "astronaut"
+      "file": "astronaut",
+      "intro": "宇航员是乘坐飞船去太空探索的人。",
+      "where": "宇航员在太空、宇宙飞船和空间站上工作。",
+      "do": "宇航员观察地球、做科学实验，还要修理太空设备。",
+      "fun_fact": "在太空中没有重力，宇航员睡觉要钻进睡袋里，不然会飘起来！"
     },
     {
       "word": "厨师",
@@ -104,7 +124,11 @@
       "japanese": "料理人",
       "japanese_reading": "りょうりにん",
       "english": "chef",
-      "file": "chef"
+      "file": "chef",
+      "intro": "厨师是会做出各种美味食物的人。",
+      "where": "厨师在餐厅、酒店和学校的厨房里工作。",
+      "do": "厨师洗菜、切菜、炒菜、做蛋糕和甜点给大家吃。",
+      "fun_fact": "厨师戴的高高的白帽子叫“厨师帽”，帽子越高代表厨艺越厉害呢！"
     },
     {
       "word": "农民",
@@ -121,7 +145,11 @@
       "japanese": "農民",
       "japanese_reading": "のうみん",
       "english": "farmer",
-      "file": "farmer"
+      "file": "farmer",
+      "intro": "农民是种地、养动物，给大家提供食物的人。",
+      "where": "农民在农田、果园和养殖场里工作。",
+      "do": "农民种大米、蔬菜和水果，还养鸡、鸭、猪、牛。",
+      "fun_fact": "农民伯伯会根据季节来种地，春天播种，秋天收获。"
     },
     {
       "word": "司机",
@@ -134,11 +162,15 @@
         "乘客",
         "安全"
       ],
-      "emoji": "👨‍✈️",
+      "emoji": "🚕",
       "japanese": "運転手",
       "japanese_reading": "うんてんしゅ",
       "english": "driver",
-      "file": "driver"
+      "file": "driver",
+      "intro": "司机是驾驶车辆把大家或货物送到目的地的人。",
+      "where": "司机在公交车、出租车、卡车和火车上工作。",
+      "do": "司机开车、遵守交通规则，保证乘客安全到达。",
+      "fun_fact": "开公交车前，司机要检查车子，还要熟悉路线，真辛苦！"
     },
     {
       "word": "邮递员",
@@ -151,11 +183,15 @@
         "自行车",
         "远方"
       ],
-      "emoji": "📮",
+      "emoji": "🧑‍✉️",
       "japanese": "郵便配達員",
       "japanese_reading": "ゆうびんはいたついん",
       "english": "postman",
-      "file": "postman"
+      "file": "postman",
+      "intro": "邮递员是把信件和包裹送到千家万户的人。",
+      "where": "邮递员在邮局和城市的街道、小区里工作。",
+      "do": "邮递员分拣信件、骑着车或开着车送信和包裹。",
+      "fun_fact": "世界上有些地方用鸽子送信，但我们的邮递员更可靠哦！"
     },
     {
       "word": "画家",
@@ -172,7 +208,11 @@
       "japanese": "画家",
       "japanese_reading": "がか",
       "english": "painter",
-      "file": "painter"
+      "file": "painter",
+      "intro": "画家是用画笔创作美丽图画的人。",
+      "where": "画家在画室、美术馆和大自然里工作。",
+      "do": "画家画人物、风景、动物，把看到的美好事物留在纸上。",
+      "fun_fact": "中国古代有位著名画家叫齐白石，他画的虾栩栩如生。"
     },
     {
       "word": "科学家",
@@ -189,7 +229,11 @@
       "japanese": "科学者",
       "japanese_reading": "かがくしゃ",
       "english": "scientist",
-      "file": "scientist"
+      "file": "scientist",
+      "intro": "科学家是研究世界、发现新知识的人。",
+      "where": "科学家在实验室、研究所和大学里工作。",
+      "do": "科学家做实验、观察现象、发明新东西。",
+      "fun_fact": "科学家要用显微镜才能看见很多细小的东西，比如细胞和细菌。"
     },
     {
       "word": "护士",
@@ -206,7 +250,11 @@
       "japanese": "看護師",
       "japanese_reading": "かんごし",
       "english": "nurse",
-      "file": "nurse"
+      "file": "nurse",
+      "intro": "护士是在医院照顾病人的人。",
+      "where": "护士在医院、诊所和养老院里工作。",
+      "do": "护士帮病人量体温、打针、发药，陪伴病人。",
+      "fun_fact": "护士的帽子像小燕子的翅膀，代表着温柔和爱心。"
     },
     {
       "word": "工程师",
@@ -223,7 +271,11 @@
       "japanese": "技師",
       "japanese_reading": "ぎし",
       "english": "engineer",
-      "file": "engineer"
+      "file": "engineer",
+      "intro": "工程师是设计和修理机器、建造东西的人。",
+      "where": "工程师在工厂、建筑工地和设计公司里工作。",
+      "do": "工程师画图纸、设计产品、解决技术问题。",
+      "fun_fact": "我们用的手机、电脑和玩具，很多都是由工程师设计出来的。"
     },
     {
       "word": "建筑师",
@@ -240,7 +292,11 @@
       "japanese": "建築家",
       "japanese_reading": "けんちくか",
       "english": "architect",
-      "file": "architect"
+      "file": "architect",
+      "intro": "建筑师是设计房子和建筑物的人。",
+      "where": "建筑师在设计院、建筑工地和办公室里工作。",
+      "do": "建筑师画设计图，决定房子长什么样、怎么建造。",
+      "fun_fact": "建筑师要先画很多草图，才能让工人把漂亮的大楼盖起来。"
     },
     {
       "word": "运动员",
@@ -257,7 +313,11 @@
       "japanese": "運動選手",
       "japanese_reading": "うんどうせんしゅ",
       "english": "athlete",
-      "file": "athlete"
+      "file": "athlete",
+      "intro": "运动员是练习体育、参加比赛的人。",
+      "where": "运动员在体育场、游泳馆和健身房里训练。",
+      "do": "运动员跑步、游泳、打球，努力刷新最好成绩。",
+      "fun_fact": "奥运会是全世界运动员参加的大比赛，冠军会获得金牌。"
     },
     {
       "word": "兽医",
@@ -270,11 +330,15 @@
         "小狗",
         "健康"
       ],
-      "emoji": "🐕",
+      "emoji": "🧑‍⚕️",
       "japanese": "獣医",
       "japanese_reading": "じゅうい",
       "english": "veterinarian",
-      "file": "veterinarian"
+      "file": "veterinarian",
+      "intro": "兽医是给动物看病、保护动物健康的医生。",
+      "where": "兽医在宠物医院、动物园和农场里工作。",
+      "do": "兽医给小猫、小狗、小马看病，帮它们打针吃药。",
+      "fun_fact": "有些兽医还会给大象、老虎这样的大动物看病，是不是很厉害？"
     },
     {
       "word": "飞行员",
@@ -287,11 +351,15 @@
         "乘客",
         "旅行"
       ],
-      "emoji": "✈️",
+      "emoji": "🧑‍✈️",
       "japanese": "パイロット",
       "japanese_reading": "ぱいろっと",
       "english": "pilot",
-      "file": "pilot"
+      "file": "pilot",
+      "intro": "飞行员是驾驶飞机的人。",
+      "where": "飞行员在机场和飞机的驾驶舱里工作。",
+      "do": "飞行员驾驶飞机，把乘客安全送到世界各地。",
+      "fun_fact": "飞行员起飞和降落时要和塔台通话，确认跑道安全。"
     },
     {
       "word": "摄影师",
@@ -304,11 +372,15 @@
         "回忆",
         "美好"
       ],
-      "emoji": "📷",
+      "emoji": "🧑‍🎨",
       "japanese": "カメラマン",
       "japanese_reading": "かめらまん",
       "english": "photographer",
-      "file": "photographer"
+      "file": "photographer",
+      "intro": "摄影师是用相机记录美好瞬间的人。",
+      "where": "摄影师在影楼、户外和新闻现场工作。",
+      "do": "摄影师拍照、修图，把美丽的画面留下来。",
+      "fun_fact": "世界上第一张照片拍的是窗外的风景，那时候还没有彩色照片呢！"
     },
     {
       "word": "舞蹈家",
@@ -325,7 +397,11 @@
       "japanese": "ダンサー",
       "japanese_reading": "だんさー",
       "english": "dancer",
-      "file": "dancer"
+      "file": "dancer",
+      "intro": "舞蹈家是用优美的身体动作表演艺术的人。",
+      "where": "舞蹈家在舞台上、排练厅里工作。",
+      "do": "舞蹈家练习跳舞，为观众表演精彩节目。",
+      "fun_fact": "芭蕾舞演员跳舞时要穿特制的舞鞋，脚尖也能立起来旋转。"
     },
     {
       "word": "图书管理员",
@@ -338,11 +414,15 @@
         "故事",
         "整理"
       ],
-      "emoji": "📚",
+      "emoji": "🧑‍🏫",
       "japanese": "司書",
       "japanese_reading": "ししょ",
       "english": "librarian",
-      "file": "librarian"
+      "file": "librarian",
+      "intro": "图书管理员是管理和整理图书馆书籍的人。",
+      "where": "图书管理员在学校图书馆、公共图书馆里工作。",
+      "do": "图书管理员整理书架、办理借书手续、推荐好书。",
+      "fun_fact": "图书馆里的书像一个小小的知识海洋，管理员就是这片海洋的向导。"
     }
   ]
 }

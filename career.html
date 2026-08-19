@@ -31,6 +31,11 @@
         .btn:active { transform: scale(0.95); }
         .btn-primary { background: #FB8C00; }
         .btn-secondary { background: #4ECDC4; }
+        .btn-encyclopedia { background: #9C27B0; }
+        .encyclopedia-card { background: #f9f5ff; border-radius: 20px; padding: 18px 20px; margin: 15px auto 10px; max-width: 420px; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .encyclopedia-title { font-size: 18px; font-weight: bold; color: #9C27B0; margin-bottom: 12px; text-align: center; }
+        .encyclopedia-item { font-size: 15px; color: #555; line-height: 1.6; margin-bottom: 8px; }
+        .encyclopedia-item strong { color: #333; font-weight: 600; }
         .hint { color: #999; font-size: 13px; margin-top: 15px; text-align: center; }
         .swipe-hint { color: #bbb; font-size: 12px; margin-top: 8px; text-align: center; }
         .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
@@ -157,9 +162,17 @@
                     <div class="card-english">${XiaoDou.escapeHtml(item.english)}</div>
                     <div class="card-text">${XiaoDou.escapeHtml(item.summary)}</div>
                     <div class="keywords">${keywordsHtml}</div>
+                    <div class="encyclopedia-card" id="encyclopedia-${index}" style="display:none;">
+                        <div class="encyclopedia-title">📖 ${XiaoDou.escapeHtml(item.word)} 小百科</div>
+                        <div class="encyclopedia-item"><strong>简介：</strong>${XiaoDou.escapeHtml(item.intro || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>在哪里：</strong>${XiaoDou.escapeHtml(item.where || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>做什么：</strong>${XiaoDou.escapeHtml(item.do || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>小知识：</strong>${XiaoDou.escapeHtml(item.fun_fact || '待补充')}</div>
+                    </div>
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="playWord(${index})">🔊 读词语</button>
                         <button class="btn btn-secondary" onclick="playSentence(${index})">📝 读句子</button>
+                        <button class="btn btn-encyclopedia" onclick="playEncyclopedia(${index})">📖 百科</button>
                         <button class="btn btn-japanese" onclick="playJapanese(${index})">🇯🇵 日语</button>
                         <button class="btn btn-english" onclick="playEnglish(${index})">🇺🇸 英语</button>
                     </div>
@@ -199,6 +212,25 @@
             showMascot(item.summary);
         }
 
+        function playEncyclopedia(index) {
+            const item = items[index];
+            if (!item.intro) {
+                showMascot(`${item.word} 的百科内容还在准备中，先听听别的吧～`);
+                return;
+            }
+            const text = `${item.word}。${item.intro}${item.where || ''}${item.do || ''}${item.fun_fact || ''}`;
+            XiaoDou.speak(text, 'zh');
+            showMascot(`${item.word}的小百科：${item.intro}`);
+
+            const card = document.getElementById(`encyclopedia-${index}`);
+            if (card) {
+                document.querySelectorAll('.encyclopedia-card').forEach(el => {
+                    if (el.id !== `encyclopedia-${index}`) el.style.display = 'none';
+                });
+                card.style.display = card.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
         function switchCard(direction) {
             const cards = document.querySelectorAll('.card');
             const dots = document.querySelectorAll('.progress-dot');
@@ -208,6 +240,8 @@
             else currentIndex = (currentIndex - 1 + items.length) % items.length;
             cards[currentIndex].classList.add('active');
             dots[currentIndex].classList.add('active');
+            // 切换时隐藏所有百科卡片
+            document.querySelectorAll('.encyclopedia-card').forEach(el => el.style.display = 'none');
             const item = items[currentIndex];
             playWord(currentIndex);
             showMascot('这是' + item.word + '，' + item.pinyin + '。');
