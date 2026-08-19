@@ -18,6 +18,8 @@
         .card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .card.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-image { width: 220px; height: 220px; object-fit: cover; margin: 10px auto; border-radius: 30px; background: #f8f8f8; cursor: pointer; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .card-image:active { transform: scale(0.95); }
         .card-emoji { width: 200px; height: 200px; font-size: 130px; line-height: 200px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; }
         .card-emoji:active { transform: scale(0.95); }
         .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
@@ -153,8 +155,11 @@
                 const keywordsHtml = item.words.map(w => `<span class="keyword" onclick="XiaoDou.speak('${XiaoDou.escapeHtml(w)}', 'zh')">${XiaoDou.escapeHtml(w)}</span>`).join('');
                 const card = document.createElement('div');
                 card.className = 'card' + (index === 0 ? ' active' : '');
+                const imgSrc = item.image ? XiaoDou.escapeHtml(item.image) : '';
+                const fallbackEmoji = XiaoDou.escapeHtml(item.emoji);
                 card.innerHTML = `
-                    <div class="card-emoji" onclick="playWord(${index})">${XiaoDou.escapeHtml(item.emoji)}</div>
+                    ${imgSrc ? `<img class="card-image" src="${imgSrc}" alt="${XiaoDou.escapeHtml(item.word)}" onclick="playWord(${index})" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">` : ''}
+                    <div class="card-emoji" onclick="playWord(${index})" style="display:${imgSrc ? 'none' : 'block'}">${fallbackEmoji}</div>
                     <div class="card-title">${XiaoDou.escapeHtml(item.word)}</div>
                     <div class="card-subtitle">${XiaoDou.escapeHtml(item.pinyin)}</div>
                     <div class="card-japanese">${XiaoDou.escapeHtml(item.japanese)}</div>
