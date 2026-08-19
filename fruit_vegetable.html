@@ -245,7 +245,7 @@
 
         function playWord(index) {
             const item = filteredItems[index];
-            const mp3Path = `assets/audio/fruit_vegetable/${item.file}_word.mp3`;
+            const mp3Path = `assets/audio/fruits_vegetables/${item.file}_word.mp3`;
             // 只读词语本身，避免 TTS 把拼音读成英文
             speakWithFallback(item.word, mp3Path, 'zh');
             showMascot(`我们来看看：${item.word}，${item.pinyin}。`);
@@ -253,7 +253,7 @@
 
         function playSentence(index) {
             const item = filteredItems[index];
-            const mp3Path = `assets/audio/fruit_vegetable/sentences/${item.file}_sentence.mp3`;
+            const mp3Path = `assets/audio/fruits_vegetables/sentences/${item.file}_sentence.mp3`;
             const text = item.sentence || '';
             speakWithFallback(text, mp3Path, 'zh');
             showMascot(text);
@@ -269,7 +269,7 @@
         function playJapaneseWord(index) {
             const item = filteredItems[index];
             if (!item.japanese_reading) return;
-            const mp3Path = `assets/audio/fruit_vegetable/japanese/${item.file}_japanese.mp3`;
+            const mp3Path = `assets/audio/fruits_vegetables/japanese/${item.file}_japanese.mp3`;
             speakWithFallback(item.japanese_reading, mp3Path, 'ja');
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
