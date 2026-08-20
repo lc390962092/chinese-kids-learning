@@ -102,26 +102,35 @@
         <div class="mascot-avatar">🐼</div>
     </div>
     <div class="main-stage">
-            <div id="cards"></div>
-</div>
+        <button class="stage-arrow stage-arrow-left" onclick="prevItem()">&#10094;</button>
+        <button class="stage-arrow stage-arrow-right" onclick="nextItem()">&#10095;</button>
+        <div id="cards"></div>
+    </div>
 
     <script src="js/common.js"></script>
     <script>
+        const PROGRESS_KEY = 'fairy_tales_progress';
         let items = [];
         let currentIndex = 0;
         let autoPlaying = false;
-        let autoPlayTimer = null;
+        let autoPlayStep = 0;
 
         async function init() {
             try {
                 const data = await XiaoDou.loadModule('fairy_tales');
                 items = XiaoDou.getItems(data);
+                const saved = parseInt(localStorage.getItem(PROGRESS_KEY) || '0', 10);
+                currentIndex = Math.max(0, Math.min(saved, items.length - 1));
                 renderCards();
                 showMascot('欢迎来到小豆童话故事！点击卡片，听好听的故事～');
             } catch (err) {
                 console.error('加载数据失败:', err);
                 document.querySelector('.main-stage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">童话故事数据加载失败，请刷新再试～</div>';
             }
+        }
+
+        function saveProgress() {
+            try { localStorage.setItem(PROGRESS_KEY, String(currentIndex)); } catch (e) {}
         }
 
         function showMascot(text) { document.getElementById('mascotText').textContent = text; }
@@ -132,10 +141,12 @@
             items.forEach((item, index) => {
                 const wordsHtml = (item.words || []).map(w => `<span class="keyword" onclick="XiaoDou.speak('${XiaoDou.escapeHtml(w)}', 'zh')">${XiaoDou.escapeHtml(w)}</span>`).join('');
                 const storyHtml = (item.story || '').split('\n').filter(p => p.trim()).map(p => `<p>${XiaoDou.escapeHtml(p)}</p>`).join('');
+                const emoji = XiaoDou.escapeHtml(item.emoji || '📖');
                 const card = document.createElement('div');
-                card.className = 'card' + (index === 0 ? ' active' : '');
+                card.className = 'card' + (index === currentIndex ? ' active' : '');
                 card.id = 'card-' + index;
                 card.innerHTML = `
+                    <div class="card-emoji" onclick="playTitle(${index})">${emoji}</div>
                     <div class="card-title">${XiaoDou.escapeHtml(item.title)}</div>
                     <div class="card-subtitle">来源：${XiaoDou.escapeHtml(item.origin)}</div>
                     <div class="card-summary"><strong>简介：</strong>${XiaoDou.escapeHtml(item.summary)}</div>
@@ -169,7 +180,7 @@
                 dotsContainer.innerHTML = '';
                 items.forEach((_, i) => {
                     const dot = document.createElement('div');
-                    dot.className = 'progress-dot' + (i === index ? ' active' : '');
+                    dot.className = 'progress-dot' + (i === currentIndex ? ' active' : '');
                     dotsContainer.appendChild(dot);
                 });
             });
@@ -188,6 +199,7 @@
             else currentIndex = (currentIndex - 1 + items.length) % items.length;
             cards[currentIndex].classList.add('active');
             renderProgressDots();
+            saveProgress();
             const item = items[currentIndex];
             showMascot('《' + item.title + '》');
             stopAutoPlay();
@@ -195,28 +207,100 @@
         function nextItem() { switchCard('next'); }
         function prevItem() { switchCard('prev'); }
 
+        function updateAutoPlayBtn() {
+            document.querySelectorAll('.btn-auto').forEach(btn => {
+                btn.textContent = autoPlaying ? '⏹️ 停止循环' : '▶️ 自动循环';
+                btn.classList.toggle('playing', autoPlaying);
+            });
+        }
+
+        function runAutoStep() {
+            if (!autoPlaying) return;
+            const item = items[currentIndex];
+            autoPlayStep++;
+            if (autoPlayStep === 1) {
+                const u = playSummaryUtter(currentIndex);
+                if (u) u.onend = () => runAutoStep();
+                else runAutoStep();
+            } else if (autoPlayStep === 2) {
+                const u = playMoralUtter(currentIndex);
+                if (u) u.onend = () => runAutoStep();
+                else runAutoStep();
+            } else if (autoPlayStep === 3) {
+                const u = playStoryUtter(currentIndex);
+                if (u) {
+                    u.onend = () => {
+                        setTimeout(() => {
+                            if (!autoPlaying) return;
+                            switchCard('next');
+                            autoPlayStep = 0;
+                            setTimeout(() => {
+                                if (!autoPlaying) return;
+                                const u = playTitleUtter(currentIndex);
+                                if (u) u.onend = () => runAutoStep();
+                                else runAutoStep();
+                            }, 500);
+                        }, 800);
+                    };
+                } else {
+                    setTimeout(() => { if (autoPlaying) switchCard('next'); autoPlayStep = 0; }, 800);
+                }
+            }
+        }
+
+        function makeUtter(text, lang) {
+            if (!window.speechSynthesis || !text) return null;
+            window.speechSynthesis.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = lang === 'ja' ? 'ja-JP' : (lang === 'en' ? 'en-US' : 'zh-CN');
+            utter.rate = 0.85;
+            utter.pitch = 1.1;
+            const voices = window.speechSynthesis.getVoices() || [];
+            const voice = voices.find(v => v.lang === 'zh-CN') || voices.find(v => v.lang.startsWith('zh')) || null;
+            if (voice) utter.voice = voice;
+            return utter;
+        }
+
+        function speakUtter(utter, beforeSpeak) {
+            if (!utter) return false;
+            if (beforeSpeak) beforeSpeak();
+            window.speechSynthesis.speak(utter);
+            return true;
+        }
+
+        function playTitleUtter(index) {
+            const u = makeUtter(items[index].title, 'zh');
+            return speakUtter(u, () => showMascot('故事：《' + items[index].title + '》')) ? u : null;
+        }
+        function playSummaryUtter(index) {
+            const u = makeUtter(items[index].summary, 'zh');
+            return speakUtter(u, () => showMascot(items[index].summary)) ? u : null;
+        }
+        function playStoryUtter(index) {
+            const u = makeUtter(items[index].story, 'zh');
+            return speakUtter(u, () => showMascot('正在朗读《' + items[index].title + '》...')) ? u : null;
+        }
+        function playMoralUtter(index) {
+            const u = makeUtter(items[index].moral, 'zh');
+            return speakUtter(u, () => showMascot('道理：' + items[index].moral)) ? u : null;
+        }
+
         function toggleAutoPlay() {
             if (autoPlaying) { stopAutoPlay(); return; }
             autoPlaying = true;
-            const item = items[currentIndex];
-            document.getElementById('autoBtn-' + currentIndex).textContent = '⏹️ 停止循环';
-            document.getElementById('autoBtn-' + currentIndex).classList.add('playing');
-            showMascot('开始自动朗读《' + item.title + '》...');
-            playTitle(currentIndex);
-            let step = 0;
-            autoPlayTimer = setInterval(() => {
-                step++;
-                if (step === 1) { playSummary(currentIndex); }
-                else if (step === 2) { playMoral(currentIndex); }
-                else if (step === 3) { playStory(currentIndex); }
-                else { switchCard('next'); step = -1; }
-            }, 8000);
+            autoPlayStep = 0;
+            updateAutoPlayBtn();
+            showMascot('开始自动朗读《' + items[currentIndex].title + '》...');
+            const u = playTitleUtter(currentIndex);
+            if (u) u.onend = () => runAutoStep();
+            else runAutoStep();
         }
 
         function stopAutoPlay() {
             autoPlaying = false;
-            clearInterval(autoPlayTimer);
-            document.querySelectorAll('.btn-auto').forEach(btn => { btn.textContent = '▶️ 自动循环'; btn.classList.remove('playing'); });
+            autoPlayStep = 0;
+            try { window.speechSynthesis.cancel(); } catch (e) {}
+            updateAutoPlayBtn();
         }
 
         function startApp() {
@@ -232,13 +316,13 @@
             mainStage.addEventListener('touchend', function(e) {
                 touchEndX = e.changedTouches[0].screenX;
                 const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > 50) { if (diff > 0) nextItem(); else prevItem(); }
+                if (Math.abs(diff) > 70) { if (diff > 0) nextItem(); else prevItem(); }
             }, { passive: true });
         }
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextItem();
-            else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevItem();
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextItem(); }
+            else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevItem(); }
         });
 
         init();
