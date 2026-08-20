@@ -181,9 +181,25 @@
                 items.forEach((_, i) => {
                     const dot = document.createElement('div');
                     dot.className = 'progress-dot' + (i === currentIndex ? ' active' : '');
+                    dot.style.cursor = 'pointer';
+                    dot.title = '跳转到第 ' + (i + 1) + ' 个故事';
+                    dot.onclick = () => jumpTo(i);
                     dotsContainer.appendChild(dot);
                 });
             });
+        }
+
+        function jumpTo(index) {
+            if (index === currentIndex || index < 0 || index >= items.length) return;
+            const cards = document.querySelectorAll('.card');
+            if (cards.length === 0) return;
+            stopAutoPlay();
+            cards[currentIndex].classList.remove('active');
+            currentIndex = index;
+            cards[currentIndex].classList.add('active');
+            renderProgressDots();
+            saveProgress();
+            showMascot('《' + items[currentIndex].title + '》');
         }
 
         function playTitle(index) { XiaoDou.speak(items[index].title, 'zh'); showMascot('故事：《' + items[index].title + '》'); }
