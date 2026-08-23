@@ -632,6 +632,7 @@
             updateNavButtons();
             const food = foods[currentIndex];
             showMascot(`我们来学${food.word}！`);
+            setTimeout(() => playWord(currentIndex), 500);
         }
 
         function nextFood() { switchFood('next'); }
