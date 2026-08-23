@@ -327,7 +327,63 @@
             background: rgba(255,255,255,0.5);
             backdrop-filter: blur(5px);
         }
-        
+
+        .start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFF8E7 0%, #FFF0F5 100%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .start-content {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 320px;
+            width: 90%;
+        }
+
+        .start-panda {
+            font-size: 80px;
+            margin-bottom: 10px;
+        }
+
+        .start-content h2 {
+            color: #FF8C42;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .start-content p {
+            color: #888;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .start-btn {
+            background: #FF8C42;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,140,66,0.3);
+            transition: transform 0.2s;
+        }
+
+        .start-btn:active {
+            transform: scale(0.95);
+        }
+
         @media (max-width: 400px) {
             .food-image { width: 200px; height: 200px; }
             .food-word { font-size: 40px; }
@@ -336,6 +392,15 @@
     <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
+    <div class="start-overlay" id="startOverlay">
+        <div class="start-content">
+            <div class="start-panda">🐼</div>
+            <h2>小豆中文</h2>
+            <p>今天来学习常用食物</p>
+            <button class="start-btn" onclick="startApp()">开始学习</button>
+        </div>
+    </div>
+
     <a href="index.html" class="back-bar">← 回首页</a>
     <div class="header">
         <h1>🍎 小豆中文</h1>
@@ -616,6 +681,29 @@
         }
 
         loadFoods();
+
+        let appStarted = false;
+
+        function startApp() {
+            if (appStarted) return;
+            appStarted = true;
+
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (AudioContext) {
+                const ctx = new AudioContext();
+                if (ctx.state === 'suspended') ctx.resume();
+            }
+
+            const silentAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
+            silentAudio.play().catch(() => {});
+
+            document.getElementById('startOverlay').style.display = 'none';
+            showMascot("你好！我是小豆。今天我们来学习常用食物。点击食物图片，听听它叫什么名字。");
+
+            setTimeout(() => {
+                XiaoDou.speak("你好！我是小豆。今天我们来学习常用食物。点击食物图片，听听它叫什么名字。", 'zh');
+            }, 300);
+        }
     </script>
 </body>
 </html>
