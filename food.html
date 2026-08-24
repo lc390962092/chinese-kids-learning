@@ -389,7 +389,7 @@
             .food-word { font-size: 40px; }
         }
     </style>
-    <link rel="stylesheet" href="dark-mode.css">
+    <link rel="stylesheet" href="dark-mode.css?v=2">
 </head>
 <body>
     <div class="start-overlay" id="startOverlay">
@@ -423,7 +423,7 @@
     </div>
     <div class="stars" id="starEffect">⭐</div>
 
-    <script src="js/common.js"></script>
+    <script src="js/common.js?v=2"></script>
     <script>
         let foods = [];
         let currentIndex = 0;
@@ -452,8 +452,9 @@
         }
 
         function updateNavButtons() {
-            document.getElementById('prevBtn').disabled = currentIndex === 0;
-            document.getElementById('nextBtn').disabled = currentIndex === foods.length - 1;
+            // 循环模式下按钮始终可用
+            document.getElementById('prevBtn').disabled = false;
+            document.getElementById('nextBtn').disabled = false;
         }
 
         let currentAudio = null;
@@ -608,11 +609,9 @@
 
             let newIndex;
             if (direction === 'next') {
-                newIndex = currentIndex + 1;
-                if (newIndex >= foods.length) newIndex = foods.length - 1;
+                newIndex = (currentIndex + 1) % foods.length;
             } else {
-                newIndex = currentIndex - 1;
-                if (newIndex < 0) newIndex = 0;
+                newIndex = (currentIndex - 1 + foods.length) % foods.length;
             }
             if (newIndex === currentIndex) return;
 

@@ -1,67 +1,120 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""重新生成指定食物的写实风格图片"""
+"""Regenerate selected food module images as realistic food photography."""
+import hashlib
 import json
-import requests
 import time
+import urllib.parse
 from pathlib import Path
-from urllib.parse import quote
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-CONTENT_FILE = BASE_DIR / "content" / "food_module.json"
-OUTPUT_DIR = BASE_DIR / "assets" / "images" / "food"
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+import requests
 
-TARGET_WORDS = ['披萨', '酸奶', '奶酪', '鸡蛋', '包子', '馒头', '面条']
+ROOT = Path(__file__).resolve().parent.parent
+JSON_PATH = ROOT / "content" / "food_module.json"
+IMAGE_DIR = ROOT / "assets" / "images" / "food"
 
-def realistic_prompt(word, english):
-    prompts = {
-        '披萨': 'A realistic slice of pizza with melted cheese, pepperoni and herbs, food photography, clean white background, soft natural lighting, appetizing, detailed texture, no text, no watermark',
-        '酸奶': 'A realistic cup of white yogurt with a spoon, creamy texture, food photography, clean white background, soft natural lighting, appetizing, no text, no watermark',
-        '奶酪': 'A realistic wedge of yellow cheese with holes, food photography, clean white background, soft natural lighting, appetizing, detailed texture, no text, no watermark',
-        '鸡蛋': 'A realistic fried egg with bright yellow yolk and white egg white, food photography, clean white background, soft natural lighting, appetizing, no text, no watermark',
-        '包子': 'A realistic steamed stuffed bun (baozi), fluffy white bun, food photography, clean white background, soft natural lighting, appetizing, no text, no watermark',
-        '馒头': 'A realistic steamed bun (mantou), white fluffy bun, food photography, clean white background, soft natural lighting, appetizing, no text, no watermark',
-        '面条': 'A realistic bowl of noodles with chopsticks, steam rising, food photography, clean white background, soft natural lighting, appetizing, no text, no watermark',
-    }
-    return prompts.get(word, f"A realistic {english}, food photography, clean white background, soft natural lighting, appetizing, no text, no watermark")
+# Items to regenerate: word -> file
+TARGET_WORDS = ["饺子", "糖果"]
 
-with open(CONTENT_FILE, "r", encoding="utf-8") as f:
-    data = json.load(f)
+STYLE = (
+    "Realistic food photography, appetizing, clean white background, "
+    "soft natural lighting, vivid colors, shallow depth of field, "
+    "no text, no watermark, no cartoon, no illustration"
+)
 
-items = [w for w in data["words"] if w["word"] in TARGET_WORDS]
-print(f"需要重新生成 {len(items)} 张食物图片", flush=True)
+PROMPTS = {
+    "饺子": (
+        "A top-down realistic food photo of a white ceramic plate holding "
+        "six Chinese jiaozi dumplings arranged neatly, "
+        "each dumpling is a clear half-moon crescent shape with pinched pleats only along the curved outer edge, "
+        "the flat straight edge is smooth, thin translucent wrappers, steam rising, "
+        "clean white background, professional food photography, 8k"
+    ),
+    "包子": (
+        "A bamboo steamer basket with several freshly steamed Chinese baozi buns, "
+        "each a round white fluffy bun with a classic spiral twist pleat on top, "
+        "soft puffy dough, one bun gently pulled open showing savory minced pork filling, "
+        "clean white background, realistic food photography"
+    ),
+    "饼干": (
+        "A stack of homemade chocolate chip cookies on a simple white plate, "
+        "golden brown crispy edges, melted chocolate chips, one cookie broken in half, "
+        "crumbs scattered naturally, clean white background, realistic food photography"
+    ),
+    "糖果": (
+        "A realistic food photo of a small pile of classic individually wrapped hard candies on a white plate, "
+        "each candy wrapped in shiny metallic foil or clear cellophane with crinkled twisted wrapper ends, "
+        "mix of red, green, yellow, blue, pink wrappers, "
+        "clearly visible separate small candies, "
+        "clean white background, professional food photography, 8k"
+    ),
+}
 
-def download_with_retry(item, max_retries=5):
-    file_name = item['file']
-    word = item['word']
-    prompt = realistic_prompt(word, item.get('english', word))
-    url = f"https://image.pollinations.ai/prompt/{quote(prompt)}?width=512&height=512&seed={abs(hash(file_name + 'realistic')) % 100000}&nologo=true&private=true&nofeed=true&model=flux"
-    
-    for attempt in range(max_retries):
+
+def stable_seed(word: str) -> int:
+    h = hashlib.sha256((word + "_realistic_food_v1").encode()).hexdigest()
+    return int(h[:8], 16)
+
+
+def download_image(prompt: str, seed: int, output: Path) -> bool:
+    encoded = urllib.parse.quote(prompt)
+    # 使用 flux 模型以获得更好的写实食物摄影效果
+    url = (
+        f"https://image.pollinations.ai/prompt/{encoded}"
+        f"?width=512&height=512&seed={seed}"
+        f"&nologo=true&private=true&nofeed=true&model=flux"
+    )
+    for attempt in range(4):
         try:
-            r = requests.get(url, timeout=60)
+            r = requests.get(url, timeout=90)
             if r.status_code == 200 and "image" in r.headers.get("content-type", ""):
-                (OUTPUT_DIR / f"{file_name}.png").write_bytes(r.content)
-                return True, len(r.content)
+                output.write_bytes(r.content)
+                return True
             elif r.status_code == 429:
                 wait = 30 * (2 ** attempt)
-                print(f"  [{word}] 429 限流，等待 {wait} 秒后重试...", flush=True)
+                print(f"  429 for {output.name}, waiting {wait}s...")
                 time.sleep(wait)
             else:
-                print(f"  [{word}] HTTP {r.status_code}，等待 10 秒后重试...", flush=True)
+                print(f"  HTTP {r.status_code} for {output.name}")
                 time.sleep(10)
         except Exception as e:
-            print(f"  [{word}] 错误: {e}，等待 10 秒后重试...", flush=True)
+            print(f"  Error: {e}")
             time.sleep(10)
-    return False, 0
+    return False
 
-for i, item in enumerate(items, 1):
-    success, size = download_with_retry(item)
-    if success:
-        print(f"[{i}/{len(items)}] 成功: {item['word']} ({item['file']}) - {size} bytes", flush=True)
-    else:
-        print(f"[{i}/{len(items)}] 失败: {item['word']} ({item['file']})", flush=True)
-    time.sleep(3)
 
-print("食物写实图片重新生成完成", flush=True)
+def backup(path: Path) -> None:
+    bak = path.with_suffix(path.suffix + ".bak")
+    if path.exists() and not bak.exists():
+        bak.write_bytes(path.read_bytes())
+
+
+def main():
+    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    items = data.get("words", [])
+    ok = []
+    failed = []
+    for item in items:
+        word = item["word"]
+        if word not in TARGET_WORDS:
+            continue
+        file = item["file"]
+        out = IMAGE_DIR / f"{file}.png"
+        prompt = PROMPTS[word] + ", " + STYLE
+        seed = stable_seed(word)
+        print(f"Generating: {word} ({file}.png) seed={seed}")
+        backup(out)
+        if download_image(prompt, seed, out):
+            size = out.stat().st_size
+            print(f"  OK: {size} bytes")
+            ok.append(word)
+        else:
+            print(f"  FAILED")
+            failed.append(word)
+        time.sleep(2)
+    print("\nDone.")
+    print("OK:", ok)
+    print("Failed:", failed)
+
+
+if __name__ == "__main__":
+    main()
