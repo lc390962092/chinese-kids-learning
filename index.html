@@ -81,13 +81,25 @@
             padding: 10px 20px 30px;
             max-width: 500px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
-        
+
+        @media (min-width: 768px) {
+            .main-stage {
+                max-width: 900px;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                align-items: stretch;
+            }
+        }
+
         .module-card {
             background: white;
             border-radius: 25px;
             padding: 25px 20px;
-            margin-bottom: 18px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.08);
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
@@ -96,6 +108,12 @@
             gap: 18px;
             text-decoration: none;
             color: inherit;
+        }
+
+        @media (min-width: 768px) {
+            .module-card {
+                margin-bottom: 0;
+            }
         }
         
         .module-card:active {
