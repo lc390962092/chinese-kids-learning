@@ -1,0 +1,46 @@
+{
+  "module": "alphabet",
+  "title": "小豆英语字母",
+  "target_age": "3-6",
+  "lesson_duration_min": 5,
+  "sections": [
+    {
+      "id": "vowels",
+      "name": "元音",
+      "items": [
+        { "letter": "A", "sound": "/eɪ/", "example_word": "Apple", "example_meaning": "苹果" },
+        { "letter": "E", "sound": "/iː/", "example_word": "Elephant", "example_meaning": "大象" },
+        { "letter": "I", "sound": "/aɪ/", "example_word": "Igloo", "example_meaning": "冰屋" },
+        { "letter": "O", "sound": "/oʊ/", "example_word": "Orange", "example_meaning": "橙子" },
+        { "letter": "U", "sound": "/juː/", "example_word": "Umbrella", "example_meaning": "雨伞" }
+      ]
+    },
+    {
+      "id": "consonants",
+      "name": "辅音",
+      "items": [
+        { "letter": "B", "sound": "/biː/", "example_word": "Bear", "example_meaning": "熊" },
+        { "letter": "C", "sound": "/siː/", "example_word": "Cat", "example_meaning": "猫" },
+        { "letter": "D", "sound": "/diː/", "example_word": "Dog", "example_meaning": "狗" },
+        { "letter": "F", "sound": "/ɛf/", "example_word": "Fish", "example_meaning": "鱼" },
+        { "letter": "G", "sound": "/dʒiː/", "example_word": "Giraffe", "example_meaning": "长颈鹿" },
+        { "letter": "H", "sound": "/eɪtʃ/", "example_word": "House", "example_meaning": "房子" },
+        { "letter": "J", "sound": "/dʒeɪ/", "example_word": "Juice", "example_meaning": "果汁" },
+        { "letter": "K", "sound": "/keɪ/", "example_word": "Kite", "example_meaning": "风筝" },
+        { "letter": "L", "sound": "/ɛl/", "example_word": "Lion", "example_meaning": "狮子" },
+        { "letter": "M", "sound": "/ɛm/", "example_word": "Monkey", "example_meaning": "猴子" },
+        { "letter": "N", "sound": "/ɛn/", "example_word": "Nest", "example_meaning": "鸟巢" },
+        { "letter": "P", "sound": "/piː/", "example_word": "Panda", "example_meaning": "熊猫" },
+        { "letter": "Q", "sound": "/kjuː/", "example_word": "Queen", "example_meaning": "女王" },
+        { "letter": "R", "sound": "/ɑːr/", "example_word": "Rabbit", "example_meaning": "兔子" },
+        { "letter": "S", "sound": "/ɛs/", "example_word": "Sun", "example_meaning": "太阳" },
+        { "letter": "T", "sound": "/tiː/", "example_word": "Tiger", "example_meaning": "老虎" },
+        { "letter": "V", "sound": "/viː/", "example_word": "Violin", "example_meaning": "小提琴" },
+        { "letter": "W", "sound": "/ˈdʌbəl.juː/", "example_word": "Whale", "example_meaning": "鲸鱼" },
+        { "letter": "X", "sound": "/ɛks/", "example_word": "Xylophone", "example_meaning": "木琴" },
+        { "letter": "Y", "sound": "/waɪ/", "example_word": "Yoyo", "example_meaning": "悠悠球" },
+        { "letter": "Z", "sound": "/ziː/", "example_word": "Zebra", "example_meaning": "斑马" }
+      ]
+    }
+  ]
+}
