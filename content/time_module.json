@@ -1,0 +1,224 @@
+{
+  "module": "time",
+  "title": "小豆时间",
+  "target_age": "3-6",
+  "lesson_duration_min": 5,
+  "sections": [
+    {
+      "id": "periods",
+      "name": "时段",
+      "items": [
+        {
+          "time_cn": "早上",
+          "time_en": "morning",
+          "time_ja": "朝",
+          "time_ja_kana": "あさ",
+          "sentence_cn": "早上好！",
+          "sentence_en": "Good morning!",
+          "sentence_ja": "おはよう！",
+          "sentence_ja_kana": "おはよう！",
+          "hour": 7,
+          "minute": 0
+        },
+        {
+          "time_cn": "中午",
+          "time_en": "noon",
+          "time_ja": "昼",
+          "time_ja_kana": "ひる",
+          "sentence_cn": "中午吃饭啦。",
+          "sentence_en": "It's time for lunch.",
+          "sentence_ja": "昼ごはんの時間。",
+          "sentence_ja_kana": "ひるごはんのじかん。",
+          "hour": 12,
+          "minute": 0
+        },
+        {
+          "time_cn": "下午",
+          "time_en": "afternoon",
+          "time_ja": "午後",
+          "time_ja_kana": "ごご",
+          "sentence_cn": "下午去玩吧。",
+          "sentence_en": "Let's play in the afternoon.",
+          "sentence_ja": "午後、遊びに行こう。",
+          "sentence_ja_kana": "ごご、あそびにいこう。",
+          "hour": 15,
+          "minute": 0
+        },
+        {
+          "time_cn": "晚上",
+          "time_en": "evening",
+          "time_ja": "晩",
+          "time_ja_kana": "ばん",
+          "sentence_cn": "晚上看书。",
+          "sentence_en": "Read a book in the evening.",
+          "sentence_ja": "晩、本を読もう。",
+          "sentence_ja_kana": "ばん、ほんをよもう。",
+          "hour": 19,
+          "minute": 0
+        },
+        {
+          "time_cn": "夜里",
+          "time_en": "night",
+          "time_ja": "夜",
+          "time_ja_kana": "よる",
+          "sentence_cn": "夜里睡觉。",
+          "sentence_en": "Sleep at night.",
+          "sentence_ja": "夜、寝よう。",
+          "sentence_ja_kana": "よる、ねよう。",
+          "hour": 21,
+          "minute": 0
+        }
+      ]
+    },
+    {
+      "id": "hours",
+      "name": "整点",
+      "items": [
+        {
+          "time_cn": "一点",
+          "time_en": "one o'clock",
+          "time_ja": "一時",
+          "time_ja_kana": "いちじ",
+          "sentence_cn": "一点了。",
+          "sentence_en": "It's one o'clock.",
+          "sentence_ja": "一時です。",
+          "sentence_ja_kana": "いちじです。",
+          "hour": 1,
+          "minute": 0
+        },
+        {
+          "time_cn": "两点",
+          "time_en": "two o'clock",
+          "time_ja": "二時",
+          "time_ja_kana": "にじ",
+          "sentence_cn": "两点了。",
+          "sentence_en": "It's two o'clock.",
+          "sentence_ja": "二時です。",
+          "sentence_ja_kana": "にじです。",
+          "hour": 2,
+          "minute": 0
+        },
+        {
+          "time_cn": "三点",
+          "time_en": "three o'clock",
+          "time_ja": "三時",
+          "time_ja_kana": "さんじ",
+          "sentence_cn": "三点了。",
+          "sentence_en": "It's three o'clock.",
+          "sentence_ja": "三時です。",
+          "sentence_ja_kana": "さんじです。",
+          "hour": 3,
+          "minute": 0
+        },
+        {
+          "time_cn": "四点",
+          "time_en": "four o'clock",
+          "time_ja": "四時",
+          "time_ja_kana": "よじ",
+          "sentence_cn": "四点了。",
+          "sentence_en": "It's four o'clock.",
+          "sentence_ja": "四時です。",
+          "sentence_ja_kana": "よじです。",
+          "hour": 4,
+          "minute": 0
+        },
+        {
+          "time_cn": "五点",
+          "time_en": "five o'clock",
+          "time_ja": "五時",
+          "time_ja_kana": "ごじ",
+          "sentence_cn": "五点了。",
+          "sentence_en": "It's five o'clock.",
+          "sentence_ja": "五時です。",
+          "sentence_ja_kana": "ごじです。",
+          "hour": 5,
+          "minute": 0
+        },
+        {
+          "time_cn": "六点",
+          "time_en": "six o'clock",
+          "time_ja": "六時",
+          "time_ja_kana": "ろくじ",
+          "sentence_cn": "六点了。",
+          "sentence_en": "It's six o'clock.",
+          "sentence_ja": "六時です。",
+          "sentence_ja_kana": "ろくじです。",
+          "hour": 6,
+          "minute": 0
+        },
+        {
+          "time_cn": "七点",
+          "time_en": "seven o'clock",
+          "time_ja": "七時",
+          "time_ja_kana": "しちじ",
+          "sentence_cn": "七点了。",
+          "sentence_en": "It's seven o'clock.",
+          "sentence_ja": "七時です。",
+          "sentence_ja_kana": "しちじです。",
+          "hour": 7,
+          "minute": 0
+        },
+        {
+          "time_cn": "八点",
+          "time_en": "eight o'clock",
+          "time_ja": "八時",
+          "time_ja_kana": "はちじ",
+          "sentence_cn": "八点了。",
+          "sentence_en": "It's eight o'clock.",
+          "sentence_ja": "八時です。",
+          "sentence_ja_kana": "はちじです。",
+          "hour": 8,
+          "minute": 0
+        },
+        {
+          "time_cn": "九点",
+          "time_en": "nine o'clock",
+          "time_ja": "九時",
+          "time_ja_kana": "くじ",
+          "sentence_cn": "九点了。",
+          "sentence_en": "It's nine o'clock.",
+          "sentence_ja": "九時です。",
+          "sentence_ja_kana": "くじです。",
+          "hour": 9,
+          "minute": 0
+        },
+        {
+          "time_cn": "十点",
+          "time_en": "ten o'clock",
+          "time_ja": "十時",
+          "time_ja_kana": "じゅうじ",
+          "sentence_cn": "十点了。",
+          "sentence_en": "It's ten o'clock.",
+          "sentence_ja": "十時です。",
+          "sentence_ja_kana": "じゅうじです。",
+          "hour": 10,
+          "minute": 0
+        },
+        {
+          "time_cn": "十一点",
+          "time_en": "eleven o'clock",
+          "time_ja": "十一時",
+          "time_ja_kana": "じゅういちじ",
+          "sentence_cn": "十一点了。",
+          "sentence_en": "It's eleven o'clock.",
+          "sentence_ja": "十一時です。",
+          "sentence_ja_kana": "じゅういちじです。",
+          "hour": 11,
+          "minute": 0
+        },
+        {
+          "time_cn": "十二点",
+          "time_en": "twelve o'clock",
+          "time_ja": "十二時",
+          "time_ja_kana": "じゅうにじ",
+          "sentence_cn": "十二点了。",
+          "sentence_en": "It's twelve o'clock.",
+          "sentence_ja": "十二時です。",
+          "sentence_ja_kana": "じゅうにじです。",
+          "hour": 12,
+          "minute": 0
+        }
+      ]
+    }
+  ]
+}
