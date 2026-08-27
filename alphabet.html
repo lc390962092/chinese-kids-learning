@@ -178,6 +178,14 @@
             font-weight: bold;
         }
 
+        .lowercase-letter {
+            font-size: 54px;
+            color: #1976D2;
+            margin: 5px 0 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         .example-word {
             font-size: 42px;
             color: #333;
@@ -444,6 +452,7 @@
             const item = section[currentIndex];
             container.innerHTML = `
                 <div class="big-letter" onclick="playCurrent()">${XiaoDou.escapeHtml(item.letter)}</div>
+                <div class="lowercase-letter" onclick="playCurrent()">${XiaoDou.escapeHtml(item.lowercase)}</div>
                 <div class="letter-sound">${XiaoDou.escapeHtml(item.sound)}</div>
                 <div class="example-word">${XiaoDou.escapeHtml(item.example_word)}</div>
                 <div class="example-meaning">${XiaoDou.escapeHtml(item.example_meaning)}</div>
@@ -465,16 +474,16 @@
         }
 
         function updateNavButtons() {
-            const section = alphabetData[currentSection];
-            document.getElementById('prevBtn').disabled = currentIndex === 0;
-            document.getElementById('nextBtn').disabled = currentIndex === section.length - 1;
+            // 启用循环滑动，箭头始终可用
+            document.getElementById('prevBtn').disabled = false;
+            document.getElementById('nextBtn').disabled = false;
         }
 
         function playCurrent() {
             const item = alphabetData[currentSection][currentIndex];
-            const text = `${item.letter}. ${item.example_word}`;
+            const text = `${item.letter}. ${item.lowercase}. ${item.example_word}`;
             const mp3Path = getAudioPath(currentSection, currentIndex);
-            showMascot(`${item.letter}，发音 ${item.sound}。例词：${item.example_word}，意思是 ${item.example_meaning}。`);
+            showMascot(`${item.letter}${item.lowercase}，大写 ${item.letter}，小写 ${item.lowercase}，发音 ${item.sound}。例词：${item.example_word}，意思是 ${item.example_meaning}。`);
             playAlphabetAudio(mp3Path, text);
         }
 
@@ -492,8 +501,8 @@
             const section = alphabetData[currentSection];
             const oldCard = document.getElementById('cardContainer').firstElementChild;
             let newIndex = currentIndex;
-            if (direction === 'next' && currentIndex < section.length - 1) newIndex = currentIndex + 1;
-            else if (direction === 'prev' && currentIndex > 0) newIndex = currentIndex - 1;
+            if (direction === 'next') newIndex = (currentIndex + 1) % section.length;
+            else if (direction === 'prev') newIndex = (currentIndex - 1 + section.length) % section.length;
             if (newIndex === currentIndex) return;
             if (oldCard) {
                 oldCard.classList.remove('slide-left-in', 'slide-right-in');

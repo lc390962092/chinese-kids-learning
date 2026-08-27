@@ -173,10 +173,18 @@
             transform: scale(0.92);
         }
 
+        .hiragana-pair {
+            font-size: 48px;
+            color: #7B68EE;
+            margin: 5px 0 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         .romaji {
             font-size: 36px;
             color: #FF7043;
-            margin: 5px 0 15px;
+            margin: 5px 0 10px;
             font-weight: bold;
         }
 
@@ -468,8 +476,10 @@
                     <button class="btn-play" onclick="playCurrent()">🔊 朗读</button>
                 `;
             } else {
+                const hiraganaHtml = item.hiragana ? `<div class="hiragana-pair" onclick="playCurrent()">${XiaoDou.escapeHtml(item.hiragana)}</div>` : '';
                 html = `
                     <div class="big-kana" onclick="playCurrent()">${XiaoDou.escapeHtml(item.kana)}</div>
+                    ${hiraganaHtml}
                     <div class="romaji">${XiaoDou.escapeHtml(item.romaji)}</div>
                     <div class="example-word">${XiaoDou.escapeHtml(item.example_word)}</div>
                     <div class="example-meaning">${XiaoDou.escapeHtml(item.example_meaning)}</div>
@@ -493,9 +503,9 @@
         }
 
         function updateNavButtons() {
-            const section = kanaData[currentSection];
-            document.getElementById('prevBtn').disabled = currentIndex === 0;
-            document.getElementById('nextBtn').disabled = currentIndex === section.length - 1;
+            // 启用循环滑动，箭头始终可用
+            document.getElementById('prevBtn').disabled = false;
+            document.getElementById('nextBtn').disabled = false;
         }
 
         function playCurrent() {
@@ -507,9 +517,10 @@
                 mp3Path = getAudioPath(currentSection, currentIndex);
                 showMascot(`${item.name}：${item.description}。比如 ${item.example_word}，${item.example_meaning}。`);
             } else {
-                text = `${item.kana}、${item.romaji}、${item.example_word}`;
+                text = `${item.kana}、${item.hiragana || ''}、${item.romaji}、${item.example_word}`;
                 mp3Path = getAudioPath(currentSection, currentIndex);
-                showMascot(`${item.kana}，读作 ${item.romaji}。例词：${item.example_word}，意思是 ${item.example_meaning}。`);
+                const hiraText = item.hiragana ? `对应的平假名是 ${item.hiragana}。` : '';
+                showMascot(`${item.kana}，读作 ${item.romaji}。${hiraText}例词：${item.example_word}，意思是 ${item.example_meaning}。`);
             }
             playKanaAudio(mp3Path, text);
         }
@@ -528,8 +539,8 @@
             const section = kanaData[currentSection];
             const oldCard = document.getElementById('cardContainer').firstElementChild;
             let newIndex = currentIndex;
-            if (direction === 'next' && currentIndex < section.length - 1) newIndex = currentIndex + 1;
-            else if (direction === 'prev' && currentIndex > 0) newIndex = currentIndex - 1;
+            if (direction === 'next') newIndex = (currentIndex + 1) % section.length;
+            else if (direction === 'prev') newIndex = (currentIndex - 1 + section.length) % section.length;
             if (newIndex === currentIndex) return;
             if (oldCard) {
                 oldCard.classList.remove('slide-left-in', 'slide-right-in');
