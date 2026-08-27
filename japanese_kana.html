@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>小豆中文 - 日语平假名</title>
+    <title>小豆中文 - 日语假名</title>
     <style>
         * {
             margin: 0;
@@ -159,37 +159,55 @@
         .slide-left-out { animation: slideLeftOut 0.3s ease forwards; }
         .slide-right-out { animation: slideRightOut 0.3s ease forwards; }
 
+        .kana-pair-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin: 10px 0 5px;
+        }
+
         .big-kana {
-            font-size: 100px;
+            font-size: 90px;
             font-weight: bold;
             color: #333;
-            margin: 15px 0 5px;
             cursor: pointer;
             transition: transform 0.2s;
             line-height: 1.2;
+            min-width: 120px;
+            text-align: center;
         }
 
         .big-kana:active {
             transform: scale(0.92);
         }
 
-        .katakana-pair {
-            font-size: 48px;
-            color: #7B68EE;
-            margin: 5px 0 10px;
+        .big-kana.hiragana { color: #FF7043; }
+        .big-kana.katakana { color: #7B68EE; }
+
+        .kana-label {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: -8px;
+            text-align: center;
+        }
+
+        .kana-connector {
+            font-size: 28px;
+            color: #ccc;
             font-weight: bold;
-            cursor: pointer;
+            user-select: none;
         }
 
         .romaji {
             font-size: 36px;
-            color: #FF7043;
+            color: #4CAF50;
             margin: 5px 0 10px;
             font-weight: bold;
         }
 
         .example-word {
-            font-size: 32px;
+            font-size: 30px;
             color: #333;
             margin: 10px 0 5px;
             font-weight: bold;
@@ -234,7 +252,7 @@
         }
 
         #cardContainer {
-            min-height: 320px;
+            min-height: 340px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -265,11 +283,6 @@
             background: #FFF3E0;
         }
 
-        .side-arrow:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
         .side-arrow.left { left: 5px; }
         .side-arrow.right { right: 5px; }
 
@@ -291,6 +304,33 @@
 
         .progress-dot.active {
             background: #FF7043;
+        }
+
+        .mode-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .mode-btn {
+            border: 2px solid #FF7043;
+            background: white;
+            color: #FF7043;
+            border-radius: 20px;
+            padding: 8px 18px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mode-btn.active {
+            background: #FF7043;
+            color: white;
+        }
+
+        .mode-btn:active {
+            transform: scale(0.95);
         }
 
         .start-overlay {
@@ -351,10 +391,14 @@
 
         @media (max-width: 400px) {
             .big-kana {
-                font-size: 80px;
+                font-size: 72px;
+                min-width: 95px;
             }
             .example-word {
                 font-size: 26px;
+            }
+            .kana-connector {
+                font-size: 22px;
             }
         }
 
@@ -376,20 +420,26 @@
     <div class="start-overlay" id="startOverlay">
         <div class="start-content">
             <div class="start-panda">🐼</div>
-            <h2>小豆平假名</h2>
-            <p>一起学日语平假名的清音、浊音和拗音</p>
+            <h2>小豆日语假名</h2>
+            <p>平假名和片假名是好朋友，一起来配对学习吧！</p>
             <button class="start-btn" onclick="startApp()">开始学习</button>
         </div>
     </div>
 
     <div class="header">
-        <h1>🐼 小豆平假名</h1>
-        <p>清音 · 浊音 · 拗音 · 特殊</p>
+        <h1>🐼 小豆日语假名</h1>
+        <p>平假名 ⇄ 片假名 · 清音 · 浊音 · 拗音 · 特殊</p>
     </div>
 
     <div class="mascot">
-        <div class="mascot-bubble" id="mascotText">你好！我是小豆，今天我们一起学日语平假名～</div>
+        <div class="mascot-bubble" id="mascotText">你好！我是小豆，今天我们一起学日语假名，看看平假名和片假名怎么配对吧！</div>
         <div class="mascot-avatar">🐼</div>
+    </div>
+
+    <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="pair" onclick="setMode('pair')">配对一起学</button>
+        <button class="mode-btn" data-mode="hiragana" onclick="setMode('hiragana')">只学平假名</button>
+        <button class="mode-btn" data-mode="katakana" onclick="setMode('katakana')">只学片假名</button>
     </div>
 
     <div class="tabs" id="tabs">
@@ -417,10 +467,11 @@
         let currentSection = 'seion';
         let currentIndex = 0;
         let appStarted = false;
+        let displayMode = 'pair'; // 'pair' | 'hiragana' | 'katakana'
 
         async function init() {
             try {
-                const data = await XiaoDou.loadModule('hiragana');
+                const data = await XiaoDou.loadModule('japanese_kana');
                 for (const sec of (data.sections || [])) {
                     if (kanaData[sec.id]) kanaData[sec.id] = sec.items || [];
                 }
@@ -429,8 +480,8 @@
                 updateNavButtons();
                 setupSwipe();
             } catch (err) {
-                console.error('加载平假名数据失败:', err);
-                document.querySelector('.main-stage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">平假名数据加载失败，请刷新再试～</div>';
+                console.error('加载假名数据失败:', err);
+                document.querySelector('.main-stage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">假名数据加载失败，请刷新再试～</div>';
             }
         }
 
@@ -438,9 +489,10 @@
 
         function getAudioPath(section, index) {
             const item = kanaData[section][index];
-            let key = item.kana || item.romaji || 'special';
-            key = key.replace(/ー/g, '-').replace(/ッ/g, 'xtsu').replace(/ン/g, 'nn');
-            return XiaoDou.resolvePath(`assets/audio/hiragana/${section}/${String(index).padStart(2, '0')}_${key}.mp3`);
+            // 平假名和片假名发音相同，统一用平假名音频文件
+            let key = item.hiragana || item.romaji || 'special';
+            key = key.replace(/ー/g, '-').replace(/ッ/g, 'xtsu').replace(/っ/g, 'xtsu').replace(/ン/g, 'nn').replace(/ん/g, 'nn');
+            return XiaoDou.resolvePath(`assets/audio/japanese_kana/${section}/${String(index).padStart(2, '0')}_${key}.mp3`);
         }
 
         function playKanaAudio(path, fallbackText) {
@@ -460,6 +512,15 @@
             }
         }
 
+        function setMode(mode) {
+            displayMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+            renderCard();
+            playCurrent();
+        }
+
         function renderCard() {
             const container = document.getElementById('cardContainer');
             const section = kanaData[currentSection];
@@ -467,8 +528,13 @@
             const item = section[currentIndex];
             let html = '';
             if (currentSection === 'special') {
+                const mainKana = displayMode === 'katakana' ? item.katakana : item.hiragana;
+                const pairKana = displayMode === 'pair' ? item.katakana : '';
+                const pairHtml = pairKana && pairKana !== mainKana ? `<div class="big-kana katakana" onclick="playCurrent()">${XiaoDou.escapeHtml(pairKana)}</div>` : '';
                 html = `
-                    <div class="big-kana" onclick="playCurrent()">${XiaoDou.escapeHtml(item.kana)}</div>
+                    <div class="kana-label">${displayMode === 'katakana' ? '片假名' : '平假名'}</div>
+                    <div class="big-kana hiragana" onclick="playCurrent()">${XiaoDou.escapeHtml(mainKana)}</div>
+                    ${pairHtml}
                     <div class="romaji">${XiaoDou.escapeHtml(item.romaji)}</div>
                     <div class="special-info"><strong>${XiaoDou.escapeHtml(item.name)}</strong>：${XiaoDou.escapeHtml(item.description)}</div>
                     <div class="example-word">${XiaoDou.escapeHtml(item.example_word)}</div>
@@ -476,15 +542,40 @@
                     <button class="btn-play" onclick="playCurrent()">🔊 朗读</button>
                 `;
             } else {
-                const katakanaHtml = item.katakana ? `<div class="katakana-pair" onclick="playCurrent()">${XiaoDou.escapeHtml(item.katakana)}</div>` : '';
-                html = `
-                    <div class="big-kana" onclick="playCurrent()">${XiaoDou.escapeHtml(item.kana)}</div>
-                    ${katakanaHtml}
-                    <div class="romaji">${XiaoDou.escapeHtml(item.romaji)}</div>
-                    <div class="example-word">${XiaoDou.escapeHtml(item.example_word)}</div>
-                    <div class="example-meaning">${XiaoDou.escapeHtml(item.example_meaning)}</div>
-                    <button class="btn-play" onclick="playCurrent()">🔊 朗读</button>
-                `;
+                if (displayMode === 'pair') {
+                    html = `
+                        <div class="kana-pair-row">
+                            <div>
+                                <div class="kana-label">平假名</div>
+                                <div class="big-kana hiragana" onclick="playCurrent()">${XiaoDou.escapeHtml(item.hiragana)}</div>
+                            </div>
+                            <div class="kana-connector">⇄</div>
+                            <div>
+                                <div class="kana-label">片假名</div>
+                                <div class="big-kana katakana" onclick="playCurrent()">${XiaoDou.escapeHtml(item.katakana)}</div>
+                            </div>
+                        </div>
+                        <div class="romaji">${XiaoDou.escapeHtml(item.romaji)}</div>
+                        <div class="example-word">${XiaoDou.escapeHtml(item.example_word)}</div>
+                        <div class="example-meaning">${XiaoDou.escapeHtml(item.example_meaning)}</div>
+                        <button class="btn-play" onclick="playCurrent()">🔊 朗读</button>
+                    `;
+                } else {
+                    const isKata = displayMode === 'katakana';
+                    const label = isKata ? '片假名' : '平假名';
+                    const kana = isKata ? item.katakana : item.hiragana;
+                    const pairLabel = isKata ? '平假名' : '片假名';
+                    const pair = isKata ? item.hiragana : item.katakana;
+                    html = `
+                        <div class="kana-label">${label}</div>
+                        <div class="big-kana ${isKata ? 'katakana' : 'hiragana'}" onclick="playCurrent()">${XiaoDou.escapeHtml(kana)}</div>
+                        <div style="font-size:18px;color:#888;margin:5px 0;">${pairLabel}：${XiaoDou.escapeHtml(pair)}</div>
+                        <div class="romaji">${XiaoDou.escapeHtml(item.romaji)}</div>
+                        <div class="example-word">${XiaoDou.escapeHtml(item.example_word)}</div>
+                        <div class="example-meaning">${XiaoDou.escapeHtml(item.example_meaning)}</div>
+                        <button class="btn-play" onclick="playCurrent()">🔊 朗读</button>
+                    `;
+                }
             }
             container.innerHTML = html;
             renderProgress();
@@ -503,7 +594,6 @@
         }
 
         function updateNavButtons() {
-            // 启用循环滑动，箭头始终可用
             document.getElementById('prevBtn').disabled = false;
             document.getElementById('nextBtn').disabled = false;
         }
@@ -513,14 +603,14 @@
             let text = '';
             let mp3Path = '';
             if (currentSection === 'special') {
-                text = `${item.kana}、${item.name}、${item.example_word}`;
+                const main = displayMode === 'katakana' ? item.katakana : item.hiragana;
+                text = `${main}、${item.name}、${item.example_word}`;
                 mp3Path = getAudioPath(currentSection, currentIndex);
                 showMascot(`${item.name}：${item.description}。比如 ${item.example_word}，${item.example_meaning}。`);
             } else {
-                text = `${item.kana}、${item.katakana || ''}、${item.romaji}、${item.example_word}`;
+                text = `${item.hiragana}、${item.katakana}、${item.romaji}、${item.example_word}`;
                 mp3Path = getAudioPath(currentSection, currentIndex);
-                const kataText = item.katakana ? `对应的片假名是 ${item.katakana}。` : '';
-                showMascot(`${item.kana}，读作 ${item.romaji}。${kataText}例词：${item.example_word}，意思是 ${item.example_meaning}。`);
+                showMascot(`${item.hiragana}，片假名是 ${item.katakana}，都读作 ${item.romaji}。例词：${item.example_word}，意思是 ${item.example_meaning}。`);
             }
             playKanaAudio(mp3Path, text);
         }
@@ -589,8 +679,8 @@
             const silentAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
             silentAudio.play().catch(() => {});
             document.getElementById('startOverlay').style.display = 'none';
-            showMascot('你好！我是小豆。我们先从清音开始学习平假名吧！');
-            XiaoDou.speak('你好！我是小豆。我们先从清音开始学习平假名吧！', 'zh');
+            showMascot('你好！我是小豆。我们先从清音开始，看看平假名和片假名怎么配对吧！');
+            XiaoDou.speak('你好！我是小豆。我们先从清音开始，看看平假名和片假名怎么配对吧！', 'zh');
         }
 
         init();

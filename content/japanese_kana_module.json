@@ -1,6 +1,6 @@
 {
-  "module": "katakana",
-  "title": "小豆日语片假名",
+  "module": "japanese_kana",
+  "title": "小豆日语假名",
   "target_age": "3-6",
   "lesson_duration_min": 5,
   "sections": [
@@ -9,322 +9,322 @@
       "name": "清音",
       "items": [
         {
-          "kana": "ア",
+          "katakana": "ア",
           "romaji": "a",
           "example_word": "アメリカ",
           "example_meaning": "美国",
           "hiragana": "あ"
         },
         {
-          "kana": "イ",
+          "katakana": "イ",
           "romaji": "i",
           "example_word": "イギリス",
           "example_meaning": "英国",
           "hiragana": "い"
         },
         {
-          "kana": "ウ",
+          "katakana": "ウ",
           "romaji": "u",
           "example_word": "ウサギ",
           "example_meaning": "兔子",
           "hiragana": "う"
         },
         {
-          "kana": "エ",
+          "katakana": "エ",
           "romaji": "e",
           "example_word": "エビ",
           "example_meaning": "虾",
           "hiragana": "え"
         },
         {
-          "kana": "オ",
+          "katakana": "オ",
           "romaji": "o",
           "example_word": "オレンジ",
           "example_meaning": "橙子",
           "hiragana": "お"
         },
         {
-          "kana": "カ",
+          "katakana": "カ",
           "romaji": "ka",
           "example_word": "カメラ",
           "example_meaning": "相机",
           "hiragana": "か"
         },
         {
-          "kana": "キ",
+          "katakana": "キ",
           "romaji": "ki",
           "example_word": "キリン",
           "example_meaning": "长颈鹿",
           "hiragana": "き"
         },
         {
-          "kana": "ク",
+          "katakana": "ク",
           "romaji": "ku",
           "example_word": "クマ",
           "example_meaning": "熊",
           "hiragana": "く"
         },
         {
-          "kana": "ケ",
+          "katakana": "ケ",
           "romaji": "ke",
           "example_word": "ケーキ",
           "example_meaning": "蛋糕",
           "hiragana": "け"
         },
         {
-          "kana": "コ",
+          "katakana": "コ",
           "romaji": "ko",
           "example_word": "コアラ",
           "example_meaning": "考拉",
           "hiragana": "こ"
         },
         {
-          "kana": "サ",
+          "katakana": "サ",
           "romaji": "sa",
           "example_word": "サカナ",
           "example_meaning": "鱼",
           "hiragana": "さ"
         },
         {
-          "kana": "シ",
+          "katakana": "シ",
           "romaji": "shi",
           "example_word": "シカ",
           "example_meaning": "鹿",
           "hiragana": "し"
         },
         {
-          "kana": "ス",
+          "katakana": "ス",
           "romaji": "su",
           "example_word": "スイカ",
           "example_meaning": "西瓜",
           "hiragana": "す"
         },
         {
-          "kana": "セ",
+          "katakana": "セ",
           "romaji": "se",
           "example_word": "セミ",
           "example_meaning": "蝉",
           "hiragana": "せ"
         },
         {
-          "kana": "ソ",
+          "katakana": "ソ",
           "romaji": "so",
           "example_word": "ソファ",
           "example_meaning": "沙发",
           "hiragana": "そ"
         },
         {
-          "kana": "タ",
+          "katakana": "タ",
           "romaji": "ta",
           "example_word": "タクシー",
           "example_meaning": "出租车",
           "hiragana": "た"
         },
         {
-          "kana": "チ",
+          "katakana": "チ",
           "romaji": "chi",
           "example_word": "チューリップ",
           "example_meaning": "郁金香",
           "hiragana": "ち"
         },
         {
-          "kana": "ツ",
+          "katakana": "ツ",
           "romaji": "tsu",
           "example_word": "ツバメ",
           "example_meaning": "燕子",
           "hiragana": "つ"
         },
         {
-          "kana": "テ",
+          "katakana": "テ",
           "romaji": "te",
           "example_word": "テレビ",
           "example_meaning": "电视",
           "hiragana": "て"
         },
         {
-          "kana": "ト",
+          "katakana": "ト",
           "romaji": "to",
           "example_word": "トマト",
           "example_meaning": "番茄",
           "hiragana": "と"
         },
         {
-          "kana": "ナ",
+          "katakana": "ナ",
           "romaji": "na",
           "example_word": "ナシ",
           "example_meaning": "梨",
           "hiragana": "な"
         },
         {
-          "kana": "ニ",
+          "katakana": "ニ",
           "romaji": "ni",
           "example_word": "ニワトリ",
           "example_meaning": "鸡",
           "hiragana": "に"
         },
         {
-          "kana": "ヌ",
+          "katakana": "ヌ",
           "romaji": "nu",
           "example_word": "ヌマ",
           "example_meaning": "沼泽",
           "hiragana": "ぬ"
         },
         {
-          "kana": "ネ",
+          "katakana": "ネ",
           "romaji": "ne",
           "example_word": "ネコ",
           "example_meaning": "猫",
           "hiragana": "ね"
         },
         {
-          "kana": "ノ",
+          "katakana": "ノ",
           "romaji": "no",
           "example_word": "ノート",
           "example_meaning": "笔记本",
           "hiragana": "の"
         },
         {
-          "kana": "ハ",
+          "katakana": "ハ",
           "romaji": "ha",
           "example_word": "ハナ",
           "example_meaning": "花",
           "hiragana": "は"
         },
         {
-          "kana": "ヒ",
+          "katakana": "ヒ",
           "romaji": "hi",
           "example_word": "ヒコウキ",
           "example_meaning": "飞机",
           "hiragana": "ひ"
         },
         {
-          "kana": "フ",
+          "katakana": "フ",
           "romaji": "fu",
           "example_word": "フルーツ",
           "example_meaning": "水果",
           "hiragana": "ふ"
         },
         {
-          "kana": "ヘ",
+          "katakana": "ヘ",
           "romaji": "he",
           "example_word": "ヘビ",
           "example_meaning": "蛇",
           "hiragana": "へ"
         },
         {
-          "kana": "ホ",
+          "katakana": "ホ",
           "romaji": "ho",
           "example_word": "ホタル",
           "example_meaning": "萤火虫",
           "hiragana": "ほ"
         },
         {
-          "kana": "マ",
+          "katakana": "マ",
           "romaji": "ma",
           "example_word": "ママ",
           "example_meaning": "妈妈",
           "hiragana": "ま"
         },
         {
-          "kana": "ミ",
+          "katakana": "ミ",
           "romaji": "mi",
           "example_word": "ミカン",
           "example_meaning": "橘子",
           "hiragana": "み"
         },
         {
-          "kana": "ム",
+          "katakana": "ム",
           "romaji": "mu",
           "example_word": "ムシ",
           "example_meaning": "虫子",
           "hiragana": "む"
         },
         {
-          "kana": "メ",
+          "katakana": "メ",
           "romaji": "me",
           "example_word": "メガネ",
           "example_meaning": "眼镜",
           "hiragana": "め"
         },
         {
-          "kana": "モ",
+          "katakana": "モ",
           "romaji": "mo",
           "example_word": "モモ",
           "example_meaning": "桃子",
           "hiragana": "も"
         },
         {
-          "kana": "ヤ",
+          "katakana": "ヤ",
           "romaji": "ya",
           "example_word": "ヤマ",
           "example_meaning": "山",
           "hiragana": "や"
         },
         {
-          "kana": "ユ",
+          "katakana": "ユ",
           "romaji": "yu",
           "example_word": "ユキ",
           "example_meaning": "雪",
           "hiragana": "ゆ"
         },
         {
-          "kana": "ヨ",
+          "katakana": "ヨ",
           "romaji": "yo",
           "example_word": "ヨット",
           "example_meaning": "游艇",
           "hiragana": "よ"
         },
         {
-          "kana": "ラ",
+          "katakana": "ラ",
           "romaji": "ra",
           "example_word": "ラーメン",
           "example_meaning": "拉面",
           "hiragana": "ら"
         },
         {
-          "kana": "リ",
+          "katakana": "リ",
           "romaji": "ri",
           "example_word": "リス",
           "example_meaning": "松鼠",
           "hiragana": "り"
         },
         {
-          "kana": "ル",
+          "katakana": "ル",
           "romaji": "ru",
           "example_word": "ルビー",
           "example_meaning": "红宝石",
           "hiragana": "る"
         },
         {
-          "kana": "レ",
+          "katakana": "レ",
           "romaji": "re",
           "example_word": "レモン",
           "example_meaning": "柠檬",
           "hiragana": "れ"
         },
         {
-          "kana": "ロ",
+          "katakana": "ロ",
           "romaji": "ro",
           "example_word": "ロボット",
           "example_meaning": "机器人",
           "hiragana": "ろ"
         },
         {
-          "kana": "ワ",
+          "katakana": "ワ",
           "romaji": "wa",
           "example_word": "ワニ",
           "example_meaning": "鳄鱼",
           "hiragana": "わ"
         },
         {
-          "kana": "ヲ",
+          "katakana": "ヲ",
           "romaji": "wo",
           "example_word": "ヲタク",
           "example_meaning": "御宅族",
           "hiragana": "を"
         },
         {
-          "kana": "ン",
+          "katakana": "ン",
           "romaji": "n",
           "example_word": "パン",
           "example_meaning": "面包",
@@ -337,175 +337,175 @@
       "name": "浊音",
       "items": [
         {
-          "kana": "ガ",
+          "katakana": "ガ",
           "romaji": "ga",
           "example_word": "ガオガオ",
           "example_meaning": "嗷嗷（熊叫）",
           "hiragana": "が"
         },
         {
-          "kana": "ギ",
+          "katakana": "ギ",
           "romaji": "gi",
           "example_word": "ギター",
           "example_meaning": "吉他",
           "hiragana": "ぎ"
         },
         {
-          "kana": "グ",
+          "katakana": "グ",
           "romaji": "gu",
           "example_word": "グラス",
           "example_meaning": "玻璃杯",
           "hiragana": "ぐ"
         },
         {
-          "kana": "ゲ",
+          "katakana": "ゲ",
           "romaji": "ge",
           "example_word": "ゲーム",
           "example_meaning": "游戏",
           "hiragana": "げ"
         },
         {
-          "kana": "ゴ",
+          "katakana": "ゴ",
           "romaji": "go",
           "example_word": "ゴリラ",
           "example_meaning": "大猩猩",
           "hiragana": "ご"
         },
         {
-          "kana": "ザ",
+          "katakana": "ザ",
           "romaji": "za",
           "example_word": "ザリガニ",
           "example_meaning": "小龙虾",
           "hiragana": "ざ"
         },
         {
-          "kana": "ジ",
+          "katakana": "ジ",
           "romaji": "ji",
           "example_word": "ジュース",
           "example_meaning": "果汁",
           "hiragana": "じ"
         },
         {
-          "kana": "ズ",
+          "katakana": "ズ",
           "romaji": "zu",
           "example_word": "ズボン",
           "example_meaning": "裤子",
           "hiragana": "ず"
         },
         {
-          "kana": "ゼ",
+          "katakana": "ゼ",
           "romaji": "ze",
           "example_word": "ゼブラ",
           "example_meaning": "斑马",
           "hiragana": "ぜ"
         },
         {
-          "kana": "ゾ",
+          "katakana": "ゾ",
           "romaji": "zo",
           "example_word": "ゾウ",
           "example_meaning": "大象",
           "hiragana": "ぞ"
         },
         {
-          "kana": "ダ",
+          "katakana": "ダ",
           "romaji": "da",
           "example_word": "ダンス",
           "example_meaning": "跳舞",
           "hiragana": "だ"
         },
         {
-          "kana": "ヂ",
+          "katakana": "ヂ",
           "romaji": "ji",
           "example_word": "ヂャングル",
           "example_meaning": "丛林",
           "hiragana": "ぢ"
         },
         {
-          "kana": "ヅ",
+          "katakana": "ヅ",
           "romaji": "zu",
           "example_word": "ヅラ",
           "example_meaning": "假发",
           "hiragana": "づ"
         },
         {
-          "kana": "デ",
+          "katakana": "デ",
           "romaji": "de",
           "example_word": "デパート",
           "example_meaning": "百货商店",
           "hiragana": "で"
         },
         {
-          "kana": "ド",
+          "katakana": "ド",
           "romaji": "do",
           "example_word": "ドラゴン",
           "example_meaning": "龙",
           "hiragana": "ど"
         },
         {
-          "kana": "バ",
+          "katakana": "バ",
           "romaji": "ba",
           "example_word": "バナナ",
           "example_meaning": "香蕉",
           "hiragana": "ば"
         },
         {
-          "kana": "ビ",
+          "katakana": "ビ",
           "romaji": "bi",
           "example_word": "ビデオ",
           "example_meaning": "视频",
           "hiragana": "び"
         },
         {
-          "kana": "ブ",
+          "katakana": "ブ",
           "romaji": "bu",
           "example_word": "ブドウ",
           "example_meaning": "葡萄",
           "hiragana": "ぶ"
         },
         {
-          "kana": "ベ",
+          "katakana": "ベ",
           "romaji": "be",
           "example_word": "ベッド",
           "example_meaning": "床",
           "hiragana": "べ"
         },
         {
-          "kana": "ボ",
+          "katakana": "ボ",
           "romaji": "bo",
           "example_word": "ボール",
           "example_meaning": "球",
           "hiragana": "ぼ"
         },
         {
-          "kana": "パ",
+          "katakana": "パ",
           "romaji": "pa",
           "example_word": "パンダ",
           "example_meaning": "熊猫",
           "hiragana": "ぱ"
         },
         {
-          "kana": "ピ",
+          "katakana": "ピ",
           "romaji": "pi",
           "example_word": "ピザ",
           "example_meaning": "披萨",
           "hiragana": "ぴ"
         },
         {
-          "kana": "プ",
+          "katakana": "プ",
           "romaji": "pu",
           "example_word": "プール",
           "example_meaning": "游泳池",
           "hiragana": "ぷ"
         },
         {
-          "kana": "ペ",
+          "katakana": "ペ",
           "romaji": "pe",
           "example_word": "ペン",
           "example_meaning": "钢笔",
           "hiragana": "ぺ"
         },
         {
-          "kana": "ポ",
+          "katakana": "ポ",
           "romaji": "po",
           "example_word": "ポスト",
           "example_meaning": "邮筒",
@@ -518,231 +518,231 @@
       "name": "拗音",
       "items": [
         {
-          "kana": "キャ",
+          "katakana": "キャ",
           "romaji": "kya",
           "example_word": "キャンプ",
           "example_meaning": "露营",
           "hiragana": "きゃ"
         },
         {
-          "kana": "キュ",
+          "katakana": "キュ",
           "romaji": "kyu",
           "example_word": "キュウリ",
           "example_meaning": "黄瓜",
           "hiragana": "きゅ"
         },
         {
-          "kana": "キョ",
+          "katakana": "キョ",
           "romaji": "kyo",
           "example_word": "キョウト",
           "example_meaning": "京都",
           "hiragana": "きょ"
         },
         {
-          "kana": "シャ",
+          "katakana": "シャ",
           "romaji": "sha",
           "example_word": "シャツ",
           "example_meaning": "衬衫",
           "hiragana": "しゃ"
         },
         {
-          "kana": "シュ",
+          "katakana": "シュ",
           "romaji": "shu",
           "example_word": "シューズ",
           "example_meaning": "鞋子",
           "hiragana": "しゅ"
         },
         {
-          "kana": "ショ",
+          "katakana": "ショ",
           "romaji": "sho",
           "example_word": "ショッピング",
           "example_meaning": "购物",
           "hiragana": "しょ"
         },
         {
-          "kana": "チャ",
+          "katakana": "チャ",
           "romaji": "cha",
           "example_word": "チャイナ",
           "example_meaning": "中国",
           "hiragana": "ちゃ"
         },
         {
-          "kana": "チュ",
+          "katakana": "チュ",
           "romaji": "chu",
           "example_word": "チューリップ",
           "example_meaning": "郁金香",
           "hiragana": "ちゅ"
         },
         {
-          "kana": "チョ",
+          "katakana": "チョ",
           "romaji": "cho",
           "example_word": "チョコレート",
           "example_meaning": "巧克力",
           "hiragana": "ちょ"
         },
         {
-          "kana": "ニャ",
+          "katakana": "ニャ",
           "romaji": "nya",
           "example_word": "ニャンコ",
           "example_meaning": "小猫咪",
           "hiragana": "にゃ"
         },
         {
-          "kana": "ニュ",
+          "katakana": "ニュ",
           "romaji": "nyu",
           "example_word": "ニュース",
           "example_meaning": "新闻",
           "hiragana": "にゅ"
         },
         {
-          "kana": "ニョ",
+          "katakana": "ニョ",
           "romaji": "nyo",
           "example_word": "ニョッキ",
           "example_meaning": "土豆团子",
           "hiragana": "にょ"
         },
         {
-          "kana": "ヒャ",
+          "katakana": "ヒャ",
           "romaji": "hya",
           "example_word": "ヒヤシンス",
           "example_meaning": "风信子",
           "hiragana": "ひゃ"
         },
         {
-          "kana": "ヒュ",
+          "katakana": "ヒュ",
           "romaji": "hyu",
           "example_word": "ヒュー",
           "example_meaning": "嘘（风声）",
           "hiragana": "ひゅ"
         },
         {
-          "kana": "ヒョ",
+          "katakana": "ヒョ",
           "romaji": "hyo",
           "example_word": "ヒョウ",
           "example_meaning": "豹",
           "hiragana": "ひょ"
         },
         {
-          "kana": "ミャ",
+          "katakana": "ミャ",
           "romaji": "mya",
           "example_word": "ミャンマー",
           "example_meaning": "缅甸",
           "hiragana": "みゃ"
         },
         {
-          "kana": "ミュ",
+          "katakana": "ミュ",
           "romaji": "myu",
           "example_word": "ミュージック",
           "example_meaning": "音乐",
           "hiragana": "みゅ"
         },
         {
-          "kana": "ミョ",
+          "katakana": "ミョ",
           "romaji": "myo",
           "example_word": "ミョウガ",
           "example_meaning": "茗荷",
           "hiragana": "みょ"
         },
         {
-          "kana": "リャ",
+          "katakana": "リャ",
           "romaji": "rya",
           "example_word": "リャク",
           "example_meaning": "略",
           "hiragana": "りゃ"
         },
         {
-          "kana": "リュ",
+          "katakana": "リュ",
           "romaji": "ryu",
           "example_word": "リュック",
           "example_meaning": "背包",
           "hiragana": "りゅ"
         },
         {
-          "kana": "リョ",
+          "katakana": "リョ",
           "romaji": "ryo",
           "example_word": "リョウ",
           "example_meaning": "量",
           "hiragana": "りょ"
         },
         {
-          "kana": "ギャ",
+          "katakana": "ギャ",
           "romaji": "gya",
           "example_word": "ギャング",
           "example_meaning": "帮派",
           "hiragana": "ぎゃ"
         },
         {
-          "kana": "ギュ",
+          "katakana": "ギュ",
           "romaji": "gyu",
           "example_word": "ギュウニュウ",
           "example_meaning": "牛奶",
           "hiragana": "ぎゅ"
         },
         {
-          "kana": "ギョ",
+          "katakana": "ギョ",
           "romaji": "gyo",
           "example_word": "ギョウザ",
           "example_meaning": "饺子",
           "hiragana": "ぎょ"
         },
         {
-          "kana": "ジャ",
+          "katakana": "ジャ",
           "romaji": "ja",
           "example_word": "ジャム",
           "example_meaning": "果酱",
           "hiragana": "じゃ"
         },
         {
-          "kana": "ジュ",
+          "katakana": "ジュ",
           "romaji": "ju",
           "example_word": "ジュース",
           "example_meaning": "果汁",
           "hiragana": "じゅ"
         },
         {
-          "kana": "ジョ",
+          "katakana": "ジョ",
           "romaji": "jo",
           "example_word": "ジョギング",
           "example_meaning": "慢跑",
           "hiragana": "じょ"
         },
         {
-          "kana": "ビャ",
+          "katakana": "ビャ",
           "romaji": "bya",
           "example_word": "ビャクダン",
           "example_meaning": "白檀",
           "hiragana": "びゃ"
         },
         {
-          "kana": "ビュ",
+          "katakana": "ビュ",
           "romaji": "byu",
           "example_word": "ビュッフェ",
           "example_meaning": "自助餐",
           "hiragana": "びゅ"
         },
         {
-          "kana": "ビョ",
+          "katakana": "ビョ",
           "romaji": "byo",
           "example_word": "ビョウイン",
           "example_meaning": "医院",
           "hiragana": "びょ"
         },
         {
-          "kana": "ピャ",
+          "katakana": "ピャ",
           "romaji": "pya",
           "example_word": "ピャッと",
           "example_meaning": "啪地一下",
           "hiragana": "ぴゃ"
         },
         {
-          "kana": "ピュ",
+          "katakana": "ピュ",
           "romaji": "pyu",
           "example_word": "ピューマ",
           "example_meaning": "美洲狮",
           "hiragana": "ぴゅ"
         },
         {
-          "kana": "ピョ",
+          "katakana": "ピョ",
           "romaji": "pyo",
           "example_word": "ピョンピョン",
           "example_meaning": "蹦蹦跳跳",
@@ -755,7 +755,7 @@
       "name": "特殊",
       "items": [
         {
-          "kana": "ー",
+          "katakana": "ー",
           "romaji": "chōon",
           "name": "长音",
           "description": "把前面的音拉长一拍",
@@ -764,7 +764,7 @@
           "hiragana": "ー"
         },
         {
-          "kana": "ッ",
+          "katakana": "ッ",
           "romaji": "sokuon",
           "name": "促音",
           "description": "停顿一下，再发后面的音",
@@ -773,7 +773,7 @@
           "hiragana": "っ"
         },
         {
-          "kana": "ン",
+          "katakana": "ン",
           "romaji": "n",
           "name": "拨音",
           "description": "像嗯一样，从鼻子里发出来",
