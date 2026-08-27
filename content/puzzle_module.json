@@ -1,0 +1,54 @@
+{
+  "title": "趣味拼图",
+  "subtitle": "恐龙、警车、火箭，拼出你喜欢的图案",
+  "items": [
+    {
+      "word": "霸王龙",
+      "pinyin": "bà wáng lóng",
+      "file": "t_rex",
+      "folder": "puzzle"
+    },
+    {
+      "word": "三角龙",
+      "pinyin": "sān jiǎo lóng",
+      "file": "triceratops",
+      "folder": "puzzle"
+    },
+    {
+      "word": "翼龙",
+      "pinyin": "yì lóng",
+      "file": "pterosaur",
+      "folder": "puzzle"
+    },
+    {
+      "word": "剑龙",
+      "pinyin": "jiàn lóng",
+      "file": "stegosaurus",
+      "folder": "puzzle"
+    },
+    {
+      "word": "警车",
+      "pinyin": "jǐng chē",
+      "file": "police_car",
+      "folder": "puzzle"
+    },
+    {
+      "word": "消防车",
+      "pinyin": "xiāo fáng chē",
+      "file": "fire_truck",
+      "folder": "puzzle"
+    },
+    {
+      "word": "救护车",
+      "pinyin": "jiù hù chē",
+      "file": "ambulance",
+      "folder": "puzzle"
+    },
+    {
+      "word": "火箭",
+      "pinyin": "huǒ jiàn",
+      "file": "rocket",
+      "folder": "puzzle"
+    }
+  ]
+}
