@@ -219,6 +219,218 @@
           "minute": 0
         }
       ]
+    },
+    {
+      "id": "weekdays",
+      "name": "星期",
+      "items": [
+        {
+          "weekday_cn": "星期一",
+          "weekday_en": "Monday",
+          "weekday_ja": "月曜日",
+          "weekday_ja_kana": "げつようび",
+          "sentence_cn": "今天是星期一。",
+          "sentence_en": "Today is Monday.",
+          "sentence_ja": "今日は月曜日です。",
+          "sentence_ja_kana": "きょうはげつようびです。"
+        },
+        {
+          "weekday_cn": "星期二",
+          "weekday_en": "Tuesday",
+          "weekday_ja": "火曜日",
+          "weekday_ja_kana": "かようび",
+          "sentence_cn": "今天是星期二。",
+          "sentence_en": "Today is Tuesday.",
+          "sentence_ja": "今日は火曜日です。",
+          "sentence_ja_kana": "きょうはかようびです。"
+        },
+        {
+          "weekday_cn": "星期三",
+          "weekday_en": "Wednesday",
+          "weekday_ja": "水曜日",
+          "weekday_ja_kana": "すいようび",
+          "sentence_cn": "今天是星期三。",
+          "sentence_en": "Today is Wednesday.",
+          "sentence_ja": "今日は水曜日です。",
+          "sentence_ja_kana": "きょうはすいようびです。"
+        },
+        {
+          "weekday_cn": "星期四",
+          "weekday_en": "Thursday",
+          "weekday_ja": "木曜日",
+          "weekday_ja_kana": "もくようび",
+          "sentence_cn": "今天是星期四。",
+          "sentence_en": "Today is Thursday.",
+          "sentence_ja": "今日は木曜日です。",
+          "sentence_ja_kana": "きょうはもくようびです。"
+        },
+        {
+          "weekday_cn": "星期五",
+          "weekday_en": "Friday",
+          "weekday_ja": "金曜日",
+          "weekday_ja_kana": "きんようび",
+          "sentence_cn": "今天是星期五。",
+          "sentence_en": "Today is Friday.",
+          "sentence_ja": "今日は金曜日です。",
+          "sentence_ja_kana": "きょうはきんようびです。"
+        },
+        {
+          "weekday_cn": "星期六",
+          "weekday_en": "Saturday",
+          "weekday_ja": "土曜日",
+          "weekday_ja_kana": "どようび",
+          "sentence_cn": "今天是星期六。",
+          "sentence_en": "Today is Saturday.",
+          "sentence_ja": "今日は土曜日です。",
+          "sentence_ja_kana": "きょうはどようびです。"
+        },
+        {
+          "weekday_cn": "星期天",
+          "weekday_en": "Sunday",
+          "weekday_ja": "日曜日",
+          "weekday_ja_kana": "にちようび",
+          "sentence_cn": "今天是星期天。",
+          "sentence_en": "Today is Sunday.",
+          "sentence_ja": "今日は日曜日です。",
+          "sentence_ja_kana": "きょうはにちようびです。"
+        }
+      ]
+    },
+    {
+      "id": "dates",
+      "name": "日期",
+      "items": [
+        {
+          "date_cn": "一月一日",
+          "date_en": "January 1st",
+          "date_ja": "一月一日",
+          "date_ja_kana": "いちがつついたち",
+          "sentence_cn": "今天是一月一日。",
+          "sentence_en": "Today is January 1st.",
+          "sentence_ja": "今日は一月一日です。",
+          "sentence_ja_kana": "きょうはいちがつついたちです。"
+        },
+        {
+          "date_cn": "二月十四日",
+          "date_en": "February 14th",
+          "date_ja": "二月十四日",
+          "date_ja_kana": "にがつじゅうよっか",
+          "sentence_cn": "今天是二月十四日。",
+          "sentence_en": "Today is February 14th.",
+          "sentence_ja": "今日は二月十四日です。",
+          "sentence_ja_kana": "きょうはにがつじゅうよっかです。"
+        },
+        {
+          "date_cn": "三月三日",
+          "date_en": "March 3rd",
+          "date_ja": "三月三日",
+          "date_ja_kana": "さんがつみっか",
+          "sentence_cn": "今天是三月三日。",
+          "sentence_en": "Today is March 3rd.",
+          "sentence_ja": "今日は三月三日です。",
+          "sentence_ja_kana": "きょうはさんがつみっかです。"
+        },
+        {
+          "date_cn": "五月五日",
+          "date_en": "May 5th",
+          "date_ja": "五月五日",
+          "date_ja_kana": "ごがついつか",
+          "sentence_cn": "今天是五月五日。",
+          "sentence_en": "Today is May 5th.",
+          "sentence_ja": "今日は五月五日です。",
+          "sentence_ja_kana": "きょうはごがついつかです。"
+        },
+        {
+          "date_cn": "六月一日",
+          "date_en": "June 1st",
+          "date_ja": "六月一日",
+          "date_ja_kana": "ろくがつついたち",
+          "sentence_cn": "今天是六月一日。",
+          "sentence_en": "Today is June 1st.",
+          "sentence_ja": "今日は六月一日です。",
+          "sentence_ja_kana": "きょうはろくがつついたちです。"
+        },
+        {
+          "date_cn": "七月七日",
+          "date_en": "July 7th",
+          "date_ja": "七月七日",
+          "date_ja_kana": "しちがつなのか",
+          "sentence_cn": "今天是七月七日。",
+          "sentence_en": "Today is July 7th.",
+          "sentence_ja": "今日は七月七日です。",
+          "sentence_ja_kana": "きょうはしちがつなのかです。"
+        },
+        {
+          "date_cn": "八月八日",
+          "date_en": "August 8th",
+          "date_ja": "八月八日",
+          "date_ja_kana": "はちがつようか",
+          "sentence_cn": "今天是八月八日。",
+          "sentence_en": "Today is August 8th.",
+          "sentence_ja": "今日は八月八日です。",
+          "sentence_ja_kana": "きょうははちがつようかです。"
+        },
+        {
+          "date_cn": "九月十日",
+          "date_en": "September 10th",
+          "date_ja": "九月十日",
+          "date_ja_kana": "くがつとおか",
+          "sentence_cn": "今天是九月十日。",
+          "sentence_en": "Today is September 10th.",
+          "sentence_ja": "今日は九月十日です。",
+          "sentence_ja_kana": "きょうはくがつとおかです。"
+        },
+        {
+          "date_cn": "十月三十一日",
+          "date_en": "October 31st",
+          "date_ja": "十月三十一日",
+          "date_ja_kana": "じゅうがつさんじゅういちにち",
+          "sentence_cn": "今天是十月三十一日。",
+          "sentence_en": "Today is October 31st.",
+          "sentence_ja": "今日は十月三十一日です。",
+          "sentence_ja_kana": "きょうはじゅうがつさんじゅういちにちです。"
+        },
+        {
+          "date_cn": "十二月二十五日",
+          "date_en": "December 25th",
+          "date_ja": "十二月二十五日",
+          "date_ja_kana": "じゅうにがつにじゅうごにち",
+          "sentence_cn": "今天是十二月二十五日。",
+          "sentence_en": "Today is December 25th.",
+          "sentence_ja": "今日は十二月二十五日です。",
+          "sentence_ja_kana": "きょうはじゅうにがつにじゅうごにちです。"
+        },
+        {
+          "date_cn": "今天",
+          "date_en": "today",
+          "date_ja": "今日",
+          "date_ja_kana": "きょう",
+          "sentence_cn": "今天天气很好。",
+          "sentence_en": "The weather is nice today.",
+          "sentence_ja": "今日はいい天気です。",
+          "sentence_ja_kana": "きょうはいいてんきです。"
+        },
+        {
+          "date_cn": "明天",
+          "date_en": "tomorrow",
+          "date_ja": "明日",
+          "date_ja_kana": "あした",
+          "sentence_cn": "明天见！",
+          "sentence_en": "See you tomorrow!",
+          "sentence_ja": "また明日！",
+          "sentence_ja_kana": "またあした！"
+        },
+        {
+          "date_cn": "昨天",
+          "date_en": "yesterday",
+          "date_ja": "昨日",
+          "date_ja_kana": "きのう",
+          "sentence_cn": "昨天我去公园了。",
+          "sentence_en": "I went to the park yesterday.",
+          "sentence_ja": "昨日、公園に行きました。",
+          "sentence_ja_kana": "きのう、こうえんにいきました。"
+        }
+      ]
     }
   ]
 }

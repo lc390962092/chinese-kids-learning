@@ -80,18 +80,17 @@
         .tabs {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            padding: 0 15px;
+            gap: 8px;
+            padding: 0 10px;
             margin-bottom: 15px;
+            flex-wrap: wrap;
         }
 
         .tab-btn {
-            flex: 1;
-            max-width: 120px;
             border: none;
             border-radius: 20px;
-            padding: 10px;
-            font-size: 16px;
+            padding: 10px 16px;
+            font-size: 15px;
             background: white;
             color: #666;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -148,6 +147,53 @@
             font-size: 18px;
             color: #888;
             margin-bottom: 15px;
+        }
+
+        .weekday-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 30px;
+            margin: 10px auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+
+        .date-calendar {
+            width: 160px;
+            height: 160px;
+            border-radius: 24px;
+            margin: 10px auto 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+            border: 3px solid #81C784;
+            overflow: hidden;
+        }
+
+        .date-calendar .month {
+            width: 100%;
+            background: #81C784;
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .date-calendar .day {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            font-weight: bold;
+            color: #388E3C;
         }
 
         .sentence-box {
@@ -370,14 +416,14 @@
         <div class="start-content">
             <div class="start-panda">🐼</div>
             <h2>小豆时间</h2>
-            <p>中英日三语认识时间，看钟表、学时段</p>
+            <p>中英日三语认识时间，时段、整点、星期、日期</p>
             <button class="start-btn" onclick="startApp()">开始学习</button>
         </div>
     </div>
 
     <div class="header">
         <h1>🐼 小豆时间</h1>
-        <p>时段 · 整点 · 中英日三语</p>
+        <p>时段 · 整点 · 星期 · 日期</p>
     </div>
 
     <div class="mascot">
@@ -388,6 +434,8 @@
     <div class="tabs" id="tabs">
         <button class="tab-btn active" data-section="periods">时段</button>
         <button class="tab-btn" data-section="hours">整点</button>
+        <button class="tab-btn" data-section="weekdays">星期</button>
+        <button class="tab-btn" data-section="dates">日期</button>
     </div>
 
     <div class="main-stage">
@@ -404,16 +452,36 @@
 
     <script src="js/common.js"></script>
     <script>
-        let timeData = { periods: [], hours: [] };
+        let timeData = { periods: [], hours: [], weekdays: [], dates: [] };
         let currentSection = 'periods';
         let currentIndex = 0;
         let appStarted = false;
+
+        const sectionConfig = {
+            periods: { name: '时段', prefix: 'time', hasClock: true },
+            hours: { name: '整点', prefix: 'time', hasClock: true },
+            weekdays: { name: '星期', prefix: 'weekday', hasClock: false },
+            dates: { name: '日期', prefix: 'date', hasClock: false }
+        };
+
+        const weekdayIcons = ['🌙','🔥','💧','🌳','💰','🌍','☀️'];
+        const weekdayColors = ['#E3F2FD','#FFEBEE','#E1F5FE','#E8F5E9','#FFF8E1','#F3E5F5','#FFF3E0'];
+        const monthNames = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+        const dayNumbers = ['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','二十一','二十二','二十三','二十四','二十五','二十六','二十七','二十八','二十九','三十','三十一'];
+
+        function parseDate(cn) {
+            const m = cn.match(/([\d一二三四五六七八九十]+)月([\d一二三四五六七八九十]+)日/);
+            if (!m) return { month: '今天', day: '' };
+            const monthIdx = monthNames.indexOf(m[1]) + 1;
+            const dayIdx = dayNumbers.indexOf(m[2]) + 1;
+            return { month: monthIdx > 0 ? monthIdx + '月' : m[1], day: dayIdx > 0 ? dayIdx : m[2] };
+        }
 
         async function init() {
             try {
                 const data = await XiaoDou.loadModule('time');
                 for (const sec of (data.sections || [])) {
-                    if (timeData[sec.id]) timeData[sec.id] = sec.items || [];
+                    if (timeData[sec.id] !== undefined) timeData[sec.id] = sec.items || [];
                 }
                 renderTabs();
                 renderCard();
@@ -427,36 +495,47 @@
 
         function showMascot(text) { document.getElementById('mascotText').textContent = text; }
 
+        function getField(item, lang, field) {
+            const cfg = sectionConfig[currentSection];
+            const prefix = cfg.prefix;
+            if (lang === 'zh') return item[`${prefix}_cn`] || item.sentence_cn || '';
+            if (lang === 'en') return item[`${prefix}_en`] || item.sentence_en || '';
+            if (lang === 'ja') return item[`${prefix}_ja_kana`] || item[`${prefix}_ja`] || '';
+            return '';
+        }
+
         function getAudioPath(section, index, lang) {
-            return XiaoDou.resolvePath(`assets/audio/time/${section}/${String(index).padStart(2, '0')}_${lang}.mp3`);
+            return XiaoDou.resolvePath(`assets/audio/time/${section}/${String(index).padStart(2, '0')}/${lang}.mp3`);
+        }
+
+        function getSentenceAudioPath(section, index, lang) {
+            const sentenceLang = lang === 'zh' ? 'cn_zh' : (lang === 'en' ? 'cn_en' : 'cn_ja');
+            return XiaoDou.resolvePath(`assets/audio/time/${section}/sentences/${String(index).padStart(2, '0')}/${sentenceLang}.mp3`);
         }
 
         function playAudioLang(lang) {
             const item = timeData[currentSection][currentIndex];
-            let text = '';
-            let fallbackLang = 'zh';
-            if (lang === 'zh') {
-                text = `${item.time_cn}。${item.sentence_cn}`;
-                fallbackLang = 'zh';
-            } else if (lang === 'en') {
-                text = `${item.time_en}. ${item.sentence_en}`;
-                fallbackLang = 'en';
-            } else if (lang === 'ja') {
-                text = `${item.time_ja_kana}。${item.sentence_ja_kana}`;
-                fallbackLang = 'ja';
-            }
+            const cfg = sectionConfig[currentSection];
+            const word = getField(item, lang, cfg.prefix);
+            const sentence = item[`sentence_${lang === 'zh' ? 'cn' : (lang === 'en' ? 'en' : 'ja_kana')}`] || '';
+            const text = sentence ? `${word}。${sentence}` : word;
             const mp3Path = getAudioPath(currentSection, currentIndex, lang);
-            XiaoDou.playAudio(mp3Path, text, fallbackLang);
+            XiaoDou.playAudio(mp3Path, text, lang).then(async (ok) => {
+                if (ok) {
+                    await new Promise(r => setTimeout(r, 600));
+                    const sentencePath = getSentenceAudioPath(currentSection, currentIndex, lang);
+                    XiaoDou.playAudio(sentencePath, null, lang);
+                }
+            });
         }
 
         function renderTabs() {
-            const tabNames = { periods: '时段', hours: '整点' };
             const tabs = document.getElementById('tabs');
             tabs.innerHTML = '';
-            for (const key of ['periods', 'hours']) {
+            for (const key of Object.keys(sectionConfig)) {
                 const btn = document.createElement('button');
                 btn.className = 'tab-btn' + (key === currentSection ? ' active' : '');
-                btn.textContent = tabNames[key];
+                btn.textContent = sectionConfig[key].name;
                 btn.onclick = () => switchSection(key);
                 tabs.appendChild(btn);
             }
@@ -464,9 +543,6 @@
 
         function renderClock(hour, minute) {
             const cx = 100, cy = 100, r = 90;
-            const markerHour = 60;
-            const markerMinute = 30;
-            // hour hand: 12h = 360deg, account minute
             const hourAngle = (hour % 12) * 30 + minute * 0.5;
             const minuteAngle = minute * 6;
             const hx = cx + Math.sin(hourAngle * Math.PI / 180) * 50;
@@ -478,14 +554,13 @@
             for (let i = 0; i < 12; i++) {
                 const angle = i * 30;
                 const is12 = i === 0;
-                const mr = is12 ? markerHour : markerMinute;
+                const mr = is12 ? 60 : 30;
                 const mw = is12 ? 4 : 2;
                 const x1 = cx + Math.sin(angle * Math.PI / 180) * (r - 10);
                 const y1 = cy - Math.cos(angle * Math.PI / 180) * (r - 10);
                 const x2 = cx + Math.sin(angle * Math.PI / 180) * (r - 10 - mr);
                 const y2 = cy - Math.cos(angle * Math.PI / 180) * (r - 10 - mr);
                 markers += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#555" stroke-width="${mw}" stroke-linecap="round" />`;
-                // numbers
                 const tx = cx + Math.sin(angle * Math.PI / 180) * (r - 28);
                 const ty = cy - Math.cos(angle * Math.PI / 180) * (r - 28);
                 markers += `<text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#555">${is12 ? 12 : i}</text>`;
@@ -502,18 +577,44 @@
             `;
         }
 
+        function renderVisual(item) {
+            const cfg = sectionConfig[currentSection];
+            if (cfg.hasClock) {
+                return `<div class="clock-wrap">${renderClock(item.hour || 0, item.minute || 0)}</div>`;
+            }
+            if (currentSection === 'weekdays') {
+                const idx = currentIndex % weekdayIcons.length;
+                return `<div class="weekday-icon" style="background:${weekdayColors[idx]};">${weekdayIcons[idx]}</div>`;
+            }
+            if (currentSection === 'dates') {
+                const parsed = parseDate(item.date_cn);
+                return `
+                    <div class="date-calendar">
+                        <div class="month">${parsed.month}</div>
+                        <div class="day">${parsed.day}</div>
+                    </div>
+                `;
+            }
+            return '';
+        }
+
         function renderCard() {
             const container = document.getElementById('cardContainer');
             const section = timeData[currentSection];
             if (!section || section.length === 0) return;
             const item = section[currentIndex];
-            const clockHtml = renderClock(item.hour || 0, item.minute || 0);
+            const cfg = sectionConfig[currentSection];
+            const wordKey = `${cfg.prefix}_cn`;
+            const enKey = `${cfg.prefix}_en`;
+            const jaKey = `${cfg.prefix}_ja`;
+            const jaKanaKey = `${cfg.prefix}_ja_kana`;
+
             container.innerHTML = `
-                <div class="clock-wrap">${clockHtml}</div>
-                <div class="time-word">${XiaoDou.escapeHtml(item.time_cn)}</div>
+                ${renderVisual(item)}
+                <div class="time-word">${XiaoDou.escapeHtml(item[wordKey])}</div>
                 <div class="time-word-sub">
-                    <span>${XiaoDou.escapeHtml(item.time_en)}</span>
-                    <span>${XiaoDou.escapeHtml(item.time_ja)}<small class="kana">${XiaoDou.escapeHtml(item.time_ja_kana)}</small></span>
+                    <span>${XiaoDou.escapeHtml(item[enKey])}</span>
+                    <span>${XiaoDou.escapeHtml(item[jaKey])}<small class="kana">${XiaoDou.escapeHtml(item[jaKanaKey])}</small></span>
                 </div>
                 <div class="sentence-box">
                     <div class="sentence-row">
@@ -558,7 +659,9 @@
         function playCurrent() {
             const item = timeData[currentSection][currentIndex];
             playAudioLang('zh');
-            showMascot(`${item.time_cn}，英文是 ${item.time_en}，日文是 ${item.time_ja}（${item.time_ja_kana}）。${item.sentence_cn}`);
+            const cfg = sectionConfig[currentSection];
+            const word = item[`${cfg.prefix}_cn`];
+            showMascot(`${word}，英文是 ${item[`${cfg.prefix}_en`]}，日文是 ${item[`${cfg.prefix}_ja`]}（${item[`${cfg.prefix}_ja_kana`]}）。${item.sentence_cn}`);
         }
 
         function switchSection(section) {
@@ -567,8 +670,7 @@
             renderTabs();
             renderCard();
             updateNavButtons();
-            const names = { periods: '时段', hours: '整点' };
-            showMascot(`我们来学${names[section]}！`);
+            showMascot(`我们来学${sectionConfig[section].name}！`);
         }
 
         function switchItem(direction) {
