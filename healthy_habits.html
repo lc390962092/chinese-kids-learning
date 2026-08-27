@@ -46,13 +46,6 @@
         .progress { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
         .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
         .progress-dot.active { background: #00ACC1; }
-        .start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #E0F7FA 0%, #FFF0F5 100%); z-index: 1000; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .start-content { background: white; padding: 40px 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 320px; width: 90%; }
-        .start-panda { font-size: 80px; margin-bottom: 10px; }
-        .start-content h2 { color: #00ACC1; font-size: 32px; margin-bottom: 10px; }
-        .start-content p { color: #888; font-size: 16px; margin-bottom: 25px; }
-        .start-btn { background: #00ACC1; color: white; border: none; border-radius: 30px; padding: 15px 50px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .start-btn:active { transform: scale(0.95); }
         .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
         .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
         @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } .card-japanese { font-size: 20px; } .btn { padding: 10px 16px; font-size: 15px; } }
@@ -85,14 +78,6 @@
 </head>
 <body>
     <a href="index.html" class="back-bar">← 回首页</a>
-    <div class="start-overlay" id="startOverlay">
-        <div class="start-content">
-            <div class="start-panda">🐼</div>
-            <h2>小豆健康习惯</h2>
-            <p>养成好身体，从小做起</p>
-            <button class="start-btn" onclick="startApp()">开始学习</button>
-        </div>
-    </div>
     <div class="header">
         <h1>🐼 小豆中文</h1>
         <p>今天我们来学习健康习惯</p>
@@ -192,7 +177,6 @@
         function prevItem() { switchCard('prev'); }
 
         function startApp() {
-            document.getElementById('startOverlay').style.display = 'none';
             if (items.length > 0) {
                 XiaoDou.speak('你好！我是小豆。今天我们来学习健康习惯。', 'zh');
                 showMascot('你好！我是小豆。今天我们来学习健康习惯。');
@@ -217,5 +201,6 @@
         }, { passive: true });
 
         init();
+        startApp();
     </script></body>
 </html>

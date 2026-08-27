@@ -46,13 +46,6 @@
         .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
         .progress-dot.active { background: #43A047; }
         .hint { color: #999; font-size: 13px; margin-top: 12px; text-align: center; }
-        .start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #E8F5E9 0%, #FFF0F5 100%); z-index: 1000; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .start-content { background: white; padding: 40px 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 320px; width: 90%; }
-        .start-panda { font-size: 80px; margin-bottom: 10px; }
-        .start-content h2 { color: #43A047; font-size: 32px; margin-bottom: 10px; }
-        .start-content p { color: #888; font-size: 16px; margin-bottom: 25px; }
-        .start-btn { background: #43A047; color: white; border: none; border-radius: 30px; padding: 15px 50px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .start-btn:active { transform: scale(0.95); }
         .back-home { display: block; text-align: center; margin-top: 18px; color: #888; text-decoration: none; font-size: 14px; }
         .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
         @media (max-width: 400px) { .card-emoji { width: 130px; height: 130px; line-height: 130px; font-size: 80px; } .card-title { font-size: 28px; } .card-story { max-height: 180px; } .btn { padding: 9px 12px; font-size: 13px; } }
@@ -85,14 +78,6 @@
 </head>
 <body>
     <a href="index.html" class="back-bar">← 回首页</a>
-    <div class="start-overlay" id="startOverlay">
-        <div class="start-content">
-            <div class="start-panda">🐼</div>
-            <h2>小豆童话故事</h2>
-            <p>一起听好故事，学道理</p>
-            <button class="start-btn" onclick="startApp()">开始学习</button>
-        </div>
-    </div>
     <div class="header">
         <h1>🐼 小豆中文</h1>
         <p>今天我们来一起听好故事，学道理</p>
@@ -320,7 +305,6 @@
         }
 
         function startApp() {
-            document.getElementById('startOverlay').style.display = 'none';
             XiaoDou.speak('欢迎来到小豆童话故事！', 'zh');
             showMascot('欢迎来到小豆童话故事！点击卡片，听好听的故事～');
         }
@@ -342,6 +326,7 @@
         });
 
         init();
+        startApp();
     </script>
 </body>
 </html>

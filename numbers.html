@@ -44,13 +44,6 @@
         .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
         .progress-dot.active { background: #00897B; }
         .swipe-hint { color: #bbb; font-size: 12px; margin-top: 8px; text-align: center; }
-        .start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #E0F2F1 0%, #FFF3E0 100%); z-index: 1000; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .start-content { background: white; padding: 40px 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 320px; width: 90%; }
-        .start-panda { font-size: 80px; margin-bottom: 10px; }
-        .start-content h2 { color: #00897B; font-size: 32px; margin-bottom: 10px; }
-        .start-content p { color: #888; font-size: 16px; margin-bottom: 25px; }
-        .start-btn { background: #00897B; color: white; border: none; border-radius: 30px; padding: 15px 50px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .start-btn:active { transform: scale(0.95); }
         .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
         .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
         .loading, .error { text-align: center; padding: 40px 20px; color: #666; }
@@ -103,14 +96,7 @@
         <div class="swipe-hint" id="swipeHint" style="display:none;">← 左右滑动切换卡片 →</div>
         <a href="index.html" class="back-home">⬅️ 返回首页</a>
     </div>
-    <div class="start-overlay" id="startOverlay">
-        <div class="start-content">
-            <div class="start-panda">🐼</div>
-            <h2>数字王国</h2>
-            <p>和小豆一起认识中文数字吧！</p>
-            <button class="start-btn" onclick="startApp()">开始</button>
-        </div>
-</div>
+    
     <script src="js/common.js"></script>
     <script>
         let items = [];
@@ -218,7 +204,6 @@
         function prevItem(){ switchCard('prev'); }
 
         function startApp(){
-            document.getElementById('startOverlay').style.display = 'none';
             if (items.length){
                 XiaoDou.speak('你好！我是小豆。今天我们来学习数字。', 'zh');
                 showMascot('你好！我是小豆。今天我们来学习数字。');
@@ -243,6 +228,8 @@
         }, { passive: true });
 
         init();
+        startApp();
+        startApp();
     </script>
 </body>
 </html>
