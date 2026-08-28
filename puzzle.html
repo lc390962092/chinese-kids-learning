@@ -42,15 +42,10 @@
         .word-bar { text-align: center; margin-top: 12px; }
         .word-bar .word { font-size: 28px; color: #333; font-weight: bold; }
         .word-bar .pinyin { font-size: 16px; color: #888; }
-        .success-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
-        .success-modal.show { display: flex; }
-        .success-box { background: white; border-radius: 28px; padding: 30px 25px; text-align: center; max-width: 340px; width: 100%; animation: popIn 0.4s ease; }
-        .success-box .trophy { font-size: 80px; margin-bottom: 10px; }
-        .success-box h2 { color: #FF6B6B; font-size: 24px; margin-bottom: 8px; }
-        .success-box p { color: #666; font-size: 15px; margin-bottom: 20px; }
+        .mascot-bubble.success { background: #E8F5E9; color: #2E7D32; animation: bounce 0.5s ease; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         .loading, .error { text-align: center; padding: 40px 20px; color: #666; }
         .error { color: #E53935; }
-        @keyframes popIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
         @media (max-width: 380px) { .thumb { flex: 0 0 60px; height: 60px; } }
     </style>
     <link rel="stylesheet" href="dark-mode.css?v=2">
@@ -93,16 +88,7 @@
             </div>
         </div>
     </div>
-    <div class="success-modal" id="successModal" onclick="closeSuccess(event)">
-        <div class="success-box">
-            <div class="trophy">🏆</div>
-            <h2>拼好啦！</h2>
-            <p id="successText">太棒了，拼图完成！</p>
-            <button class="action-btn btn-shuffle" onclick="nextPuzzle()">下一张 ➡️</button>
-            <br><br>
-            <a href="index.html" style="color:#888;text-decoration:none;font-size:14px;">← 回首页</a>
-        </div>
-    </div>
+
     <script src="js/common.js"></script>
     <script>
         let items = [];
@@ -115,6 +101,8 @@
         let timerInterval = null;
         let seconds = 0;
         let hintTimeout = null;
+        let celebrating = false;
+        let successPreviewTimeout = null;
 
         async function init() {
             try {
@@ -162,6 +150,9 @@
         }
 
         function loadPuzzle(index) {
+            if (successPreviewTimeout) clearTimeout(successPreviewTimeout);
+            celebrating = false;
+            document.getElementById('mascotText').classList.remove('success');
             const item = items[index];
             document.getElementById('wordText').textContent = item.word;
             document.getElementById('pinyinText').textContent = item.pinyin;
@@ -317,7 +308,7 @@
             updateMoveCount();
             checkCorrect();
             renderPieces();
-            if (isSolved()) showSuccess();
+            if (isSolved() && !celebrating) showSuccess();
         }
 
         function snapToGrid(piece) {
@@ -377,7 +368,6 @@
         }
 
         function nextPuzzle() {
-            document.getElementById('successModal').classList.remove('show');
             currentIndex = (currentIndex + 1) % items.length;
             selectImage(currentIndex);
         }
@@ -399,19 +389,15 @@
 
         function showSuccess() {
             stopTimer();
+            celebrating = true;
             const item = items[currentIndex];
-            const m = Math.floor(seconds / 60);
-            const s = seconds % 60;
-            const timeText = m > 0 ? `${m}分${s}秒` : `${s}秒`;
-            document.getElementById('successText').textContent = `你用了 ${timeText}，${moves} 步拼好了${item.word}！`;
-            document.getElementById('successModal').classList.add('show');
+            const bubble = document.getElementById('mascotText');
+            bubble.textContent = `太棒了，你拼出了${item.word}！`;
+            bubble.classList.add('success');
             XiaoDou.speak(`太棒了，你拼出了${item.word}`, 'zh', 0.9);
-        }
-
-        function closeSuccess(e) {
-            if (e.target.id === 'successModal') {
-                document.getElementById('successModal').classList.remove('show');
-            }
+            successPreviewTimeout = setTimeout(() => {
+                nextPuzzle();
+            }, 2500);
         }
 
         function speakWord() {
