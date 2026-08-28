@@ -29,7 +29,14 @@
         .puzzle-board { position: relative; margin: 0 auto; background: #f5f5f5; border-radius: 16px; overflow: hidden; touch-action: none; user-select: none; }
         .puzzle-piece { position: absolute; cursor: grab; touch-action: none; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 2px 6px rgba(0,0,0,0.15); transition: transform 0.05s; }
         .puzzle-piece:active { cursor: grabbing; z-index: 100; }
-        .puzzle-piece.correct { border: none; box-shadow: none; z-index: 1; }
+        .puzzle-piece.correct { border: 3px solid #FFD93D; box-shadow: 0 0 18px rgba(255, 217, 61, 0.75); z-index: 2; }
+        .puzzle-piece.celebrate { animation: celebrate-piece 0.6s ease 0.1s both; }
+        @keyframes celebrate-piece { 0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
+        .completion-toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: rgba(255,255,255,0.96); border-radius: 28px; padding: 24px 36px; box-shadow: 0 12px 40px rgba(0,0,0,0.2); text-align: center; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.4s, transform 0.4s; }
+        .completion-toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
+        .completion-toast .emoji { font-size: 56px; margin-bottom: 8px; animation: bounce 0.6s ease 2; }
+        .completion-toast .title { color: #2E7D32; font-size: 22px; font-weight: bold; margin-bottom: 6px; }
+        .completion-toast .subtitle { color: #666; font-size: 15px; }
         .info-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
         .info-pill { background: #FFF8E1; border-radius: 18px; padding: 8px 16px; font-size: 15px; color: #666; }
         .info-pill span { color: #FF6B6B; font-weight: bold; }
@@ -91,6 +98,12 @@
                 <button class="action-btn" style="background: #9C27B0; color: white;" onclick="nextAfterSuccess()">➡️ 下一题</button>
             </div>
         </div>
+    </div>
+
+    <div class="completion-toast" id="completionToast">
+        <div class="emoji">🎉</div>
+        <div class="title" id="toastTitle">太棒了！</div>
+        <div class="subtitle" id="toastSubtitle">你拼好了</div>
     </div>
 
     <script src="js/common.js"></script>
@@ -404,16 +417,37 @@
             document.getElementById('actionBtns').style.display = 'none';
             document.getElementById('successActions').style.display = 'flex';
             XiaoDou.speak(`太棒了，你拼出了${item.word}`, 'zh', 0.9);
-            showFullImagePreview(2000);
+            document.querySelectorAll('.puzzle-piece').forEach(el => el.classList.add('celebrate'));
+            showCompletionToast(item.word, `用了 ${moves} 步，耗时 ${formatTime(seconds)}`);
+        }
+
+        function formatTime(totalSeconds) {
+            const m = Math.floor(totalSeconds / 60);
+            const s = totalSeconds % 60;
+            return m > 0 ? `${m}分${s.toString().padStart(2, '0')}秒` : `${s}秒`;
+        }
+
+        function showCompletionToast(word, subtitle) {
+            const toast = document.getElementById('completionToast');
+            document.getElementById('toastTitle').textContent = `太棒了！拼出了${word}`;
+            document.getElementById('toastSubtitle').textContent = subtitle;
+            toast.classList.add('show');
+            if (successPreviewTimeout) clearTimeout(successPreviewTimeout);
+            successPreviewTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
         }
 
         function nextAfterSuccess() {
+            const toast = document.getElementById('completionToast');
+            toast.classList.remove('show');
             document.getElementById('actionBtns').style.display = 'flex';
             document.getElementById('successActions').style.display = 'none';
-            nextPuzzle();
+            setTimeout(() => nextPuzzle(), 300);
         }
 
         function showFullImagePreview(duration) {
+            // 不再遮挡拼图块，保持拼图成果可见
             const item = items[currentIndex];
             const board = document.getElementById('puzzleBoard');
             board.style.backgroundImage = `url(${item.imgUrl})`;
