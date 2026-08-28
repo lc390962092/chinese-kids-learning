@@ -81,10 +81,14 @@
                 <div class="word" id="wordText">霸王龙</div>
                 <div class="pinyin" id="pinyinText">bà wáng lóng</div>
             </div>
-            <div class="action-btns">
+            <div class="action-btns" id="actionBtns">
                 <button class="action-btn btn-speak" onclick="speakWord()">🔊 听名称</button>
                 <button class="action-btn btn-hint" onclick="showHint()">💡 看原图</button>
                 <button class="action-btn btn-shuffle" onclick="restartPuzzle()">🔄 重新打乱</button>
+            </div>
+            <div class="action-btns success-actions" id="successActions" style="display:none;">
+                <button class="action-btn btn-shuffle" onclick="restartPuzzle()">🔄 再玩一次</button>
+                <button class="action-btn" style="background: #9C27B0; color: white;" onclick="nextAfterSuccess()">➡️ 下一题</button>
             </div>
         </div>
     </div>
@@ -153,7 +157,10 @@
             if (successPreviewTimeout) clearTimeout(successPreviewTimeout);
             celebrating = false;
             document.getElementById('mascotText').classList.remove('success');
+            document.getElementById('actionBtns').style.display = 'flex';
+            document.getElementById('successActions').style.display = 'none';
             const item = items[index];
+            item.imgUrl = XiaoDou.resolvePath(`assets/images/${item.folder}/${item.file}.png`);
             document.getElementById('wordText').textContent = item.word;
             document.getElementById('pinyinText').textContent = item.pinyin;
             document.getElementById('mascotText').textContent = `这是${item.word}，把它拼出来吧！`;
@@ -392,12 +399,33 @@
             celebrating = true;
             const item = items[currentIndex];
             const bubble = document.getElementById('mascotText');
-            bubble.textContent = `太棒了，你拼出了${item.word}！`;
+            bubble.textContent = `太棒了，你拼出了${item.word}！要不要再来一次，还是挑战下一个？`;
             bubble.classList.add('success');
+            document.getElementById('actionBtns').style.display = 'none';
+            document.getElementById('successActions').style.display = 'flex';
             XiaoDou.speak(`太棒了，你拼出了${item.word}`, 'zh', 0.9);
+            showFullImagePreview(2000);
+        }
+
+        function nextAfterSuccess() {
+            document.getElementById('actionBtns').style.display = 'flex';
+            document.getElementById('successActions').style.display = 'none';
+            nextPuzzle();
+        }
+
+        function showFullImagePreview(duration) {
+            const item = items[currentIndex];
+            const board = document.getElementById('puzzleBoard');
+            board.style.backgroundImage = `url(${item.imgUrl})`;
+            board.style.backgroundSize = 'contain';
+            board.style.backgroundRepeat = 'no-repeat';
+            board.style.backgroundPosition = 'center';
+            document.querySelectorAll('.puzzle-piece').forEach(el => el.style.opacity = '0');
+            if (successPreviewTimeout) clearTimeout(successPreviewTimeout);
             successPreviewTimeout = setTimeout(() => {
-                nextPuzzle();
-            }, 2500);
+                board.style.backgroundImage = '';
+                document.querySelectorAll('.puzzle-piece').forEach(el => el.style.opacity = '1');
+            }, duration);
         }
 
         function speakWord() {
