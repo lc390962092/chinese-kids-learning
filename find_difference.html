@@ -31,16 +31,14 @@
         .scene-box { background: rgba(255,255,255,0.85); border-radius: 20px; padding: 10px; box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
         .scene-label { text-align: center; font-size: 14px; color: #888; margin-bottom: 6px; }
         .scene { position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 16px; overflow: hidden; border: 2px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.5); }
-        .scene-item { position: absolute; display: flex; align-items: center; justify-content: center; cursor: pointer; transform: translate(-50%, -50%); user-select: none; transition: transform 0.15s; }
-        .scene-item img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
-        .scene-item .emoji { font-size: 32px; line-height: 1; pointer-events: none; }
-        .scene-item.hidden { display: none; }
-        .scene-item.found::after { content: "✓"; position: absolute; top: -4px; right: -4px; background: #4CAF50; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .scene-item.found { animation: pop 0.4s ease; }
-        @keyframes pop { 0% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.15); } 100% { transform: translate(-50%, -50%) scale(1); } }
-        .scene-item.wrong { animation: shake 0.4s ease; }
-        @keyframes shake { 0%, 100% { transform: translate(-50%, -50%) translateX(0); } 25% { transform: translate(-50%, -50%) translateX(-6px); } 75% { transform: translate(-50%, -50%) translateX(6px); } }
-        .scene-item.hint-ring { box-shadow: 0 0 0 4px #FFD93D, 0 0 18px rgba(255,217,61,0.8); border-radius: 12px; animation: pulse 1s ease infinite; }
+        .scene-image { width: 100%; height: 100%; object-fit: cover; pointer-events: none; display: block; }
+        .hit-area { position: absolute; transform: translate(-50%, -50%); border-radius: 50%; cursor: pointer; z-index: 2; }
+        .hit-area.found { background: rgba(76,175,80,0.35); border: 3px solid #4CAF50; animation: hitPop 0.4s ease; }
+        .hit-area.found::after { content: "✓"; position: absolute; top: -6px; right: -6px; background: #4CAF50; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .hit-area.wrong { background: rgba(244,67,54,0.25); border: 3px solid #F44336; animation: hitShake 0.4s ease; }
+        @keyframes hitPop { 0% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.15); } 100% { transform: translate(-50%, -50%) scale(1); } }
+        @keyframes hitShake { 0%, 100% { transform: translate(-50%, -50%) translateX(0); } 25% { transform: translate(-50%, -50%) translateX(-6px); } 75% { transform: translate(-50%, -50%) translateX(6px); } }
+        .hit-area.hint-ring { box-shadow: 0 0 0 4px #FFD93D, 0 0 18px rgba(255,217,61,0.8); animation: pulse 1s ease infinite; }
         @keyframes pulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.08); } }
         .action-btns { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
         .action-btn { border: none; border-radius: 22px; padding: 12px 24px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.15s; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }

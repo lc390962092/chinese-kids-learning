@@ -79,80 +79,53 @@ const FindDifference = (function() {
     speakTask();
   }
 
-  function getItemForSide(item, overrides) {
-    if (!overrides) return item;
-    return Object.assign({}, item, overrides);
-  }
-
   function renderScenes(level) {
     const left = document.getElementById('leftScene');
     const right = document.getElementById('rightScene');
     left.innerHTML = '';
     right.innerHTML = '';
-    const overrides = level.rightOverrides || {};
-    level.itemsPerSide.forEach((item, i) => {
-      const leftEl = createItemElement(item, i, 'left');
-      const rightItem = getItemForSide(item, overrides[i]);
-      const rightEl = createItemElement(rightItem, i, 'right');
-      left.appendChild(leftEl);
-      right.appendChild(rightEl);
+
+    const leftImg = document.createElement('img');
+    leftImg.src = XiaoDou.resolvePath(level.leftImage);
+    leftImg.className = 'scene-image';
+    leftImg.alt = '原图';
+    left.appendChild(leftImg);
+
+    const rightImg = document.createElement('img');
+    rightImg.src = XiaoDou.resolvePath(level.rightImage);
+    rightImg.className = 'scene-image';
+    rightImg.alt = '找不同';
+    right.appendChild(rightImg);
+
+    // 预加载提示
+    const differences = level.differences || [];
+    differences.forEach((diff, i) => {
+      const el = document.createElement('div');
+      el.className = 'hit-area';
+      el.dataset.index = i;
+      el.style.left = diff.x + '%';
+      el.style.top = diff.y + '%';
+      el.style.width = (diff.radius * 2) + '%';
+      el.style.height = (diff.radius * 2) + '%';
+      el.addEventListener('click', (e) => handleRightClick(i, el, e));
+      right.appendChild(el);
     });
   }
 
-  function createItemElement(item, index, side) {
-    const el = document.createElement('div');
-    el.className = 'scene-item' + (item.hidden ? ' hidden' : '');
-    el.dataset.index = index;
-    el.dataset.side = side;
-    el.style.left = (item.x || 0) + '%';
-    el.style.top = (item.y || 0) + '%';
-    el.style.width = (item.size || 60) + 'px';
-    el.style.height = (item.size || 60) + 'px';
-
-    if (item.image) {
-      const img = document.createElement('img');
-      img.src = XiaoDou.resolvePath(item.image);
-      img.alt = item.name || '';
-      img.onerror = function() {
-        this.style.display = 'none';
-        const emoji = document.createElement('span');
-        emoji.className = 'emoji';
-        emoji.textContent = item.emoji || '❓';
-        el.appendChild(emoji);
-      };
-      el.appendChild(img);
-    } else {
-      const emoji = document.createElement('span');
-      emoji.className = 'emoji';
-      emoji.textContent = item.emoji || '❓';
-      el.appendChild(emoji);
-    }
-
-    if (side === 'right') {
-      el.addEventListener('click', () => handleRightClick(index, el));
-      el.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
-    }
-    return el;
-  }
-
-  function handleRightClick(index, el) {
+  function handleRightClick(index, el, e) {
     if (el.classList.contains('found')) return;
     if (foundIds.has(index)) return;
 
     const level = levels[currentIndex];
-    const diff = (level.differences || []).find(d => d.index === index);
+    const diff = (level.differences || [])[index];
     if (diff) {
       foundIds.add(index);
       el.classList.add('found');
       document.getElementById('foundCount').textContent = foundIds.size;
-      const msg = `找到了！${diff.name} ${diff.type === 'missing' ? '不见了' : (diff.type === 'moved' ? '位置变了' : '变了样')}`;
+      const msg = `找到了！${diff.name}不一样`;
       XiaoDou.speak(msg);
-      updateMascot(msg);
+      updateMascot(msg + '：' + diff.hint);
       checkComplete(level);
-    } else {
-      el.classList.add('wrong');
-      XiaoDou.speak('这里不是哦，再看看别的地方');
-      setTimeout(() => el.classList.remove('wrong'), 400);
     }
   }
 
@@ -184,16 +157,16 @@ const FindDifference = (function() {
 
   function showHint() {
     const level = levels[currentIndex];
-    const remaining = (level.differences || []).filter(d => !foundIds.has(d.index));
+    const remaining = (level.differences || []).filter((_, i) => !foundIds.has(i));
     if (!remaining.length) return;
-    // 给所有剩余差异项加提示光环，3 秒后移除
     remaining.forEach(d => {
-      const el = document.querySelector(`.scene-item[data-side="right"][data-index="${d.index}"]`);
+      const i = level.differences.indexOf(d);
+      const el = document.querySelector(`.hit-area[data-index="${i}"]`);
       if (el) el.classList.add('hint-ring');
     });
     XiaoDou.speak('注意这些闪闪发光的地方哦');
     setTimeout(() => {
-      document.querySelectorAll('.scene-item.hint-ring').forEach(el => el.classList.remove('hint-ring'));
+      document.querySelectorAll('.hit-area.hint-ring').forEach(el => el.classList.remove('hint-ring'));
     }, 2500);
   }
 
