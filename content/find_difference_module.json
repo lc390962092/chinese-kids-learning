@@ -1,0 +1,87 @@
+{
+  "title": "图片找不同",
+  "subtitle": "左右两幅图，动动眼睛找出不一样的地方",
+  "levels": [
+    {
+      "id": "zoo",
+      "title": "动物园里有什么",
+      "description": "左右两幅图有 3 处不同，全部找出来！",
+      "hint": "注意动物的数量、颜色和位置哦。",
+      "bgColor": "linear-gradient(135deg, #E8F5E9 0%, #FFF8E1 100%)",
+      "itemsPerSide": [
+        { "name": "狮子", "image": "assets/images/animals/lion.png", "emoji": "🦁", "x": 8, "y": 12, "size": 70 },
+        { "name": "大象", "image": "assets/images/animals/elephant.png", "emoji": "🐘", "x": 38, "y": 10, "size": 78 },
+        { "name": "长颈鹿", "image": "assets/images/animals/giraffe.png", "emoji": "🦒", "x": 68, "y": 8, "size": 80 },
+        { "name": "猴子", "image": "assets/images/animals/monkey.png", "emoji": "🐒", "x": 15, "y": 55, "size": 60 },
+        { "name": "熊猫", "image": "assets/images/animals/panda.png", "emoji": "🐼", "x": 48, "y": 52, "size": 62 },
+        { "name": "老虎", "image": "assets/images/animals/tiger.png", "emoji": "🐯", "x": 78, "y": 55, "size": 66 },
+        { "name": "树", "image": "", "emoji": "🌳", "x": 30, "y": 78, "size": 55 },
+        { "name": "太阳", "image": "", "emoji": "☀️", "x": 82, "y": 5, "size": 40 }
+      ],
+      "differences": [
+        { "name": "猴子", "index": 3, "type": "moved", "hint": "右边猴子跑到下面去了" },
+        { "name": "熊猫", "index": 4, "type": "missing", "hint": "右边熊猫不见了" },
+        { "name": "太阳", "index": 7, "type": "replaced", "hint": "右边太阳变成了月亮" }
+      ],
+      "rightOverrides": {
+        "3": { "y": 82 },
+        "4": { "hidden": true },
+        "7": { "emoji": "🌙", "name": "月亮" }
+      }
+    },
+    {
+      "id": "fruit_shop",
+      "title": "水果摊",
+      "description": "左右两幅图有 3 处不同，全部找出来！",
+      "hint": "注意水果的颜色、大小和摆放位置。",
+      "bgColor": "linear-gradient(135deg, #FFF3E0 0%, #FCE4EC 100%)",
+      "itemsPerSide": [
+        { "name": "苹果", "image": "assets/images/fruits_vegetables/apple.png", "emoji": "🍎", "x": 10, "y": 15, "size": 55 },
+        { "name": "香蕉", "image": "assets/images/fruits_vegetables/banana.png", "emoji": "🍌", "x": 32, "y": 12, "size": 58 },
+        { "name": "葡萄", "image": "assets/images/fruits_vegetables/grape.png", "emoji": "🍇", "x": 55, "y": 14, "size": 56 },
+        { "name": "西瓜", "image": "assets/images/fruits_vegetables/watermelon.png", "emoji": "🍉", "x": 78, "y": 10, "size": 72 },
+        { "name": "橙子", "image": "assets/images/fruits_vegetables/orange.png", "emoji": "🍊", "x": 18, "y": 58, "size": 54 },
+        { "name": "草莓", "image": "assets/images/fruits_vegetables/strawberry.png", "emoji": "🍓", "x": 42, "y": 55, "size": 48 },
+        { "name": "梨", "image": "assets/images/fruits_vegetables/pear.png", "emoji": "🍐", "x": 65, "y": 56, "size": 54 },
+        { "name": "樱桃", "image": "assets/images/fruits_vegetables/cherry.png", "emoji": "🍒", "x": 85, "y": 60, "size": 44 }
+      ],
+      "differences": [
+        { "name": "香蕉", "index": 1, "type": "replaced", "hint": "右边香蕉变成了玉米" },
+        { "name": "西瓜", "index": 3, "type": "moved", "hint": "右边西瓜跑到下面去了" },
+        { "name": "樱桃", "index": 7, "type": "missing", "hint": "右边樱桃不见了" }
+      ],
+      "rightOverrides": {
+        "1": { "emoji": "🌽", "name": "玉米", "image": "" },
+        "3": { "y": 70 },
+        "7": { "hidden": true }
+      }
+    },
+    {
+      "id": "vehicles",
+      "title": "马路上的车",
+      "description": "左右两幅图有 3 处不同，全部找出来！",
+      "hint": "注意车子的数量和颜色变化。",
+      "bgColor": "linear-gradient(135deg, #E3F2FD 0%, #E0F2F1 100%)",
+      "itemsPerSide": [
+        { "name": "小汽车", "image": "assets/images/vehicles/car.png", "emoji": "🚗", "x": 8, "y": 45, "size": 70 },
+        { "name": "公交车", "image": "assets/images/vehicles/bus.png", "emoji": "🚌", "x": 38, "y": 40, "size": 80 },
+        { "name": "自行车", "image": "assets/images/vehicles/bicycle.png", "emoji": "🚲", "x": 70, "y": 50, "size": 60 },
+        { "name": "飞机", "image": "assets/images/vehicles/airplane.png", "emoji": "✈️", "x": 72, "y": 8, "size": 72 },
+        { "name": "摩托车", "image": "assets/images/vehicles/motorcycle.png", "emoji": "🏍️", "x": 18, "y": 75, "size": 64 },
+        { "name": "红绿灯", "image": "", "emoji": "🚦", "x": 50, "y": 75, "size": 50 },
+        { "name": "云", "image": "", "emoji": "☁️", "x": 25, "y": 10, "size": 46 },
+        { "name": "太阳", "image": "", "emoji": "☀️", "x": 88, "y": 8, "size": 40 }
+      ],
+      "differences": [
+        { "name": "公交车", "index": 1, "type": "moved", "hint": "右边公交车开得更远了" },
+        { "name": "自行车", "index": 2, "type": "missing", "hint": "右边自行车不见了" },
+        { "name": "云", "index": 6, "type": "replaced", "hint": "右边的云变成了闪电" }
+      ],
+      "rightOverrides": {
+        "1": { "x": 55 },
+        "2": { "hidden": true },
+        "6": { "emoji": "⚡", "name": "闪电" }
+      }
+    }
+  ]
+}
