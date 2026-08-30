@@ -60,6 +60,8 @@
         .completion-toast .subtitle { color: #666; font-size: 15px; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         /* Fullscreen layout */
+        .orientation-hint { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); color: white; z-index: 500; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+        body.fullscreen.show-orientation-hint .orientation-hint { display: flex; }
         body.fullscreen .back-bar, body.fullscreen .header, body.fullscreen .mascot, body.fullscreen .normal-ui { display: none; }
         body.fullscreen { background: #f5f5f5; }
         body.fullscreen .main-stage { max-width: none; padding: 0; height: 100vh; display: flex; flex-direction: column; }
@@ -77,6 +79,9 @@
         body.fullscreen .word-bar .pinyin { font-size: 12px; }
         body.fullscreen .action-btns { display: none; }
         body.fullscreen .game-area { position: relative; }
+        body.fullscreen .canvas-row { flex-direction: row-reverse; }
+        body.fullscreen .color-palette.right-bar { order: 2; }
+        body.fullscreen .canvas-stack { order: 1; }
         @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } body.fullscreen .right-bar .color-btn { width: 26px; height: 26px; font-size: 12px; } body.fullscreen .color-palette.right-bar { flex: 0 0 36px; } }
     </style>
     <link rel="stylesheet" href="dark-mode.css?v=4">
@@ -136,6 +141,11 @@
         <div class="emoji">🎨</div>
         <div class="title" id="toastTitle">画得真棒！</div>
         <div class="subtitle" id="toastSubtitle">继续创作吧</div>
+    </div>
+    <div class="orientation-hint" id="orientationHint" onclick="this.parentElement.classList.remove('show-orientation-hint')">
+        <div style="font-size: 56px; margin-bottom: 16px;">📱↔️</div>
+        <div style="font-size: 22px; font-weight: bold; margin-bottom: 10px;">请把手机横过来</div>
+        <div style="font-size: 15px; color: #ccc;">横屏后画布会铺满全屏，涂色更畅快</div>
     </div>
 
     <script src="js/common.js"></script>
@@ -473,18 +483,72 @@
             }, 'image/png');
         }
 
+        function isLandscape() {
+            return window.innerWidth >= window.innerHeight;
+        }
+
+        function updateOrientationHint() {
+            if (!document.body.classList.contains('fullscreen')) {
+                document.body.classList.remove('show-orientation-hint');
+                return;
+            }
+            if (isLandscape()) {
+                document.body.classList.remove('show-orientation-hint');
+            } else {
+                document.body.classList.add('show-orientation-hint');
+            }
+        }
+
+        async function lockLandscape() {
+            try {
+                if (screen.orientation && screen.orientation.lock) {
+                    await screen.orientation.lock('landscape');
+                }
+            } catch (e) {
+                console.log('无法锁定横屏', e);
+            }
+        }
+
+        async function unlockOrientation() {
+            try {
+                if (screen.orientation && screen.orientation.unlock) {
+                    await screen.orientation.unlock();
+                }
+            } catch (e) {}
+        }
+
         function toggleFullscreen(enter) {
             if (enter) {
                 document.body.classList.add('fullscreen');
-                if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{});
+                if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().then(lockLandscape).catch(()=>{});
+                else lockLandscape();
+                updateOrientationHint();
             } else {
                 document.body.classList.remove('fullscreen');
+                document.body.classList.remove('show-orientation-hint');
                 if (document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+                unlockOrientation();
             }
             setTimeout(() => {
                 loadPicture(currentIndex);
             }, 100);
         }
+
+        window.addEventListener('resize', () => {
+            if (document.body.classList.contains('fullscreen')) {
+                updateOrientationHint();
+                loadPicture(currentIndex);
+            }
+        });
+
+        window.addEventListener('orientationchange', () => {
+            if (document.body.classList.contains('fullscreen')) {
+                setTimeout(() => {
+                    updateOrientationHint();
+                    loadPicture(currentIndex);
+                }, 200);
+            }
+        });
 
         init();
     </script>
