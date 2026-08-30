@@ -15,7 +15,9 @@
         "牙膏",
         "干净"
       ],
-      "image_prompt": "Realistic photo of a child brushing teeth in front of a bathroom mirror, toothbrush and toothpaste, bright natural lighting, no text, no watermark"
+      "image_prompt": "Realistic photo of a child brushing teeth in front of a bathroom mirror, toothbrush and toothpaste, bright natural lighting, no text, no watermark",
+      "file": "shua_ya",
+      "image": "assets/images/healthy_habits/shua_ya.png"
     },
     {
       "word": "洗手",
@@ -28,7 +30,9 @@
         "细菌",
         "干净"
       ],
-      "image_prompt": "Realistic photo of a child washing hands with soap under running water, bubbles and clean sink, natural lighting, no text, no watermark"
+      "image_prompt": "Realistic photo of a child washing hands with soap under running water, bubbles and clean sink, natural lighting, no text, no watermark",
+      "file": "xi_shou",
+      "image": "assets/images/healthy_habits/xi_shou.png"
     },
     {
       "word": "喝水",
@@ -41,7 +45,9 @@
         "健康",
         "解渴"
       ],
-      "image_prompt": "Realistic photo of a child drinking water from a glass, bright kitchen background, natural lighting, no text, no watermark"
+      "image_prompt": "Realistic photo of a child drinking water from a glass, bright kitchen background, natural lighting, no text, no watermark",
+      "file": "he_shui",
+      "image": "assets/images/healthy_habits/he_shui.png"
     },
     {
       "word": "吃饭",
@@ -54,7 +60,9 @@
         "不挑食",
         "粮食"
       ],
-      "image_prompt": "Realistic photo of a child eating a balanced meal with rice and vegetables at a table, natural lighting, no text, no watermark"
+      "image_prompt": "Realistic photo of a child eating a balanced meal with rice and vegetables at a table, natural lighting, no text, no watermark",
+      "file": "chi_fan",
+      "image": "assets/images/healthy_habits/chi_fan.png"
     },
     {
       "word": "睡觉",
@@ -67,7 +75,9 @@
         "晚安",
         "休息"
       ],
-      "image_prompt": "Realistic photo of a child sleeping peacefully in a cozy bed with soft blanket and pillow, warm night light, no text, no watermark"
+      "image_prompt": "Realistic photo of a child sleeping peacefully in a cozy bed with soft blanket and pillow, warm night light, no text, no watermark",
+      "file": "shui_jiao",
+      "image": "assets/images/healthy_habits/shui_jiao.png"
     },
     {
       "word": "运动",
@@ -80,7 +90,9 @@
         "身体",
         "健康"
       ],
-      "image_prompt": "Realistic photo of children playing and running outdoors on a grassy playground, sunny day, natural lighting, no text, no watermark"
+      "image_prompt": "Realistic photo of children playing and running outdoors on a grassy playground, sunny day, natural lighting, no text, no watermark",
+      "file": "yun_dong",
+      "image": "assets/images/healthy_habits/yun_dong.png"
     },
     {
       "word": "打喷嚏",
@@ -93,7 +105,9 @@
         "礼貌",
         "卫生"
       ],
-      "image_prompt": "Realistic photo of a child covering mouth with a tissue while sneezing, clean room background, natural lighting, no text, no watermark"
+      "image_prompt": "Realistic photo of a child covering mouth with a tissue while sneezing, clean room background, natural lighting, no text, no watermark",
+      "file": "da_pen_ti",
+      "image": "assets/images/healthy_habits/da_pen_ti.png"
     },
     {
       "word": "吃水果",
@@ -106,7 +120,9 @@
         "健康",
         "甜甜"
       ],
-      "image_prompt": "Realistic photo of fresh colorful fruits on a plate, child reaching for an apple, natural lighting, no text, no watermark"
+      "image_prompt": "Realistic photo of fresh colorful fruits on a plate, child reaching for an apple, natural lighting, no text, no watermark",
+      "file": "chi_shui_guo",
+      "image": "assets/images/healthy_habits/chi_shui_guo.png"
     },
     {
       "word": "收拾玩具",
@@ -119,7 +135,9 @@
         "箱子",
         "房间"
       ],
-      "image_prompt": "Realistic photo of a child putting toys into a storage box in a tidy room, natural lighting, no text, no watermark"
+      "image_prompt": "Realistic photo of a child putting toys into a storage box in a tidy room, natural lighting, no text, no watermark",
+      "file": "shou_shi_wan_ju",
+      "image": "assets/images/healthy_habits/shou_shi_wan_ju.png"
     },
     {
       "word": "穿外套",
@@ -132,7 +150,9 @@
         "保暖",
         "健康"
       ],
-      "image_prompt": "Realistic photo of a child putting on a warm jacket by the door, autumn weather outside, natural lighting, no text, no watermark"
+      "image_prompt": "Realistic photo of a child putting on a warm jacket by the door, autumn weather outside, natural lighting, no text, no watermark",
+      "file": "chuan_wai_tao",
+      "image": "assets/images/healthy_habits/chuan_wai_tao.png"
     },
     {
       "word": "按时起床",
@@ -145,7 +165,9 @@
         "按时",
         "精神"
       ],
-      "image_prompt": "Realistic photo of a child waking up and stretching in a sunny bedroom with an alarm clock, no text, no watermark"
+      "image_prompt": "Realistic photo of a child waking up and stretching in a sunny bedroom with an alarm clock, no text, no watermark",
+      "file": "an_shi_qi_chuang",
+      "image": "assets/images/healthy_habits/an_shi_qi_chuang.png"
     },
     {
       "word": "洗脸",
@@ -158,7 +180,9 @@
         "干净",
         "脸"
       ],
-      "image_prompt": "Realistic photo of a child washing face with a small towel at a bathroom sink, no text, no watermark"
+      "image_prompt": "Realistic photo of a child washing face with a small towel at a bathroom sink, no text, no watermark",
+      "file": "xi_lian",
+      "image": "assets/images/healthy_habits/xi_lian.png"
     },
     {
       "word": "上厕所",
@@ -171,7 +195,9 @@
         "卫生",
         "洗手"
       ],
-      "image_prompt": "Realistic photo of a clean bathroom with a child-size toilet, bright and tidy, no text, no watermark"
+      "image_prompt": "Realistic photo of a clean bathroom with a child-size toilet, bright and tidy, no text, no watermark",
+      "file": "shang_ce_suo",
+      "image": "assets/images/healthy_habits/shang_ce_suo.png"
     },
     {
       "word": "保护眼睛",
@@ -184,7 +210,9 @@
         "电视",
         "明亮"
       ],
-      "image_prompt": "Realistic photo of a child reading a book at a desk with good natural light, no text, no watermark"
+      "image_prompt": "Realistic photo of a child reading a book at a desk with good natural light, no text, no watermark",
+      "file": "bao_hu_yan_jing",
+      "image": "assets/images/healthy_habits/bao_hu_yan_jing.png"
     },
     {
       "word": "整理书包",
@@ -197,7 +225,9 @@
         "整理",
         "上学"
       ],
-      "image_prompt": "Realistic photo of a child's school bag with books and pencils neatly organized, no text, no watermark"
+      "image_prompt": "Realistic photo of a child's school bag with books and pencils neatly organized, no text, no watermark",
+      "file": "zheng_li_shu_bao",
+      "image": "assets/images/healthy_habits/zheng_li_shu_bao.png"
     }
   ]
 }
