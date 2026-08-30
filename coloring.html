@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 趣味涂色</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: linear-gradient(135deg, #E8F5E9 0%, #FFF8E1 100%); min-height: 100vh; overflow-x: hidden; }
+        .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
+        .header { text-align: center; padding: 15px 10px 10px; }
+        .header h1 { color: #FF6B6B; font-size: 26px; margin-bottom: 5px; }
+        .header p { color: #888; font-size: 14px; }
+        .mascot { text-align: center; padding: 10px; }
+        .mascot-bubble { display: inline-block; background: white; border-radius: 25px; padding: 12px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: #555; font-size: 15px; max-width: 80%; position: relative; margin-bottom: 12px; }
+        .mascot-bubble::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-width: 10px 10px 0; border-style: solid; border-color: white transparent transparent transparent; }
+        .mascot-avatar { width: 55px; height: 55px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .main-stage { padding: 10px 15px 30px; max-width: 600px; margin: 0 auto; }
+        .loading, .error { text-align: center; padding: 40px 20px; color: #666; }
+        .error { color: #E53935; }
+        .image-select { display: flex; gap: 10px; overflow-x: auto; padding: 5px 0 12px; margin-bottom: 5px; scrollbar-width: none; }
+        .image-select::-webkit-scrollbar { display: none; }
+        .thumb { flex: 0 0 72px; height: 90px; border-radius: 16px; border: 3px solid white; background: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(0,0,0,0.08); transition: all 0.2s; }
+        .thumb.active { border-color: #FF6B6B; background: #FFF5F5; }
+        .thumb .emoji { font-size: 30px; line-height: 1; margin-bottom: 6px; }
+        .thumb .label { font-size: 13px; color: #555; }
+        .thumb:active { transform: scale(0.96); }
+        .color-palette { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 12px 0; padding: 12px; background: rgba(255,255,255,0.7); border-radius: 22px; }
+        .color-btn { width: 42px; height: 42px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+        .color-btn.selected { transform: scale(1.15); border-color: #333; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .color-btn.eraser { border: 2px solid #ddd; background: white; }
+        .game-area { background: white; border-radius: 24px; padding: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin-bottom: 12px; }
+        .svg-canvas { width: 100%; height: auto; display: block; border-radius: 16px; background: #fff; border: 2px dashed #ddd; }
+        .color-part { fill: #ffffff; stroke: #555555; stroke-width: 2; stroke-linejoin: round; cursor: pointer; transition: fill 0.1s; }
+        .color-part:active { opacity: 0.85; }
+        .word-bar { text-align: center; margin: 8px 0; }
+        .word-bar .word { font-size: 28px; color: #333; font-weight: bold; }
+        .word-bar .pinyin { font-size: 16px; color: #888; }
+        .action-btns { display: flex; gap: 10px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+        .action-btn { border: none; border-radius: 22px; padding: 12px 22px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.15s; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .action-btn:active { transform: scale(0.96); }
+        .btn-speak { background: #4CAF50; color: white; }
+        .btn-undo { background: #2196F3; color: white; }
+        .btn-reset { background: #FF9800; color: white; }
+        .btn-save { background: #9C27B0; color: white; }
+        .completion-toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: rgba(255,255,255,0.96); border-radius: 28px; padding: 24px 36px; box-shadow: 0 12px 40px rgba(0,0,0,0.2); text-align: center; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.4s, transform 0.4s; }
+        .completion-toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
+        .completion-toast .emoji { font-size: 56px; margin-bottom: 8px; animation: bounce 0.6s ease 2; }
+        .completion-toast .title { color: #2E7D32; font-size: 22px; font-weight: bold; margin-bottom: 6px; }
+        .completion-toast .subtitle { color: #666; font-size: 15px; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } }
+    </style>
+    <link rel="stylesheet" href="dark-mode.css?v=2">
+</head>
+<body>
+    <a href="index.html" class="back-bar">← 回首页</a>
+    <div class="header">
+        <h1>🎨 趣味涂色</h1>
+        <p>选一张图，挑一个颜色，开始涂吧</p>
+    </div>
+    <div class="mascot">
+        <div class="mascot-bubble" id="mascotText">选一只喜欢的图案，涂上漂亮的颜色！</div>
+        <div class="mascot-avatar">🐼</div>
+    </div>
+    <div class="main-stage">
+        <div id="loading" class="loading">正在加载涂色板...</div>
+        <div id="error" class="error" style="display:none;">加载失败，请检查网络后刷新。</div>
+        <div id="gameArea" style="display:none;">
+            <div class="image-select" id="imageSelect"></div>
+            <div class="color-palette" id="colorPalette"></div>
+            <div class="game-area">
+                <div id="svgContainer"></div>
+                <div class="word-bar">
+                    <div class="word" id="wordText">恐龙</div>
+                    <div class="pinyin" id="pinyinText">kǒng lóng</div>
+                </div>
+            </div>
+            <div class="action-btns">
+                <button class="action-btn btn-speak" onclick="speakWord()">🔊 听名称</button>
+                <button class="action-btn btn-undo" onclick="undoFill()">↩️ 撤销</button>
+                <button class="action-btn btn-reset" onclick="resetPicture()">🔄 重新涂</button>
+                <button class="action-btn btn-save" onclick="savePicture()">💾 保存作品</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="completion-toast" id="completionToast">
+        <div class="emoji">🎨</div>
+        <div class="title" id="toastTitle">画得真棒！</div>
+        <div class="subtitle" id="toastSubtitle">继续创作吧</div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        const PALETTE = [
+            { name: '红色', color: '#FF5252' },
+            { name: '橙色', color: '#FF9800' },
+            { name: '黄色', color: '#FFD600' },
+            { name: '绿色', color: '#4CAF50' },
+            { name: '青色', color: '#00BCD4' },
+            { name: '蓝色', color: '#2196F3' },
+            { name: '紫色', color: '#9C27B0' },
+            { name: '粉色', color: '#FF80AB' },
+            { name: '棕色', color: '#795548' },
+            { name: '黑色', color: '#333333' },
+            { name: '白色', color: '#FFFFFF', eraser: true }
+        ];
+
+        let items = [];
+        let currentIndex = 0;
+        let currentColor = PALETTE[0].color;
+        let historyStack = [];
+
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('coloring');
+                items = XiaoDou.getItems(data);
+                if (!items.length) throw new Error('没有数据');
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('gameArea').style.display = 'block';
+                renderThumbs();
+                renderPalette();
+                loadPicture(0);
+            } catch (err) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                console.error(err);
+            }
+        }
+
+        function renderThumbs() {
+            const container = document.getElementById('imageSelect');
+            container.innerHTML = '';
+            items.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'thumb' + (index === 0 ? ' active' : '');
+                div.dataset.index = index;
+                div.innerHTML = `<div class="emoji">${XiaoDou.escapeHtml(item.emoji || '🎨')}</div><div class="label">${XiaoDou.escapeHtml(item.word)}</div>`;
+                div.onclick = () => selectImage(index);
+                container.appendChild(div);
+            });
+        }
+
+        function renderPalette() {
+            const container = document.getElementById('colorPalette');
+            container.innerHTML = '';
+            PALETTE.forEach((c, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'color-btn' + (c.eraser ? ' eraser' : '') + (index === 0 ? ' selected' : '');
+                btn.dataset.color = c.color;
+                btn.title = c.name;
+                if (c.eraser) {
+                    btn.innerHTML = '🧼';
+                } else {
+                    btn.style.backgroundColor = c.color;
+                }
+                btn.onclick = () => selectColor(c.color, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectColor(color, btn) {
+            currentColor = color;
+            document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
+            if (btn) btn.classList.add('selected');
+        }
+
+        function selectImage(index) {
+            currentIndex = index;
+            document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === index));
+            loadPicture(index);
+        }
+
+        function loadPicture(index) {
+            const item = items[index];
+            historyStack = [];
+            const container = document.getElementById('svgContainer');
+            container.innerHTML = '';
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', item.viewBox || '0 0 200 200');
+            svg.setAttribute('class', 'svg-canvas');
+            svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+            (item.paths || []).forEach((d, i) => {
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', d);
+                path.setAttribute('class', 'color-part');
+                path.setAttribute('fill', '#ffffff');
+                path.dataset.index = i;
+                path.addEventListener('pointerdown', handleFill);
+                svg.appendChild(path);
+            });
+
+            container.appendChild(svg);
+            document.getElementById('wordText').textContent = item.word;
+            document.getElementById('pinyinText').textContent = item.pinyin;
+            document.getElementById('mascotText').textContent = `这是${item.word}，选个颜色涂一涂吧！`;
+        }
+
+        function handleFill(e) {
+            e.preventDefault();
+            const path = e.target;
+            if (!path.classList.contains('color-part')) return;
+            const index = parseInt(path.dataset.index, 10);
+            const oldColor = path.getAttribute('fill') || '#ffffff';
+            if (oldColor.toLowerCase() === currentColor.toLowerCase()) return;
+
+            historyStack.push({ index, oldColor, newColor: currentColor });
+            path.setAttribute('fill', currentColor);
+            path.style.opacity = '0.7';
+            setTimeout(() => path.style.opacity = '1', 120);
+        }
+
+        function undoFill() {
+            if (!historyStack.length) return;
+            const step = historyStack.pop();
+            const svg = document.querySelector('.svg-canvas');
+            if (!svg) return;
+            const path = svg.querySelector(`path[data-index="${step.index}"]`);
+            if (path) path.setAttribute('fill', step.oldColor);
+        }
+
+        function resetPicture() {
+            const svg = document.querySelector('.svg-canvas');
+            if (!svg) return;
+            svg.querySelectorAll('.color-part').forEach(p => p.setAttribute('fill', '#ffffff'));
+            historyStack = [];
+        }
+
+        function speakWord() {
+            const item = items[currentIndex];
+            if (item) XiaoDou.speak(item.word, 'zh');
+        }
+
+        function showToast(title, subtitle) {
+            const toast = document.getElementById('completionToast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastSubtitle').textContent = subtitle;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        function savePicture() {
+            const svg = document.querySelector('.svg-canvas');
+            if (!svg) return;
+            const item = items[currentIndex];
+
+            const viewBox = (item.viewBox || '0 0 200 200').split(/\s+/).map(Number);
+            const vbW = viewBox[2] || 200;
+            const vbH = viewBox[3] || 200;
+            const targetWidth = 800;
+            const targetHeight = Math.round(targetWidth * vbH / vbW);
+
+            const clone = svg.cloneNode(true);
+            clone.setAttribute('width', targetWidth);
+            clone.setAttribute('height', targetHeight);
+            clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+            const serializer = new XMLSerializer();
+            let source = serializer.serializeToString(clone);
+            source = '<?xml version="1.0" standalone="no"?>\n' + source;
+
+            const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = targetWidth;
+                canvas.height = targetHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+                URL.revokeObjectURL(url);
+                const png = canvas.toDataURL('image/png');
+                const a = document.createElement('a');
+                a.href = png;
+                a.download = `小豆涂色-${item.word}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                showToast('保存成功！', '作品已下载到相册');
+            };
+            img.onerror = function() {
+                URL.revokeObjectURL(url);
+                showToast('保存失败', '请截图保存吧');
+            };
+            img.src = url;
+        }
+
+        init();
+    </script>
+</body>
+</html>
