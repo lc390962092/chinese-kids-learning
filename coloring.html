@@ -29,11 +29,13 @@
         .color-btn { width: 42px; height: 42px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
         .color-btn.selected { transform: scale(1.15); border-color: #333; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
         .color-btn.eraser { border: 2px solid #ddd; background: white; }
-        .game-area { background: white; border-radius: 24px; padding: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin-bottom: 12px; }
-        .svg-canvas { width: 100%; height: auto; display: block; border-radius: 16px; background: #fff; border: 2px dashed #ddd; touch-action: none; cursor: pointer; user-select: none; -webkit-user-select: none; }
-        .color-part { fill: #ffffff; stroke: #555555; stroke-width: 2.5; stroke-linejoin: round; cursor: pointer; transition: fill 0.1s; pointer-events: all; }
-        .color-part.filled { opacity: 0.95; }
-        .color-part.filled-flash { opacity: 0.7; }
+        .size-bar { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0 12px; color: #666; font-size: 14px; }
+        .size-bar input[type=range] { width: 140px; }
+        .game-area { background: white; border-radius: 24px; padding: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin-bottom: 12px; position: relative; user-select: none; -webkit-user-select: none; touch-action: none; }
+        .canvas-stack { position: relative; width: 100%; padding-bottom: 100%; border-radius: 16px; overflow: hidden; border: 2px dashed #ddd; background: #fff; }
+        .canvas-stack canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 16px; }
+        #templateCanvas { z-index: 1; }
+        #drawCanvas { z-index: 2; cursor: crosshair; touch-action: none; }
         .word-bar { text-align: center; margin: 8px 0; }
         .word-bar .word { font-size: 28px; color: #333; font-weight: bold; }
         .word-bar .pinyin { font-size: 16px; color: #888; }
@@ -52,13 +54,13 @@
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } }
     </style>
-    <link rel="stylesheet" href="dark-mode.css?v=3">
+    <link rel="stylesheet" href="dark-mode.css?v=4">
 </head>
 <body>
     <a href="index.html" class="back-bar">← 回首页</a>
     <div class="header">
         <h1>🎨 趣味涂色</h1>
-        <p>选一张图，挑一个颜色，开始涂吧</p>
+        <p>选一张图，挑个颜色，自由涂鸦吧</p>
     </div>
     <div class="mascot">
         <div class="mascot-bubble" id="mascotText">选一只喜欢的图案，涂上漂亮的颜色！</div>
@@ -70,8 +72,16 @@
         <div id="gameArea" style="display:none;">
             <div class="image-select" id="imageSelect"></div>
             <div class="color-palette" id="colorPalette"></div>
+            <div class="size-bar">
+                <span>画笔大小</span>
+                <input type="range" id="brushSize" min="6" max="40" value="16">
+                <span id="brushSizeValue">16</span>
+            </div>
             <div class="game-area">
-                <div id="svgContainer"></div>
+                <div class="canvas-stack" id="canvasStack">
+                    <canvas id="templateCanvas"></canvas>
+                    <canvas id="drawCanvas"></canvas>
+                </div>
                 <div class="word-bar">
                     <div class="word" id="wordText">恐龙</div>
                     <div class="pinyin" id="pinyinText">kǒng lóng</div>
@@ -79,8 +89,8 @@
             </div>
             <div class="action-btns">
                 <button class="action-btn btn-speak" onclick="speakWord()">🔊 听名称</button>
-                <button class="action-btn btn-undo" onclick="undoFill()">↩️ 撤销</button>
-                <button class="action-btn btn-reset" onclick="resetPicture()">🔄 重新涂</button>
+                <button class="action-btn btn-undo" onclick="undoStroke()">↩️ 撤销</button>
+                <button class="action-btn btn-reset" onclick="resetDrawing()">🔄 重新涂</button>
                 <button class="action-btn btn-save" onclick="savePicture()">💾 保存作品</button>
             </div>
         </div>
@@ -111,7 +121,13 @@
         let items = [];
         let currentIndex = 0;
         let currentColor = PALETTE[0].color;
+        let isEraser = false;
+        let brushSize = 16;
         let historyStack = [];
+        let isDrawing = false;
+        let lastPos = null;
+        let templateCanvas, drawCanvas, tCtx, dCtx;
+        let canvasSize = 800;
 
         async function init() {
             try {
@@ -120,14 +136,30 @@
                 if (!items.length) throw new Error('没有数据');
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('gameArea').style.display = 'block';
+                initCanvases();
                 renderThumbs();
                 renderPalette();
+                bindEvents();
                 loadPicture(0);
             } catch (err) {
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('error').style.display = 'block';
                 console.error(err);
             }
+        }
+
+        function initCanvases() {
+            templateCanvas = document.getElementById('templateCanvas');
+            drawCanvas = document.getElementById('drawCanvas');
+            templateCanvas.width = canvasSize;
+            templateCanvas.height = canvasSize;
+            drawCanvas.width = canvasSize;
+            drawCanvas.height = canvasSize;
+            tCtx = templateCanvas.getContext('2d');
+            dCtx = drawCanvas.getContext('2d');
+            dCtx.lineCap = 'round';
+            dCtx.lineJoin = 'round';
+            dCtx.globalAlpha = 0.85;
         }
 
         function renderThumbs() {
@@ -156,15 +188,17 @@
                 } else {
                     btn.style.backgroundColor = c.color;
                 }
-                btn.onclick = () => selectColor(c.color, btn);
+                btn.onclick = () => selectColor(c.color, c.eraser, btn);
                 container.appendChild(btn);
             });
         }
 
-        function selectColor(color, btn) {
+        function selectColor(color, eraser, btn) {
             currentColor = color;
+            isEraser = !!eraser;
             document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
             if (btn) btn.classList.add('selected');
+            updateBrush();
         }
 
         function selectImage(index) {
@@ -176,73 +210,140 @@
         function loadPicture(index) {
             const item = items[index];
             historyStack = [];
-            const container = document.getElementById('svgContainer');
-            container.innerHTML = '';
-
-            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('viewBox', item.viewBox || '0 0 200 200');
-            svg.setAttribute('class', 'svg-canvas');
-            svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-
-            (item.paths || []).forEach((d, i) => {
-                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                path.setAttribute('d', d);
-                path.setAttribute('class', 'color-part');
-                path.setAttribute('fill', '#ffffff');
-                path.dataset.index = i;
-                path.addEventListener('click', handleFill);
-                path.addEventListener('touchstart', handleFillTouch, { passive: false });
-                path.addEventListener('mousedown', handleFill);
-                svg.appendChild(path);
-            });
-
-            svg.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
-            container.appendChild(svg);
+            dCtx.clearRect(0, 0, canvasSize, canvasSize);
+            drawTemplate(item);
             document.getElementById('wordText').textContent = item.word;
             document.getElementById('pinyinText').textContent = item.pinyin;
             document.getElementById('mascotText').textContent = `这是${item.word}，选个颜色涂一涂吧！`;
         }
 
-        function handleFill(e) {
-            e.preventDefault();
-            doFill(e.target);
+        function drawTemplate(item) {
+            tCtx.clearRect(0, 0, canvasSize, canvasSize);
+            tCtx.fillStyle = '#ffffff';
+            tCtx.fillRect(0, 0, canvasSize, canvasSize);
+
+            const viewBox = item.viewBox || '0 0 200 200';
+            const paths = (item.paths || []).map(d => `<path d="${d}" fill="#ffffff" stroke="#555555" stroke-width="2.5" stroke-linejoin="round" />`).join('');
+            const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${canvasSize}" height="${canvasSize}" viewBox="${viewBox}" preserveAspectRatio="xMidYMid meet">
+    <rect width="100%" height="100%" fill="#ffffff" />
+    ${paths}
+</svg>`;
+            const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const img = new Image();
+            img.onload = function() {
+                tCtx.drawImage(img, 0, 0, canvasSize, canvasSize);
+                URL.revokeObjectURL(url);
+            };
+            img.onerror = function() {
+                URL.revokeObjectURL(url);
+            };
+            img.src = url;
         }
 
-        function handleFillTouch(e) {
-            e.preventDefault();
-            const touch = e.touches[0];
-            if (!touch) return;
-            const el = document.elementFromPoint(touch.clientX, touch.clientY);
-            if (el && el.classList.contains('color-part')) {
-                doFill(el);
+        function getPos(e) {
+            const rect = drawCanvas.getBoundingClientRect();
+            let clientX, clientY;
+            if (e.touches && e.touches.length) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
             }
+            const scaleX = canvasSize / rect.width;
+            const scaleY = canvasSize / rect.height;
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY
+            };
         }
 
-        function doFill(path) {
-            if (!path.classList.contains('color-part')) return;
-            const index = parseInt(path.dataset.index, 10);
-            const oldColor = path.getAttribute('fill') || '#ffffff';
-            if (oldColor.toLowerCase() === currentColor.toLowerCase()) return;
+        function bindEvents() {
+            const sizeInput = document.getElementById('brushSize');
+            const sizeValue = document.getElementById('brushSizeValue');
+            sizeInput.addEventListener('input', () => {
+                brushSize = parseInt(sizeInput.value, 10);
+                sizeValue.textContent = brushSize;
+                updateBrush();
+            });
 
-            historyStack.push({ index, oldColor, newColor: currentColor });
-            path.setAttribute('fill', currentColor);
-            path.classList.add('filled-flash');
-            setTimeout(() => path.classList.remove('filled-flash'), 150);
+            drawCanvas.addEventListener('mousedown', startDraw);
+            drawCanvas.addEventListener('mousemove', moveDraw);
+            drawCanvas.addEventListener('mouseup', endDraw);
+            drawCanvas.addEventListener('mouseleave', endDraw);
+
+            drawCanvas.addEventListener('touchstart', startDraw, { passive: false });
+            drawCanvas.addEventListener('touchmove', moveDraw, { passive: false });
+            drawCanvas.addEventListener('touchend', endDraw);
+            drawCanvas.addEventListener('touchcancel', endDraw);
+
+            // 阻止画布区域的默认滚动/缩放
+            document.getElementById('canvasStack').addEventListener('touchmove', e => e.preventDefault(), { passive: false });
         }
 
-        function undoFill() {
+        function updateBrush() {
+            dCtx.globalAlpha = isEraser ? 1 : 0.85;
+        }
+
+        function startDraw(e) {
+            e.preventDefault();
+            isDrawing = true;
+            lastPos = getPos(e);
+            saveSnapshot();
+            drawDot(lastPos.x, lastPos.y);
+        }
+
+        function moveDraw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            const pos = getPos(e);
+            dCtx.beginPath();
+            dCtx.moveTo(lastPos.x, lastPos.y);
+            dCtx.lineTo(pos.x, pos.y);
+            dCtx.strokeStyle = currentColor;
+            dCtx.lineWidth = brushSize;
+            if (isEraser) {
+                dCtx.globalCompositeOperation = 'destination-out';
+            } else {
+                dCtx.globalCompositeOperation = 'source-over';
+            }
+            dCtx.stroke();
+            lastPos = pos;
+        }
+
+        function drawDot(x, y) {
+            dCtx.beginPath();
+            dCtx.arc(x, y, brushSize / 2, 0, Math.PI * 2);
+            dCtx.fillStyle = currentColor;
+            if (isEraser) {
+                dCtx.globalCompositeOperation = 'destination-out';
+            } else {
+                dCtx.globalCompositeOperation = 'source-over';
+            }
+            dCtx.fill();
+        }
+
+        function endDraw(e) {
+            if (!isDrawing) return;
+            isDrawing = false;
+            lastPos = null;
+        }
+
+        function saveSnapshot() {
+            historyStack.push(dCtx.getImageData(0, 0, canvasSize, canvasSize));
+            if (historyStack.length > 10) historyStack.shift();
+        }
+
+        function undoStroke() {
             if (!historyStack.length) return;
-            const step = historyStack.pop();
-            const svg = document.querySelector('.svg-canvas');
-            if (!svg) return;
-            const path = svg.querySelector(`path[data-index="${step.index}"]`);
-            if (path) path.setAttribute('fill', step.oldColor);
+            const img = historyStack.pop();
+            dCtx.putImageData(img, 0, 0);
         }
 
-        function resetPicture() {
-            const svg = document.querySelector('.svg-canvas');
-            if (!svg) return;
-            svg.querySelectorAll('.color-part').forEach(p => p.setAttribute('fill', '#ffffff'));
+        function resetDrawing() {
+            dCtx.clearRect(0, 0, canvasSize, canvasSize);
             historyStack = [];
         }
 
@@ -260,50 +361,24 @@
         }
 
         function savePicture() {
-            const svg = document.querySelector('.svg-canvas');
-            if (!svg) return;
-            const item = items[currentIndex];
-
-            const viewBox = (item.viewBox || '0 0 200 200').split(/\s+/).map(Number);
-            const vbW = viewBox[2] || 200;
-            const vbH = viewBox[3] || 200;
-            const targetWidth = 800;
-            const targetHeight = Math.round(targetWidth * vbH / vbW);
-
-            const clone = svg.cloneNode(true);
-            clone.setAttribute('width', targetWidth);
-            clone.setAttribute('height', targetHeight);
-            clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-            const serializer = new XMLSerializer();
-            let source = serializer.serializeToString(clone);
-            source = '<?xml version="1.0" standalone="no"?>\n' + source;
-
-            const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const img = new Image();
-            img.onload = function() {
-                const canvas = document.createElement('canvas');
-                canvas.width = targetWidth;
-                canvas.height = targetHeight;
-                const ctx = canvas.getContext('2d');
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(img, 0, 0);
-                URL.revokeObjectURL(url);
-                const png = canvas.toDataURL('image/png');
+            const out = document.createElement('canvas');
+            out.width = canvasSize;
+            out.height = canvasSize;
+            const ctx = out.getContext('2d');
+            ctx.drawImage(templateCanvas, 0, 0);
+            ctx.drawImage(drawCanvas, 0, 0);
+            out.toBlob(blob => {
+                const item = items[currentIndex];
+                const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
-                a.href = png;
+                a.href = url;
                 a.download = `小豆涂色-${item.word}.png`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
-                showToast('保存成功！', '作品已下载到相册');
-            };
-            img.onerror = function() {
                 URL.revokeObjectURL(url);
-                showToast('保存失败', '请截图保存吧');
-            };
-            img.src = url;
+                showToast('保存成功！', '作品已下载到相册');
+            }, 'image/png');
         }
 
         init();
