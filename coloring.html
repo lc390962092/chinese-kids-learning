@@ -66,7 +66,8 @@
         body.fullscreen #gameArea { display: flex; flex-direction: column; flex: 1; }
         body.fullscreen .game-area { border-radius: 0; box-shadow: none; flex: 1; display: flex; flex-direction: column; padding: 5px; margin: 0; background: #f5f5f5; }
         body.fullscreen .game-area .canvas-row { display: flex; flex: 1; gap: 8px; align-items: stretch; }
-        body.fullscreen .canvas-stack { max-height: none; flex: 1; border: 2px dashed #ccc; aspect-ratio: unset; height: 100%; }
+        body.fullscreen .canvas-stack { max-height: none; flex: 0 1 auto; border: 2px dashed #ccc; height: auto; align-self: center; }
+        body.fullscreen .canvas-stack canvas { border-radius: 16px; }
         body.fullscreen .color-palette { display: none; }
         body.fullscreen .color-palette.right-bar { display: flex; flex-direction: column; flex: 0 0 42px; gap: 8px; padding: 8px 4px; background: rgba(255,255,255,0.85); border-radius: 24px; margin: 0; justify-content: center; align-items: center; }
         body.fullscreen .right-bar .color-btn { width: 30px; height: 30px; font-size: 14px; border-width: 2px; }
@@ -161,7 +162,62 @@
         let isDrawing = false;
         let lastPos = null;
         let templateCanvas, drawCanvas, tCtx, dCtx;
-        let canvasSize = 800;
+        let canvasW = 800;
+        let canvasH = 800;
+
+        function getAspect(item) {
+            const vb = (item.viewBox || '0 0 200 200').split(/\s+/);
+            const w = parseFloat(vb[2]) || 200;
+            const h = parseFloat(vb[3]) || 200;
+            return w / h;
+        }
+
+        function resizeCanvasForItem(item) {
+            const ratio = getAspect(item);
+            const isFs = document.body.classList.contains('fullscreen');
+            const stack = document.getElementById('canvasStack');
+            let targetW, targetH;
+
+            if (isFs) {
+                const row = document.querySelector('.canvas-row');
+                const paletteW = 42 + 8; // right palette width + gap
+                const availW = row.clientWidth - paletteW;
+                const availH = document.querySelector('.game-area').clientHeight - 10;
+                // fit availW x availH with ratio
+                if (availW / availH > ratio) {
+                    targetH = availH;
+                    targetW = availH * ratio;
+                } else {
+                    targetW = availW;
+                    targetH = availW / ratio;
+                }
+                stack.style.aspectRatio = `${ratio}`;
+                stack.style.width = 'auto';
+                stack.style.height = 'auto';
+            } else {
+                targetW = targetH = 800;
+                stack.style.aspectRatio = '1 / 1';
+                stack.style.width = '';
+                stack.style.height = '';
+            }
+
+            canvasW = Math.max(1, Math.floor(targetW));
+            canvasH = Math.max(1, Math.floor(targetH));
+            templateCanvas.width = canvasW;
+            templateCanvas.height = canvasH;
+            drawCanvas.width = canvasW;
+            drawCanvas.height = canvasH;
+            dCtx.lineCap = 'round';
+            dCtx.lineJoin = 'round';
+            dCtx.globalAlpha = isEraser ? 1 : 0.85;
+        }
+
+        function initCanvases() {
+            templateCanvas = document.getElementById('templateCanvas');
+            drawCanvas = document.getElementById('drawCanvas');
+            tCtx = templateCanvas.getContext('2d');
+            dCtx = drawCanvas.getContext('2d');
+        }
 
         async function init() {
             try {
@@ -180,20 +236,6 @@
                 document.getElementById('error').style.display = 'block';
                 console.error(err);
             }
-        }
-
-        function initCanvases() {
-            templateCanvas = document.getElementById('templateCanvas');
-            drawCanvas = document.getElementById('drawCanvas');
-            templateCanvas.width = canvasSize;
-            templateCanvas.height = canvasSize;
-            drawCanvas.width = canvasSize;
-            drawCanvas.height = canvasSize;
-            tCtx = templateCanvas.getContext('2d');
-            dCtx = drawCanvas.getContext('2d');
-            dCtx.lineCap = 'round';
-            dCtx.lineJoin = 'round';
-            dCtx.globalAlpha = 0.85;
         }
 
         function renderThumbs() {
@@ -258,7 +300,8 @@
         function loadPicture(index) {
             const item = items[index];
             historyStack = [];
-            dCtx.clearRect(0, 0, canvasSize, canvasSize);
+            resizeCanvasForItem(item);
+            dCtx.clearRect(0, 0, canvasW, canvasH);
             drawTemplate(item);
             document.getElementById('wordText').textContent = item.word;
             document.getElementById('pinyinText').textContent = item.pinyin;
@@ -266,14 +309,14 @@
         }
 
         function drawTemplate(item) {
-            tCtx.clearRect(0, 0, canvasSize, canvasSize);
+            tCtx.clearRect(0, 0, canvasW, canvasH);
             tCtx.fillStyle = '#ffffff';
-            tCtx.fillRect(0, 0, canvasSize, canvasSize);
+            tCtx.fillRect(0, 0, canvasW, canvasH);
 
             const viewBox = item.viewBox || '0 0 200 200';
             const paths = (item.paths || []).map(d => `<path d="${d}" fill="#ffffff" stroke="#555555" stroke-width="2.5" stroke-linejoin="round" />`).join('');
             const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="${canvasSize}" height="${canvasSize}" viewBox="${viewBox}" preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" width="${canvasW}" height="${canvasH}" viewBox="${viewBox}" preserveAspectRatio="xMidYMid meet">
     <rect width="100%" height="100%" fill="#ffffff" />
     ${paths}
 </svg>`;
@@ -281,7 +324,7 @@
             const url = URL.createObjectURL(blob);
             const img = new Image();
             img.onload = function() {
-                tCtx.drawImage(img, 0, 0, canvasSize, canvasSize);
+                tCtx.drawImage(img, 0, 0, canvasW, canvasH);
                 URL.revokeObjectURL(url);
             };
             img.onerror = function() {
@@ -300,8 +343,8 @@
                 clientX = e.clientX;
                 clientY = e.clientY;
             }
-            const scaleX = canvasSize / rect.width;
-            const scaleY = canvasSize / rect.height;
+            const scaleX = canvasW / rect.width;
+            const scaleY = canvasH / rect.height;
             return {
                 x: (clientX - rect.left) * scaleX,
                 y: (clientY - rect.top) * scaleY
@@ -380,7 +423,7 @@
         }
 
         function saveSnapshot() {
-            historyStack.push(dCtx.getImageData(0, 0, canvasSize, canvasSize));
+            historyStack.push(dCtx.getImageData(0, 0, canvasW, canvasH));
             if (historyStack.length > 10) historyStack.shift();
         }
 
@@ -391,7 +434,7 @@
         }
 
         function resetDrawing() {
-            dCtx.clearRect(0, 0, canvasSize, canvasSize);
+            dCtx.clearRect(0, 0, canvasW, canvasH);
             historyStack = [];
         }
 
@@ -410,8 +453,8 @@
 
         function savePicture() {
             const out = document.createElement('canvas');
-            out.width = canvasSize;
-            out.height = canvasSize;
+            out.width = canvasW;
+            out.height = canvasH;
             const ctx = out.getContext('2d');
             ctx.drawImage(templateCanvas, 0, 0);
             ctx.drawImage(drawCanvas, 0, 0);
@@ -437,10 +480,8 @@
                 document.body.classList.remove('fullscreen');
                 if (document.exitFullscreen) document.exitFullscreen().catch(()=>{});
             }
-            // Canvas scales with CSS; internal resolution stays 800x800
             setTimeout(() => {
-                const rect = document.getElementById('canvasStack').getBoundingClientRect();
-                console.log('canvas size', rect.width, rect.height);
+                loadPicture(currentIndex);
             }, 100);
         }
 
