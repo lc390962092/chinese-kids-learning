@@ -67,21 +67,18 @@
         body.fullscreen .main-stage { max-width: none; padding: 0; height: 100vh; display: flex; flex-direction: column; }
         body.fullscreen #gameArea { display: flex; flex-direction: column; flex: 1; }
         body.fullscreen .game-area { border-radius: 0; box-shadow: none; flex: 1; display: flex; flex-direction: column; padding: 5px; margin: 0; background: #f5f5f5; }
-        body.fullscreen .game-area .canvas-row { display: flex; flex: 1; gap: 8px; align-items: stretch; }
-        body.fullscreen .canvas-stack { max-height: none; flex: 0 0 auto; border: 2px dashed #ccc; align-self: center; }
+        body.fullscreen .game-area .canvas-row { display: flex; flex: 1; gap: 8px; align-items: center; justify-content: center; position: relative; padding-right: 60px; }
+        body.fullscreen .canvas-stack { max-height: none; flex: 0 0 auto; border: 2px dashed #ccc; }
         body.fullscreen .canvas-stack canvas { border-radius: 16px; }
         .canvas-stack { min-width: 120px; min-height: 120px; }
         body.fullscreen .color-palette { display: none; }
-        body.fullscreen .color-palette.right-bar { display: flex; flex-direction: column; flex: 0 0 42px; gap: 8px; padding: 8px 4px; background: rgba(255,255,255,0.85); border-radius: 24px; margin: 0; justify-content: center; align-items: center; }
+        body.fullscreen .color-palette.right-bar { display: flex; flex-direction: column; gap: 8px; padding: 8px 4px; background: rgba(255,255,255,0.85); border-radius: 24px; margin: 0; justify-content: center; align-items: center; position: fixed; right: 10px; top: 50%; transform: translateY(-50%); z-index: 10; }
         body.fullscreen .right-bar .color-btn { width: 30px; height: 30px; font-size: 14px; border-width: 2px; }
         body.fullscreen .word-bar { position: absolute; top: 10px; left: 10px; margin: 0; text-align: left; background: rgba(255,255,255,0.85); padding: 6px 12px; border-radius: 16px; }
         body.fullscreen .word-bar .word { font-size: 20px; }
         body.fullscreen .word-bar .pinyin { font-size: 12px; }
         body.fullscreen .action-btns { display: none; }
         body.fullscreen .game-area { position: relative; }
-        body.fullscreen .canvas-row { flex-direction: row-reverse; }
-        body.fullscreen .color-palette.right-bar { order: 2; }
-        body.fullscreen .canvas-stack { order: 1; }
         @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } body.fullscreen .right-bar .color-btn { width: 26px; height: 26px; font-size: 12px; } body.fullscreen .color-palette.right-bar { flex: 0 0 36px; } }
     </style>
     <link rel="stylesheet" href="dark-mode.css?v=4">
@@ -191,8 +188,8 @@
 
             if (isFs) {
                 const row = document.querySelector('.canvas-row');
-                const paletteW = 42 + 8; // right palette width + gap
-                const availW = Math.max(120, row.clientWidth - paletteW);
+                // CSS 在右侧留出 60px 空白给固定颜料板
+                const availW = Math.max(120, row.clientWidth - 10);
                 const availH = Math.max(120, document.querySelector('.game-area').clientHeight - 10);
                 // fit availW x availH with ratio
                 if (availW / availH > ratio) {
