@@ -30,9 +30,10 @@
         .color-btn.selected { transform: scale(1.15); border-color: #333; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
         .color-btn.eraser { border: 2px solid #ddd; background: white; }
         .game-area { background: white; border-radius: 24px; padding: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin-bottom: 12px; }
-        .svg-canvas { width: 100%; height: auto; display: block; border-radius: 16px; background: #fff; border: 2px dashed #ddd; touch-action: none; }
+        .svg-canvas { width: 100%; height: auto; display: block; border-radius: 16px; background: #fff; border: 2px dashed #ddd; touch-action: none; cursor: pointer; user-select: none; -webkit-user-select: none; }
         .color-part { fill: #ffffff; stroke: #555555; stroke-width: 2.5; stroke-linejoin: round; cursor: pointer; transition: fill 0.1s; pointer-events: all; }
-        .color-part:active { opacity: 0.85; }
+        .color-part.filled { opacity: 0.95; }
+        .color-part.filled-flash { opacity: 0.7; }
         .word-bar { text-align: center; margin: 8px 0; }
         .word-bar .word { font-size: 28px; color: #333; font-weight: bold; }
         .word-bar .pinyin { font-size: 16px; color: #888; }
@@ -51,7 +52,7 @@
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } }
     </style>
-    <link rel="stylesheet" href="dark-mode.css?v=2">
+    <link rel="stylesheet" href="dark-mode.css?v=3">
 </head>
 <body>
     <a href="index.html" class="back-bar">← 回首页</a>
@@ -189,10 +190,13 @@
                 path.setAttribute('class', 'color-part');
                 path.setAttribute('fill', '#ffffff');
                 path.dataset.index = i;
-                path.addEventListener('pointerdown', handleFill);
+                path.addEventListener('click', handleFill);
+                path.addEventListener('touchstart', handleFillTouch, { passive: false });
+                path.addEventListener('mousedown', handleFill);
                 svg.appendChild(path);
             });
 
+            svg.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
             container.appendChild(svg);
             document.getElementById('wordText').textContent = item.word;
             document.getElementById('pinyinText').textContent = item.pinyin;
@@ -201,7 +205,20 @@
 
         function handleFill(e) {
             e.preventDefault();
-            const path = e.target;
+            doFill(e.target);
+        }
+
+        function handleFillTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            if (!touch) return;
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            if (el && el.classList.contains('color-part')) {
+                doFill(el);
+            }
+        }
+
+        function doFill(path) {
             if (!path.classList.contains('color-part')) return;
             const index = parseInt(path.dataset.index, 10);
             const oldColor = path.getAttribute('fill') || '#ffffff';
@@ -209,8 +226,8 @@
 
             historyStack.push({ index, oldColor, newColor: currentColor });
             path.setAttribute('fill', currentColor);
-            path.style.opacity = '0.7';
-            setTimeout(() => path.style.opacity = '1', 120);
+            path.classList.add('filled-flash');
+            setTimeout(() => path.classList.remove('filled-flash'), 150);
         }
 
         function undoFill() {
