@@ -66,8 +66,9 @@
         body.fullscreen #gameArea { display: flex; flex-direction: column; flex: 1; }
         body.fullscreen .game-area { border-radius: 0; box-shadow: none; flex: 1; display: flex; flex-direction: column; padding: 5px; margin: 0; background: #f5f5f5; }
         body.fullscreen .game-area .canvas-row { display: flex; flex: 1; gap: 8px; align-items: stretch; }
-        body.fullscreen .canvas-stack { max-height: none; flex: 0 1 auto; border: 2px dashed #ccc; height: auto; align-self: center; }
+        body.fullscreen .canvas-stack { max-height: none; flex: 0 0 auto; border: 2px dashed #ccc; align-self: center; }
         body.fullscreen .canvas-stack canvas { border-radius: 16px; }
+        .canvas-stack { min-width: 120px; min-height: 120px; }
         body.fullscreen .color-palette { display: none; }
         body.fullscreen .color-palette.right-bar { display: flex; flex-direction: column; flex: 0 0 42px; gap: 8px; padding: 8px 4px; background: rgba(255,255,255,0.85); border-radius: 24px; margin: 0; justify-content: center; align-items: center; }
         body.fullscreen .right-bar .color-btn { width: 30px; height: 30px; font-size: 14px; border-width: 2px; }
@@ -181,8 +182,8 @@
             if (isFs) {
                 const row = document.querySelector('.canvas-row');
                 const paletteW = 42 + 8; // right palette width + gap
-                const availW = row.clientWidth - paletteW;
-                const availH = document.querySelector('.game-area').clientHeight - 10;
+                const availW = Math.max(120, row.clientWidth - paletteW);
+                const availH = Math.max(120, document.querySelector('.game-area').clientHeight - 10);
                 // fit availW x availH with ratio
                 if (availW / availH > ratio) {
                     targetH = availH;
@@ -191,9 +192,9 @@
                     targetW = availW;
                     targetH = availW / ratio;
                 }
-                stack.style.aspectRatio = `${ratio}`;
-                stack.style.width = 'auto';
-                stack.style.height = 'auto';
+                stack.style.aspectRatio = 'unset';
+                stack.style.width = Math.floor(targetW) + 'px';
+                stack.style.height = Math.floor(targetH) + 'px';
             } else {
                 targetW = targetH = 800;
                 stack.style.aspectRatio = '1 / 1';
