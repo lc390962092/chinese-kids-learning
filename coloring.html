@@ -26,6 +26,7 @@
         .thumb .label { font-size: 13px; color: #555; }
         .thumb:active { transform: scale(0.96); }
         .color-palette { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 12px 0; padding: 12px; background: rgba(255,255,255,0.7); border-radius: 22px; }
+        .color-palette.right-bar { display: none; }
         .color-btn { width: 42px; height: 42px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
         .color-btn.selected { transform: scale(1.15); border-color: #333; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
         .color-btn.eraser { border: 2px solid #ddd; background: white; }
@@ -46,13 +47,31 @@
         .btn-undo { background: #2196F3; color: white; }
         .btn-reset { background: #FF9800; color: white; }
         .btn-save { background: #9C27B0; color: white; }
+        .btn-fullscreen { background: #607D8B; color: white; }
+        .btn-exit-fullscreen { background: #607D8B; color: white; position: fixed; top: 10px; right: 10px; z-index: 300; border-radius: 50%; width: 44px; height: 44px; padding: 0; font-size: 20px; display: none; align-items: center; justify-content: center; }
+        body.fullscreen .btn-exit-fullscreen { display: flex; }
         .completion-toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: rgba(255,255,255,0.96); border-radius: 28px; padding: 24px 36px; box-shadow: 0 12px 40px rgba(0,0,0,0.2); text-align: center; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.4s, transform 0.4s; }
         .completion-toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
         .completion-toast .emoji { font-size: 56px; margin-bottom: 8px; animation: bounce 0.6s ease 2; }
         .completion-toast .title { color: #2E7D32; font-size: 22px; font-weight: bold; margin-bottom: 6px; }
         .completion-toast .subtitle { color: #666; font-size: 15px; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } }
+        /* Fullscreen layout */
+        body.fullscreen .back-bar, body.fullscreen .header, body.fullscreen .mascot, body.fullscreen .normal-ui { display: none; }
+        body.fullscreen { background: #f5f5f5; }
+        body.fullscreen .main-stage { max-width: none; padding: 0; height: 100vh; display: flex; flex-direction: column; }
+        body.fullscreen .game-area { border-radius: 0; box-shadow: none; flex: 1; display: flex; flex-direction: column; padding: 5px; margin: 0; background: #f5f5f5; }
+        body.fullscreen .game-area .canvas-row { display: flex; flex: 1; gap: 8px; align-items: center; }
+        body.fullscreen .canvas-stack { max-height: none; flex: 1; border: 2px dashed #ccc; }
+        body.fullscreen .color-palette { display: none; }
+        body.fullscreen .color-palette.right-bar { display: flex; flex-direction: column; flex: 0 0 42px; gap: 8px; padding: 8px 4px; background: rgba(255,255,255,0.85); border-radius: 24px; margin: 0; justify-content: center; align-items: center; }
+        body.fullscreen .right-bar .color-btn { width: 30px; height: 30px; font-size: 14px; border-width: 2px; }
+        body.fullscreen .word-bar { margin: 4px 0; }
+        body.fullscreen .word-bar .word { font-size: 22px; }
+        body.fullscreen .word-bar .pinyin { font-size: 14px; }
+        body.fullscreen .action-btns { margin-top: 6px; }
+        body.fullscreen .action-btn { padding: 10px 16px; font-size: 14px; }
+        @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } body.fullscreen .right-bar .color-btn { width: 26px; height: 26px; font-size: 12px; } body.fullscreen .color-palette.right-bar { flex: 0 0 36px; } }
     </style>
     <link rel="stylesheet" href="dark-mode.css?v=4">
 </head>
@@ -70,17 +89,20 @@
         <div id="loading" class="loading">正在加载涂色板...</div>
         <div id="error" class="error" style="display:none;">加载失败，请检查网络后刷新。</div>
         <div id="gameArea" style="display:none;">
-            <div class="image-select" id="imageSelect"></div>
-            <div class="color-palette" id="colorPalette"></div>
-            <div class="size-bar">
+            <div class="image-select normal-ui" id="imageSelect"></div>
+            <div class="color-palette normal-ui" id="colorPalette"></div>
+            <div class="size-bar normal-ui">
                 <span>画笔大小</span>
                 <input type="range" id="brushSize" min="6" max="40" value="16">
                 <span id="brushSizeValue">16</span>
             </div>
             <div class="game-area">
-                <div class="canvas-stack" id="canvasStack">
-                    <canvas id="templateCanvas"></canvas>
-                    <canvas id="drawCanvas"></canvas>
+                <div class="canvas-row">
+                    <div class="canvas-stack" id="canvasStack">
+                        <canvas id="templateCanvas"></canvas>
+                        <canvas id="drawCanvas"></canvas>
+                    </div>
+                    <div class="color-palette right-bar" id="rightPalette"></div>
                 </div>
                 <div class="word-bar">
                     <div class="word" id="wordText">恐龙</div>
@@ -92,10 +114,12 @@
                 <button class="action-btn btn-undo" onclick="undoStroke()">↩️ 撤销</button>
                 <button class="action-btn btn-reset" onclick="resetDrawing()">🔄 重新涂</button>
                 <button class="action-btn btn-save" onclick="savePicture()">💾 保存作品</button>
+                <button class="action-btn btn-fullscreen" onclick="toggleFullscreen(true)">⛶ 全屏涂色</button>
             </div>
         </div>
     </div>
 
+    <button class="action-btn btn-exit-fullscreen" onclick="toggleFullscreen(false)">✕</button>
     <div class="completion-toast" id="completionToast">
         <div class="emoji">🎨</div>
         <div class="title" id="toastTitle">画得真棒！</div>
@@ -177,26 +201,40 @@
 
         function renderPalette() {
             const container = document.getElementById('colorPalette');
+            const rightContainer = document.getElementById('rightPalette');
             container.innerHTML = '';
+            rightContainer.innerHTML = '';
             PALETTE.forEach((c, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'color-btn' + (c.eraser ? ' eraser' : '') + (index === 0 ? ' selected' : '');
-                btn.dataset.color = c.color;
-                btn.title = c.name;
-                if (c.eraser) {
-                    btn.innerHTML = '🧼';
-                } else {
-                    btn.style.backgroundColor = c.color;
-                }
-                btn.onclick = () => selectColor(c.color, c.eraser, btn);
+                const btn = createColorBtn(c, index);
                 container.appendChild(btn);
+                const rightBtn = createColorBtn(c, index);
+                rightContainer.appendChild(rightBtn);
             });
+        }
+
+        function createColorBtn(c, index) {
+            const btn = document.createElement('button');
+            btn.className = 'color-btn' + (c.eraser ? ' eraser' : '') + (index === 0 ? ' selected' : '');
+            btn.dataset.color = c.color;
+            btn.title = c.name;
+            if (c.eraser) {
+                btn.innerHTML = '🧼';
+            } else {
+                btn.style.backgroundColor = c.color;
+            }
+            btn.onclick = () => selectColor(c.color, c.eraser, btn);
+            return btn;
         }
 
         function selectColor(color, eraser, btn) {
             currentColor = color;
             isEraser = !!eraser;
             document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
+            document.querySelectorAll('.color-btn').forEach(b => {
+                if (b.dataset.color === color && !!b.classList.contains('eraser') === !!eraser) {
+                    b.classList.add('selected');
+                }
+            });
             if (btn) btn.classList.add('selected');
             updateBrush();
         }
@@ -379,6 +417,21 @@
                 URL.revokeObjectURL(url);
                 showToast('保存成功！', '作品已下载到相册');
             }, 'image/png');
+        }
+
+        function toggleFullscreen(enter) {
+            if (enter) {
+                document.body.classList.add('fullscreen');
+                if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{});
+            } else {
+                document.body.classList.remove('fullscreen');
+                if (document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+            }
+            // Canvas scales with CSS; internal resolution stays 800x800
+            setTimeout(() => {
+                const rect = document.getElementById('canvasStack').getBoundingClientRect();
+                console.log('canvas size', rect.width, rect.height);
+            }, 100);
         }
 
         init();
