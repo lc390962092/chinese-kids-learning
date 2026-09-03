@@ -11,7 +11,7 @@
     font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;
     background:#f7f4ee;
     display:flex; flex-direction:column;
-    touch-action:none; /* 关键：阻止 iOS 触摸滚动 */
+    touch-action:none;
   }
   header {
     padding:max(10px, env(safe-area-inset-top)) 14px 10px;
@@ -24,8 +24,8 @@
     font-size:13px; color:#7a6a52; cursor:pointer;
   }
   .seg button.on { background:#fff; color:#5b4a35; font-weight:600; box-shadow:0 1px 3px rgba(0,0,0,.1); }
-  #stage { flex:1; position:relative; touch-action:none; }
-  canvas { touch-action:none; }
+  #stage { flex:1; position:relative; touch-action:none; overflow:hidden; }
+  #stage canvas { touch-action:none; display:block; }
   footer {
     padding:10px 14px max(12px, env(safe-area-inset-bottom));
     display:flex; gap:10px; align-items:center;
@@ -42,11 +42,17 @@
     padding:9px 18px; border-radius:18px; cursor:pointer; flex:none;
   }
   .btn.ghost { background:#ece5d8; color:#5b4a35; }
+  #err {
+    display:none; position:fixed; top:0; left:0; right:0; z-index:99;
+    background:#c0392b; color:#fff; font-size:12px; padding:8px 12px;
+    white-space:pre-wrap;
+  }
 </style>
 </head>
 <body>
+<div id="err"></div>
 <header>
-  <h1>✏️ 画板 Demo</h1>
+  <h1>✏️ 画板 Demo <small id="ver" style="font-weight:400;font-size:11px;color:#a08f74"></small></h1>
   <div class="seg" id="modeSeg">
     <button data-m="draw" class="on">画一画</button>
     <button data-m="trace">描红</button>
@@ -58,9 +64,24 @@
   <button class="btn ghost" id="undo">撤销</button>
   <button class="btn" id="clear">清空</button>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/konva@9/lib/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/konva@8.4.3/konva.min.js"></script>
 <script>
+window.onerror = (m, s, l) => {
+  const e = document.getElementById('err');
+  e.style.display = 'block';
+  e.textContent = 'JS错误: ' + m + ' @' + l;
+};
+
 const stageEl = document.getElementById('stage');
+document.getElementById('ver').textContent = 'Konva ' + (window.Konva ? Konva.version : '未加载!');
+
+if (!window.Konva) {
+  const e = document.getElementById('err');
+  e.style.display = 'block';
+  e.textContent = 'Konva 库加载失败，请检查网络';
+  throw new Error('Konva not loaded');
+}
+
 const PALETTE = ['#5b4a35','#e2574c','#3a86c8','#2f9e44','#f4a259','#8e6bc0'];
 let color = PALETTE[0], mode = 'draw';
 let drawing = false, lastLine = null;
@@ -70,19 +91,19 @@ const stage = new Konva.Stage({ container:'stage' });
 const bgLayer = new Konva.Layer(), drawLayer = new Konva.Layer();
 stage.add(bgLayer, drawLayer);
 
+// 不用 stage.scale，直接用 CSS 像素坐标，避免 DPR 换算出错
 function fit() {
   const w = stageEl.clientWidth, h = stageEl.clientHeight;
-  const ratio = window.devicePixelRatio || 1;
-  stage.width(w); stage.height(h);
-  stage.scale({ x:ratio, y:ratio });
+  stage.width(w);
+  stage.height(h);
   drawBg();
 }
 window.addEventListener('resize', fit);
+window.addEventListener('orientationchange', () => setTimeout(fit, 200));
 
 function drawBg() {
   bgLayer.destroyChildren();
-  const w = stage.width() / (window.devicePixelRatio||1);
-  const h = stage.height() / (window.devicePixelRatio||1);
+  const w = stage.width(), h = stage.height();
   if (mode === 'trace') {
     const size = Math.min(w, h) * 0.75;
     const text = new Konva.Text({
@@ -95,35 +116,46 @@ function drawBg() {
   bgLayer.batchDraw();
 }
 
-// --- 笔迹绘制 ---
-const pos = () => {
-  const p = stage.getPointerPosition();
-  const r = window.devicePixelRatio || 1;
-  return { x:p.x/r, y:p.y/r };
-};
+// 统一坐标：pointer 事件给的 getPointerPosition 已经是舞台 CSS 像素
+const pos = () => stage.getPointerPosition();
 
-stage.on('pointerdown', e => {
-  if (e.evt.button !== undefined && e.evt.button !== 0 && e.evt.pointerType === 'mouse') return;
+function startDraw(e) {
+  // 只响应主指针（忽略鼠标右键等）
+  if (e.evt.pointerType === 'mouse' && e.evt.button !== 0) return;
   drawing = true;
   const p = pos();
+  if (!p) return;
   lastLine = new Konva.Line({
     stroke:color, strokeWidth:6, lineCap:'round', lineJoin:'round',
     points:[p.x, p.y], tension:0.4,
+    listening:false,
   });
   drawLayer.add(lastLine);
-});
-stage.on('pointermove', () => {
+  drawLayer.batchDraw();
+}
+function moveDraw() {
   if (!drawing || !lastLine) return;
   const p = pos();
+  if (!p) return;
   lastLine.points(lastLine.points().concat([p.x, p.y]));
   drawLayer.batchDraw();
-});
-stage.on('pointerup pointercancel', () => {
+}
+function endDraw() {
   if (!drawing) return;
   drawing = false;
-  undoStack.push(lastLine);
-  lastLine = null;
-});
+  if (lastLine) {
+    undoStack.push(lastLine);
+    lastLine = null;
+  }
+}
+
+// 同时绑定 pointer 和 touch 系列，兼容老浏览器
+stage.on('pointerdown', startDraw);
+stage.on('pointermove', moveDraw);
+stage.on('pointerup pointercancel pointerleave', endDraw);
+stage.on('touchstart', e => { e.evt.preventDefault(); if (!drawing) startDraw(e); }, false);
+stage.on('touchmove',  e => { e.evt.preventDefault(); moveDraw(); }, false);
+stage.on('touchend touchcancel', endDraw);
 
 document.getElementById('undo').onclick = () => {
   const l = undoStack.pop();
@@ -133,7 +165,6 @@ document.getElementById('clear').onclick = () => {
   drawLayer.destroyChildren(); undoStack.length = 0; drawLayer.batchDraw();
 };
 
-// 颜色
 const colorsEl = document.getElementById('colors');
 PALETTE.forEach((c, i) => {
   const d = document.createElement('div');
@@ -147,13 +178,12 @@ PALETTE.forEach((c, i) => {
   colorsEl.appendChild(d);
 });
 
-// 模式切换
-document.getElementById('modeSeg').onclick = e => {
+document.getElementById('modeSeg').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   mode = b.dataset.m;
   document.querySelectorAll('#modeSeg button').forEach(x => x.classList.toggle('on', x===b));
   drawBg();
-};
+});
 
 fit();
 </script>
