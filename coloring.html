@@ -40,6 +40,30 @@
         .word-bar { text-align: center; margin: 8px 0; }
         .word-bar .word { font-size: 28px; color: #333; font-weight: bold; }
         .word-bar .pinyin { font-size: 16px; color: #888; }
+        .mode-select {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 6px 4px 16px;
+        }
+        .mode-card {
+            background: white;
+            border-radius: 22px;
+            padding: 18px 8px 14px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: transform 0.15s;
+            border: 3px solid transparent;
+        }
+        .mode-card:active { transform: scale(0.95); }
+        .mode-card.mode-free  { background: linear-gradient(160deg, #fff 0%, #E3F2FD 100%); }
+        .mode-card.mode-color { background: linear-gradient(160deg, #fff 0%, #E8F5E9 100%); }
+        .mode-card.mode-trace { background: linear-gradient(160deg, #fff 0%, #FFF3E0 100%); }
+        .mode-card.active { border-color: #FF6B6B; }
+        .mode-card .mode-icon { font-size: 40px; line-height: 1; margin-bottom: 8px; }
+        .mode-card .mode-name { font-size: 17px; font-weight: bold; color: #444; margin-bottom: 4px; }
+        .mode-card .mode-desc { font-size: 11px; color: #999; line-height: 1.4; }
         .action-btns { display: flex; gap: 10px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
         .action-btn { border: none; border-radius: 22px; padding: 12px 22px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.15s; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .action-btn:active { transform: scale(0.96); }
@@ -62,7 +86,7 @@
         /* Fullscreen layout */
         .orientation-hint { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); color: white; z-index: 500; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; }
         body.fullscreen.show-orientation-hint .orientation-hint { display: flex; }
-        body.fullscreen .back-bar, body.fullscreen .header, body.fullscreen .mascot, body.fullscreen .normal-ui { display: none; }
+        body.fullscreen .back-bar, body.fullscreen .header, body.fullscreen .mascot, body.fullscreen .normal-ui, body.fullscreen .mode-select { display: none; }
         body.fullscreen { background: #f5f5f5; }
         body.fullscreen .main-stage { max-width: none; padding: 0; height: 100vh; display: flex; flex-direction: column; }
         body.fullscreen #gameArea { display: flex; flex-direction: column; flex: 1; }
@@ -79,7 +103,23 @@
         body.fullscreen .word-bar .pinyin { font-size: 12px; }
         body.fullscreen .action-btns { display: none; }
         body.fullscreen .game-area { position: relative; }
-        @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } body.fullscreen .right-bar .color-btn { width: 26px; height: 26px; font-size: 12px; } body.fullscreen .color-palette.right-bar { flex: 0 0 36px; } }
+        body.free-mode { background: #f5f5f5; }
+        body.free-mode .main-stage { max-width: none; padding: 0; height: 100vh; display: flex; flex-direction: column; }
+        body.free-mode .normal-ui, body.free-mode .mode-select { display: none !important; }
+        body.free-mode #gameArea { display: flex !important; flex-direction: column; flex: 1; }
+        body.free-mode .game-area { border-radius: 0; box-shadow: none; flex: 1; display: flex; flex-direction: column; padding: 5px; margin: 0; background: #f5f5f5; }
+        body.free-mode .game-area .canvas-row { display: flex; flex: 1; gap: 8px; align-items: center; justify-content: center; position: relative; padding-right: 60px; }
+        body.free-mode .canvas-stack { aspect-ratio: unset; width: 100%; height: 100%; max-height: none; border: 2px dashed #ccc; }
+        body.free-mode .color-palette { display: none; }
+        body.free-mode .color-palette.right-bar { display: flex; flex-direction: column; gap: 8px; padding: 8px 4px; background: rgba(255,255,255,0.85); border-radius: 24px; margin: 0; justify-content: center; align-items: center; position: fixed; right: 10px; top: 50%; transform: translateY(-50%); z-index: 10; }
+        body.free-mode .right-bar .color-btn { width: 30px; height: 30px; font-size: 14px; border-width: 2px; }
+        body.free-mode .word-bar { position: absolute; top: 10px; left: 10px; margin: 0; text-align: left; background: rgba(255,255,255,0.85); padding: 6px 12px; border-radius: 16px; }
+        body.free-mode .word-bar .word { font-size: 20px; }
+        body.free-mode .word-bar .pinyin { font-size: 12px; }
+        body.free-mode .action-btns { display: none; }
+        .free-exit-btn { display: none; position: fixed; top: max(10px, env(safe-area-inset-top)); right: 10px; z-index: 300; border-radius: 50%; width: 44px; height: 44px; padding: 0; font-size: 20px; align-items: center; justify-content: center; }
+        body.free-mode .free-exit-btn { display: flex; }
+        @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } body.fullscreen .right-bar .color-btn, body.free-mode .right-bar .color-btn { width: 26px; height: 26px; font-size: 12px; } body.fullscreen .color-palette.right-bar, body.free-mode .color-palette.right-bar { flex: 0 0 36px; } }
     </style>
     <link rel="stylesheet" href="dark-mode.css?v=4">
 </head>
@@ -94,7 +134,24 @@
         <div class="mascot-avatar">🐼</div>
     </div>
     <div class="main-stage">
-        <div id="loading" class="loading">正在加载涂色板...</div>
+            <div class="mode-select" id="modeSelect">
+                <div class="mode-card mode-free" data-mode="free">
+                    <div class="mode-icon">🖍️</div>
+                    <div class="mode-name">自由画</div>
+                    <div class="mode-desc">空白画布，想画什么画什么</div>
+                </div>
+                <div class="mode-card mode-color" data-mode="color">
+                    <div class="mode-icon">🎨</div>
+                    <div class="mode-name">涂颜色</div>
+                    <div class="mode-desc">恐龙汽车小花，涂出漂亮颜色</div>
+                </div>
+                <div class="mode-card mode-trace" data-mode="trace">
+                    <div class="mode-icon">✏️</div>
+                    <div class="mode-name">描红</div>
+                    <div class="mode-desc">跟着灰字，学写汉字</div>
+                </div>
+            </div>
+            <div id="loading" class="loading">正在加载涂色板...</div>
         <div id="error" class="error" style="display:none;">加载失败，请检查网络后刷新。</div>
         <div id="gameArea" style="display:none;">
             <div class="image-select normal-ui" id="imageSelect"></div>
@@ -128,6 +185,7 @@
     </div>
 
     <button class="action-btn btn-exit-fullscreen" onclick="toggleFullscreen(false)">✕</button>
+    <button class="action-btn btn-exit-fullscreen free-exit-btn" onclick="exitFreeMode()">✕</button>
     <div class="float-tools">
         <button class="action-btn btn-speak" onclick="speakWord()" title="听名称">🔊</button>
         <button class="action-btn btn-undo" onclick="undoStroke()" title="撤销">↩️</button>
@@ -162,6 +220,8 @@
         ];
 
         let items = [];
+        let allItems = [];
+        let currentMode = null;
         let currentIndex = 0;
         let currentColor = PALETTE[0].color;
         let isEraser = false;
@@ -182,7 +242,7 @@
 
         function resizeCanvasForItem(item) {
             const ratio = getAspect(item);
-            const isFs = document.body.classList.contains('fullscreen');
+            const isFs = document.body.classList.contains('fullscreen') || document.body.classList.contains('free-mode');
             const stack = document.getElementById('canvasStack');
             let targetW, targetH;
 
@@ -227,23 +287,64 @@
             dCtx = drawCanvas.getContext('2d');
         }
 
-        async function init() {
+        function init() {
+            // 先绑定模式卡，再加载数据；失败时也能重试
+            bindModeCards();
+            loadData();
+        }
+
+        function bindModeCards() {
+            document.querySelectorAll('.mode-card').forEach(card => {
+                card.addEventListener('click', () => selectMode(card.dataset.mode));
+            });
+        }
+
+        async function loadData() {
             try {
                 const data = await XiaoDou.loadModule('coloring');
-                items = XiaoDou.getItems(data);
-                if (!items.length) throw new Error('没有数据');
+                allItems = XiaoDou.getItems(data);
+                if (!allItems.length) throw new Error('没有数据');
                 document.getElementById('loading').style.display = 'none';
-                document.getElementById('gameArea').style.display = 'block';
                 initCanvases();
-                renderThumbs();
                 renderPalette();
                 bindEvents();
-                loadPicture(0);
+                // 默认进入涂颜色，符合原有习惯
+                selectMode('color');
             } catch (err) {
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('error').style.display = 'block';
+                document.getElementById('loading').textContent = '加载失败，点我重试';
+                document.getElementById('loading').style.cursor = 'pointer';
+                document.getElementById('loading').onclick = loadData;
                 console.error(err);
             }
+        }
+
+        function selectMode(mode) {
+            // 同一模式不重复切换（避免误触清空画布）
+            if (currentMode === mode) return;
+            currentMode = mode;
+            document.querySelectorAll('.mode-card').forEach(c =>
+                c.classList.toggle('active', c.dataset.mode === mode));
+
+            const isFree = mode === 'free';
+            document.body.classList.toggle('free-mode', isFree);
+
+            if (mode === 'free') {
+                items = allItems.filter(i => i.free);
+            } else if (mode === 'trace') {
+                items = allItems.filter(i => i.trace);
+            } else {
+                items = allItems.filter(i => !i.free && !i.trace);
+            }
+            if (!items.length) return;
+
+            document.getElementById('gameArea').style.display = 'block';
+            renderThumbs();
+            // free 模式固定唯一空白模板；其它模式取第一张
+            loadPicture(0);
+        }
+
+        function exitFreeMode() {
+            selectMode('color');
         }
 
         function renderThumbs() {
@@ -525,8 +626,12 @@
             return window.innerWidth >= window.innerHeight;
         }
 
+        function isCanvasMode() {
+            return document.body.classList.contains('fullscreen') || document.body.classList.contains('free-mode');
+        }
+
         function updateOrientationHint() {
-            if (!document.body.classList.contains('fullscreen')) {
+            if (!isCanvasMode()) {
                 document.body.classList.remove('show-orientation-hint');
                 return;
             }
@@ -573,14 +678,14 @@
         }
 
         window.addEventListener('resize', () => {
-            if (document.body.classList.contains('fullscreen')) {
+            if (isCanvasMode()) {
                 updateOrientationHint();
                 loadPicture(currentIndex);
             }
         });
 
         window.addEventListener('orientationchange', () => {
-            if (document.body.classList.contains('fullscreen')) {
+            if (isCanvasMode()) {
                 setTimeout(() => {
                     updateOrientationHint();
                     loadPicture(currentIndex);
