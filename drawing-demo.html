@@ -149,13 +149,16 @@ function endDraw() {
   }
 }
 
-// 同时绑定 pointer 和 touch 系列，兼容老浏览器
+// pointer 事件为主；touch 系列仅作老浏览器兜底，避免双绑定重复笔画
 stage.on('pointerdown', startDraw);
 stage.on('pointermove', moveDraw);
 stage.on('pointerup pointercancel pointerleave', endDraw);
-stage.on('touchstart', e => { e.evt.preventDefault(); if (!drawing) startDraw(e); }, false);
-stage.on('touchmove',  e => { e.evt.preventDefault(); moveDraw(); }, false);
-stage.on('touchend touchcancel', endDraw);
+const hasPointer = window.PointerEvent !== undefined;
+if (!hasPointer) {
+  stage.on('touchstart', e => { if (e.evt) e.evt.preventDefault(); if (!drawing) startDraw(e); });
+  stage.on('touchmove',  e => { if (e.evt) e.evt.preventDefault(); moveDraw(); });
+  stage.on('touchend touchcancel', endDraw);
+}
 
 document.getElementById('undo').onclick = () => {
   const l = undoStack.pop();
