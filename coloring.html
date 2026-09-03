@@ -106,20 +106,40 @@
         body.free-mode { background: #f5f5f5; }
         body.free-mode .main-stage { max-width: none; padding: 0; height: 100vh; display: flex; flex-direction: column; }
         body.free-mode .normal-ui, body.free-mode .mode-select { display: none !important; }
-        body.free-mode #gameArea { display: flex !important; flex-direction: column; flex: 1; }
-        body.free-mode .game-area { border-radius: 0; box-shadow: none; flex: 1; display: flex; flex-direction: column; padding: 5px; margin: 0; background: #f5f5f5; }
-        body.free-mode .game-area .canvas-row { display: flex; flex: 1; gap: 8px; align-items: center; justify-content: center; position: relative; padding-right: 60px; }
-        body.free-mode .canvas-stack { aspect-ratio: unset; width: 100%; height: 100%; max-height: none; border: 2px dashed #ccc; }
+        body.free-mode #gameArea { display: flex !important; flex-direction: column; flex: 1; min-height: 0; }
+        body.free-mode .game-area { border-radius: 0; box-shadow: none; flex: 1; display: flex; flex-direction: column; padding: 0; margin: 0; background: #f5f5f5; }
+        body.free-mode .game-area .canvas-row { display: flex; flex: 1; min-height: 0; position: relative; }
+        body.free-mode .canvas-stack { aspect-ratio: unset; width: 100%; height: 100%; max-height: none; border: none; border-radius: 0; }
         body.free-mode .color-palette { display: none; }
-        body.free-mode .color-palette.right-bar { display: flex; flex-direction: column; gap: 8px; padding: 8px 4px; background: rgba(255,255,255,0.85); border-radius: 24px; margin: 0; justify-content: center; align-items: center; position: fixed; right: 10px; top: 50%; transform: translateY(-50%); z-index: 10; }
-        body.free-mode .right-bar .color-btn { width: 30px; height: 30px; font-size: 14px; border-width: 2px; }
-        body.free-mode .word-bar { position: absolute; top: 10px; left: 10px; margin: 0; text-align: left; background: rgba(255,255,255,0.85); padding: 6px 12px; border-radius: 16px; }
-        body.free-mode .word-bar .word { font-size: 20px; }
-        body.free-mode .word-bar .pinyin { font-size: 12px; }
+        body.free-mode .word-bar { display: none; }
         body.free-mode .action-btns { display: none; }
+        .free-toolbar {
+            display: none;
+            position: fixed;
+            left: 0; right: 0;
+            bottom: 0;
+            z-index: 300;
+            padding: 10px 12px max(12px, env(safe-area-inset-bottom));
+            background: #fff;
+            border-top: 1px solid #ece5d8;
+            align-items: center;
+            gap: 10px;
+        }
+        body.free-mode .free-toolbar { display: flex; }
+        .free-toolbar .colors { display: flex; gap: 10px; flex: 1; }
+        .free-toolbar .c {
+            width: 28px; height: 28px; border-radius: 50%; border: 2px solid transparent;
+            cursor: pointer; flex: none;
+        }
+        .free-toolbar .c.on { border-color: #5b4a35; transform: scale(1.15); }
+        .free-toolbar .btn {
+            border: 0; border-radius: 18px; padding: 9px 14px;
+            background: #5b4a35; color: #fff; font-size: 14px; cursor: pointer; flex: none;
+        }
+        .free-toolbar .btn.ghost { background: #ece5d8; color: #5b4a35; }
         .free-exit-btn { display: none; position: fixed; top: max(10px, env(safe-area-inset-top)); right: 10px; z-index: 300; border-radius: 50%; width: 44px; height: 44px; padding: 0; font-size: 20px; align-items: center; justify-content: center; }
         body.free-mode .free-exit-btn { display: flex; }
-        @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } body.fullscreen .right-bar .color-btn, body.free-mode .right-bar .color-btn { width: 26px; height: 26px; font-size: 12px; } body.fullscreen .color-palette.right-bar, body.free-mode .color-palette.right-bar { flex: 0 0 36px; } }
+        @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } body.fullscreen .right-bar .color-btn { width: 26px; height: 26px; font-size: 12px; } body.fullscreen .color-palette.right-bar { flex: 0 0 36px; } }
     </style>
     <link rel="stylesheet" href="dark-mode.css?v=4">
 </head>
@@ -186,6 +206,12 @@
 
     <button class="action-btn btn-exit-fullscreen" onclick="toggleFullscreen(false)">✕</button>
     <button class="action-btn btn-exit-fullscreen free-exit-btn" onclick="exitFreeMode()">✕</button>
+    <div class="free-toolbar" id="freeToolbar">
+        <div class="colors" id="freeColors"></div>
+        <button class="btn ghost" onclick="undoStroke()">撤销</button>
+        <button class="btn ghost" onclick="resetDrawing()">清空</button>
+        <button class="btn" onclick="savePicture()">保存</button>
+    </div>
     <div class="float-tools">
         <button class="action-btn btn-speak" onclick="speakWord()" title="听名称">🔊</button>
         <button class="action-btn btn-undo" onclick="undoStroke()" title="撤销">↩️</button>
@@ -363,13 +389,27 @@
         function renderPalette() {
             const container = document.getElementById('colorPalette');
             const rightContainer = document.getElementById('rightPalette');
+            const freeContainer = document.getElementById('freeColors');
             container.innerHTML = '';
             rightContainer.innerHTML = '';
+            freeContainer.innerHTML = '';
             PALETTE.forEach((c, index) => {
                 const btn = createColorBtn(c, index);
                 container.appendChild(btn);
                 const rightBtn = createColorBtn(c, index);
                 rightContainer.appendChild(rightBtn);
+                const freeBtn = document.createElement('div');
+                freeBtn.className = 'c' + (index === 0 ? ' on' : '');
+                freeBtn.dataset.color = c.color;
+                freeBtn.dataset.eraser = c.eraser ? '1' : '';
+                freeBtn.style.background = c.eraser ? '#fff' : c.color;
+                if (c.eraser) freeBtn.textContent = '🧼';
+                freeBtn.onclick = () => {
+                    selectColor(c.color, c.eraser, null);
+                    freeContainer.querySelectorAll('.c').forEach(x => x.classList.remove('on'));
+                    freeBtn.classList.add('on');
+                };
+                freeContainer.appendChild(freeBtn);
             });
         }
 
