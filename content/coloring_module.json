@@ -288,6 +288,102 @@
         "M120,85 L120,100",
         "M90,25 L90,15"
       ]
+    },
+    {
+      "word": "自由画",
+      "pinyin": "zì yóu huà",
+      "emoji": "🖍️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "free": true
+    },
+    {
+      "word": "永",
+      "pinyin": "yǒng",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
+    },
+    {
+      "word": "人",
+      "pinyin": "rén",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
+    },
+    {
+      "word": "山",
+      "pinyin": "shān",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
+    },
+    {
+      "word": "水",
+      "pinyin": "shuǐ",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
+    },
+    {
+      "word": "日",
+      "pinyin": "rì",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
+    },
+    {
+      "word": "月",
+      "pinyin": "yuè",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
+    },
+    {
+      "word": "猫",
+      "pinyin": "māo",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
+    },
+    {
+      "word": "狗",
+      "pinyin": "gǒu",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
+    },
+    {
+      "word": "鸟",
+      "pinyin": "niǎo",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
+    },
+    {
+      "word": "花",
+      "pinyin": "huā",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
+    },
+    {
+      "word": "星",
+      "pinyin": "xīng",
+      "emoji": "✏️",
+      "viewBox": "0 0 200 200",
+      "paths": [],
+      "trace": true
     }
   ]
 }

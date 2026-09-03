@@ -313,7 +313,13 @@
             drawTemplate(item);
             document.getElementById('wordText').textContent = item.word;
             document.getElementById('pinyinText').textContent = item.pinyin;
-            document.getElementById('mascotText').textContent = `这是${item.word}，选个颜色涂一涂吧！`;
+            const hints = {
+                trace: `跟着浅灰色的「${item.word}」描一描，写写看吧！`,
+                free:  '空白画布，自由发挥，画出你的想象！'
+            };
+            document.getElementById('mascotText').textContent =
+                hints[item.trace ? 'trace' : (item.free ? 'free' : 'color')] ||
+                `这是${item.word}，选个颜色涂一涂吧！`;
         }
 
         function drawTemplate(item) {
@@ -321,8 +327,15 @@
             tCtx.fillStyle = '#ffffff';
             tCtx.fillRect(0, 0, canvasW, canvasH);
 
+            if (item.trace) {
+                drawTraceTemplate(item);
+                return;
+            }
+
+            if (!item.paths || !item.paths.length) return;
+
             const viewBox = item.viewBox || '0 0 200 200';
-            const paths = (item.paths || []).map(d => `<path d="${d}" fill="#ffffff" stroke="#555555" stroke-width="2.5" stroke-linejoin="round" />`).join('');
+            const paths = item.paths.map(d => `<path d="${d}" fill="#ffffff" stroke="#555555" stroke-width="2.5" stroke-linejoin="round" />`).join('');
             const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${canvasW}" height="${canvasH}" viewBox="${viewBox}" preserveAspectRatio="xMidYMid meet">
     <rect width="100%" height="100%" fill="#ffffff" />
@@ -339,6 +352,34 @@
                 URL.revokeObjectURL(url);
             };
             img.src = url;
+        }
+
+        // 汉字描红底图：大号浅灰汉字居中，外加米字格虚线
+        function drawTraceTemplate(item) {
+            const cx = canvasW / 2, cy = canvasH / 2;
+            const size = Math.min(canvasW, canvasH) * 0.72;
+            // 外框
+            tCtx.strokeStyle = '#cccccc';
+            tCtx.lineWidth = Math.max(2, canvasW / 300);
+            tCtx.strokeRect((canvasW - size) / 2, (canvasH - size) / 2, size, size);
+            // 米字格虚线
+            tCtx.save();
+            tCtx.strokeStyle = '#dddddd';
+            tCtx.lineWidth = Math.max(1, canvasW / 500);
+            tCtx.setLineDash([8, 8]);
+            tCtx.beginPath();
+            tCtx.moveTo(cx - size / 2, cy); tCtx.lineTo(cx + size / 2, cy);
+            tCtx.moveTo(cx, cy - size / 2); tCtx.lineTo(cx, cy + size / 2);
+            tCtx.moveTo(cx - size / 2, cy - size / 2); tCtx.lineTo(cx + size / 2, cy + size / 2);
+            tCtx.moveTo(cx - size / 2, cy + size / 2); tCtx.lineTo(cx + size / 2, cy - size / 2);
+            tCtx.stroke();
+            tCtx.restore();
+            // 浅灰汉字
+            tCtx.fillStyle = '#e8e0d2';
+            tCtx.font = `bold ${Math.floor(size * 0.92)}px "PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif`;
+            tCtx.textAlign = 'center';
+            tCtx.textBaseline = 'middle';
+            tCtx.fillText(item.word, cx, cy + size * 0.04);
         }
 
         function getPos(e) {
