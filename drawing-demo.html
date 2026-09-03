@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>画板 Demo · Konva 描红</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { height:100%; overflow:hidden; }
+  body {
+    font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;
+    background:#f7f4ee;
+    display:flex; flex-direction:column;
+    touch-action:none; /* 关键：阻止 iOS 触摸滚动 */
+  }
+  header {
+    padding:max(10px, env(safe-area-inset-top)) 14px 10px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  h1 { font-size:15px; color:#5b4a35; font-weight:600; }
+  .seg { display:flex; background:#e8e0d2; border-radius:20px; padding:3px; }
+  .seg button {
+    border:0; background:transparent; padding:5px 14px; border-radius:16px;
+    font-size:13px; color:#7a6a52; cursor:pointer;
+  }
+  .seg button.on { background:#fff; color:#5b4a35; font-weight:600; box-shadow:0 1px 3px rgba(0,0,0,.1); }
+  #stage { flex:1; position:relative; touch-action:none; }
+  canvas { touch-action:none; }
+  footer {
+    padding:10px 14px max(12px, env(safe-area-inset-bottom));
+    display:flex; gap:10px; align-items:center;
+    background:#fff; border-top:1px solid #ece5d8;
+  }
+  .colors { display:flex; gap:10px; flex:1; }
+  .c {
+    width:28px; height:28px; border-radius:50%; border:2px solid transparent;
+    cursor:pointer; flex:none;
+  }
+  .c.on { border-color:#5b4a35; transform:scale(1.15); }
+  .btn {
+    border:0; background:#5b4a35; color:#fff; font-size:14px;
+    padding:9px 18px; border-radius:18px; cursor:pointer; flex:none;
+  }
+  .btn.ghost { background:#ece5d8; color:#5b4a35; }
+</style>
+</head>
+<body>
+<header>
+  <h1>✏️ 画板 Demo</h1>
+  <div class="seg" id="modeSeg">
+    <button data-m="draw" class="on">画一画</button>
+    <button data-m="trace">描红</button>
+  </div>
+</header>
+<div id="stage"></div>
+<footer>
+  <div class="colors" id="colors"></div>
+  <button class="btn ghost" id="undo">撤销</button>
+  <button class="btn" id="clear">清空</button>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/konva@9/lib/index.min.js"></script>
+<script>
+const stageEl = document.getElementById('stage');
+const PALETTE = ['#5b4a35','#e2574c','#3a86c8','#2f9e44','#f4a259','#8e6bc0'];
+let color = PALETTE[0], mode = 'draw';
+let drawing = false, lastLine = null;
+const undoStack = [];
+
+const stage = new Konva.Stage({ container:'stage' });
+const bgLayer = new Konva.Layer(), drawLayer = new Konva.Layer();
+stage.add(bgLayer, drawLayer);
+
+function fit() {
+  const w = stageEl.clientWidth, h = stageEl.clientHeight;
+  const ratio = window.devicePixelRatio || 1;
+  stage.width(w); stage.height(h);
+  stage.scale({ x:ratio, y:ratio });
+  drawBg();
+}
+window.addEventListener('resize', fit);
+
+function drawBg() {
+  bgLayer.destroyChildren();
+  const w = stage.width() / (window.devicePixelRatio||1);
+  const h = stage.height() / (window.devicePixelRatio||1);
+  if (mode === 'trace') {
+    const size = Math.min(w, h) * 0.75;
+    const text = new Konva.Text({
+      x:(w-size)/2, y:(h-size)/2, width:size, height:size,
+      text:'永', fontSize:size, align:'center', verticalAlign:'middle',
+      fontStyle:'bold', fill:'#e8e0d2',
+    });
+    bgLayer.add(text);
+  }
+  bgLayer.batchDraw();
+}
+
+// --- 笔迹绘制 ---
+const pos = () => {
+  const p = stage.getPointerPosition();
+  const r = window.devicePixelRatio || 1;
+  return { x:p.x/r, y:p.y/r };
+};
+
+stage.on('pointerdown', e => {
+  if (e.evt.button !== undefined && e.evt.button !== 0 && e.evt.pointerType === 'mouse') return;
+  drawing = true;
+  const p = pos();
+  lastLine = new Konva.Line({
+    stroke:color, strokeWidth:6, lineCap:'round', lineJoin:'round',
+    points:[p.x, p.y], tension:0.4,
+  });
+  drawLayer.add(lastLine);
+});
+stage.on('pointermove', () => {
+  if (!drawing || !lastLine) return;
+  const p = pos();
+  lastLine.points(lastLine.points().concat([p.x, p.y]));
+  drawLayer.batchDraw();
+});
+stage.on('pointerup pointercancel', () => {
+  if (!drawing) return;
+  drawing = false;
+  undoStack.push(lastLine);
+  lastLine = null;
+});
+
+document.getElementById('undo').onclick = () => {
+  const l = undoStack.pop();
+  if (l) { l.destroy(); drawLayer.batchDraw(); }
+};
+document.getElementById('clear').onclick = () => {
+  drawLayer.destroyChildren(); undoStack.length = 0; drawLayer.batchDraw();
+};
+
+// 颜色
+const colorsEl = document.getElementById('colors');
+PALETTE.forEach((c, i) => {
+  const d = document.createElement('div');
+  d.className = 'c' + (i===0 ? ' on' : '');
+  d.style.background = c;
+  d.onclick = () => {
+    color = c;
+    colorsEl.querySelectorAll('.c').forEach(x => x.classList.remove('on'));
+    d.classList.add('on');
+  };
+  colorsEl.appendChild(d);
+});
+
+// 模式切换
+document.getElementById('modeSeg').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  mode = b.dataset.m;
+  document.querySelectorAll('#modeSeg button').forEach(x => x.classList.toggle('on', x===b));
+  drawBg();
+};
+
+fit();
+</script>
+</body>
+</html>
