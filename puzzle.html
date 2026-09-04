@@ -533,7 +533,9 @@
             hellCanvas.autogenerate({
                 horizontalPiecesCount: 5,
                 verticalPiecesCount: 5,
-                insertsGenerator: headbreaker.generators.flipflop
+                insertsGenerator: headbreaker.generators.flipflop,
+                // 儿童友好：每个块指定浅色+边框，避免拖拽时显示"黑块背面"
+                metadata: new Array(25).fill({ color: '#FFF8E1', strokeColor: '#8D6E63' })
             });
             hellCanvas.shuffle(0.7);
             hellCanvas.attachSolvedValidator();
