@@ -49,6 +49,96 @@
       "pinyin": "huǒ jiàn",
       "file": "rocket",
       "folder": "puzzle"
+    },
+    {
+      "word": "狮子",
+      "pinyin": "shī zi",
+      "file": "lion",
+      "folder": "puzzle"
+    },
+    {
+      "word": "大象",
+      "pinyin": "dà xiàng",
+      "file": "elephant",
+      "folder": "puzzle"
+    },
+    {
+      "word": "长颈鹿",
+      "pinyin": "cháng jǐng lù",
+      "file": "giraffe",
+      "folder": "puzzle"
+    },
+    {
+      "word": "猴子",
+      "pinyin": "hóu zi",
+      "file": "monkey",
+      "folder": "puzzle"
+    },
+    {
+      "word": "熊猫",
+      "pinyin": "xióng māo",
+      "file": "panda",
+      "folder": "puzzle"
+    },
+    {
+      "word": "兔子",
+      "pinyin": "tù zi",
+      "file": "rabbit",
+      "folder": "puzzle"
+    },
+    {
+      "word": "熊",
+      "pinyin": "xióng",
+      "file": "bear",
+      "folder": "puzzle"
+    },
+    {
+      "word": "狐狸",
+      "pinyin": "hú li",
+      "file": "fox",
+      "folder": "puzzle"
+    },
+    {
+      "word": "乌龟",
+      "pinyin": "wū guī",
+      "file": "turtle",
+      "folder": "puzzle"
+    },
+    {
+      "word": "蝴蝶",
+      "pinyin": "hú dié",
+      "file": "butterfly",
+      "folder": "puzzle"
+    },
+    {
+      "word": "苹果",
+      "pinyin": "píng guǒ",
+      "file": "apple",
+      "folder": "puzzle"
+    },
+    {
+      "word": "香蕉",
+      "pinyin": "xiāng jiāo",
+      "file": "banana",
+      "folder": "puzzle"
+    },
+    {
+      "word": "葡萄",
+      "pinyin": "pú tao",
+      "file": "grape",
+      "folder": "puzzle"
+    },
+    {
+      "word": "直升机",
+      "pinyin": "zhí shēng jī",
+      "file": "helicopter",
+      "folder": "puzzle"
+    },
+    {
+      "word": "轮船",
+      "pinyin": "lún chuán",
+      "file": "ship",
+      "folder": "puzzle"
     }
   ]
 }

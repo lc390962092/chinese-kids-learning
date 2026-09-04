@@ -53,6 +53,15 @@
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         .loading, .error { text-align: center; padding: 40px 20px; color: #666; }
         .error { color: #E53935; }
+        .hell-btn { background: #3a3630; color: #FFD93D; border: 2px solid #3a3630; }
+        .hell-btn.active { background: #FFD93D; color: #3a3630; }
+        .mode-hint { text-align: center; font-size: 12px; color: #c0392b; margin: 4px 0 0; min-height: 16px; }
+        .hell-overlay { position: fixed; inset: 0; background: rgba(20,16,12,0.6); backdrop-filter: blur(2px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .hell-overlay.show { display: flex; }
+        .hell-box { background: #fff; border-radius: 26px; padding: 26px 24px; max-width: 360px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.5); text-align: center; }
+        .hell-box h2 { color: #c0392b; font-size: 24px; margin-bottom: 10px; }
+        .hell-box p { color: #555; font-size: 14px; line-height: 1.7; margin-bottom: 18px; }
+        .hell-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
         @media (max-width: 380px) { .thumb { flex: 0 0 60px; height: 60px; } }
     </style>
     <link rel="stylesheet" href="dark-mode.css?v=2">
@@ -73,10 +82,12 @@
         <div id="gameArea" style="display:none;">
             <div class="image-select" id="imageSelect"></div>
             <div class="control-bar">
-                <button class="level-btn active" data-level="2" onclick="setLevel(2)">简单 2×2</button>
-                <button class="level-btn" data-level="3" onclick="setLevel(3)">中等 3×3</button>
+                <button class="level-btn" data-level="2" onclick="setLevel(2)">简单 2×2</button>
+                <button class="level-btn active" data-level="3" onclick="setLevel(3)">中等 3×3</button>
                 <button class="level-btn" data-level="4" onclick="setLevel(4)">困难 4×4</button>
+                <button class="level-btn hell-btn" data-level="5" onclick="setLevel(5)">🔥 地狱 5×5</button>
             </div>
+            <div class="mode-hint" id="modeHint"></div>
             <div class="game-area">
                 <div class="puzzle-board" id="puzzleBoard"></div>
                 <div class="info-bar">
@@ -97,6 +108,21 @@
                 <button class="action-btn btn-shuffle" onclick="restartPuzzle()">🔄 再玩一次</button>
                 <button class="action-btn" style="background: #9C27B0; color: white;" onclick="nextAfterSuccess()">➡️ 下一题</button>
             </div>
+            <div class="action-btns" id="hellActions" style="display:none;">
+                <button class="action-btn hell-btn" onclick="shuffleHell()">🔀 重新打乱</button>
+                <button class="action-btn" style="background: #607D8B; color: white;" onclick="exitHell()">退出地狱模式</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hell-overlay" id="hellOverlay" onclick="if(event.target===this)closeHellIntro()">
+        <div class="hell-box">
+            <h2>🔥 地狱模式</h2>
+            <p>这是不规则拼图块，难度爆表。<br>拼块可以<b>自由拖拽</b>、靠近会<b>自动吸附</b>，全部拼对才过关。</p>
+            <div class="hell-actions">
+                <button class="action-btn" style="background:#c0392b;color:#fff" onclick="startHellPuzzle()">⚔️ 接受挑战</button>
+                <button class="action-btn btn-shuffle" onclick="closeHellIntro()">再想想</button>
+            </div>
         </div>
     </div>
 
@@ -107,10 +133,12 @@
     </div>
 
     <script src="js/common.js"></script>
+    <script src="vendor/headbreaker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/konva@8.4.3/konva.min.js"></script>
     <script>
         let items = [];
         let currentIndex = 0;
-        let level = 2;
+        let level = 3;
         let boardSize = 0;
         let pieceSize = 0;
         let pieces = [];
@@ -120,21 +148,40 @@
         let hintTimeout = null;
         let celebrating = false;
         let successPreviewTimeout = null;
+        // 地狱模式（headbreaker 真拼图块）
+        let hellMode = false;
+        let hellCanvas = null;
+        let hellImg = null;
 
         async function init() {
             try {
                 const data = await XiaoDou.loadModule('puzzle');
                 items = XiaoDou.getItems(data);
                 if (!items.length) throw new Error('没有数据');
+                // 统一使用 PNG（新素材已离线转为 PNG，避免移动端 SVG 跨域问题）
+                items.forEach(it => { it._imgUrl = XiaoDou.resolvePath(`assets/images/${it.folder}/${it.file}.png`); });
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('gameArea').style.display = 'block';
                 renderThumbs();
-                loadPuzzle(0);
+                // 支持 ?hell=1 直接进入地狱模式
+                if (new URLSearchParams(location.search).get('hell')) {
+                    document.querySelectorAll('.level-btn').forEach(btn =>
+                        btn.classList.toggle('active', parseInt(btn.dataset.level) === 5));
+                    hellMode = true;
+                    level = 5;
+                    await loadHell(0);
+                } else {
+                    loadPuzzle(0);
+                }
             } catch (err) {
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('error').style.display = 'block';
                 console.error(err);
             }
+        }
+
+        function imageUrl(item) {
+            return item._imgUrl || XiaoDou.resolvePath(`assets/images/${item.folder}/${item.file}.png`);
         }
 
         function renderThumbs() {
@@ -144,16 +191,20 @@
                 const div = document.createElement('div');
                 div.className = 'thumb' + (index === 0 ? ' active' : '');
                 div.dataset.index = index;
-                div.innerHTML = `<img src="${XiaoDou.escapeHtml(XiaoDou.resolvePath(`assets/images/${item.folder}/${item.file}.png`))}" alt="${XiaoDou.escapeHtml(item.word)}">`;
+                div.innerHTML = `<img src="${XiaoDou.escapeHtml(imageUrl(item))}" alt="${XiaoDou.escapeHtml(item.word)}">`;
                 div.onclick = () => selectImage(index);
                 container.appendChild(div);
             });
         }
 
-        function selectImage(index) {
+        async function selectImage(index) {
             currentIndex = index;
             document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === index));
-            loadPuzzle(index);
+            if (hellMode) {
+                await loadHell(index);
+            } else {
+                loadPuzzle(index);
+            }
         }
 
         function setSize() {
@@ -166,14 +217,17 @@
             board.style.height = boardSize + 'px';
         }
 
-        function loadPuzzle(index) {
+        async function loadPuzzle(index) {
             if (successPreviewTimeout) clearTimeout(successPreviewTimeout);
+            if (hellMode) { await loadHell(index); return; }
             celebrating = false;
             document.getElementById('mascotText').classList.remove('success');
             document.getElementById('actionBtns').style.display = 'flex';
             document.getElementById('successActions').style.display = 'none';
+            document.getElementById('hellActions').style.display = 'none';
+            document.getElementById('modeHint').textContent = '';
             const item = items[index];
-            item.imgUrl = XiaoDou.resolvePath(`assets/images/${item.folder}/${item.file}.png`);
+            item.imgUrl = imageUrl(item);
             document.getElementById('wordText').textContent = item.word;
             document.getElementById('pinyinText').textContent = item.pinyin;
             document.getElementById('mascotText').textContent = `这是${item.word}，把它拼出来吧！`;
@@ -188,7 +242,7 @@
 
         function createPieces(item) {
             pieces = [];
-            const imgUrl = XiaoDou.resolvePath(`assets/images/${item.folder}/${item.file}.png`);
+            const imgUrl = imageUrl(item);
             for (let row = 0; row < level; row++) {
                 for (let col = 0; col < level; col++) {
                     pieces.push({
@@ -379,11 +433,125 @@
         }
 
         function setLevel(l) {
+            if (l === 5) { openHellIntro(); return; }
             level = l;
             loadPuzzle(currentIndex);
         }
 
+        // ---------- 地狱模式：headbreaker 不规则拼图 ----------
+        function openHellIntro() {
+            document.getElementById('hellOverlay').classList.add('show');
+        }
+        function closeHellIntro() {
+            document.getElementById('hellOverlay').classList.remove('show');
+            // 恢复普通难度高亮
+            document.querySelectorAll('.level-btn').forEach(btn =>
+                btn.classList.toggle('active', parseInt(btn.dataset.level) === level));
+        }
+        function startHellPuzzle() {
+            closeHellIntro();
+            hellMode = true;
+            level = 5;
+            document.querySelectorAll('.level-btn').forEach(btn =>
+                btn.classList.toggle('active', parseInt(btn.dataset.level) === 5));
+            loadHell(currentIndex);
+        }
+        function exitHell() {
+            hellMode = false;
+            hellCanvas = null;
+            level = 3;
+            loadPuzzle(currentIndex);
+        }
+        function shuffleHell() {
+            if (hellCanvas) {
+                hellCanvas.shuffle(0.7);
+                hellCanvas.draw();
+            }
+        }
+
+        async function loadHell(index) {
+            const item = items[index];
+            document.getElementById('wordText').textContent = item.word;
+            document.getElementById('pinyinText').textContent = item.pinyin;
+            document.getElementById('mascotText').textContent = `地狱模式：把「${item.word}」拼出来！`;
+            document.getElementById('actionBtns').style.display = 'none';
+            document.getElementById('successActions').style.display = 'none';
+            document.getElementById('hellActions').style.display = 'flex';
+            document.getElementById('modeHint').textContent = '🔥 地狱模式：不规则拼图块，自由拖拽自动吸附';
+            stopTimer();
+            resetStats();
+            startTimer();
+
+            // 把图片（可能是 SVG）绘制到 canvas 供 headbreaker 使用
+            const url = imageUrl(item);
+            hellImg = await loadImageToCanvas(url);
+            renderHellBoard();
+        }
+
+        function loadImageToCanvas(url) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = () => {
+                    const size = Math.min(800, Math.max(400, Math.min(window.innerWidth, window.innerHeight) - 40));
+                    const c = document.createElement('canvas');
+                    c.width = size; c.height = size;
+                    const ctx = c.getContext('2d');
+                    ctx.fillStyle = '#fff';
+                    ctx.fillRect(0, 0, size, size);
+                    // cover 居中裁剪
+                    const iw = img.width, ih = img.height;
+                    const scale = Math.max(size / iw, size / ih);
+                    const w = iw * scale, h = ih * scale;
+                    ctx.drawImage(img, (size - w) / 2, (size - h) / 2, w, h);
+                    resolve(c);
+                };
+                img.onerror = () => reject(new Error('图片加载失败: ' + url));
+                img.src = url;
+            });
+        }
+
+        function renderHellBoard() {
+            const boardEl = document.getElementById('puzzleBoard');
+            boardEl.innerHTML = '';
+            const size = Math.min(800, Math.max(360, Math.min(window.innerWidth - 40, 520)));
+            boardEl.style.width = size + 'px';
+            boardEl.style.height = size + 'px';
+
+            hellCanvas = new headbreaker.Canvas(boardEl, {
+                width: size,
+                height: size,
+                pieceSize: Math.floor(size / 5),
+                proximity: Math.floor(size / 28),
+                borderFill: Math.floor(size / 60),
+                strokeWidth: Math.max(1.2, size / 400),
+                lineSoftness: 0.16,
+                image: hellImg,
+                fixed: true,
+                preventOffstageDrag: true
+            });
+            hellCanvas.autogenerate({
+                horizontalPiecesCount: 5,
+                verticalPiecesCount: 5,
+                insertsGenerator: headbreaker.generators.flipflop
+            });
+            hellCanvas.shuffle(0.7);
+            hellCanvas.attachSolvedValidator();
+            hellCanvas.onValid(() => {
+                stopTimer();
+                showHellSuccess();
+            });
+            hellCanvas.draw();
+        }
+
+        function showHellSuccess() {
+            const item = items[currentIndex];
+            XiaoDou.speak(`太不可思议了，你完成了地狱模式的${item.word}`, 'zh', 0.95);
+            showCompletionToast(`🔥 地狱模式通关：${item.word}`, `仅用时 ${formatTime(seconds)}`);
+        }
+
         function restartPuzzle() {
+            if (hellMode) { loadHell(currentIndex); return; }
             loadPuzzle(currentIndex);
         }
 
@@ -393,6 +561,21 @@
         }
 
         function showHint() {
+            if (hellMode) {
+                // 地狱模式：半透明蒙一层原图提示
+                const board = document.getElementById('puzzleBoard');
+                board.style.backgroundImage = `url(${imageUrl(items[currentIndex])})`;
+                board.style.backgroundSize = 'contain';
+                board.style.backgroundRepeat = 'no-repeat';
+                board.style.backgroundPosition = 'center';
+                board.style.opacity = '0.25';
+                if (hintTimeout) clearTimeout(hintTimeout);
+                hintTimeout = setTimeout(() => {
+                    board.style.backgroundImage = '';
+                    board.style.opacity = '1';
+                }, 1500);
+                return;
+            }
             const item = items[currentIndex];
             const board = document.getElementById('puzzleBoard');
             board.style.backgroundImage = `url(${item.imgUrl})`;
@@ -468,7 +651,13 @@
         }
 
         window.addEventListener('resize', () => {
-            if (items.length) loadPuzzle(currentIndex);
+            if (!items.length) return;
+            if (hellMode) {
+                // 地狱模式画布尺寸自适应，重铺
+                renderHellBoard();
+            } else {
+                loadPuzzle(currentIndex);
+            }
         });
 
         init();
