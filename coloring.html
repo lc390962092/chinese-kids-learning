@@ -105,6 +105,7 @@
         body.fullscreen .game-area { position: relative; }
         body.free-mode { background: #f5f5f5; }
         body.free-mode .main-stage { max-width: none; padding: 0; height: 100vh; display: flex; flex-direction: column; }
+        body.free-mode .back-bar, body.free-mode .header, body.free-mode .mascot { display: none !important; }
         body.free-mode .normal-ui, body.free-mode .mode-select { display: none !important; }
         body.free-mode #gameArea { display: flex !important; flex-direction: column; flex: 1; min-height: 0; }
         body.free-mode .game-area { border-radius: 0; box-shadow: none; flex: 1; display: flex; flex-direction: column; padding: 0; margin: 0; background: #f5f5f5; }
@@ -137,7 +138,7 @@
             background: #5b4a35; color: #fff; font-size: 14px; cursor: pointer; flex: none;
         }
         .free-toolbar .btn.ghost { background: #ece5d8; color: #5b4a35; }
-        .free-exit-btn { display: none; position: fixed; top: max(10px, env(safe-area-inset-top)); right: 10px; z-index: 300; border-radius: 50%; width: 44px; height: 44px; padding: 0; font-size: 20px; align-items: center; justify-content: center; }
+        .free-exit-btn { display: none; position: fixed; top: max(10px, env(safe-area-inset-top)); right: 10px; z-index: 300; border-radius: 50%; width: 48px; height: 48px; padding: 0; font-size: 22px; align-items: center; justify-content: center; background: rgba(255,255,255,0.92); color: #666; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
         body.free-mode .free-exit-btn { display: flex; }
         @media (max-width: 380px) { .color-btn { width: 38px; height: 38px; } .thumb { flex: 0 0 64px; height: 82px; } body.fullscreen .right-bar .color-btn { width: 26px; height: 26px; font-size: 12px; } body.fullscreen .color-palette.right-bar { flex: 0 0 36px; } }
     </style>
@@ -205,7 +206,7 @@
     </div>
 
     <button class="action-btn btn-exit-fullscreen" onclick="toggleFullscreen(false)">✕</button>
-    <button class="action-btn btn-exit-fullscreen free-exit-btn" onclick="exitFreeMode()">✕</button>
+    <button class="action-btn btn-exit-fullscreen free-exit-btn" onclick="exitFreeMode()" title="返回模式选择">🏠</button>
     <div class="free-toolbar" id="freeToolbar">
         <div class="colors" id="freeColors"></div>
         <button class="btn ghost" onclick="undoStroke()">撤销</button>
