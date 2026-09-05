@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 口算练习</title>
+    <link rel="stylesheet" href="dark-mode.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #E3F2FD 0%, #FFF8E7 50%, #E8F5E9 100%);
+            min-height: 100vh;
+        }
+        .back-bar {
+            display: inline-block; margin: 12px 15px 0; padding: 8px 16px;
+            background: rgba(255,255,255,0.9); border-radius: 20px;
+            text-decoration: none; color: #666; font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .header { text-align: center; padding: 20px 15px 10px; }
+        .header h1 { color: #2196F3; font-size: 28px; }
+        .header p { color: #888; font-size: 13px; margin-top: 4px; }
+
+        .settings { max-width: 400px; margin: 15px auto; padding: 0 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .setting-label { font-size: 13px; color: #666; white-space: nowrap; }
+        .range-input { flex: 1; accent-color: #2196F3; }
+        .toggle-group { display: flex; gap: 6px; }
+        .toggle-btn {
+            padding: 6px 14px; border-radius: 16px; border: 2px solid #ddd;
+            background: white; font-size: 13px; cursor: pointer;
+        }
+        .toggle-btn.on { background: #2196F3; color: white; border-color: #2196F3; }
+        .gen-btn {
+            display: block; margin: 10px auto 15px; padding: 12px 32px;
+            background: #2196F3; color: white; border: none; border-radius: 24px;
+            font-size: 17px; cursor: pointer; box-shadow: 0 4px 12px rgba(33,150,243,0.3);
+        }
+        .gen-btn:active { transform: scale(0.96); }
+
+        .problems { max-width: 400px; margin: 0 auto; padding: 0 20px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .problem-card {
+            background: white; border-radius: 18px; padding: 16px 14px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06); text-align: center;
+        }
+        .problem-text { font-size: 22px; font-weight: bold; color: #333; margin-bottom: 10px; }
+        .answer-input {
+            width: 70px; padding: 8px 6px; font-size: 20px; text-align: center;
+            border: 2px solid #ddd; border-radius: 12px; outline: none;
+            font-weight: bold; color: #333;
+        }
+        .answer-input:focus { border-color: #2196F3; }
+        .answer-input.correct { border-color: #4CAF50; background: #E8F5E9; color: #2E7D32; }
+        .answer-input.wrong { border-color: #E53935; background: #FFEBEE; color: #C62828; }
+        .answer-input:disabled { background: #f5f5f5; }
+
+        .check-btn {
+            display: block; margin: 0 auto 20px; padding: 14px 44px;
+            background: #FF9800; color: white; border: none; border-radius: 26px;
+            font-size: 18px; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 14px rgba(255,152,0,0.3);
+        }
+        .check-btn:active { transform: scale(0.96); }
+
+        .result-banner {
+            display: none; text-align: center; padding: 20px; font-size: 22px;
+            font-weight: bold; margin: 0 20px 20px; border-radius: 20px;
+        }
+        .result-banner.show { display: block; }
+        .result-banner.good { background: #C8E6C9; color: #2E7D32; }
+        .result-banner.bad { background: #FFCDD2; color: #C62828; }
+
+        .score-text { text-align: center; font-size: 16px; color: #666; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-bar">← 回首页</a>
+    <div class="header">
+        <h1>🔢 口算练习</h1>
+        <p>加减法口算，越练越快</p>
+    </div>
+
+    <div class="settings">
+        <span class="setting-label">范围 ≤</span>
+        <input type="range" class="range-input" id="rangeInput" min="10" max="99" value="20">
+        <span class="setting-label" id="rangeLabel">20</span>
+    </div>
+    <div class="settings">
+        <span class="setting-label">运算</span>
+        <div class="toggle-group">
+            <button class="toggle-btn on" id="btnAdd" onclick="toggleOp('add')">➕ 加法</button>
+            <button class="toggle-btn" id="btnSub" onclick="toggleOp('sub')">➖ 减法</button>
+            <button class="toggle-btn" id="btnMix" onclick="toggleOp('mix')">🔀 混合</button>
+        </div>
+    </div>
+
+    <button class="gen-btn" onclick="generate()">🎲 生成题目</button>
+
+    <div class="score-text" id="scoreText"></div>
+    <div class="problems" id="problems"></div>
+
+    <div style="text-align:center;">
+        <button class="check-btn" id="checkBtn" onclick="checkAll()" style="display:none;">✅ 检查答案</button>
+    </div>
+
+    <div class="result-banner" id="resultBanner"></div>
+
+    <script src="js/common.js"></script>
+    <script>
+        let problems = [];
+        let opMode = 'add';
+        let checked = false;
+
+        function toggleOp(mode) {
+            opMode = mode;
+            ['add','sub','mix'].forEach(m => {
+                document.getElementById('btn' + m[0].toUpperCase() + m.slice(1)).classList.toggle('on', m === mode);
+            });
+        }
+
+        function getRange() {
+            return parseInt(document.getElementById('rangeInput').value);
+        }
+
+        document.getElementById('rangeInput').oninput = function() {
+            document.getElementById('rangeLabel').textContent = this.value;
+        };
+
+        function generate() {
+            const range = getRange();
+            const count = 12;
+            problems = [];
+            checked = false;
+            document.getElementById('resultBanner').className = 'result-banner';
+            document.getElementById('resultBanner').classList.remove('show');
+
+            const set = new Set();
+            while (set.size < count) {
+                let a, b, op, ans;
+                if (opMode === 'sub' || (opMode === 'mix' && Math.random() > 0.5)) {
+                    op = '−';
+                    a = Math.floor(Math.random() * range) + 1;
+                    b = Math.floor(Math.random() * a) + 1;
+                    ans = a - b;
+                } else {
+                    op = '+';
+                    a = Math.floor(Math.random() * range) + 1;
+                    b = Math.floor(Math.random() * range) + 1;
+                    ans = a + b;
+                }
+                const key = `${a}${op}${b}`;
+                if (set.has(key)) continue;
+                set.add(key);
+                problems.push({ a, b, op, ans, input: '' });
+            }
+            render();
+        }
+
+        function render() {
+            const box = document.getElementById('problems');
+            box.innerHTML = '';
+            problems.forEach((p, i) => {
+                const card = document.createElement('div');
+                card.className = 'problem-card';
+                card.innerHTML = `
+                    <div class="problem-text">${p.a} ${p.op} ${p.b} =</div>
+                    <input type="number" class="answer-input" inputmode="numeric"
+                        oninput="problems[${i}].input = this.value; this.classList.remove('correct','wrong')"
+                        onkeydown="if(event.key==='Enter') document.getElementById('checkBtn').click()">
+                `;
+                box.appendChild(card);
+            });
+            document.getElementById('checkBtn').style.display = 'block';
+            document.getElementById('scoreText').textContent = '';
+        }
+
+        function checkAll() {
+            let correct = 0;
+            problems.forEach((p, i) => {
+                const input = document.querySelectorAll('.answer-input')[i];
+                const val = parseInt(input.value);
+                input.disabled = true;
+                if (val === p.ans) {
+                    correct++;
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('wrong');
+                }
+            });
+            checked = true;
+            const total = problems.length;
+            const pct = Math.round((correct / total) * 100);
+            document.getElementById('scoreText').textContent = `得分：${correct} / ${total}`;
+            const banner = document.getElementById('resultBanner');
+            if (pct === 100) {
+                banner.textContent = '🏆 太棒了！全部正确！';
+                banner.className = 'result-banner show good';
+                XiaoDou.speak('太棒了，全部正确', 'zh', 0.9);
+            } else if (pct >= 60) {
+                banner.textContent = `👍 不错哦，对了 ${correct} 题，继续加油！`;
+                banner.className = 'result-banner show good';
+                XiaoDou.speak(`不错哦，对了${correct}题`, 'zh', 0.9);
+            } else {
+                banner.textContent = `💪 对了 ${correct} 题，再试一次吧！`;
+                banner.className = 'result-banner show bad';
+                XiaoDou.speak('再试一次吧', 'zh', 0.9);
+            }
+        }
+    </script>
+</body>
+</html>

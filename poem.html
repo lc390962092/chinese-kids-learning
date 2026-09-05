@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 古诗诵读</title>
+    <link rel="stylesheet" href="dark-mode.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #F3E5F5 0%, #FFF8E7 50%, #E8F5E9 100%);
+            min-height: 100vh;
+        }
+        .back-bar {
+            display: inline-block; margin: 12px 15px 0; padding: 8px 16px;
+            background: rgba(255,255,255,0.9); border-radius: 20px;
+            text-decoration: none; color: #666; font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .header { text-align: center; padding: 20px 15px 10px; }
+        .header h1 { color: #7B1FA2; font-size: 28px; }
+        .header p { color: #888; font-size: 13px; margin-top: 4px; }
+
+        /* 年级标签 */
+        .grade-bar {
+            display: flex; gap: 8px; overflow-x: auto; padding: 12px 20px;
+            max-width: 500px; margin: 0 auto; -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .grade-bar::-webkit-scrollbar { display: none; }
+        .grade-tag {
+            flex-shrink: 0; padding: 8px 16px; border-radius: 18px;
+            border: 2px solid #ddd; background: white; font-size: 14px;
+            cursor: pointer; white-space: nowrap;
+        }
+        .grade-tag.on { background: #7B1FA2; color: white; border-color: #7B1FA2; }
+
+        /* 诗列表 */
+        .poem-list { max-width: 500px; margin: 0 auto; padding: 10px 20px 20px; display: flex; flex-direction: column; gap: 10px; }
+        .poem-item {
+            background: white; border-radius: 18px; padding: 14px 18px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06); cursor: pointer;
+            display: flex; align-items: center; gap: 12px;
+            transition: transform 0.15s;
+        }
+        .poem-item:active { transform: scale(0.98); }
+        .poem-num {
+            width: 36px; height: 36px; border-radius: 50%; background: #F3E5F5;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; color: #7B1FA2; font-weight: bold; flex-shrink: 0;
+        }
+        .poem-info { flex: 1; }
+        .poem-title { font-size: 17px; font-weight: bold; color: #333; }
+        .poem-meta { font-size: 13px; color: #999; margin-top: 2px; }
+        .poem-arrow { font-size: 18px; color: #ccc; }
+
+        /* 诗详情弹层 */
+        .overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5); z-index: 100;
+            align-items: flex-end; justify-content: center;
+        }
+        .overlay.show { display: flex; }
+        .panel {
+            background: white; border-radius: 30px 30px 0 0;
+            width: 100%; max-width: 500px; max-height: 90vh;
+            overflow-y: auto; padding: 25px 25px 40px;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-btn {
+            position: sticky; top: 0; float: right;
+            width: 36px; height: 36px; border-radius: 50%;
+            background: #f5f5f5; border: none; font-size: 20px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            z-index: 10;
+        }
+        .poem-header { text-align: center; margin-bottom: 20px; }
+        .poem-big-title { font-size: 28px; font-weight: bold; color: #333; }
+        .poem-author { font-size: 15px; color: #888; margin-top: 6px; }
+
+        .poem-line {
+            font-size: 20px; color: #333; padding: 10px 0;
+            line-height: 1.8; cursor: pointer;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .poem-line:active { background: #f9f9f9; }
+        .poem-pinyin { font-size: 14px; color: #999; margin-top: 2px; }
+
+        .poem-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: center; flex-wrap: wrap; }
+        .action-btn {
+            padding: 10px 22px; border-radius: 22px; border: none;
+            font-size: 15px; cursor: pointer;
+        }
+        .action-btn.speak { background: #7B1FA2; color: white; }
+        .action-btn.speak-line { background: #E1BEE7; color: #4A148C; }
+        .action-btn.stop { background: #f0f0f0; color: #666; }
+
+        .trans-section { margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 14px; }
+        .trans-title { font-size: 14px; font-weight: bold; color: #666; margin-bottom: 8px; }
+        .trans-text { font-size: 14px; color: #888; line-height: 1.8; }
+
+        .anno-section { margin-top: 12px; padding: 15px; background: #FFF8E1; border-radius: 14px; }
+        .anno-text { font-size: 13px; color: #777; line-height: 1.8; margin-bottom: 6px; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-bar">← 回首页</a>
+    <div class="header">
+        <h1>📜 古诗诵读</h1>
+        <p>114 首小学必背古诗词</p>
+    </div>
+
+    <div class="grade-bar" id="gradeBar"></div>
+    <div class="poem-list" id="poemList"></div>
+
+    <!-- 诗详情 -->
+    <div class="overlay" id="poemOverlay" onclick="if(event.target===this)closePoem()">
+        <div class="panel">
+            <button class="close-btn" onclick="closePoem()">✕</button>
+            <div class="poem-header">
+                <div class="poem-big-title" id="poemTitle"></div>
+                <div class="poem-author" id="poemAuthor"></div>
+            </div>
+            <div id="poemLines"></div>
+            <div class="poem-actions">
+                <button class="action-btn speak" onclick="speakAll()">🔊 朗读全诗</button>
+                <button class="action-btn stop" onclick="stopSpeak()">⏹ 停止</button>
+            </div>
+            <div class="trans-section" id="transSection" style="display:none;">
+                <div class="trans-title">📖 译文</div>
+                <div class="trans-text" id="transText"></div>
+            </div>
+            <div class="anno-section" id="annoSection" style="display:none;">
+                <div class="trans-title">🔍 注释</div>
+                <div id="annoList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        let grades = [];
+        let currGrade = 0;
+        let currPoem = null;
+
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('poem');
+                grades = data.grades || [];
+                if (!grades.length) throw new Error('no data');
+                currGrade = parseInt(localStorage.getItem('poem-grade') || '0');
+                renderGrades();
+                renderPoems();
+            } catch (e) { console.error(e); }
+        }
+
+        function renderGrades() {
+            const bar = document.getElementById('gradeBar');
+            bar.innerHTML = '';
+            grades.forEach((g, i) => {
+                const tag = document.createElement('div');
+                tag.className = 'grade-tag' + (i === currGrade ? ' on' : '');
+                tag.textContent = g.name;
+                tag.onclick = () => {
+                    currGrade = i;
+                    localStorage.setItem('poem-grade', i);
+                    renderGrades();
+                    renderPoems();
+                };
+                bar.appendChild(tag);
+            });
+        }
+
+        function renderPoems() {
+            const list = document.getElementById('poemList');
+            list.innerHTML = '';
+            const poems = grades[currGrade]?.poems || [];
+            poems.forEach((p, i) => {
+                const item = document.createElement('div');
+                item.className = 'poem-item';
+                item.innerHTML = `
+                    <div class="poem-num">${i + 1}</div>
+                    <div class="poem-info">
+                        <div class="poem-title">${p.title}</div>
+                        <div class="poem-meta">${p.dynasty || ''} · ${p.author || ''}</div>
+                    </div>
+                    <div class="poem-arrow">➡️</div>
+                `;
+                item.onclick = () => openPoem(p);
+                list.appendChild(item);
+            });
+        }
+
+        function openPoem(p) {
+            currPoem = p;
+            stopSpeak();
+            document.getElementById('poemTitle').textContent = p.title;
+            document.getElementById('poemAuthor').textContent = `${p.dynasty || ''} · ${p.author || ''}`;
+
+            const linesBox = document.getElementById('poemLines');
+            linesBox.innerHTML = '';
+            (p.lines || []).forEach((line, i) => {
+                const div = document.createElement('div');
+                div.className = 'poem-line';
+                let html = line;
+                if (p.pinyins && p.pinyins[i]) {
+                    html += `<div class="poem-pinyin">${p.pinyins[i]}</div>`;
+                }
+                div.innerHTML = html;
+                div.onclick = () => XiaoDou.speak(line, 'zh', 0.75);
+                linesBox.appendChild(div);
+            });
+
+            // 译文
+            const transS = document.getElementById('transSection');
+            if (p.trans && p.trans.length) {
+                document.getElementById('transText').textContent = p.trans.join('\n');
+                transS.style.display = 'block';
+            } else { transS.style.display = 'none'; }
+
+            // 注释
+            const annoS = document.getElementById('annoSection');
+            if (p.anno && p.anno.length) {
+                const box = document.getElementById('annoList');
+                box.innerHTML = '';
+                p.anno.forEach(a => {
+                    const div = document.createElement('div');
+                    div.className = 'anno-text';
+                    div.textContent = a;
+                    box.appendChild(div);
+                });
+                annoS.style.display = 'block';
+            } else { annoS.style.display = 'none'; }
+
+            document.getElementById('poemOverlay').classList.add('show');
+        }
+
+        function closePoem() {
+            stopSpeak();
+            document.getElementById('poemOverlay').classList.remove('show');
+        }
+
+        function speakAll() {
+            if (!currPoem) return;
+            const text = currPoem.lines ? currPoem.lines.join('。') : '';
+            XiaoDou.speak(text, 'zh', 0.7);
+        }
+
+        function stopSpeak() {
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+        }
+
+        init();
+    </script>
+</body>
+</html>
