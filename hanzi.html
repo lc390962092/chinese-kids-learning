@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 汉字闯关</title>
+    <link rel="stylesheet" href="dark-mode.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #FFF8E7 0%, #FFF0F5 50%, #E3F2FD 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .back-bar {
+            display: inline-block;
+            margin: 12px 15px 0;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            text-decoration: none;
+            color: #666;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .header { text-align: center; padding: 20px 15px 10px; }
+        .header h1 { color: #FF6B6B; font-size: 30px; margin-bottom: 6px; }
+        .header p { color: #888; font-size: 14px; }
+
+        /* 进度条 */
+        .progress-wrap {
+            max-width: 500px;
+            margin: 10px auto;
+            padding: 0 20px;
+        }
+        .progress-bar {
+            background: white;
+            border-radius: 20px;
+            height: 34px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD93D, #FF9F45);
+            border-radius: 20px;
+            transition: width 0.5s;
+        }
+        .progress-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* 汉字网格 */
+        .hanzi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 15px 20px 30px;
+        }
+        .hanzi-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: bold;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+            user-select: none;
+            position: relative;
+        }
+        .hanzi-cell:active { transform: scale(0.92); }
+        .hanzi-cell.locked {
+            background: #f0f0f0;
+            color: #bbb;
+            cursor: not-allowed;
+        }
+        .hanzi-cell.current {
+            background: #FFD93D;
+            color: #333;
+            box-shadow: 0 4px 12px rgba(255, 180, 0, 0.4);
+            animation: pulse 2s infinite;
+        }
+        .hanzi-cell.done {
+            background: #C8E6C9;
+            color: #2E7D32;
+        }
+        .hanzi-cell.test {
+            background: #F8BBD0;
+            color: #C2185B;
+            font-size: 14px;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 12px rgba(255,180,0,0.4); }
+            50% { box-shadow: 0 4px 20px rgba(255,180,0,0.7); }
+        }
+
+        /* 学习面板 */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .overlay.show { display: flex; }
+        .panel {
+            background: white;
+            border-radius: 30px 30px 0 0;
+            width: 100%;
+            max-width: 500px;
+            max-height: 92vh;
+            overflow-y: auto;
+            padding: 25px 25px 40px;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .panel-header { position: relative; text-align: center; margin-bottom: 15px; }
+        .big-char {
+            font-size: 90px;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.1;
+            cursor: pointer;
+        }
+        .pinyin-text {
+            font-size: 22px;
+            color: #FF6B6B;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        .meaning-text {
+            font-size: 18px;
+            color: #666;
+            margin-top: 8px;
+        }
+        .sentence-text {
+            font-size: 16px;
+            color: #888;
+            margin-top: 12px;
+            padding: 12px 16px;
+            background: #f9f9f9;
+            border-radius: 14px;
+            cursor: pointer;
+            line-height: 1.6;
+        }
+        .speak-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 10px 24px;
+            background: #4ECDC4;
+            color: white;
+            border: none;
+            border-radius: 22px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .speak-btn:active { transform: scale(0.95); }
+
+        /* 笔画区域 */
+        .stroke-section {
+            margin-top: 20px;
+            display: none;
+        }
+        .stroke-section.show { display: block; }
+        .stroke-title {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .stroke-boxes {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .stroke-box {
+            border: 2px dashed #ddd;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #fafafa;
+        }
+        .stroke-box-label {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            padding: 4px;
+        }
+        .stroke-progress {
+            text-align: center;
+            font-size: 15px;
+            color: #4CAF50;
+            margin-top: 8px;
+            min-height: 22px;
+        }
+
+        /* 听音辨字 */
+        .quiz-section {
+            margin-top: 20px;
+            display: none;
+        }
+        .quiz-section.show { display: block; }
+        .quiz-title {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .quiz-option {
+            padding: 18px;
+            font-size: 32px;
+            font-weight: bold;
+            border: 2px solid #eee;
+            border-radius: 18px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quiz-option.correct {
+            background: #C8E6C9;
+            border-color: #4CAF50;
+            color: #2E7D32;
+        }
+        .quiz-option.wrong {
+            background: #FFCDD2;
+            border-color: #E53935;
+            color: #C62828;
+        }
+        .quiz-option:active { transform: scale(0.95); }
+
+        /* 测验模式大字 */
+        .test-big {
+            font-size: 72px !important;
+            color: #C2185B !important;
+        }
+
+        /* 完成弹层 */
+        .success-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        .success-overlay.show { display: flex; }
+        .success-box {
+            background: white;
+            border-radius: 30px;
+            padding: 40px 35px;
+            text-align: center;
+            max-width: 320px;
+            animation: pop 0.4s ease;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .success-emoji { font-size: 64px; margin-bottom: 10px; }
+        .success-title { font-size: 26px; color: #FF6B6B; margin-bottom: 8px; }
+        .success-sub { font-size: 16px; color: #888; margin-bottom: 20px; }
+        .success-btns { display: flex; gap: 12px; justify-content: center; }
+        .success-btn {
+            padding: 12px 24px;
+            border-radius: 22px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .success-btn.primary { background: #FFD93D; color: #333; }
+        .success-btn.secondary { background: #f0f0f0; color: #666; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-bar">← 回首页</a>
+    <div class="header">
+        <h1>📖 汉字闯关</h1>
+        <p>1303 个常用汉字，从简单到难</p>
+    </div>
+
+    <div class="progress-wrap">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+            <div class="progress-text" id="progressText">第 1 / 1303 字</div>
+        </div>
+    </div>
+
+    <div class="hanzi-grid" id="hanziGrid"></div>
+
+    <!-- 学习面板 -->
+    <div class="overlay" id="learnOverlay" onclick="if(event.target===this)closeLearn()">
+        <div class="panel">
+            <div class="panel-header">
+                <button class="close-btn" onclick="closeLearn()">✕</button>
+                <div class="big-char" id="bigChar" onclick="speakCurrent()">一</div>
+                <div class="pinyin-text" id="pinyinText" onclick="speakCurrent()">yī</div>
+                <div class="meaning-text" id="meaningText"></div>
+                <button class="speak-btn" onclick="speakCurrent()">🔊 听发音</button>
+                <div class="sentence-text" id="sentenceText" onclick="speakSentence()"></div>
+            </div>
+
+            <!-- 笔画书写 -->
+            <div class="stroke-section" id="strokeSection">
+                <div class="stroke-title">🖋️ 跟着写一写（写完进入听音辨字）</div>
+                <div class="stroke-boxes">
+                    <div>
+                        <div class="stroke-box" id="strokeDemo"></div>
+                        <div class="stroke-box-label">演示</div>
+                    </div>
+                    <div>
+                        <div class="stroke-box" id="strokeWrite"></div>
+                        <div class="stroke-box-label">手写</div>
+                    </div>
+                </div>
+                <div class="stroke-progress" id="strokeProgress"></div>
+            </div>
+
+            <!-- 听音辨字 -->
+            <div class="quiz-section" id="quizSection">
+                <div class="quiz-title">👂 听音辨字 — 听到什么字？点一点</div>
+                <div class="quiz-options" id="quizOptions"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 完成 -->
+    <div class="success-overlay" id="successOverlay" onclick="if(event.target===this)closeSuccess()">
+        <div class="success-box">
+            <div class="success-emoji">🎉</div>
+            <div class="success-title">太棒了！</div>
+            <div class="success-sub" id="successSub"></div>
+            <div class="success-btns">
+                <button class="success-btn secondary" onclick="closeSuccess()">再学学</button>
+                <button class="success-btn primary" onclick="nextHanzi()">下一字 ➡️</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="vendor/hanzi-writer.min.js"></script>
+    <script>
+        let items = [];
+        let list = [];          // 插入测验后的完整列表
+        let lockInd = 0;        // 当前进度
+        let currInd = 0;
+        let currItem = null;
+        let quizDone = false;
+        let strokeDone = false;
+        const TEST_INTERVAL = 6;
+
+        async function init() {
+            try {
+                const data = await XiaoDou.loadModule('hanzi');
+                items = XiaoDou.getItems(data);
+                if (!items.length) throw new Error('no data');
+
+                // 构建闯关列表：每6字插入测验
+                list = [];
+                items.forEach((item, i) => {
+                    list.push({ ...item, isTest: false });
+                    if (i >= 2 && (i + 1) % TEST_INTERVAL === 0 && i < items.length - 1) {
+                        list.push({ w: '测验', isTest: true });
+                    }
+                });
+
+                lockInd = parseInt(localStorage.getItem('hanzi-lockInd') || '0');
+                renderGrid();
+                // ?auto=1 自动打开当前字（测试用）
+                if (new URLSearchParams(location.search).get('auto')) {
+                    setTimeout(() => { hanziClick(list[Math.min(lockInd, list.length-1)], Math.min(lockInd, list.length-1)); }, 500);
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function saveProgress() {
+            localStorage.setItem('hanzi-lockInd', lockInd);
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('hanziGrid');
+            grid.innerHTML = '';
+            list.forEach((item, i) => {
+                const div = document.createElement('div');
+                let cls = 'hanzi-cell';
+                if (item.isTest) {
+                    cls += ' test';
+                } else if (i < lockInd) {
+                    cls += ' done';
+                } else if (i === lockInd) {
+                    cls += ' current';
+                } else {
+                    cls += ' locked';
+                }
+                div.className = cls;
+                div.textContent = item.w;
+                div.onclick = () => hanziClick(item, i);
+                grid.appendChild(div);
+            });
+
+            // 进度
+            const pct = Math.min(100, (lockInd / list.length) * 100);
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressText').textContent = `第 ${Math.min(lockInd + 1, list.length)} / ${list.length} 字`;
+
+            // 滚动到当前
+            const current = grid.querySelector('.current');
+            if (current) current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function hanziClick(item, ind) {
+            if (item.isTest) {
+                if (ind > lockInd) { XiaoDou.speak('请先学习前面的汉字', 'zh', 0.85); return; }
+                startQuiz(item, ind, true);
+                return;
+            }
+            if (ind > lockInd) {
+                XiaoDou.speak('小朋友请先学习前面的汉字哦', 'zh', 0.85);
+                return;
+            }
+            currInd = ind;
+            currItem = item;
+            quizDone = false;
+            strokeDone = false;
+            showLearnPanel();
+        }
+
+        function showLearnPanel() {
+            document.getElementById('bigChar').textContent = currItem.w;
+            document.getElementById('bigChar').className = 'big-char';
+            document.getElementById('pinyinText').textContent = currItem.y || '';
+            document.getElementById('meaningText').textContent = currItem.p || '';
+            const sent = document.getElementById('sentenceText');
+            sent.textContent = currItem.s ? '▶️ ' + currItem.s : '';
+            sent.style.display = currItem.s ? 'block' : 'none';
+
+            document.getElementById('strokeSection').classList.add('show');
+            document.getElementById('quizSection').classList.remove('show');
+            document.getElementById('strokeProgress').textContent = '';
+
+            // 语音
+            setTimeout(() => speakCurrent(), 300);
+
+            // 笔画
+            initStroke(currItem.w);
+
+            document.getElementById('learnOverlay').classList.add('show');
+        }
+
+        function closeLearn() {
+            document.getElementById('learnOverlay').classList.remove('show');
+        }
+
+        function speakCurrent() {
+            if (!currItem) return;
+            const text = currItem.p ? `${currItem.w}, ${currItem.p}的${currItem.w}` : currItem.w;
+            XiaoDou.speak(text, 'zh', 0.75);
+        }
+
+        function speakSentence() {
+            if (!currItem || !currItem.s) return;
+            XiaoDou.speak(currItem.s, 'zh', 0.8);
+        }
+
+        // ---------- 笔画书写 ----------
+        let demoWriter = null;
+        let writeWriter = null;
+
+        function initStroke(char) {
+            const demoEl = document.getElementById('strokeDemo');
+            const writeEl = document.getElementById('strokeWrite');
+            demoEl.innerHTML = '';
+            writeEl.innerHTML = '';
+
+            const size = Math.min(160, window.innerWidth * 0.35);
+            demoEl.style.width = size + 'px';
+            demoEl.style.height = size + 'px';
+            writeEl.style.width = size + 'px';
+            writeEl.style.height = size + 'px';
+
+            demoWriter = HanziWriter.create(demoEl, char, {
+                width: size, height: size,
+                padding: 5, showCharacter: false,
+                strokeAnimationSpeed: 1,
+                delayBetweenStrokes: 400,
+            });
+            demoWriter.loopCharacterAnimation();
+
+            writeWriter = HanziWriter.create(writeEl, char, {
+                width: size, height: size,
+                padding: 5, showCharacter: false,
+                showHintAfterMisses: 2,
+            });
+            writeWriter.quiz({
+                onCorrectStroke: (data) => {
+                    const done = data.strokeNum + 1;
+                    const total = data.strokeNum + 1 + data.strokesRemaining;
+                    document.getElementById('strokeProgress').textContent = `完成了 ${done} / ${total} 画`;
+                },
+                onComplete: () => {
+                    strokeDone = true;
+                    document.getElementById('strokeProgress').textContent = '✅ 书写完成！';
+                    XiaoDou.speak('写得真棒', 'zh', 0.9);
+                    setTimeout(() => showQuiz(), 800);
+                }
+            });
+        }
+
+        // ---------- 听音辨字 ----------
+        function showQuiz() {
+            if (!currItem) return;
+            document.getElementById('strokeSection').classList.remove('show');
+            document.getElementById('quizSection').classList.add('show');
+
+            // 生成4个选项
+            const others = items.filter(x => x.w !== currItem.w)
+                .sort(() => Math.random() - 0.5).slice(0, 3);
+            const opts = [...others, currItem].sort(() => Math.random() - 0.5);
+
+            const box = document.getElementById('quizOptions');
+            box.innerHTML = '';
+            opts.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.textContent = item.w;
+                btn.onclick = () => quizClick(btn, item);
+                box.appendChild(btn);
+            });
+
+            // 播读音
+            setTimeout(() => XiaoDou.speak(currItem.w, 'zh', 0.7, 3), 500);
+        }
+
+        function quizClick(btn, item) {
+            if (quizDone) return;
+            if (item.w === currItem.w) {
+                btn.classList.add('correct');
+                quizDone = true;
+                XiaoDou.speak('太棒了', 'zh', 0.9);
+                // 解锁
+                if (currInd === lockInd) {
+                    lockInd++;
+                    saveProgress();
+                    renderGrid();
+                }
+                setTimeout(() => showSuccess(), 600);
+            } else {
+                btn.classList.add('wrong');
+                XiaoDou.speak('再试一次', 'zh', 0.85);
+            }
+        }
+
+        // ---------- 测验模式 ----------
+        function startQuiz(item, ind, isTest) {
+            // 找前面已学的几个字来测验
+            const start = Math.max(0, ind - TEST_INTERVAL);
+            const pool = list.slice(start, ind).filter(x => !x.isTest);
+            if (pool.length < 4) { XiaoDou.speak('先多学几个字再来测验吧', 'zh', 0.85); return; }
+
+            currItem = pool[Math.floor(Math.random() * pool.length)];
+            currInd = ind;
+            quizDone = false;
+            strokeDone = false;
+
+            // 显示测验面板
+            document.getElementById('bigChar').textContent = '❓';
+            document.getElementById('bigChar').className = 'big-char test-big';
+            document.getElementById('pinyinText').textContent = '测验时间';
+            document.getElementById('meaningText').textContent = '听音选字，看看记得多少';
+            document.getElementById('sentenceText').style.display = 'none';
+            document.getElementById('strokeSection').classList.remove('show');
+            document.getElementById('quizSection').classList.add('show');
+
+            const others = items.filter(x => x.w !== currItem.w)
+                .sort(() => Math.random() - 0.5).slice(0, 3);
+            const opts = [...others, currItem].sort(() => Math.random() - 0.5);
+            const box = document.getElementById('quizOptions');
+            box.innerHTML = '';
+            opts.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.textContent = item.w;
+                btn.onclick = () => {
+                    if (quizDone) return;
+                    if (item.w === currItem.w) {
+                        btn.classList.add('correct');
+                        quizDone = true;
+                        XiaoDou.speak('测验通过', 'zh', 0.9);
+                        if (ind === lockInd) { lockInd++; saveProgress(); renderGrid(); }
+                        setTimeout(() => { closeLearn(); }, 800);
+                    } else {
+                        btn.classList.add('wrong');
+                        XiaoDou.speak('再想想', 'zh', 0.85);
+                    }
+                };
+                box.appendChild(btn);
+            });
+
+            setTimeout(() => XiaoDou.speak(currItem.w, 'zh', 0.7, 2), 500);
+            document.getElementById('learnOverlay').classList.add('show');
+        }
+
+        // ---------- 完成 ----------
+        function showSuccess() {
+            document.getElementById('successSub').textContent = `学会了「${currItem.w}」！`;
+            document.getElementById('successOverlay').classList.add('show');
+        }
+        function closeSuccess() {
+            document.getElementById('successOverlay').classList.remove('show');
+        }
+        function nextHanzi() {
+            closeSuccess();
+            closeLearn();
+            const next = lockInd;
+            if (next < list.length) {
+                const el = document.querySelectorAll('.hanzi-cell')[next];
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
