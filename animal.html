@@ -17,6 +17,9 @@
             background: linear-gradient(135deg, #FFF8E7 0%, #FFF0F5 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            /* 禁止浏览器级左右滑返回/前进（iOS Safari / Chrome 手势导航） */
+            overscroll-behavior-x: none;
+            touch-action: manipulation;
         }
         
         .header {
@@ -360,10 +363,78 @@
             background: rgba(255,255,255,0.5);
             backdrop-filter: blur(5px);
         }
+
+        /* 儿童锁开关 */
+        .kidlock-bar {
+            position: fixed;
+            top: 8px;
+            right: 10px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.92);
+            border-radius: 20px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+            font-size: 13px;
+            color: #666;
+        }
+        .kidlock-switch {
+            position: relative;
+            width: 40px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+        .kidlock-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .kidlock-slider {
+            position: absolute;
+            inset: 0;
+            background: #ccc;
+            border-radius: 22px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .kidlock-slider::before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 2px;
+            top: 2px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .kidlock-switch input:checked + .kidlock-slider {
+            background: #95E1D3;
+        }
+        .kidlock-switch input:checked + .kidlock-slider::before {
+            transform: translateX(18px);
+        }
+
+        /* 儿童锁开启时隐藏导航类元素 */
+        body.kidlock .back-bar,
+        body.kidlock .bottom-home {
+            display: none !important;
+        }
     </style>
     <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
+    <div class="kidlock-bar">
+        <span>👶 儿童锁</span>
+        <label class="kidlock-switch">
+            <input type="checkbox" id="kidlockToggle" onchange="toggleKidLock(this.checked)">
+            <span class="kidlock-slider"></span>
+        </label>
+    </div>
+
     <a href="index.html" class="back-bar">← 回首页</a>
 
     <div class="header">
@@ -381,7 +452,7 @@
         
         <div class="progress" id="progressDots"></div>
         
-        <div style="text-align:center;margin-top:25px;">
+        <div class="bottom-home" style="text-align:center;margin-top:25px;">
             <a href="index.html" style="color:#888;text-decoration:none;font-size:14px;">← 回首页</a>
         </div>
     </div>
@@ -637,31 +708,78 @@
         function prevAnimal() { switchAnimal('prev'); }
 
         let touchStartX = 0;
+        let touchStartY = 0;
         let touchEndX = 0;
+        let touchEndY = 0;
+        let touchTargetIsInteractive = false;
+
+        // ========== 儿童锁 ==========
+        const KIDLOCK_KEY = 'animal_kidlock';
+        let kidLockOn = false;
+
+        function toggleKidLock(on) {
+            kidLockOn = !!on;
+            try { localStorage.setItem(KIDLOCK_KEY, kidLockOn ? '1' : '0'); } catch (e) {}
+            document.body.classList.toggle('kidlock', kidLockOn);
+            showMascot(kidLockOn
+                ? '儿童锁开启！只能点两边的箭头翻页，不会跳出去了～'
+                : '儿童锁关闭。');
+        }
+
+        function initKidLock() {
+            let saved = null;
+            try { saved = localStorage.getItem(KIDLOCK_KEY); } catch (e) {}
+            const on = saved === '1';
+            const toggle = document.getElementById('kidlockToggle');
+            if (toggle) toggle.checked = on;
+            document.body.classList.toggle('kidlock', on);
+            kidLockOn = on;
+        }
+
+        function isInteractiveTarget(el) {
+            if (!el || !el.closest) return false;
+            return !!el.closest('button, a, input, .btn, .side-arrow, .kidlock-bar, .animal-image');
+        }
 
         function setupSwipe() {
             const mainStage = document.querySelector('.main-stage');
             if (!mainStage) return;
 
+            // 禁止触摸时浏览器执行"边缘左右滑动返回上一页"等原生手势
             mainStage.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
+                if (e.cancelable) e.preventDefault();
+            }, { passive: false });
+
+            mainStage.addEventListener('touchstart', function(e) {
+                const t = e.changedTouches[0];
+                touchStartX = t.screenX;
+                touchStartY = t.screenY;
+                touchTargetIsInteractive = isInteractiveTarget(e.target);
             }, { passive: true });
 
             mainStage.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
+                const t = e.changedTouches[0];
+                touchEndX = t.screenX;
+                touchEndY = t.screenY;
                 handleSwipe();
             }, { passive: true });
+
+            // 垂直滚动（纵向翻百科等）不受影响——touchstart preventDefault 后
+            // 我们在 swipe 判定里明确放行 Y 距离大的手势
 
             let mouseDown = false;
             mainStage.addEventListener('mousedown', function(e) {
                 mouseDown = true;
                 touchStartX = e.screenX;
+                touchStartY = e.screenY;
+                touchTargetIsInteractive = isInteractiveTarget(e.target);
             });
 
             mainStage.addEventListener('mouseup', function(e) {
                 if (!mouseDown) return;
                 mouseDown = false;
                 touchEndX = e.screenX;
+                touchEndY = e.screenY;
                 handleSwipe();
             });
 
@@ -671,12 +789,23 @@
         }
 
         function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) nextAnimal();
-                else prevAnimal();
-            }
+            if (kidLockOn) return; // 儿童锁下禁用手势翻页，只保留箭头按钮
+
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+            const absX = Math.abs(diffX);
+            const absY = Math.abs(diffY);
+            const swipeThreshold = 80; // 提高阈值：50 → 80px，避免小孩"重点一下"被误判
+
+            // 1. 必须横向明显大于纵向（角度过滤，垂直滑动页面不翻页）
+            if (absY > absX) return;
+            // 2. 水平距离达标
+            if (absX < swipeThreshold) return;
+            // 3. 起/终点都不在按钮、图片、链接上（避免点击被当作滑动）
+            if (touchTargetIsInteractive) return;
+
+            if (diffX > 0) nextAnimal();
+            else prevAnimal();
         }
 
         let appStarted = false;
@@ -702,6 +831,7 @@
         }
 
         loadAnimals();
+        initKidLock();
         startApp();
     </script>
 </body>
