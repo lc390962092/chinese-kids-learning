@@ -755,7 +755,8 @@
 
         function isInteractiveTarget(el) {
             if (!el || !el.closest) return false;
-            return !!el.closest('button, a, input, .btn, .side-arrow, .kidlock-bar, .animal-image');
+            // 图片不算交互目标：解锁状态下支持"滑照片"翻页
+            return !!el.closest('button, a, input, .btn, .side-arrow, .kidlock-bar');
         }
 
         function setupSwipe() {
@@ -770,6 +771,7 @@
                 const t = e.changedTouches[0];
                 touchStartX = t.screenX;
                 touchStartY = t.screenY;
+                // 图片允许作为滑动手势起点（解锁状态下"滑照片"翻页）
                 touchTargetIsInteractive = isInteractiveTarget(e.target);
             }, { passive: true });
 
@@ -779,9 +781,6 @@
                 touchEndY = t.screenY;
                 handleSwipe();
             }, { passive: true });
-
-            // 垂直滚动（纵向翻百科等）不受影响——touchstart preventDefault 后
-            // 我们在 swipe 判定里明确放行 Y 距离大的手势
 
             let mouseDown = false;
             mainStage.addEventListener('mousedown', function(e) {
@@ -805,19 +804,21 @@
         }
 
         function handleSwipe() {
-            if (kidLockOn) return; // 儿童锁下禁用手势翻页，只保留箭头按钮
+            // 儿童锁开启：手势翻页禁用，但按钮/图片点击仍正常
+            // （touch 事件未 preventDefault，click 不会被吞）
+            if (kidLockOn) return;
 
             const diffX = touchStartX - touchEndX;
             const diffY = touchStartY - touchEndY;
             const absX = Math.abs(diffX);
             const absY = Math.abs(diffY);
-            const swipeThreshold = 80; // 提高阈值：50 → 80px，避免小孩"重点一下"被误判
+            const swipeThreshold = 60; // 比原来小：轻轻滑也能翻页
 
             // 1. 必须横向明显大于纵向（角度过滤，垂直滑动页面不翻页）
             if (absY > absX) return;
             // 2. 水平距离达标
             if (absX < swipeThreshold) return;
-            // 3. 起/终点都不在按钮、图片、链接上（避免点击被当作滑动）
+            // 3. 起点不在按钮/链接/输入框上（图片可以，支持"滑照片"翻页）
             if (touchTargetIsInteractive) return;
 
             if (diffX > 0) nextAnimal();
