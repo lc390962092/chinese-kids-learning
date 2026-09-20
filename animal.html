@@ -86,6 +86,8 @@
             min-height: 60vh;
             padding: 25px 15px;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            /* 只允许纵向滚动；横向滑动交给 JS 判定，浏览器不做整页前进/后退 */
+            touch-action: pan-y;
         }
         
         .animal-card {
@@ -745,10 +747,9 @@
             const mainStage = document.querySelector('.main-stage');
             if (!mainStage) return;
 
-            // 禁止触摸时浏览器执行"边缘左右滑动返回上一页"等原生手势
-            mainStage.addEventListener('touchstart', function(e) {
-                if (e.cancelable) e.preventDefault();
-            }, { passive: false });
+            // 注意：不要在 touchstart 里 preventDefault！
+            // 那会同时杀死 click 和垂直滚动。横向原生手势已由 CSS
+            // touch-action: pan-y + body overscroll-behavior-x: none 禁用。
 
             mainStage.addEventListener('touchstart', function(e) {
                 const t = e.changedTouches[0];
