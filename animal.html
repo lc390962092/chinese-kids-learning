@@ -425,6 +425,17 @@
         body.kidlock .bottom-home {
             display: none !important;
         }
+
+        /* 儿童锁开启时钉死页面：禁止上下滚动 */
+        body.kidlock {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+        body.kidlock .main-stage {
+            touch-action: none;
+        }
     </style>
     <link rel="stylesheet" href="dark-mode.css">
 </head>
@@ -723,8 +734,12 @@
             kidLockOn = !!on;
             try { localStorage.setItem(KIDLOCK_KEY, kidLockOn ? '1' : '0'); } catch (e) {}
             document.body.classList.toggle('kidlock', kidLockOn);
+            // 锁定时收起所有百科卡片，避免内容超出屏幕又滑不回去
+            if (kidLockOn) {
+                document.querySelectorAll('.encyclopedia-card').forEach(el => el.style.display = 'none');
+            }
             showMascot(kidLockOn
-                ? '儿童锁开启！只能点两边的箭头翻页，不会跳出去了～'
+                ? '儿童锁开启！页面锁住了，用两边的大箭头翻页～'
                 : '儿童锁关闭。');
         }
 
