@@ -356,10 +356,88 @@
             background: rgba(255,255,255,0.5);
             backdrop-filter: blur(5px);
         }
-    </style>
-    <link rel="stylesheet" href="dark-mode.css">
+    
+        /* 儿童锁开关 */
+        .kidlock-bar {
+            position: fixed;
+            top: 8px;
+            right: 10px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.92);
+            border-radius: 20px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+            font-size: 13px;
+            color: #666;
+        }
+        .kidlock-switch {
+            position: relative;
+            width: 40px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+        .kidlock-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .kidlock-slider {
+            position: absolute;
+            inset: 0;
+            background: #ccc;
+            border-radius: 22px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .kidlock-slider::before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 2px;
+            top: 2px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .kidlock-switch input:checked + .kidlock-slider {
+            background: #95E1D3;
+        }
+        .kidlock-switch input:checked + .kidlock-slider::before {
+            transform: translateX(18px);
+        }
+
+        /* 儿童锁开启时隐藏导航类元素 */
+        body.kidlock .back-bar,
+        body.kidlock .back-home,
+        body.kidlock .bottom-home,
+        body.kidlock .nav-btns {
+            display: none !important;
+        }
+
+        /* 儿童锁开启时钉死页面：禁止上下滚动 */
+        body.kidlock {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+    </style> <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
+    <div class="kidlock-bar">
+        <span>👶 儿童锁</span>
+        <label class="kidlock-switch">
+            <input type="checkbox" id="kidlockToggle" onchange="toggleKidLock(this.checked)">
+            <span class="kidlock-slider"></span>
+        </label>
+    </div>
+
+
     <a href="index.html" class="back-bar">← 回首页</a>
 
     <div class="header">
@@ -599,6 +677,7 @@
         }
 
         function handleSwipe() {
+            if (kidLockOn) return; // 儿童锁：禁用滑动翻页
             const swipeThreshold = 50;
             const diff = touchStartX - touchEndX;
             if (Math.abs(diff) > swipeThreshold) { if (diff > 0) nextItem(); else prevItem(); }
@@ -618,7 +697,36 @@
             XiaoDou.speak('你好！我是小豆。我们先从清音开始，看看平假名和片假名怎么配对吧！', 'zh');
         }
 
+        // ========== 儿童锁 ==========
+        const KIDLOCK_KEY = 'japanese_kana_kidlock';
+        let kidLockOn = false;
+
+        function toggleKidLock(on) {
+            kidLockOn = !!on;
+            try { localStorage.setItem(KIDLOCK_KEY, kidLockOn ? '1' : '0'); } catch (e) {}
+            document.body.classList.toggle('kidlock', kidLockOn);
+            if (typeof showMascot === 'function') {
+                showMascot(kidLockOn
+                    ? '儿童锁开启！页面锁住了，用两边的大箭头翻页～'
+                    : '儿童锁关闭。');
+            }
+        }
+
+        function initKidLock() {
+            let saved = null;
+            try { saved = localStorage.getItem(KIDLOCK_KEY); } catch (e) {}
+            const on = saved === '1';
+            const toggle = document.getElementById('kidlockToggle');
+            if (toggle) toggle.checked = on;
+            document.body.classList.toggle('kidlock', on);
+            kidLockOn = on;
+        }
+
+
         init();
+
+
+        initKidLock();
         startApp();
     </script>
 </body>
