@@ -18,6 +18,7 @@
         .card { position: relative; display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .card.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-image-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 340px; margin: 10px auto; position: relative; }
         .card-emoji { width: 200px; height: 200px; font-size: 130px; line-height: 200px; margin: 10px auto; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; }
         .card-emoji:active { transform: scale(0.95); }
         .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
@@ -138,8 +139,8 @@
             opacity: 0.3;
             cursor: not-allowed;
         }
-        .side-arrow.left { left: -50px; }
-        .side-arrow.right { right: -50px; }
+        .card-image-wrapper .side-arrow.left { left: -50px; }
+        .card-image-wrapper .side-arrow.right { right: -50px; }
     </style> <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
@@ -224,9 +225,11 @@
                 const bgStyle = item.color.startsWith('linear') ? item.color : (item.color + '33');
                 const keywords = (item.words || []).map(w => `<span class="keyword" onclick="speak('${XiaoDou.escapeHtml(w)}')">${XiaoDou.escapeHtml(w)}</span>`).join('');
                 return `<div class="card ${i===0?'active':''}">
-                    <button class="side-arrow left" onclick="prevItem()">◀</button>
-                    <button class="side-arrow right" onclick="nextItem()">▶</button>
+                    <div class="card-image-wrapper">
+                        <button class="side-arrow left" onclick="prevItem()">◀</button>
                     <div class="card-emoji" onclick="playWord(${i})" style="background:${bgStyle}">${item.emoji}</div>
+                        <button class="side-arrow right" onclick="nextItem()">▶</button>
+                    </div>
                     <div class="card-title">${XiaoDou.escapeHtml(item.word)}</div>
                     <div class="card-subtitle">${XiaoDou.escapeHtml(item.pinyin)}</div>
                     <div class="color-english">${XiaoDou.escapeHtml(item.english)}</div>

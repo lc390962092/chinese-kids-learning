@@ -18,6 +18,7 @@
         .card { display: none; position: relative; text-align: center; animation: fadeIn 0.5s ease; }
         .card.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-image-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 340px; margin: 10px auto; position: relative; }
         .card-emoji { width: 160px; height: 160px; font-size: 100px; line-height: 160px; margin: 8px auto; background: #f8f8f8; border-radius: 28px; cursor: pointer; transition: transform 0.2s; user-select: none; }
         .card-emoji:active { transform: scale(0.95); }
         .card-title { font-size: 34px; color: #333; margin: 30px 0 4px; font-weight: bold; }
@@ -140,8 +141,8 @@
             opacity: 0.3;
             cursor: not-allowed;
         }
-        .side-arrow.left { left: -50px; }
-        .side-arrow.right { right: -50px; }
+        .card-image-wrapper .side-arrow.left { left: -50px; }
+        .card-image-wrapper .side-arrow.right { right: -50px; }
     </style> <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
@@ -206,9 +207,11 @@
                 card.className = 'card' + (index === currentIndex ? ' active' : '');
                 card.id = 'card-' + index;
                 card.innerHTML = `
-                    <button class="side-arrow left" onclick="prevItem()">◀</button>
-                    <button class="side-arrow right" onclick="nextItem()">▶</button>
+                    <div class="card-image-wrapper">
+                        <button class="side-arrow left" onclick="prevItem()">◀</button>
                     <div class="card-emoji" onclick="playTitle(${index})">${emoji}</div>
+                        <button class="side-arrow right" onclick="nextItem()">▶</button>
+                    </div>
                     <div class="card-title">${XiaoDou.escapeHtml(item.title)}</div>
                     <div class="card-subtitle">来源：${XiaoDou.escapeHtml(item.origin)}</div>
                     <div class="card-summary"><strong>简介：</strong>${XiaoDou.escapeHtml(item.summary)}</div>

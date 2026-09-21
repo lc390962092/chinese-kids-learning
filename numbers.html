@@ -18,6 +18,7 @@
         .card { position: relative; display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .card.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-image-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 340px; margin: 10px auto; position: relative; }
         .card-number { width: 220px; height: 220px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; user-select: none; font-size: 120px; font-weight: bold; color: #00897B; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
         .card-number:active { transform: scale(0.95); }
         .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
@@ -141,8 +142,8 @@
             opacity: 0.3;
             cursor: not-allowed;
         }
-        .side-arrow.left { left: -50px; }
-        .side-arrow.right { right: -50px; }
+        .card-image-wrapper .side-arrow.left { left: -50px; }
+        .card-image-wrapper .side-arrow.right { right: -50px; }
     </style> <link rel="stylesheet" href="dark-mode.css?v=2">
 </head>
 <body>
@@ -234,9 +235,11 @@
             container.innerHTML = items.map((item, i) => {
                 const keywords = (item.tags || []).map(w => `<span class="keyword" onclick="XiaoDou.speak('${escapeAttr(w)}', 'zh')">${XiaoDou.escapeHtml(w)}</span>`).join('');
                 return `<div class="card ${i===0?'active':''}">
-                    <button class="side-arrow left" onclick="prevItem()">◀</button>
-                    <button class="side-arrow right" onclick="nextItem()">▶</button>
+                    <div class="card-image-wrapper">
+                        <button class="side-arrow left" onclick="prevItem()">◀</button>
                     <div class="card-number" onclick="playWord(${i})">${XiaoDou.escapeHtml(item.arabic)}</div>
+                        <button class="side-arrow right" onclick="nextItem()">▶</button>
+                    </div>
                     <div class="card-title">${XiaoDou.escapeHtml(item.word)}</div>
                     <div class="card-subtitle">${XiaoDou.escapeHtml(item.pinyin)}</div>
                     <div class="card-japanese">${XiaoDou.escapeHtml(item.japanese)}</div>
