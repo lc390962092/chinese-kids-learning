@@ -107,8 +107,18 @@ const FindDifference = (function() {
       el.style.top = diff.y + '%';
       el.style.width = (diff.radius * 2) + '%';
       el.style.height = (diff.radius * 2) + '%';
-      el.addEventListener('click', (e) => handleRightClick(i, el, e));
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleRightClick(i, el, e);
+      });
       right.appendChild(el);
+    });
+
+    // 点击错误位置时显示红色反馈
+    right.addEventListener('click', (e) => {
+      if (e.target === right || e.target.classList.contains('scene-image')) {
+        handleWrongClick(e);
+      }
     });
   }
 
@@ -127,6 +137,32 @@ const FindDifference = (function() {
       updateMascot(msg + '：' + diff.hint);
       checkComplete(level);
     }
+  }
+
+  function handleWrongClick(e) {
+    // 点击了错误位置，显示红色反馈
+    const scene = document.getElementById('rightScene');
+    const rect = scene.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const marker = document.createElement('div');
+    marker.style.cssText = `
+      position: absolute;
+      left: ${x}px;
+      top: ${y}px;
+      width: 40px;
+      height: 40px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 3px solid #F44336;
+      background: rgba(244,67,54,0.2);
+      pointer-events: none;
+      z-index: 3;
+      animation: hitShake 0.4s ease;
+    `;
+    scene.appendChild(marker);
+    setTimeout(() => marker.remove(), 800);
   }
 
   function checkComplete(level) {
