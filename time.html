@@ -566,33 +566,48 @@
             const cx = 100, cy = 100, r = 90;
             const hourAngle = (hour % 12) * 30 + minute * 0.5;
             const minuteAngle = minute * 6;
-            const hx = cx + Math.sin(hourAngle * Math.PI / 180) * 50;
-            const hy = cy - Math.cos(hourAngle * Math.PI / 180) * 50;
-            const mx = cx + Math.sin(minuteAngle * Math.PI / 180) * 70;
-            const my = cy - Math.cos(minuteAngle * Math.PI / 180) * 70;
+            // 指针末端距离中心更远（接近但不接触数字）
+            const hourLen = 48;
+            const minuteLen = 68;
+            // 指针起点离中心留空，避免压住数字
+            const hourStart = 16;
+            const minuteStart = 20;
+
+            const hx = cx + Math.sin(hourAngle * Math.PI / 180) * hourLen;
+            const hy = cy - Math.cos(hourAngle * Math.PI / 180) * hourLen;
+            const mx = cx + Math.sin(minuteAngle * Math.PI / 180) * minuteLen;
+            const my = cy - Math.cos(minuteAngle * Math.PI / 180) * minuteLen;
+            const hxStart = cx + Math.sin(hourAngle * Math.PI / 180) * hourStart;
+            const hyStart = cy - Math.cos(hourAngle * Math.PI / 180) * hourStart;
+            const mxStart = cx + Math.sin(minuteAngle * Math.PI / 180) * minuteStart;
+            const myStart = cy - Math.cos(minuteAngle * Math.PI / 180) * minuteStart;
 
             let markers = '';
             for (let i = 0; i < 12; i++) {
                 const angle = i * 30;
                 const is12 = i === 0;
-                const mr = is12 ? 60 : 30;
-                const mw = is12 ? 4 : 2;
+                const isQuarter = i % 3 === 0; // 3, 6, 9
+                const mr = is12 ? 60 : (isQuarter ? 45 : 25);
+                const mw = is12 ? 4 : (isQuarter ? 3 : 2);
                 const x1 = cx + Math.sin(angle * Math.PI / 180) * (r - 10);
                 const y1 = cy - Math.cos(angle * Math.PI / 180) * (r - 10);
                 const x2 = cx + Math.sin(angle * Math.PI / 180) * (r - 10 - mr);
                 const y2 = cy - Math.cos(angle * Math.PI / 180) * (r - 10 - mr);
                 markers += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#555" stroke-width="${mw}" stroke-linecap="round" />`;
-                const tx = cx + Math.sin(angle * Math.PI / 180) * (r - 28);
-                const ty = cy - Math.cos(angle * Math.PI / 180) * (r - 28);
-                markers += `<text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#555">${is12 ? 12 : i}</text>`;
+                // 数字放在刻度外侧，避免与指针重叠
+                const tr = r - 32;
+                const tx = cx + Math.sin(angle * Math.PI / 180) * tr;
+                const ty = cy - Math.cos(angle * Math.PI / 180) * tr;
+                const label = is12 ? '12' : i;
+                markers += `<text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="middle" font-size="13" fill="#555" font-weight="bold">${label}</text>`;
             }
 
             return `
                 <svg class="clock-svg" viewBox="0 0 200 200">
                     <circle cx="${cx}" cy="${cy}" r="${r}" fill="#fff" stroke="#1976D2" stroke-width="6" />
                     ${markers}
-                    <line x1="${cx}" y1="${cy}" x2="${hx}" y2="${hy}" stroke="#333" stroke-width="5" stroke-linecap="round" />
-                    <line x1="${cx}" y1="${cy}" x2="${mx}" y2="${my}" stroke="#E53935" stroke-width="3" stroke-linecap="round" />
+                    <line x1="${hxStart}" y1="${hyStart}" x2="${hx}" y2="${hy}" stroke="#333" stroke-width="5" stroke-linecap="round" />
+                    <line x1="${mxStart}" y1="${myStart}" x2="${mx}" y2="${my}" stroke="#E53935" stroke-width="3" stroke-linecap="round" />
                     <circle cx="${cx}" cy="${cy}" r="5" fill="#1976D2" />
                 </svg>
             `;

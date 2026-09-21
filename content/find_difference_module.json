@@ -43,6 +43,20 @@
         { "name": "自行车", "x": 72, "y": 65, "radius": 9, "hint": "右边的自行车不见了" },
         { "name": "云", "x": 55, "y": 18, "radius": 8, "hint": "右边的云朵变成了闪电" }
       ]
+    },
+    {
+      "id": "zoo_simple",
+      "title": "动物园简笔画",
+      "description": "左右两幅图有 3 处不同，全部找出来！",
+      "hint": "注意看太阳、猴子和熊猫哦。",
+      "bgColor": "linear-gradient(135deg, #E8F5E9 0%, #FFF8E1 100%)",
+      "leftImage": "assets/images/find_difference/zoo_simple_left.png",
+      "rightImage": "assets/images/find_difference/zoo_simple_right.png",
+      "differences": [
+        { "name": "太阳", "x": 85, "y": 10, "radius": 8, "hint": "右边的太阳变成了月亮" },
+        { "name": "猴子", "x": 60, "y": 60, "radius": 10, "hint": "右边的猴子跑到了下面" },
+        { "name": "熊猫", "x": 53, "y": 50, "radius": 10, "hint": "右边少了一只可爱的熊猫" }
+      ]
     }
   ]
 }
