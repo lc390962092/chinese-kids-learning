@@ -33,9 +33,32 @@
         .card-image-wrapper { position: relative; display: inline-block; width: 240px; height: 240px; margin: 10px auto; }
         .item-image { width: 240px; height: 240px; object-fit: contain; cursor: pointer; transition: transform 0.2s; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
         .item-image:active { transform: scale(0.95); }
-        .side-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.15); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: transform 0.2s, background 0.2s; }
-        .side-arrow:active { transform: translateY(-50%) scale(0.9); background: #90CAF9; }
-        .side-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+        .side-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            border: none;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+            font-size: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .side-arrow:active {
+            transform: translateY(-50%) scale(0.92);
+            background: #95E1D3;
+        }
+        .side-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
         .side-arrow.left { left: -50px; }
         .side-arrow.right { right: -50px; }
         .item-word { font-size: 48px; color: #333; margin: 10px 0 5px; font-weight: bold; }
@@ -294,9 +317,9 @@
                 card.id = `card-${index}`;
                 card.innerHTML = `
                     <div class="card-image-wrapper">
-                        <button class="side-arrow left" onclick="prevItem()">‹</button>
+                        <button class="side-arrow left" onclick="prevItem()">◀</button>
                         <img class="item-image" src="${XiaoDou.resolvePath(`assets/images/seasons_weather/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22%3E%3Crect width=%22240%22 height=%22240%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%22120%22 y=%22125%22 font-size=%2250%22 text-anchor=%22middle%22%3E${XiaoDou.escapeHtml(item.word.charAt(0))}%3C/text%3E%3C/svg%3E'" onclick="playWord(${index})">
-                        <button class="side-arrow right" onclick="nextItem()">›</button>
+                        <button class="side-arrow right" onclick="nextItem()">▶</button>
                     </div>
                     <div class="item-word" onclick="playWord(${index})">${XiaoDou.escapeHtml(item.word)}</div>
                     <div class="item-pinyin">${XiaoDou.escapeHtml(item.pinyin)}</div>

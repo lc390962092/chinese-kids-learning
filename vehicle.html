@@ -161,14 +161,14 @@
         
         .card-image-wrapper .side-arrow.left {
             position: absolute;
-            left: -10px;
+            left: -50px;
             top: 50%;
             transform: translateY(-50%);
         }
         
         .card-image-wrapper .side-arrow.right {
             position: absolute;
-            right: -10px;
+            right: -50px;
             top: 50%;
             transform: translateY(-50%);
         }
@@ -194,24 +194,26 @@
         .vehicle-image:active { transform: scale(0.95); }
         
         .side-arrow {
-            width: 36px;
-            height: 36px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             background: rgba(255,255,255,0.95);
-            border: 1px solid rgba(0,0,0,0.1);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            font-size: 18px;
+            border: none;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+            font-size: 32px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 10;
-            flex-shrink: 0;
             transition: transform 0.2s, background 0.2s;
         }
         
         .side-arrow:active {
-            transform: scale(0.9);
+            transform: translateY(-50%) scale(0.92);
             background: #95E1D3;
         }
         
@@ -509,11 +511,11 @@
                 const svgFallback = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Crect fill='%23f0f0f0' width='240' height='240'/%3E%3Ctext x='120' y='150' font-size='90' text-anchor='middle'%3E" + emoji + "%3C/text%3E%3C/svg%3E";
                 card.innerHTML = `
                     <div class="card-image-wrapper">
-                        <button class="side-arrow left" onclick="event.stopPropagation(); prevVehicle();">←</button>
+                        <button class="side-arrow left" onclick="event.stopPropagation(); prevVehicle();">◀</button>
                         <div class="vehicle-image" onclick="playVehicle(${index})">
                             <img src="${XiaoDou.resolvePath(`assets/images/vehicles/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='${svgFallback}'">
                         </div>
-                        <button class="side-arrow right" onclick="event.stopPropagation(); nextVehicle();">→</button>
+                        <button class="side-arrow right" onclick="event.stopPropagation(); nextVehicle();">▶</button>
                     </div>
                     <div class="vehicle-word">${XiaoDou.escapeHtml(item.word)}</div>
                     <div class="vehicle-pinyin">${XiaoDou.escapeHtml(item.pinyin)}</div>

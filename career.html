@@ -54,29 +54,6 @@
         .career-english { font-size: 28px; color: #1565C0; margin: 5px 0; font-weight: bold; }
         @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }
 
-        .stage-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.95);
-            border: none;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.18);
-            font-size: 22px;
-            color: #555;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 20;
-            transition: transform 0.2s, background 0.2s;
-        }
-        .stage-arrow:active { transform: translateY(-50%) scale(0.9); background: #f0f0f0; }
-        .stage-arrow-left { left: 8px; }
-        .stage-arrow-right { right: 8px; }
-
     
         /* 儿童锁开关 */
         .kidlock-bar {
@@ -145,18 +122,17 @@
             height: 100%;
         }
 
-        /* 侧箭头 */
-        .card { position: relative; }
         .side-arrow {
             position: absolute;
-            top: 120px;
-            width: 40px;
-            height: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.95);
             border: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-            font-size: 18px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+            font-size: 32px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -164,9 +140,16 @@
             z-index: 10;
             transition: transform 0.2s, background 0.2s;
         }
-        .side-arrow:active { transform: scale(0.9); }
-        .side-arrow.left { left: 5px; }
-        .side-arrow.right { right: 5px; }
+        .side-arrow:active {
+            transform: translateY(-50%) scale(0.92);
+            background: #95E1D3;
+        }
+        .side-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .side-arrow.left { left: -50px; }
+        .side-arrow.right { right: -50px; }
     </style> <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
@@ -189,8 +172,6 @@
         <div class="mascot-avatar">🐼</div>
     </div>
     <div class="main-stage" id="mainStage">
-        <button class="stage-arrow stage-arrow-left" onclick="prevItem()" aria-label="上一个">❮</button>
-        <button class="stage-arrow stage-arrow-right" onclick="nextItem()" aria-label="下一个">❯</button>
         <div id="cards">
         </div>
         <div class="progress" id="progressDots">
