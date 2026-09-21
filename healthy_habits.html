@@ -217,7 +217,6 @@
                     <div class="card-emoji" onclick="playWord(${index})"><img src="${XiaoDou.resolvePath(item.image || '')}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.style.display='none'; this.parentNode.textContent='${XiaoDou.escapeHtml(item.emoji || '✨')}'"></div>
                     <div class="card-title">${XiaoDou.escapeHtml(item.word)}</div>
                     <div class="card-subtitle">${XiaoDou.escapeHtml(item.pinyin)}</div>
-                    <div class="card-text">${XiaoDou.escapeHtml(item.summary)}</div>
                     <div class="keywords">${(item.words || []).map(w => `<span class="keyword" onclick="XiaoDou.speak('${XiaoDou.escapeHtml(w)}', 'zh')">${XiaoDou.escapeHtml(w)}</span>`).join('')}</div>
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="playWord(${index})">🔊 读词语</button>
