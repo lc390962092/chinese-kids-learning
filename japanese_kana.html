@@ -254,9 +254,8 @@
 
         /* 桌面端：箭头在假名内容外侧 */
         @media (min-width: 768px) {
-            .card-wrapper {
-                padding: 0 250px;
-            }
+            .card-wrapper .side-arrow.left { left: 250px; }
+            .card-wrapper .side-arrow.right { right: 250px; }
         }
 
         #cardContainer {
@@ -292,11 +291,6 @@
         .side-arrow:disabled {
             opacity: 0.3;
             cursor: not-allowed;
-        }
-        /* 桌面端：箭头在假名内容外侧 */
-        @media (min-width: 768px) {
-            .card-wrapper .side-arrow.left { left: 250px; }
-            .card-wrapper .side-arrow.right { right: 250px; }
         }
         .side-arrow.left { left: -50px; }
         .side-arrow.right { right: -50px; }
