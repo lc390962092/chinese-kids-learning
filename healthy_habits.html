@@ -40,10 +40,6 @@
         .btn-japanese { background: #FF80AB; }
         .hint { color: #999; font-size: 13px; margin-top: 15px; text-align: center; }
         .swipe-hint { color: #bbb; font-size: 12px; margin-top: 8px; text-align: center; }
-        .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-        .nav-btn { background: #95E1D3; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .nav-btn:active { transform: scale(0.95); }
-        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .progress { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
         .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
         .progress-dot.active { background: #00ACC1; }
@@ -133,9 +129,6 @@
         body.kidlock .back-bar,
         body.kidlock .back-home,
         body.kidlock .bottom-home,
-        body.kidlock .nav-btns {
-            display: none !important;
-        }
 
         /* 儿童锁开启时钉死页面：禁止上下滚动 */
         body.kidlock {
@@ -144,6 +137,29 @@
             width: 100%;
             height: 100%;
         }
+
+        /* 侧箭头 */
+        .card { position: relative; }
+        .side-arrow {
+            position: absolute;
+            top: 120px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .side-arrow:active { transform: scale(0.9); }
+        .side-arrow.left { left: 5px; }
+        .side-arrow.right { right: 5px; }
     </style> <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
@@ -215,6 +231,8 @@
             const cardsContainer = document.getElementById('cards');
             cardsContainer.innerHTML = items.map((item, index) => `
                 <div class="card ${index === 0 ? 'active' : ''}">
+                    <button class="side-arrow left" onclick="prevItem()">◀</button>
+                    <button class="side-arrow right" onclick="nextItem()">▶</button>
                     <div class="card-emoji" onclick="playWord(${index})"><img src="${XiaoDou.resolvePath(item.image || '')}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.style.display='none'; this.parentNode.textContent='${XiaoDou.escapeHtml(item.emoji || '✨')}'"></div>
                     <div class="card-title">${XiaoDou.escapeHtml(item.word)}</div>
                     <div class="card-subtitle">${XiaoDou.escapeHtml(item.pinyin)}</div>
@@ -223,10 +241,6 @@
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="playWord(${index})">🔊 读词语</button>
                         <button class="btn btn-secondary" onclick="playSentence(${index})">📝 读句子</button>
-                    </div>
-                    <div class="nav-btns">
-                        <button class="nav-btn" onclick="prevItem()">⬅️ 上一个</button>
-                        <button class="nav-btn" onclick="nextItem()">下一个 ➡️</button>
                     </div>
                 </div>
             `).join('');
