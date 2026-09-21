@@ -15,7 +15,7 @@
         .mascot-bubble::after { content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); border-width: 8px 8px 0; border-style: solid; border-color: white transparent transparent transparent; }
         .mascot-avatar { width: 36px; height: 36px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
         .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); touch-action: pan-y; position: relative; }
-        .card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
+        .card { position: relative; display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .card.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .card-image { width: 220px; height: 220px; object-fit: cover; margin: 10px auto; border-radius: 30px; background: #f8f8f8; cursor: pointer; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
