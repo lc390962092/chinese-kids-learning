@@ -18,8 +18,8 @@
         .card { position: relative; display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .card.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .card-image-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 340px; margin: 10px auto; position: relative; }
-        .card-number { width: 220px; height: 220px; margin: 10px auto; background: #f8f8f8; border-radius: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; user-select: none; font-size: 120px; font-weight: bold; color: #00897B; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .card-image-wrapper { display: block; width: fit-content; margin: 10px auto; position: relative; }
+        .card-number { width: 220px; height: 220px; background: #f8f8f8; border-radius: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; user-select: none; font-size: 120px; font-weight: bold; color: #00897B; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
         .card-number:active { transform: scale(0.95); }
         .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
         .card-subtitle { font-size: 22px; color: #888; margin-bottom: 5px; }
