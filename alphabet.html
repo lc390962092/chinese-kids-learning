@@ -18,7 +18,7 @@
     <div class="kidlock-bar">
         <span>👶 儿童锁</span>
         <label class="kidlock-switch">
-            <input type="checkbox" id="kidlockToggle" onchange="toggleKidLock(this.checked)">
+            <input type="checkbox" id="kidlockToggle" onchange="FlipCard.toggleKidLock(this.checked)">
             <span class="kidlock-slider"></span>
         </label>
     </div>
@@ -54,11 +54,11 @@
     </div>
 
     <script src="js/common.js"></script>
+    <script src="js/flip-card.js"></script>
     <script>
         let alphabetData = { vowels: [], consonants: [] };
         let currentSection = 'vowels';
         let currentIndex = 0;
-        let appStarted = false;
 
         async function init() {
             try {
@@ -69,14 +69,14 @@
                 renderTabs();
                 renderCard();
                 updateNavButtons();
-                setupSwipe();
+                FlipCard.setupSwipe(nextItem, prevItem);
             } catch (err) {
                 console.error('加载字母数据失败:', err);
                 document.querySelector('.main-stage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">字母数据加载失败，请刷新再试～</div>';
             }
         }
 
-        function showMascot(text) { document.getElementById('mascotText').textContent = text; }
+        function showMascot(text) { FlipCard.showMascot(text); }
 
         function getAudioPath(section, index) {
             const item = alphabetData[section][index];
@@ -178,70 +178,18 @@
         function nextItem() { switchItem('next'); }
         function prevItem() { switchItem('prev'); }
 
-        let touchStartX = 0, touchEndX = 0;
-        function setupSwipe() {
-            const mainStage = document.querySelector('.main-stage');
-            if (!mainStage) return;
-            mainStage.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-            mainStage.addEventListener('touchend', function(e) { touchEndX = e.changedTouches[0].screenX; handleSwipe(); }, { passive: true });
-            let mouseDown = false;
-            mainStage.addEventListener('mousedown', function(e) { mouseDown = true; touchStartX = e.screenX; });
-            mainStage.addEventListener('mouseup', function(e) { if (!mouseDown) return; mouseDown = false; touchEndX = e.screenX; handleSwipe(); });
-            mainStage.addEventListener('mouseleave', function() { mouseDown = false; });
-        }
 
-        function handleSwipe() {
-            if (kidLockOn) return; // 儿童锁：禁用滑动翻页
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > swipeThreshold) { if (diff > 0) nextItem(); else prevItem(); }
-        }
 
-        function startApp() {
-            if (appStarted) return;
-            appStarted = true;
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            if (AudioContext) {
-                const ctx = new AudioContext();
-                if (ctx.state === 'suspended') ctx.resume();
-            }
-            const silentAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
-            silentAudio.play().catch(() => {});
-            showMascot('你好！我是小豆。我们先从元音字母开始学英语吧！');
-            XiaoDou.speak('你好！我是小豆。我们先从元音字母开始学英语吧！', 'zh');
-        }
-
-        // ========== 儿童锁 ==========
-        const KIDLOCK_KEY = 'alphabet_kidlock';
-        let kidLockOn = false;
-
-        function toggleKidLock(on) {
-            kidLockOn = !!on;
-            try { localStorage.setItem(KIDLOCK_KEY, kidLockOn ? '1' : '0'); } catch (e) {}
-            document.body.classList.toggle('kidlock', kidLockOn);
-            if (typeof showMascot === 'function') {
-                showMascot(kidLockOn
-                    ? '儿童锁开启！页面锁住了，用两边的大箭头翻页～'
-                    : '儿童锁关闭。');
-            }
-        }
-
-        function initKidLock() {
-            let saved = null;
-            try { saved = localStorage.getItem(KIDLOCK_KEY); } catch (e) {}
-            const on = saved === '1';
-            const toggle = document.getElementById('kidlockToggle');
-            if (toggle) toggle.checked = on;
-            document.body.classList.toggle('kidlock', on);
-            kidLockOn = on;
-        }
 
 
         init();
 
 
-        initKidLock();
-        startApp();
+        // 初始化
+        FlipCard.kidLockKey = 'alphabet_kidlock';
+        FlipCard.initKidLock();
+        FlipCard.startApp('你好！我是小豆。我们先从元音字母开始学英语吧！');
+        init();
     </script>
 </body>
 </html>

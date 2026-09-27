@@ -26,7 +26,7 @@
     <div class="kidlock-bar">
         <span>👶 儿童锁</span>
         <label class="kidlock-switch">
-            <input type="checkbox" id="kidlockToggle" onchange="toggleKidLock(this.checked)">
+            <input type="checkbox" id="kidlockToggle" onchange="FlipCard.toggleKidLock(this.checked)">
             <span class="kidlock-slider"></span>
         </label>
     </div>
@@ -65,6 +65,7 @@
     </div>
 
     <script src="js/common.js"></script>
+    <script src="js/flip-card.js"></script>
     <script>
         let allItems = [];
         let filteredItems = [];
@@ -81,7 +82,7 @@
                 });
                 filteredItems = [...allItems];
                 renderCards();
-                setupSwipe();
+                FlipCard.setupSwipe(nextItem, prevItem);
                 showMascot('你好！我是小豆。点击卡片，听听爸爸妈妈和长辈怎么读吧！');
             } catch (err) {
                 console.error('加载数据失败:', err);
@@ -89,7 +90,7 @@
             }
         }
 
-        function showMascot(text) { document.getElementById('mascotText').textContent = text; }
+        function showMascot(text) { FlipCard.showMascot(text); }
 
         function filterItems(category) {
             currentFilter = category;
@@ -199,24 +200,7 @@
         function nextItem() { switchItem('next'); }
         function prevItem() { switchItem('prev'); }
 
-        let touchStartX = 0, touchEndX = 0;
-        function setupSwipe() {
-            const mainStage = document.querySelector('.main-stage');
-            if (!mainStage) return;
-            mainStage.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-            mainStage.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, { passive: true });
-        }
-        function handleSwipe() {
-            if (kidLockOn) return; // 儿童锁：禁用滑动翻页
-            const swipeThreshold = 50;
-            if (touchStartX - touchEndX > swipeThreshold) nextItem();
-            else if (touchEndX - touchStartX > swipeThreshold) prevItem();
-        }
+        // setupSwipe / handleSwipe 由 FlipCard 提供
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextItem();
@@ -250,36 +234,17 @@
             }
         }
 
-        // ========== 儿童锁 ==========
-        const KIDLOCK_KEY = 'family_kidlock';
-        let kidLockOn = false;
-
-        function toggleKidLock(on) {
-            kidLockOn = !!on;
-            try { localStorage.setItem(KIDLOCK_KEY, kidLockOn ? '1' : '0'); } catch (e) {}
-            document.body.classList.toggle('kidlock', kidLockOn);
-            if (typeof showMascot === 'function') {
-                showMascot(kidLockOn
-                    ? '儿童锁开启！页面锁住了，用两边的大箭头翻页～'
-                    : '儿童锁关闭。');
-            }
-        }
-
-        function initKidLock() {
-            let saved = null;
-            try { saved = localStorage.getItem(KIDLOCK_KEY); } catch (e) {}
-            const on = saved === '1';
-            const toggle = document.getElementById('kidlockToggle');
-            if (toggle) toggle.checked = on;
-            document.body.classList.toggle('kidlock', on);
-            kidLockOn = on;
-        }
 
 
         init();
 
 
         initKidLock();
+        // 初始化
+        FlipCard.kidLockKey = 'family_kidlock';
+        FlipCard.initKidLock();
+        FlipCard.startApp('你好！我是小豆。点击卡片，听听爸爸妈妈和长辈怎么读吧！');
+        init();
     </script>
 
     <style>
