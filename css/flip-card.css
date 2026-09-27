@@ -1,0 +1,158 @@
+/* =========================================================
+   小豆中文 - 翻卡页样式
+   20个翻卡学习页共享：卡片、箭头、儿童锁
+   ========================================================= */
+
+/* ---------- 卡片容器 ---------- */
+.card {
+    position: relative;
+    display: none;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+.card.active { display: block; }
+
+/* ---------- 图片包装器 ---------- */
+.card-image-wrapper {
+    display: block;
+    width: fit-content;
+    margin: 10px auto;
+    position: relative;
+}
+
+/* ---------- 卡片内容 ---------- */
+.card-emoji {
+    width: 220px;
+    height: 220px;
+    font-size: 100px;
+    line-height: 220px;
+    background: #f8f8f8;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.card-emoji img { width: 100%; height: 100%; object-fit: cover; }
+.card-emoji:active { transform: scale(0.95); }
+
+.card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
+.card-subtitle { font-size: 22px; color: #888; margin-bottom: 5px; }
+.card-japanese { font-size: 24px; color: #555; margin: 5px 0 0; font-weight: bold; }
+.card-japanese-reading { font-size: 16px; color: #999; margin-bottom: 12px; }
+.card-english { font-size: 26px; color: #3F51B5; margin: 5px 0 0; font-weight: bold; }
+.card-text {
+    background: #f8f8f8;
+    border-radius: 20px;
+    padding: 18px 20px;
+    margin: 10px auto 15px;
+    max-width: 90%;
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* ---------- 侧边箭头导航 ---------- */
+.side-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    border: none;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+    font-size: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: transform 0.2s, background 0.2s;
+}
+.side-arrow:active {
+    transform: translateY(-50%) scale(0.92);
+    background: #95E1D3;
+}
+.side-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.card-image-wrapper .side-arrow.left { left: -50px; }
+.card-image-wrapper .side-arrow.right { right: -50px; }
+
+/* =========================================================
+   儿童锁
+   ========================================================= */
+.kidlock-bar {
+    position: fixed;
+    top: 8px;
+    right: 10px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.92);
+    border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    font-size: 13px;
+    color: #666;
+}
+.kidlock-switch {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    flex-shrink: 0;
+}
+.kidlock-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.kidlock-slider {
+    position: absolute;
+    inset: 0;
+    background: #ccc;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.kidlock-slider::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 2px;
+    top: 2px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.kidlock-switch input:checked + .kidlock-slider {
+    background: #95E1D3;
+}
+.kidlock-switch input:checked + .kidlock-slider::before {
+    transform: translateX(18px);
+}
+
+/* 儿童锁开启时隐藏导航类元素 */
+body.kidlock .back-bar,
+body.kidlock .back-home,
+body.kidlock .bottom-home {
+    display: none !important;
+}
+
+/* 儿童锁开启时钉死页面：禁止上下滚动 */
+body.kidlock {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}

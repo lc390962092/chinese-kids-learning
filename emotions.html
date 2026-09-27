@@ -4,145 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>小豆中文 - 我的身体</title>
+        <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/flip-card.css">
+    <link rel="stylesheet" href="dark-mode.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%); min-height: 100vh; overflow-x: hidden; }
-        .header { text-align: center; padding: 20px 10px 10px; }
-        .header h1 { color: #FFA726; font-size: 28px; margin-bottom: 5px; }
-        .header p { color: #888; font-size: 14px; }
-        .mascot { text-align: center; padding: 8px; }
-        .mascot-bubble { display: inline-block; background: white; border-radius: 20px; padding: 8px 14px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); color: #555; font-size: 14px; max-width: 70%; position: relative; margin-bottom: 8px; line-height: 1.4; }
-        .mascot-bubble::after { content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); border-width: 8px 8px 0; border-style: solid; border-color: white transparent transparent transparent; }
-        .mascot-avatar { width: 36px; height: 36px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
-        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); touch-action: pan-y; position: relative; }
-        .card { position: relative; display: none; text-align: center; animation: fadeIn 0.5s ease; }
-        .card.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .card-image-wrapper { display: block; width: fit-content; margin: 10px auto; position: relative; }
-        .card-emoji { width: 220px; height: 220px; font-size: 100px; line-height: 220px; background: #f8f8f8; border-radius: 30px; cursor: pointer; transition: transform 0.2s; user-select: none; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .card-emoji img { width: 100%; height: 100%; object-fit: cover; }
-        .card-emoji:active { transform: scale(0.95); }
-        .card-title { font-size: 40px; color: #333; margin: 10px 0 5px; font-weight: bold; }
-        .card-subtitle { font-size: 22px; color: #888; margin-bottom: 5px; }
-        .card-japanese { font-size: 24px; color: #555; margin: 5px 0 0; font-weight: bold; }
-        .card-japanese-reading { font-size: 16px; color: #999; margin-bottom: 12px; }
-        .card-english { font-size: 26px; color: #3F51B5; margin: 5px 0 0; font-weight: bold; }
-        .card-text { background: #f8f8f8; border-radius: 20px; padding: 18px 20px; margin: 10px auto 15px; max-width: 90%; text-align: left; font-size: 18px; line-height: 1.7; color: #444; }
-        .keywords { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 18px 0; padding: 0 10px; }
-        .keyword { background: #f0f0f0; color: #555; padding: 8px 16px; border-radius: 20px; font-size: 16px; cursor: pointer; }
-        .keyword:active { background: #ddd; }
-        .btn-group { display: flex; justify-content: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-        .btn { border: none; border-radius: 25px; padding: 12px 20px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .btn:active { transform: scale(0.95); }
-        .btn-primary { background: #FFA726; }
-        .btn-secondary { background: #4ECDC4; }
-        .btn-japanese { background: #FF7043; }
-        .btn-english { background: #3F51B5; }
-        .progress { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
-        .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
-        .progress-dot.active { background: #FFA726; }
-        .swipe-hint { color: #bbb; font-size: 12px; margin-top: 8px; text-align: center; }
-        .back-home { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 14px; }
-        .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
-        @media (max-width: 400px) { .card-emoji { width: 170px; height: 170px; line-height: 170px; font-size: 100px; } .card-title { font-size: 34px; } }
-
-    
-        /* 儿童锁开关 */
-        .kidlock-bar {
-            position: fixed;
-            top: 8px;
-            right: 10px;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255,255,255,0.92);
-            border-radius: 20px;
-            padding: 6px 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-            font-size: 13px;
-            color: #666;
+        :root {
+            --primary-color: #FFA726;
+            --bg-gradient: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
         }
-        .kidlock-switch {
-            position: relative;
-            width: 40px;
-            height: 22px;
-            flex-shrink: 0;
-        }
-        .kidlock-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .kidlock-slider {
-            position: absolute;
-            inset: 0;
-            background: #ccc;
-            border-radius: 22px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .kidlock-slider::before {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            left: 2px;
-            top: 2px;
-            background: white;
-            border-radius: 50%;
-            transition: transform 0.2s;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-        .kidlock-switch input:checked + .kidlock-slider {
-            background: #95E1D3;
-        }
-        .kidlock-switch input:checked + .kidlock-slider::before {
-            transform: translateX(18px);
-        }
-
-        /* 儿童锁开启时隐藏导航类元素 */
-        body.kidlock .back-bar,
-        body.kidlock .back-home,
-        body.kidlock .bottom-home,
-
-        /* 儿童锁开启时钉死页面：禁止上下滚动 */
-        body.kidlock {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-        }
-
-        .side-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.95);
-            border: none;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.18);
-            font-size: 32px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: transform 0.2s, background 0.2s;
-        }
-        .side-arrow:active {
-            transform: translateY(-50%) scale(0.92);
-            background: #95E1D3;
-        }
-        .side-arrow:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-        .card-image-wrapper .side-arrow.left { left: -50px; }
-        .card-image-wrapper .side-arrow.right { right: -50px; }
-    </style> <link rel="stylesheet" href="dark-mode.css">
+    </style>
 </head>
 <body>
     <div class="kidlock-bar">
