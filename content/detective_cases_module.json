@@ -2,17 +2,17 @@
   "title": "小侦探事务所",
   "mascot": "🕵️‍♂️",
   "badges": {
-    "locked": "assets/images/detective/badges/badge-locked.png",
-    "star": "assets/images/detective/badges/badge-star.png"
+    "locked": "assets/images/detective/badges/badge-locked.webp",
+    "star": "assets/images/detective/badges/badge-star.webp"
   },
   "cases": [
     {
       "id": "cake-thief",
       "title": "蛋糕小偷",
-      "badge": "assets/images/detective/badges/badge-cake.png",
+      "badge": "assets/images/detective/badges/badge-cake.webp",
       "intro": "妈妈做的草莓蛋糕不见了！冰箱上贴着一张奇怪的纸条。",
       "scene": "厨房里一片狼藉，蛋糕盘子空了。地上有脚印，桌上有奶油手印，窗外有猫叫声。",
-      "sceneImage": "assets/images/detective/scenes/case-cake-thief-scene.png",
+      "sceneImage": "assets/images/detective/scenes/case-cake-thief-scene.webp",
       "clues": [
         "地上有小小的湿脚印",
         "桌上留着奶油手印",
@@ -21,21 +21,21 @@
       "suspects": [
         {
           "name": "小猫咪",
-          "avatar": "assets/images/detective/suspects/case-cake-thief-cat.png",
+          "avatar": "assets/images/detective/suspects/case-cake-thief-cat.webp",
           "emoji": "🐱",
           "statement": "我一直在窗外晒太阳，什么都没做。",
           "contradiction": "但是桌上有猫爪形状的奶油手印，和你有关系哦。"
         },
         {
           "name": "小弟弟",
-          "avatar": "assets/images/detective/suspects/case-cake-thief-baby.png",
+          "avatar": "assets/images/detective/suspects/case-cake-thief-baby.webp",
           "emoji": "👶",
           "statement": "我刚才在睡觉，没起床。",
           "contradiction": "可是地上有你的小脚印，而且还是湿的。"
         },
         {
           "name": "小仓鼠",
-          "avatar": "assets/images/detective/suspects/case-cake-thief-hamster.png",
+          "avatar": "assets/images/detective/suspects/case-cake-thief-hamster.webp",
           "emoji": "🐹",
           "statement": "我一直在笼子里跑步。",
           "contradiction": "仓鼠笼子很干净，没有奶油痕迹，不是你。"
@@ -49,10 +49,10 @@
     {
       "id": "library-book",
       "title": "图书馆失窃案",
-      "badge": "assets/images/detective/badges/badge-book.png",
+      "badge": "assets/images/detective/badges/badge-book.webp",
       "intro": "图书馆里一本珍贵的图画书不见了，管理员请小侦探帮忙。",
       "scene": "书架上有个空位置，地上有一张借书卡和一副眼镜，窗户半开着。",
-      "sceneImage": "assets/images/detective/scenes/case-library-book-scene.png",
+      "sceneImage": "assets/images/detective/scenes/case-library-book-scene.webp",
       "clues": [
         "书架上有个空位置",
         "地上有一张借书卡",
@@ -62,21 +62,21 @@
       "suspects": [
         {
           "name": "小兔子",
-          "avatar": "assets/images/detective/suspects/case-library-book-rabbit.png",
+          "avatar": "assets/images/detective/suspects/case-library-book-rabbit.webp",
           "emoji": "🐰",
           "statement": "我一直在整理书架，没有碰那本书。",
           "contradiction": "可是你的眼镜掉在空书架旁边，借书卡也是你的。"
         },
         {
           "name": "小松鼠",
-          "avatar": "assets/images/detective/suspects/case-library-book-squirrel.png",
+          "avatar": "assets/images/detective/suspects/case-library-book-squirrel.webp",
           "emoji": "🐿️",
           "statement": "我在找坚果，没有拿书。",
           "contradiction": "你手里只有坚果，没有书的痕迹，不是你。"
         },
         {
           "name": "小老鼠",
-          "avatar": "assets/images/detective/suspects/case-library-book-mouse.png",
+          "avatar": "assets/images/detective/suspects/case-library-book-mouse.webp",
           "emoji": "🐭",
           "statement": "我个子太小，拿不到高处的书。",
           "contradiction": "书确实在高处，你够不到，不是你。"
@@ -90,10 +90,10 @@
     {
       "id": "garden-mystery",
       "title": "神秘花园事件",
-      "badge": "assets/images/detective/badges/badge-flower.png",
+      "badge": "assets/images/detective/badges/badge-flower.webp",
       "intro": "奶奶种的花一夜之间倒了一片，花园门也开着。",
       "scene": "花园里有散落的花瓣、泥脚印、翻倒的花盆，还有一个打开的洒水器。",
-      "sceneImage": "assets/images/detective/scenes/case-garden-mystery-scene.png",
+      "sceneImage": "assets/images/detective/scenes/case-garden-mystery-scene.webp",
       "clues": [
         "地上有泥脚印",
         "一个花盆翻倒了",
@@ -103,21 +103,21 @@
       "suspects": [
         {
           "name": "小青蛙",
-          "avatar": "assets/images/detective/suspects/case-garden-mystery-frog.png",
+          "avatar": "assets/images/detective/suspects/case-garden-mystery-frog.webp",
           "emoji": "🐸",
           "statement": "我在池塘边唱歌，没去花园。",
           "contradiction": "可是你的脚上有泥，和花园里的脚印一样。"
         },
         {
           "name": "小刺猬",
-          "avatar": "assets/images/detective/suspects/case-garden-mystery-hedgehog.png",
+          "avatar": "assets/images/detective/suspects/case-garden-mystery-hedgehog.webp",
           "emoji": "🦔",
           "statement": "我只是路过，背上的花瓣是风吹来的。",
           "contradiction": "刺猬背上有花瓣，但脚下没有泥，不是你弄倒花盆的。"
         },
         {
           "name": "小蜗牛",
-          "avatar": "assets/images/detective/suspects/case-garden-mystery-snail.png",
+          "avatar": "assets/images/detective/suspects/case-garden-mystery-snail.webp",
           "emoji": "🐌",
           "statement": "我爬得很慢，什么都不知道。",
           "contradiction": "蜗牛没有泥脚印，也没碰倒花盆，不是你。"

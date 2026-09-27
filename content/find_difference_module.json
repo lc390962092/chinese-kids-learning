@@ -8,8 +8,8 @@
       "description": "左右两幅图有 3 处不同，全部找出来！",
       "hint": "注意看动物的位置、数量和天上的太阳哦。",
       "bgColor": "linear-gradient(135deg, #E8F5E9 0%, #FFF8E1 100%)",
-      "leftImage": "assets/images/find_difference/zoo_left.png",
-      "rightImage": "assets/images/find_difference/zoo_right.png",
+      "leftImage": "assets/images/find_difference/zoo_left.webp",
+      "rightImage": "assets/images/find_difference/zoo_right.webp",
       "differences": [
         { "name": "熊猫", "x": 60, "y": 72, "radius": 10, "hint": "右边少了一只可爱的熊猫" },
         { "name": "太阳", "x": 85, "y": 12, "radius": 8, "hint": "右边的太阳变成了月亮" },
@@ -22,8 +22,8 @@
       "description": "左右两幅图有 3 处不同，全部找出来！",
       "hint": "注意水果的种类、数量和摆放位置。",
       "bgColor": "linear-gradient(135deg, #FFF3E0 0%, #FCE4EC 100%)",
-      "leftImage": "assets/images/find_difference/fruit_left.png",
-      "rightImage": "assets/images/find_difference/fruit_right.png",
+      "leftImage": "assets/images/find_difference/fruit_left.webp",
+      "rightImage": "assets/images/find_difference/fruit_right.webp",
       "differences": [
         { "name": "香蕉", "x": 35, "y": 48, "radius": 9, "hint": "右边的香蕉变成了玉米" },
         { "name": "西瓜", "x": 78, "y": 85, "radius": 11, "hint": "右边的西瓜移到了下面" },
@@ -36,8 +36,8 @@
       "description": "左右两幅图有 3 处不同，全部找出来！",
       "hint": "注意车子的数量和天上的云朵哦。",
       "bgColor": "linear-gradient(135deg, #E3F2FD 0%, #E0F2F1 100%)",
-      "leftImage": "assets/images/find_difference/road_left.png",
-      "rightImage": "assets/images/find_difference/road_right.png",
+      "leftImage": "assets/images/find_difference/road_left.webp",
+      "rightImage": "assets/images/find_difference/road_right.webp",
       "differences": [
         { "name": "公交车", "x": 65, "y": 60, "radius": 11, "hint": "右边的公交车开得更远了" },
         { "name": "自行车", "x": 72, "y": 65, "radius": 9, "hint": "右边的自行车不见了" },
@@ -50,8 +50,8 @@
       "description": "左右两幅图有 3 处不同，全部找出来！",
       "hint": "注意看太阳、猴子和熊猫哦。",
       "bgColor": "linear-gradient(135deg, #E8F5E9 0%, #FFF8E1 100%)",
-      "leftImage": "assets/images/find_difference/zoo_simple_left.png",
-      "rightImage": "assets/images/find_difference/zoo_simple_right.png",
+      "leftImage": "assets/images/find_difference/zoo_simple_left.webp",
+      "rightImage": "assets/images/find_difference/zoo_simple_right.webp",
       "differences": [
         { "name": "太阳", "x": 85, "y": 10, "radius": 8, "hint": "右边的太阳变成了月亮" },
         { "name": "猴子", "x": 60, "y": 60, "radius": 10, "hint": "右边的猴子跑到了下面" },

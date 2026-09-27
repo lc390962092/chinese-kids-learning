@@ -83,7 +83,7 @@
                 <div class="card ${index === 0 ? 'active' : ''}">
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" onclick="prevItem()">◀</button>
-                    <div class="card-emoji" onclick="playWord(${index})"><img src="${XiaoDou.resolvePath(item.image || '')}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.style.display='none'; this.parentNode.textContent='${XiaoDou.escapeHtml(item.emoji || '✨')}'"></div>
+                    <div class="card-emoji" onclick="playWord(${index})"><img loading="lazy" src="${XiaoDou.resolvePath(item.image || '')}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.style.display='none'; this.parentNode.textContent='${XiaoDou.escapeHtml(item.emoji || '✨')}'"></div>
                         <button class="side-arrow right" onclick="nextItem()">▶</button>
                     </div>
                     <div class="card-title">${XiaoDou.escapeHtml(item.word)}</div>

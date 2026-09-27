@@ -18,7 +18,7 @@
       "id": "room-intruder",
       "title": "凌乱的房间",
       "description": "房间里藏着不属于这里的东西，把它们点出来！",
-      "background": "assets/images/detective/scenes/observe-room.png",
+      "background": "assets/images/detective/scenes/observe-room.webp",
       "items": [
         {"name": "香蕉", "x": 18, "y": 32, "isIntruder": true},
         {"name": "泰迪熊", "x": 44, "y": 51, "isIntruder": false},
