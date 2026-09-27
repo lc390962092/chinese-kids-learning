@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 地理与自然</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/flip-card.css">
+    <link rel="stylesheet" href="dark-mode.css">
+    <style>
+        :root {
+            --primary-color: #4A90E2;
+            --bg-gradient: linear-gradient(135deg, #E3F2FD 0%, #F3E5F5 100%);
+        }
+        body {
+            overscroll-behavior-x: none;
+            touch-action: manipulation;
+        }
+        .header { text-align: center; padding: 20px; }
+        .header h1 { color: #2C3E50; font-size: 28px; margin-bottom: 8px; }
+        .header p { color: #7F8C8D; font-size: 14px; }
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .module-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #2C3E50;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .module-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        .module-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .module-desc {
+            font-size: 13px;
+            color: #7F8C8D;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px;
+            color: #4A90E2;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        body.kidlock .back-link,
+        body.kidlock .kidlock-bar {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="dark-mode.css">
+</head>
+<body>
+    <div class="kidlock-bar">
+        <span>👶 儿童锁</span>
+        <label class="kidlock-switch">
+            <input type="checkbox" id="kidlockToggle" onchange="FlipCard.toggleKidLock(this.checked)">
+            <span class="kidlock-slider"></span>
+        </label>
+    </div>
+
+    <div class="header">
+        <h1>🌍 地理与自然</h1>
+        <p>点击选择你想学习的主题</p>
+    </div>
+
+    <div class="module-grid">
+        <a href="geography_flags.html" class="module-card">
+            <div class="module-icon">🏳️</div>
+            <div class="module-title">世界国旗</div>
+            <div class="module-desc">认识世界各国的国旗</div>
+        </a>
+
+        <a href="geography_china.html" class="module-card">
+            <div class="module-icon">🏯</div>
+            <div class="module-title">中国地理</div>
+            <div class="module-desc">探索中国的名胜古迹</div>
+        </a>
+
+        <a href="geography_nature.html" class="module-card">
+            <div class="module-icon">🌈</div>
+            <div class="module-title">自然现象</div>
+            <div class="module-desc">了解神奇的自然奥秘</div>
+        </a>
+
+        <a href="geography_space.html" class="module-card">
+            <div class="module-icon">🚀</div>
+            <div class="module-title">太空宇宙</div>
+            <div class="module-desc">开启神秘的宇宙之旅</div>
+        </a>
+    </div>
+
+    <div style="text-align:center;">
+        <a href="index.html" class="back-link">← 回首页</a>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/flip-card.js"></script>
+    <script>
+        FlipCard.kidLockKey = 'geography_kidlock';
+        FlipCard.initKidLock();
+    </script>
+</body>
+</html>

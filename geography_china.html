@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小豆中文 - 中国地理</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/flip-card.css">
+    <link rel="stylesheet" href="dark-mode.css">
+    <style>
+        :root {
+            --primary-color: #E74C3C;
+            --bg-gradient: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+        }
+        body {
+            overscroll-behavior-x: none;
+            touch-action: manipulation;
+        }
+        .main-stage {
+            touch-action: pan-y;
+        }
+        .card-image-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 240px;
+            height: 240px;
+            margin: 10px auto;
+        }
+        .side-arrow.left { left: -50px; }
+        .side-arrow.right { right: -50px; }
+        .btn-group { gap: 15px; }
+        .btn { padding: 12px 25px; transition: transform 0.2s, box-shadow 0.2s; }
+        body.kidlock .back-bar,
+        body.kidlock .bottom-home {
+            display: none !important;
+        }
+        body.kidlock .main-stage {
+            touch-action: none;
+        }
+        .landmark-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="dark-mode.css">
+</head>
+<body>
+    <div class="kidlock-bar">
+        <span>👶 儿童锁</span>
+        <label class="kidlock-switch">
+            <input type="checkbox" id="kidlockToggle" onchange="FlipCard.toggleKidLock(this.checked)">
+            <span class="kidlock-slider"></span>
+        </label>
+    </div>
+
+    <a href="geography.html" class="back-bar">← 回地理自然</a>
+
+    <div class="header">
+        <h1>🏯 小豆中文</h1>
+        <p>今天我们来认识中国的名胜古迹</p>
+    </div>
+    
+    <div class="mascot">
+        <div class="mascot-bubble" id="mascotText">你好！点击图片，认识中国的美丽风景～</div>
+        <div class="mascot-avatar">🐼</div>
+    </div>
+    
+    <div class="main-stage">
+        <div id="landmarkCards"></div>
+        
+        <div class="progress" id="progressDots"></div>
+        
+        <div class="bottom-home" style="text-align:center;margin-top:25px;">
+            <a href="geography.html" style="color:#888;text-decoration:none;font-size:14px;">← 回地理自然</a>
+        </div>
+    </div>
+    
+    <div class="stars" id="starEffect">⭐</div>
+
+    <script src="js/common.js"></script>
+    <script src="js/flip-card.js"></script>
+    <script>
+        let landmarks = [];
+        let currentIndex = 0;
+        let mascotTimer = null;
+
+        function stopMascotTimer() {
+            if (mascotTimer) {
+                clearTimeout(mascotTimer);
+                mascotTimer = null;
+            }
+        }
+
+        async function loadLandmarks() {
+            try {
+                const data = await XiaoDou.loadModule('geography_china');
+                landmarks = XiaoDou.getItems(data);
+                renderCards();
+                FlipCard.setupSwipe(nextLandmark, prevLandmark);
+                updateNavButtons();
+            } catch (err) {
+                console.error('加载中国地理数据失败:', err);
+                FlipCard.showMascot('中国地理数据加载失败，请刷新页面试试～');
+            }
+        }
+
+        function showMascot(text) { FlipCard.showMascot(text); }
+
+        function updateNavButtons() {
+            FlipCard.updateNavButtons({ current: currentIndex, total: landmarks.length });
+        }
+
+        function renderCards() {
+            const container = document.getElementById('landmarkCards');
+            const progress = document.getElementById('progressDots');
+            container.innerHTML = '';
+            progress.innerHTML = '';
+
+            landmarks.forEach((landmark, index) => {
+                const card = document.createElement('div');
+                card.className = 'animal-card' + (index === 0 ? ' active' : '');
+                card.innerHTML = `
+                    <div class="card-image-wrapper">
+                        <button class="side-arrow left" onclick="prevLandmark()" aria-label="上一个">◀</button>
+                        <img loading="lazy" class="landmark-image"
+                             src="${XiaoDou.resolvePath(`assets/images/china/${landmark.file}.webp`)}"
+                             alt="${XiaoDou.escapeHtml(landmark.word)}"
+                             onclick="playWord(${index})">
+                        <button class="side-arrow right" onclick="nextLandmark()" aria-label="下一个">▶</button>
+                    </div>
+                    <div class="animal-word">${XiaoDou.escapeHtml(landmark.word)}</div>
+                    <div class="animal-pinyin">${XiaoDou.escapeHtml(landmark.pinyin)}</div>
+                    <div class="animal-japanese">${XiaoDou.escapeHtml(landmark.japanese)}（${XiaoDou.escapeHtml(landmark.japanese_reading)}）</div>
+                    <div class="animal-english">${XiaoDou.escapeHtml(landmark.english)}</div>
+                    <div class="btn-group">
+                        <button class="btn btn-word" onclick="playWord(${index})">🔊 读音</button>
+                        <button class="btn btn-sentence" onclick="playSentence(${index})">📝 句子</button>
+                        <button class="btn btn-japanese" onclick="playJapanese(${index})">🇯🇵 日语</button>
+                        <button class="btn btn-english" onclick="playEnglish(${index})">🇺🇸 英语</button>
+                        <button class="btn btn-encyclopedia" onclick="playEncyclopedia(${index})">📖 百科</button>
+                    </div>
+                    <div class="encyclopedia-card" id="encyclopedia-${index}" style="display:none;">
+                        <div class="encyclopedia-title">📖 ${XiaoDou.escapeHtml(landmark.word)} 小百科</div>
+                        <div class="encyclopedia-item"><strong>简介：</strong>${XiaoDou.escapeHtml(landmark.intro || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>在哪里：</strong>${XiaoDou.escapeHtml(landmark.habitat || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>特色：</strong>${XiaoDou.escapeHtml(landmark.food || '待补充')}</div>
+                        <div class="encyclopedia-item"><strong>小知识：</strong>${XiaoDou.escapeHtml(landmark.fun_fact || '待补充')}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                const dot = document.createElement('div');
+                dot.className = 'progress-dot' + (index === 0 ? ' active' : '');
+                progress.appendChild(dot);
+            });
+            updateNavButtons();
+        }
+
+        function playWord(index) {
+            const landmark = landmarks[index];
+            const mp3Path = `assets/audio/china/${landmark.file}_word.mp3`;
+            FlipCard.speakWithFallback(`${landmark.word}，${landmark.pinyin}`, mp3Path);
+            showMascot(`我们来看看：${landmark.word}，${landmark.pinyin}。`);
+            FlipCard.showStars();
+        }
+
+        function playSentence(index) {
+            const landmark = landmarks[index];
+            const mp3Path = `assets/audio/china/sentences/${landmark.file}_sentence.mp3`;
+            FlipCard.speakWithFallback(landmark.sentence, mp3Path);
+            showMascot(landmark.sentence);
+        }
+
+        function playJapanese(index) {
+            const landmark = landmarks[index];
+            const mp3Path = `assets/audio/china/japanese/${landmark.file}_japanese.mp3`;
+            FlipCard.speakWithFallback(landmark.japanese_reading, mp3Path, 'ja-JP', 0.75);
+            showMascot(`${landmark.word} 的日语是：${landmark.japanese}（${landmark.japanese_reading}）`);
+        }
+
+        function playEnglish(index) {
+            const landmark = landmarks[index];
+            const mp3Path = `assets/audio/china/english/${landmark.file}_english.mp3`;
+            FlipCard.speakWithFallback(landmark.english, mp3Path, 'en-US', 0.85);
+            showMascot(`${landmark.word} 的英语是：${landmark.english}`);
+        }
+
+        function playEncyclopedia(index) {
+            const landmark = landmarks[index];
+            if (!landmark.intro) {
+                showMascot(`${landmark.word} 的百科内容还在准备中，先听听别的吧～`);
+                return;
+            }
+            const text = `${landmark.intro}${landmark.habitat}${landmark.food}${landmark.fun_fact}`;
+            const mp3Path = `assets/audio/china/encyclopedia/${landmark.file}_encyclopedia.mp3`;
+            FlipCard.speakWithFallback(text, mp3Path, 'zh-CN', 0.8);
+            showMascot(`${landmark.word}：${landmark.intro}`);
+            stopMascotTimer();
+            mascotTimer = setTimeout(() => showMascot(`我们来看看：${landmark.word}，${landmark.pinyin}。`), 8000);
+
+            const card = document.getElementById(`encyclopedia-${index}`);
+            if (card) {
+                card.style.display = card.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        function switchLandmark(direction) {
+            FlipCard.stopAllAudio();
+            const cards = document.querySelectorAll('.animal-card');
+            const dots = document.querySelectorAll('.progress-dot');
+            if (!cards.length) return;
+
+            let newIndex;
+            if (direction === 'next') {
+                newIndex = (currentIndex + 1) % landmarks.length;
+            } else {
+                newIndex = (currentIndex - 1 + landmarks.length) % landmarks.length;
+            }
+
+            cards[currentIndex].classList.remove('active');
+            cards[currentIndex].classList.remove('slide-left-in', 'slide-right-in');
+            cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-out' : 'slide-right-out');
+            dots[currentIndex].classList.remove('active');
+
+            currentIndex = newIndex;
+            document.querySelectorAll('.encyclopedia-card').forEach(el => el.style.display = 'none');
+
+            cards[currentIndex].classList.remove('slide-left-out', 'slide-right-out');
+            cards[currentIndex].classList.add('active');
+            cards[currentIndex].classList.add(direction === 'next' ? 'slide-left-in' : 'slide-right-in');
+            dots[currentIndex].classList.add('active');
+
+            updateNavButtons();
+
+            const landmark = landmarks[currentIndex];
+            showMascot(`我们来学${landmark.word}！`);
+            setTimeout(() => playWord(currentIndex), 500);
+        }
+
+        function nextLandmark() { switchLandmark('next'); }
+        function prevLandmark() { switchLandmark('prev'); }
+
+        // 初始化
+        FlipCard.kidLockKey = 'geography_china_kidlock';
+        FlipCard.initKidLock();
+        FlipCard.startApp('你好！我是小豆。今天我们来认识中国的名胜古迹。点击图片，看看是哪里。');
+        loadLandmarks();
+    </script>
+</body>
+</html>
