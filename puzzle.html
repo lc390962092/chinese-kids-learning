@@ -191,7 +191,7 @@
                 const div = document.createElement('div');
                 div.className = 'thumb' + (index === 0 ? ' active' : '');
                 div.dataset.index = index;
-                div.innerHTML = `<img src="${XiaoDou.escapeHtml(imageUrl(item))}" alt="${XiaoDou.escapeHtml(item.word)}">`;
+                div.innerHTML = `<img loading="lazy" src="${XiaoDou.escapeHtml(imageUrl(item))}" alt="${XiaoDou.escapeHtml(item.word)}">`;
                 div.onclick = () => selectImage(index);
                 container.appendChild(div);
             });

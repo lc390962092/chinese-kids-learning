@@ -72,7 +72,7 @@ const Detective = (function() {
             const unlocked = badges.includes(c.id);
             return `
               <div class="badge-item ${unlocked ? '' : 'locked'}">
-                <img src="${XiaoDou.resolvePath(unlocked ? (c.badge || DEFAULT_BADGE) : DEFAULT_BADGE)}"
+                <img loading="lazy" src="${XiaoDou.resolvePath(unlocked ? (c.badge || DEFAULT_BADGE) : DEFAULT_BADGE)}"
                      alt="${XiaoDou.escapeHtml(c.title)}" onerror="this.src='${XiaoDou.resolvePath(DEFAULT_BADGE)}'">
                 <span>${XiaoDou.escapeHtml(c.title)}</span>
               </div>
@@ -125,7 +125,7 @@ const Detective = (function() {
       <section class="case-scene card">
         <h2>🔍 现场</h2>
         <div class="scene-image">
-          <img src="${XiaoDou.resolvePath(c.sceneImage || '')}" alt="案件现场" onerror="this.style.display='none'">
+          <img loading="lazy" src="${XiaoDou.resolvePath(c.sceneImage || '')}" alt="案件现场" onerror="this.style.display='none'">
           <p class="scene-hint">点一点图里的可疑地方，仔细观察</p>
         </div>
       </section>
@@ -145,7 +145,7 @@ const Detective = (function() {
         <div class="suspect-list">
           ${c.suspects.map((s, i) => `
             <button class="suspect-btn" onclick="Detective.speakText('${XiaoDou.escapeHtml(s.name + '说：' + s.statement)}')">
-              <img class="avatar" src="${XiaoDou.resolvePath(s.avatar || '')}" alt="${XiaoDou.escapeHtml(s.name)}" onerror="this.outerHTML='<span class=\\'avatar-fallback\\'>${s.emoji || '❓'}</span>'">
+              <img loading="lazy" class="avatar" src="${XiaoDou.resolvePath(s.avatar || '')}" alt="${XiaoDou.escapeHtml(s.name)}" onerror="this.outerHTML='<span class=\\'avatar-fallback\\'>${s.emoji || '❓'}</span>'">
               <div class="suspect-info">
                 <strong>${XiaoDou.escapeHtml(s.name)}</strong>
                 <p>${XiaoDou.escapeHtml(s.statement)}</p>
@@ -180,7 +180,7 @@ const Detective = (function() {
         <div class="success-card">
           <h3>🎉 破案成功！</h3>
           <p>${XiaoDou.escapeHtml(c.solution)}</p>
-          <img class="badge-img" src="${XiaoDou.resolvePath(c.badge || DEFAULT_BADGE)}" alt="徽章" onerror="this.style.display='none'">
+          <img loading="lazy" class="badge-img" src="${XiaoDou.resolvePath(c.badge || DEFAULT_BADGE)}" alt="徽章" onerror="this.style.display='none'">
           <div>
             <a class="btn-primary" href="detective.html">返回事务所</a>
             <a class="btn-secondary" href="detective_observe.html">去训练观察力</a>
@@ -246,7 +246,7 @@ const Detective = (function() {
         </div>
         <button class="btn-speak" onclick="Detective.nextObserveLevel(${levelIndex + 1})">⏭️ 跳过本关，下一关</button>
         <div class="scene-container" id="scene-container">
-          <img class="scene-bg" src="${XiaoDou.resolvePath(level.background || '')}" alt="观察场景" onerror="this.style.display='none'">
+          <img loading="lazy" class="scene-bg" src="${XiaoDou.resolvePath(level.background || '')}" alt="观察场景" onerror="this.style.display='none'">
           ${level.items.map((item, i) => `
             <button class="scene-item" style="left:${item.x}%; top:${item.y}%;" data-index="${i}" aria-label="${XiaoDou.escapeHtml(item.name)}"></button>
           `).join('')}
