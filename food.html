@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>小豆中文 - 常用食物</title>
-        <link rel="stylesheet" href="css/base.css">
+    <title>小豆中文 - 认识食物</title>
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/flip-card.css">
-    <link rel="stylesheet" href="dark-mode.css?v=2">
+    <link rel="stylesheet" href="dark-mode.css">
     <style>
         :root {
-            --primary-color: #FF8C42;
+            --primary-color: #FF9800;
             --bg-gradient: linear-gradient(135deg, #FFF8E7 0%, #FFF0F5 100%);
+        }
+        body {
+            overscroll-behavior-x: none;
+            touch-action: manipulation;
+        }
+        .main-stage {
+            touch-action: pan-y;
         }
         .card-image-wrapper {
             position: relative;
@@ -21,46 +28,53 @@
         }
         .side-arrow.left { left: -50px; }
         .side-arrow.right { right: -50px; }
-        .btn { padding: 12px 22px; transition: transform 0.2s, box-shadow 0.2s; }
-        .encyclopedia-card { background: #fff8f0; }
-        .encyclopedia-title { color: #FF8C42; }
+        .btn-group { gap: 15px; }
+        .btn { padding: 12px 25px; transition: transform 0.2s, box-shadow 0.2s; }
+        body.kidlock .back-bar,
+        body.kidlock .bottom-home {
+            display: none !important;
+        }
+        body.kidlock .main-stage {
+            touch-action: none;
+        }
     </style>
+    <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
     <div class="kidlock-bar">
         <span>👶 儿童锁</span>
         <label class="kidlock-switch">
-            <input type="checkbox" id="kidlockToggle" onchange="toggleKidLock(this.checked)">
+            <input type="checkbox" id="kidlockToggle" onchange="FlipCard.toggleKidLock(this.checked)">
             <span class="kidlock-slider"></span>
         </label>
     </div>
 
-
-    
-
     <a href="index.html" class="back-bar">← 回首页</a>
+
     <div class="header">
-        <h1>🍎 小豆中文</h1>
-        <p>今天我们来学习常用食物</p>
+        <h1>🐼 小豆中文</h1>
+        <p>今天我们来认识食物</p>
     </div>
+    
     <div class="mascot">
         <div class="mascot-bubble" id="mascotText">你好！点击食物图片，听听它叫什么名字～</div>
         <div class="mascot-avatar">🐼</div>
     </div>
+    
     <div class="main-stage">
         <div id="foodCards"></div>
-        <div class="nav-btns">
-            <button class="nav-btn" id="prevBtn" onclick="prevFood()">⬅️ 上一个</button>
-            <button class="nav-btn" id="nextBtn" onclick="nextFood()">下一个 ➡️</button>
-        </div>
+        
         <div class="progress" id="progressDots"></div>
-        <div style="text-align:center;margin-top:25px;">
+        
+        <div class="bottom-home" style="text-align:center;margin-top:25px;">
             <a href="index.html" style="color:#888;text-decoration:none;font-size:14px;">← 回首页</a>
         </div>
     </div>
+    
     <div class="stars" id="starEffect">⭐</div>
 
-    <script src="js/common.js?v=2"></script>
+    <script src="js/common.js"></script>
+    <script src="js/flip-card.js"></script>
     <script>
         let foods = [];
         let currentIndex = 0;
@@ -70,68 +84,18 @@
                 const data = await XiaoDou.loadModule('food');
                 foods = XiaoDou.getItems(data);
                 renderCards();
-                setupSwipe();
+                FlipCard.setupSwipe(nextFood, prevFood);
                 updateNavButtons();
             } catch (err) {
                 console.error('加载食物数据失败:', err);
-                showMascot('食物数据加载失败，请刷新页面试试～');
+                FlipCard.showMascot('食物数据加载失败，请刷新页面试试～');
             }
         }
 
-        function showMascot(text) {
-            document.getElementById('mascotText').textContent = text;
-        }
-
-        function showStars() {
-            const star = document.getElementById('starEffect');
-            star.style.display = 'block';
-            setTimeout(() => { star.style.display = 'none'; }, 1000);
-        }
+        function showMascot(text) { FlipCard.showMascot(text); }
 
         function updateNavButtons() {
-            // 循环模式下按钮始终可用
-            document.getElementById('prevBtn').disabled = false;
-            document.getElementById('nextBtn').disabled = false;
-        }
-
-        let currentAudio = null;
-
-        function stopCurrentAudio() {
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
-                currentAudio.onended = null;
-                currentAudio.onerror = null;
-                currentAudio = null;
-            }
-            document.querySelectorAll('audio').forEach(audio => {
-                audio.pause();
-                audio.currentTime = 0;
-            });
-            if (window.speechSynthesis) window.speechSynthesis.cancel();
-        }
-
-        function playAudio(path) {
-            stopCurrentAudio();
-            return new Promise((resolve, reject) => {
-                const audio = new Audio(XiaoDou.resolvePath(path));
-                currentAudio = audio;
-                audio.onended = () => { currentAudio = null; resolve(); };
-                audio.onerror = (e) => { currentAudio = null; reject(e); };
-                audio.play().catch(err => { currentAudio = null; reject(err); });
-            });
-        }
-
-        function speakWithFallback(text, mp3Path, lang = 'zh-CN', rate = 0.8) {
-            stopCurrentAudio();
-            const langKey = lang.startsWith('ja') ? 'ja' : (lang.startsWith('en') ? 'en' : 'zh');
-            if (mp3Path) {
-                playAudio(mp3Path).catch(() => {
-                    XiaoDou.speak(text, langKey, rate);
-                });
-            } else {
-                XiaoDou.speak(text, langKey, rate);
-            }
+            FlipCard.updateNavButtons({ current: currentIndex, total: foods.length });
         }
 
         function renderCards() {
@@ -186,15 +150,15 @@
         function playWord(index) {
             const food = foods[index];
             const mp3Path = `assets/audio/food/${food.file}_word.mp3`;
-            speakWithFallback(`${food.word}，${food.pinyin}`, mp3Path);
+            FlipCard.speakWithFallback(`${food.word}，${food.pinyin}`, mp3Path);
             showMascot(`我们来看看：${food.word}，${food.pinyin}。`);
-            showStars();
+            FlipCard.showStars();
         }
 
         function playSentence(index) {
             const food = foods[index];
             const mp3Path = `assets/audio/food/sentences/${food.file}_sentence.mp3`;
-            speakWithFallback(food.sentence, mp3Path);
+            FlipCard.speakWithFallback(food.sentence, mp3Path);
             showMascot(food.sentence);
         }
 
@@ -202,22 +166,22 @@
             const food = foods[index];
             const text = `一${food.measure_word}${food.word}`;
             const mp3Path = `assets/audio/food/${food.file}_measure.mp3`;
-            speakWithFallback(text, mp3Path);
+            FlipCard.speakWithFallback(text, mp3Path);
             showMascot(`一${food.measure_word}${food.word}。`);
-            showStars();
+            FlipCard.showStars();
         }
 
         function playJapanese(index) {
             const food = foods[index];
             const mp3Path = `assets/audio/food/japanese/${food.file}_japanese.mp3`;
-            speakWithFallback(food.japanese_reading, mp3Path, 'ja-JP', 0.75);
+            FlipCard.speakWithFallback(food.japanese_reading, mp3Path, 'ja-JP', 0.75);
             showMascot(`${food.word} 的日语是：${food.japanese}（${food.japanese_reading}）`);
         }
 
         function playEnglish(index) {
             const food = foods[index];
             const mp3Path = `assets/audio/food/english/${food.file}_english.mp3`;
-            speakWithFallback(food.english, mp3Path, 'en-US', 0.85);
+            FlipCard.speakWithFallback(food.english, mp3Path, 'en-US', 0.85);
             showMascot(`${food.word} 的英语是：${food.english}`);
         }
 
@@ -229,7 +193,7 @@
             }
             const text = `${food.intro}${food.where}${food.use}${food.fun_fact}`;
             const mp3Path = `assets/audio/food/encyclopedia/${food.file}_encyclopedia.mp3`;
-            speakWithFallback(text, mp3Path, 'zh-CN', 0.8);
+            FlipCard.speakWithFallback(text, mp3Path, 'zh-CN', 0.8);
             showMascot(`${food.word}的小百科：${food.intro}`);
 
             const card = document.getElementById(`encyclopedia-${index}`);
@@ -239,7 +203,7 @@
         }
 
         function switchFood(direction) {
-            stopCurrentAudio();
+            FlipCard.stopAllAudio();
             const cards = document.querySelectorAll('.food-card');
             const dots = document.querySelectorAll('.progress-dot');
             if (!cards.length) return;
@@ -274,103 +238,11 @@
         function nextFood() { switchFood('next'); }
         function prevFood() { switchFood('prev'); }
 
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        function setupSwipe() {
-            const mainStage = document.querySelector('.main-stage');
-            if (!mainStage) return;
-
-            mainStage.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-
-            mainStage.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, { passive: true });
-
-            let mouseDown = false;
-            mainStage.addEventListener('mousedown', function(e) {
-                mouseDown = true;
-                touchStartX = e.screenX;
-            });
-
-            mainStage.addEventListener('mouseup', function(e) {
-                if (!mouseDown) return;
-                mouseDown = false;
-                touchEndX = e.screenX;
-                handleSwipe();
-            });
-
-            mainStage.addEventListener('mouseleave', function() {
-                mouseDown = false;
-            });
-        }
-
-        function handleSwipe() {
-            if (kidLockOn) return; // 儿童锁：禁用滑动翻页
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) nextFood();
-                else prevFood();
-            }
-        }
-
-        // ========== 儿童锁 ==========
-        const KIDLOCK_KEY = 'food_kidlock';
-        let kidLockOn = false;
-
-        function toggleKidLock(on) {
-            kidLockOn = !!on;
-            try { localStorage.setItem(KIDLOCK_KEY, kidLockOn ? '1' : '0'); } catch (e) {}
-            document.body.classList.toggle('kidlock', kidLockOn);
-            if (typeof showMascot === 'function') {
-                showMascot(kidLockOn
-                    ? '儿童锁开启！页面锁住了，用两边的大箭头翻页～'
-                    : '儿童锁关闭。');
-            }
-        }
-
-        function initKidLock() {
-            let saved = null;
-            try { saved = localStorage.getItem(KIDLOCK_KEY); } catch (e) {}
-            const on = saved === '1';
-            const toggle = document.getElementById('kidlockToggle');
-            if (toggle) toggle.checked = on;
-            document.body.classList.toggle('kidlock', on);
-            kidLockOn = on;
-        }
-
-
-        initKidLock();
-
-
+        // 初始化
+        FlipCard.kidLockKey = 'food_kidlock';
+        FlipCard.initKidLock();
+        FlipCard.startApp('你好！我是小豆。今天我们来学习常用食物。点击食物图片，听听它叫什么名字。');
         loadFoods();
-        startApp();
-
-        let appStarted = false;
-
-        function startApp() {
-            if (appStarted) return;
-            appStarted = true;
-
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            if (AudioContext) {
-                const ctx = new AudioContext();
-                if (ctx.state === 'suspended') ctx.resume();
-            }
-
-            const silentAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
-            silentAudio.play().catch(() => {});
-
-            showMascot("你好！我是小豆。今天我们来学习常用食物。点击食物图片，听听它叫什么名字。");
-
-            setTimeout(() => {
-                XiaoDou.speak("你好！我是小豆。今天我们来学习常用食物。点击食物图片，听听它叫什么名字。", 'zh');
-            }, 300);
-        }
     </script>
 </body>
 </html>

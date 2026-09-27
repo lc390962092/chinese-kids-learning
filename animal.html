@@ -46,7 +46,7 @@
     <div class="kidlock-bar">
         <span>👶 儿童锁</span>
         <label class="kidlock-switch">
-            <input type="checkbox" id="kidlockToggle" onchange="toggleKidLock(this.checked)">
+            <input type="checkbox" id="kidlockToggle" onchange="FlipCard.toggleKidLock(this.checked)">
             <span class="kidlock-slider"></span>
         </label>
     </div>
@@ -76,6 +76,7 @@
     <div class="stars" id="starEffect">⭐</div>
 
     <script src="js/common.js"></script>
+    <script src="js/flip-card.js"></script>
     <script>
         let animals = [];
         let currentIndex = 0;
@@ -106,86 +107,18 @@
                     if (!a.sound && soundMap[a.file]) a.sound = soundMap[a.file];
                 });
                 renderCards();
-                setupSwipe();
+                FlipCard.setupSwipe(nextAnimal, prevAnimal);
                 updateNavButtons();
             } catch (err) {
                 console.error('加载动物数据失败:', err);
-                showMascot('动物数据加载失败，请刷新页面试试～');
+                FlipCard.showMascot('动物数据加载失败，请刷新页面试试～');
             }
         }
 
-        function showMascot(text) {
-            document.getElementById('mascotText').textContent = text;
-        }
-
-        function showStars() {
-            const star = document.getElementById('starEffect');
-            star.style.display = 'block';
-            setTimeout(() => { star.style.display = 'none'; }, 1000);
-        }
+        function showMascot(text) { FlipCard.showMascot(text); }
 
         function updateNavButtons() {
-            const prevBtns = document.querySelectorAll('.side-arrow.left');
-            const nextBtns = document.querySelectorAll('.side-arrow.right');
-            prevBtns.forEach(btn => btn.disabled = currentIndex === 0);
-            nextBtns.forEach(btn => btn.disabled = currentIndex === animals.length - 1);
-        }
-
-        // 全局音频状态：避免多次点击叠加播放、切换页面不停止
-        let currentAudio = null;
-
-        function stopCurrentAudio() {
-            // 停止本地 MP3 音频
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
-                currentAudio.onended = null;
-                currentAudio.onerror = null;
-                currentAudio = null;
-            }
-            // 停止所有 <audio> 元素
-            document.querySelectorAll('audio').forEach(audio => {
-                audio.pause();
-                audio.currentTime = 0;
-            });
-            // 停止 TTS
-            if (window.speechSynthesis) {
-                window.speechSynthesis.cancel();
-            }
-        }
-
-        function playAudio(path) {
-            stopCurrentAudio();
-            return new Promise((resolve, reject) => {
-                const audio = new Audio(XiaoDou.resolvePath(path));
-                currentAudio = audio;
-                audio.onended = () => {
-                    currentAudio = null;
-                    resolve();
-                };
-                audio.onerror = (e) => {
-                    currentAudio = null;
-                    console.log('MP3 加载失败:', path, e);
-                    reject(e);
-                };
-                audio.play().catch((err) => {
-                    currentAudio = null;
-                    reject(err);
-                });
-            });
-        }
-
-        function speakWithFallback(text, mp3Path, lang = 'zh-CN', rate = 0.8) {
-            stopCurrentAudio();
-            const langKey = lang.startsWith('ja') ? 'ja' : (lang.startsWith('en') ? 'en' : 'zh');
-            if (mp3Path) {
-                playAudio(mp3Path).catch(() => {
-                    console.log('MP3 播放失败，fallback 到 Web Speech API');
-                    XiaoDou.speak(text, langKey, rate);
-                });
-            } else {
-                XiaoDou.speak(text, langKey, rate);
-            }
+            FlipCard.updateNavButtons({ current: currentIndex, total: animals.length });
         }
 
         function renderCards() {
@@ -239,15 +172,15 @@
         function playWord(index) {
             const animal = animals[index];
             const mp3Path = `assets/audio/animals/${animal.file}_word.mp3`;
-            speakWithFallback(`${animal.word}，${animal.pinyin}`, mp3Path);
+            FlipCard.speakWithFallback(`${animal.word}，${animal.pinyin}`, mp3Path);
             showMascot(`我们来看看：${animal.word}，${animal.pinyin}。`);
-            showStars();
+            FlipCard.showStars();
         }
 
         function playSentence(index) {
             const animal = animals[index];
             const mp3Path = `assets/audio/animals/sentences/${animal.file}_sentence.mp3`;
-            speakWithFallback(animal.sentence, mp3Path);
+            FlipCard.speakWithFallback(animal.sentence, mp3Path);
             showMascot(animal.sentence);
         }
 
@@ -255,7 +188,7 @@
             const animal = animals[index];
             if (animal.sound) {
                 const mp3Path = `assets/audio/animals/${animal.file}_sound.mp3`;
-                speakWithFallback(animal.sound, mp3Path, 'zh-CN', 1.0);
+                FlipCard.speakWithFallback(animal.sound, mp3Path, 'zh-CN', 1.0);
                 showMascot(`${animal.word}的叫声：${animal.sound}！`);
             }
         }
@@ -263,14 +196,14 @@
         function playJapanese(index) {
             const animal = animals[index];
             const mp3Path = `assets/audio/animals/japanese/${animal.file}_japanese.mp3`;
-            speakWithFallback(animal.japanese_reading, mp3Path, 'ja-JP', 0.75);
+            FlipCard.speakWithFallback(animal.japanese_reading, mp3Path, 'ja-JP', 0.75);
             showMascot(`${animal.word} 的日语是：${animal.japanese}（${animal.japanese_reading}）`);
         }
 
         function playEnglish(index) {
             const animal = animals[index];
             const mp3Path = `assets/audio/animals/english/${animal.file}_english.mp3`;
-            speakWithFallback(animal.english, mp3Path, 'en-US', 0.85);
+            FlipCard.speakWithFallback(animal.english, mp3Path, 'en-US', 0.85);
             showMascot(`${animal.word} 的英语是：${animal.english}`);
         }
 
@@ -282,7 +215,7 @@
             }
             const text = `${animal.intro}${animal.habitat}${animal.food}${animal.fun_fact}`;
             const mp3Path = `assets/audio/animals/encyclopedia/${animal.file}_encyclopedia.mp3`;
-            speakWithFallback(text, mp3Path, 'zh-CN', 0.8);
+            FlipCard.speakWithFallback(text, mp3Path, 'zh-CN', 0.8);
             showMascot(`${animal.word}：${animal.intro}`);
             stopMascotTimer();
             mascotTimer = setTimeout(() => showMascot(`我们来看看：${animal.word}，${animal.pinyin}。`), 8000);
@@ -293,12 +226,8 @@
             }
         }
 
-        function stopAllAudio() {
-            stopCurrentAudio();
-        }
-
         function switchAnimal(direction) {
-            stopAllAudio();
+            FlipCard.stopAllAudio();
             const cards = document.querySelectorAll('.animal-card');
             const dots = document.querySelectorAll('.progress-dot');
             if (!cards.length) return;
@@ -333,136 +262,11 @@
         function nextAnimal() { switchAnimal('next'); }
         function prevAnimal() { switchAnimal('prev'); }
 
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let touchEndX = 0;
-        let touchEndY = 0;
-        let touchTargetIsInteractive = false;
-
-        // ========== 儿童锁 ==========
-        const KIDLOCK_KEY = 'animal_kidlock';
-        let kidLockOn = false;
-
-        function toggleKidLock(on) {
-            kidLockOn = !!on;
-            try { localStorage.setItem(KIDLOCK_KEY, kidLockOn ? '1' : '0'); } catch (e) {}
-            document.body.classList.toggle('kidlock', kidLockOn);
-            // 锁定时收起所有百科卡片，避免内容超出屏幕又滑不回去
-            if (kidLockOn) {
-                document.querySelectorAll('.encyclopedia-card').forEach(el => el.style.display = 'none');
-            }
-            showMascot(kidLockOn
-                ? '儿童锁开启！页面锁住了，用两边的大箭头翻页～'
-                : '儿童锁关闭。');
-        }
-
-        function initKidLock() {
-            let saved = null;
-            try { saved = localStorage.getItem(KIDLOCK_KEY); } catch (e) {}
-            const on = saved === '1';
-            const toggle = document.getElementById('kidlockToggle');
-            if (toggle) toggle.checked = on;
-            document.body.classList.toggle('kidlock', on);
-            kidLockOn = on;
-        }
-
-        function isInteractiveTarget(el) {
-            if (!el || !el.closest) return false;
-            // 图片不算交互目标：解锁状态下支持"滑照片"翻页
-            return !!el.closest('button, a, input, .btn, .side-arrow, .kidlock-bar');
-        }
-
-        function setupSwipe() {
-            const mainStage = document.querySelector('.main-stage');
-            if (!mainStage) return;
-
-            // 注意：不要在 touchstart 里 preventDefault！
-            // 那会同时杀死 click 和垂直滚动。横向原生手势已由 CSS
-            // touch-action: pan-y + body overscroll-behavior-x: none 禁用。
-
-            mainStage.addEventListener('touchstart', function(e) {
-                const t = e.changedTouches[0];
-                touchStartX = t.screenX;
-                touchStartY = t.screenY;
-                // 图片允许作为滑动手势起点（解锁状态下"滑照片"翻页）
-                touchTargetIsInteractive = isInteractiveTarget(e.target);
-            }, { passive: true });
-
-            mainStage.addEventListener('touchend', function(e) {
-                const t = e.changedTouches[0];
-                touchEndX = t.screenX;
-                touchEndY = t.screenY;
-                handleSwipe();
-            }, { passive: true });
-
-            let mouseDown = false;
-            mainStage.addEventListener('mousedown', function(e) {
-                mouseDown = true;
-                touchStartX = e.screenX;
-                touchStartY = e.screenY;
-                touchTargetIsInteractive = isInteractiveTarget(e.target);
-            });
-
-            mainStage.addEventListener('mouseup', function(e) {
-                if (!mouseDown) return;
-                mouseDown = false;
-                touchEndX = e.screenX;
-                touchEndY = e.screenY;
-                handleSwipe();
-            });
-
-            mainStage.addEventListener('mouseleave', function() {
-                mouseDown = false;
-            });
-        }
-
-        function handleSwipe() {
-            // 儿童锁开启：手势翻页禁用，但按钮/图片点击仍正常
-            // （touch 事件未 preventDefault，click 不会被吞）
-            if (kidLockOn) return;
-
-            const diffX = touchStartX - touchEndX;
-            const diffY = touchStartY - touchEndY;
-            const absX = Math.abs(diffX);
-            const absY = Math.abs(diffY);
-            const swipeThreshold = 60; // 比原来小：轻轻滑也能翻页
-
-            // 1. 必须横向明显大于纵向（角度过滤，垂直滑动页面不翻页）
-            if (absY > absX) return;
-            // 2. 水平距离达标
-            if (absX < swipeThreshold) return;
-            // 3. 起点不在按钮/链接/输入框上（图片可以，支持"滑照片"翻页）
-            if (touchTargetIsInteractive) return;
-
-            if (diffX > 0) nextAnimal();
-            else prevAnimal();
-        }
-
-        let appStarted = false;
-
-        function startApp() {
-            if (appStarted) return;
-            appStarted = true;
-
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            if (AudioContext) {
-                const ctx = new AudioContext();
-                if (ctx.state === 'suspended') ctx.resume();
-            }
-
-            const silentAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
-            silentAudio.play().catch(() => {});
-
-            showMascot("你好！我是小豆。今天我们来认识动物。点击小动物，听听它叫什么名字。");
-
-            setTimeout(() => {
-                XiaoDou.speak("你好！我是小豆。今天我们来认识动物。点击小动物，听听它叫什么名字。", 'zh');
-            }, 300);
-        }
-
+        // 初始化
+        FlipCard.kidLockKey = 'animal_kidlock';
+        FlipCard.initKidLock();
+        FlipCard.startApp('你好！我是小豆。今天我们来认识动物。点击小动物，听听它叫什么名字。');
         loadAnimals();
-        initKidLock();
-        startApp();
     </script>
 </body>
 </html>

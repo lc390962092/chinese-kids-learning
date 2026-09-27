@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>小豆中文 - 交通工具</title>
-        <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/flip-card.css">
     <link rel="stylesheet" href="dark-mode.css">
     <style>
@@ -27,11 +27,10 @@
     <div class="kidlock-bar">
         <span>👶 儿童锁</span>
         <label class="kidlock-switch">
-            <input type="checkbox" id="kidlockToggle" onchange="toggleKidLock(this.checked)">
+            <input type="checkbox" id="kidlockToggle" onchange="FlipCard.toggleKidLock(this.checked)">
             <span class="kidlock-slider"></span>
         </label>
     </div>
-
 
     <a href="index.html" class="back-bar">← 回首页</a>
 
@@ -54,6 +53,7 @@
     </div>
 
     <script src="js/common.js"></script>
+    <script src="js/flip-card.js"></script>
     <script>
         let vehicles = [];
         let filteredVehicles = [];
@@ -70,14 +70,14 @@
                 });
                 filteredVehicles = [...vehicles];
                 renderCards();
-                showMascot('滴滴！叭叭！欢迎来到小豆交通工具乐园～');
+                FlipCard.showMascot('滴滴！叭叭！欢迎来到小豆交通工具乐园～');
             } catch (err) {
                 console.error('加载数据失败:', err);
                 document.querySelector('.main-stage').innerHTML = '<div style="text-align:center;padding:40px 20px;color:#888;">交通工具数据加载失败，请刷新再试～</div>';
             }
         }
 
-        function showMascot(text) { document.getElementById('mascotText').textContent = text; }
+        function showMascot(text) { FlipCard.showMascot(text); }
 
         function filterVehicles(type) {
             currentFilter = type;
@@ -143,36 +143,25 @@
         }
 
         function updateButtonState() {
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            if (prevBtn) prevBtn.disabled = currentIndex === 0;
-            if (nextBtn) nextBtn.disabled = currentIndex === filteredVehicles.length - 1;
-        }
-
-        function stopAllAudio() {
-            document.querySelectorAll('audio').forEach(audio => {
-                audio.pause();
-                audio.currentTime = 0;
-            });
-            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            FlipCard.updateNavButtons({ current: currentIndex, total: filteredVehicles.length });
         }
 
         function playVehicle(index) {
-            stopAllAudio();
+            FlipCard.stopAllAudio();
             const item = filteredVehicles[index];
             XiaoDou.playAudio(`assets/audio/vehicles/${item.file}_word.mp3`, item.word, 'zh');
             showMascot(`这是${item.word}，${item.pinyin}。`);
         }
 
         function playSentence(index) {
-            stopAllAudio();
+            FlipCard.stopAllAudio();
             const item = filteredVehicles[index];
             XiaoDou.playAudio(`assets/audio/vehicles/sentences/${item.file}_sentence.mp3`, item.sentence, 'zh');
             showMascot(item.sentence);
         }
 
         function playSound(index) {
-            stopAllAudio();
+            FlipCard.stopAllAudio();
             const item = filteredVehicles[index];
             if (item.sound) {
                 XiaoDou.playAudio(`assets/audio/vehicles/sounds/${item.sound}.mp3`, item.sound_text || item.word, 'zh');
@@ -184,21 +173,21 @@
         }
 
         function playJapanese(index) {
-            stopAllAudio();
+            FlipCard.stopAllAudio();
             const item = filteredVehicles[index];
             XiaoDou.playAudio(`assets/audio/vehicles/japanese/${item.file}_japanese.mp3`, item.japanese_reading, 'ja');
             showMascot(`日语：${item.word} → ${item.japanese}（${item.japanese_reading}）`);
         }
 
         function playEnglish(index) {
-            stopAllAudio();
+            FlipCard.stopAllAudio();
             const item = filteredVehicles[index];
             XiaoDou.playAudio(`assets/audio/vehicles/english/${item.file}_english.mp3`, item.english, 'en');
             showMascot(`英语：${item.word} → ${item.english}`);
         }
 
         function switchVehicle(direction) {
-            stopAllAudio();
+            FlipCard.stopAllAudio();
             const cards = document.querySelectorAll('.vehicle-card');
             const dots = document.querySelectorAll('.progress-dot');
             if (cards.length === 0) return;
@@ -219,29 +208,8 @@
         function nextVehicle() { switchVehicle('next'); }
         function prevVehicle() { switchVehicle('prev'); }
 
-        let touchStartX = 0, touchEndX = 0;
-        function setupSwipe() {
-            const stage = document.querySelector('.main-stage');
-            if (!stage) return;
-            stage.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-            stage.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, { passive: true });
-        }
-        function handleSwipe() {
-            if (kidLockOn) return; // 儿童锁：禁用滑动翻页
-            const threshold = 50;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0) nextVehicle(); else prevVehicle();
-            }
-        }
-
         function playEncyclopedia(index) {
-            stopAllAudio();
+            FlipCard.stopAllAudio();
             const item = filteredVehicles[index];
             if (!item.intro) {
                 showMascot(`${item.word} 的百科内容还在准备中，先听听别的吧～`);
@@ -253,18 +221,10 @@
 
             const card = document.getElementById(`encyclopedia-${index}`);
             if (card) {
-                // 切换当前百科卡片显示；同时隐藏其他卡片，避免多个百科卡片叠在一起
                 document.querySelectorAll('.encyclopedia-card').forEach(el => {
                     if (el.id !== `encyclopedia-${index}`) el.style.display = 'none';
                 });
                 card.style.display = card.style.display === 'none' ? 'block' : 'none';
-            }
-        }
-
-        function startApp() {
-            if (filteredVehicles.length > 0) {
-                XiaoDou.speak('滴滴！叭叭！欢迎来到小豆交通工具乐园～', 'zh');
-                showMascot('滴滴！叭叭！欢迎来到小豆交通工具乐园～');
             }
         }
 
@@ -273,37 +233,11 @@
             else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevVehicle();
         });
 
-        // ========== 儿童锁 ==========
-        const KIDLOCK_KEY = 'vehicle_kidlock';
-        let kidLockOn = false;
-
-        function toggleKidLock(on) {
-            kidLockOn = !!on;
-            try { localStorage.setItem(KIDLOCK_KEY, kidLockOn ? '1' : '0'); } catch (e) {}
-            document.body.classList.toggle('kidlock', kidLockOn);
-            if (typeof showMascot === 'function') {
-                showMascot(kidLockOn
-                    ? '儿童锁开启！页面锁住了，用两边的大箭头翻页～'
-                    : '儿童锁关闭。');
-            }
-        }
-
-        function initKidLock() {
-            let saved = null;
-            try { saved = localStorage.getItem(KIDLOCK_KEY); } catch (e) {}
-            const on = saved === '1';
-            const toggle = document.getElementById('kidlockToggle');
-            if (toggle) toggle.checked = on;
-            document.body.classList.toggle('kidlock', on);
-            kidLockOn = on;
-        }
-
-
+        // 初始化
+        FlipCard.kidLockKey = 'vehicle_kidlock';
+        FlipCard.initKidLock();
+        FlipCard.setupSwipe(nextVehicle, prevVehicle);
         init();
-
-
-        initKidLock();
-        startApp();
-        setupSwipe();
-    </script></body>
+    </script>
+</body>
 </html>
