@@ -159,7 +159,7 @@
                 items = XiaoDou.getItems(data);
                 if (!items.length) throw new Error('没有数据');
                 // 统一使用 PNG（新素材已离线转为 PNG，避免移动端 SVG 跨域问题）
-                items.forEach(it => { it._imgUrl = XiaoDou.resolvePath(`assets/images/${it.folder}/${it.file}.png`); });
+                items.forEach(it => { it._imgUrl = XiaoDou.resolvePath(`assets/images/${it.folder}/${it.file}.webp`); });
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('gameArea').style.display = 'block';
                 renderThumbs();
@@ -181,7 +181,7 @@
         }
 
         function imageUrl(item) {
-            return item._imgUrl || XiaoDou.resolvePath(`assets/images/${item.folder}/${item.file}.png`);
+            return item._imgUrl || XiaoDou.resolvePath(`assets/images/${item.folder}/${item.file}.webp`);
         }
 
         function renderThumbs() {

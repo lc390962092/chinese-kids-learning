@@ -126,7 +126,7 @@
                 card.innerHTML = `
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" id="prevArrow" onclick="prevItem()">◀</button>
-                        <img class="item-image" src="assets/images/daily_dialogue/${f}.png" alt="${w}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
+                        <img loading="lazy" class="item-image" src="assets/images/daily_dialogue/${f}.webp" alt="${w}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
                         <button class="side-arrow right" id="nextArrow" onclick="nextItem()">▶</button>
                     </div>
                     <div class="item-word">${w}</div>

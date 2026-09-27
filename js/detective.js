@@ -7,7 +7,7 @@ const Detective = (function() {
   'use strict';
 
   const STORAGE_KEY = 'detective_progress';
-  const DEFAULT_BADGE = 'assets/images/detective/badges/badge-locked.png';
+  const DEFAULT_BADGE = 'assets/images/detective/badges/badge-locked.webp';
 
   function getProgress() {
     try {

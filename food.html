@@ -110,8 +110,8 @@
                 card.innerHTML = `
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" onclick="prevFood()" aria-label="上一个">◀</button>
-                        <img class="food-image"
-                             src="${XiaoDou.resolvePath(`assets/images/food/${food.file}.png`)}"
+                        <img loading="lazy" class="food-image"
+                             src="${XiaoDou.resolvePath(`assets/images/food/${food.file}.webp`)}"
                              alt="${XiaoDou.escapeHtml(food.word)}"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                              onclick="playWord(${index})">

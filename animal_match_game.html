@@ -164,7 +164,7 @@
                 const card = document.createElement('div');
                 card.className = 'option-card';
                 card.innerHTML = `
-                    <img src="${XiaoDou.escapeHtml(XiaoDou.resolvePath(`assets/images/animals/${animal.file}.png`))}" alt="${XiaoDou.escapeHtml(animal.word)}">
+                    <img loading="lazy" src="${XiaoDou.escapeHtml(XiaoDou.resolvePath(`assets/images/animals/${animal.file}.webp`))}" alt="${XiaoDou.escapeHtml(animal.word)}">
                     <div class="word">${XiaoDou.escapeHtml(animal.word)}</div>
                     <div class="pinyin">${XiaoDou.escapeHtml(animal.pinyin)}</div>
                 `;

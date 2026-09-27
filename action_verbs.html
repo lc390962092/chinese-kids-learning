@@ -121,7 +121,7 @@
                 card.innerHTML = `
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" id="prevArrow" onclick="prevItem()">◀</button>
-                        <img class="item-image" src="${XiaoDou.resolvePath(`assets/images/action_verbs/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
+                        <img loading="lazy" class="item-image" src="${XiaoDou.resolvePath(`assets/images/action_verbs/${item.file}.webp`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='${svgFallback}'" onclick="playWord(${index})">
                         <button class="side-arrow right" id="nextArrow" onclick="nextItem()">▶</button>
                     </div>
                     <div class="item-word">${XiaoDou.escapeHtml(item.word)}</div>

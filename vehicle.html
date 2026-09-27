@@ -109,7 +109,7 @@
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" onclick="event.stopPropagation(); prevVehicle();">◀</button>
                         <div class="vehicle-image" onclick="playVehicle(${index})">
-                            <img src="${XiaoDou.resolvePath(`assets/images/vehicles/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='${svgFallback}'">
+                            <img loading="lazy" src="${XiaoDou.resolvePath(`assets/images/vehicles/${item.file}.webp`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='${svgFallback}'">
                         </div>
                         <button class="side-arrow right" onclick="event.stopPropagation(); nextVehicle();">▶</button>
                     </div>

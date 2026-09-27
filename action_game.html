@@ -62,7 +62,7 @@
             <div class="command-text">请你：</div>
             <div class="action-word" id="actionWord">站</div>
             <div class="action-pinyin" id="actionPinyin">zhàn</div>
-            <img class="action-image" id="actionImage" src="assets/images/action_verbs/stand.png" alt="动作">
+            <img loading="lazy" class="action-image" id="actionImage" src="assets/images/action_verbs/stand.webp" alt="动作">
             <div class="action-tips" id="actionTips">听到名字，我站起来回答。</div>
             <div class="praise" id="praiseText"></div>
             <button class="big-btn btn-done" id="doneBtn" onclick="markDone()">✅ 我做到了</button>
@@ -125,7 +125,7 @@
             const item = shuffled[index];
             document.getElementById('actionWord').textContent = item.word;
             document.getElementById('actionPinyin').textContent = item.pinyin;
-            document.getElementById('actionImage').src = XiaoDou.resolvePath(`assets/images/action_verbs/${item.file}.png`);
+            document.getElementById('actionImage').src = XiaoDou.resolvePath(`assets/images/action_verbs/${item.file}.webp`);
             document.getElementById('actionImage').alt = item.word;
             document.getElementById('actionTips').textContent = item.tips;
             document.getElementById('praiseText').textContent = '';
@@ -209,7 +209,7 @@
                 const div = document.createElement('div');
                 div.className = 'grid-item';
                 div.innerHTML = `
-                    <img src="${XiaoDou.escapeHtml(XiaoDou.resolvePath(`assets/images/action_verbs/${item.file}.png`))}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.style.display='none'">
+                    <img loading="lazy" src="${XiaoDou.escapeHtml(XiaoDou.resolvePath(`assets/images/action_verbs/${item.file}.webp`))}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.style.display='none'">
                     <div class="grid-word">${XiaoDou.escapeHtml(item.word)}</div>
                     <div class="grid-pinyin">${XiaoDou.escapeHtml(item.pinyin)}</div>
                 `;

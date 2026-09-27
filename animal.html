@@ -133,8 +133,8 @@
                 card.innerHTML = `
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" onclick="prevAnimal()" aria-label="上一个">◀</button>
-                        <img class="animal-image"
-                             src="${XiaoDou.resolvePath(`assets/images/animals/${animal.file}.png`)}"
+                        <img loading="lazy" class="animal-image"
+                             src="${XiaoDou.resolvePath(`assets/images/animals/${animal.file}.webp`)}"
                              alt="${XiaoDou.escapeHtml(animal.word)}"
                              onclick="playWord(${index})">
                         <button class="side-arrow right" onclick="nextAnimal()" aria-label="下一个">▶</button>

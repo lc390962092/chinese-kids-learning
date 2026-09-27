@@ -182,7 +182,7 @@
                 card.innerHTML = `
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" onclick="prevItem()">◀</button>
-                        <img class="item-image" src="${XiaoDou.resolvePath(`assets/images/seasons_weather/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22%3E%3Crect width=%22240%22 height=%22240%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%22120%22 y=%22125%22 font-size=%2250%22 text-anchor=%22middle%22%3E${XiaoDou.escapeHtml(item.word.charAt(0))}%3C/text%3E%3C/svg%3E'" onclick="playWord(${index})">
+                        <img loading="lazy" class="item-image" src="${XiaoDou.resolvePath(`assets/images/seasons_weather/${item.file}.webp`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22%3E%3Crect width=%22240%22 height=%22240%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%22120%22 y=%22125%22 font-size=%2250%22 text-anchor=%22middle%22%3E${XiaoDou.escapeHtml(item.word.charAt(0))}%3C/text%3E%3C/svg%3E'" onclick="playWord(${index})">
                         <button class="side-arrow right" onclick="nextItem()">▶</button>
                     </div>
                     <div class="item-word" onclick="playWord(${index})">${XiaoDou.escapeHtml(item.word)}</div>

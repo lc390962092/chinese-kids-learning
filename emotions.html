@@ -91,7 +91,7 @@
                 return `<div class="card ${i===0?'active':''}">
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" onclick="prevItem()">◀</button>
-                    <div class="card-emoji" onclick="playWord(${i})"><img src="${XiaoDou.resolvePath(`assets/images/emotions/${item.file}.png`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.style.display='none'; this.parentNode.textContent='😊'"></div>
+                    <div class="card-emoji" onclick="playWord(${i})"><img loading="lazy" src="${XiaoDou.resolvePath(`assets/images/emotions/${item.file}.webp`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.style.display='none'; this.parentNode.textContent='😊'"></div>
                         <button class="side-arrow right" onclick="nextItem()">▶</button>
                     </div>
                     <div class="card-title">${XiaoDou.escapeHtml(item.word)}</div>
