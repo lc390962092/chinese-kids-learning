@@ -4,159 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>小豆中文 - 季节和天气</title>
+        <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/flip-card.css">
+    <link rel="stylesheet" href="dark-mode.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: linear-gradient(135deg, #E3F2FD 0%, #E8F5E9 100%); min-height: 100vh; overflow-x: hidden; }
-        .header { text-align: center; padding: 20px 10px 10px; }
-        .header h1 { color: #1976D2; font-size: 28px; margin-bottom: 5px; }
-        .header p { color: #888; font-size: 14px; }
-        .mascot { text-align: center; padding: 8px; }
-        .mascot-bubble { display: inline-block; background: white; border-radius: 20px; padding: 8px 14px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); color: #555; font-size: 14px; max-width: 70%; position: relative; margin-bottom: 8px; line-height: 1.4; }
-        .mascot-bubble::after { content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); border-width: 8px 8px 0; border-style: solid; border-color: white transparent transparent transparent; }
-        .mascot-avatar { width: 36px; height: 36px; background: #FFD93D; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
-        .filter-bar { display: flex; justify-content: center; gap: 10px; padding: 10px 15px; flex-wrap: wrap; }
-        .filter-btn { border: none; border-radius: 20px; padding: 8px 20px; font-size: 15px; cursor: pointer; background: white; color: #666; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.2s; }
-        .filter-btn.active { background: #1976D2; color: white; }
-        .filter-btn:active { transform: scale(0.95); }
-        .main-stage { background: white; border-radius: 30px 30px 0 0; min-height: 60vh; padding: 25px 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); touch-action: pan-y; }
-        .item-card { display: none; text-align: center; animation: fadeIn 0.5s ease; }
-        .item-card.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideLeftIn { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes slideRightIn { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes slideLeftOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(-60px); } }
-        @keyframes slideRightOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(60px); } }
-        .slide-left-in { animation: slideLeftIn 0.3s ease forwards; }
-        .slide-right-in { animation: slideRightIn 0.3s ease forwards; }
-        .slide-left-out { animation: slideLeftOut 0.3s ease forwards; }
-        .slide-right-out { animation: slideRightOut 0.3s ease forwards; }
-        .card-image-wrapper { position: relative; display: inline-block; width: 240px; height: 240px; margin: 10px auto; }
-        .item-image { width: 240px; height: 240px; object-fit: contain; cursor: pointer; transition: transform 0.2s; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
-        .item-image:active { transform: scale(0.95); }
-        .side-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.95);
-            border: none;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.18);
-            font-size: 32px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: transform 0.2s, background 0.2s;
+        :root {
+            --primary-color: #1976D2;
+            --bg-gradient: linear-gradient(135deg, #E3F2FD 0%, #E8F5E9 100%);
         }
-        .side-arrow:active {
-            transform: translateY(-50%) scale(0.92);
-            background: #95E1D3;
-        }
-        .side-arrow:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
+        .card-image-wrapper {
+            position: relative;
+            display: inline-block;
+            width: fit-content;
+            margin: 10px auto;
         }
         .side-arrow.left { left: -50px; }
         .side-arrow.right { right: -50px; }
-        .item-word { font-size: 48px; color: #333; margin: 10px 0 5px; font-weight: bold; }
-        .item-pinyin { font-size: 22px; color: #888; margin-bottom: 5px; }
-        .item-english { font-size: 16px; color: #1976D2; margin-bottom: 5px; }
-        .item-japanese { font-size: 18px; color: #D84315; margin-bottom: 12px; cursor: pointer; }
-        .item-japanese-reading { font-size: 14px; color: #999; margin-left: 6px; }
-        .item-sentence { font-size: 18px; color: #555; margin: 12px auto; max-width: 90%; line-height: 1.6; padding: 12px 16px; background: #E3F2FD; border-radius: 16px; }
-        .btn-group { display: flex; justify-content: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-        .btn { border: none; border-radius: 25px; padding: 12px 22px; font-size: 16px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
-        .btn:active { transform: scale(0.95); }
-        .btn-word { background: #1976D2; }
-        .btn-sentence { background: #43A047; }
-        .btn-japanese { background: #FF7043; }
-        .btn-english { background: #3F51B5; }
-        .btn-encyclopedia { background: #9C27B0; }
-        .encyclopedia-box { background: #F3E5F5; border-radius: 18px; padding: 15px 18px; margin: 12px auto; max-width: 92%; text-align: left; font-size: 16px; line-height: 1.7; color: #555; display: none; }
-        .encyclopedia-box.show { display: block; animation: fadeIn 0.4s ease; }
-        .nav-btns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-        .nav-btn { background: #90CAF9; color: #333; border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .nav-btn:active { transform: scale(0.95); }
-        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .progress { display: flex; justify-content: center; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
-        .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s; }
-        .progress-dot.active { background: #1976D2; }
-        .back-bar { display: block; padding: 12px 15px; color: #666; text-decoration: none; font-size: 15px; background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); }
-        @media (max-width: 400px) { .item-image { width: 200px; height: 200px; } .item-word { font-size: 40px; } .item-sentence { font-size: 16px; } }
-    
-        /* 儿童锁开关 */
-        .kidlock-bar {
-            position: fixed;
-            top: 8px;
-            right: 10px;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255,255,255,0.92);
-            border-radius: 20px;
-            padding: 6px 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-            font-size: 13px;
-            color: #666;
-        }
-        .kidlock-switch {
-            position: relative;
-            width: 40px;
-            height: 22px;
-            flex-shrink: 0;
-        }
-        .kidlock-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .kidlock-slider {
-            position: absolute;
-            inset: 0;
-            background: #ccc;
-            border-radius: 22px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .kidlock-slider::before {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            left: 2px;
-            top: 2px;
-            background: white;
-            border-radius: 50%;
-            transition: transform 0.2s;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-        .kidlock-switch input:checked + .kidlock-slider {
-            background: #95E1D3;
-        }
-        .kidlock-switch input:checked + .kidlock-slider::before {
-            transform: translateX(18px);
-        }
-
-        /* 儿童锁开启时隐藏导航类元素 */
-        body.kidlock .back-bar,
-        body.kidlock .back-home,
-        body.kidlock .bottom-home,
-        body.kidlock .nav-btns {
-            display: none !important;
-        }
-
-        /* 儿童锁开启时钉死页面：禁止上下滚动 */
-        body.kidlock {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-        }
-    </style> <link rel="stylesheet" href="dark-mode.css">
+    </style>
 </head>
 <body>
     <div class="kidlock-bar">
