@@ -12,13 +12,6 @@
             --primary-color: #5C6BC0;
             --bg-gradient: linear-gradient(135deg, #E3F2FD 0%, #FFF0F5 100%);
         }
-        .card-image-wrapper {
-            position: relative;
-            display: inline-block;
-            width: 240px;
-            height: 240px;
-            margin: 10px auto;
-        }
         .side-arrow.left { left: -50px; }
         .side-arrow.right { right: -50px; }
     </style>
@@ -108,9 +101,8 @@
                 card.innerHTML = `
                     <div class="card-image-wrapper">
                         <button class="side-arrow left" onclick="event.stopPropagation(); prevVehicle();">◀</button>
-                        <div class="vehicle-image" onclick="playVehicle(${index})">
-                            <img loading="lazy" src="${XiaoDou.resolvePath(`assets/images/vehicles/${item.file}.webp`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='${svgFallback}'">
-                        </div>
+                        <img loading="lazy" class="vehicle-image" onclick="playVehicle(${index})"
+                             src="${XiaoDou.resolvePath(`assets/images/vehicles/${item.file}.webp`)}" alt="${XiaoDou.escapeHtml(item.word)}" onerror="this.src='${svgFallback}'">
                         <button class="side-arrow right" onclick="event.stopPropagation(); nextVehicle();">▶</button>
                     </div>
                     <div class="vehicle-word">${XiaoDou.escapeHtml(item.word)}</div>
